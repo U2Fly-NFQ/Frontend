@@ -1,22 +1,35 @@
-// Pure colors
-$white: #fff;
+// Basic color
+$blue: #0d6efd;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #d63384;
 $red: #dc3545;
-$orange: #cf822a;
-$blue: #2c51cc;
-$yellow: #e0dd29;
-$gray: #777;
-$green: #47cc26;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green: #198754;
+$teal: #20c997;
+$cyan: #0dcaf0;
+$white: #fff;
+$gray: #6c757d;
+$gray-dark: #343a40;
+$primary: #0d6efd;
+$secondary: #6c757d;
+$success: #198754;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #212529;
 
 // Custom color
-$primary: #045762;
-$second: #3f6f7e;
-$third: #39a2db;
-$fourth: #b7d1df;
-$fifth: #f2f8fa;
+$main-color: #8b3eea;
+$white-color: #ffffff;
+$black-color: #2b2540;
+$black-color-opacity: #2b2540c4;
+$paragraph-color: #818090;
+$bg-color: #f3f6fd;
 
-// Filter color, for svg image
-$primary-filter: invert(21%) sepia(81%) saturate(1139%) hue-rotate(154deg)
-  brightness(97%) contrast(97%);
+$transition: 0.4s all ease-in-out;
 
 // Text
 $text: #333;
@@ -47,10 +60,6 @@ $border-dark: 1px solid #c7c7c7;
 $border-radius: 2px;
 $border-radius-lg: 4px;
 
-// Social
-$facebook-color: #455ca8;
-$google-color: #f74933;
-
 // Size
-$nav-height: 40px;
-$headbar-height: 80px;
+// $nav-height: 40px;
+// $headbar-height: 80px;

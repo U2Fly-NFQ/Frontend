@@ -1,17 +1,17 @@
-import { Col, Layout, Row } from 'antd'
+import { Col, Row } from 'antd'
 import FlightListFilter from '../../components/FlightListFilter'
-const { Sider, Content } = Layout
+// const { Sider, Content } = Layout
 
 function FlightList() {
   return (
-    <Layout>
+    <div className="flightListPage wide grid">
       <Row>
-        <Col span={6}>
+        <Col span={8}>
           <FlightListFilter />
         </Col>
-        <Col span={18}>Flight List</Col>
+        <Col span={16}>Flight list</Col>
       </Row>
-    </Layout>
+    </div>
   )
 }
 

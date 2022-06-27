@@ -1,0 +1,14 @@
+.FlightSearch {
+  padding: 30px;
+  background: #ffffff;
+  box-shadow: 4px 14px 28px rgb(0 0 0 / 10%);
+  border-radius: 20px;
+  position: relative;
+
+  &Box {
+    background: #8b3eea17;
+    padding: 10px 10px 10px 20px;
+    border-radius: 10px;
+    position: relative;
+  }
+}

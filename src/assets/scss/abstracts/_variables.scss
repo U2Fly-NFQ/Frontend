@@ -1,0 +1,56 @@
+// Pure colors
+$white: #fff;
+$red: #dc3545;
+$orange: #cf822a;
+$blue: #2c51cc;
+$yellow: #e0dd29;
+$gray: #777;
+$green: #47cc26;
+
+// Custom color
+$primary: #045762;
+$second: #3f6f7e;
+$third: #39a2db;
+$fourth: #b7d1df;
+$fifth: #f2f8fa;
+
+// Filter color, for svg image
+$primary-filter: invert(21%) sepia(81%) saturate(1139%) hue-rotate(154deg)
+  brightness(97%) contrast(97%);
+
+// Text
+$text: #333;
+$text-light: #666;
+$text-black: #000;
+$text-white: #fff;
+$text-disable: #999;
+
+// Background color
+$background-transparent: rgba(0, 0, 0, 0.03);
+$background-white: #fff;
+$background-disabled: rgba(210, 210, 210);
+
+// Hover color
+$hover-text: rgb(220, 220, 220);
+$hover-bg: rgba(245, 245, 245);
+
+// Shadow
+$box-shadow: 0 0.5rem 1rem rgba(#000, 0.15);
+$box-shadow-sm: 0 0.125rem 0.25rem rgba(#000, 0.075);
+$box-shadow-lg: 0 1rem 3rem rgba(#000, 0.175);
+$box-shadow-inset: inset 0 1px 2px rgba(#000, 0.075);
+
+// Border
+$border-transparent: 1px solid rgba(0, 0, 0, 0.35);
+$border-light: 1px solid #dee2e6;
+$border-dark: 1px solid #c7c7c7;
+$border-radius: 2px;
+$border-radius-lg: 4px;
+
+// Social
+$facebook-color: #455ca8;
+$google-color: #f74933;
+
+// Size
+$nav-height: 40px;
+$headbar-height: 80px;

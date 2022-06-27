@@ -3,25 +3,69 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^4.21.3",
+    "apexcharts": "^3.35.3",
+    "axios": "^0.27.2",
+    "framer-motion": "^6.3.15",
+    "i18next": "^21.8.10",
+    "i18next-browser-languagedetector": "^6.1.4",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.3",
+    "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^11.17.3",
+    "react-image-gallery": "^1.2.8",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "sass": "^1.53.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install",
+    "prettier-all": "prettier --write src"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "plugin:prettier/recommended"
+    ],
+    "plugins": [
+      "unused-imports"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "warn",
+        {
+          "endOfLine": "auto"
+        }
+      ],
+      "no-unused-vars": "off",
+      "unused-imports/no-unused-imports": "warn",
+      "unused-imports/no-unused-vars": [
+        "warn",
+        {
+          "vars": "all",
+          "varsIgnorePattern": "^_",
+          "args": "after-used",
+          "argsIgnorePattern": "^_"
+        }
+      ]
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,scss,css,md}": "prettier --write src",
+    "*.{js,jsx}": "npx eslint --fix"
   },
   "browserslist": {
     "production": [
@@ -34,5 +78,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
   }
 }

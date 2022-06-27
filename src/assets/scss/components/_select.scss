@@ -1,0 +1,59 @@
+@use '../abstracts/variables' as a;
+
+/* selection */
+.select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  border-radius: a.$border-radius;
+  border: a.$border-light;
+  background-color: a.$background-white;
+  i {
+    margin-left: 8px;
+    padding-bottom: 5px;
+  }
+  &__active {
+    margin: 0;
+    font-weight: 400;
+  }
+  $spaceToList: 4px;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -$spaceToList;
+    left: 0;
+    height: $spaceToList;
+    width: 100%;
+  }
+  &__list {
+    display: none;
+    z-index: 2;
+    position: absolute;
+    min-width: 100%;
+    top: calc(100% + #{$spaceToList});
+    left: 0;
+    list-style: none;
+    background-color: inherit;
+    box-shadow: a.$box-shadow-sm;
+    border-radius: a.$border-radius;
+    border: a.$border-light;
+    animation: slide-down 0.3s;
+    &--show {
+      display: block;
+    }
+    li {
+      font-size: 0.9em;
+      cursor: pointer;
+      white-space: nowrap;
+      & > a {
+        display: block;
+        padding: 8px 16px;
+      }
+      &:hover {
+        background-color: a.$hover-bg;
+      }
+    }
+  }
+}

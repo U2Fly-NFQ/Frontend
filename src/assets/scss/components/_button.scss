@@ -1,0 +1,148 @@
+@use '../abstracts' as a;
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /*Customize*/
+  padding: 0.8rem 1.2rem;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.2rem;
+  outline: none;
+  cursor: pointer;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-primary {
+  background-color: rgba(a.$primary, 0.9);
+  color: a.$text-white;
+  border-color: a.$primary;
+  border-width: 2px;
+  &:hover {
+    background-color: a.$primary;
+  }
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 0.3rem rgba(a.$primary, 0.45);
+  }
+  &.disabled,
+  &:disabled {
+    opacity: 0.7;
+    pointer-events: none;
+    cursor: default;
+  }
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle {
+    border-color: rgba(a.$third, 0.8);
+  }
+  &:not(:disabled):not(.disabled):active:focus,
+  &:not(:disabled):not(.disabled).active:focus,
+  .show > &.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.4rem rgba(a.$primary, 0.45);
+  }
+}
+
+/*btn-secondary CSS*/
+.btn-second {
+  background-color: a.$fifth;
+  color: a.$text;
+  border-color: a.$second;
+
+  &:hover {
+    background-color: rgba(a.$fourth, 0.7);
+  }
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 0.3rem rgba(a.$fourth, 0.7);
+  }
+  &.disabled,
+  &:disabled {
+    opacity: 0.7;
+    cursor: default;
+    pointer-events: none;
+  }
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle {
+    background-color: a.$fourth;
+    border-color: a.$third;
+  }
+
+  &:not(:disabled):not(.disabled):active:focus,
+  &:not(:disabled):not(.disabled).active:focus,
+  .show > &.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.4rem rgba(a.$fourth, 0.7);
+  }
+}
+
+/*btn-transparent CSS*/
+.btn-third {
+  background-color: a.$background-white;
+  color: a.$text;
+  border: a.$border-dark;
+
+  &:hover {
+    background-color: a.$fifth;
+  }
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 0.3rem rgba(a.$fourth, 0.7);
+  }
+  &.disabled,
+  &:disabled {
+    opacity: 0.7;
+    cursor: default;
+    pointer-events: none;
+  }
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle {
+    background-color: a.$fifth;
+    border-color: a.$fourth;
+  }
+
+  &:not(:disabled):not(.disabled):active:focus,
+  &:not(:disabled):not(.disabled).active:focus,
+  .show > &.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.4rem rgba(a.$fourth, 0.7);
+  }
+}
+
+.btn-outline-primary {
+  background-color: a.$background-white;
+  color: a.$primary;
+  border-color: a.$primary;
+
+  &:hover {
+    background-color: a.$hover-bg;
+  }
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 0.3rem rgba(a.$primary, 0.45);
+  }
+  &.disabled,
+  &:disabled {
+    opacity: 0.7;
+    cursor: default;
+    pointer-events: none;
+  }
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle {
+    border-color: rgba(a.$third, 0.8);
+  }
+
+  &:not(:disabled):not(.disabled):active:focus,
+  &:not(:disabled):not(.disabled).active:focus,
+  .show > &.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.4rem rgba(a.$primary, 0.45);
+  }
+}

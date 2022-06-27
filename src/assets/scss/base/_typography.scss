@@ -1,0 +1,19 @@
+@font-face {
+  font-family: mallory;
+  src: url('../../fonts/Mallory-Dfonts.org/Mallory/Mallory\ Book.ttf');
+  src: local('../../fonts/Mallory-Dfonts.org/Mallory/Mallory\ Book')
+    format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: mallory;
+  src: url('../../fonts/Mallory-Dfonts.org/Mallory/Mallory\ Compact\ Medium.ttf');
+  src: local('../../fonts/Mallory-Dfonts.org/Mallory/Mallory\ Compact\ Medium')
+    format('truetype');
+  font-weight: 700;
+}
+
+body {
+  font-family: mallory, 'sans-serif' !important;
+  font-weight: 400;
+}

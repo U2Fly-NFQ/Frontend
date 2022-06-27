@@ -1,0 +1,10 @@
+@use '../abstracts' as a;
+
+.svg-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.svg-color-primary {
+  filter: a.$primary-filter;
+}

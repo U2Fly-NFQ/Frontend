@@ -1,0 +1,436 @@
+{
+  "hello": "Hello world!!",
+  "cta": {
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "refresh": "Refresh",
+    "save": "Save",
+    "delete": "Delete",
+    "move": "Move",
+    "adjust": "Adjust",
+    "split": "Split",
+    "upload": "Upload",
+    "download": "Download",
+    "apply": "Apply",
+    "report": "Report",
+    "cancel_order": "Cancel Order",
+    "force_supplier_approve": "Force Supplier Approval",
+    "supplier_approve": "Supplier Approval",
+    "approve_order": "Approve Order",
+    "delivered": "Delivered",
+    "finish_order": "Set Finished",
+    "download_order_delivery_note": "Delivery Note (PDF)",
+    "download_order_pdf": "Order (PDF)",
+    "download_order_csv": "CSV",
+    "upload_order_confirmation": "Upload Confirmation",
+    "place_holder_input-email": "Enter your email",
+    "place-holder-search": "Type anything to search",
+    "back_to_list": "Back to List",
+    "show_history": "Show History",
+    "subscribe": "Subscribe",
+    "search": "Search",
+    "buy-it-now": "BUY IT NOW",
+    "add": "Add",
+    "cancle": "Cancle",
+    "update": "Update"
+  },
+
+  "home-navigation": {
+    "home": "Home",
+    "bicycles": "Bicycles",
+    "clothing": "Clothing",
+    "helmet-and-shoes": "Helmet & Shoes",
+    "components": "Components",
+    "about": "About Us"
+  },
+
+  "home-page": {
+    "categories": {
+      "title": "POPULAR CATEGORIES",
+      "item": {
+        "electric-bike": "Electric Bikes",
+        "mountain-bike": "Mountain Bikes",
+        "kid-bike": "Kid Bikes",
+        "road-bike": "Road Bikes",
+        "gravel-bike": "Gravel Bikes"
+      }
+    },
+    "trending": "TRENDING PRODUCTS",
+    "brand": "BRANDS",
+    "retailer": {
+      "title": "OUR FEATURED RETAILERS",
+      "description": "B4B Shop is the place to buy or sell any bike, accessory, component or part from anyone, anywhere, anytime. Shop and browse through thousands of bikes & cycling products for sale from hundreds of bike shops and thousands of brands nationwide."
+    }
+  },
+
+  "footer": {
+    "title": "B4B-Shop is the one-stop shop for everything you need when buying your new bike. We are the US distributor and retailer for the global brands",
+    "shop-by": {
+      "title": "Shop By",
+      "item": {
+        "your-order": "Your Orders",
+        "payment": "Payment",
+        "delivery": "Delivery",
+        "condition": "Conditions"
+      }
+    },
+    "product": {
+      "title": "Products",
+      "item": {
+        "new-product": "New product",
+        "best-sale": "Best sales",
+        "price-drop": "Prices drop",
+        "store": "Stores"
+      }
+    },
+    "our-company": {
+      "title": "Our Company",
+      "item": {
+        "about-us": "About Us",
+        "contact-us": "Contact us",
+        "site-map": "Site map",
+        "help-service": "Help & Service"
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "item": {
+        "location": "Victoria Resort, Can Tho City"
+      }
+    }
+  },
+
+  "filter": {
+    "filter-bar": {
+      "price": {
+        "title": "Price"
+      },
+      "brand": {
+        "title": "Brand"
+      },
+      "material": {
+        "title": "Material",
+        "carbon": "Carbon",
+        "aluminum": "Aluminum"
+      },
+      "gender": {
+        "title": "Gender",
+        "men": "Mens",
+        "women": "Womens",
+        "unisex": "Unisex"
+      },
+      "type": {
+        "title": "Type",
+        "electric-bike": "Electric Bikes",
+        "mountain-bike": "Mountain Bikes",
+        "kid-bike": "Kid Bikes",
+        "road-bike": "Road Bikes",
+        "gravel-bike": "Gravel Bikes"
+      }
+    }
+  },
+
+  "detail-page": {
+    "availability": {
+      "title": "Avalibility: ",
+      "content": "{{number}} in stock"
+    },
+    "price": "{{val, currency(currency: USD)}}",
+    "rating": "{{rating}} reviews",
+    "banner": {
+      "free-shipping": {
+        "title": "FREE SHIPPING",
+        "content": "Free shipping on all US order or order above $99"
+      },
+      "support": {
+        "title": "SUPPORT 24/7",
+        "content": "Contact us 24 hours a day, 7 days a week"
+      },
+      "return-title": {
+        "title": "30 DAYS RETURN",
+        "content": "Simply return it within 30 days"
+      }
+    },
+    "bicycle-part": {
+      "title": "Bicycle parts",
+      "item": {
+        "brand": "BRAND",
+        "type": "TYPE",
+        "gender": "GENDER",
+        "material": "MATERIAL",
+        "groupset": "GROUPSET",
+        "braking-type": "BRAKING TYPE",
+        "item-condition": "ITEM CONDITION",
+        "availability": "AVAILABILITY"
+      }
+    }
+  },
+
+  "checkout_page": {
+    "title": "CHECKOUT DETAILS",
+    "left_form": {
+      "title": "Check Out Details",
+      "fullname": "Full Name",
+      "email": "Email",
+      "address": "Address",
+      "phone": "Phone Number",
+      "note": "Write your note here ...",
+      "order": "ORDER"
+    },
+
+    "right_form": {
+      "title": "Info Details",
+      "type": "Type",
+      "number": "Number",
+      "provisional": "Provisional",
+      "total": "Total",
+      "slogan": "10% TAX NOT INCLUDED"
+    }
+  },
+
+  "admin_page": {
+    "table": {
+      "name": "Name",
+      "brand": "Brand",
+      "price": "Price ($)",
+      "type": "Type",
+      "action": {
+        "title": "Action",
+        "content": "Delete Selected"
+      }
+    },
+
+    "side_bar": {
+      "dashboard": "Dashboard",
+      "bicycle": "Bicycle",
+      "order": "Order"
+    },
+
+    "order_table": {
+      "bicycle": "Bicycle",
+      "quantity": "Quantity",
+      "customer": "Customer",
+      "phone_number": "Phone Number",
+      "action": {
+        "title": "Action",
+        "content": "Delete Selected"
+      }
+    },
+
+    "form": {
+      "add_form": {
+        "title": "Add a new bicycle"
+      },
+      "edit_form": {
+        "title": "Edit Bicycle"
+      },
+      "name": "Name",
+      "brand": "Brand",
+      "gender": "Gender",
+      "material": "Material",
+      "price": "Price",
+      "type": "Type",
+      "variants": "Variants",
+      "description": "Description",
+      "image": "Image"
+    }
+  },
+
+  "common": {
+    "update": "Update",
+    "update_confirm": "Are you sure to save this update ?",
+    "delete_confirm": "Are you sure to delete ?",
+    "order": "ORDER BY",
+    "file_id": "File ID",
+    "available": "Available",
+    "disabled": "Disabled",
+    "total": "Total: {{number}}",
+    "sum": "Sum",
+    "table_range": "{{from}} - {{to}} of {{total}} items",
+    "zendesk_ticket": "Zendesk Ticket",
+    "zendesk_user": "Zendesk User",
+    "summary": "Summary",
+    "general_info": "General Info",
+    "note": "Notes",
+    "log": "Logs",
+    "split": "Split",
+    "items": "Items",
+    "actions": "Actions",
+    "documents": "Documents",
+    "all": "All",
+    "at": "At",
+    "by": "By",
+    "from": "From",
+    "to": "To",
+    "action": "Action",
+    "history": "History",
+    "supplier_number": "{{number}} suppliers",
+    "price": "{{val, currency(currency: USD)}}",
+    "asc": "Low to High",
+    "desc": "High to Low"
+  },
+
+  "field": {
+    "no": "No",
+    "order_id": "Order ID",
+    "order_name": "Order Name",
+    "date_range": "Date range",
+    "from_date": "From date",
+    "to_date": "To date",
+    "file": "File",
+    "start_at": "Start At",
+    "created_at": "Created At",
+    "updated_at": "Updated At",
+    "uploaded_by": "Uploaded By",
+    "status": "Status",
+    "warehouse": "Warehouse",
+    "supplier": "Supplier",
+    "parent_distributor_order_id": "Split From",
+    "supplier_id": "Supplier ID",
+    "total_positions": "Total Positions",
+    "name": "Name",
+    "position": "Position",
+    "discount": "Discount",
+    "total_amount": "Total Amount",
+    "total_gross": "Gross Total",
+    "currency": "Currency",
+    "date": "Date",
+    "order_date": "Order Date",
+    "booking_date": "Booking Date",
+    "reference_no": "Reference Nr",
+    "id": "ID",
+    "item_id": "Item ID",
+    "supplier_sku": "Supplier SKU",
+    "description": "Description",
+    "quantity": "Quantity",
+    "net_base_price": "Net Base Price",
+    "net_price": "Net Price",
+    "user": "User",
+    "payment_method": "Payment Method",
+    "payment_terms_in_days": "Payment Terms In Days",
+    "payment_terms_date": "Payment Terms Date",
+    "proposed_delivery": "Proposed Delivery",
+    "timeslot": "Timeslot",
+    "confirm_delivery": "Connox Confirm Delivery",
+    "remarks": "Remarks",
+    "thresholds": "Thresholds",
+    "delivery_date": "Delivery Date",
+    "duration": "Duration",
+    "select_detail_page": "Select Color, Size CM, and Size"
+  },
+  "error": {
+    "order_upload": {
+      "missing_lines": "There is some order lines missing in PDF file.",
+      "missing_delivery_date": "Proposed delivery date of some order lines is missing in file."
+    }
+  },
+  "order": {
+    "title": "Orders"
+  },
+  "order_detail": {
+    "table_action": {
+      "edit": "Edit Item",
+      "edit_delivery_date": "Edit Delivery Date",
+      "accept_delivery_date": "Accept Delivery Date",
+      "edit_confirm_date": "Edit Confirm Delivery Date",
+      "accept_confirm_date": "Accept Confirm Delivery Date"
+    }
+  },
+  "order_document": {
+    "upload": {
+      "title": "Upload document for Order #{{orderId}}",
+      "document_help": "PDF, DOC, DOCX, XLS, XLSX files only"
+    }
+  },
+  "order_upload": {
+    "title": "Parsed orders",
+    "process_manual": "Please process order manual on ECS",
+    "update_lines": "Update lines",
+    "parse_status": "Parse status: $t(natif_status.{{status}})"
+  },
+  "order_upload_modal": {
+    "title": "Upload order confirmation",
+    "title_order": "Upload confirmation for Order #{{orderId}}",
+    "file_note": "PDF or CSV",
+    "field": {
+      "help": "Choose file (pdf, csv)"
+    }
+  },
+  "order_upload_report_modal": {
+    "title": "Export Report"
+  },
+  "gate_day": {
+    "unassigned": "Unassigned",
+    "delivery_modal": {
+      "title": "Add New Delivery:"
+    }
+  },
+  "delivery_detail": {
+    "tracked_time": "Tracked time",
+    "delete_confirmation": "Are you sure you want to delete delivery {{id}}",
+    "field": {
+      "paper": "{{supplier}}'s papers",
+      "started_at": "Started at",
+      "finished_at": "Finished at"
+    },
+    "cta": {
+      "delete": "Delete this delivery"
+    }
+  },
+  "natif_status": {
+    "0": "Init",
+    "1": "Upload Processing",
+    "2": "Upload Done",
+    "3": "Upload Error",
+    "4": "Natif Processing",
+    "5": "Natif Done",
+    "6": "Natif Error",
+    "7": "Skip",
+    "8": "Done"
+  },
+  "order_status": {
+    "0": "Pending",
+    "1": "Supplier Approved",
+    "2": "Arrival Confirmation",
+    "3": "Cancelled",
+    "4": "Approved",
+    "5": "Delivered",
+    "6": "Finished"
+  },
+  "order_timeslot": {
+    "0000-0000": "No Timeslot",
+    "08:00-12:00": "08:00-12:00",
+    "12:00-15:00": "12:00-15:00",
+    "15:00-18:00": "15:00-18:00"
+  },
+  "order_history_action": {
+    "1": "Change Status",
+    "2": "Add Note",
+    "3": "Update Note",
+    "4": "Update Order Info",
+    "5": "Update Order Item",
+    "6": "Update Delivery Date",
+    "7": "Update Confirmation Date",
+    "8": "Split",
+    "9": "Upload File",
+    "10": "Upload Document",
+    "11": "Delete Document"
+  },
+  "delivery_status": {
+    "0": "Open",
+    "1": "Confirmed",
+    "2": "Arrived",
+    "3": "In Progress",
+    "4": "Finished",
+    "5": "Cancelled"
+  },
+  "mapping": {
+    "field": "$t(field.{{name}})",
+    "order_uploaded_status": "$t(natif_status.{{status}})",
+    "order_status": "$t(order_status.{{status}})",
+    "order_timeslot": "$t(order_timeslot.{{value}})",
+    "order_history_action": "$t(order_history_action.{{action}})",
+    "delivery_status": "$t(delivery_status.{{status}})"
+  }
+}

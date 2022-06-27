@@ -1,0 +1,26 @@
+@use '../../assets/scss/abstracts' as a;
+
+.common_banner {
+  background-image: url('../../assets/images/system/common-banner.png');
+  padding: 200px 0 130px 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &_text {
+    text-align: center;
+
+    h2 {
+      color: a.$white;
+      font-weight: 400;
+    }
+
+    ul {
+      padding-top: 20px;
+
+      li {
+        display: inline-block;
+        color: a.$white;
+      }
+    }
+  }
+}

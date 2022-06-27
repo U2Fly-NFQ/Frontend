@@ -8,7 +8,7 @@
 
 .wide {
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1440px;
 }
 
 .row {
@@ -104,7 +104,7 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .wide {
-    max-width: 744px;
+    max-width: 984px;
   }
 
   .row {
@@ -141,7 +141,7 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   .wide {
-    max-width: 984px;
+    max-width: 1200px;
   }
 
   .row {
@@ -193,7 +193,7 @@
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1224px) {
   .wide {
-    max-width: 1200px;
+    max-width: 1440px;
   }
 
   .row {

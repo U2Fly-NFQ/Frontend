@@ -1,0 +1,31 @@
+@use '../../assets/scss/abstracts' as a;
+
+.sub-nav {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: a.$border-dark;
+  max-height: 45px;
+
+  &-list {
+    display: flex;
+
+    &__item {
+      position: relative;
+      list-style-type: none;
+      display: inline-block;
+      color: a.$white-color;
+      margin-right: 25px;
+      font-size: 14px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 5px;
+        right: -15px;
+        width: 2px;
+        height: 15px;
+        background-color: a.$border-dark;
+      }
+    }
+  }
+}

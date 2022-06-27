@@ -1,5 +1,4 @@
 import { Row, Col } from 'antd'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './style.scss'
 
@@ -11,7 +10,7 @@ const SubNavBar = () => {
           <Col span={6}>
             <ul className="sub-nav-list">
               <li className="sub-nav-list__item">
-                <FontAwesomeIcon icon="fa-brands fa-facebook" />
+                <i class="fa-brands fa-facebook"></i>
               </li>
               <li className="sub-nav-list__item">Item</li>
               <li className="sub-nav-list__item">Item</li>

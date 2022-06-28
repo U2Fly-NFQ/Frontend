@@ -34,7 +34,7 @@ const SubNavBar = () => {
                 <NavLink to={'/login'}>Login</NavLink>
               </li>
               <li className="sub-nav-list__item">
-                <NavLink to={'/login'}>Sign up</NavLink>
+                <NavLink to={'/register'}>Sign up</NavLink>
               </li>
               <li className="sub-nav-list__item">Select</li>
               <li className="sub-nav-list__item">Concurrency</li>

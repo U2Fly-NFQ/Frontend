@@ -20,11 +20,11 @@ const Login = () => {
         <div className="grid wide">
           <Row justify="center">
             <Col lg={16}>
-              <div className="login-page-content">
-                <div className="login-page-box">
+              <div className="content">
+                <div className="box">
                   <Title level={3}>Welcome back</Title>
                   <Title level={2}>Logged in to stay in touch</Title>
-                  <form action="#" className="login-form">
+                  <form action="#" className="form">
                     <div class="form-group">
                       <input
                         type="text"
@@ -43,7 +43,7 @@ const Login = () => {
                     <div class="form-submit">
                       <button class="btn btn-primary btn-md">Log in</button>
                     </div>
-                    <div class="have-account">
+                    <div class="switch">
                       <p>
                         Dont have an account?{' '}
                         <a href="register.html">Register now</a>

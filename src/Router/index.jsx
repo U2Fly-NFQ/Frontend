@@ -4,20 +4,15 @@ import { Route, Routes } from 'react-router-dom'
 import HomeLayout from '../layouts/Home'
 import AdminLayout from '../layouts/Admin'
 
-import Login from '../pages/Login'
-import HomePage from '../pages/Home'
-import FlightListPage from '../pages/FlightList'
-import Register from '../pages/Register'
-import NoMatch from '../pages/NoMatch'
-import Admin from '../pages/Admin'
+import { Login, Home, FlightList, Register, NoMatch, Admin } from '../pages'
 
 const RoutesApp = () => {
   return (
     <Routes>
       {/* For users */}
       <Route path="/" element={<HomeLayout />}>
-        <Route path="" element={<HomePage />} />
-        <Route path="flights" element={<FlightListPage />} />
+        <Route path="" element={<Home />} />
+        <Route path="flights" element={<FlightList />} />
 
         {/* Authentication */}
         <Route path="/login" element={<Login />} />

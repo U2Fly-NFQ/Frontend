@@ -1,4 +1,5 @@
 import { Checkbox, Col, Row, Slider } from 'antd'
+import './style.scss'
 
 const Flight = () => {
   // Data for UI
@@ -87,11 +88,11 @@ const Flight = () => {
 
   return (
     <div className="filter">
-      <Row>
+      <Row className="filterItem price">
         <Col span={24} className="title">
           Filter by price
         </Col>
-        <Col span={24}>
+        <Col span={24} className="content">
           <Slider
             range
             min={0}
@@ -104,38 +105,38 @@ const Flight = () => {
           />
         </Col>
       </Row>
-      <Row>
+      <Row className="filterItem departure ">
         <Col span={24} className="title">
           Departure Time
         </Col>
-        <Col span={24}>
+        <Col span={24} className="content">
           <Checkbox.Group
             options={optionDeparture}
             onChange={handleDepartureChange}
           />
         </Col>
       </Row>
-      <Row>
+      <Row className="filterItem">
         <Col span={24} className="title">
           Number of stops
         </Col>
-        <Col span={24}>
+        <Col span={24} className="content">
           <Checkbox.Group options={optionStops} onChange={handleStopChange} />
         </Col>
       </Row>
-      <Row>
+      <Row className="filterItem">
         <Col span={24} className="title">
           Flight class
         </Col>
-        <Col span={24}>
+        <Col span={24} className="content">
           <Checkbox.Group options={optionClass} onChange={handleClassChange} />
         </Col>
       </Row>
-      <Row>
+      <Row className="filterItem">
         <Col span={24} className="title">
           Airlines
         </Col>
-        <Col span={24}>
+        <Col span={24} className="content">
           <Checkbox.Group
             options={optionAirlines}
             onChange={handleAirlineChange}

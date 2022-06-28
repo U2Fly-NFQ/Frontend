@@ -6,10 +6,10 @@ function FlightList() {
   return (
     <div className="flightListPage wide grid">
       <Row>
-        <Col span={8}>
+        <Col span={6}>
           <FlightListFilter />
         </Col>
-        <Col span={16}>Flight list</Col>
+        <Col span={18}>Flight list</Col>
       </Row>
     </div>
   )

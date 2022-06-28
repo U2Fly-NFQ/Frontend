@@ -3,13 +3,18 @@ import { Layout } from 'antd'
 import './style.scss'
 import { Navbar } from '../../components'
 
+import SubNavBar from '../../components/SubNavBar'
+
 const { Header, Footer, Content } = Layout
 
 function Home() {
   return (
     <Layout>
       <Layout>
-        <Navbar />
+        <Header className="home-header">
+          <SubNavBar />
+          <Navbar />
+        </Header>
         <Content>
           <Outlet />
         </Content>

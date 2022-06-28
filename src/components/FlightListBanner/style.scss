@@ -1,0 +1,40 @@
+@use '../../assets/scss/abstracts' as a;
+
+.flight-list-banner {
+  background-image: url('../../assets/images/system/common-banner.png');
+  padding: 200px 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__text {
+    text-align: center;
+
+    h2 {
+      color: a.$white;
+      font-weight: 400;
+      font-size: 36px;
+    }
+
+    ul {
+      padding-top: 20px;
+      color: a.$text-disable;
+
+      li {
+        display: inline-block;
+        padding-left: 7px;
+
+        &.active {
+          color: a.$text-white;
+        }
+
+        span {
+          padding-right: 5px;
+
+          i {
+            font-size: 7px;
+          }
+        }
+      }
+    }
+  }
+}

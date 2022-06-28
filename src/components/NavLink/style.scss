@@ -1,9 +1,10 @@
+@use '../../assets/scss/abstracts' as a;
+
 .nav-link {
   position: relative;
   display: inline-block;
   color: inherit;
 
-  color: #000;
   &.active {
     color: #000;
 

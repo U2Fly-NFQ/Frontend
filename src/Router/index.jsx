@@ -14,14 +14,14 @@ import Admin from '../pages/Admin'
 const RoutesApp = () => {
   return (
     <Routes>
-      {/* Authentication */}
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-
       {/* For users */}
       <Route path="/" element={<HomeLayout />}>
         <Route path="" element={<HomePage />} />
         <Route path="flights" element={<FlightListPage />} />
+
+        {/* Authentication */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Route>
 
       {/* For admins */}

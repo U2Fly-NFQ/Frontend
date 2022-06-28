@@ -1,10 +1,11 @@
 @use '../../assets/scss/abstracts' as a;
 
 .sub-nav {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
   border-bottom: a.$border-dark;
-  max-height: 45px;
+  height: 45px;
 
   &-list {
     display: flex;
@@ -20,12 +21,30 @@
       &::before {
         content: '';
         position: absolute;
-        top: 5px;
+        top: 3px;
         right: -15px;
-        width: 2px;
+        width: 1px;
         height: 15px;
-        background-color: a.$border-dark;
+        background-color: #dbdbdb78;
+        z-index: 9999;
       }
+
+      a {
+        padding-right: 7px;
+      }
+    }
+
+    &-actions {
+      font-weight: 500;
+    }
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 768px) {
+  .sub-nav {
+    .ant-row {
+      justify-content: flex-end;
     }
   }
 }

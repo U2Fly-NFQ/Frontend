@@ -1,0 +1,18 @@
+@use '../../assets/scss/abstracts/' as b;
+.ButtonOfPage {
+  button {
+    padding: 9px 11px;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    border: 1px solid b.$main-color;
+    background-color: b.$main-color;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  button:hover {
+    color: #000;
+    background-color: #fff;
+  }
+}

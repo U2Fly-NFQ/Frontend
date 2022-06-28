@@ -1,123 +1,91 @@
-import { DownOutlined, SearchOutlined } from '@ant-design/icons'
-import React from 'react'
-import NavLinkCustom from '../NavLink'
+import { SearchOutlined } from '@ant-design/icons'
+import React, { useRef } from 'react'
+import NavLinkDropDown from '../NavLinkDropDown'
 import './index.scss'
 export default function Navbar() {
+  const openNavbarHamburger = useRef(null)
+  const openNavbarModal = useRef(null)
+  const openAndNavbarDropDown = () => {
+    openNavbarHamburger.current.classList.toggle('open')
+    openNavbarModal.current.classList.toggle('open')
+  }
   return (
     <header>
-      <nav className="wide grid">
-        <div className="navbar__logo">
-          <img
-            src="https://andit.co/projects/html/and-tour/assets/img/logo.png"
-            className="navbar__logo"
-          />
-        </div>
+      <nav>
+        <div className="wide grid">
+          <div className="navbar__logo">
+            <img
+              src="https://andit.co/projects/html/and-tour/assets/img/logo.png"
+              className="navbar__logo"
+            />
+          </div>
 
-        <ul className="navbar__links">
-          <li className="navbar__link">
-            <NavLinkCustom to="/Home">
-              <p className="navbar__link__data">
-                Home
-                <DownOutlined />
-              </p>
-            </NavLinkCustom>
-            <div className="navbar__dropdown">
-              <div className="navbar__dropdown__content">
-                <div className="navbar__dropdown__lists">
-                  <div className="title">SHOP LAYOUTS</div>
-                  <ul className="list__dropdown__items">
-                    <li className="list__dropdown__item">More</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                  </ul>
-                </div>
-              </div>
+          <ul className="navbar__links">
+            <NavLinkDropDown
+              Title={'Home'}
+              ListDropDown={['Ajax Load More', 'Ajax Load More', 'Home']}
+            />
+            <NavLinkDropDown
+              Title={'Flight'}
+              ListDropDown={['Ajax Load More', 'Ajax Load More', 'Home']}
+            />
+            <NavLinkDropDown
+              Title={'Tours'}
+              ListDropDown={['Ajax Load More', 'Ajax Load More', 'Home']}
+            />
+            <NavLinkDropDown
+              Title={'New'}
+              ListDropDown={['Ajax Load More', 'Ajax Load More', 'Home']}
+            />
+            <NavLinkDropDown
+              Title={'Pages'}
+              ListDropDown={['Ajax Load More', 'Ajax Load More', 'Home']}
+            />
+          </ul>
+          <div className="navbar__footer">
+            <div className="navbar__footer__search">
+              <SearchOutlined />
             </div>
-          </li>
-          <li className="navbar__link">
-            <NavLinkCustom to="/Flights">
-              <p className="navbar__link__data">
-                Flights <DownOutlined />
-              </p>
-            </NavLinkCustom>
-            <div className="navbar__dropdown">
-              <div className="navbar__dropdown__content">
-                <div className="navbar__dropdown__lists">
-                  <div className="title">SHOP LAYOUTS</div>
-                  <ul className="list__dropdown__items">
-                    <li className="list__dropdown__item">More</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                  </ul>
-                </div>
-              </div>
+            <div className="navbar__footer__btn">
+              <button>become a partner</button>
             </div>
-          </li>
-          <li className="navbar__link">
-            <NavLinkCustom to="/Tours">
-              <p className="navbar__link__data">
-                Tours <DownOutlined />
-              </p>
-            </NavLinkCustom>
-            <div className="navbar__dropdown">
-              <div className="navbar__dropdown__content">
-                <div className="navbar__dropdown__lists">
-                  <div className="title">SHOP LAYOUTS</div>
-                  <ul className="list__dropdown__items">
-                    <li className="list__dropdown__item">More</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li className="navbar__link">
-            <NavLinkCustom to="/News">
-              <p className="navbar__link__data">
-                News <DownOutlined />{' '}
-              </p>
-            </NavLinkCustom>
-            <div className="navbar__dropdown">
-              <div className="navbar__dropdown__content">
-                <div className="navbar__dropdown__lists">
-                  <div className="title">SHOP LAYOUTS</div>
-                  <ul className="list__dropdown__items">
-                    <li className="list__dropdown__item">More</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li className="navbar__link">
-            <NavLinkCustom to="/page">
-              <p className="navbar__link__data">
-                page <DownOutlined />{' '}
-              </p>
-            </NavLinkCustom>
-            <div className="navbar__dropdown">
-              <div className="navbar__dropdown__content">
-                <div className="navbar__dropdown__lists">
-                  <div className="title">SHOP LAYOUTS</div>
-                  <ul className="list__dropdown__items">
-                    <li className="list__dropdown__item">More</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-        <div className="navbar__footer">
-          <div className="navbar__footer__search">
-            <SearchOutlined />
           </div>
-          <div className="navbar__footer__btn">
-            <button>become a partner</button>
+
+          <div
+            class="navbar_icons"
+            onClick={() => {
+              openAndNavbarDropDown()
+            }}
+          >
+            <div class="navbar_icon" ref={openNavbarHamburger}></div>
           </div>
+        </div>
+        <div className="navbar__dropdown__modal">
+          <ul className="navbar__dropdown-menu" ref={openNavbarModal}>
+            <li className="navbar__dropdown-menu__item">
+              <a>Home</a>
+              <div href="navbar__dropdown-menu__item__icon">+</div>
+            </li>
+            <li className="navbar__dropdown-menu__item">
+              <a>Flight </a>
+              <div href="navbar__dropdown-menu__item__icon">+</div>
+            </li>
+            <li className="navbar__dropdown-menu__item">
+              <a>Tour</a>
+            </li>
+            <li className="navbar__dropdown-menu__item">
+              <a>News</a>
+            </li>
+            <li className="navbar__dropdown-menu__item">
+              <a>PAges</a>
+            </li>
+            <li className="navbar__dropdown-menu__item">
+              <a>Hello</a>
+            </li>
+            <li className="navbar__dropdown-menu__item">
+              <a>Hello</a>
+            </li>
+          </ul>
         </div>
       </nav>
     </header>

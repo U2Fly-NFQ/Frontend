@@ -9,6 +9,8 @@
 
   &Passenger {
     min-height: 32px;
+    font-size: 18px;
+    font-weight: 600;
   }
 
   &Categories {
@@ -21,6 +23,10 @@
     border-radius: 10px;
     position: relative;
     height: 100%;
+
+    & div {
+      margin-bottom: 0 !important;
+    }
   }
 
   &Input {

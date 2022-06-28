@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { Layout } from 'antd'
 import './style.scss'
+import { Navbar } from '../../components'
 
 import SubNavBar from '../../components/SubNavBar'
 
@@ -12,6 +13,7 @@ function Home() {
       <Layout>
         <Header className="home-header">
           <SubNavBar />
+          <Navbar />
         </Header>
         <Content>
           <Outlet />

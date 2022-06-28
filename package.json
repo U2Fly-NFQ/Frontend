@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@reduxjs/toolkit": "^1.8.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -10,6 +11,7 @@
     "antd": "^4.21.3",
     "apexcharts": "^3.35.3",
     "axios": "^0.27.2",
+    "eslint": "^8.18.0",
     "framer-motion": "^6.3.15",
     "i18next": "^21.8.10",
     "i18next-browser-languagedetector": "^6.1.4",
@@ -65,7 +67,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,scss,css,md}": "prettier --write src",
-    "*.{js,jsx}": "npx eslint --fix"
+    "*.{js,jsx}": "eslint --fix"
   },
   "browserslist": {
     "production": [

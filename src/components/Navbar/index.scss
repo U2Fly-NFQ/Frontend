@@ -1,0 +1,202 @@
+@use '../../assets/scss/layout/grid' as a;
+@use '../../assets/scss/abstracts/' as b;
+// .wide {
+
+nav {
+  position: relative;
+  .wide.grid {
+    padding-top: 10px;
+    display: flex;
+    gap: 2rem;
+
+    .navbar__links {
+      align-items: center;
+      display: flex;
+      flex: 1;
+      gap: 1.5rem;
+
+      .navbar__link__data {
+        display: flex;
+        margin: 0;
+        gap: 0.6rem;
+        align-items: center;
+        color: #fff;
+        font-size: 14px;
+        span {
+          font: 14px;
+        }
+      }
+      .navbar__link:hover {
+        .navbar__dropdown {
+          opacity: 1;
+          transform: translateY(10px);
+          visibility: visible;
+        }
+      }
+    }
+    .navbar__footer {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      &__search {
+        color: #fff;
+        font-size: 20px;
+      }
+    }
+    .navbar_icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 45px;
+      cursor: pointer;
+      position: relative;
+      display: none;
+    }
+
+    .navbar_icon {
+      width: 35px;
+      height: 2px;
+      background-color: white;
+      border-radius: 5px;
+      transition: all 0.5s ease;
+    }
+
+    .navbar_icon::before,
+    .navbar_icon::after {
+      content: '';
+      position: absolute;
+      width: 35px;
+      height: 2px;
+      background-color: white;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    .navbar_icon::before {
+      transform: translateY(6px);
+    }
+
+    .navbar_icon::after {
+      transform: translateY(-6px);
+    }
+  }
+  .navbar__dropdown {
+    position: absolute;
+    background-color: #fff;
+    height: 250px;
+    width: 200px;
+    transform: translateX(7%);
+  }
+  .navbar__dropdown__modal {
+    position: absolute;
+    background-color: #fff;
+    height: 0px;
+    width: 410px;
+    transform: translateX(7%);
+    .navbar__dropdown-menu {
+      background-color: #fff;
+      transition: all 0.5s ease;
+      display: none;
+      overflow: hidden;
+      &__item {
+        padding: 1em 5%;
+        border-bottom: 1px solid #dbeefd;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}
+.navbar-link a {
+  color: black;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  display: inline-block;
+  position: relative;
+}
+
+.navbar__link a:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: '';
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background-color: #000;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.navbar__link a.active:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: '';
+  display: block;
+  height: 2px;
+  width: 100%;
+  left: 50%;
+  left: 0;
+  position: absolute;
+  background-color: #000;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+}
+.navbar__link a:hover:after {
+  width: 100%;
+  left: 0;
+}
+.navbar__link a:hover {
+  color: #000;
+}
+
+@media all and (max-width: 1024px) {
+  nav {
+    background-color: b.$main-color;
+    padding: 10px 0;
+    .wide.grid {
+      justify-content: space-between;
+      align-items: center;
+      .navbar__links {
+        display: none;
+      }
+      .navbar__footer {
+        display: none;
+      }
+      .navbar_icons {
+        display: flex;
+        // background: transparent;
+        .navbar_icon.open {
+          position: fixed;
+          z-index: 3;
+          transform: translateX(-60px);
+          background: transparent;
+        }
+
+        .navbar_icon.open::before {
+          transform: rotate(45deg) translate(35px, -35px);
+        }
+
+        .navbar_icon.open::after {
+          transform: rotate(-45deg) translate(35px, 35px);
+        }
+      }
+    }
+    .navbar__dropdown-menu.open {
+      display: block;
+      animation: mymove 0.5s;
+      .navbar__dropdown-menu__item {
+        transition: all 0.5s ease;
+      }
+    }
+  }
+}
+
+@keyframes mymove {
+  from {
+    height: 0;
+  }
+  to {
+    height: 250px;
+  }
+}

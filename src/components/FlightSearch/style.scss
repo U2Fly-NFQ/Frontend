@@ -1,0 +1,76 @@
+@use '../../assets/scss/abstracts' as var;
+
+.flightSearch {
+  padding: 30px;
+  background: #ffffff;
+  box-shadow: 4px 14px 28px rgb(0 0 0 / 10%);
+  border-radius: 20px;
+  position: relative;
+
+  &Passenger {
+    min-height: 32px;
+  }
+
+  &Categories {
+    margin-bottom: 20px;
+  }
+
+  &Box {
+    background: #ffffff;
+    padding: 10px 10px 10px 20px;
+    border-radius: 10px;
+    position: relative;
+    height: 100%;
+  }
+
+  &Input {
+    height: 35px;
+    padding: 0;
+    width: 70%;
+    font-size: 18px;
+
+    & .ant-select-selector {
+      background: transparent !important;
+      border: none !important;
+      outline: none !important;
+      padding: 0 !important;
+
+      & .ant-select-selection-search {
+        left: 0;
+        right: 0;
+      }
+
+      & input {
+        color: var.$black-color !important;
+        font-weight: 600 !important;
+      }
+    }
+  }
+
+  &Label {
+    display: block;
+    color: var.$paragraph-color !important;
+    line-height: 28px;
+    color: var(--paragraph-color);
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 0;
+    font-size: 14px;
+  }
+
+  &Selected {
+    display: block;
+    font-size: 12px;
+    padding-top: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  & .formControl {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -1,5 +1,6 @@
 import { SearchOutlined } from '@ant-design/icons'
 import React, { useRef } from 'react'
+import ButtonOfPage from '../ButtonOfPage'
 import NavLinkDropDown from '../NavLinkDropDown'
 import './index.scss'
 export default function Navbar() {
@@ -21,17 +22,19 @@ export default function Navbar() {
           </div>
 
           <ul className="navbar__links">
+            <NavLinkDropDown Title={'Home'} />
             <NavLinkDropDown
-              Title={'Home'}
-              ListDropDown={['Ajax Load More', 'Ajax Load More', 'Home']}
-            />
-            <NavLinkDropDown
-              Title={'Flight'}
-              ListDropDown={['Ajax Load More', 'Ajax Load More', 'Home']}
+              Title={'Flights'}
+              ListDropDown={['Flight', 'Flight Booking']}
             />
             <NavLinkDropDown
               Title={'Tours'}
-              ListDropDown={['Ajax Load More', 'Ajax Load More', 'Home']}
+              ListDropDown={[
+                'Tours',
+                'Tour booking',
+                'Top Destination',
+                'Destination Booking',
+              ]}
             />
             <NavLinkDropDown
               Title={'New'}
@@ -47,7 +50,7 @@ export default function Navbar() {
               <SearchOutlined />
             </div>
             <div className="navbar__footer__btn">
-              <button>become a partner</button>
+              <ButtonOfPage title={'Become a partner'} />
             </div>
           </div>
 

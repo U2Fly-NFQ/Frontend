@@ -19,8 +19,8 @@ nav {
         display: flex;
         margin: 0;
         gap: 0.6rem;
-        //   justify-content: center;
         align-items: center;
+        color: #fff;
         font-size: 14px;
         span {
           font: 14px;
@@ -39,6 +39,7 @@ nav {
       align-items: center;
       gap: 1.5rem;
       &__search {
+        color: #fff;
         font-size: 20px;
       }
     }

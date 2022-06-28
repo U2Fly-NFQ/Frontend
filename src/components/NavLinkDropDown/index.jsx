@@ -5,12 +5,12 @@ import './index.scss'
 export default function NavLinkDropDown({ Title, ListDropDown }) {
   return (
     <li className="navbar__link">
-      <NavLinkCustom to="/News">
+      <NavLinkCustom to={`/${Title.toLowerCase()}`}>
         <p className="navbar__link__data">
-          {Title} <DownOutlined />{' '}
+          {Title} {ListDropDown && <DownOutlined />}
         </p>
       </NavLinkCustom>
-      {ListDropDown.length > 0 && (
+      {ListDropDown && (
         <div className="navbar__dropdown">
           <div className="navbar__dropdown__content">
             <div className="navbar__dropdown__lists">

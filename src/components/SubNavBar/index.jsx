@@ -1,9 +1,13 @@
 import { Row, Col } from 'antd'
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 import './style.scss'
+import LangSelect from '../LangSelect'
 
 const SubNavBar = () => {
+  const { t } = useTranslation()
+
   return (
     <div className="sub-nav">
       <nav className="grid wide">
@@ -31,13 +35,14 @@ const SubNavBar = () => {
           <Col flex="none">
             <ul className="sub-nav-list sub-nav-list-actions">
               <li className="sub-nav-list__item">
-                <NavLink to={'/login'}>Login</NavLink>
+                <NavLink to={'/login'}>{t('cta.login')}</NavLink>
               </li>
               <li className="sub-nav-list__item">
-                <NavLink to={'/register'}>Sign up</NavLink>
+                <NavLink to={'/register'}>{t('cta.logout')}</NavLink>
               </li>
-              <li className="sub-nav-list__item">Select</li>
-              <li className="sub-nav-list__item">Concurrency</li>
+              <li className="sub-nav-list__item">
+                <LangSelect />
+              </li>
             </ul>
           </Col>
         </Row>

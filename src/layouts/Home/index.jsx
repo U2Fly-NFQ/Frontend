@@ -10,7 +10,6 @@ function Home() {
       <Layout>
         <Header>home header</Header>
         <Content>
-          <h1 className="test-h1">Hello</h1>
           <Outlet />
         </Content>
         <Footer>home footer</Footer>

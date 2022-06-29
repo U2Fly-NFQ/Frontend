@@ -13,18 +13,17 @@ const setStorageUser = (user) => {
 
 const user = getStorageUser() || {}
 
-const initialState = {
-  status: '',
-  id: user.id || '',
-  username: user.id || '',
-  roles: Object.keys(user.roles || []),
-  token: user.token || '',
-}
+const initialState = user
 
 const authSlice = createSlice({
   name: 'authSlice',
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state, action) => {
+      localStorage.removeItem('user')
+      state = {}
+    },
+  },
   extraReducers: (builder) => {
     builder
       // fetch all
@@ -36,11 +35,13 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.status = 'idle'
+        
         const loginUser = {
           ...action.payload,
           roles: Object.keys(action.payload.roles),
         }
         state = loginUser
+        
         setStorageUser(loginUser)
         setTokenApi(loginUser.token)
       })

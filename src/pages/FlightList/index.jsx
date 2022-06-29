@@ -12,14 +12,12 @@ function FlightList() {
   return (
     <div className="flight-list-page">
       <FlightListBanner />
+      <div className="flight-search-container wide grid">
+        <FlightSearch />
+      </div>
+      <Title level={3}>42 tours found</Title>
       <div className="grid wide">
         <Row>
-          <div className="flight-search-container">
-            <FlightSearch />
-          </div>
-          <Col span={24}>
-            <Title level={3}>42 tours found</Title>
-          </Col>
           <Col span={6}>
             <FlightListFilter />
           </Col>

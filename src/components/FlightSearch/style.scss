@@ -24,6 +24,10 @@
     position: relative;
     height: 100%;
 
+    .ant-select.ant-select-in-form-item {
+      width: 70%;
+    }
+
     & div {
       margin-bottom: 0 !important;
     }

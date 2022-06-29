@@ -9,9 +9,9 @@ export default function FlightCard() {
       <div className="flight-card-items">
         <div className="flight-card-place">
           <div className="flight-card-place__left">
-            <div className="flight-card-place__logo">
+            <div className="flight-card-place__airline">
               <img
-                className="flight-card-place__logo-imgage"
+                className="flight-card-place__airline-imgage"
                 src="https://andit.co/projects/html/and-tour/assets/img/common/biman_bangla.png"
               />
             </div>

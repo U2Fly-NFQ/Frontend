@@ -14,7 +14,11 @@ import {
   AdminDashboard,
 } from '../pages'
 
+import { useSelector } from 'react-redux'
+
 const RoutesApp = () => {
+  const userData = useSelector((state) => state.login)
+
   return (
     <Routes>
       {/* For users */}
@@ -29,10 +33,11 @@ const RoutesApp = () => {
       </Route>
 
       {/* For admins */}
-      <Route path="admin" element={<AdminLayout />}>
-        <Route index element={<AdminDashboard />} />
-        {/*<Route path="users" element={<AdminDashboard />} />*/}
-      </Route>
+      {userData.roles?.include('1') && (
+        <Route path="admin" element={<AdminLayout />}>
+          <Route path="" element={<AdminDashboard />} />
+        </Route>
+      )}
 
       {/* Invalid route */}
       <Route path="*" element={<NoMatch />} />

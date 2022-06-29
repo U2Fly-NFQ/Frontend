@@ -55,12 +55,12 @@ export default function Navbar() {
           </div>
 
           <div
-            class="navbar_icons"
+            className="navbar_icons"
             onClick={() => {
               openAndNavbarDropDown()
             }}
           >
-            <div class="navbar_icon" ref={openNavbarHamburger}></div>
+            <div className="navbar_icon" ref={openNavbarHamburger}></div>
           </div>
         </div>
         <div className="navbar__dropdown__modal">

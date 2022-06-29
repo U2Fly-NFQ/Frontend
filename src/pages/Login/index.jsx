@@ -1,16 +1,42 @@
-import { Row, Col, Typography } from 'antd'
+import { Row, Col, Typography, Form } from 'antd'
+import { login } from '../../redux/slices'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
 import { LoginBanner } from '../../components'
 import './style.scss'
+import { useEffect } from 'react'
 
 const { Title } = Typography
 
 const Login = () => {
+  const dispatch = useDispatch()
+  const userData = useSelector((state) => state.login)
+  const isLoggedIn = !!userData.id
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      // admin
+      if (userData.roles.includes('3')) {
+        navigate('/admin')
+      }
+
+      // user
+      if (userData.roles.includes('1')) {
+        navigate('/flights')
+      }
+    }
+  }, [isLoggedIn])
+
   const onFinish = (values) => {
-    console.log('Success:', values)
+    dispatch(login(values))
   }
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
+  const passwordValidator = (rule, value, callback) => {
+    if (!value) callback('Please input your password')
+    if (value.length < 3) callback('Password must be at least 6 characters')
+    callback()
   }
 
   return (
@@ -24,32 +50,50 @@ const Login = () => {
                 <div className="box">
                   <Title level={3}>Welcome back</Title>
                   <Title level={2}>Logged in to stay in touch</Title>
-                  <form action="#" className="form">
-                    <div class="form-group">
+                  <Form className="form" name="login-form" onFinish={onFinish}>
+                    <Form.Item
+                      name="username"
+                      rules={[
+                        {
+                          required: true,
+                          message: 'Please input your email!',
+                        },
+                        {
+                          type: 'email',
+                          message: 'Email is not valid',
+                        },
+                      ]}
+                    >
                       <input
                         type="text"
-                        class="form-control"
-                        placeholder="Enter user name"
+                        className="form-control"
+                        placeholder="Enter your email"
                       />
-                    </div>
-                    <div class="form-group">
+                    </Form.Item>
+                    <Form.Item
+                      name="password"
+                      rules={[{ validator: passwordValidator }]}
+                    >
                       <input
                         type="password"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Enter password"
                       />
-                      <a href="forgot-password.html">Forgot password?</a>
-                    </div>
-                    <div class="form-submit">
-                      <button class="btn btn-primary btn-md">Log in</button>
-                    </div>
-                    <div class="switch">
+                    </Form.Item>
+                    <Form.Item>
+                      <div className="form-submit">
+                        <button className="btn btn-primary btn-md">
+                          Log in
+                        </button>
+                      </div>
+                    </Form.Item>
+                    <div className="switch">
                       <p>
                         Dont have an account?{' '}
                         <a href="register.html">Register now</a>
                       </p>
                     </div>
-                  </form>
+                  </Form>
                 </div>
               </div>
             </Col>

@@ -36,13 +36,11 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.status = 'idle'
-
         const loginUser = {
           ...action.payload,
           roles: Object.keys(action.payload.roles),
         }
         state = loginUser
-
         setStorageUser(loginUser)
         setTokenApi(loginUser.token)
       })

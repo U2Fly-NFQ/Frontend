@@ -4,7 +4,14 @@ import { Route, Routes } from 'react-router-dom'
 import HomeLayout from '../layouts/Home'
 import AdminLayout from '../layouts/Admin'
 
-import { Login, Home, FlightList, Register, NoMatch, Admin } from '../pages'
+import {
+  Login,
+  Home,
+  FlightList,
+  Register,
+  NoMatch,
+  AdminDashboard,
+} from '../pages'
 
 const RoutesApp = () => {
   return (
@@ -21,7 +28,8 @@ const RoutesApp = () => {
 
       {/* For admins */}
       <Route path="admin" element={<AdminLayout />}>
-        <Route path="" element={<Admin />} />
+        <Route index element={<AdminDashboard />} />
+        {/*<Route path="users" element={<AdminDashboard />} />*/}
       </Route>
 
       {/* Invalid route */}

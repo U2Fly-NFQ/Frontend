@@ -1,13 +1,21 @@
 import { Layout } from 'antd'
+import './style.scss'
+import { Outlet } from 'react-router-dom'
+import { AdminHeader, AdminSidebar } from '../../components'
+import { useState } from 'react'
 const { Header, Footer, Sider, Content } = Layout
-
 function AdminLayout() {
+  //Menu collapsed
+  const [collapsed, setCollapsed] = useState(false)
+
   return (
-    <Layout>
-      <Sider>Admin slider</Sider>
+    <Layout className="admin">
+      <AdminSidebar collapsed={collapsed} setCollapsed={setCollapsed} />
       <Layout>
-        <Header>Admin header</Header>
-        <Content>admin content</Content>
+        <AdminHeader />
+        <Content>
+          <Outlet />
+        </Content>
         <Footer>admin footer</Footer>
       </Layout>
     </Layout>

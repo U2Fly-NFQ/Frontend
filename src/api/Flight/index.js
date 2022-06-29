@@ -1,21 +1,19 @@
-import { axiosInstance } from '../../api'
+import axios from 'axios'
 
-const getAll = () => axiosInstance.get(`/flights`)
+const getList = () => axios.get(`/flights`)
 
-const get = (id) => axiosInstance.get(`/flights/${id}`)
+const get = (id) => axios.get(`/flights/${id}`)
 
-const create = (data) => axiosInstance.post(`/flights`, data)
+const create = (data) => axios.post(`/flights`, data)
 
-const update = (id, data) => axiosInstance.put(`/flights/${id}`, data)
+const update = (id, data) => axios.put(`/flights/${id}`, data)
 
-const destroy = (id) => axiosInstance.delete(`/flights/${id}`)
+const destroy = (id) => axios.delete(`/flights/${id}`)
 
-const FlightApi = {
-  getAll,
+export default {
+  getList,
   get,
   create,
   update,
   destroy,
 }
-
-export default FlightApi

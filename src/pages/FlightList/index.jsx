@@ -32,10 +32,10 @@ function FlightList() {
       </div>
       <div className="grid wide">
         <Row gutter={[24, 24]}>
-          <Col span={24} md={5}>
+          <Col span={24} md={6}>
             <FlightListFilter />
           </Col>
-          <Col span={24} md={19}>
+          <Col span={24} md={18}>
             <Row gutter={[16, 16]} justify="center">
               <Col span={24}>
                 <FlightCard />

@@ -9,7 +9,6 @@ import {
   DatePicker,
   Radio,
   Popover,
-  Divider,
   Typography,
   InputNumber,
 } from 'antd'
@@ -52,16 +51,13 @@ export default function FlightSearch() {
           }}
         />
       </Form.Item>
-      <Divider />
       <Title level={4}>Cabin Class</Title>
       <Form.Item name="class">
         <Radio.Group
           buttonStyle="solid"
           onChange={(e) => setPassengerClass(e.target.value)}
         >
-          <Radio.Button value="economy" checked>
-            Economy
-          </Radio.Button>
+          <Radio.Button value="economy">Economy</Radio.Button>
           <Radio.Button value="business">Business</Radio.Button>
           <Radio.Button value="firstClass">First Class</Radio.Button>
         </Radio.Group>
@@ -139,9 +135,9 @@ export default function FlightSearch() {
               </p>
             </div>
           </Col>
-          <Col span={24} md={12} lg={8}>
+          <Col span={24} md={12} lg={7}>
             <div className="flightSearchBox">
-              <Row>
+              <Row gutter={[8, 8]}>
                 <Col span={12}>
                   <label className="flightSearchLabel">Journey Date</label>
                   <Form.Item name="journeyDate">
@@ -189,11 +185,11 @@ export default function FlightSearch() {
               </Row>
             </div>
           </Col>
-          <Col span={24} md={12} lg={4}>
+          <Col span={24} md={12} lg={5}>
             <Popover
               content={passengerPopover}
               trigger="click"
-              placement="bottom"
+              placement="bottomRight"
             >
               <div className="flightSearchBox">
                 <label className="flightSearchLabel">Passenger, Class</label>

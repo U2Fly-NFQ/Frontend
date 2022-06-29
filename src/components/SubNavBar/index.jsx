@@ -38,7 +38,7 @@ const SubNavBar = () => {
                 <NavLink to={'/login'}>{t('cta.login')}</NavLink>
               </li>
               <li className="sub-nav-list__item">
-                <NavLink to={'/register'}>{t('cta.logout')}</NavLink>
+                <NavLink to={'/register'}>{t('cta.register')}</NavLink>
               </li>
               <li className="sub-nav-list__item">
                 <LangSelect />

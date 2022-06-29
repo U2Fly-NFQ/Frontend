@@ -7,7 +7,10 @@ export default function NavLinkDropDown({ Title, ListDropDown }) {
     <li className="navbar__link">
       <NavLinkCustom to={`/${Title.toLowerCase()}`}>
         <p className="navbar__link__data">
-          {Title} {ListDropDown && <DownOutlined />}
+          {Title}{' '}
+          {ListDropDown && (
+            <DownOutlined style={{ fontSize: '10px', fontWeight: '500' }} />
+          )}
         </p>
       </NavLinkCustom>
       {ListDropDown && (

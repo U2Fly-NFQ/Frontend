@@ -2,13 +2,14 @@
 @use '../../assets/scss/abstracts/' as b;
 // .wide {
 
-nav {
+.navbar {
   position: relative;
+
   .wide.grid {
     padding-top: 10px;
     display: flex;
     gap: 2rem;
-
+    padding: 0 10px;
     .navbar__links {
       align-items: center;
       display: flex;
@@ -82,9 +83,9 @@ nav {
   .navbar__dropdown {
     position: absolute;
     background-color: #fff;
-    height: 250px;
+    height: fit-content;
     width: 200px;
-    transform: translateX(7%);
+    transform: translateY(30px);
   }
   .navbar__dropdown__modal {
     position: absolute;
@@ -119,19 +120,19 @@ nav {
 
 .navbar__link a:after {
   background: none repeat scroll 0 0 transparent;
-  bottom: 0;
+  bottom: -6px;
   content: '';
   display: block;
   height: 2px;
   left: 50%;
   position: absolute;
-  background-color: #000;
+  background-color: #fff;
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
 .navbar__link a.active:after {
   background: none repeat scroll 0 0 transparent;
-  bottom: 0;
+  bottom: -6px;
   content: '';
   display: block;
   height: 2px;
@@ -139,7 +140,7 @@ nav {
   left: 50%;
   left: 0;
   position: absolute;
-  background-color: #000;
+  background-color: #fff;
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
 }
 .navbar__link a:hover:after {
@@ -151,7 +152,7 @@ nav {
 }
 
 @media all and (max-width: 1024px) {
-  nav {
+  .navbar {
     background-color: b.$main-color;
     padding: 10px 0;
     .wide.grid {

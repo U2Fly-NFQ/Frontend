@@ -1,4 +1,5 @@
 export { default as AdminDashboard } from './AdminDashboard'
+export { default as AdminFlights } from './AdminFlights'
 export { default as Booking } from './Booking'
 export { default as FlightList } from './FlightList'
 export { default as Home } from './Home'

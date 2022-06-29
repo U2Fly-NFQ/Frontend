@@ -11,6 +11,7 @@ import {
   Register,
   NoMatch,
   AdminDashboard,
+  AdminFlights,
 } from '../pages'
 
 const RoutesApp = () => {
@@ -29,7 +30,7 @@ const RoutesApp = () => {
       {/* For admins */}
       <Route path="admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
-        {/*<Route path="users" element={<AdminDashboard />} />*/}
+        <Route path="flights" element={<AdminFlights />} />
       </Route>
 
       {/* Invalid route */}

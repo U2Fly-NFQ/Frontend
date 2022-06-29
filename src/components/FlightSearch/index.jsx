@@ -93,7 +93,7 @@ export default function FlightSearch() {
         <Row gutter={[24, 24]} className="flightSearchBody">
           <Col span={24} md={12} lg={6}>
             <div className="flightSearchBox">
-              <i class="flightSearchBox__Icon fa-solid fa-plane-departure"></i>
+              <i className="flightSearchBox__Icon fa-solid fa-plane-departure"></i>
               <label className="flightSearchLabel">From</label>
               <Form.Item name="from">
                 <AutoComplete
@@ -116,7 +116,7 @@ export default function FlightSearch() {
           </Col>
           <Col span={24} md={12} lg={6}>
             <div className="flightSearchBox">
-              <i class="flightSearchBox__Icon fa-solid fa-plane-arrival"></i>
+              <i className="flightSearchBox__Icon fa-solid fa-plane-arrival"></i>
               <label className="flightSearchLabel">To</label>
               <Form.Item name="to">
                 <AutoComplete

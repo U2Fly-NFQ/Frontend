@@ -25,39 +25,39 @@ const Register = () => {
                   <Title level={3}>To join a whole new world</Title>
                   <Title level={2}>Register your account</Title>
                   <form action="#" className="form">
-                    <div class="form-group">
+                    <div className="form-group">
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Your name"
                       />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Your mail"
                       />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Your phone"
                       />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                       <input
                         type="password"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Enter password"
                       />
                       <a href="forgot-password.html">Forgot password?</a>
                     </div>
-                    <div class="form-submit">
-                      <button class="btn btn-primary btn-md">Register</button>
+                    <div className="form-submit">
+                      <button className="btn btn-primary btn-md">Register</button>
                     </div>
-                    <div class="switch">
+                    <div className="switch">
                       <p>
                         Dont have an account?{' '}
                         <a href="register.html">Login now</a>

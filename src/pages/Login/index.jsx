@@ -1,4 +1,4 @@
-import { Row, Col, Typography, Button, Form, Layout } from 'antd'
+import { Row, Col, Typography, Form } from 'antd'
 import { login } from '../../redux/slices'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -12,19 +12,15 @@ const { Title } = Typography
 const Login = () => {
   const dispatch = useDispatch()
   const userData = useSelector((state) => state.login)
-  const idLoggedIn = !!userData.id
+  const isLoggedIn = !!userData.id
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (idLoggedIn) {
+    if (isLoggedIn) {
+
       // admin
       if (userData.roles.includes('3')) {
         navigate('/admin')
-      }
-
-      // partner
-      if (userData.roles.includes('2')) {
-        navigate('/partner')
       }
 
       // user
@@ -32,7 +28,8 @@ const Login = () => {
         navigate('/flights')
       }
     }
-  }, [])
+  }, [isLoggedIn])
+
 
   const onFinish = (values) => {
     dispatch(login(values))

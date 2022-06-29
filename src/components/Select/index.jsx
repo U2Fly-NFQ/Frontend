@@ -13,6 +13,7 @@ const SelectCustom = (props) => {
         defaultValue={defaultValue}
         style={style}
         onChange={onChange}
+        styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
       >
         {options.map((option) => (
           <Option key={option.key}>

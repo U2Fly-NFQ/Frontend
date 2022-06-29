@@ -1,0 +1,100 @@
+@use '../../assets/scss/abstracts/variables' as var;
+
+.flight-card {
+  margin-bottom: 36px;
+
+  .flight-card-items {
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .flight-card-place {
+    display: flex;
+    justify-content: space-between;
+    max-width: 620px;
+  }
+
+  .flight-card-place__left,
+  .flight-card-place__right {
+    display: flex;
+    align-items: center;
+    padding-left: 23px;
+  }
+
+  .flight-card-place-destination {
+    padding-left: 33px;
+
+    &__sub-title,
+    &__title,
+    &__decs {
+      margin: 0;
+      padding: 0;
+    }
+
+    &__sub-title {
+      font-size: 14px;
+      line-height: 16px;
+      color: var.$paragraph-color;
+    }
+
+    &__title {
+      font-weight: 500;
+      padding-top: 5px;
+      font-size: 24px;
+    }
+
+    &__desc {
+      padding-top: 5px;
+      font-size: 12px;
+      width: 140px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var.$dark;
+    }
+  }
+
+  .flight-card-price {
+    background: #f3eff9;
+    padding: 25px 16px 20px 25px;
+
+    .flight-card-price__origin {
+      color: var.$paragraph-color;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .flight-card-price__off {
+      padding-top: 10px;
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 40px;
+
+      sup {
+        font-size: 13px;
+        color: var.$main-color;
+        font-weight: 600;
+        top: -19px;
+        padding-left: 5px;
+      }
+    }
+
+    &__condition {
+      font-size: 12px;
+      padding-top: 2px;
+      font-weight: 500;
+      color: var(--black-color);
+    }
+
+    &__show-more {
+      font-size: 16px;
+      font-weight: 500;
+      padding-top: 7px;
+      cursor: pointer;
+    }
+  }
+}

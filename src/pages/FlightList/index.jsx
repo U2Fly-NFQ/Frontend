@@ -4,6 +4,7 @@ import {
   FlightListBanner,
   FlightListFilter,
   FlightSearch,
+  FlightCard,
 } from '../../components'
 
 const { Title } = Typography
@@ -15,13 +16,17 @@ function FlightList() {
       <div className="flight-search-container wide grid">
         <FlightSearch />
       </div>
-      <Title level={3}>42 tours found</Title>
+      <div className="flight-search-title-container">
+        <Title level={3}>42 tours found</Title>
+      </div>
       <div className="grid wide">
-        <Row>
+        <Row gutter={[24, 24]}>
           <Col span={6}>
             <FlightListFilter />
           </Col>
-          <Col span={18}>Flight list</Col>
+          <Col span={18}>
+            <FlightCard />
+          </Col>
         </Row>
       </div>
     </div>

@@ -1,3 +1,3 @@
 import axios from 'axios'
 
-export const loggin = (data) => axios.post(`/users/login`, data)
+export const loginApi = (data) => axios.post(`/api/login`, data)

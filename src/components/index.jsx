@@ -22,3 +22,6 @@ export { default as LoginBanner } from './LoginBanner'
 export { default as LangSelect } from './LangSelect'
 export { default as InputOFPage } from './InputOfPage'
 export { default as SelectDropDown } from './SelectDropDown'
+//For admin
+export { default as AdminSidebar } from './AdminSidebar'
+export { default as AdminHeader } from './AdminHeader'

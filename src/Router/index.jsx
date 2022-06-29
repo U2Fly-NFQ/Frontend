@@ -10,8 +10,8 @@ import {
   FlightList,
   Register,
   NoMatch,
-  Admin,
   Booking,
+  AdminDashboard,
 } from '../pages'
 
 const RoutesApp = () => {
@@ -30,7 +30,8 @@ const RoutesApp = () => {
 
       {/* For admins */}
       <Route path="admin" element={<AdminLayout />}>
-        <Route path="" element={<Admin />} />
+        <Route index element={<AdminDashboard />} />
+        {/*<Route path="users" element={<AdminDashboard />} />*/}
       </Route>
 
       {/* Invalid route */}

@@ -1,4 +1,4 @@
-import { Col, Row } from 'antd'
+import { Col, Row, Typography } from 'antd'
 import './style.scss'
 import {
   FlightListBanner,
@@ -6,11 +6,16 @@ import {
   FlightSearch,
 } from '../../components'
 
+const { Title } = Typography
+
 function FlightList() {
   return (
     <div className="flight-list-page">
       <FlightListBanner />
-      <FlightSearch />
+      <div className="flight-search-container wide grid">
+        <FlightSearch />
+      </div>
+      <Title level={3}>42 tours found</Title>
       <div className="grid wide">
         <Row>
           <Col span={6}>

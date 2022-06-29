@@ -1,4 +1,4 @@
-export { default as Admin } from './Admin'
+export { default as AdminDashboard } from './AdminDashboard'
 export { default as Booking } from './Booking'
 export { default as FlightList } from './FlightList'
 export { default as Home } from './Home'

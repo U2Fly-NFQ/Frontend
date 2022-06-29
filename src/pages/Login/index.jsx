@@ -17,7 +17,6 @@ const Login = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-
       // admin
       if (userData.roles.includes('3')) {
         navigate('/admin')
@@ -29,7 +28,6 @@ const Login = () => {
       }
     }
   }, [isLoggedIn])
-
 
   const onFinish = (values) => {
     dispatch(login(values))

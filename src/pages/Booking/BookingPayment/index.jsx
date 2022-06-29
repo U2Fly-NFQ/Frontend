@@ -6,7 +6,6 @@ export default function BookingPayment() {
   const [value, setValue] = useState(1)
   const [dataBooking, setDataBooking] = useState()
   useEffect(() => {
-    console.log(dataPayment[value])
     setDataBooking(dataPayment[value])
   }, [value])
   const onChange = (e) => {
@@ -125,7 +124,7 @@ export default function BookingPayment() {
         <Space direction="vertical">
           {dataPayment &&
             dataPayment.map((item, index) => {
-              return <Radio value={index}>{item.paymentMethod}</Radio>
+              return <Radio key={index}>{item.paymentMethod}</Radio>
             })}
         </Space>
       </Radio.Group>

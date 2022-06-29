@@ -15,8 +15,12 @@ export default function NavLinkDropDown({ Title, ListDropDown }) {
           <div className="navbar__dropdown__content">
             <div className="navbar__dropdown__lists">
               <ul className="list__dropdown__items">
-                {ListDropDown.map((item) => {
-                  return <li className="list__dropdown__item">{item}</li>
+                {ListDropDown.map((item, index) => {
+                  return (
+                    <li key={index} className="list__dropdown__item">
+                      {item}
+                    </li>
+                  )
                 })}
               </ul>
             </div>

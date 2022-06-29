@@ -3,10 +3,14 @@ import './index.scss'
 export default function SelectDropDown({ ListData }) {
   return (
     <div className="">
-      <select class="form-select bg_input">
+      <select className="form-select bg_input">
         {ListData &&
-          ListData.map((item) => {
-            return <option value="1">{item}</option>
+          ListData.map((item, index) => {
+            return (
+              <option value="1" key={index}>
+                {item}
+              </option>
+            )
           })}
       </select>
     </div>

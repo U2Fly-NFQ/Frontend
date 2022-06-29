@@ -25,25 +25,25 @@ const Login = () => {
                   <Title level={3}>Welcome back</Title>
                   <Title level={2}>Logged in to stay in touch</Title>
                   <form action="#" className="form">
-                    <div class="form-group">
+                    <div className="form-group">
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Enter user name"
                       />
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                       <input
                         type="password"
-                        class="form-control"
+                        className="form-control"
                         placeholder="Enter password"
                       />
                       <a href="forgot-password.html">Forgot password?</a>
                     </div>
-                    <div class="form-submit">
-                      <button class="btn btn-primary btn-md">Log in</button>
+                    <div className="form-submit">
+                      <button className="btn btn-primary btn-md">Log in</button>
                     </div>
-                    <div class="switch">
+                    <div className="switch">
                       <p>
                         Dont have an account?{' '}
                         <a href="register.html">Register now</a>

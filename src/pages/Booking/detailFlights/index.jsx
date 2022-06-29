@@ -13,7 +13,7 @@ export default function DetailFlights() {
           <h6>JFK - John F. Kennedy International...</h6>
         </div>
         <div className="detail-flights__container__trip__icon">
-          <i class="fa-solid fa-circle-arrow-right"></i>
+          <i className="fa-solid fa-circle-arrow-right"></i>
           <h6>non stop</h6>
           <p>01h 05minite</p>
         </div>
@@ -31,22 +31,23 @@ export default function DetailFlights() {
         <div className="detail-flights__container__package-rules__content">
           <ul>
             <li>
-              <i class="fas fa-circle"></i> Buffet breakfast as per the
+              <i className="fas fa-circle"></i> Buffet breakfast as per the
               Itinerary
             </li>
             <li>
-              <i class="fas fa-circle"></i> Visit eight villages showcasing
+              <i className="fas fa-circle"></i> Visit eight villages showcasing
               Polynesian culture
             </li>
             <li>
-              <i class="fas fa-circle"></i> Complimentary Camel safari, Bonfire,
+              <i className="fas fa-circle"></i> Complimentary Camel safari,
+              Bonfire,
             </li>
             <li>
-              <i class="fas fa-circle"></i> All toll tax, parking, fuel, and
+              <i className="fas fa-circle"></i> All toll tax, parking, fuel, and
               driver allowances
             </li>
             <li>
-              <i class="fas fa-circle"></i> Comfortable and hygienic vehicle
+              <i className="fas fa-circle"></i> Comfortable and hygienic vehicle
             </li>
           </ul>
         </div>

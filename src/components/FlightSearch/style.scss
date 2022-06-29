@@ -18,7 +18,7 @@
   }
 
   &Box {
-    background: #ffffff;
+    background: var.$bg-search-box;
     padding: 10px 10px 10px 20px;
     border-radius: 10px;
     position: relative;
@@ -26,6 +26,13 @@
 
     & div {
       margin-bottom: 0 !important;
+    }
+
+    &__Icon {
+      position: absolute;
+      top: 20%;
+      right: 12%;
+      font-size: 26px;
     }
   }
 

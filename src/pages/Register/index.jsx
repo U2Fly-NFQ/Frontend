@@ -55,7 +55,9 @@ const Register = () => {
                       <a href="forgot-password.html">Forgot password?</a>
                     </div>
                     <div className="form-submit">
-                      <button className="btn btn-primary btn-md">Register</button>
+                      <button className="btn btn-primary btn-md">
+                        Register
+                      </button>
                     </div>
                     <div className="switch">
                       <p>

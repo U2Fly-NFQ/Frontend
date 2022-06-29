@@ -21,3 +21,7 @@ export { default as FlightSearch } from './FlightSearch'
 export { default as LoginBanner } from './LoginBanner'
 export { default as LangSelect } from './LangSelect'
 export { default as HomeBanner } from './HomeBanner'
+
+//For admin
+export { default as AdminSidebar } from './AdminSidebar'
+export { default as AdminHeader } from './AdminHeader'

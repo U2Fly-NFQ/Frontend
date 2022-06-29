@@ -1,11 +1,27 @@
+@use '../../assets/scss/abstracts' as a;
+
 .booking-page__container {
   display: flex;
-
+  gap: 1rem;
+  padding-top: 100px;
   &__item {
     &:first-child {
-      padding: 20px;
-      background-color: white;
-      flex: 3;
+      flex: 2;
+    }
+    &__title {
+      border-bottom: 1px solid a.$main-color;
+      font-size: 18px;
+      display: inline-block;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    &__content {
+      background-color: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      padding-left: 40px;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      padding-right: 0;
     }
     flex: 1;
   }

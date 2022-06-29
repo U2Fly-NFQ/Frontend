@@ -23,7 +23,7 @@ export { default as LangSelect } from './LangSelect'
 export { default as InputOFPage } from './InputOfPage'
 export { default as SelectDropDown } from './SelectDropDown'
 export { default as HomeBanner } from './HomeBanner'
-
+export { default as FooterOfPage } from './FooterOfPage'
 //For admin
 export { default as AdminSidebar } from './AdminSidebar'
 export { default as AdminHeader } from './AdminHeader'

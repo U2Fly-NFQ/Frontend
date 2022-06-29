@@ -1,0 +1,27 @@
+.footer-email {
+  padding: 30px 0;
+  &__logo-content {
+    &__logo {
+      width: fit-content;
+      img {
+        width: 70%;
+      }
+    }
+    &__content {
+      font-size: 18px;
+    }
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+  }
+  &__email-send {
+    display: flex;
+    align-items: center;
+    .form-submit {
+      padding: 0;
+      button {
+        border-radius: 0 8px 8px 0;
+      }
+    }
+  }
+}

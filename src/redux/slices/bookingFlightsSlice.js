@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import flightAPI from '../../api/Flight'
+import discountInfo from '../../api/Discount'
 const initialState = {
   loadding: false,
   userInformation: {},
@@ -9,12 +10,23 @@ const initialState = {
     flightRules: [],
     price: 30.5,
   },
+  discountInfo: 0,
 }
-export const getDataFlights = createAsyncThunk(async (idFlight) => {
-  const respone = await flightAPI.get(idFlight)
-  return respone.data
-})
+export const getDataFlights = createAsyncThunk(
+  'flight/getDataFlights',
+  async (idFlight) => {
+    const respone = await flightAPI.get(idFlight)
+    return respone.data
+  }
+)
 
+export const getDiscountCheck = createAsyncThunk(
+  'discount/getDiscountCheck',
+  async (idFlight) => {
+    const respone = await discountInfo.getDiscountById(idFlight.idDiscount)
+    return respone.data
+  }
+)
 const bookingFlightsSlice = createSlice({
   name: 'filterSlice',
   initialState,
@@ -22,20 +34,17 @@ const bookingFlightsSlice = createSlice({
     addDataIntoBookingFlight: (state, action) => {
       let { apartment, city, country, emailAddress } = action.payload
       state.userInformation = action.payload
-      // apartment: undefined
-      // city: undefined
-      // country: undefined
-      // emailAddress: undefined
-      // firstName: 'asdasd'
-      // lastName: 'asdasd'
-      // number: '01293123'
-      // passport: 'asdasd'
-      // state: undefined
-      // streetAddress: 'asdasd'
-      // visa: 'asdasd'
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: {
+    [getDiscountCheck.pending]: (state, action) => {},
+    [getDiscountCheck.rejected]: (state, action) => {},
+    [getDiscountCheck.fulfilled]: (state, action) => {
+      const { status, data } = action.payload
+      if (status) {
+        state.discountInfo = data.percent
+      }
+    },
     // builder.addCase(getDataFlights.pedding, (state) => {
     //   state.loadding = true
     // })

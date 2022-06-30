@@ -13,3 +13,10 @@
 .ant-layout-footer {
   background-color: #fff;
 }
+
+@media screen and (max-width: 972px) {
+  .ant-layout-footer {
+    padding: 0;
+    padding-top: 20px;
+  }
+}

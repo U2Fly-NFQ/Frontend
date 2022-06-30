@@ -6,7 +6,12 @@ export default function FooterInformation() {
     <div className="footer-info  wide grid">
       <div className="footer-info__container ">
         <Row>
-          <Col lg={{ span: 6 }}>
+          <Col
+            lg={{ span: 6 }}
+            md={{ span: 6 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+          >
             <div className="footer-info__container__contact">
               <div className="footer-info__container__title">
                 <h5>Need any help?</h5>
@@ -33,7 +38,12 @@ export default function FooterInformation() {
               </div>
             </div>
           </Col>
-          <Col lg={{ span: 3 }}>
+          <Col
+            lg={{ span: 3 }}
+            md={{ span: 6 }}
+            sm={{ span: 12 }}
+            xs={{ span: 12 }}
+          >
             <div className="footer-info__container__company">
               <div className="footer-info__container__title">
                 <h5>Company</h5>
@@ -50,7 +60,12 @@ export default function FooterInformation() {
               </div>
             </div>
           </Col>
-          <Col lg={{ span: 3 }}>
+          <Col
+            lg={{ span: 5 }}
+            md={{ span: 6 }}
+            sm={{ span: 12 }}
+            xs={{ span: 12 }}
+          >
             <div className="footer-info__container__company">
               <div className="footer-info__container__title">
                 <h5>Company</h5>
@@ -67,7 +82,12 @@ export default function FooterInformation() {
               </div>
             </div>
           </Col>
-          <Col lg={{ span: 4 }}>
+          <Col
+            lg={{ span: 4 }}
+            md={{ span: 6 }}
+            sm={{ span: 12 }}
+            xs={{ span: 12 }}
+          >
             <div className="footer-info__container__company">
               <div className="footer-info__container__title">
                 <h5>Support</h5>
@@ -84,7 +104,12 @@ export default function FooterInformation() {
               </div>
             </div>
           </Col>
-          <Col lg={{ span: 5 }}>
+          <Col
+            lg={{ span: 4 }}
+            md={{ span: 5 }}
+            sm={{ span: 12 }}
+            xs={{ span: 12 }}
+          >
             <div className="footer-info__container__company">
               <div className="footer-info__container__title">
                 <h5>Other Services</h5>
@@ -97,23 +122,6 @@ export default function FooterInformation() {
                   <li>Partners</li>
                   <li>PointsPLUS</li>
                   <li>Blog</li>
-                </ul>
-              </div>
-            </div>
-          </Col>
-          <Col lg={{ span: 3 }}>
-            <div className="footer-info__container__company">
-              <div className="footer-info__container__title">
-                <h5>Top cities</h5>
-              </div>
-              <div className="footer-info__container__company__content">
-                <ul>
-                  <li>Chicago</li>
-                  <li>New York</li>
-                  <li>San Francisco</li>
-                  <li>California</li>
-                  <li>Ohio</li>
-                  <li>Alaska</li>
                 </ul>
               </div>
             </div>

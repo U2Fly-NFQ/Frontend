@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import airportApi from '../../api/Airport'
+
 import './style.scss'
 import {
   Col,
@@ -32,11 +35,34 @@ const options = [
 ]
 
 export default function FlightSearch() {
+  const [airport, setAirport] = useState([])
   const [journeyDay, setJourneyDay] = useState('')
   const [returnDay, setReturnDay] = useState('')
   const [ticket, setTicket] = useState('oneWay')
   const [passengerClass, setPassengerClass] = useState('')
   const [passengerNumber, setPassengerNumber] = useState(0)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    airportApi.getList().then((data) => {
+      if (data.status === 200) {
+        if (airport.length === 0) {
+          setAirport(data.data)
+        }
+      }
+    })
+  }, [])
+
+  console.log(airport)
+
+  const onFinish = (values) => {
+    console.log('Success:', JSON.stringify(values))
+    navigate('/flights/')
+  }
+
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo)
+  }
 
   const passengerPopover = (
     <>
@@ -64,14 +90,6 @@ export default function FlightSearch() {
       </Form.Item>
     </>
   )
-
-  const onFinish = (values) => {
-    console.log('Success:', JSON.stringify(values))
-  }
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
 
   return (
     <div className="flightSearch">

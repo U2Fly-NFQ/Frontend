@@ -82,7 +82,7 @@ export default function FlightCard({ loading }) {
               <Button type="primary">Book now</Button>
             </Link>
             <h6 className="flight-card-price__show-more">
-              Show more <i class="fas fa-chevron-down"></i>
+              Show more <i className="fas fa-chevron-down"></i>
             </h6>
           </div>
         </div>

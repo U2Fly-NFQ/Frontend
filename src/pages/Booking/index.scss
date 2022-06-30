@@ -4,6 +4,7 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  // max-width: ;
   padding-top: 100px;
   &__item {
     &:first-child {
@@ -27,8 +28,7 @@
     flex: 1;
   }
 }
-
-@media screen and (max-width: 972px) {
+@media only screen and (max-width: 767px) {
   .booking-page__container__item__content {
     padding: 10px;
   }

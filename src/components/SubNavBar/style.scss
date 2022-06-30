@@ -44,6 +44,12 @@
   }
 }
 
+@media screen and (max-width: 1024px) {
+  .sub-nav {
+    background-color: a.$main-color;
+  }
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 768px) {
   .sub-nav {

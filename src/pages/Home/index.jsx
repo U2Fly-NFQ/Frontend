@@ -1,5 +1,6 @@
 import './style.scss'
 import { Row, Col } from 'antd'
+import { Link } from 'react-router-dom'
 import { HomeBanner } from '../../components'
 
 function Home() {
@@ -21,40 +22,46 @@ function Home() {
               </div>
             </Col>
             <Col span={24} sm={12} lg={6}>
-              <div className="imagination_boxed">
-                <img
-                  src="https://andit.co/projects/html/and-tour/assets/img/imagination/imagination1.png"
-                  alt="img"
-                />
+              <Link to="/flights">
+                <div className="imagination_boxed">
+                  <img
+                    src="https://andit.co/projects/html/and-tour/assets/img/imagination/imagination1.png"
+                    alt="img"
+                  />
 
-                <h3>
-                  7% Discount for all <span>Airlines</span>
-                </h3>
-              </div>
+                  <h3>
+                    7% Discount for all <span>Airlines</span>
+                  </h3>
+                </div>
+              </Link>
             </Col>
             <Col span={24} sm={12} lg={6}>
-              <div className="imagination_boxed">
-                <img
-                  src="https://andit.co/projects/html/and-tour/assets/img/imagination/imagination2.png"
-                  alt="img"
-                />
+              <Link to="/flights">
+                <div className="imagination_boxed">
+                  <img
+                    src="https://andit.co/projects/html/and-tour/assets/img/imagination/imagination2.png"
+                    alt="img"
+                  />
 
-                <h3>
-                  Travel around<span>the world</span>
-                </h3>
-              </div>
+                  <h3>
+                    Travel around<span>the world</span>
+                  </h3>
+                </div>
+              </Link>
             </Col>
             <Col span={24} sm={12} lg={6}>
-              <div className="imagination_boxed">
-                <img
-                  src="https://andit.co/projects/html/and-tour/assets/img/imagination/imagination3.png"
-                  alt="img"
-                />
+              <Link to="/flights">
+                <div className="imagination_boxed">
+                  <img
+                    src="https://andit.co/projects/html/and-tour/assets/img/imagination/imagination3.png"
+                    alt="img"
+                  />
 
-                <h3>
-                  Luxury resorts<span>top deals</span>
-                </h3>
-              </div>
+                  <h3>
+                    Luxury resorts<span>top deals</span>
+                  </h3>
+                </div>
+              </Link>
             </Col>
           </Row>
         </section>
@@ -78,18 +85,98 @@ function Home() {
                     </h6>
                   </div>
                   <h2>Holiday packages</h2>
-                  <a
-                    href="top-destinations.html"
-                    className="btn btn_theme btn_md"
-                  >
+                  <Link to="/flights" className="btn btn_theme btn_md">
                     Book now
-                  </a>
+                  </Link>
                 </div>
               </div>
             </Col>
             <Col span={24} lg={12}>
               <Row gutter={24}>
-                <Col span={24} sm={8}></Col>
+                <Col span={24} sm={8}>
+                  <div className="destinations_content_box img_animation">
+                    <img
+                      src="https://andit.co/projects/html/and-tour/assets/img/destination/destination1.png"
+                      alt="img"
+                    />
+                    <div className="destinations_content_inner">
+                      <Link to="/flights">China</Link>
+                    </div>
+                  </div>
+                  <div className="destinations_content_box img_animation">
+                    <img
+                      src="https://andit.co/projects/html/and-tour/assets/img/destination/destination2.png"
+                      alt="img"
+                    />
+                    <div className="destinations_content_inner">
+                      <Link to="/flights">Darjeeling</Link>
+                    </div>
+                  </div>
+                  <div className="destinations_content_box img_animation">
+                    <img
+                      src="https://andit.co/projects/html/and-tour/assets/img/destination/destination3.png"
+                      alt="img"
+                    />
+                    <div className="destinations_content_inner">
+                      <Link to="/flights">Malaysia</Link>
+                    </div>
+                  </div>
+                </Col>
+                <Col span={24} sm={8}>
+                  <div className="destinations_content_box img_animation">
+                    <img
+                      src="https://andit.co/projects/html/and-tour/assets/img/destination/destination4.png"
+                      alt="img"
+                    />
+                    <div className="destinations_content_inner">
+                      <Link to="/flights">Gangtok</Link>
+                    </div>
+                  </div>
+                  <div className="destinations_content_box img_animation">
+                    <img
+                      src="https://andit.co/projects/html/and-tour/assets/img/destination/destination5.png"
+                      alt="img"
+                    />
+                    <div className="destinations_content_inner">
+                      <Link to="/flights">Thailand</Link>
+                    </div>
+                  </div>
+                  <div className="destinations_content_box img_animation">
+                    <img
+                      src="https://andit.co/projects/html/and-tour/assets/img/destination/destination6.png"
+                      alt="img"
+                    />
+                    <div className="destinations_content_inner">
+                      <Link to="/flights">Australia</Link>
+                    </div>
+                  </div>
+                </Col>
+                <Col span={24} sm={8}>
+                  <div className="destinations_content_box img_animation">
+                    <img
+                      src="https://andit.co/projects/html/and-tour/assets/img/destination/destination7.png"
+                      alt="img"
+                    />
+                    <div className="destinations_content_inner">
+                      <Link to="/flights">London</Link>
+                    </div>
+                  </div>
+                  <div className="destinations_content_box img_animation">
+                    <img
+                      src="https://andit.co/projects/html/and-tour/assets/img/destination/destination8.png"
+                      alt="img"
+                    />
+                    <div className="destinations_content_inner">
+                      <Link to="/flights">USA</Link>
+                    </div>
+                  </div>
+                  <Link
+                    to="/flights"
+                    className="btn btn_theme btn_md view-all-btn"
+                  >
+                    View all
+                  </Link>
+                </Col>
               </Row>
             </Col>
           </Row>

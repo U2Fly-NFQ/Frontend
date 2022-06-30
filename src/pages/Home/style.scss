@@ -30,6 +30,10 @@
   font-size: 18px;
 }
 
+.view-all-btn {
+  display: grid;
+}
+
 .btn_theme {
   color: var.$white-color;
   background-color: var.$main-color;
@@ -200,6 +204,12 @@
       transform: translate(-50%, -50%);
       z-index: 99;
 
+      a {
+        color: var.$white-color;
+        text-transform: capitalize;
+        font-size: 24px;
+      }
+
       h2 {
         color: var.$white-color;
         padding-bottom: 20px;
@@ -230,6 +240,34 @@
           }
         }
       }
+    }
+  }
+
+  .img_animation {
+    &:hover::after {
+      opacity: 1;
+      visibility: visible;
+    }
+    &:hover img {
+      transform: scale(1.1);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #8b3eea9c;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: var.$transition;
+    }
+
+    img {
+      transition: var.$transition;
+      position: relative;
     }
   }
 }

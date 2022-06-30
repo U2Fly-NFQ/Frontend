@@ -1,7 +1,7 @@
 @use '../../assets/scss/abstracts/variables' as var;
 
 .flight-card {
-  margin-bottom: 36px;
+  margin-bottom: 24px;
 
   .flight-card-items {
     background: #ffffff;
@@ -10,6 +10,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
 
     @media screen and (max-width: 768px) {
       flex-direction: column;
@@ -39,14 +40,21 @@
     }
   }
 
+  .flight-card-place__arrow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .flight-card-place__arrow h6 {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 700;
     padding-top: 10px;
   }
 
   .flight-card-place__arrow p {
-    font-size: 11px;
+    font-size: 13px;
     line-height: 18px;
   }
 
@@ -90,7 +98,6 @@
     &__desc {
       padding-top: 5px;
       font-size: 12px;
-      width: 140px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -98,43 +105,50 @@
     }
   }
 
-  .flight-card-price {
-    background: #f3eff9;
-    padding: 25px 16px 20px 25px;
+  .flight-card-deal {
+    .flight-card-price {
+      background: #f3eff9;
+      padding: 25px 16px 20px 25px;
+      min-width: 200px;
 
-    .flight-card-price__origin {
-      color: var.$paragraph-color;
-      font-size: 18px;
-      font-weight: 500;
-    }
+      .flight-card-price__origin {
+        color: var.$paragraph-color;
+        font-size: 18px;
+        font-weight: 500;
+      }
 
-    .flight-card-price__off {
-      padding-top: 10px;
-      font-size: 36px;
-      font-weight: 500;
-      line-height: 40px;
+      .flight-card-price__off {
+        margin-bottom: 0;
+        padding-top: 10px;
+        font-size: 36px;
+        font-weight: 500;
+        line-height: 40px;
 
-      sup {
-        font-size: 13px;
-        color: var.$main-color;
-        font-weight: 600;
-        top: -19px;
-        padding-left: 5px;
+        sup {
+          font-size: 13px;
+          color: var.$main-color;
+          font-weight: 600;
+          top: -19px;
+          padding-left: 5px;
+        }
+      }
+
+      &__condition {
+        font-size: 12px;
+        padding-top: 2px;
+        font-weight: 500;
+        color: var(--black-color);
+      }
+
+      &__show-more {
+        font-size: 16px;
+        font-weight: 500;
+        padding-top: 7px;
+        cursor: pointer;
       }
     }
-
-    &__condition {
-      font-size: 12px;
-      padding-top: 2px;
-      font-weight: 500;
-      color: var(--black-color);
-    }
-
-    &__show-more {
-      font-size: 16px;
-      font-weight: 500;
-      padding-top: 7px;
-      cursor: pointer;
+    .ant-btn {
+      width: 100%;
     }
   }
 }

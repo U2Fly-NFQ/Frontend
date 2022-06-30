@@ -3,8 +3,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import airport from '../../api/Airport'
 
 const initialState = {
-  data: [],
   status: '',
+  data: [],
 }
 
 const airportSlice = createSlice({
@@ -21,7 +21,7 @@ const airportSlice = createSlice({
       })
       .addCase(fetchAirports.fulfilled, (state, action) => {
         state.status = 'idle'
-        state.data = action.payload
+        state.data = action.payload.data
       })
   },
 })

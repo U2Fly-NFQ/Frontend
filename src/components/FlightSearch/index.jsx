@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import airportApi from '../../api/Airport'
+import { useSearchParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 import './style.scss'
-import { Col, Row, DatePicker, Radio, Popover, InputNumber, Select } from 'antd'
+import {
+  Col,
+  Row,
+  DatePicker,
+  Radio,
+  Popover,
+  InputNumber,
+  Select,
+  Modal,
+} from 'antd'
 import moment from 'moment'
+import { fetchAirports } from '../../redux/slices/airportSlice'
 
 const { Option } = Select
 
 export default function FlightSearch() {
-  const [airport, setAirport] = useState([])
+  const airports = useSelector((state) => state.airports.data)
   const [airportOptions, setAirportOptions] = useState([])
-  const [from, setFrom] = useState()
-  const [to, setTo] = useState()
+  const [from, setFrom] = useState({})
+  const [to, setTo] = useState({})
   const [searchFrom, setSearchFrom] = useState('')
   const [searchTo, setSearchTo] = useState('')
   const [journeyDay, setJourneyDay] = useState(moment().add(1, 'days'))
@@ -20,42 +31,56 @@ export default function FlightSearch() {
   const [passengerClass, setPassengerClass] = useState('economy')
   const [passengerNumber, setPassengerNumber] = useState(1)
 
+  let [searchParams, setSearchParams] = useSearchParams()
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    airportApi.getList().then((rs) => {
-      const data = rs.data.data
-      if (data.length > 0) {
-        setAirport(data)
-        const airportOptionsMap = data.map((op) => ({
-          value: op.iata,
-          label: op.city,
-          name: op.name,
-        }))
-        setFrom(airportOptionsMap[0])
-        setTo(airportOptionsMap[1])
-        setAirportOptions(airportOptionsMap)
-        console.log(airportOptionsMap)
-      }
-    })
+    dispatch(fetchAirports())
   }, [])
 
-  const onFinish = (values) => {
-    console.log('Success:', values)
+  useEffect(() => {
+    if (airports && airports.length > 1) {
+      const airportOptionsMap = airports.map((op) => ({
+        value: op.iata,
+        label: op.city,
+        name: op.name,
+      }))
+      setAirportOptions(airportOptionsMap)
+    }
+  }, [airports])
+
+  const onFinish = () => {
+    if (!from.value || to.value) {
+      Modal.warning({
+        content: 'All inputs must be fill',
+      })
+    }
+    const searchQuery = {
+      departure: from.value,
+      arrival: to.value,
+      startTime: journeyDay.format('YYYY-MM-DD'),
+    }
+
+    setSearchParams({
+      ...searchParams,
+      ...searchQuery,
+    })
   }
 
   const onChangeFrom = (option) => {
-    if (option.value === to.value) return
     setFrom({
       value: option.value,
       label: option.label,
     })
+    setSearchFrom('')
   }
 
   const onChangeTo = (option) => {
-    if (option.value === from.value) return
     setTo({
       value: option.value,
       label: option.label,
     })
+    setSearchTo('')
   }
 
   const passengerPopover = (
@@ -124,13 +149,15 @@ export default function FlightSearch() {
                   airport.label
                     .toLowerCase()
                     .includes(searchFrom.toLowerCase()) && (
-                    <Option value={airport.value}>{airport.label}</Option>
+                    <Option key={airport.value} value={airport.value}>
+                      {airport.label}
+                    </Option>
                   )
                 )
               })}
             </Select>
             <p className="flightSearchSelected">
-              {airport.find((ap) => ap.iata === from.value)?.name}
+              {airports && airports.find((ap) => ap.iata === from?.value)?.name}
             </p>
           </div>
         </Col>
@@ -156,13 +183,15 @@ export default function FlightSearch() {
                   airport.label
                     .toLowerCase()
                     .includes(searchTo.toLowerCase()) && (
-                    <Option value={airport.value}>{airport.label}</Option>
+                    <Option key={airport.value} value={airport.value}>
+                      {airport.label}
+                    </Option>
                   )
                 )
               })}
             </Select>
             <p className="flightSearchSelected">
-              {airport.find((ap) => ap.iata === to.value)?.name}
+              {airports && airports.find((ap) => ap.iata === to?.value)?.name}
             </p>
           </div>
         </Col>
@@ -224,7 +253,12 @@ export default function FlightSearch() {
         </Col>
       </Row>
       <div className="formControl">
-        <button type="primary" size="large" className="btn btn-md btn-primary">
+        <button
+          type="primary"
+          size="large"
+          className="btn btn-md btn-primary"
+          onClick={onFinish}
+        >
           Search
         </button>
       </div>

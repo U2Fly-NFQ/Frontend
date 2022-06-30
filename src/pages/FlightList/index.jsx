@@ -1,5 +1,7 @@
 import { Col, Row, Typography, Pagination } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
+import { fetchFlights } from '../../redux/slices/flightSlice'
 import './style.scss'
 import {
   FlightListBanner,
@@ -7,18 +9,20 @@ import {
   FlightSearch,
   FlightCard,
 } from '../../components'
-import { fetchFlights } from '../../redux/slices/flightSlice'
 import { useEffect } from 'react'
 
 const { Title } = Typography
 
 function FlightList() {
-  const dispatch = useDispatch()
   const flights = useSelector((state) => state.flights)
+  const airports = useSelector((state) => state.airports.data)
+
+  let [searchParams, setSearchParams] = useSearchParams()
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchFlights())
-  })
+    dispatch(fetchFlights(searchParams))
+  }, [searchParams])
 
   return (
     <div className="flight-list-page">
@@ -27,7 +31,7 @@ function FlightList() {
         <FlightSearch />
       </div>
       <div className="flight-search-title-container">
-        <Title level={3}>42 tours found</Title>
+        <Title level={3}>{flights.data.length} tours found</Title>
       </div>
       <div className="grid wide">
         <Row gutter={[24, 24]}>
@@ -37,10 +41,9 @@ function FlightList() {
           <Col span={24} md={18}>
             <Row gutter={[16, 16]} justify="center">
               <Col span={24}>
-                <FlightCard />
-                <FlightCard />
-                <FlightCard />
-                <FlightCard />
+                {flights.data.map((f) => (
+                  <FlightCard key={f.id} data={f} />
+                ))}
               </Col>
               <Col flex={0} justify="center">
                 <Pagination

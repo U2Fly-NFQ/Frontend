@@ -1,4 +1,4 @@
-import { Checkbox, Form, Layout } from 'antd'
+import { Form, Layout } from 'antd'
 import { useDispatch } from 'react-redux'
 import './index.scss'
 import {
@@ -144,9 +144,9 @@ function FlightList() {
                     width: '50%',
                     margin: '0px',
                   }}
-                  rules={[
-                    { required: true, message: 'Please choose you city!' },
-                  ]}
+                  // rules={[
+                  //   { required: true, message: 'Please choose you city!' },
+                  // ]}
                 >
                   <SelectDropDown
                     name="city"
@@ -157,7 +157,7 @@ function FlightList() {
                 <Form.Item
                   name="state"
                   style={{ display: 'inline-block', width: '50%' }}
-                  rules={[{ required: true, message: 'Please Country!' }]}
+                  // rules={[{ required: true, message: 'Please Country!' }]}
                 >
                   <SelectDropDown
                     name="state"
@@ -171,9 +171,9 @@ function FlightList() {
                     width: '50%',
                     margin: '0px',
                   }}
-                  rules={[
-                    { required: true, message: 'Please input your username!' },
-                  ]}
+                  // rules={[
+                  //   { required: true, message: 'Please input your username!' },
+                  // ]}
                 >
                   <SelectDropDown
                     name="country"
@@ -213,28 +213,8 @@ function FlightList() {
                   <h2>Payment method</h2>
                 </div>
                 <BookingPayment />
-                <Form.Item
-                  name="accept"
-                  style={{
-                    display: 'inline-block',
-                    width: '50%',
-                    paddingTop: '10px',
-                  }}
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Please read and accept the term!',
-                    },
-                  ]}
-                >
-                  <Checkbox>
-                    <span>
-                      I read and accept all{' '}
-                      <a style={{ color: '#8b3eea' }}> Terms and conditions</a>
-                    </span>
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item>
+
+                <Form.Item style={{ marginTop: '20px' }}>
                   <ButtonOfPage title={'Pay Now'} />
                 </Form.Item>
               </Form>

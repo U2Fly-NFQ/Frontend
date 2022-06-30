@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { setTokenApi } from '../../api/config'
-import { loginApi } from '../../api/User'
+import { setTokenApi } from '../../api'
+import { loginApi } from '../../api/Auth'
 
 const getStorageUser = () => {
   const userString = localStorage.getItem('user')

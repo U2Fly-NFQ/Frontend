@@ -1,8 +1,7 @@
 import axios from 'axios'
 
-export const axiosInstance = axios.create({
-  baseURL: 'https://u2fly.tolehoai.me/api/',
-  headers: {
-    'content-type': 'application/json',
-  },
-})
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_API
+axios.defaults.headers.post['Content-Type'] = 'application/json'
+
+export const setTokenApi = (token) =>
+  (axios.defaults.headers.common = { Authorization: `Bearer ${token}` })

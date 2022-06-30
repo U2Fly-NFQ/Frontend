@@ -1,5 +1,6 @@
 import React from 'react'
 import './index.scss'
+// import { Button } from 'antd'
 export default function ButtonOfPage({ title, width, height }) {
   return (
     <div className="form-submit">

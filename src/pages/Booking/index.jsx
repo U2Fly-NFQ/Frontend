@@ -11,16 +11,19 @@ import DetailFlights from './detailFlights'
 import BookingTravelDate from './BookingTravelDate'
 import BookingCoupon from './BookingCoupon'
 import { useEffect } from 'react'
-import { getDataFlights } from '../../redux/slices/bookingFlightsSlice'
+import { addDataIntoBookingFlight } from '../../redux/slices/bookingFlightsSlice'
+import { useNavigate } from 'react-router-dom'
 const { Header, Footer, Sider, Content } = Layout
 function FlightList() {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getDataFlights())
+    // dispatch(getDataFlights())
   }, [])
 
   const onFinish = (values) => {
-    console.log('Success:', values)
+    dispatch(addDataIntoBookingFlight(values))
+    navigate('/booking-success')
   }
   return (
     <div className="booking-page ">
@@ -52,11 +55,6 @@ function FlightList() {
                     },
                   ]}
                 >
-                  {/* <input
-                    type="text"
-                    name="firstName"
-                    placeholder="First name*"
-                  /> */}
                   <input
                     name="firstName"
                     className="form-control"
@@ -144,9 +142,6 @@ function FlightList() {
                     width: '50%',
                     margin: '0px',
                   }}
-                  // rules={[
-                  //   { required: true, message: 'Please choose you city!' },
-                  // ]}
                 >
                   <SelectDropDown
                     name="city"
@@ -157,7 +152,6 @@ function FlightList() {
                 <Form.Item
                   name="state"
                   style={{ display: 'inline-block', width: '50%' }}
-                  // rules={[{ required: true, message: 'Please Country!' }]}
                 >
                   <SelectDropDown
                     name="state"
@@ -171,9 +165,6 @@ function FlightList() {
                     width: '50%',
                     margin: '0px',
                   }}
-                  // rules={[
-                  //   { required: true, message: 'Please input your username!' },
-                  // ]}
                 >
                   <SelectDropDown
                     name="country"

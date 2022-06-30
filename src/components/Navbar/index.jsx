@@ -3,6 +3,7 @@ import React, { useRef } from 'react'
 import ButtonOfPage from '../ButtonOfPage'
 import NavLinkDropDown from '../NavLinkDropDown'
 import './index.scss'
+
 export default function Navbar() {
   const openNavbarHamburger = useRef(null)
   const openNavbarModal = useRef(null)

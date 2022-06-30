@@ -10,6 +10,7 @@ import {
   FlightList,
   Register,
   NoMatch,
+  Booking,
   AdminDashboard,
 } from '../pages'
 
@@ -24,6 +25,9 @@ const RoutesApp = () => {
       <Route path="/" element={<HomeLayout />}>
         <Route path="" element={<Home />} />
         <Route path="flights" element={<FlightList />} />
+        <Route path="/booking-flights" element={<Booking />} />
+
+        {/* Authentication */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Route>

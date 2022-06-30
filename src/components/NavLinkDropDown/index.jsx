@@ -7,7 +7,10 @@ export default function NavLinkDropDown({ Title, ListDropDown }) {
     <li className="navbar__link">
       <NavLinkCustom to={`/${Title.toLowerCase()}`}>
         <p className="navbar__link__data">
-          {Title} {ListDropDown && <DownOutlined />}
+          {Title}{' '}
+          {ListDropDown && (
+            <DownOutlined style={{ fontSize: '10px', fontWeight: '500' }} />
+          )}
         </p>
       </NavLinkCustom>
       {ListDropDown && (
@@ -15,8 +18,12 @@ export default function NavLinkDropDown({ Title, ListDropDown }) {
           <div className="navbar__dropdown__content">
             <div className="navbar__dropdown__lists">
               <ul className="list__dropdown__items">
-                {ListDropDown.map((item) => {
-                  return <li className="list__dropdown__item">{item}</li>
+                {ListDropDown.map((item, index) => {
+                  return (
+                    <li key={index} className="list__dropdown__item">
+                      {item}
+                    </li>
+                  )
                 })}
               </ul>
             </div>

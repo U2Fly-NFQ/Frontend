@@ -34,7 +34,7 @@ const RoutesApp = () => {
       </Route>
 
       {/* For users */}
-      <Route path="booked" element={<Booked />} />
+      <Route path="/user/booked" element={<Booked />} />
 
       {/* For admins */}
       <Route path="admin" element={<AdminLayout />}>

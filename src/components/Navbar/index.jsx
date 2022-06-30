@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 import ButtonOfPage from '../ButtonOfPage'
 import NavLinkDropDown from '../NavLinkDropDown'
 import './index.scss'
-
+import logoPage from '../../assets/images/system/logo-rectangle.png'
 export default function Navbar() {
   const openNavbarHamburger = useRef(null)
   const openNavbarModal = useRef(null)
@@ -15,10 +15,7 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="wide grid">
         <div className="navbar__logo">
-          <img
-            src="https://andit.co/projects/html/and-tour/assets/img/logo.png"
-            className="navbar__logo"
-          />
+          <img src={logoPage} className="navbar__logo" />
         </div>
 
         <ul className="navbar__links">

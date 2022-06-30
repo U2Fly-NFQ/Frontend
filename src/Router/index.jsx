@@ -34,16 +34,12 @@ const RoutesApp = () => {
       </Route>
 
       {/* For users */}
-      {userData?.roles?.include('2') && (
-        <Route path="booked" element={<Booked />} />
-      )}
+      <Route path="booked" element={<Booked />} />
 
       {/* For admins */}
-      {userData?.roles?.include('1') && (
-        <Route path="admin" element={<AdminLayout />}>
-          <Route path="" element={<AdminDashboard />} />
-        </Route>
-      )}
+      <Route path="admin" element={<AdminLayout />}>
+        <Route path="" element={<AdminDashboard />} />
+      </Route>
 
       {/* Invalid route */}
       <Route path="*" element={<NoMatch />} />

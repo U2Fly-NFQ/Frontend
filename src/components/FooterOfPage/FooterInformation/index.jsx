@@ -1,12 +1,12 @@
 import { Col, Row } from 'antd'
 import React from 'react'
-
+import './index.scss'
 export default function FooterInformation() {
   return (
-    <div className="footer-info">
-      <div className="footer-info__container">
-        <Row style={{ alignItems: 'center' }}>
-          <Col span={4.8}>
+    <div className="footer-info  wide grid">
+      <div className="footer-info__container ">
+        <Row>
+          <Col lg={{ span: 6 }}>
             <div className="footer-info__container__contact">
               <div className="footer-info__container__title">
                 <h5>Need any help?</h5>
@@ -33,7 +33,7 @@ export default function FooterInformation() {
               </div>
             </div>
           </Col>
-          <Col span={4.8}>
+          <Col lg={{ span: 3 }}>
             <div className="footer-info__container__company">
               <div className="footer-info__container__title">
                 <h5>Company</h5>
@@ -50,7 +50,7 @@ export default function FooterInformation() {
               </div>
             </div>
           </Col>
-          <Col span={4.8}>
+          <Col lg={{ span: 3 }}>
             <div className="footer-info__container__company">
               <div className="footer-info__container__title">
                 <h5>Company</h5>
@@ -67,7 +67,7 @@ export default function FooterInformation() {
               </div>
             </div>
           </Col>
-          <Col span={4.8}>
+          <Col lg={{ span: 4 }}>
             <div className="footer-info__container__company">
               <div className="footer-info__container__title">
                 <h5>Support</h5>
@@ -84,7 +84,7 @@ export default function FooterInformation() {
               </div>
             </div>
           </Col>
-          <Col span={4.8}>
+          <Col lg={{ span: 5 }}>
             <div className="footer-info__container__company">
               <div className="footer-info__container__title">
                 <h5>Other Services</h5>
@@ -101,7 +101,7 @@ export default function FooterInformation() {
               </div>
             </div>
           </Col>
-          <Col span={4.8}>
+          <Col lg={{ span: 3 }}>
             <div className="footer-info__container__company">
               <div className="footer-info__container__title">
                 <h5>Top cities</h5>

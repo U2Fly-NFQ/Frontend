@@ -7,25 +7,27 @@ import './index.scss'
 export default function FooterEmail() {
   return (
     <div className="footer-email">
-      <Row style={{ alignItems: 'center' }}>
-        <Col span={12}>
-          <div className="footer-email__logo-content">
-            <div className="footer-email__logo-content__logo">
-              <img src={emailImage} />
+      <div className="footer-email container wide grid">
+        <Row style={{ alignItems: 'center' }}>
+          <Col span={12}>
+            <div className="footer-email__logo-content">
+              <div className="footer-email__logo-content__logo">
+                <img src={emailImage} />
+              </div>
+              <div className="footer-email__logo-content__content">
+                <h4>Get the latest news and offers</h4>
+                <h2>Subscribe to our newsletter</h2>
+              </div>
             </div>
-            <div className="footer-email__logo-content__content">
-              <h4>Get the latest news and offers</h4>
-              <h2>Subscribe to our newsletter</h2>
+          </Col>
+          <Col span={12}>
+            <div className="footer-email__email-send">
+              <InputOFPage placeholder="Enter your email address" />
+              <ButtonOfPage title="Subcribe" />
             </div>
-          </div>
-        </Col>
-        <Col span={12}>
-          <div className="footer-email__email-send">
-            <InputOFPage placeholder="Enter your email address" />
-            <ButtonOfPage title="Subcribe" />
-          </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </div>
     </div>
   )
 }

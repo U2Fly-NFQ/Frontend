@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   user: {
-    username: ''
-  }
+    username: '',
+  },
 }
 
 const filterSlice = createSlice({

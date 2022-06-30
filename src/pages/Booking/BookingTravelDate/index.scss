@@ -1,0 +1,46 @@
+@use '../../../assets/scss/abstracts' as a;
+.booking-travel-date__container {
+  &__value {
+    li {
+      display: flex;
+      font-weight: 600;
+
+      justify-content: space-between;
+    }
+  }
+  &__amount {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid a.$main-color;
+    display: flex;
+    gap: 25px;
+    &__remove {
+      color: a.$main-color;
+      font-size: 15px;
+      font-style: italic;
+      font-weight: 600;
+      display: flex;
+      align-items: flex-end;
+    }
+    ul {
+      flex: 1;
+      li {
+        margin-top: 5px;
+        display: flex;
+        flex: 1;
+        font-size: 14px;
+        font-weight: 600;
+        justify-content: space-between;
+        gap: 25px;
+      }
+    }
+  }
+  &__total {
+    margin-top: 10px;
+    border-top: 1px solid a.$main-color;
+    padding-top: 10px;
+    display: flex;
+    font-weight: 600;
+    justify-content: space-between;
+  }
+}

@@ -33,7 +33,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "husky install",
+    "prepare": "husky install && chmod ug+x .husky/*",
     "prettier-all": "prettier --write src"
   },
   "eslintConfig": {
@@ -55,7 +55,7 @@
       "no-unused-vars": "off",
       "unused-imports/no-unused-imports": "warn",
       "unused-imports/no-unused-vars": [
-        "warn",
+        "off",
         {
           "vars": "all",
           "varsIgnorePattern": "^_",

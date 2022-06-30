@@ -1,0 +1,56 @@
+@use '../../assets/scss/abstracts' as a;
+
+.admin {
+  min-height: 100vh;
+  .admin-sidebar {
+    background-color: a.$background-white;
+    &-header {
+      padding: 5px;
+      align-items: center;
+      text-align: center;
+      height: 100px;
+      justify-content: center;
+      &-logo {
+        img {
+          width: 100%;
+        }
+      }
+      &-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+      }
+    }
+    .ant-menu-item {
+      &:after {
+        border-right-color: a.$main-color;
+      }
+      &-selected {
+        color: a.$main-color;
+        border-color: a.$main-color;
+        a {
+          color: a.$main-color;
+        }
+      }
+    }
+  }
+  .admin-header {
+    height: 100px;
+    background-color: white;
+    &-content {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      &-left {
+        .ant-input-search {
+          vertical-align: middle;
+          width: 80%;
+        }
+      }
+      &-right {
+        text-align: right;
+      }
+    }
+  }
+}

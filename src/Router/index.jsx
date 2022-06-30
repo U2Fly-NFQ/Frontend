@@ -10,8 +10,9 @@ import {
   FlightList,
   Register,
   NoMatch,
-  Booking,
   AdminDashboard,
+  Booked,
+  Booking,
 } from '../pages'
 
 import { useSelector } from 'react-redux'
@@ -21,7 +22,7 @@ const RoutesApp = () => {
 
   return (
     <Routes>
-      {/* For users */}
+      {/* Public */}
       <Route path="/" element={<HomeLayout />}>
         <Route path="" element={<Home />} />
         <Route path="flights" element={<FlightList />} />
@@ -31,6 +32,11 @@ const RoutesApp = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Route>
+
+      {/* For users */}
+      {userData.roles?.include('2') && (
+        <Route path="booked" element={<Booked />} />
+      )}
 
       {/* For admins */}
       {userData.roles?.include('1') && (

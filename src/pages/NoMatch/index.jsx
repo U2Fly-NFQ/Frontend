@@ -2,14 +2,11 @@ import { Button, Result } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { HomeFooter, HomeNavigation } from '../../components'
-
 const NoMatch = () => {
   const navigate = useNavigate()
 
   return (
     <>
-      <HomeNavigation />
       <Result
         style={{
           paddingTop: '128px',
@@ -23,7 +20,6 @@ const NoMatch = () => {
           </Button>
         }
       />
-      <HomeFooter />
     </>
   )
 }

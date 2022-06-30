@@ -11,6 +11,7 @@ import {
   Register,
   NoMatch,
   AdminDashboard,
+  Booked,
 } from '../pages'
 
 import { useSelector } from 'react-redux'
@@ -28,8 +29,13 @@ const RoutesApp = () => {
         <Route path="/register" element={<Register />} />
       </Route>
 
+      {/* For users */}
+      {userData?.roles?.include('2') && (
+        <Route path="booked" element={<Booked />} />
+      )}
+
       {/* For admins */}
-      {userData.roles?.include('1') && (
+      {userData?.roles?.include('1') && (
         <Route path="admin" element={<AdminLayout />}>
           <Route path="" element={<AdminDashboard />} />
         </Route>

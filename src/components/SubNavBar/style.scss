@@ -35,12 +35,19 @@
 
       a {
         padding-right: 7px;
+        line-height: 20px;
       }
     }
 
     &-actions {
       font-weight: 500;
     }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .sub-nav {
+    background-color: a.$main-color;
   }
 }
 

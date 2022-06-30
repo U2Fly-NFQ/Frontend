@@ -2,25 +2,6 @@ import { Checkbox, Col, Row, Slider } from 'antd'
 import './style.scss'
 
 const Flight = () => {
-  // Data for UI
-  const optionDeparture = [
-    {
-      label: 'Early Morning (00:00 - 06:00)',
-      value: '1',
-    },
-    {
-      label: 'Morning (06:00 - 12:00)',
-      value: '2',
-    },
-    {
-      label: 'Afternoon (12:00 - 18:00)',
-      value: '3',
-    },
-    {
-      label: 'Evening (18:00 - 24:00)',
-      value: '4',
-    },
-  ]
   const optionStops = [
     {
       label: 'Non-stop',
@@ -102,17 +83,6 @@ const Flight = () => {
             tooltipVisible
             tooltipPlacement="bottom"
             defaultValue={[0, 500]}
-          />
-        </Col>
-      </Row>
-      <Row className="filterItem departure ">
-        <Col span={24} className="title">
-          Departure Time
-        </Col>
-        <Col span={24} className="content">
-          <Checkbox.Group
-            options={optionDeparture}
-            onChange={handleDepartureChange}
           />
         </Col>
       </Row>

@@ -4,12 +4,22 @@ import { Route, Routes } from 'react-router-dom'
 import HomeLayout from '../layouts/Home'
 import AdminLayout from '../layouts/Admin'
 
-import { Login, Home, FlightList, Register, NoMatch, Admin } from '../pages'
+import {
+  Login,
+  Home,
+  FlightList,
+  Register,
+  NoMatch,
+  AdminDashboard,
+  Booked,
+} from '../pages'
+
+import { useSelector } from 'react-redux'
 
 const RoutesApp = () => {
   return (
     <Routes>
-      {/* For users */}
+      {/* Public */}
       <Route path="/" element={<HomeLayout />}>
         <Route path="" element={<Home />} />
         <Route path="flights" element={<FlightList />} />
@@ -18,6 +28,11 @@ const RoutesApp = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Route>
+
+      {/* For users */}
+      {userData.roles?.include('2') && (
+        <Route path="booked" element={<Booked />} />
+      )}
 
       {/* For admins */}
       <Route path="admin" element={<AdminLayout />}>

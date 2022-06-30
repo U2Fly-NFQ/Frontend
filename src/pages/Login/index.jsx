@@ -5,6 +5,26 @@ import './style.scss'
 const { Title } = Typography
 
 const Login = () => {
+  const dispatch = useDispatch()
+  const userData = useSelector((state) => state.login)
+  const isLoggedIn = !!userData.id
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      // admin
+      if (userData.roles.includes('3')) {
+        navigate('/admin')
+      }
+
+      // user
+      if (userData.roles.includes('1')) {
+        navigate('/flights')
+      }
+    }
+  }, [isLoggedIn])
+
+  
   const onFinish = (values) => {
     console.log('Success:', values)
   }

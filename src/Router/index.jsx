@@ -31,10 +31,11 @@ const RoutesApp = () => {
         {/* Authentication */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-      </Route>
 
-      {/* For users */}
-      <Route path="/user/booked" element={<Booked />} />
+        <Route path="profile" element={<Booked />}></Route>
+
+        {/* For users */}
+      </Route>
 
       {/* For admins */}
       <Route path="admin" element={<AdminLayout />}>

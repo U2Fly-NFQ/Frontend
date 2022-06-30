@@ -1,0 +1,31 @@
+@use '../../assets/scss/abstracts' as a;
+
+.booked-page {
+  &-container {
+    margin-top: 50px;
+    margin-bottom: 25px;
+    .booked-sidebar {
+      border: 1px a.$bg-color solid;
+      box-shadow: a.$box-shadow;
+      &-header {
+        background-color: a.$bg-color;
+        padding: 15px 25px;
+        text-align: center;
+        & > div > div {
+          line-height: 2;
+        }
+        &-avatar {
+          padding-top: 15px;
+          padding-bottom: 15px;
+        }
+        &-name {
+          font-weight: bold;
+          font-size: 20px;
+        }
+      }
+    }
+    .table {
+      box-shadow: a.$box-shadow;
+    }
+  }
+}

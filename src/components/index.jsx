@@ -24,6 +24,9 @@ export { default as InputOFPage } from './InputOfPage'
 export { default as SelectDropDown } from './SelectDropDown'
 export { default as HomeBanner } from './HomeBanner'
 
+//For customer
+export { default as BookedSidebar } from './BookedSidebar'
+
 //For admin
 export { default as AdminSidebar } from './AdminSidebar'
 export { default as AdminHeader } from './AdminHeader'

@@ -2,12 +2,17 @@
 
 .filter {
   .filterItem {
-    border: 1px a.$gray solid;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    padding: 10px;
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    border: 1px solid #00000030;
+    border-radius: 6px;
+    padding: 20px 15px;
+    margin-bottom: 30px;
+    font-size: 16px;
+    font-weight: 500;
+
     .title {
-      border-bottom: 1px a.$gray solid;
+      border-bottom: 1px solid #dddddd;
       padding-bottom: 5px;
     }
     .content {
@@ -18,9 +23,10 @@
         margin-top: 5px;
       }
     }
+
     &.price {
       .content {
-        margin-bottom: 35px;
+        margin-bottom: 25px;
       }
     }
   }

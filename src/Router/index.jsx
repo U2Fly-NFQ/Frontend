@@ -12,6 +12,7 @@ import {
   NoMatch,
   AdminDashboard,
   Booked,
+  Booking,
 } from '../pages'
 
 import { useSelector } from 'react-redux'
@@ -21,10 +22,13 @@ const RoutesApp = () => {
 
   return (
     <Routes>
-      {/* For users */}
+      {/* Public */}
       <Route path="/" element={<HomeLayout />}>
         <Route path="" element={<Home />} />
         <Route path="flights" element={<FlightList />} />
+        <Route path="/booking-flights" element={<Booking />} />
+
+        {/* Authentication */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Route>

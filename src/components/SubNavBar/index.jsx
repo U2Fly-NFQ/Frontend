@@ -1,12 +1,21 @@
-import { Row, Col } from 'antd'
+import { Row, Col, Select } from 'antd'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { DownOutlined } from '@ant-design/icons'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import './style.scss'
 import LangSelect from '../LangSelect'
+import { logout } from '../../redux/slices/loginSlice'
+
+const { Option } = Select
 
 const SubNavBar = () => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const loginState = useSelector((state) => state.login)
+  const navigate = useNavigate()
 
   return (
     <div className="sub-nav">
@@ -34,12 +43,43 @@ const SubNavBar = () => {
           </Col>
           <Col flex="none">
             <ul className="sub-nav-list sub-nav-list-actions">
-              <li className="sub-nav-list__item">
-                <NavLink to={'/login'}>{t('cta.login')}</NavLink>
-              </li>
-              <li className="sub-nav-list__item">
-                <NavLink to={'/register'}>{t('cta.register')}</NavLink>
-              </li>
+              {(loginState.user.id && (
+                <li className="sub-nav-list__item">
+                  <Select
+                    className="lang-select"
+                    size="small"
+                    suffixIcon={
+                      <DownOutlined
+                        style={{
+                          color: '#fff',
+                        }}
+                      />
+                    }
+                    defaultValue={loginState.user.username}
+                    onChange={(value) => {
+                      if (value === 'booked') navigate('/user/booked')
+                      if (value === 'logout') {
+                        dispatch(logout())
+                      }
+                    }}
+                    styles={{
+                      menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                    }}
+                  >
+                    <Option key={'booked'}>My Booking</Option>
+                    <Option key={'logout'}>Log out</Option>
+                  </Select>
+                </li>
+              )) || (
+                <>
+                  <li className="sub-nav-list__item">
+                    <NavLink to={'/login'}>{t('cta.login')}</NavLink>
+                  </li>
+                  <li className="sub-nav-list__item">
+                    <NavLink to={'/register'}>{t('cta.register')}</NavLink>
+                  </li>
+                </>
+              )}
               <li className="sub-nav-list__item">
                 <LangSelect />
               </li>

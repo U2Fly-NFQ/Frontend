@@ -14,15 +14,31 @@ const setStorageUser = (user) => {
 
 const user = getStorageUser() || {}
 
-const initialState = user
+const initialState = {
+  status: '',
+  user: {
+    id: '',
+    username: '',
+    token: '',
+    roles: [],
+    ...user,
+  },
+}
 
 const authSlice = createSlice({
   name: 'authSlice',
   initialState,
   reducers: {
     logout: (state) => {
+      console.log(state)
       localStorage.removeItem('user')
-      state = {}
+      state.status = ''
+      state.user = {
+        id: '',
+        username: '',
+        token: '',
+        roles: [],
+      }
     },
   },
   extraReducers: (builder) => {
@@ -35,17 +51,19 @@ const authSlice = createSlice({
         state.status = 'error'
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.status = 'idle'
         const loginUser = {
           ...action.payload,
           roles: Object.keys(action.payload.roles),
         }
-        state = loginUser
+        state.status = 'idle'
+        state.user = loginUser
         setStorageUser(loginUser)
         setTokenApi(loginUser.token)
       })
   },
 })
+
+export const { logout } = authSlice.actions
 
 export const login = createAsyncThunk('auth/login', async (data) => {
   const res = await loginApi(data)

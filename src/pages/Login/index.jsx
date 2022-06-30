@@ -11,23 +11,22 @@ const { Title } = Typography
 
 const Login = () => {
   const dispatch = useDispatch()
-  const userData = useSelector((state) => state.login)
-  const isLoggedIn = !!userData.id
+  const loginState = useSelector((state) => state.login)
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (loginState.user.id) {
       // admin
-      if (userData.roles.includes('3')) {
+      if (loginState.user.roles.includes('2')) {
         navigate('/admin')
       }
 
       // user
-      if (userData.roles.includes('1')) {
+      if (loginState.user.roles.includes('1')) {
         navigate('/flights')
       }
     }
-  }, [isLoggedIn])
+  }, [loginState.user.id])
 
   const onFinish = (values) => {
     dispatch(login(values))

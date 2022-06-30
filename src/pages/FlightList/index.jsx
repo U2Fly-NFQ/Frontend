@@ -18,7 +18,6 @@ function FlightList() {
 
   useEffect(() => {
     dispatch(fetchFlights())
-    console.log(flights)
   })
 
   return (

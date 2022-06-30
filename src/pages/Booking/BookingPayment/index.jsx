@@ -124,7 +124,11 @@ export default function BookingPayment() {
         <Space direction="vertical">
           {dataPayment &&
             dataPayment.map((item, index) => {
-              return <Radio key={index}>{item.paymentMethod}</Radio>
+              return (
+                <Radio value={index} key={index}>
+                  {item.paymentMethod}
+                </Radio>
+              )
             })}
         </Space>
       </Radio.Group>

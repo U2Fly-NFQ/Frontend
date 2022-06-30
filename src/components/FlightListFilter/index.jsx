@@ -2,24 +2,6 @@ import { Checkbox, Col, Row, Slider } from 'antd'
 import './style.scss'
 
 const Flight = () => {
-  const optionStops = [
-    {
-      label: 'Non-stop',
-      value: '0',
-    },
-    {
-      label: '1 stop',
-      value: '1',
-    },
-    {
-      label: '2 stop',
-      value: '2',
-    },
-    {
-      label: '2+ stop',
-      value: '3',
-    },
-  ]
   const optionClass = [
     {
       label: 'Economy',
@@ -69,37 +51,21 @@ const Flight = () => {
 
   return (
     <div className="filter">
-      <Row className="filterItem price">
+      <Row className="filterItem price" justify="center">
         <Col span={24} className="title">
           Filter by price
         </Col>
-        <Col span={24} className="content">
+        <Col span={20} className="content">
           <Slider
             range
             min={0}
-            max={1000}
+            max={10000}
+            defaultValue={[0, 10000]}
             // onChange={handleChangePrice}
             onAfterChange={handlePriceChange}
             tooltipVisible
             tooltipPlacement="bottom"
-            defaultValue={[0, 500]}
           />
-        </Col>
-      </Row>
-      <Row className="filterItem">
-        <Col span={24} className="title">
-          Number of stops
-        </Col>
-        <Col span={24} className="content">
-          <Checkbox.Group options={optionStops} onChange={handleStopChange} />
-        </Col>
-      </Row>
-      <Row className="filterItem">
-        <Col span={24} className="title">
-          Flight class
-        </Col>
-        <Col span={24} className="content">
-          <Checkbox.Group options={optionClass} onChange={handleClassChange} />
         </Col>
       </Row>
       <Row className="filterItem">

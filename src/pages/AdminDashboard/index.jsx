@@ -3,7 +3,7 @@ import { Layout } from 'antd'
 
 const { Content } = Layout
 
-function AdminDashboard(props) {
+function AdminDashboard() {
   return <Content>Dashboard</Content>
 }
 

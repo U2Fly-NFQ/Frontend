@@ -5,17 +5,26 @@ import {
   DownOutlined,
   PlusCircleOutlined,
 } from '@ant-design/icons'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchFlights } from '../../redux/slices'
+import { flightDataSelector } from '../../redux/selectors'
+import { isEmpty } from 'lodash/lang'
 
 const { Content } = Layout
 
 function AdminFlights() {
   //initiation
   const dispatch = useDispatch()
-  const [disabledActions, setDisabledActions] = useState(true)
-  const [loading, setLoading] = useState(true)
+  const flightsData = useSelector(flightDataSelector)
+
+  const [loading, setLoading] = useState(false)
+  const [flights, setFlights] = useState([])
+  const [selectedKeys, setSelectedKeys] = useState([])
+
   //Logical handling functions
-  const handleSelectChange = () => {}
+  const handleSelectChange = (selectedRowKeys) => {
+    setSelectedKeys(selectedRowKeys)
+  }
   const handleDelete = () => {}
 
   //Data for UI
@@ -68,13 +77,6 @@ function AdminFlights() {
     actionDelete: handleDelete,
   }
 
-  useEffect(() => {
-    setLoading(true)
-    setTimeout(() => {
-      // dispatch(fetchFlights())
-    }, 500)
-  }, [dispatch])
-
   const menu = (
     <Menu
       onClick={(e) => actionForMenu[e.key]()}
@@ -88,76 +90,30 @@ function AdminFlights() {
     />
   )
 
-  const data = [
-    {
-      key: 1,
-      code: 'VN-487',
-      arrival: 'VCA',
-      departure: 'SGN',
-      duration: 1.5,
-      startTime: '2022-03-26 18:14:29',
-      airline: 'Vietnam Airlines',
-    },
-    {
-      key: 2,
-      code: 'VN-567',
-      arrival: 'VCA',
-      departure: 'SGN',
-      duration: 1.5,
-      startTime: '2022-03-26 20:14:29',
-      airline: 'Vietnam Airlines',
-    },
-    {
-      key: 3,
-      code: 'VJ-123',
-      arrival: 'VCA',
-      departure: 'HAN',
-      duration: 3,
-      startTime: '2022-03-26 21:30:29',
-      airline: 'Vietnam Airlines',
-    },
-    {
-      key: 4,
-      code: 'BA-567',
-      arrival: 'SGN',
-      departure: 'HAN',
-      duration: 3,
-      startTime: '2022-03-27 00:00:29',
-      airline: 'Vietjet Air',
-    },
-    {
-      key: 5,
-      code: 'VN-123',
-      arrival: 'HAN',
-      departure: 'SGN',
-      duration: 3,
-      startTime: '2022-03-27 02:30:29',
-      airline: 'Vietjet Air',
-    },
-    {
-      key: 6,
-      code: 'VJ-767',
-      arrival: 'HAN',
-      departure: 'VCA',
-      duration: 4,
-      startTime: '2022-03-27 06:30:29',
-      airline: 'Bamboo Airline',
-    },
-    {
-      key: 7,
-      code: 'BA-789',
-      arrival: 'VCA',
-      departure: 'HAN',
-      duration: 4,
-      startTime: '2022-03-28 11:15:29',
-      airline: 'Bamboo Airline',
-    },
-  ]
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      dispatch(fetchFlights())
+    }, 500)
+  }, [dispatch])
+
+  useEffect(() => {
+    if (!isEmpty(flightsData)) {
+      let flightsProcessed = flightsData.map((flightData) => ({
+        ...flightData,
+        key: flightData.id,
+        airline: flightData.airline.name,
+      }))
+      setFlights(flightsProcessed)
+      setLoading(false)
+    }
+  }, [flightsData])
+
   return (
     <Content className="admin-flights">
       <Row className="admin-flights-action">
         <Col span={12} className="admin-flights-action-left">
-          <Dropdown disabled={disabledActions} overlay={menu}>
+          <Dropdown disabled={isEmpty(selectedKeys)} overlay={menu}>
             <Button icon={<DownOutlined />}>Actions</Button>
           </Dropdown>
         </Col>
@@ -178,8 +134,8 @@ function AdminFlights() {
               onChange: handleSelectChange,
             }}
             columns={flightListColumn}
-            dataSource={data}
-            // loading={loading}
+            dataSource={flights}
+            loading={loading}
           />
         </Col>
       </Row>

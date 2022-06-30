@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-// axios.defaults.baseURL = process.env.REACT_APP_SERVER_API
-axios.defaults.baseURL = 'http://3.0.57.246/api'
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_API
 
 export { default as flight } from './Flight'

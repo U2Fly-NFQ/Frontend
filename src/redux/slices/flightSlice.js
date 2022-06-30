@@ -25,8 +25,7 @@ const flightSlice = createSlice({
       })
       .addCase(fetchFlights.fulfilled, (state, action) => {
         state.status = 'idle'
-        state.data = action.payload
-        // state.pagination.total = action.payload.length
+        state.data = action.payload.data
       })
   },
 })

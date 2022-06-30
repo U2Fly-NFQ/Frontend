@@ -9,7 +9,7 @@ function Home() {
 
       <div className="grid wide">
         <section id="go-beyond-area">
-          <Row gutter={[32, 32]}>
+          <Row gutter={[24, 24]}>
             <Col span={24} sm={12} lg={6}>
               <div className="heading_left_area__wrapper">
                 <div className="heading_left_area">
@@ -60,7 +60,39 @@ function Home() {
         </section>
 
         <section id="top_destination">
-          <h2>Top destinations</h2>
+          <h2 className="top_destination_heading">Top destinations</h2>
+
+          <Row gutter={[24, 24]}>
+            <Col span={24} lg={12}>
+              <div className="destinations_content_box img_animation">
+                <img
+                  src="https://andit.co/projects/html/and-tour/assets/img/destination/big-img.png"
+                  alt="img"
+                />
+                <div className="destinations_content_inner">
+                  <h2>Up to</h2>
+                  <div className="destinations_big_offer">
+                    <h1>50</h1>
+                    <h6>
+                      <span>%</span> <span>Off</span>
+                    </h6>
+                  </div>
+                  <h2>Holiday packages</h2>
+                  <a
+                    href="top-destinations.html"
+                    className="btn btn_theme btn_md"
+                  >
+                    Book now
+                  </a>
+                </div>
+              </div>
+            </Col>
+            <Col span={24} lg={12}>
+              <Row gutter={24}>
+                <Col span={24} sm={8}></Col>
+              </Row>
+            </Col>
+          </Row>
         </section>
       </div>
     </div>

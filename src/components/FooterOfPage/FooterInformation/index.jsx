@@ -8,7 +8,7 @@ export default function FooterInformation() {
         <Row>
           <Col
             lg={{ span: 6 }}
-            md={{ span: 6 }}
+            md={{ span: 8 }}
             sm={{ span: 24 }}
             xs={{ span: 24 }}
           >

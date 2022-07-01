@@ -9,18 +9,7 @@ function FlightListBanner() {
         <Row gutter={16}>
           <Col xs={24}>
             <div className="flight-list-banner__text">
-              <h2>Flight search result</h2>
-              <ul>
-                <li>
-                  <a href="/">Home</a>
-                </li>
-                <li className="active">
-                  <span>
-                    <i className="fas fa-circle"></i>
-                  </span>{' '}
-                  Flight search result
-                </li>
-              </ul>
+              <h2>EXPLORE THE WORLD WITH US</h2>
             </div>
           </Col>
         </Row>

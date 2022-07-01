@@ -1,24 +1,28 @@
-import { Col, Row, Typography, Pagination } from 'antd'
+import { Col, Row, Typography } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
+import { fetchFlights } from '../../redux/slices/flightSlice'
 import './style.scss'
 import {
   FlightListBanner,
   FlightListFilter,
   FlightSearch,
   FlightCard,
+  NotFoundFlight,
 } from '../../components'
-import { fetchFlights } from '../../redux/slices/flightSlice'
 import { useEffect } from 'react'
 
-const { Title } = Typography
+const { Title, Text } = Typography
 
 function FlightList() {
-  const dispatch = useDispatch()
   const flights = useSelector((state) => state.flights)
 
+  let [searchParams] = useSearchParams()
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    dispatch(fetchFlights())
-  })
+    dispatch(fetchFlights(searchParams))
+  }, [searchParams])
 
   return (
     <div className="flight-list-page">
@@ -26,10 +30,10 @@ function FlightList() {
       <div className="flight-search-container wide grid">
         <FlightSearch />
       </div>
-      <div className="flight-search-title-container">
-        <Title level={3}>42 tours found</Title>
-      </div>
       <div className="grid wide">
+        <div className="flight-search-title-container">
+          <Title level={4}>{flights.data.length} tours found</Title>
+        </div>
         <Row gutter={[24, 24]}>
           <Col span={24} md={6}>
             <FlightListFilter />
@@ -37,19 +41,19 @@ function FlightList() {
           <Col span={24} md={18}>
             <Row gutter={[16, 16]} justify="center">
               <Col span={24}>
-                <FlightCard />
-                <FlightCard />
-                <FlightCard />
-                <FlightCard />
+                {flights.data.map((f) => (
+                  <FlightCard key={f.id} data={f} />
+                ))}
+                {flights.data.length === 0 && <NotFoundFlight />}
               </Col>
-              <Col flex={0} justify="center">
+              {/* <Col flex={0} justify="center">
                 <Pagination
                   current={1}
                   onChange={(values) => console.log(values)}
                   total={100}
                   pageSize={5}
                 />
-              </Col>
+              </Col> */}
             </Row>
           </Col>
         </Row>

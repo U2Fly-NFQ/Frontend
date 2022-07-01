@@ -46,21 +46,22 @@
   },
 
   "home-page": {
-    "categories": {
-      "title": "POPULAR CATEGORIES",
-      "item": {
-        "electric-bike": "Electric Bikes",
-        "mountain-bike": "Mountain Bikes",
-        "kid-bike": "Kid Bikes",
-        "road-bike": "Road Bikes",
-        "gravel-bike": "Gravel Bikes"
-      }
+    "goBeyond-section": {
+      "Gobeyond": "Go beyond your",
+      "imagination": "imagination",
+      "discover_your_ideal": "Discover your ideal experience with us",
+      "discount": "7% Discount for all",
+      "discount_airlines": "Airlines",
+      "travel": "Travel around",
+      "world": "the world"
     },
-    "trending": "TRENDING PRODUCTS",
-    "brand": "BRANDS",
-    "retailer": {
-      "title": "OUR FEATURED RETAILERS",
-      "description": "B4B Shop is the place to buy or sell any bike, accessory, component or part from anyone, anywhere, anytime. Shop and browse through thousands of bikes & cycling products for sale from hundreds of bike shops and thousands of brands nationwide."
+    "top-destinations-section": {
+      "title": "Top destinations",
+      "up-to": "Up to",
+      "off": "Off",
+      "holiday": "Holiday packages",
+      "book-now": "Book Now",
+      "view-all": "View all"
     }
   },
 

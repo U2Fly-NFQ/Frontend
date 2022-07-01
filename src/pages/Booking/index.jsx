@@ -1,17 +1,27 @@
-import { Checkbox, Form, Layout } from 'antd'
+import { Form, Layout } from 'antd'
+import { useDispatch } from 'react-redux'
 import './index.scss'
 import {
   ButtonOfPage,
   FlightListBanner,
-  InputOFPage,
   SelectDropDown,
 } from '../../components'
 import BookingPayment from './BookingPayment'
 import DetailFlights from './detailFlights'
 import BookingTravelDate from './BookingTravelDate'
 import BookingCoupon from './BookingCoupon'
+import { useEffect } from 'react'
+import { getDataFlights } from '../../redux/slices/bookingFlightsSlice'
 const { Header, Footer, Sider, Content } = Layout
 function FlightList() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getDataFlights())
+  }, [])
+
+  const onFinish = (values) => {
+    console.log('Success:', values)
+  }
   return (
     <div className="booking-page ">
       <FlightListBanner />
@@ -23,135 +33,188 @@ function FlightList() {
             </div>
             <div className="booking-page__container__item__content">
               <Form
-                name="basic"
                 wrapperCol={{
                   span: 22,
                 }}
-                initialValues={{
-                  remember: true,
-                }}
+                onFinish={onFinish}
               >
                 <Form.Item
-                  name="username"
+                  name="firstName"
                   style={{
                     display: 'inline-block',
                     width: '50%',
                     margin: '0px',
                   }}
                   rules={[
-                    { required: true, message: 'Please input your username!' },
+                    {
+                      required: true,
+                      message: 'Please input your first name!',
+                    },
                   ]}
                 >
-                  <InputOFPage placeholder="Frist name*" />
+                  {/* <input
+                    type="text"
+                    name="firstName"
+                    placeholder="First name*"
+                  /> */}
+                  <input
+                    name="firstName"
+                    className="form-control"
+                    placeholder="First name*"
+                  />
                 </Form.Item>
 
                 <Form.Item
-                  name="lastname"
+                  name="lastName"
                   style={{ display: 'inline-block', width: '50%' }}
+                  rules={[
+                    { required: true, message: 'Please input your last name!' },
+                  ]}
                 >
-                  <InputOFPage placeholder="Last name*" />
+                  <input
+                    name="firstName"
+                    className="form-control"
+                    placeholder="First name*"
+                  />
                 </Form.Item>
                 <Form.Item
-                  name="username"
+                  name="emailAddress"
                   style={{
                     display: 'inline-block',
                     width: '50%',
                     margin: '0px',
                   }}
                 >
-                  <InputOFPage placeholder={'Email address (Optional)'} />
+                  <input
+                    name="emailAddress"
+                    className="form-control"
+                    placeholder="Email address (Optional)*"
+                  />
                 </Form.Item>
 
                 <Form.Item
-                  name="password"
+                  name="number"
                   style={{ display: 'inline-block', width: '50%' }}
+                  rules={[
+                    { required: true, message: 'Please input your number !' },
+                  ]}
                 >
-                  <InputOFPage placeholder={'Mobile number*'} />
+                  <input
+                    name="number"
+                    className="form-control"
+                    placeholder="Mobile number*"
+                  />
                 </Form.Item>
 
                 <Form.Item
-                  name="password"
+                  name="streetAddress"
                   style={{
                     display: 'inline-block',
                     width: '100%',
                   }}
                   wrapperCol={{ span: 23 }}
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please input your street address!',
+                    },
+                  ]}
                 >
-                  <InputOFPage placeholder={'Street address'} />
+                  <input
+                    name="streetAddress"
+                    className="form-control"
+                    placeholder="Street address*"
+                  />
                 </Form.Item>
 
                 <Form.Item
-                  name="password"
+                  name="apartment"
                   style={{ display: 'inline-block', width: '50%' }}
                 >
-                  <InputOFPage
-                    placeholder={'Apartment, Suite, Hose no (Optional)'}
+                  <input
+                    name="apartment"
+                    className="form-control"
+                    placeholder="Apartment*"
                   />
                 </Form.Item>
                 <Form.Item
-                  name="City"
+                  name="city"
                   style={{
                     display: 'inline-block',
                     width: '50%',
                     margin: '0px',
                   }}
+                  // rules={[
+                  //   { required: true, message: 'Please choose you city!' },
+                  // ]}
                 >
                   <SelectDropDown
+                    name="city"
                     ListData={['Cần Thơ', 'Thành Phố Hồ Chí Minh', 'Hà Nội']}
                   />
                 </Form.Item>
 
                 <Form.Item
-                  name="State"
+                  name="state"
                   style={{ display: 'inline-block', width: '50%' }}
+                  // rules={[{ required: true, message: 'Please Country!' }]}
                 >
-                  <SelectDropDown ListData={['Việt Nam', 'Malaysia', 'Lào']} />
+                  <SelectDropDown
+                    name="state"
+                    ListData={['Việt Nam', 'Malaysia', 'Lào']}
+                  />
                 </Form.Item>
                 <Form.Item
-                  name="Contry"
+                  name="country"
                   style={{
                     display: 'inline-block',
                     width: '50%',
                     margin: '0px',
                   }}
+                  // rules={[
+                  //   { required: true, message: 'Please input your username!' },
+                  // ]}
                 >
-                  <SelectDropDown ListData={['Việt Nam', 'Malaysia', 'Lào']} />
+                  <SelectDropDown
+                    name="country"
+                    ListData={['Việt Nam', 'Malaysia', 'Lào']}
+                  />
                 </Form.Item>
 
                 <Form.Item
-                  name="password"
+                  name="passport"
                   style={{ display: 'inline-block', width: '50%' }}
+                  rules={[
+                    { required: true, message: 'Please input your Passport!' },
+                  ]}
                 >
-                  <InputOFPage placeholder={'Passport no.'} />
+                  <input
+                    className="form-control"
+                    name="passport"
+                    placeholder={'Passport no.'}
+                  />
                 </Form.Item>
 
                 <Form.Item
-                  name="password"
+                  name="visa"
                   style={{ display: 'inline-block', width: '50%' }}
+                  rules={[
+                    { required: true, message: 'Please input your visa!' },
+                  ]}
                 >
-                  <InputOFPage placeholder={'Visa no.'} />
+                  <input
+                    name="visa"
+                    className="form-control"
+                    placeholder={'Visa no.'}
+                  />
                 </Form.Item>
 
                 <div className="booking-page__container__item__title">
                   <h2>Payment method</h2>
                 </div>
                 <BookingPayment />
-                <Form.Item
-                  name="password"
-                  style={{
-                    display: 'inline-block',
-                    width: '50%',
-                    paddingTop: '10px',
-                  }}
-                >
-                  <Checkbox>
-                    <span>
-                      I read and accept all{' '}
-                      <a style={{ color: '#8b3eea' }}> Terms and conditios</a>
-                    </span>
-                  </Checkbox>
-                </Form.Item>
-                <Form.Item>
+
+                <Form.Item style={{ marginTop: '20px' }}>
                   <ButtonOfPage title={'Pay Now'} />
                 </Form.Item>
               </Form>

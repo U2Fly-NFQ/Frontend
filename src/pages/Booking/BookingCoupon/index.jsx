@@ -21,7 +21,7 @@ export default function BookingCoupon() {
           >
             <InputOFPage placeholder="Enter coupon code*" />
           </Form.Item>
-          <Form.Item>
+          <Form.Item style={{ marginTop: '20px' }}>
             <ButtonOfPage title={'Apply voucher'} />
           </Form.Item>
         </Form>

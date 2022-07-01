@@ -1,5 +1,5 @@
-import { Form, Layout } from 'antd'
-import { useDispatch } from 'react-redux'
+import { Form, Layout, DatePicker } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
 import './index.scss'
 import {
   ButtonOfPage,
@@ -11,16 +11,29 @@ import DetailFlights from './detailFlights'
 import BookingTravelDate from './BookingTravelDate'
 import BookingCoupon from './BookingCoupon'
 import { useEffect } from 'react'
-import { getDataFlights } from '../../redux/slices/bookingFlightsSlice'
+import {
+  addDataIntoBookingFlight,
+  getDataFlights,
+} from '../../redux/slices/bookingFlightsSlice'
+import { useNavigate } from 'react-router-dom'
+import {
+  getInfoFlightInBookingArrival,
+  getInfoFlightInBookingSeat,
+} from '../../redux/selectors'
 const { Header, Footer, Sider, Content } = Layout
 function FlightList() {
+  const navigate = useNavigate()
+
   const dispatch = useDispatch()
+  const arrival = useSelector(getInfoFlightInBookingArrival)
+  const getPrice = useSelector(getInfoFlightInBookingSeat)
   useEffect(() => {
     dispatch(getDataFlights())
   }, [])
 
   const onFinish = (values) => {
-    console.log('Success:', values)
+    dispatch(addDataIntoBookingFlight(values))
+    navigate('/booking-success')
   }
   return (
     <div className="booking-page ">
@@ -36,6 +49,7 @@ function FlightList() {
                 wrapperCol={{
                   span: 22,
                 }}
+                // initialValues={{ firstName: 'default value' }}
                 onFinish={onFinish}
               >
                 <Form.Item
@@ -43,7 +57,6 @@ function FlightList() {
                   style={{
                     display: 'inline-block',
                     width: '50%',
-                    margin: '0px',
                   }}
                   rules={[
                     {
@@ -52,11 +65,6 @@ function FlightList() {
                     },
                   ]}
                 >
-                  {/* <input
-                    type="text"
-                    name="firstName"
-                    placeholder="First name*"
-                  /> */}
                   <input
                     name="firstName"
                     className="form-control"
@@ -65,16 +73,17 @@ function FlightList() {
                 </Form.Item>
 
                 <Form.Item
-                  name="lastName"
+                  name="date_picker"
                   style={{ display: 'inline-block', width: '50%' }}
                   rules={[
                     { required: true, message: 'Please input your last name!' },
                   ]}
                 >
-                  <input
-                    name="firstName"
+                  <DatePicker
+                    placeholder="Ngày Sinh của bạn"
                     className="form-control"
-                    placeholder="First name*"
+                    format="YYYY-MM-DD HH:mm:ss"
+                    style={{ display: 'flex' }}
                   />
                 </Form.Item>
                 <Form.Item
@@ -82,7 +91,6 @@ function FlightList() {
                   style={{
                     display: 'inline-block',
                     width: '50%',
-                    margin: '0px',
                   }}
                 >
                   <input
@@ -144,9 +152,6 @@ function FlightList() {
                     width: '50%',
                     margin: '0px',
                   }}
-                  // rules={[
-                  //   { required: true, message: 'Please choose you city!' },
-                  // ]}
                 >
                   <SelectDropDown
                     name="city"
@@ -157,7 +162,6 @@ function FlightList() {
                 <Form.Item
                   name="state"
                   style={{ display: 'inline-block', width: '50%' }}
-                  // rules={[{ required: true, message: 'Please Country!' }]}
                 >
                   <SelectDropDown
                     name="state"
@@ -171,9 +175,6 @@ function FlightList() {
                     width: '50%',
                     margin: '0px',
                   }}
-                  // rules={[
-                  //   { required: true, message: 'Please input your username!' },
-                  // ]}
                 >
                   <SelectDropDown
                     name="country"
@@ -224,21 +225,21 @@ function FlightList() {
         <div className="booking-page__container__item">
           <div className="booking-page__container__item__content">
             <div className="booking-page__container__itemContent">
-              <DetailFlights />
+              {arrival && <DetailFlights />}
             </div>
           </div>
           <div
             className="booking-page__container__item__content"
             style={{ padding: '20px', marginTop: '20px' }}
           >
-            <BookingCoupon />
+            {getPrice && <BookingCoupon />}
           </div>
           <div
             className="booking-page__container__item__content"
             style={{ padding: '20px', marginTop: '20px' }}
           >
             <div className="booking-page__container__itemContent">
-              <BookingTravelDate />
+              {getPrice && <BookingTravelDate />}
             </div>
           </div>
         </div>

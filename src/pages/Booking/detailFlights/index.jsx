@@ -1,6 +1,22 @@
 import React from 'react'
 import './index.scss'
+import { useSelector } from 'react-redux'
+import {
+  getInfoFlightInBookingArrival,
+  getInfoFlightInBookingDeparture,
+  getInfoFlightInBookingAirplane,
+  getInfoFlightInBookingFight,
+  getInfoFlightInBookingAirline,
+  getInfoFlightInBookingSeat,
+} from '../../../redux/selectors'
 export default function DetailFlights() {
+  const allDataFight = useSelector(getInfoFlightInBookingFight)
+  const arrival = useSelector(getInfoFlightInBookingArrival)
+  const departure = useSelector(getInfoFlightInBookingDeparture)
+  const airplane = useSelector(getInfoFlightInBookingAirplane)
+  const airline = useSelector(getInfoFlightInBookingAirline)
+  const seat = useSelector(getInfoFlightInBookingSeat)
+
   return (
     <div className="detail-flights__container">
       <div className="booking-page__container__item__title">
@@ -9,18 +25,18 @@ export default function DetailFlights() {
       <div className="detail-flights__container__trip">
         <div className="detail-flights__container__trip__from">
           <p>From</p>
-          <h3>New York</h3>
-          <h6>JFK - John F. Kennedy International...</h6>
+          <h3>{departure.city}</h3>
+          <h6>{departure.name}</h6>
         </div>
         <div className="detail-flights__container__trip__icon">
           <i className="fa-solid fa-circle-arrow-right"></i>
           <h6>non stop</h6>
-          <p>01h 05minite</p>
+          <p>{allDataFight.duration}</p>
         </div>
         <div className="detail-flights__container__trip__to">
           <p>To</p>
-          <h3>London</h3>
-          <p>LCY, London city airport </p>
+          <h3>{arrival.city}</h3>
+          <p>{arrival.name} </p>
         </div>
       </div>
 
@@ -58,10 +74,10 @@ export default function DetailFlights() {
         </div>
         <div className="detail-flights__container__price__content">
           <h6>
-            <del>$ 35,500</del>
+            <del>{seat.price}</del>
           </h6>
           <h3>
-            $ 30,500 <sub> / Adult X 1</sub>{' '}
+            {'$' + seat.price} <sub> / Adult X 1</sub>{' '}
           </h3>
         </div>
       </div>

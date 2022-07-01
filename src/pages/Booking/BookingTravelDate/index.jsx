@@ -1,6 +1,15 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import {
+  getDiscountForBookingAirline,
+  getInfoFlightInBookingSeat,
+} from '../../../redux/selectors'
 import './index.scss'
 export default function BookingTravelDate() {
+  const getPrice = useSelector(getInfoFlightInBookingSeat)
+  const getDiscount = useSelector(getDiscountForBookingAirline)
+  // let totalValue = getPrice
+  console.log(getDiscount)
   return (
     <div className="booking-travel-date">
       <div className="booking-page__container__item__title">
@@ -13,12 +22,14 @@ export default function BookingTravelDate() {
               Adult Price x 1
             </div>
             <div className="booking-travel-date__container__key">
-              $40,000.00
+              {'$ ' + getPrice.price}
             </div>
           </li>
           <li>
             <div className="booking-travel-date__container__key">Discount</div>
-            <div className="booking-travel-date__container__key">-10%</div>
+            <div className="booking-travel-date__container__key">
+              - {getDiscount * 100}%
+            </div>
           </li>
           <li>
             <div className="booking-travel-date__container__key">Tax</div>
@@ -35,7 +46,7 @@ export default function BookingTravelDate() {
                 Subtotal
               </div>
               <div className="booking-travel-date__container__value">
-                $38,000.00
+                ${getPrice.price}
               </div>
             </li>
             <li>
@@ -43,7 +54,7 @@ export default function BookingTravelDate() {
                 Coupon code (OFF 5000)
               </div>
               <div className="booking-travel-date__container__value">
-                $5,000.00
+                ${getPrice.price * getDiscount}
               </div>
             </li>
           </ul>
@@ -53,7 +64,10 @@ export default function BookingTravelDate() {
             Total Amount
           </div>
           <div className="booking-travel-date__container__amount__total__value">
-            $33,000.00
+            $
+            {getPrice.price -
+              getPrice.price * getDiscount -
+              getPrice.price * 0.05}
           </div>
         </div>
       </div>

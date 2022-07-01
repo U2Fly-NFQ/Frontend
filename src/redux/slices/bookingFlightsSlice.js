@@ -4,18 +4,13 @@ import discountInfo from '../../api/Discount'
 const initialState = {
   loadding: false,
   userInformation: {},
-  data: {
-    flightFrom: {},
-    flightTo: {},
-    flightRules: [],
-    price: 30.5,
-  },
+  dataFlight: {},
   discountInfo: 0,
 }
 export const getDataFlights = createAsyncThunk(
   'flight/getDataFlights',
   async (idFlight) => {
-    const respone = await flightAPI.get(idFlight)
+    const respone = await flightAPI.get(1)
     return respone.data
   }
 )
@@ -37,24 +32,33 @@ const bookingFlightsSlice = createSlice({
     },
   },
   extraReducers: {
-    [getDiscountCheck.pending]: (state, action) => {},
-    [getDiscountCheck.rejected]: (state, action) => {},
+    [getDiscountCheck.pending]: (state, action) => {
+      state.loadding = true
+    },
+    [getDiscountCheck.rejected]: (state, action) => {
+      state.loadding = false
+      state.discountInfo = 0
+    },
     [getDiscountCheck.fulfilled]: (state, action) => {
       const { status, data } = action.payload
-      if (status) {
+      if (status === 'success') {
+        console.log(data)
         state.discountInfo = data.percent
       }
     },
-    // builder.addCase(getDataFlights.pedding, (state) => {
-    //   state.loadding = true
-    // })
-    // builder.addCase(getDataFlights.rejected, (state) => {
-    //   state.loadding = true
-    // })
-    // builder.addCase(getDataFlights.fullfilled, (state, action) => {
-    //   state.loadding = false
-    //   console.log(action.payload)
-    // })
+    [getDataFlights.pending]: (state) => {
+      state.loadding = true
+    },
+    [getDataFlights.rejected]: (state) => {
+      state.loadding = true
+    },
+    [getDataFlights.fulfilled]: (state, action) => {
+      state.loadding = false
+      const { status, data } = action.payload
+      if (status === 'success') {
+        state.dataFlight = { ...data }
+      }
+    },
   },
 })
 export const { addDataIntoBookingFlight } = bookingFlightsSlice.actions

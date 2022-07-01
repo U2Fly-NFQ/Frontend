@@ -1,13 +1,14 @@
 import { Form } from 'antd'
 import React from 'react'
 import { ButtonOfPage } from '../../../components'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getDiscountCheck } from '../../../redux/slices/bookingFlightsSlice'
+import { getDiscountForBookingAirline } from '../../../redux/selectors'
+import './index.scss'
 export default function BookingCoupon() {
   const dispatch = useDispatch()
-
+  const discount = useSelector(getDiscountForBookingAirline)
   const onFinish = (value) => {
-    // console.log(value)
     dispatch(getDiscountCheck(value))
   }
   return (
@@ -16,6 +17,7 @@ export default function BookingCoupon() {
         <h3>Coupon code</h3>
       </div>
       <div className="booking-coupon__container">
+        {discount != 0 && <i className="fa-solid fa-circle-check"></i>}
         <Form onFinish={onFinish}>
           <Form.Item
             name="idDiscount"
@@ -24,7 +26,9 @@ export default function BookingCoupon() {
               width: '100%',
               margin: '0px',
             }}
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            className="form-item-coupon"
+            validateStatus="success"
+            rules={[{ required: true, message: 'Please input your coupon!' }]}
           >
             <input
               name="idDiscount"
@@ -33,7 +37,10 @@ export default function BookingCoupon() {
             />
           </Form.Item>
           <Form.Item style={{ marginTop: '20px' }}>
-            <ButtonOfPage title={'Apply voucher'} />
+            <ButtonOfPage
+              title={'Apply voucher'}
+              warning={discount != 0 ? true : false}
+            />
           </Form.Item>
         </Form>
       </div>

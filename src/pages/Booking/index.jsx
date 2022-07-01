@@ -1,5 +1,5 @@
 import { Form, Layout } from 'antd'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import './index.scss'
 import {
   ButtonOfPage,
@@ -11,14 +11,24 @@ import DetailFlights from './detailFlights'
 import BookingTravelDate from './BookingTravelDate'
 import BookingCoupon from './BookingCoupon'
 import { useEffect } from 'react'
-import { addDataIntoBookingFlight } from '../../redux/slices/bookingFlightsSlice'
+import {
+  addDataIntoBookingFlight,
+  getDataFlights,
+} from '../../redux/slices/bookingFlightsSlice'
 import { useNavigate } from 'react-router-dom'
+import {
+  getInfoFlightInBookingArrival,
+  getInfoFlightInBookingSeat,
+} from '../../redux/selectors'
 const { Header, Footer, Sider, Content } = Layout
 function FlightList() {
   const navigate = useNavigate()
+
   const dispatch = useDispatch()
+  const arrival = useSelector(getInfoFlightInBookingArrival)
+  const getPrice = useSelector(getInfoFlightInBookingSeat)
   useEffect(() => {
-    // dispatch(getDataFlights())
+    dispatch(getDataFlights())
   }, [])
 
   const onFinish = (values) => {
@@ -215,14 +225,14 @@ function FlightList() {
         <div className="booking-page__container__item">
           <div className="booking-page__container__item__content">
             <div className="booking-page__container__itemContent">
-              <DetailFlights />
+              {arrival && <DetailFlights />}
             </div>
           </div>
           <div
             className="booking-page__container__item__content"
             style={{ padding: '20px', marginTop: '20px' }}
           >
-            <BookingCoupon />
+            {getPrice && <BookingCoupon />}
           </div>
           <div
             className="booking-page__container__item__content"

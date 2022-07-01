@@ -33,16 +33,22 @@
     "buy-it-now": "MUA NGAY",
     "add": "Thêm",
     "cancle": "Trở về",
-    "update": "Cập nhật"
+    "update": "Cập nhật",
+    "become_partner": "Trở thành đối tác"
   },
 
-  "home-navigation": {
-    "home": "Trang chủ",
-    "bicycles": "Xe đạp",
-    "clothing": "Quần áo",
-    "helmet-and-shoes": "Mũ Bảo Hiểm & Giày",
-    "components": "Các Bộ Phận",
-    "about": "Về chúng tôi"
+  "header": {
+    "navbar": {
+      "home": "Trang chủ",
+      "flight": "Chuyến bay",
+      "flight_booking": "Đặt chuyến bay",
+      "tour": "Chuyến du lịch",
+      "tour_booking": "Đặt chuyến du lịch",
+      "top_destination": "Điểm đến hàng đầu",
+      "destination_booking": "Đặt điểm đến",
+      "news": "Tín tức",
+      "pages": "Trang khác"
+    }
   },
 
   "home-page": {

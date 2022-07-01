@@ -3,6 +3,7 @@ import React, { useRef } from 'react'
 import ButtonOfPage from '../ButtonOfPage'
 import NavLinkDropDown from '../NavLinkDropDown'
 import './index.scss'
+import { useTranslation } from 'react-i18next'
 export default function Navbar() {
   const openNavbarHamburger = useRef(null)
   const openNavbarModal = useRef(null)
@@ -10,6 +11,7 @@ export default function Navbar() {
     openNavbarHamburger.current.classList.toggle('open')
     openNavbarModal.current.classList.toggle('open')
   }
+  const { t } = useTranslation()
   return (
     <nav className="navbar">
       <div className="wide grid">
@@ -21,27 +23,30 @@ export default function Navbar() {
         </div>
 
         <ul className="navbar__links">
-          <NavLinkDropDown Title={'Home'} />
+          <NavLinkDropDown Title={t('header.navbar.home')} />
           <NavLinkDropDown
-            Title={'Flights'}
-            ListDropDown={['Flight', 'Flight Booking']}
-          />
-          <NavLinkDropDown
-            Title={'Tours'}
+            Title={t('header.navbar.flight')}
             ListDropDown={[
-              'Tours',
-              'Tour booking',
-              'Top Destination',
-              'Destination Booking',
+              t('header.navbar.flight'),
+              t('header.navbar.flight_booking'),
             ]}
           />
           <NavLinkDropDown
-            Title={'New'}
-            ListDropDown={['Ajax Load More', 'Ajax Load More', 'Home']}
+            Title={t('header.navbar.tour')}
+            ListDropDown={[
+              t('header.navbar.tour'),
+              t('header.navbar.tour_booking'),
+              t('header.navbar.top_destination'),
+              t('header.navbar.destination_booking'),
+            ]}
           />
           <NavLinkDropDown
-            Title={'Pages'}
-            ListDropDown={['Ajax Load More', 'Ajax Load More', 'Home']}
+            Title={t('header.navbar.news')}
+            ListDropDown={['Ajax Load More']}
+          />
+          <NavLinkDropDown
+            Title={t('header.navbar.pages')}
+            ListDropDown={['Ajax Load More']}
           />
         </ul>
         <div className="navbar__footer">
@@ -49,7 +54,7 @@ export default function Navbar() {
             <SearchOutlined />
           </div>
           <div className="navbar__footer__btn">
-            <ButtonOfPage title={'Become a partner'} />
+            <ButtonOfPage title={t('cta.become_partner')} />
           </div>
         </div>
 
@@ -65,27 +70,21 @@ export default function Navbar() {
       <div className="navbar__dropdown__modal">
         <ul className="navbar__dropdown-menu" ref={openNavbarModal}>
           <li className="navbar__dropdown-menu__item">
-            <a>Home</a>
+            <a>{t('header.navbar.home')}</a>
             <div href="navbar__dropdown-menu__item__icon">+</div>
           </li>
           <li className="navbar__dropdown-menu__item">
-            <a>Flight </a>
+            <a>{t('header.navbar.flight')} </a>
             <div href="navbar__dropdown-menu__item__icon">+</div>
           </li>
           <li className="navbar__dropdown-menu__item">
-            <a>Tour</a>
+            <a>{t('header.navbar.tour')}</a>
           </li>
           <li className="navbar__dropdown-menu__item">
-            <a>News</a>
+            <a>{t('header.navbar.news')}</a>
           </li>
           <li className="navbar__dropdown-menu__item">
-            <a>PAges</a>
-          </li>
-          <li className="navbar__dropdown-menu__item">
-            <a>Hello</a>
-          </li>
-          <li className="navbar__dropdown-menu__item">
-            <a>Hello</a>
+            <a>{t('header.navbar.pages')}</a>
           </li>
         </ul>
       </div>

@@ -1,4 +1,4 @@
-import { Form, Layout } from 'antd'
+import { Form, Layout, DatePicker } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import './index.scss'
 import {
@@ -49,6 +49,7 @@ function FlightList() {
                 wrapperCol={{
                   span: 22,
                 }}
+                // initialValues={{ firstName: 'default value' }}
                 onFinish={onFinish}
               >
                 <Form.Item
@@ -56,7 +57,6 @@ function FlightList() {
                   style={{
                     display: 'inline-block',
                     width: '50%',
-                    margin: '0px',
                   }}
                   rules={[
                     {
@@ -73,16 +73,17 @@ function FlightList() {
                 </Form.Item>
 
                 <Form.Item
-                  name="lastName"
+                  name="date_picker"
                   style={{ display: 'inline-block', width: '50%' }}
                   rules={[
                     { required: true, message: 'Please input your last name!' },
                   ]}
                 >
-                  <input
-                    name="firstName"
+                  <DatePicker
+                    placeholder="Ngày Sinh của bạn"
                     className="form-control"
-                    placeholder="First name*"
+                    format="YYYY-MM-DD HH:mm:ss"
+                    style={{ display: 'flex' }}
                   />
                 </Form.Item>
                 <Form.Item
@@ -90,7 +91,6 @@ function FlightList() {
                   style={{
                     display: 'inline-block',
                     width: '50%',
-                    margin: '0px',
                   }}
                 >
                   <input
@@ -239,7 +239,7 @@ function FlightList() {
             style={{ padding: '20px', marginTop: '20px' }}
           >
             <div className="booking-page__container__itemContent">
-              <BookingTravelDate />
+              {getPrice && <BookingTravelDate />}
             </div>
           </div>
         </div>

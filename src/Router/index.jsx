@@ -27,7 +27,7 @@ const RoutesApp = () => {
       <Route path="/" element={<HomeLayout />}>
         <Route path="" element={<Home />} />
         <Route path="flights" element={<FlightList />} />
-        <Route path="/booking-flights" element={<Booking />} />
+        <Route path="/flights-booking" element={<Booking />} />
         <Route path="/booking-success" element={<BookingSuccessPage />} />
 
         {/* Authentication */}

@@ -5,7 +5,9 @@ const initialState = {
   loadding: false,
   userInformation: {},
   dataFlight: {},
-  discountInfo: 0,
+  discountInfo: {
+    percent: 0,
+  },
 }
 export const getDataFlights = createAsyncThunk(
   'flight/getDataFlights',
@@ -28,7 +30,10 @@ const bookingFlightsSlice = createSlice({
   reducers: {
     addDataIntoBookingFlight: (state, action) => {
       let { apartment, city, country, emailAddress } = action.payload
-      state.userInformation = action.payload
+      state.userInformation = {
+        ...action.payload,
+        dateOfBirth: action.payload.dateTimePicker,
+      }
     },
   },
   extraReducers: {
@@ -37,13 +42,13 @@ const bookingFlightsSlice = createSlice({
     },
     [getDiscountCheck.rejected]: (state, action) => {
       state.loadding = false
-      state.discountInfo = 0
+      state.discountInfo.percent = 0
     },
     [getDiscountCheck.fulfilled]: (state, action) => {
       const { status, data } = action.payload
       if (status === 'success') {
         console.log(data)
-        state.discountInfo = data.percent
+        state.discountInfo = data
       }
     },
     [getDataFlights.pending]: (state) => {
@@ -56,7 +61,7 @@ const bookingFlightsSlice = createSlice({
       state.loadding = false
       const { status, data } = action.payload
       if (status === 'success') {
-        state.dataFlight = { ...data }
+        state.dataFlight = { ...data, seat: data.seat[0] }
       }
     },
   },

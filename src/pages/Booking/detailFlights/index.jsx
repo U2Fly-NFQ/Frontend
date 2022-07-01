@@ -16,6 +16,7 @@ export default function DetailFlights() {
   const airplane = useSelector(getInfoFlightInBookingAirplane)
   const airline = useSelector(getInfoFlightInBookingAirline)
   const seat = useSelector(getInfoFlightInBookingSeat)
+
   return (
     <div className="detail-flights__container">
       <div className="booking-page__container__item__title">

@@ -8,7 +8,6 @@ import './index.scss'
 export default function BookingTravelDate() {
   const getPrice = useSelector(getInfoFlightInBookingSeat)
   const getDiscount = useSelector(getDiscountForBookingAirline)
-  // let totalValue = getPrice
   console.log(getDiscount)
   return (
     <div className="booking-travel-date">
@@ -28,7 +27,7 @@ export default function BookingTravelDate() {
           <li>
             <div className="booking-travel-date__container__key">Discount</div>
             <div className="booking-travel-date__container__key">
-              - {getDiscount * 100}%
+              - {getDiscount.percent * 100}%
             </div>
           </li>
           <li>
@@ -54,7 +53,7 @@ export default function BookingTravelDate() {
                 Coupon code (OFF 5000)
               </div>
               <div className="booking-travel-date__container__value">
-                ${getPrice.price * getDiscount}
+                ${getPrice.price * getDiscount.percent}
               </div>
             </li>
           </ul>
@@ -66,7 +65,7 @@ export default function BookingTravelDate() {
           <div className="booking-travel-date__container__amount__total__value">
             $
             {getPrice.price -
-              getPrice.price * getDiscount -
+              getPrice.price * getDiscount.percent -
               getPrice.price * 0.05}
           </div>
         </div>

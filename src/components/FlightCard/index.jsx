@@ -16,7 +16,7 @@ export default function FlightCard({ data }) {
         id: data.id,
       })
     )
-    navigate('/booking-flights')
+    navigate('/flights-booking')
   }
 
   return (

@@ -12,7 +12,7 @@ export default function BookingSuccessPage() {
   console.log()
   useEffect(() => {
     if (dateUserBooking.firstName === undefined) {
-      navigate('/booking-flights')
+      navigate('/flights-booking')
     }
     console.log(dateUserBooking.date_picker)
   }, [])

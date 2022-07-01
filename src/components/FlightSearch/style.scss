@@ -169,5 +169,15 @@
         border: none;
       }
     }
+    .search-submit {
+      position: relative;
+
+      .close-btn {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translate(110%, -50%);
+      }
+    }
   }
 }

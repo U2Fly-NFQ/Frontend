@@ -1,53 +1,42 @@
-import { Checkbox, Col, Row, Slider } from 'antd'
+import { Col, Row, Slider } from 'antd'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import './style.scss'
 
-const Flight = () => {
-  const optionClass = [
-    {
-      label: 'Economy',
-      value: '0',
-    },
-    {
-      label: 'Business',
-      value: '1',
-    },
-  ]
-  const optionAirlines = [
-    {
-      label: 'VietJet Air',
-      value: 'VJ',
-    },
-    {
-      label: 'Vietnam Airlines',
-      value: 'VN',
-    },
-    {
-      label: 'Bamboo Airways',
-      value: 'QH',
-    },
-    {
-      label: 'Vietravel Airlines',
-      value: 'VU',
-    },
-  ]
+const optionAirlines = [
+  {
+    label: 'VietJet Air',
+    value: 'VJ',
+  },
+  {
+    label: 'Vietnam Airlines',
+    value: 'VN',
+  },
+  {
+    label: 'Bamboo Airways',
+    value: 'QH',
+  },
+  {
+    label: 'Vietravel Airlines',
+    value: 'VU',
+  },
+]
 
-  //Function get data
+const Flight = () => {
+  let [searchParams, setSearchParams] = useSearchParams()
+  let [price, setPrice] = useState([0, 10000])
 
   const handlePriceChange = (value) => {
-    console.log(value)
+    setPrice(value)
   }
-  const handleDepartureChange = (value) => {
-    console.log(value)
-  }
-  const handleStopChange = (value) => {
-    console.log(value)
-  }
-  const handleClassChange = (value) => {
-    console.log(value)
-  }
-  const handleAirlineChange = (value) => {
-    console.log(value)
-  }
+
+  useEffect(() => {
+    setSearchParams({
+      ...searchParams,
+      minPrice: price[0],
+      maxPrice: price[1],
+    })
+  }, [price])
 
   return (
     <div className="filter">
@@ -68,17 +57,15 @@ const Flight = () => {
           />
         </Col>
       </Row>
-      <Row className="filterItem">
+      {/* <Row className="filterItem">
         <Col span={24} className="title">
           Airlines
         </Col>
         <Col span={24} className="content">
-          <Checkbox.Group
-            options={optionAirlines}
-            onChange={handleAirlineChange}
-          />
+
+          </Radio.Group>
         </Col>
-      </Row>
+      </Row> */}
     </div>
   )
 }

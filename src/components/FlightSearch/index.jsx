@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -11,8 +11,10 @@ import {
   Popover,
   InputNumber,
   Select,
-  Modal,
+  Button,
+  Tooltip,
 } from 'antd'
+import { CloseOutlined } from '@ant-design/icons'
 import moment from 'moment'
 import { fetchAirports } from '../../redux/slices/airportSlice'
 
@@ -25,16 +27,33 @@ export default function FlightSearch() {
   const [to, setTo] = useState({})
   const [searchFrom, setSearchFrom] = useState('')
   const [searchTo, setSearchTo] = useState('')
-  const [journeyDay, setJourneyDay] = useState(moment().add(1, 'days'))
+  const [journeyDay, setJourneyDay] = useState(moment())
   const [returnDay, setReturnDay] = useState(moment().add(3, 'days'))
   const [ticket, setTicket] = useState('oneWay')
-  const [passengerClass, setPassengerClass] = useState('economy')
+  const [passengerClass, setPassengerClass] = useState('Economy')
   const [passengerNumber, setPassengerNumber] = useState(1)
 
   let [searchParams, setSearchParams] = useSearchParams()
   const dispatch = useDispatch()
+  const submitRef = useRef(null)
+
+  const exScroll = () =>
+    window.scrollTo({
+      top: 200,
+      left: 0,
+      behavior: 'smooth',
+    })
 
   useEffect(() => {
+    let existingBooking = JSON.parse(localStorage.getItem('flight') || '[]')
+    localStorage.setItem(
+      'flight',
+      JSON.stringify({
+        ...existingBooking,
+        setType: 'Economy',
+        passengerNumber: 1,
+      })
+    )
     dispatch(fetchAirports())
   }, [])
 
@@ -50,16 +69,28 @@ export default function FlightSearch() {
   }, [airports])
 
   const onFinish = () => {
-    if (!from.value || to.value) {
-      Modal.warning({
-        content: 'All inputs must be fill',
-      })
+    if (!from.value || !to.value) {
+      return
     }
+
     const searchQuery = {
       departure: from.value,
       arrival: to.value,
       startTime: journeyDay.format('YYYY-MM-DD'),
+      seatType: passengerClass,
     }
+
+    let existingBooking = JSON.parse(localStorage.getItem('flight') || '[]')
+    localStorage.setItem(
+      'flight',
+      JSON.stringify({
+        ...existingBooking,
+        setType: passengerClass,
+        passengerNumber,
+      })
+    )
+
+    exScroll()
 
     setSearchParams({
       ...searchParams,
@@ -83,6 +114,19 @@ export default function FlightSearch() {
     setSearchTo('')
   }
 
+  const clearAllSearch = () => {
+    setFrom({})
+    setTo({})
+    setJourneyDay(moment())
+    setPassengerClass('Economy')
+    searchParams.delete('seatType')
+    searchParams.delete('departure')
+    searchParams.delete('startTime')
+    searchParams.delete('arrival')
+
+    setSearchParams({})
+  }
+
   const passengerPopover = (
     <>
       <label className="flightSearchLabel">Num Passengers</label>
@@ -104,11 +148,11 @@ export default function FlightSearch() {
       </label>
       <Radio.Group
         buttonStyle="outlined"
-        defaultValue={passengerClass}
+        value={passengerClass}
         onChange={(e) => setPassengerClass(e.target.value)}
       >
-        <Radio.Button value="economy">Economy</Radio.Button>
-        <Radio.Button value="business">Business</Radio.Button>
+        <Radio.Button value="Economy">Economy</Radio.Button>
+        <Radio.Button value="Business">Business</Radio.Button>
       </Radio.Group>
     </>
   )
@@ -148,7 +192,8 @@ export default function FlightSearch() {
                 return (
                   airport.label
                     .toLowerCase()
-                    .includes(searchFrom.toLowerCase()) && (
+                    .includes(searchFrom.toLowerCase()) &&
+                  airport.value !== to.value && (
                     <Option key={airport.value} value={airport.value}>
                       {airport.label}
                     </Option>
@@ -182,7 +227,8 @@ export default function FlightSearch() {
                 return (
                   airport.label
                     .toLowerCase()
-                    .includes(searchTo.toLowerCase()) && (
+                    .includes(searchTo.toLowerCase()) &&
+                  airport.value !== from.value && (
                     <Option key={airport.value} value={airport.value}>
                       {airport.label}
                     </Option>
@@ -253,14 +299,27 @@ export default function FlightSearch() {
         </Col>
       </Row>
       <div className="formControl">
-        <button
-          type="primary"
-          size="large"
-          className="btn btn-md btn-primary"
-          onClick={onFinish}
-        >
-          Search
-        </button>
+        <Tooltip className="search-submit">
+          <button
+            type="primary"
+            size="large"
+            className="searchBtn btn btn-md btn-primary"
+            onClick={onFinish}
+            ref={submitRef}
+          >
+            Search
+          </button>
+          <Button
+            className="close-btn"
+            type="dashed"
+            shape="circle"
+            icon={<CloseOutlined />}
+            onClick={clearAllSearch}
+            style={{
+              display: (from.value && to.value && 'block') || 'none',
+            }}
+          />
+        </Tooltip>
       </div>
     </div>
   )

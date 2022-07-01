@@ -1,9 +1,24 @@
 import React from 'react'
-import { Button, Skeleton } from 'antd'
+import { Skeleton } from 'antd'
 import { motion } from 'framer-motion'
 import './style.scss'
+import { useNavigate } from 'react-router-dom'
 
-export default function FlightCard({ data, airportFrom, airportTo }) {
+export default function FlightCard({ data }) {
+  const navigate = useNavigate()
+
+  const onBooking = () => {
+    let existingBooking = JSON.parse(localStorage.getItem('flight') || {})
+    localStorage.setItem(
+      'flight',
+      JSON.stringify({
+        ...existingBooking,
+        id: data.id,
+      })
+    )
+    navigate('/booking-flights')
+  }
+
   return (
     <motion.div
       whileHover={{
@@ -78,9 +93,9 @@ export default function FlightCard({ data, airportFrom, airportTo }) {
                   <sup>*20% OFF</sup>
                 </h2>
               </div>
-              <Button type="primary" size="large">
+              <button className="btn btn-primary btn-md" onClick={onBooking}>
                 Book now
-              </Button>
+              </button>
             </div>
           </div>
         </Skeleton>

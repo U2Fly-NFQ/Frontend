@@ -36,6 +36,20 @@
     "update": "Update"
   },
 
+  "search_form": {
+    "one_way": "One Way",
+    "round_trip": "Round Trip",
+    "from": "From",
+    "to": "To",
+    "journey_date": "Journey Date",
+    "return_date": "Return Date",
+    "passengers": "Passengers",
+    "class": "Class",
+    "economy": "Economy",
+    "business": "Business",
+    "first_class": "First Class"
+  },
+
   "home-navigation": {
     "home": "Home",
     "bicycles": "Bicycles",

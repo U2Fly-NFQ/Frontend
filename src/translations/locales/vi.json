@@ -36,6 +36,20 @@
     "update": "Cập nhật"
   },
 
+  "search_form": {
+    "one_way": "Một Chiều",
+    "round_trip": "Khứ Hồi",
+    "from": "Từ",
+    "to": "Đến",
+    "journey_date": "Ngày Đi",
+    "return_date": "Ngày Về",
+    "passengers": "Hành khách",
+    "class": "Hạng ghế",
+    "economy": "Phổ thông",
+    "business": "Thương gia",
+    "first_class": "Hạng nhất"
+  },
+
   "home-navigation": {
     "home": "Trang chủ",
     "bicycles": "Xe đạp",

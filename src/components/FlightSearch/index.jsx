@@ -13,6 +13,7 @@ import {
   InputNumber,
 } from 'antd'
 import moment from 'moment'
+import { useTranslation } from 'react-i18next'
 
 const { Title } = Typography
 
@@ -37,10 +38,10 @@ export default function FlightSearch() {
   const [ticket, setTicket] = useState('oneWay')
   const [passengerClass, setPassengerClass] = useState('')
   const [passengerNumber, setPassengerNumber] = useState(0)
-
+  const { t } = useTranslation()
   const passengerPopover = (
     <>
-      <Title level={4}>Passengers</Title>
+      <Title level={4}>{t('search_form.passengers')}</Title>
       <Form.Item name="passengers">
         <InputNumber
           min={1}
@@ -51,15 +52,21 @@ export default function FlightSearch() {
           }}
         />
       </Form.Item>
-      <Title level={4}>Cabin Class</Title>
+      <Title level={4}>{t('search_form.class')}</Title>
       <Form.Item name="class">
         <Radio.Group
           buttonStyle="solid"
           onChange={(e) => setPassengerClass(e.target.value)}
         >
-          <Radio.Button value="economy">Economy</Radio.Button>
-          <Radio.Button value="business">Business</Radio.Button>
-          <Radio.Button value="firstClass">First Class</Radio.Button>
+          <Radio.Button value="economy">
+            {t('search_form.economy')}
+          </Radio.Button>
+          <Radio.Button value="business">
+            {t('search_form.business')}
+          </Radio.Button>
+          <Radio.Button value="firstClass">
+            {t('search_form.first_class')}
+          </Radio.Button>
         </Radio.Group>
       </Form.Item>
     </>
@@ -81,8 +88,10 @@ export default function FlightSearch() {
           value={ticket}
           onChange={(e) => setTicket(e.target.value)}
         >
-          <Radio.Button value="oneWay">One Way</Radio.Button>
-          <Radio.Button value="roundTrip">Round Trip</Radio.Button>
+          <Radio.Button value="oneWay">{t('search_form.one_way')}</Radio.Button>
+          <Radio.Button value="roundTrip">
+            {t('search_form.round_trip')}
+          </Radio.Button>
         </Radio.Group>
       </div>
       <Form
@@ -94,7 +103,9 @@ export default function FlightSearch() {
           <Col span={24} md={12} lg={6}>
             <div className="flightSearchBox">
               <i className="flightSearchBox__Icon fa-solid fa-plane-departure"></i>
-              <label className="flightSearchLabel">From</label>
+              <label className="flightSearchLabel">
+                {t('search_form.from')}
+              </label>
               <Form.Item name="from">
                 <AutoComplete
                   className="flightSearchInput"
@@ -117,7 +128,7 @@ export default function FlightSearch() {
           <Col span={24} md={12} lg={6}>
             <div className="flightSearchBox">
               <i className="flightSearchBox__Icon fa-solid fa-plane-arrival"></i>
-              <label className="flightSearchLabel">To</label>
+              <label className="flightSearchLabel">{t('search_form.to')}</label>
               <Form.Item name="to">
                 <AutoComplete
                   className="flightSearchInput"
@@ -141,7 +152,9 @@ export default function FlightSearch() {
             <div className="flightSearchBox">
               <Row gutter={[8, 8]}>
                 <Col span={12}>
-                  <label className="flightSearchLabel">Journey Date</label>
+                  <label className="flightSearchLabel">
+                    {t('search_form.journey_date')}
+                  </label>
                   <Form.Item name="journeyDate">
                     <DatePicker
                       onChange={(date) => {
@@ -163,7 +176,9 @@ export default function FlightSearch() {
                 </Col>
                 {ticket !== 'oneWay' && (
                   <Col span={12}>
-                    <label className="flightSearchLabel">Return Date</label>
+                    <label className="flightSearchLabel">
+                      {t('search_form.return_date')}
+                    </label>
                     <Form.Item name="returnDate">
                       <DatePicker
                         onChange={(date) => {
@@ -194,7 +209,9 @@ export default function FlightSearch() {
               placement="bottomRight"
             >
               <div className="flightSearchBox">
-                <label className="flightSearchLabel">Passenger, Class</label>
+                <label className="flightSearchLabel">
+                  {t('search_form.passengers')}, {t('search_form.class')}
+                </label>
                 <div className="flightSearchPassenger">{passengerNumber}</div>
                 <p className="flightSearchSelected">{passengerClass}</p>
               </div>
@@ -203,7 +220,7 @@ export default function FlightSearch() {
         </Row>
         <div className="formControl">
           <Button type="primary" htmlType="submit" size="large">
-            Search
+            {t('cta.search')}
           </Button>
         </div>
       </Form>

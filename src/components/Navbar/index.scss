@@ -6,6 +6,9 @@
   position: relative;
 
   .wide.grid {
+    .navbar__logo {
+      width: 150px;
+    }
     padding-top: 10px;
     display: flex;
     gap: 2rem;

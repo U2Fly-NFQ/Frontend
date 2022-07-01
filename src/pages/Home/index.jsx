@@ -2,8 +2,10 @@ import './style.scss'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 import { HomeBanner } from '../../components'
+import { useTranslation } from 'react-i18next'
 
 function Home() {
+  const { t } = useTranslation()
   return (
     <div className="home-page">
       <HomeBanner />
@@ -15,9 +17,10 @@ function Home() {
               <div className="heading_left_area__wrapper">
                 <div className="heading_left_area">
                   <h2>
-                    Go beyond your <span>imagination</span>
+                    {t('home-page.goBeyond-section.Gobeyond')}{' '}
+                    <span> {t('home-page.goBeyond-section.imagination')}</span>
                   </h2>
-                  <h5>Discover your ideal experience with us</h5>
+                  <h5>{t('home-page.goBeyond-section.discover_your_ideal')}</h5>
                 </div>
               </div>
             </Col>
@@ -30,7 +33,10 @@ function Home() {
                   />
 
                   <h3>
-                    7% Discount for all <span>Airlines</span>
+                    {t('home-page.goBeyond-section.discount')}{' '}
+                    <span>
+                      {t('home-page.goBeyond-section.discount_airlines')}
+                    </span>
                   </h3>
                 </div>
               </Link>
@@ -44,7 +50,8 @@ function Home() {
                   />
 
                   <h3>
-                    Travel around<span>the world</span>
+                    {t('home-page.goBeyond-section.travel')}
+                    <span>{t('home-page.goBeyond-section.world')}</span>
                   </h3>
                 </div>
               </Link>
@@ -58,7 +65,8 @@ function Home() {
                   />
 
                   <h3>
-                    Luxury resorts<span>top deals</span>
+                    {t('home-page.goBeyond-section.resort')}
+                    <span>{t('home-page.goBeyond-section.deal')}</span>
                   </h3>
                 </div>
               </Link>
@@ -67,7 +75,9 @@ function Home() {
         </section>
 
         <section id="top_destination">
-          <h2 className="top_destination_heading">Top destinations</h2>
+          <h2 className="top_destination_heading">
+            {t('home-page.top-destinations-section.title')}
+          </h2>
 
           <Row gutter={[24, 24]}>
             <Col span={24} lg={12}>
@@ -77,16 +87,17 @@ function Home() {
                   alt="img"
                 />
                 <div className="destinations_content_inner">
-                  <h2>Up to</h2>
+                  <h2>{t('home-page.top-destinations-section.up-to')}</h2>
                   <div className="destinations_big_offer">
                     <h1>50</h1>
                     <h6>
-                      <span>%</span> <span>Off</span>
+                      <span>%</span>{' '}
+                      <span>{t('home-page.top-destinations-section.off')}</span>
                     </h6>
                   </div>
-                  <h2>Holiday packages</h2>
+                  <h2>{t('home-page.top-destinations-section.holiday')}</h2>
                   <Link to="/flights" className="btn btn_theme btn_md">
-                    Book now
+                    {t('home-page.top-destinations-section.book-now')}
                   </Link>
                 </div>
               </div>
@@ -174,7 +185,7 @@ function Home() {
                     to="/flights"
                     className="btn btn_theme btn_md view-all-btn"
                   >
-                    View all
+                    {t('home-page.top-destinations-section.view-all')}
                   </Link>
                 </Col>
               </Row>

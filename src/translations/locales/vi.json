@@ -46,21 +46,24 @@
   },
 
   "home-page": {
-    "categories": {
-      "title": "CÁC DANH MỤC PHỔ BIẾN",
-      "item": {
-        "electric-bike": "Xe đạp điện",
-        "mountain-bike": "Xe đạp leo núi",
-        "kid-bike": "Xe đạp trẻ em",
-        "road-bike": "Xe đạp đường trường",
-        "gravel-bike": "Xe đạp sỏi"
-      }
+    "goBeyond-section": {
+      "Gobeyond": "Vượt ra khỏi",
+      "imagination": "trí tưởng tượng",
+      "discover_your_ideal": "Cùng chúng tôi khám phá những trải nghiệm tuyệt vời",
+      "discount": "Giảm 7% cho tất cả",
+      "discount_airlines": "các hãng hàng không",
+      "travel": "Đi khắp",
+      "world": "Thế giới",
+      "resort": "Resorts sang trọng",
+      "deal": "với nhiều ưu đãi"
     },
-    "trending": "SẢN PHẨM XU HƯỚNG",
-    "brand": "NHÃN HIỆU",
-    "retailer": {
-      "title": "NHÀ PHÂN PHỐI",
-      "description": "B4B Shop là nơi để mua hoặc bán bất kỳ xe đạp, phụ kiện, linh kiện hoặc bộ phận nào từ bất kỳ ai, ở bất kỳ đâu, bất kỳ lúc nào. Mua sắm và duyệt qua hàng nghìn sản phẩm xe đạp & xe đạp được bày bán từ hàng trăm cửa hàng xe đạp và hàng nghìn thương hiệu trên toàn quốc."
+    "top-destinations-section": {
+      "title": "Điểm đến hàng đầu",
+      "up-to": "Giảm đến",
+      "off": "",
+      "holiday": "Gói nghĩ dưỡng",
+      "book-now": "Đặt ngay",
+      "view-all": "Tất cả"
     }
   },
 

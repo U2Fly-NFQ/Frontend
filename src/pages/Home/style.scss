@@ -1,0 +1,313 @@
+@use '../../assets/scss/abstracts/variables' as var;
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition: color 0.15s;
+  color: var.$white-color !important;
+
+  &hover {
+    margin-top: 2px;
+  }
+}
+
+.btn_md {
+  padding: 12px 35px;
+  font-size: 18px;
+}
+
+.view-all-btn {
+  display: grid;
+}
+
+.btn_theme {
+  color: var.$white-color;
+  background-color: var.$main-color;
+  transition: var.$transition;
+  box-shadow: none;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  z-index: 0;
+  border: none;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 580px;
+    height: 550px;
+    margin: auto;
+    background: var.$black-color;
+    border-radius: 50%;
+    z-index: -1;
+    -webkit-transform-origin: top center;
+    transform-origin: top center;
+    -webkit-transform: translateX(-50%) translateY(-5%) scale(0.4);
+    transform: translateX(-50%) translateY(-5%) scale(0.4);
+    transition: var.$transition;
+  }
+
+  &:hover::before {
+    -webkit-transition: -webkit-transform 1s;
+    transition: -webkit-transform 1s;
+    transition: transform 1s;
+    transition: transform 1s, -webkit-transform 1s;
+    -webkit-transform: translateX(-45%) translateY(0) scale(1);
+    transform: translateX(-50%) translateY(0) scale(1);
+    -webkit-transform-origin: bottom center;
+    transform-origin: bottom center;
+    border: none;
+  }
+}
+
+#go-beyond-area {
+  margin-top: 100px;
+
+  .heading_left_area__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .heading_left_area {
+    h2 {
+      font-weight: 400;
+      padding-bottom: 17px;
+      line-height: 45px;
+      font-size: 36px;
+
+      span {
+        display: inline-block;
+        border-bottom: 1px solid var.$main-color;
+        padding-bottom: 10px;
+      }
+    }
+
+    h5 {
+      color: var.$black-color-opacity;
+      font-size: 18px;
+      font-weight: 400;
+    }
+  }
+
+  .imagination_boxed {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+
+    & img {
+      width: 100%;
+      transition: var.$transition;
+    }
+
+    &:hover img {
+      transform: scale(1.1);
+    }
+
+    &:hover::before {
+      transform: translate(0%, 0%);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 25%;
+      left: 0;
+      background: #17161669;
+      bottom: 0;
+      z-index: 999;
+      transition: all 0.5s;
+      transform: translate(0%, 100%);
+    }
+
+    h3 {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      z-index: 999;
+      align-items: center;
+      height: 25%;
+      transition: var.$transition;
+      font-size: 20px;
+      flex-direction: column;
+      color: var.$white-color;
+      font-weight: 400;
+    }
+
+    &:hover h3 {
+      font-weight: 600;
+    }
+  }
+}
+
+#top_destination {
+  margin-top: 100px;
+
+  .top_destination_heading {
+    display: inline-bloc;
+    position: relative;
+    padding-bottom: 15px;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 40px;
+    margin-bottom: 30px;
+    text-align: center;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 1px;
+      background: var.$main-color;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      bottom: 0;
+    }
+  }
+
+  .destinations_content_box {
+    position: relative;
+    margin-bottom: 23px;
+    border-radius: 12px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+
+    .destinations_content_inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 99;
+
+      a {
+        color: var.$white-color;
+        text-transform: capitalize;
+        font-size: 24px;
+      }
+
+      h2 {
+        color: var.$white-color;
+        padding-bottom: 20px;
+        font-size: 36px;
+        font-weight: 500;
+        line-height: 40px;
+      }
+
+      .destinations_big_offer {
+        display: flex;
+
+        h1 {
+          color: var.$white-color;
+          font-size: 150px;
+          line-height: 109px;
+          padding-bottom: 20px;
+        }
+
+        h6 {
+          color: var.$white-color;
+          line-height: 45px;
+          padding-top: 8px;
+
+          span {
+            display: block;
+            font-size: 38px;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
+.img_animation {
+  &:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #8b3eea9c;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: var.$transition;
+  }
+
+  img {
+    transition: var.$transition;
+    position: relative;
+  }
+}
+
+#offer-area {
+  margin-top: 100px;
+
+  .offer_area_box {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+
+    .offer_area_content {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      padding: 30px 27px;
+      z-index: 999;
+
+      h2 {
+        color: var.$white-color;
+        padding-bottom: 20px;
+        font-size: 36px;
+        font-weight: 500;
+        line-height: 40px;
+      }
+
+      p {
+        color: var.$white-color;
+        padding-bottom: 25px;
+        font-size: 16px;
+        line-height: 28px;
+        font-weight: 400;
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

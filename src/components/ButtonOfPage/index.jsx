@@ -1,9 +1,16 @@
 import React from 'react'
 import './index.scss'
-export default function ButtonOfPage({ title, width, height }) {
+// import { Button } from 'antd'
+export default function ButtonOfPage({ title, width, height, warning }) {
   return (
     <div className="form-submit">
-      <button className="btn btn-primary btn-md">{title}</button>
+      <button
+        type="submit"
+        className="btn btn-primary btn-md"
+        id={warning ? 'success' : ''}
+      >
+        {title}
+      </button>
     </div>
   )
 }

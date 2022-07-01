@@ -1,7 +1,7 @@
 @use '../../assets/scss/abstracts/variables' as var;
 
 .flight-card {
-  margin-bottom: 36px;
+  margin-bottom: 24px;
 
   .flight-card-items {
     background: #ffffff;
@@ -10,6 +10,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
 
     @media screen and (max-width: 768px) {
       flex-direction: column;
@@ -39,14 +40,21 @@
     }
   }
 
+  .flight-card-place__arrow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .flight-card-place__arrow h6 {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 700;
     padding-top: 10px;
   }
 
   .flight-card-place__arrow p {
-    font-size: 11px;
+    font-size: 13px;
     line-height: 18px;
   }
 
@@ -63,7 +71,9 @@
   }
 
   .flight-card-place-destination {
+    min-width: 240px;
     padding-left: 33px;
+
     @media screen and (max-width: 992px) {
       padding-left: 25px;
     }
@@ -90,7 +100,6 @@
     &__desc {
       padding-top: 5px;
       font-size: 12px;
-      width: 140px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -98,43 +107,104 @@
     }
   }
 
-  .flight-card-price {
-    background: #f3eff9;
-    padding: 25px 16px 20px 25px;
+  .flight-card-deal {
+    .flight-card-price {
+      background: #f3eff9;
+      padding: 25px 16px 20px 25px;
+      min-width: 200px;
 
-    .flight-card-price__origin {
-      color: var.$paragraph-color;
-      font-size: 18px;
-      font-weight: 500;
-    }
+      .flight-card-price__origin {
+        color: var.$paragraph-color;
+        font-size: 18px;
+        font-weight: 500;
+      }
 
-    .flight-card-price__off {
-      padding-top: 10px;
-      font-size: 36px;
-      font-weight: 500;
-      line-height: 40px;
+      .flight-card-price__off {
+        margin-bottom: 0;
+        padding-top: 10px;
+        font-size: 36px;
+        font-weight: 500;
+        line-height: 40px;
 
-      sup {
-        font-size: 13px;
-        color: var.$main-color;
-        font-weight: 600;
-        top: -19px;
-        padding-left: 5px;
+        sup {
+          font-size: 13px;
+          color: var.$main-color;
+          font-weight: 600;
+          top: -19px;
+          padding-left: 5px;
+        }
+      }
+
+      &__condition {
+        font-size: 12px;
+        padding-top: 2px;
+        font-weight: 500;
+        color: var(--black-color);
+      }
+
+      &__show-more {
+        font-size: 16px;
+        font-weight: 500;
+        padding-top: 7px;
+        cursor: pointer;
       }
     }
-
-    &__condition {
-      font-size: 12px;
-      padding-top: 2px;
-      font-weight: 500;
-      color: var(--black-color);
-    }
-
-    &__show-more {
-      font-size: 16px;
-      font-weight: 500;
-      padding-top: 7px;
+    .btn {
+      display: inline-block;
+      width: 100%;
+      font-weight: 400;
+      line-height: 1.5;
+      text-align: center;
+      text-decoration: none;
+      vertical-align: middle;
       cursor: pointer;
+      user-select: none;
+      font-size: 16px;
+      box-shadow: none;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      z-index: 0;
+
+      &.btn-primary {
+        color: var.$white-color;
+        background-color: var.$main-color;
+        transition: var.$transition;
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+        z-index: 0;
+        border: none;
+      }
+
+      &.btn-md {
+        padding: 12px 35px;
+        font-size: 18px;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 580px;
+        height: 550px;
+        margin: auto;
+        background: var.$black-color;
+        border-radius: 50%;
+        z-index: -1;
+        transform-origin: top center;
+        transform: translateX(-50%) translateY(-5%) scale(0.4);
+        transition: var.$transition;
+      }
+
+      &:hover::before {
+        transition: transform 1s;
+        transform: translateX(-50%) translateY(0) scale(1);
+        transform-origin: bottom center;
+        border: none;
+      }
     }
   }
 }

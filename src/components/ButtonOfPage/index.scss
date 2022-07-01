@@ -2,7 +2,7 @@
 .form-submit {
   display: flex;
   // justify-content: center;
-  padding-top: 20px;
+  // padding-top: 20px;
 
   .btn {
     display: inline-block;
@@ -60,5 +60,11 @@
       transform-origin: bottom center;
       border: none;
     }
+  }
+  #warning {
+    background-color: red;
+  }
+  #success {
+    background-color: gray;
   }
 }

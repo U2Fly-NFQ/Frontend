@@ -8,7 +8,7 @@ const initialState = {
   data: [],
   pagination: {
     current: 1,
-    pageSize: 6,
+    pageSize: 7,
     total: null,
   },
 }
@@ -35,8 +35,8 @@ const flightSlice = createSlice({
       })
       .addCase(fetchFlights.fulfilled, (state, action) => {
         state.status = 'idle'
-        state.data = action.payload
-        state.pagination.total = action.payload.length
+        state.data = action.payload.data
+        // state.pagination.total = action.payload.data.length
       })
       // fetch
       .addCase(getFlight.pending, (state) => {
@@ -93,8 +93,8 @@ export const { setLoading, changeCurrentPage } = flightSlice.actions
 
 export const fetchFlights = createAsyncThunk(
   'flight/fetchFlights',
-  async () => {
-    const res = await flight.getList()
+  async (urlParams) => {
+    const res = await flight.getList(urlParams)
     return res.data
   }
 )

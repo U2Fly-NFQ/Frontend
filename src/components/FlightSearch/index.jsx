@@ -76,7 +76,7 @@ export default function FlightSearch() {
     const searchQuery = {
       departure: from.value,
       arrival: to.value,
-      startTime: journeyDay.format('YYYY-MM-DD'),
+      // startTime: journeyDay.format('YYYY-MM-DD'),
       seatType: passengerClass,
     }
 

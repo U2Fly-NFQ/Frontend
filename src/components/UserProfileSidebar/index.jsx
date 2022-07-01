@@ -3,7 +3,7 @@ import { Col, Row, Avatar, Menu } from 'antd'
 import { Link } from 'react-router-dom'
 import { DashboardOutlined } from '@ant-design/icons'
 
-function BookedSidebar(props) {
+function UserProfileSidebar(props) {
   const getItem = (label, key, icon, children) => {
     return {
       key,
@@ -16,17 +16,17 @@ function BookedSidebar(props) {
   const items = [
     getItem(<Link to="/profile">Dashboard</Link>, 1, <DashboardOutlined />),
     getItem(
-      <Link to="/profile/mybooking">My Booking</Link>,
+      <Link to="/profile/booking">My Booking</Link>,
       2,
       <i className="fa-solid fa-address-card"></i>
     ),
   ]
 
   return (
-    <Row className="booked-sidebar">
-      <Col className="booked-sidebar-header">
+    <Row className="userProfile-sidebar">
+      <Col span={24} className="userProfile-sidebar-header">
         <Row>
-          <Col span={24} className="booked-sidebar-header-avatar">
+          <Col span={24} className="userProfile-sidebar-header-avatar">
             <Avatar
               size={{
                 xs: 24,
@@ -44,22 +44,22 @@ function BookedSidebar(props) {
               }
             />
           </Col>
-          <Col span={24} className="booked-sidebar-header-name">
+          <Col span={24} className="userProfile-sidebar-header-name">
             Sang Sáng Sủa
           </Col>
-          <Col span={24} className="booked-sidebar-header-phone">
+          <Col span={24} className="userProfile-sidebar-header-phone">
             +84 094 8478 487
           </Col>
-          <Col span={24} className="booked-sidebar-header-email">
+          <Col span={24} className="userProfile-sidebar-header-email">
             sangsangsua@gmail.com
           </Col>
         </Row>
       </Col>
-      <Col span={24} className="booked-sidebar-menu">
+      <Col span={24} className="userProfile-sidebar-menu">
         <Menu items={items} />
       </Col>
     </Row>
   )
 }
 
-export default BookedSidebar
+export default UserProfileSidebar

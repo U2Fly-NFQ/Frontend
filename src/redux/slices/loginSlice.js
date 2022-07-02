@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { setTokenApi } from '../../api'
 import { loginApi } from '../../api/Auth'
 
 const getStorageUser = () => {
@@ -30,7 +29,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      console.log(state)
       localStorage.removeItem('user')
       state.status = ''
       state.user = {
@@ -58,7 +56,7 @@ const authSlice = createSlice({
         state.status = 'idle'
         state.user = loginUser
         setStorageUser(loginUser)
-        setTokenApi(loginUser.token)
+        // setTokenApi(loginUser.token)
       })
   },
 })

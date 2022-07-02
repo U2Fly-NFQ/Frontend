@@ -14,12 +14,14 @@ import { useEffect } from 'react'
 import {
   addDataIntoBookingFlight,
   getDataFlights,
+  getUserDataInBooking,
 } from '../../redux/slices/bookingFlightsSlice'
 import { useNavigate } from 'react-router-dom'
 import {
   getInfoFlightInBookingArrival,
   getInfoFlightInBookingSeat,
 } from '../../redux/selectors'
+import moment from 'moment'
 const { Header, Footer, Sider, Content } = Layout
 function FlightList() {
   const navigate = useNavigate()
@@ -27,10 +29,17 @@ function FlightList() {
   const dispatch = useDispatch()
   const arrival = useSelector(getInfoFlightInBookingArrival)
   const getPrice = useSelector(getInfoFlightInBookingSeat)
-  useEffect(() => {
-    dispatch(getDataFlights())
-  }, [])
 
+  useEffect(() => {
+    let dataFlight = JSON.parse(localStorage.getItem('flight'))
+    let userInfo = JSON.parse(localStorage.getItem('user'))
+    if (dataFlight.id !== undefined) {
+      dispatch(getDataFlights(dataFlight.id))
+      dispatch(getUserDataInBooking(userInfo.id))
+    } else {
+      navigate('/flight')
+    }
+  }, [])
   const onFinish = (values) => {
     dispatch(addDataIntoBookingFlight(values))
     navigate('/booking-success')
@@ -49,7 +58,10 @@ function FlightList() {
                 wrapperCol={{
                   span: 22,
                 }}
-                // initialValues={{ firstName: 'default value' }}
+                initialValues={{
+                  firstName: 'default value',
+                  date_picker: moment(),
+                }}
                 onFinish={onFinish}
               >
                 <Form.Item
@@ -82,7 +94,7 @@ function FlightList() {
                   <DatePicker
                     placeholder="Ngày Sinh của bạn"
                     className="form-control"
-                    format="YYYY-MM-DD HH:mm:ss"
+                    format="YYYY-MM-DD"
                     style={{ display: 'flex' }}
                   />
                 </Form.Item>

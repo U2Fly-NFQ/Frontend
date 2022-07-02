@@ -9,6 +9,7 @@ import {
   getInfoFlightInBookingAirline,
   getInfoFlightInBookingSeat,
 } from '../../../redux/selectors'
+import { converrtDuritionToTIme } from '../../../utils'
 export default function DetailFlights() {
   const allDataFight = useSelector(getInfoFlightInBookingFight)
   const arrival = useSelector(getInfoFlightInBookingArrival)
@@ -31,7 +32,7 @@ export default function DetailFlights() {
         <div className="detail-flights__container__trip__icon">
           <i className="fa-solid fa-circle-arrow-right"></i>
           <h6>non stop</h6>
-          <p>{allDataFight.duration}</p>
+          <p>{converrtDuritionToTIme(allDataFight.duration)}</p>
         </div>
         <div className="detail-flights__container__trip__to">
           <p>To</p>
@@ -77,7 +78,7 @@ export default function DetailFlights() {
             <del>{seat.price}</del>
           </h6>
           <h3>
-            {'$' + seat.price} <sub> / Adult X 1</sub>{' '}
+            {'$' + seat.price} <sub> / {seat.name} X 1</sub>{' '}
           </h3>
         </div>
       </div>

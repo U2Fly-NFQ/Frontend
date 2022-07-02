@@ -9,7 +9,7 @@ import BookingSuccessDetail from './BookingSuccessDetail'
 export default function BookingSuccessPage() {
   const navigate = useNavigate()
   const dateUserBooking = useSelector(getInfoUserInBookingFight)
-  console.log()
+
   useEffect(() => {
     if (dateUserBooking.firstName === undefined) {
       navigate('/flights-booking')

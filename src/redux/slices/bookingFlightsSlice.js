@@ -12,18 +12,26 @@ const initialState = {
 export const getDataFlights = createAsyncThunk(
   'flight/getDataFlights',
   async (idFlight) => {
-    const respone = await flightAPI.get(1)
+    const respone = await flightAPI.get(idFlight)
     return respone.data
   }
 )
 
 export const getDiscountCheck = createAsyncThunk(
-  'discount/getDiscountCheck',
+  'flight/getDiscountCheck',
   async (idFlight) => {
     const respone = await discountInfo.getDiscountById(idFlight.idDiscount)
     return respone.data
   }
 )
+export const getUserDataInBooking = createAsyncThunk(
+  'flight/getUserData',
+  async (idUser) => {
+    const respone = await flightAPI.getUserData(idUser)
+    return respone.data
+  }
+)
+
 const bookingFlightsSlice = createSlice({
   name: 'filterSlice',
   initialState,
@@ -37,6 +45,17 @@ const bookingFlightsSlice = createSlice({
     },
   },
   extraReducers: {
+    [getUserDataInBooking.pending]: (state, action) => {
+      state.loadding = true
+    },
+    [getUserDataInBooking.rejected]: (state, action) => {
+      state.loadding = false
+    },
+    [getUserDataInBooking.fulfilled]: (state, action) => {
+      state.loadding = false
+      let { data } = action.payload
+      state.userInformation = data
+    },
     [getDiscountCheck.pending]: (state, action) => {
       state.loadding = true
     },
@@ -60,8 +79,20 @@ const bookingFlightsSlice = createSlice({
     [getDataFlights.fulfilled]: (state, action) => {
       state.loadding = false
       const { status, data } = action.payload
+      let allSeatNameAvailable = data.seat.map((item) => item.name)
+      let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
+      console.log(
+        data.seat[allSeatNameAvailable.indexOf(dataSeatChoose.setType)]
+      )
       if (status === 'success') {
-        state.dataFlight = { ...data, seat: data.seat[0] }
+        state.dataFlight = {
+          ...data,
+          seat: data.seat[
+            allSeatNameAvailable.indexOf(dataSeatChoose.setType) < 0
+              ? 0
+              : allSeatNameAvailable.indexOf(dataSeatChoose.setType)
+          ],
+        }
       }
     },
   },

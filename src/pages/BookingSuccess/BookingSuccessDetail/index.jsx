@@ -6,9 +6,8 @@ import {
 import { useSelector } from 'react-redux'
 import moment from 'moment'
 export default function BookingSuccessDetail() {
-  const getPrice = useSelector(getInfoFlightInBookingSeat)
+  const getSeat = useSelector(getInfoFlightInBookingSeat)
   const getDiscount = useSelector(getDiscountForBookingAirline)
-  console.log(getDiscount)
   return (
     <div
       className="Booking-success__container__content"
@@ -40,8 +39,8 @@ export default function BookingSuccessDetail() {
       <div className="Booking-success__container__content__info">
         <ul>
           <li>
-            <span>Adult Price x 1:</span>
-            <span>${getPrice.price}</span>
+            <span> {getSeat.name} Price x 1:</span>
+            <span>${getSeat.price}</span>
           </li>
           <li className="change-color">
             <span>Discount</span>
@@ -60,7 +59,7 @@ export default function BookingSuccessDetail() {
         <ul>
           <li className="change-color">
             <span>Subtotal</span>
-            <span>${getPrice.price}</span>
+            <span>${getSeat.price}</span>
           </li>
           <li>
             <span>Coupon code (OFF 5000)</span>
@@ -72,9 +71,7 @@ export default function BookingSuccessDetail() {
         <ul style={{ border: 'none' }}>
           <li className="change-color">
             <span>Total Amount</span>
-            <span>
-              ${getPrice.price - getPrice.price * getDiscount.percent}
-            </span>
+            <span>${getSeat.price - getSeat.price * getDiscount.percent}</span>
           </li>
         </ul>
       </div>

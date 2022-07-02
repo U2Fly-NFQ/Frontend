@@ -32,12 +32,6 @@ const Login = () => {
     dispatch(login(values))
   }
 
-  const passwordValidator = (rule, value, callback) => {
-    if (!value) callback('Please input your password')
-    if (value.length < 3) callback('Password must be at least 6 characters')
-    callback()
-  }
-
   return (
     <>
       <div className="login-page">
@@ -71,7 +65,12 @@ const Login = () => {
                     </Form.Item>
                     <Form.Item
                       name="password"
-                      rules={[{ validator: passwordValidator }]}
+                      rules={[
+                        {
+                          required: true,
+                          message: 'Please input your password',
+                        },
+                      ]}
                     >
                       <input
                         type="password"
@@ -79,13 +78,9 @@ const Login = () => {
                         placeholder="Enter password"
                       />
                     </Form.Item>
-                    <Form.Item>
-                      <div className="form-submit">
-                        <button className="btn btn-primary btn-md">
-                          Log in
-                        </button>
-                      </div>
-                    </Form.Item>
+                    <div className="form-submit">
+                      <button className="btn btn-primary btn-md">Log in</button>
+                    </div>
                     <div className="switch">
                       <p>
                         Dont have an account?{' '}

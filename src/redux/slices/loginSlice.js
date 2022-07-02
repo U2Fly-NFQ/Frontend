@@ -13,6 +13,11 @@ const setStorageUser = (user) => {
 }
 
 const user = getStorageUser() || {}
+// Set token
+if (user.token) {
+  setTokenApi(user.token)
+  console.log(user.token)
+}
 
 const initialState = {
   status: '',
@@ -30,7 +35,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      console.log(state)
       localStorage.removeItem('user')
       state.status = ''
       state.user = {

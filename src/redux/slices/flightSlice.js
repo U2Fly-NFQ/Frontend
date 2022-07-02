@@ -5,7 +5,10 @@ import flight from '../../api/Flight'
 
 const initialState = {
   status: '',
-  data: [],
+  data: {
+    flight: [],
+    pagination: {},
+  },
   pagination: {
     current: 1,
     pageSize: 7,

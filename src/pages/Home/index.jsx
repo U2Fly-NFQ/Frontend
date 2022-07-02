@@ -218,7 +218,7 @@ function Home() {
             <Col span={24} md={12}>
               <Row gutter={[24, 24]}>
                 <Col span={24} md={12}>
-                  <div class="offer_area_box img_animation">
+                  <div className="offer_area_box img_animation">
                     <img
                       src="https://andit.co/projects/html/and-tour/assets/img/offer/offer2.png"
                       alt="img"
@@ -236,7 +236,7 @@ function Home() {
                   </div>
                 </Col>
                 <Col span={24} md={12}>
-                  <div class="offer_area_box img_animation">
+                  <div className="offer_area_box img_animation">
                     <img
                       src="https://andit.co/projects/html/and-tour/assets/img/offer/offer3.png"
                       alt="img"

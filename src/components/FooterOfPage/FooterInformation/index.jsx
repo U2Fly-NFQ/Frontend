@@ -61,28 +61,6 @@ export default function FooterInformation() {
             </div>
           </Col>
           <Col
-            lg={{ span: 5 }}
-            md={{ span: 6 }}
-            sm={{ span: 12 }}
-            xs={{ span: 12 }}
-          >
-            <div className="footer-info__container__company">
-              <div className="footer-info__container__title">
-                <h5>Company</h5>
-              </div>
-              <div className="footer-info__container__company__content">
-                <ul>
-                  <li>About Us</li>
-                  <li>Testimonials</li>
-                  <li>Rewards</li>
-                  <li>Work with Us</li>
-                  <li>Meet the Team</li>
-                  <li>Blog</li>
-                </ul>
-              </div>
-            </div>
-          </Col>
-          <Col
             lg={{ span: 4 }}
             md={{ span: 6 }}
             sm={{ span: 12 }}
@@ -122,6 +100,28 @@ export default function FooterInformation() {
                   <li>Partners</li>
                   <li>PointsPLUS</li>
                   <li>Blog</li>
+                </ul>
+              </div>
+            </div>
+          </Col>
+          <Col
+            lg={{ span: 5 }}
+            md={{ span: 6 }}
+            sm={{ span: 12 }}
+            xs={{ span: 12 }}
+          >
+            <div className="footer-info__container__company">
+              <div className="footer-info__container__title">
+                <h5>Top cities</h5>
+              </div>
+              <div className="footer-info__container__company__content">
+                <ul>
+                  <li>Chicago</li>
+                  <li>New York</li>
+                  <li>San Francisco</li>
+                  <li>California</li>
+                  <li>Ohio</li>
+                  <li>Alaska</li>
                 </ul>
               </div>
             </div>

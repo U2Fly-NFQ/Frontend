@@ -131,7 +131,9 @@ export default function FlightSearch() {
 
   const passengerPopover = (
     <>
-      <label className="flightSearchLabel">Num Passengers</label>
+      <label className="flightSearchLabel">
+        {t('search_form.No. of Passengers')}
+      </label>
       <InputNumber
         min={1}
         max={5}
@@ -146,7 +148,7 @@ export default function FlightSearch() {
           marginTop: '10px',
         }}
       >
-        Cabin Class
+        {t('search_form.class')}
       </label>
       <Radio.Group
         buttonStyle="outlined"
@@ -178,7 +180,7 @@ export default function FlightSearch() {
         <Col span={24} md={12} lg={6}>
           <div className="flightSearchBox">
             <i className="flightSearchBox__Icon fa-solid fa-plane-departure"></i>
-            <label className="flightSearchLabel">From</label>
+            <label className="flightSearchLabel">{t('search_form.from')}</label>
             <Select
               size="large"
               showSearch
@@ -213,7 +215,7 @@ export default function FlightSearch() {
         <Col span={24} md={12} lg={6}>
           <div className="flightSearchBox">
             <i className="flightSearchBox__Icon fa-solid fa-plane-arrival"></i>
-            <label className="flightSearchLabel">To</label>
+            <label className="flightSearchLabel">{t('search_form.to')}</label>
             <Select
               size="large"
               showSearch
@@ -249,7 +251,9 @@ export default function FlightSearch() {
           <div className="flightSearchBox">
             <Row gutter={[8, 8]}>
               <Col span={12}>
-                <label className="flightSearchLabel">Journey Date</label>
+                <label className="flightSearchLabel">
+                  {t('search_form.journey_date')}
+                </label>
                 <DatePicker
                   className="journeyDate"
                   allowClear={false}
@@ -266,7 +270,9 @@ export default function FlightSearch() {
               </Col>
               {ticket !== 'oneWay' && (
                 <Col span={12}>
-                  <label className="flightSearchLabel">Return Date</label>
+                  <label className="flightSearchLabel">
+                    {t('search_form.return_date')}
+                  </label>
                   <DatePicker
                     allowClear={false}
                     disabledDate={(current) => {
@@ -291,9 +297,11 @@ export default function FlightSearch() {
             placement="bottomRight"
           >
             <div className="flightSearchBox">
-              <label className="flightSearchLabel">Passenger & Class</label>
+              <label className="flightSearchLabel">
+                {t('search_form.passenger')} & {t('search_form.class')}
+              </label>
               <div className="flightSearchPassenger">
-                {passengerNumber} Passenger
+                {t('search_form.passenger', { count: passengerNumber })}
               </div>
               <p className="flightSearchSelected">
                 {passengerClass.toUpperCase()}

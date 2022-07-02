@@ -1,5 +1,5 @@
 {
-    "cta": {
+  "cta": {
     "login": "Login",
     "logout": "Logout",
     "register": "Register",
@@ -43,11 +43,14 @@
     "to": "To",
     "journey_date": "Journey Date",
     "return_date": "Return Date",
-    "passengers": "Passengers",
+    "passenger": "passenger",
+    "passenger_one": "{{count}} passenger",
+    "passenger_other": "{{count}} passengers",
     "class": "Class",
     "economy": "Economy",
     "business": "Business",
-    "first_class": "First Class"
+    "first_class": "First Class",
+    "No. of Passengers": "No. of Passengers"
   },
 
   "header": {
@@ -84,13 +87,9 @@
     }
   },
 
-  "footer": {
-    
-  },
+  "footer": {},
 
-  "filter": {
-    
-  },
+  "filter": {},
 
   "common": {
     "update": "Update",

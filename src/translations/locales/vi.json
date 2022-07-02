@@ -1,5 +1,5 @@
 {
-    "cta": {
+  "cta": {
     "login": "Đăng nhập",
     "logout": "Đăng xuất",
     "register": "Đăng ký",
@@ -43,11 +43,14 @@
     "to": "Đến",
     "journey_date": "Ngày Đi",
     "return_date": "Ngày Về",
-    "passengers": "Hành khách",
+    "passenger": "Hành khách",
+    "passenger_one": "{{count}} Hành khách",
+    "passenger_other": "{{count}} Hành khách",
     "class": "Hạng ghế",
     "economy": "Phổ thông",
     "business": "Thương gia",
-    "first_class": "Hạng nhất"
+    "first_class": "Hạng nhất",
+    "No. of Passengers": "Số hành khách"
   },
 
   "header": {
@@ -86,12 +89,9 @@
     }
   },
 
-  "footer": {
-  },
+  "footer": {},
 
-  "filter": {
-    
-  },
+  "filter": {},
 
   "common": {
     "update": "Update",

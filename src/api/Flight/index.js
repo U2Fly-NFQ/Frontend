@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-const getList = () => axios.get(`/api/flights`)
+const getList = (params) =>
+  axios.get(`/api/flights`, {
+    params,
+  })
 
 const get = (id) => axios.get(`/api/flights/${id}`)
 

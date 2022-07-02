@@ -112,10 +112,6 @@ export default function BookingPayment() {
         </div>
       ),
     },
-    {
-      paymentMethod: 'Cash on delivery',
-      render: <div></div>,
-    },
   ]
 
   return (

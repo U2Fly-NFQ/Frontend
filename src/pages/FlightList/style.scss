@@ -1,3 +1,5 @@
+@use '../../assets/scss/abstracts' as a;
+
 .ant-layout-content {
   background-color: #ffffff;
 }
@@ -9,5 +11,8 @@
 }
 
 .flight-search-title-container {
-  text-align: center;
+  text-align: right;
+  .ant-typography {
+    color: a.$paragraph-color;
+  }
 }

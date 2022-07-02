@@ -4,15 +4,17 @@ import './index.scss'
 import { useSelector } from 'react-redux'
 import { getInfoUserInBookingFight } from '../../redux/selectors'
 import { useNavigate } from 'react-router-dom'
+import moment from 'moment'
+import BookingSuccessDetail from './BookingSuccessDetail'
 export default function BookingSuccessPage() {
   const navigate = useNavigate()
   const dateUserBooking = useSelector(getInfoUserInBookingFight)
-
+  console.log()
   useEffect(() => {
     if (dateUserBooking.firstName === undefined) {
-      navigate('/booking-flights')
+      navigate('/flights-booking')
     }
-    console.log(dateUserBooking.firstName)
+    console.log(dateUserBooking.date_picker)
   }, [])
   return (
     <div className="Booking-success">
@@ -30,14 +32,14 @@ export default function BookingSuccessPage() {
               <div className="Booking-success__container__content__mess">
                 <h3>
                   <span className="highlight-main">
-                    {dateUserBooking.firstName + ' ' + dateUserBooking.lastName}
+                    {dateUserBooking.firstName}
                   </span>
-                  , your order was submitted successfully!
+                  , your order was paid successfully!
                 </h3>
                 <h6>
                   our booking details has been sent to:
                   <span className="highlight-main">
-                    {dateUserBooking.emailAddress}
+                    {dateUserBooking.firstName}
                   </span>
                 </h6>
               </div>
@@ -52,8 +54,10 @@ export default function BookingSuccessPage() {
                   <span class="value">{dateUserBooking.firstName}</span>
                 </li>
                 <li>
-                  <span>Last name:</span>
-                  <span class="value">{dateUserBooking.lastName}</span>
+                  <span>Day of Bỉrth:</span>
+                  <span class="value">
+                    {moment(dateUserBooking.date_picker).format('DD-MM-YYYY')}
+                  </span>
                 </li>
                 <li>
                   <span>Email address:</span>
@@ -94,73 +98,7 @@ export default function BookingSuccessPage() {
           </div>
 
           <div className="Booking-success__container__item">
-            <div
-              className="Booking-success__container__content"
-              style={{ display: 'block' }}
-            >
-              <div className="Booking-success__container__content__title">
-                <h3>Booking details</h3>
-              </div>
-              <div className="Booking-success__container__content__info">
-                <ul>
-                  <li>
-                    <span>Booking ID:</span>
-                    <span>#RB5783GH</span>
-                  </li>
-                  <li>
-                    <span>Booking date:</span>
-                    <span>10 February 2022</span>
-                  </li>
-                  <li>
-                    <span>Payment method:</span>
-                    <span>Bank transfer</span>
-                  </li>
-                  <li>
-                    <span>Booking status:</span>
-                    <span>Success</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="Booking-success__container__content__info">
-                <ul>
-                  <li>
-                    <span>Adult Price x 1:</span>
-                    <span>$40,000.00</span>
-                  </li>
-                  <li className="change-color">
-                    <span>Discount</span>
-                    <span>10%</span>
-                  </li>
-                  <li>
-                    <span>Tax</span>
-                    <span>5%</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="Booking-success__container__content__info">
-                <div className="section-remove-coupon">
-                  <span>remove</span>
-                </div>
-                <ul>
-                  <li className="change-color">
-                    <span>Subtotal</span>
-                    <span>$38,000.00</span>
-                  </li>
-                  <li>
-                    <span>Coupon code (OFF 5000)</span>
-                    <span>$5,000.00</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="Booking-success__container__content__info">
-                <ul style={{ border: 'none' }}>
-                  <li className="change-color">
-                    <span>Total Amount</span>
-                    <span>$33,000.00</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <BookingSuccessDetail />
           </div>
         </div>
       </div>

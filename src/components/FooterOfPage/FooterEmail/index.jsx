@@ -32,9 +32,10 @@ export default function FooterEmail() {
     <div className="footer-email">
       <div className="footer-email container wide grid">
         <Row style={{ alignItems: 'center' }}>
-          {dataRender.map((item) => {
+          {dataRender.map((item, i) => {
             return (
               <Col
+                key={i}
                 lg={{ span: 12 }}
                 md={{ span: 12 }}
                 sm={{ span: 24 }}

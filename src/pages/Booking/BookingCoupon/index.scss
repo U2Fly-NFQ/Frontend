@@ -1,0 +1,12 @@
+.booking-coupon__container {
+  position: relative;
+  .fa-circle-check {
+    position: absolute;
+    top: 17px;
+    /* bottom: -4px; */
+    z-index: 10;
+    right: 10px;
+    color: green;
+    font-size: 20px;
+  }
+}

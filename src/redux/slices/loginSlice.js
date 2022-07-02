@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { loginApi } from '../../api/Auth'
-import { setLocalToken } from '../../api'
+import axiosInstance from '../../api'
 
 const initialState = {
   status: '',
@@ -35,10 +35,9 @@ const authSlice = createSlice({
           roles: Object.keys(roles),
         }
         localStorage.setItem('user', JSON.stringify(loginUser))
-        localStorage.setItem('token', token)
 
-        // Update axios token config
-        setLocalToken(token)
+        // Update token
+        axiosInstance.setToken(token)
       })
   },
 })

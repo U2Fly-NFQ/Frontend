@@ -15,7 +15,7 @@ import { useEffect } from 'react'
 const { Title, Text } = Typography
 
 function FlightList() {
-  const flights = useSelector((state) => state.flights)
+  const flights = useSelector((state) => state.flights.data.flight)
 
   let [searchParams] = useSearchParams()
   const dispatch = useDispatch()
@@ -32,7 +32,7 @@ function FlightList() {
       </div>
       <div className="grid wide">
         <div className="flight-search-title-container">
-          <Title level={4}>{flights.data.length} tours found</Title>
+          <Title level={4}>{flights.length} tours found</Title>
         </div>
         <Row gutter={[24, 24]}>
           <Col span={24} md={6}>
@@ -41,10 +41,10 @@ function FlightList() {
           <Col span={24} md={18}>
             <Row gutter={[16, 16]} justify="center">
               <Col span={24}>
-                {flights.data.map((f) => (
+                {flights.map((f) => (
                   <FlightCard key={f.id} data={f} />
                 ))}
-                {flights.data.length === 0 && <NotFoundFlight />}
+                {flights.length === 0 && <NotFoundFlight />}
               </Col>
               {/* <Col flex={0} justify="center">
                 <Pagination

@@ -1,11 +1,12 @@
 import { Row, Col, Typography, Form } from 'antd'
-import { login } from '../../redux/slices'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { loginApi } from '../../api/Auth'
 
 import { LoginBanner } from '../../components'
 import './style.scss'
 import { useEffect } from 'react'
+import axiosInstance from '../../api'
 
 const { Title } = Typography
 
@@ -17,20 +18,23 @@ const Login = () => {
   useEffect(() => {
     if (user.id) {
       // admin
-      if (user.roles.includes('2')) {
+      if (user.roles['2']) {
         navigate('/admin')
       }
 
       // user
-      if (user.roles.includes('1')) {
+      if (user.roles['1']) {
         navigate('/flights')
       }
     }
   }, [user.id])
 
-  const onFinish = (values) => {
-    console.log('clock')
-    dispatch(login(values))
+  const onFinish = async (values) => {
+    const { data } = await loginApi(values)
+    localStorage.setItem('user', JSON.stringify(data.user))
+
+    // Update token
+    axiosInstance.setToken(data.token)
   }
 
   return (

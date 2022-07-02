@@ -2,18 +2,15 @@ import { Row, Col, Select } from 'antd'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { DownOutlined } from '@ant-design/icons'
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import './style.scss'
 import LangSelect from '../LangSelect'
-import { logout } from '../../redux/slices/loginSlice'
 
 const { Option } = Select
 
 const SubNavBar = () => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const user = JSON.parse(localStorage.getItem('user') || '[]')
   const navigate = useNavigate()
 
@@ -59,7 +56,9 @@ const SubNavBar = () => {
                     onChange={(value) => {
                       if (value === 'booked') navigate('/user/booked')
                       if (value === 'logout') {
-                        dispatch(logout())
+                        localStorage.removeItem('user')
+                        localStorage.removeItem('token')
+                        navigate('/')
                       }
                     }}
                     styles={{

@@ -84,6 +84,14 @@
       "holiday": "Holiday packages",
       "book-now": "Book Now",
       "view-all": "View all"
+    }, 
+    "offer-area-section": {
+      "Special Offers": "Special Offers",
+      "Newsletter": "News letter",
+      "Travel tips": "Travel tips",
+      "Holiday deals": "Holiday deals",
+      "Subscribe now": "Subscribe now",
+      "Get tips": "Get tips"
     }
   },
 

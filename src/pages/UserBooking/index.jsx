@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Col, Row, Table, Space, Button } from 'antd'
 import { EyeOutlined } from '@ant-design/icons'
+import { UserTicket } from '../../components'
 
 function UserBooking(props) {
   //initiation
@@ -100,6 +101,7 @@ function UserBooking(props) {
           }}
         />
       </Col>
+      <UserTicket setViewTicket={setViewTicket} visible={viewTicket} />
     </Row>
   )
 }

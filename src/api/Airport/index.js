@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '..'
 
 const getList = () => axios.get(`/api/airports`)
 

@@ -201,7 +201,7 @@ function Home() {
                   src="https://andit.co/projects/html/and-tour/assets/img/offer/offer1.png"
                   alt="img"
                 />
-                <div class="offer_area_content">
+                <div className="offer_area_content">
                   <h2>Special Offers</h2>
                   <p>
                     Invidunt ut labore et dolore magna aliquyam erat, sed diam
@@ -209,7 +209,7 @@ function Home() {
                     rebum. Stet clita kasd dolor sit amet. Lorem ipsum dolor sit
                     amet.
                   </p>
-                  <Link to="/flights" class="btn btn_theme btn_md">
+                  <Link to="/flights" className="btn btn_theme btn_md">
                     Holiday deals
                   </Link>
                 </div>
@@ -218,36 +218,36 @@ function Home() {
             <Col span={24} md={12}>
               <Row gutter={[24, 24]}>
                 <Col span={24} md={12}>
-                  <div class="offer_area_box img_animation">
+                  <div className="offer_area_box img_animation">
                     <img
                       src="https://andit.co/projects/html/and-tour/assets/img/offer/offer2.png"
                       alt="img"
                     />
-                    <div class="offer_area_content">
+                    <div className="offer_area_content">
                       <h2>News letter</h2>
                       <p>
                         Invidunt ut labore et dolore magna aliquyam erat, sed
                         diam voluptua. At vero eos et.
                       </p>
-                      <Link to="/flights" class="btn btn_theme btn_md">
+                      <Link to="/flights" className="btn btn_theme btn_md">
                         Subscribe now
                       </Link>
                     </div>
                   </div>
                 </Col>
                 <Col span={24} md={12}>
-                  <div class="offer_area_box img_animation">
+                  <div className="offer_area_box img_animation">
                     <img
                       src="https://andit.co/projects/html/and-tour/assets/img/offer/offer3.png"
                       alt="img"
                     />
-                    <div class="offer_area_content">
+                    <div className="offer_area_content">
                       <h2>Travel tips</h2>
                       <p>
                         Invidunt ut labore et dolore magna aliquyam erat, sed
                         diam voluptua. At vero eos et.
                       </p>
-                      <Link to="/flights" class="btn btn_theme btn_md">
+                      <Link to="/flights" className="btn btn_theme btn_md">
                         Get tips
                       </Link>
                     </div>

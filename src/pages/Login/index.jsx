@@ -1,6 +1,6 @@
 import { Row, Col, Typography, Form } from 'antd'
 import { login } from '../../redux/slices'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { LoginBanner } from '../../components'
@@ -11,24 +11,25 @@ const { Title } = Typography
 
 const Login = () => {
   const dispatch = useDispatch()
-  const loginState = useSelector((state) => state.login)
+  const user = JSON.parse(localStorage.getItem('user') || '[]')
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (loginState.user.id) {
+    if (user.id) {
       // admin
-      if (loginState.user.roles.includes('2')) {
+      if (user.roles.includes('2')) {
         navigate('/admin')
       }
 
       // user
-      if (loginState.user.roles.includes('1')) {
+      if (user.roles.includes('1')) {
         navigate('/flights')
       }
     }
-  }, [loginState.user.id])
+  }, [user.id])
 
   const onFinish = (values) => {
+    console.log('clock')
     dispatch(login(values))
   }
 

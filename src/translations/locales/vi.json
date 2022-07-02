@@ -89,6 +89,12 @@
     }
   },
 
+  "flight-list-page": {
+    "flight-banner": {
+      "EXPLORE THE WORLD WITH US": "HÃY CÙNG CHÚNG TÔI KHÁM PHÁ THẾ GIỚI"
+    }
+  },
+
   "footer": {},
 
   "filter": {},

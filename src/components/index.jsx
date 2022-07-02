@@ -28,3 +28,6 @@ export { default as NotFoundFlight } from './NotFoundFlight'
 //For admin
 export { default as AdminSidebar } from './AdminSidebar'
 export { default as AdminHeader } from './AdminHeader'
+
+//For User
+export { default as UserProfileSidebar } from './UserProfileSidebar'

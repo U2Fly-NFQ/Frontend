@@ -14,6 +14,7 @@ import {
   Booking,
   BookingSuccessPage,
   UserProfile,
+  UserBooking,
 } from '../pages'
 
 import { useSelector } from 'react-redux'
@@ -36,7 +37,7 @@ const RoutesApp = () => {
         {/* For users */}
         <Route path="profile" element={<UserProfile />}>
           {/*<Route index element={<UserBooking />} />*/}
-          {/*<Route path="booking" element={<UserBooking />} />*/}
+          <Route path="booking" element={<UserBooking />} />
         </Route>
       </Route>
 

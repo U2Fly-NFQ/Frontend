@@ -1,8 +1,13 @@
 import { DownOutlined } from '@ant-design/icons'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import NavLinkCustom from '../NavLink'
 import './index.scss'
 export default function NavLinkDropDown({ Title, ListDropDown }) {
+  const navigate = useNavigate()
+  const changeNavigation = (data) => {
+    return data.replace(' ', '-').toLowerCase()
+  }
   return (
     <li className="navbar__link">
       <NavLinkCustom to={`/${Title.toLowerCase()}`}>
@@ -20,7 +25,13 @@ export default function NavLinkDropDown({ Title, ListDropDown }) {
               <ul className="list__dropdown__items">
                 {ListDropDown.map((item, index) => {
                   return (
-                    <li key={index} className="list__dropdown__item">
+                    <li
+                      key={index}
+                      className="list__dropdown__item"
+                      onClick={() => {
+                        navigate(`/${changeNavigation(item)}`)
+                      }}
+                    >
                       {item}
                     </li>
                   )

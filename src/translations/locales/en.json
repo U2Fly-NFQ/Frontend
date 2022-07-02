@@ -68,6 +68,9 @@
   },
 
   "home-page": {
+    "home-banner": {
+      "THE WHOLE WORLD AWAITS": "THE WHOLE WORLD AWAITS"
+    },
     "goBeyond-section": {
       "Gobeyond": "Go beyond your",
       "imagination": "imagination",

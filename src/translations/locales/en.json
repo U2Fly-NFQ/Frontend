@@ -53,6 +53,13 @@
     "No. of Passengers": "No. of Passengers"
   },
 
+  "subscribe-form": {
+    "Get the latest news and offers": "Get the latest news and offers",
+    "Subscribe to our newsletter": "Subscribe to our newsletter",
+    "Enter your email address": "Enter your email address",
+    "Subscribe": "Subscribe"
+  },
+
   "header": {
     "navbar": {
       "home": "Home",

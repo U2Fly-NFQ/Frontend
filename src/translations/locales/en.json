@@ -95,6 +95,12 @@
     }
   },
 
+  "flight-list-page": {
+    "flight-banner": {
+      "EXPLORE THE WORLD WITH US": "EXPLORE THE WORLD WITH US"
+    }
+  },
+
   "footer": {},
 
   "filter": {},

@@ -1,5 +1,4 @@
 {
-  "hello": "Xin chao",
   "cta": {
     "login": "Đăng nhập",
     "logout": "Đăng xuất",
@@ -35,6 +34,23 @@
     "cancle": "Trở về",
     "update": "Cập nhật",
     "become_partner": "Trở thành đối tác"
+  },
+
+  "search_form": {
+    "one_way": "Một Chiều",
+    "round_trip": "Khứ Hồi",
+    "from": "Từ",
+    "to": "Đến",
+    "journey_date": "Ngày Đi",
+    "return_date": "Ngày Về",
+    "passenger": "Hành khách",
+    "passenger_one": "{{count}} Hành khách",
+    "passenger_other": "{{count}} Hành khách",
+    "class": "Hạng ghế",
+    "economy": "Phổ thông",
+    "business": "Thương gia",
+    "first_class": "Hạng nhất",
+    "No. of Passengers": "Số hành khách"
   },
 
   "header": {
@@ -73,178 +89,9 @@
     }
   },
 
-  "footer": {
-    "title": "B4B-Shop là nơi cung cấp mọi thứ bạn cần khi mua xe đạp mới. Chúng tôi là nhà phân phối và bán lẻ của Hoa Kỳ cho các thương hiệu toàn cầu",
-    "shop-by": {
-      "title": "Mua Sắm",
-      "item": {
-        "your-order": "Đơn đặt hàng của bạn",
-        "payment": "Thanh toán",
-        "delivery": "Vận chuyển",
-        "condition": "Các điều kiện"
-      }
-    },
-    "product": {
-      "title": "Sản Phẩm",
-      "item": {
-        "new-product": "Sản phẩm mới",
-        "best-sale": "Mặt hàng bán chạy nhất",
-        "price-drop": "Giảm giá",
-        "store": "Cửa hàng"
-      }
-    },
-    "our-company": {
-      "title": "Công Ty",
-      "item": {
-        "about-us": "Về chúng tôi",
-        "contact-us": "Liên hệ chúng tôi",
-        "site-map": "Sơ đồ trang web",
-        "help-service": "Trợ giúp & Dịch vụ"
-      }
-    },
-    "contact": {
-      "title": "Liên hệ",
-      "item": {
-        "location": "Victoria Resort, Thành phố Cần Thơ"
-      }
-    }
-  },
+  "footer": {},
 
-  "filter": {
-    "filter-bar": {
-      "price": {
-        "title": "Giá bán"
-      },
-      "brand": {
-        "title": "Thương hiệu"
-      },
-      "material": {
-        "title": "Chất Liệu",
-        "carbon": "Carbon",
-        "aluminum": "Nhôm"
-      },
-      "gender": {
-        "title": "Giới tính",
-        "men": "Nam",
-        "women": "Nữ",
-        "unisex": "Unisex"
-      },
-      "type": {
-        "title": "Loại hình",
-        "electric-bike": "Xe đạp điện",
-        "mountain-bike": "Xe đạp leo núi",
-        "kid-bike": "Xe đạp trẻ em",
-        "road-bike": "Xe đạp đường trường",
-        "gravel-bike": "Xe đạp sỏi"
-      }
-    }
-  },
-
-  "detail-page": {
-    "availability": {
-      "title": "Còn lại:",
-      "content": " {{number}} chiếc trong kho"
-    },
-    "price": "{{val, currency(currency: VND)}}",
-    "rating": "{{rating}} đánh giá",
-    "banner": {
-      "free-shipping": {
-        "title": "MIỄN PHÍ VẬN CHUYỂN",
-        "content": "Giao hàng miễn phí cho tất cả các đơn đặt hàng tại Hoa Kỳ hoặc đơn đặt hàng trên 1,999,000 vnđ"
-      },
-      "support": {
-        "title": "HỖ TRỢ 24/7",
-        "content": "Liên hệ với chúng tôi 24 giờ một ngày, 7 ngày một tuần"
-      },
-      "return-title": {
-        "title": "30 HOÀN TRẢ HOÀN",
-        "content": "Chỉ cần trả lại nó trong vòng 30 ngày"
-      }
-    },
-    "bicycle-part": {
-      "title": "Chi tiết xe đạp",
-      "item": {
-        "brand": "NHÃN HIỆU",
-        "type": "LOẠI HÌNH",
-        "gender": "GIỚI TÍNH",
-        "material": "CHẤT LIỆU",
-        "groupset": "GROUPSET",
-        "braking-type": "LOẠI PHANH",
-        "item-condition": "TÌNH TRẠNG",
-        "availability": "KHẢ DỤNG"
-      }
-    }
-  },
-
-  "checkout_page": {
-    "title": "THÔNG TIN ĐƠN HÀNG",
-    "left_form": {
-      "title": "Thông tin đơn hàng",
-      "fullname": "Họ và tên",
-      "email": "Email",
-      "address": "Địa chỉ",
-      "phone": "Số điện thoại",
-      "note": "Ghi chú ...",
-      "order": "ĐẶT HÀNG"
-    },
-
-    "right_form": {
-      "title": "Chi tiết",
-      "type": "Loại hình",
-      "number": "Số lượng",
-      "provisional": "Tạm tính",
-      "total": "Tổng cộng",
-      "slogan": "KHÔNG BAO GỒM 10% THUẾ"
-    }
-  },
-
-  "admin_page": {
-    "table": {
-      "name": "Tên",
-      "brand": "Thương hiệu",
-      "price": "Giá ($)",
-      "type": "Loại hình",
-      "action": {
-        "title": "Hành động",
-        "content": "Xóa lựa chọn"
-      }
-    },
-
-    "side_bar": {
-      "dashboard": "Bảng Điều Khiển",
-      "bicycle": "Xe đạp",
-      "order": "Đơn đặt hàng"
-    },
-
-    "order_table": {
-      "bicycle": "Xe đạp",
-      "quantity": "Số lượng",
-      "customer": "Khách hàng",
-      "phone_number": "Số điện thoại",
-      "action": {
-        "title": "Hành động",
-        "content": "Xóa lựa chọn"
-      }
-    },
-
-    "form": {
-      "add_form": {
-        "title": "Thêm xe đạp"
-      },
-      "edit_form": {
-        "title": "Sửa thông tin xe"
-      },
-      "name": "Tên",
-      "brand": "Thương hiệu",
-      "gender": "Giới tính",
-      "material": "Chất liệu",
-      "price": "Giá",
-      "type": "Loại hình",
-      "variants": "Bổ sung",
-      "description": "Mô tả",
-      "image": "Hình"
-    }
-  },
+  "filter": {},
 
   "common": {
     "update": "Update",

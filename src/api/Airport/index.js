@@ -10,10 +10,12 @@ const update = (id, data) => axios.put(`/api/airports/${id}`, data)
 
 const destroy = (id) => axios.delete(`/api/airports/${id}`)
 
-export default {
+const airportApi = {
   getList,
   get,
   create,
   update,
   destroy,
 }
+
+export default airportApi

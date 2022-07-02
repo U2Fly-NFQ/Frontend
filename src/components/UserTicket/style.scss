@@ -1,12 +1,123 @@
+@use '../../assets/scss/abstracts' as a;
+
 .userTicket {
   width: 1000px !important;
-  .ticket {
-    zoom: 1;
-  }
+  padding-bottom: 0;
+
   .ant-modal-content {
-    background-color: transparent;
+    border-radius: 25px;
+
     .ant-modal-body {
       padding: 0;
+    }
+  }
+
+  .ticket {
+    img {
+      width: 100%;
+    }
+
+    &-header {
+      text-align: center;
+      align-items: center;
+      padding: 15px;
+      background-color: a.$bg-color;
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+    }
+
+    &-content {
+      align-items: center;
+      .passenger-info-title,
+      .flight-details-title {
+        font-size: 16px;
+      }
+
+      .passenger-info-text,
+      .flight-details-text {
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .flight-info {
+        &-from {
+          text-align: right;
+        }
+
+        &-icon {
+          text-align: center;
+        }
+
+        &-to {
+          text-align: left;
+        }
+      }
+
+      &-left {
+        padding: 15px;
+        & > div {
+          align-items: center;
+        }
+
+        &-barcode {
+          img {
+            transform: rotate(-90deg);
+          }
+        }
+
+        .passenger-info {
+        }
+
+        .flight-info {
+          padding: 50px 0;
+
+          &-from,
+          &-icon,
+          &-to {
+            font-weight: bold;
+            font-size: 40px;
+          }
+        }
+
+        .flight-details {
+        }
+      }
+
+      &-right {
+        padding: 15px;
+        .barcode {
+          img {
+            max-height: 75px;
+          }
+        }
+
+        .passenger-info > div > div {
+          margin-bottom: 5px;
+        }
+
+        .flight-info {
+          font-weight: bold;
+          font-size: 20px;
+        }
+      }
+    }
+
+    &-footer {
+      padding: 15px;
+      background-color: a.$bg-color;
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+      &-left {
+        text-align: center;
+      }
+    }
+    &:after {
+      content: '';
+      top: 0;
+      position: absolute;
+      border: 1px a.$main-color dashed;
+      bottom: 0;
+      left: 70%;
     }
   }
 }
@@ -20,6 +131,7 @@
     }
   }
 }
+
 @media only screen and (max-width: 900px) {
   .userTicket {
     width: 800px !important;
@@ -29,6 +141,7 @@
     }
   }
 }
+
 @media only screen and (max-width: 800px) {
   .userTicket {
     width: 700px !important;
@@ -38,6 +151,7 @@
     }
   }
 }
+
 @media only screen and (max-width: 700px) {
   .userTicket {
     width: 600px !important;
@@ -47,6 +161,7 @@
     }
   }
 }
+
 @media only screen and (max-width: 600px) {
   .userTicket {
     width: 500px !important;
@@ -56,6 +171,7 @@
     }
   }
 }
+
 @media only screen and (max-width: 500px) {
   .userTicket {
     width: 400px !important;
@@ -65,6 +181,7 @@
     }
   }
 }
+
 @media only screen and (max-width: 400px) {
   .userTicket {
     width: 300px !important;
@@ -74,6 +191,7 @@
     }
   }
 }
+
 @media only screen and (max-width: 319px) {
   .userTicket {
     display: none;

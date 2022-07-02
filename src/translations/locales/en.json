@@ -43,7 +43,7 @@
     "to": "To",
     "journey_date": "Journey Date",
     "return_date": "Return Date",
-    "passenger": "passenger",
+    "passenger": "Passenger",
     "passenger_one": "{{count}} passenger",
     "passenger_other": "{{count}} passengers",
     "class": "Class",

@@ -21,13 +21,13 @@ function FlightList() {
   let [searchParams, setSearchParams] = useSearchParams()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    setSearchParams({
-      ...searchParams,
-      page: 1,
-      offset: 3,
-    })
-  }, [])
+  // useEffect(() => {
+  //   setSearchParams({
+  //     ...searchParams,
+  //     page: 1,
+  //     offset: 3,
+  //   })
+  // }, [])
 
   console.log(pagination)
 
@@ -38,7 +38,7 @@ function FlightList() {
   return (
     <div className="flight-list-page">
       <FlightListBanner />
-      <div className="flight-search-container wide grid">
+      <div className="wide grid">
         <FlightSearch />
       </div>
       <div className="grid wide">

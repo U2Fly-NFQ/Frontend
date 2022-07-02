@@ -202,7 +202,7 @@ function Home() {
                   alt="img"
                 />
                 <div class="offer_area_content">
-                  <h2>Special Offers</h2>
+                  <h2>{t('home-page.offer-area-section.Special Offers')}</h2>
                   <p>
                     Invidunt ut labore et dolore magna aliquyam erat, sed diam
                     voluptua. At vero eos et accusam et justo duo dolores et ea
@@ -210,7 +210,7 @@ function Home() {
                     amet.
                   </p>
                   <Link to="/flights" class="btn btn_theme btn_md">
-                    Holiday deals
+                    {t('home-page.offer-area-section.Holiday deals')}
                   </Link>
                 </div>
               </div>
@@ -224,13 +224,13 @@ function Home() {
                       alt="img"
                     />
                     <div class="offer_area_content">
-                      <h2>News letter</h2>
+                      <h2>{t('home-page.offer-area-section.Newsletter')}</h2>
                       <p>
                         Invidunt ut labore et dolore magna aliquyam erat, sed
                         diam voluptua. At vero eos et.
                       </p>
                       <Link to="/flights" class="btn btn_theme btn_md">
-                        Subscribe now
+                        {t('home-page.offer-area-section.Subscribe now')}
                       </Link>
                     </div>
                   </div>
@@ -242,13 +242,13 @@ function Home() {
                       alt="img"
                     />
                     <div class="offer_area_content">
-                      <h2>Travel tips</h2>
+                      <h2>{t('home-page.offer-area-section.Travel tips')}</h2>
                       <p>
                         Invidunt ut labore et dolore magna aliquyam erat, sed
                         diam voluptua. At vero eos et.
                       </p>
                       <Link to="/flights" class="btn btn_theme btn_md">
-                        Get tips
+                        {t('home-page.offer-area-section.Get tips')}
                       </Link>
                     </div>
                   </div>

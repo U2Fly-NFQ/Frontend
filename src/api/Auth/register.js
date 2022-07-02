@@ -1,3 +1,3 @@
-import axios from 'axios'
+import { axiosService } from '../index'
 
-export const register = (data) => axios.post(`/users/register`, data)
+export const register = (data) => axiosService.post(`/users/register`, data)

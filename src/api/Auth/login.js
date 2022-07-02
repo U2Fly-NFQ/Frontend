@@ -1,3 +1,3 @@
-import axios from 'axios'
+import { axiosService } from '../index'
 
-export const loginApi = (data) => axios.post(`/api/login`, data)
+export const loginApi = (data) => axiosService.post(`login`, data)

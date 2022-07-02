@@ -1,7 +1,7 @@
-import axios from 'axios'
+import { axiosService } from '../index'
 
 const getDiscountById = (idDiscount) =>
-  axios.get(`/api/discounts/${idDiscount}`)
+  axiosService.get(`discounts/${idDiscount}`)
 
 export default {
   getDiscountById,

@@ -5,6 +5,7 @@ import NavLinkDropDown from '../NavLinkDropDown'
 import './index.scss'
 import getLogo from '../../assets/images/system/logo-rectangle.png'
 import { useTranslation } from 'react-i18next'
+import { NavLink } from 'react-router-dom'
 export default function Navbar() {
   const openNavbarHamburger = useRef(null)
   const openNavbarModal = useRef(null)
@@ -12,6 +13,14 @@ export default function Navbar() {
     openNavbarHamburger.current.classList.toggle('open')
     openNavbarModal.current.classList.toggle('open')
   }
+  const navLinkDropDownData = [
+    { path: '', name: 'header.navbar.home' },
+    { path: '/flights', name: 'header.navbar.flight' },
+    { path: '/tour', name: 'header.navbar.tour' },
+
+    { path: '/admin', name: 'header.navbar.admin' },
+    { path: '/pages', name: 'header.navbar.pages' },
+  ]
   const { t } = useTranslation()
   return (
     <nav className="navbar">
@@ -68,25 +77,13 @@ export default function Navbar() {
           <div className="navbar_icon" ref={openNavbarHamburger}></div>
         </div>
       </div>
-      <div className="navbar__dropdown__modal">
-        <ul className="navbar__dropdown-menu" ref={openNavbarModal}>
-          <li className="navbar__dropdown-menu__item">
-            <a>{t('header.navbar.home')}</a>
-            {/* <div href="navbar__dropdown-menu__item__icon">+</div> */}
-          </li>
-          <li className="navbar__dropdown-menu__item">
-            <a>{t('header.navbar.flight')} </a>
-            {/* <div href="navbar__dropdown-menu__item__icon">+</div> */}
-          </li>
-          <li className="navbar__dropdown-menu__item">
-            <a>{t('header.navbar.tour')}</a>
-          </li>
-          <li className="navbar__dropdown-menu__item">
-            <a>{t('header.navbar.news')}</a>
-          </li>
-          <li className="navbar__dropdown-menu__item">
-            <a>{t('header.navbar.pages')}</a>
-          </li>
+      <div className="navbar__dropdown__modal" ref={openNavbarModal}>
+        <ul className="navbar__dropdown-menu">
+          {navLinkDropDownData.map((item) => (
+            <li className="navbar__dropdown-menu__item">
+              <NavLink to={item.path}>{t(item.name)}</NavLink>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>

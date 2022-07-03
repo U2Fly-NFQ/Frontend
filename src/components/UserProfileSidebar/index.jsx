@@ -1,6 +1,5 @@
 import React from 'react'
 import { Row, Col, Avatar, Menu } from 'antd'
-import { DashboardOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 
 function UserProfileSidebar(props) {
@@ -14,7 +13,7 @@ function UserProfileSidebar(props) {
   }
 
   const items = [
-    getItem(<Link to="/profile">Dashboard</Link>, 1, <DashboardOutlined />),
+    // getItem(<Link to="/profile">Dashboard</Link>, 1, <DashboardOutlined />),
     getItem(
       <Link to="/profile/booking">My Booking</Link>,
       2,
@@ -23,7 +22,12 @@ function UserProfileSidebar(props) {
     getItem(
       <Link to="/profile/history">Booking History</Link>,
       3,
-      <i className="fa-solid fa-address-card"></i>
+      <i className="fa-solid fa-clock-rotate-left"></i>
+    ),
+    getItem(
+      <Link to="/profile">My Profile</Link>,
+      4,
+      <i className="fa-solid fa-circle-user"></i>
     ),
   ]
 

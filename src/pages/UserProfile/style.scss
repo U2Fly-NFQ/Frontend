@@ -39,6 +39,7 @@ $borderRadius: 15px;
           border-bottom-left-radius: $borderRadius;
           border-bottom-right-radius: $borderRadius;
           border-right: none;
+
           .ant-menu-item {
             margin: auto;
           }
@@ -52,8 +53,10 @@ $borderRadius: 15px;
       background-color: a.$bg-color;
       box-shadow: a.$box-shadow;
     }
+
     &-booking,
-    &-history {
+    &-history,
+    &-profile {
       &-title {
         font-size: 20px;
         font-weight: bold;

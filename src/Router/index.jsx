@@ -14,6 +14,7 @@ import {
   UserProfile,
   UserBooking,
   UserHistory,
+  UserProfileDetail,
 } from '../pages'
 
 const HomeLayout = lazy(() => import('../layouts/Home'))
@@ -37,7 +38,7 @@ const RoutesApp = () => {
 
             {/* For users */}
             <Route path="profile" element={<UserProfile />}>
-              {/*<Route index element={<UserBooking />} />*/}
+              <Route index element={<UserProfileDetail />} />
               <Route path="booking" element={<UserBooking />} />
               <Route path="history" element={<UserHistory />} />
             </Route>

@@ -36,6 +36,11 @@ function FlightList() {
   const getDiscountInfo = useSelector(getDiscountForBookingAirline)
   const getFlightData = useSelector(getInfoFlightInBookingFight)
   const getSeatData = useSelector(getInfoFlightInBookingSeat)
+  // console.log(JSON.parse(localStorage.getItem('flight')))
+  localStorage.setItem(
+    'flight',
+    '{"id":3,"username":"sang@gg.com","roles":{"1":"ROLE_ADMIN","2":"ROLE_USER"}}'
+  )
   useEffect(() => {
     let dataFlight = JSON.parse(localStorage.getItem('flight'))
     let userInfo = JSON.parse(localStorage.getItem('user'))

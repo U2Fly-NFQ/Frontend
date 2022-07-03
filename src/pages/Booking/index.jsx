@@ -10,13 +10,17 @@ import BookingCoupon from './BookingCoupon'
 import { useEffect } from 'react'
 import {
   addDataIntoBookingFlight,
+  createBookingFlight,
   getDataFlights,
   getUserDataInBooking,
 } from '../../redux/slices/bookingFlightsSlice'
 import { useNavigate } from 'react-router-dom'
 import {
+  getDiscountForBookingAirline,
   getInfoFlightInBookingArrival,
+  getInfoFlightInBookingFight,
   getInfoFlightInBookingSeat,
+  getInfoPriceAfterDiscount,
   getUserInformation,
 } from '../../redux/selectors'
 import moment from 'moment'
@@ -28,6 +32,10 @@ function FlightList() {
   const arrival = useSelector(getInfoFlightInBookingArrival)
   const getPrice = useSelector(getInfoFlightInBookingSeat)
   const userInformation = useSelector(getUserInformation)
+  const priceDiscount = useSelector(getInfoPriceAfterDiscount)
+  const getDiscountInfo = useSelector(getDiscountForBookingAirline)
+  const getFlightData = useSelector(getInfoFlightInBookingFight)
+  const getSeatData = useSelector(getInfoFlightInBookingSeat)
   useEffect(() => {
     let dataFlight = JSON.parse(localStorage.getItem('flight'))
     let userInfo = JSON.parse(localStorage.getItem('user'))
@@ -39,7 +47,31 @@ function FlightList() {
     }
   }, [])
   const onFinish = (values) => {
-    dispatch(addDataIntoBookingFlight(values))
+    // console.log(moment(values.date_picker).format('DD.MM.YYYY'))
+    //   {
+    //     "accountId":3,
+    //     "discountId":1,
+    //     "flightId":1,
+    //     "seatTypeId":2,
+    //     "totalPrice":102.5,
+    //     "ticketOwner":"NGUYEN THANH SANG"
+    // }
+    let valueResult = {
+      ...values,
+
+      date_picker: moment(values.date_picker).format('DD.MM.YYYY'),
+    }
+    let fetchDataValue = {
+      accountId: userInformation.id,
+      discountId: getDiscountInfo.id,
+      flightId: getFlightData.id,
+      seatTypeId: getSeatData.id,
+      totalPrice: priceDiscount === 0 ? getPrice.price : priceDiscount,
+      ticketOwner: values.firstName,
+    }
+    console.log(fetchDataValue)
+    dispatch(createBookingFlight(fetchDataValue))
+    dispatch(addDataIntoBookingFlight(valueResult))
     // navigate('/booking-success')
   }
   useEffect(() => {
@@ -103,6 +135,7 @@ function FlightList() {
 
                 <Form.Item
                   name="date_picker"
+                  format="YYYY-MM-DD HH:mm"
                   style={{ display: 'inline-block', width: '50%' }}
                   rules={[
                     {

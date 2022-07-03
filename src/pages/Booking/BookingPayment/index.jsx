@@ -44,15 +44,8 @@ export default function BookingPayment() {
               I have read the <a href="">agreement</a>
             </Checkbox>
           </Form.Item>
-          <Form.Item
-            style={{ marginTop: '20px' }}
-            onClick={() => {
-              window.location.replace(
-                'https://www.sandbox.paypal.com/signin?returnUrl=http://localhost:3000/booking-success'
-              )
-            }}
-          >
-            <ButtonOfPage title={'Pay Now'} id="paypal-button-container" />
+          <Form.Item style={{ marginTop: '20px' }}>
+            <ButtonOfPage title={'Pay Now'} />
           </Form.Item>
         </>
       ),

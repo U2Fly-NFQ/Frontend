@@ -53,6 +53,13 @@
     "No. of Passengers": "Số hành khách"
   },
 
+  "subscribe-form": {
+    "Get the latest news and offers": "Nhận thông tin và ưu đãi mới nhất",
+    "Subscribe to our newsletter": "Đăng ký nhận bản tin từ chúng tôi",
+    "Enter your email address": "Nhập vào email của bạn",
+    "Subscribe": "Đăng ký"
+  },
+
   "header": {
     "navbar": {
       "home": "Trang chủ",

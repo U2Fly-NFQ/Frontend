@@ -58,14 +58,15 @@ const SubNavBar = () => {
                       if (value === 'logout') {
                         localStorage.removeItem('user')
                         localStorage.removeItem('token')
-                        navigate('/')
+                        navigate('/flights')
                       }
                     }}
                     styles={{
                       menuPortal: (base) => ({ ...base, zIndex: 9999 }),
                     }}
                   >
-                    <Option key={'booked'}>My Booking</Option>
+                    <Option key={'booked'}>Profile</Option>
+                    <Option key={'booked'}>My Bookings</Option>
                     <Option key={'logout'}>Log out</Option>
                   </Select>
                 </li>

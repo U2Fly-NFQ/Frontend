@@ -4,13 +4,13 @@
   margin-bottom: 24px;
 
   .flight-card-items {
-    background: #ffffff;
     border: 1px solid #dddddd;
     border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
+    position: relative;
 
     @media screen and (max-width: 768px) {
       flex-direction: column;

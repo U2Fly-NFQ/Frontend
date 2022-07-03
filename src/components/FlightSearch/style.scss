@@ -6,7 +6,7 @@
 
   .flightSearch {
     position: absolute;
-    z-index: 5000;
+    z-index: 10;
     top: -150px;
     left: 0;
     right: 0;
@@ -196,4 +196,8 @@
       }
     }
   }
+}
+
+.flightSearchLabel {
+  display: block;
 }

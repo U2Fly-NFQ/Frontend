@@ -26,8 +26,8 @@ const { Option } = Select
 
 export default function FlightSearch() {
   const airports = useSelector((state) => state.airports.data)
-  const [from, setFrom] = useState({})
-  const [to, setTo] = useState({})
+  const [from, setFrom] = useState('')
+  const [to, setTo] = useState('')
   const [searchFrom, setSearchFrom] = useState('')
   const [searchTo, setSearchTo] = useState('')
   const [journeyDay, setJourneyDay] = useState(moment())
@@ -53,7 +53,7 @@ export default function FlightSearch() {
   }, [])
 
   const onFinish = () => {
-    if (!from.value || !to.value) {
+    if (!from || !to) {
       setModalContent(
         'Please enter the origin, destination and your travel date to proceed'
       )
@@ -61,8 +61,8 @@ export default function FlightSearch() {
     }
 
     const searchQuery = {
-      departure: from.value,
-      arrival: to.value,
+      departure: from,
+      arrival: to,
       // startTime: journeyDay.format('YYYY-MM-DD'),
       seatType: passengerClass,
     }
@@ -87,27 +87,18 @@ export default function FlightSearch() {
   }
 
   const onChangeFrom = (option) => {
-    console.log(option)
-    if (option)
-      setFrom({
-        value: option.value,
-        label: option.label,
-      })
+    if (option) setFrom(option)
     setSearchFrom('')
   }
 
   const onChangeTo = (option) => {
-    if (option)
-      setTo({
-        value: option.value,
-        label: option.label,
-      })
+    if (option) setTo(option)
     setSearchTo('')
   }
 
   const clearAllSearch = () => {
-    setFrom({})
-    setTo({})
+    setFrom('')
+    setTo('')
     setJourneyDay(moment())
     setPassengerClass('Economy')
 
@@ -189,8 +180,15 @@ export default function FlightSearch() {
               </label>
               <Select
                 size="large"
+                clearIcon={
+                  <CloseOutlined
+                    style={{
+                      fontSize: '20px',
+                    }}
+                  />
+                }
                 showSearch
-                value={from}
+                defaultValue={from}
                 showArrow={false}
                 filterOption={() => true}
                 onChange={onChangeFrom}
@@ -198,7 +196,7 @@ export default function FlightSearch() {
                 allowClear
                 bordered={false}
                 style={{
-                  width: '100%',
+                  width: '70%',
                 }}
                 dropdownStyle={{
                   borderRadius: '10px',
@@ -209,7 +207,7 @@ export default function FlightSearch() {
                     airport.city
                       .toLowerCase()
                       .includes(searchFrom.toLowerCase()) &&
-                    airport.iata !== to.value && (
+                    airport.iata !== to && (
                       <Option key={airport.iata} value={airport.iata}>
                         {airport.city}
                       </Option>
@@ -228,17 +226,24 @@ export default function FlightSearch() {
               <i className="flightSearchBox__Icon fa-solid fa-plane-arrival"></i>
               <label className="flightSearchLabel">{t('search_form.to')}</label>
               <Select
+                clearIcon={
+                  <CloseOutlined
+                    style={{
+                      fontSize: '20px',
+                    }}
+                  />
+                }
                 size="large"
                 showSearch
                 allowClear
-                value={to}
+                defaultValue={to}
                 showArrow={false}
                 filterOption={() => true}
                 onChange={onChangeTo}
                 onSearch={(text) => setSearchTo(text)}
                 bordered={false}
                 style={{
-                  width: '100%',
+                  width: '70%',
                 }}
                 dropdownStyle={{
                   borderRadius: '10px',
@@ -249,7 +254,7 @@ export default function FlightSearch() {
                     airport.city
                       .toLowerCase()
                       .includes(searchTo.toLowerCase()) &&
-                    airport.iata !== to.value && (
+                    airport.iata !== from && (
                       <Option key={airport.iata} value={airport.iata}>
                         {airport.city}
                       </Option>
@@ -346,7 +351,7 @@ export default function FlightSearch() {
               icon={<CloseOutlined />}
               onClick={clearAllSearch}
               style={{
-                display: (from.value && to.value && 'block') || 'none',
+                display: (from && to && 'block') || 'none',
               }}
             />
           </Tooltip>

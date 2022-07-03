@@ -4,7 +4,6 @@
   .filterItem {
     border: 1px solid #dddddd;
     background: #ffffff;
-    border: 1px solid #00000030;
     border-radius: 6px;
     padding: 20px 15px;
     margin-bottom: 30px;
@@ -18,6 +17,7 @@
     .content {
       padding-top: 5px;
       padding-bottom: 5px;
+      padding-right: 10px;
       .ant-checkbox-group-item {
         width: 100%;
         margin-top: 5px;
@@ -30,4 +30,15 @@
       }
     }
   }
+}
+
+.ant-tooltip-arrow-content {
+  --antd-arrow-background-color: #ddd;
+}
+
+.ant-tooltip-inner {
+  color: #000;
+  background-color: transparent;
+  box-shadow: none;
+  border: 1px solid #ddd;
 }

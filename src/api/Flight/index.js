@@ -1,9 +1,10 @@
-import axios from 'axios'
+import axios from '..'
 
-const getList = (params) =>
-  axios.get(`/api/flights`, {
+const getList = (params) => {
+  return axios.get(`/api/flights`, {
     params,
   })
+}
 
 const get = (id) => axios.get(`/api/flights/${id}`)
 

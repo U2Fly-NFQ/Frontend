@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from '..'
 
 const getDiscountById = (idDiscount) =>
   axios.get(`/api/discounts/${idDiscount}`)

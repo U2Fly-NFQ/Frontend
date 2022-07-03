@@ -1,41 +1,40 @@
 import { Row, Col, Typography, Form } from 'antd'
-import { login } from '../../redux/slices'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { loginApi } from '../../api/Auth'
 
 import { LoginBanner } from '../../components'
 import './style.scss'
 import { useEffect } from 'react'
+import axiosInstance from '../../api'
 
 const { Title } = Typography
 
 const Login = () => {
   const dispatch = useDispatch()
-  const loginState = useSelector((state) => state.login)
+  const user = JSON.parse(localStorage.getItem('user') || '[]')
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (loginState.user.id) {
+    if (user.id) {
       // admin
-      if (loginState.user.roles.includes('2')) {
+      if (user.roles['2']) {
         navigate('/admin')
       }
 
       // user
-      if (loginState.user.roles.includes('1')) {
+      if (user.roles['1']) {
         navigate('/flights')
       }
     }
-  }, [loginState.user.id])
+  }, [user.id])
 
-  const onFinish = (values) => {
-    dispatch(login(values))
-  }
+  const onFinish = async (values) => {
+    const { data } = await loginApi(values)
+    localStorage.setItem('user', JSON.stringify(data.user))
 
-  const passwordValidator = (rule, value, callback) => {
-    if (!value) callback('Please input your password')
-    if (value.length < 3) callback('Password must be at least 6 characters')
-    callback()
+    // Update token
+    axiosInstance.setToken(data.token)
   }
 
   return (
@@ -71,7 +70,12 @@ const Login = () => {
                     </Form.Item>
                     <Form.Item
                       name="password"
-                      rules={[{ validator: passwordValidator }]}
+                      rules={[
+                        {
+                          required: true,
+                          message: 'Please input your password',
+                        },
+                      ]}
                     >
                       <input
                         type="password"
@@ -79,13 +83,9 @@ const Login = () => {
                         placeholder="Enter password"
                       />
                     </Form.Item>
-                    <Form.Item>
-                      <div className="form-submit">
-                        <button className="btn btn-primary btn-md">
-                          Log in
-                        </button>
-                      </div>
-                    </Form.Item>
+                    <div className="form-submit">
+                      <button className="btn btn-primary btn-md">Log in</button>
+                    </div>
                     <div className="switch">
                       <p>
                         Dont have an account?{' '}

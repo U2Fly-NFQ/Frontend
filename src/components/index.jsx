@@ -24,6 +24,8 @@ export { default as SelectDropDown } from './SelectDropDown'
 export { default as HomeBanner } from './HomeBanner'
 export { default as FooterOfPage } from './FooterOfPage'
 export { default as NotFoundFlight } from './NotFoundFlight'
+export { default as PageLoadingAnimation } from './PageLoadingAnimation'
+export { default as ScrollToTopButton } from './ScrollToTopButton'
 
 //For admin
 export { default as AdminSidebar } from './AdminSidebar'

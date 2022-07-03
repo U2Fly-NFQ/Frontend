@@ -5,8 +5,101 @@
 }
 
 .flight-list-page {
-  .flight-search-container {
-    transform: translateY(-90px);
+  position: relative;
+
+  .selected-outbound {
+    position: relative;
+    margin: 16px 0;
+    padding: 8px 16px;
+    position: relative;
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(221, 223, 226);
+
+    .wrapper {
+      position: relative;
+      flex-direction: column;
+      display: flex;
+      background-color: rgb(255, 255, 255);
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+
+        .main-title {
+          color: a.$paragraph-color;
+        }
+
+        .sub-title {
+          display: flex;
+          gap: 10px;
+
+          .ant-typography {
+            color: var(--ant-info-color);
+          }
+        }
+      }
+
+      .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 58px;
+
+        .airline {
+          img {
+            margin-right: 10px;
+            width: 60px;
+            height: 30px;
+            object-fit: contain;
+          }
+        }
+
+        .line-way {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+
+          .from {
+            text-align: right;
+          }
+
+          .way {
+            min-width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .flight-segment {
+              flex: 1;
+              border-top: 2px solid #ddd;
+            }
+
+            i {
+              color: #aaa;
+            }
+          }
+
+          .to {
+            text-align: left;
+          }
+
+          .line-way-item {
+            .ant-typography {
+              margin-bottom: 0;
+              font-weight: 400;
+            }
+          }
+        }
+
+        .price {
+          margin-bottom: 0;
+          color: var(--ant-primary-color);
+          font-weight: 400;
+        }
+      }
+    }
   }
 }
 

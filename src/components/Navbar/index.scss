@@ -5,6 +5,15 @@
 .navbar {
   position: relative;
 
+  .navbar__footer__btn {
+    .btn-md {
+      @media screen and (max-width: 1200px) {
+        padding: 4px 12px;
+        font-size: 16px;
+      }
+    }
+  }
+
   .wide.grid {
     .navbar__logo {
       width: 150px;
@@ -13,6 +22,10 @@
     display: flex;
     gap: 2rem;
     padding: 0 10px;
+    @media screen and (max-width: 1200px) {
+      gap: 0;
+    }
+
     .navbar__links {
       align-items: center;
       display: flex;
@@ -47,6 +60,7 @@
         font-size: 20px;
       }
     }
+
     .navbar_icons {
       display: flex;
       justify-content: center;
@@ -92,15 +106,17 @@
   }
   .navbar__dropdown__modal {
     position: absolute;
+    bottom: 0;
     background-color: #fff;
     height: 0px;
-    width: 410px;
-    transform: translateX(7%);
+    width: 100%;
+
     .navbar__dropdown-menu {
       background-color: #fff;
       transition: all 0.5s ease;
       display: none;
       overflow: hidden;
+
       &__item {
         padding: 1em 5%;
         border-bottom: 1px solid #dbeefd;

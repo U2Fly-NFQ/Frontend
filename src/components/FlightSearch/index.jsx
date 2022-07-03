@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { scrollTo } from '../../utils/scroll'
 
 import './style.scss'
 import {
@@ -14,7 +15,9 @@ import {
   Select,
   Button,
   Tooltip,
+  Modal,
 } from 'antd'
+
 import { CloseOutlined } from '@ant-design/icons'
 import moment from 'moment'
 import { fetchAirports } from '../../redux/slices/airportSlice'
@@ -23,7 +26,6 @@ const { Option } = Select
 
 export default function FlightSearch() {
   const airports = useSelector((state) => state.airports.data)
-  const [airportOptions, setAirportOptions] = useState([])
   const [from, setFrom] = useState({})
   const [to, setTo] = useState({})
   const [searchFrom, setSearchFrom] = useState('')
@@ -33,45 +35,28 @@ export default function FlightSearch() {
   const [ticket, setTicket] = useState('oneWay')
   const [passengerClass, setPassengerClass] = useState('Economy')
   const [passengerNumber, setPassengerNumber] = useState(1)
+  const [modalContent, setModalContent] = useState('')
   const { t } = useTranslation()
 
   let [searchParams, setSearchParams] = useSearchParams()
   const dispatch = useDispatch()
   const submitRef = useRef(null)
 
-  const exScroll = () =>
-    window.scrollTo({
-      top: 200,
-      left: 0,
-      behavior: 'smooth',
-    })
-
   useEffect(() => {
+    // Get num passengers and class in local storage
     let existingBooking = JSON.parse(localStorage.getItem('flight') || '[]')
-    localStorage.setItem(
-      'flight',
-      JSON.stringify({
-        ...existingBooking,
-        setType: 'Economy',
-        passengerNumber: 1,
-      })
-    )
+    const { seatType, passengerNumber } = existingBooking
+    if (seatType) setPassengerClass(seatType)
+    if (passengerNumber) setPassengerClass(passengerNumber)
+
     dispatch(fetchAirports())
   }, [])
 
-  useEffect(() => {
-    if (airports && airports.length > 1) {
-      const airportOptionsMap = airports.map((op) => ({
-        value: op.iata,
-        label: op.city,
-        name: op.name,
-      }))
-      setAirportOptions(airportOptionsMap)
-    }
-  }, [airports])
-
   const onFinish = () => {
     if (!from.value || !to.value) {
+      setModalContent(
+        'Please enter the origin, destination and your travel date to proceed'
+      )
       return
     }
 
@@ -83,6 +68,7 @@ export default function FlightSearch() {
     }
 
     let existingBooking = JSON.parse(localStorage.getItem('flight') || '[]')
+
     localStorage.setItem(
       'flight',
       JSON.stringify({
@@ -92,7 +78,7 @@ export default function FlightSearch() {
       })
     )
 
-    exScroll()
+    scrollTo(500)
 
     setSearchParams({
       ...searchParams,
@@ -101,18 +87,21 @@ export default function FlightSearch() {
   }
 
   const onChangeFrom = (option) => {
-    setFrom({
-      value: option.value,
-      label: option.label,
-    })
+    console.log(option)
+    if (option)
+      setFrom({
+        value: option.value,
+        label: option.label,
+      })
     setSearchFrom('')
   }
 
   const onChangeTo = (option) => {
-    setTo({
-      value: option.value,
-      label: option.label,
-    })
+    if (option)
+      setTo({
+        value: option.value,
+        label: option.label,
+      })
     setSearchTo('')
   }
 
@@ -121,6 +110,8 @@ export default function FlightSearch() {
     setTo({})
     setJourneyDay(moment())
     setPassengerClass('Economy')
+
+    // Clear search params
     searchParams.delete('seatType')
     searchParams.delete('departure')
     searchParams.delete('startTime')
@@ -162,176 +153,204 @@ export default function FlightSearch() {
   )
 
   return (
-    <div className="flightSearch">
-      <div className="flightSearchCategories">
-        <Radio.Group
-          buttonStyle="solid"
-          value={ticket}
-          onChange={(e) => setTicket(e.target.value)}
-        >
-          <Radio.Button value="oneWay">{t('search_form.one_way')}</Radio.Button>
-          <Radio.Button value="roundTrip">
-            {t('search_form.round_trip')}
-          </Radio.Button>
-        </Radio.Group>
-      </div>
+    <div className="flightSearchContainer">
+      <Modal
+        visible={modalContent && true}
+        onOk={() => setModalContent('')}
+        onCancel={() => setModalContent('')}
+        centered
+        cancelButtonProps={{
+          hidden: 'true',
+        }}
+      >
+        {modalContent}
+      </Modal>
+      <div className="flightSearch">
+        <div className="flightSearchCategories">
+          <Radio.Group
+            value={ticket}
+            onChange={(e) => setTicket(e.target.value)}
+          >
+            <Radio.Button value="oneWay">
+              {t('search_form.one_way')}
+            </Radio.Button>
+            <Radio.Button value="roundTrip">
+              {t('search_form.round_trip')}
+            </Radio.Button>
+          </Radio.Group>
+        </div>
 
-      <Row gutter={[24, 24]} className="flightSearchBody">
-        <Col span={24} md={12} lg={6}>
-          <div className="flightSearchBox">
-            <i className="flightSearchBox__Icon fa-solid fa-plane-departure"></i>
-            <label className="flightSearchLabel">{t('search_form.from')}</label>
-            <Select
-              size="large"
-              showSearch
-              showArrow={false}
-              labelInValue
-              filterOption={() => true}
-              value={from}
-              onChange={onChangeFrom}
-              onSearch={(text) => setSearchFrom(text)}
-              style={{
-                minWidth: '100%',
-              }}
-            >
-              {airportOptions.map((airport) => {
-                return (
-                  airport.label
-                    .toLowerCase()
-                    .includes(searchFrom.toLowerCase()) &&
-                  airport.value !== to.value && (
-                    <Option key={airport.value} value={airport.value}>
-                      {airport.label}
-                    </Option>
-                  )
-                )
-              })}
-            </Select>
-            <p className="flightSearchSelected">
-              {airports && airports.find((ap) => ap.iata === from?.value)?.name}
-            </p>
-          </div>
-        </Col>
-        <Col span={24} md={12} lg={6}>
-          <div className="flightSearchBox">
-            <i className="flightSearchBox__Icon fa-solid fa-plane-arrival"></i>
-            <label className="flightSearchLabel">{t('search_form.to')}</label>
-            <Select
-              size="large"
-              showSearch
-              showArrow={false}
-              labelInValue
-              filterOption={() => true}
-              value={to}
-              onChange={onChangeTo}
-              onSearch={(text) => setSearchTo(text)}
-              style={{
-                minWidth: '100%',
-              }}
-            >
-              {airportOptions.map((airport) => {
-                return (
-                  airport.label
-                    .toLowerCase()
-                    .includes(searchTo.toLowerCase()) &&
-                  airport.value !== from.value && (
-                    <Option key={airport.value} value={airport.value}>
-                      {airport.label}
-                    </Option>
-                  )
-                )
-              })}
-            </Select>
-            <p className="flightSearchSelected">
-              {airports && airports.find((ap) => ap.iata === to?.value)?.name}
-            </p>
-          </div>
-        </Col>
-        <Col span={24} md={12} lg={7}>
-          <div className="flightSearchBox">
-            <Row gutter={[8, 8]}>
-              <Col span={12}>
-                <label className="flightSearchLabel">
-                  {t('search_form.journey_date')}
-                </label>
-                <DatePicker
-                  className="journeyDate"
-                  allowClear={false}
-                  disabledDate={(current) => {
-                    return (
-                      moment().add(-1, 'days') >= current ||
-                      moment().add(1, 'month') <= current
+        <Row gutter={[24, 24]} className="flightSearchBody">
+          <Col span={24} md={12} lg={6}>
+            <div className="flightSearchBox">
+              <i className="flightSearchBox__Icon fa-solid fa-plane-departure"></i>
+              <label className="flightSearchLabel">
+                {t('search_form.from')}
+              </label>
+              <Select
+                size="large"
+                showSearch
+                value={from}
+                showArrow={false}
+                filterOption={() => true}
+                onChange={onChangeFrom}
+                onSearch={(text) => setSearchFrom(text)}
+                allowClear
+                bordered={false}
+                style={{
+                  width: '100%',
+                }}
+                dropdownStyle={{
+                  borderRadius: '10px',
+                }}
+              >
+                {airports.map((airport) => {
+                  return (
+                    airport.city
+                      .toLowerCase()
+                      .includes(searchFrom.toLowerCase()) &&
+                    airport.iata !== to.value && (
+                      <Option key={airport.iata} value={airport.iata}>
+                        {airport.city}
+                      </Option>
                     )
-                  }}
-                  value={journeyDay}
-                  onChange={(date) => setJourneyDay(date)}
-                  format={'MM/DD/YYYY'}
-                />
-              </Col>
-              {ticket !== 'oneWay' && (
+                  )
+                })}
+              </Select>
+              <p className="flightSearchSelected">
+                {/* {airports &&
+                  airports.find((ap) => ap.iata === from?.value)?.name} */}
+              </p>
+            </div>
+          </Col>
+          <Col span={24} md={12} lg={6}>
+            <div className="flightSearchBox">
+              <i className="flightSearchBox__Icon fa-solid fa-plane-arrival"></i>
+              <label className="flightSearchLabel">{t('search_form.to')}</label>
+              <Select
+                size="large"
+                showSearch
+                allowClear
+                value={to}
+                showArrow={false}
+                filterOption={() => true}
+                onChange={onChangeTo}
+                onSearch={(text) => setSearchTo(text)}
+                bordered={false}
+                style={{
+                  width: '100%',
+                }}
+                dropdownStyle={{
+                  borderRadius: '10px',
+                }}
+              >
+                {airports.map((airport) => {
+                  return (
+                    airport.city
+                      .toLowerCase()
+                      .includes(searchTo.toLowerCase()) &&
+                    airport.iata !== to.value && (
+                      <Option key={airport.iata} value={airport.iata}>
+                        {airport.city}
+                      </Option>
+                    )
+                  )
+                })}
+              </Select>
+              <p className="flightSearchSelected">
+                {/* {airports && airports.find((ap) => ap.iata === to?.value)?.name} */}
+              </p>
+            </div>
+          </Col>
+          <Col span={24} md={12} lg={7}>
+            <div className="flightSearchBox">
+              <Row gutter={[8, 8]}>
                 <Col span={12}>
                   <label className="flightSearchLabel">
-                    {t('search_form.return_date')}
+                    {t('search_form.journey_date')}
                   </label>
                   <DatePicker
+                    popupStyle={{
+                      borderRadius: '10px',
+                    }}
+                    className="journeyDate"
                     allowClear={false}
                     disabledDate={(current) => {
                       return (
-                        journeyDay >= returnDay ||
+                        moment().add(-1, 'days') >= current ||
                         moment().add(1, 'month') <= current
                       )
                     }}
-                    value={returnDay}
-                    onChange={(date) => setReturnDay(date)}
-                    format={'MM/DD/YYYY'}
+                    value={journeyDay}
+                    onChange={(date) => setJourneyDay(date)}
+                    format={'MM/DD/YY'}
                   />
                 </Col>
-              )}
-            </Row>
-          </div>
-        </Col>
-        <Col span={24} md={12} lg={5}>
-          <Popover
-            content={passengerPopover}
-            trigger="click"
-            placement="bottomRight"
-          >
-            <div className="flightSearchBox">
-              <label className="flightSearchLabel">
-                {t('search_form.passenger')} & {t('search_form.class')}
-              </label>
-              <div className="flightSearchPassenger">
-                {t('search_form.passenger', { count: passengerNumber })}
-              </div>
-              <p className="flightSearchSelected">
-                {passengerClass.toUpperCase()}
-              </p>
+                {ticket !== 'oneWay' && (
+                  <Col span={12}>
+                    <label className="flightSearchLabel">
+                      {t('search_form.return_date')}
+                    </label>
+                    <DatePicker
+                      allowClear={false}
+                      disabledDate={(current) => {
+                        return (
+                          journeyDay >= returnDay ||
+                          moment().add(1, 'month') <= current
+                        )
+                      }}
+                      value={returnDay}
+                      onChange={(date) => setReturnDay(date)}
+                      format={'MM/DD/YY'}
+                    />
+                  </Col>
+                )}
+              </Row>
             </div>
-          </Popover>
-        </Col>
-      </Row>
-      <div className="formControl">
-        <Tooltip className="search-submit">
-          <button
-            type="primary"
-            size="large"
-            className="searchBtn btn btn-md btn-primary"
-            onClick={onFinish}
-            ref={submitRef}
-          >
-            Search
-          </button>
-          <Button
-            className="close-btn"
-            type="dashed"
-            shape="circle"
-            icon={<CloseOutlined />}
-            onClick={clearAllSearch}
-            style={{
-              display: (from.value && to.value && 'block') || 'none',
-            }}
-          />
-        </Tooltip>
+          </Col>
+          <Col span={24} md={12} lg={5}>
+            <Popover
+              content={passengerPopover}
+              trigger="click"
+              placement="bottomRight"
+            >
+              <div className="flightSearchBox">
+                <label className="flightSearchLabel">
+                  {t('search_form.passenger')} & {t('search_form.class')}
+                </label>
+                <div className="flightSearchPassenger">
+                  {t('search_form.passenger', { count: passengerNumber })}
+                </div>
+                <p className="flightSearchSelected">
+                  {passengerClass.toUpperCase()}
+                </p>
+              </div>
+            </Popover>
+          </Col>
+        </Row>
+        <div className="formControl">
+          <Tooltip className="search-submit">
+            <button
+              type="primary"
+              size="large"
+              className="searchBtn btn btn-md btn-primary"
+              onClick={onFinish}
+              ref={submitRef}
+            >
+              Search
+            </button>
+            <Button
+              className="close-btn"
+              type="dashed"
+              shape="circle"
+              icon={<CloseOutlined />}
+              onClick={clearAllSearch}
+              style={{
+                display: (from.value && to.value && 'block') || 'none',
+              }}
+            />
+          </Tooltip>
+        </div>
       </div>
     </div>
   )

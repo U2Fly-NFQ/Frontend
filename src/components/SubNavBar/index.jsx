@@ -18,7 +18,7 @@ const SubNavBar = () => {
     <div className="sub-nav">
       <nav className="grid wide">
         <Row justify="space-between" align="middle" gutter={[2, 2]}>
-          <Col md={12} sm={0}>
+          <Col span={0} md={14}>
             <ul className="sub-nav-list">
               <li className="sub-nav-list__item">
                 <a href="#">
@@ -58,14 +58,15 @@ const SubNavBar = () => {
                       if (value === 'logout') {
                         localStorage.removeItem('user')
                         localStorage.removeItem('token')
-                        navigate('/')
+                        navigate('/flights')
                       }
                     }}
                     styles={{
                       menuPortal: (base) => ({ ...base, zIndex: 9999 }),
                     }}
                   >
-                    <Option key={'booked'}>My Booking</Option>
+                    <Option key={'booked'}>Profile</Option>
+                    <Option key={'booked'}>My Bookings</Option>
                     <Option key={'logout'}>Log out</Option>
                   </Select>
                 </li>

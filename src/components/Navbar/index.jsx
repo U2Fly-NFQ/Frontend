@@ -23,10 +23,6 @@ export default function Navbar() {
         <ul className="navbar__links">
           <NavLinkDropDown Title={t('header.navbar.home')} />
           <NavLinkDropDown
-            Title={'Flights'}
-            ListDropDown={['Flights', 'Flights Booking']}
-          />
-          <NavLinkDropDown
             Title={t('header.navbar.flight')}
             ListDropDown={[
               t('header.navbar.flight'),

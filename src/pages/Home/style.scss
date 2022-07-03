@@ -1,4 +1,21 @@
 @use '../../assets/scss/abstracts/variables' as var;
+@use '../../assets/scss/base/animation' as animate;
+
+.animate__fadeInUp {
+  animation: animate.$fadeInUp;
+}
+
+.animate__fadeInDown {
+  animation: animate.$fadeInDown;
+}
+
+.animate__fadeInLeft {
+  animation: animate.$fadeInLeft;
+}
+
+.animate__fadeInRight {
+  animation: animate.$fadeInRight;
+}
 
 .btn {
   display: inline-block;
@@ -197,6 +214,12 @@
       width: 100%;
     }
 
+    .destinations_content_inner__left {
+      @media screen and (max-width: 530px) {
+        transform: scale(0.5) translate(-100%, -100%) !important;
+      }
+    }
+
     .destinations_content_inner {
       position: absolute;
       top: 50%;
@@ -297,6 +320,13 @@
         font-size: 36px;
         font-weight: 500;
         line-height: 40px;
+        @media screen and (max-width: 576px) {
+          font-size: 24px;
+        }
+
+        @media screen and (max-width: 1100px) {
+          font-size: 30px;
+        }
       }
 
       p {
@@ -307,6 +337,9 @@
         font-weight: 400;
         font-family: 'Poppins', sans-serif;
         margin-bottom: 0;
+        @media screen and (max-width: 576px) {
+          display: none;
+        }
       }
     }
   }

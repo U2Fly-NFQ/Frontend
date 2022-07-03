@@ -3,9 +3,36 @@ import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 import { HomeBanner } from '../../components'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
 
 function Home() {
   const { t } = useTranslation()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const goBeyond = document.querySelector('#go-beyond-area')
+      const topDestination = document.querySelector('#top_destination')
+      const offerArea = document.querySelector('#offer-area')
+      // console.log(window.scrollY)
+      if (window.scrollY > 300) {
+        goBeyond.classList.add('animate__fadeInUp')
+      }
+
+      if (window.scrollY > 800) {
+        topDestination.classList.add('animate__fadeInUp')
+      }
+
+      if (window.scrollY > 1560) {
+        offerArea.classList.add('animate__fadeInUp')
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <div className="home-page">
       <HomeBanner />
@@ -86,7 +113,7 @@ function Home() {
                   src="https://andit.co/projects/html/and-tour/assets/img/destination/big-img.png"
                   alt="img"
                 />
-                <div className="destinations_content_inner">
+                <div className="destinations_content_inner destinations_content_inner__left">
                   <h2>{t('home-page.top-destinations-section.up-to')}</h2>
                   <div className="destinations_big_offer">
                     <h1>50</h1>
@@ -195,7 +222,7 @@ function Home() {
 
         <section id="offer-area">
           <Row gutter={[24, 24]}>
-            <Col span={24} md={12}>
+            <Col span={24} lg={12}>
               <div className="offer_area_box img_animation">
                 <img
                   src="https://andit.co/projects/html/and-tour/assets/img/offer/offer1.png"
@@ -215,7 +242,7 @@ function Home() {
                 </div>
               </div>
             </Col>
-            <Col span={24} md={12}>
+            <Col span={24} lg={12}>
               <Row gutter={[24, 24]}>
                 <Col span={24} md={12}>
                   <div className="offer_area_box img_animation">

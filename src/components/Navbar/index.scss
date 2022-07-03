@@ -5,6 +5,15 @@
 .navbar {
   position: relative;
 
+  .navbar__footer__btn {
+    .btn-md {
+      @media screen and (max-width: 1200px) {
+        padding: 4px 12px;
+        font-size: 16px;
+      }
+    }
+  }
+
   .wide.grid {
     padding-right: 40px;
     .navbar__logo {

@@ -62,10 +62,7 @@ export default function BookingTravelDate() {
             Total Amount
           </div>
           <div className="booking-travel-date__container__amount__total__value">
-            $
-            {getSeat.price -
-              getSeat.price * getDiscount.percent -
-              getSeat.price * 0.05}
+            ${getSeat.price - getSeat.price * getDiscount.percent}
           </div>
         </div>
       </div>

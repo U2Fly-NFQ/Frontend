@@ -1,6 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit'
 import flightAPI from '../../api/Flight'
 import discountInfo from '../../api/Discount'
+import moment from 'moment'
 const initialState = {
   loadding: false,
   userInformation: {},
@@ -8,6 +9,7 @@ const initialState = {
   discountInfo: {
     percent: 0,
   },
+  priceAfterDiscount: 0,
 }
 export const getDataFlights = createAsyncThunk(
   'flight/getDataFlights',
@@ -32,15 +34,24 @@ export const getUserDataInBooking = createAsyncThunk(
   }
 )
 
+export const createBookingFlight = createAsyncThunk(
+  'flight/createBooking',
+  async (params) => {
+    const respone = await flightAPI.createATicket(params)
+    return respone.data
+  }
+)
+
 const bookingFlightsSlice = createSlice({
   name: 'filterSlice',
   initialState,
   reducers: {
     addDataIntoBookingFlight: (state, action) => {
       let { apartment, city, country, emailAddress } = action.payload
+      // console.log(action.payload)
       state.userInformation = {
         ...action.payload,
-        dateOfBirth: action.payload.dateTimePicker,
+        dateOfBirth: moment(action.payload.dateTimePicker).format('DD.MM.YYYY'),
       }
     },
   },
@@ -66,8 +77,11 @@ const bookingFlightsSlice = createSlice({
     [getDiscountCheck.fulfilled]: (state, action) => {
       const { status, data } = action.payload
       if (status === 'success') {
-        console.log(data)
         state.discountInfo = data
+        let getSeat = current(state.dataFlight).seat
+
+        state.priceAfterDiscount = getSeat.price - getSeat.price * data.percent
+        // state.priceAfterDiscount = current(state.dataFlight). current(state.discountInfo)
       }
     },
     [getDataFlights.pending]: (state) => {
@@ -81,9 +95,6 @@ const bookingFlightsSlice = createSlice({
       const { status, data } = action.payload
       let allSeatNameAvailable = data.seat.map((item) => item.name)
       let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
-      console.log(
-        data.seat[allSeatNameAvailable.indexOf(dataSeatChoose.setType)]
-      )
       if (status === 'success') {
         state.dataFlight = {
           ...data,

@@ -36,6 +36,7 @@ function FlightList() {
   const getDiscountInfo = useSelector(getDiscountForBookingAirline)
   const getFlightData = useSelector(getInfoFlightInBookingFight)
   const getSeatData = useSelector(getInfoFlightInBookingSeat)
+
   useEffect(() => {
     let dataFlight = JSON.parse(localStorage.getItem('flight'))
     let userInfo = JSON.parse(localStorage.getItem('user'))
@@ -63,13 +64,13 @@ function FlightList() {
     }
     let fetchDataValue = {
       accountId: userInformation.id,
-      discountId: getDiscountInfo.id,
+      discountId: getDiscountInfo.id === undefined ? null : getDiscountInfo,
       flightId: getFlightData.id,
       seatTypeId: getSeatData.id,
       totalPrice: priceDiscount === 0 ? getPrice.price : priceDiscount,
       ticketOwner: values.firstName,
     }
-    console.log(fetchDataValue)
+    // console.log(fetchDataValue)
     dispatch(createBookingFlight(fetchDataValue))
     dispatch(addDataIntoBookingFlight(valueResult))
     // navigate('/booking-success')
@@ -136,7 +137,11 @@ function FlightList() {
                 <Form.Item
                   name="date_picker"
                   format="YYYY-MM-DD HH:mm"
-                  style={{ display: 'inline-block', width: '50%' }}
+                  style={{
+                    display: 'inline-block',
+                    width: '50%',
+                    marginBottom: '1rem',
+                  }}
                   rules={[
                     {
                       required: true,

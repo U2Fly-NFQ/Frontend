@@ -8,26 +8,21 @@
     padding: 20px 15px;
     margin-bottom: 30px;
     font-size: 16px;
-    font-weight: 500;
 
     .title {
       border-bottom: 1px solid #dddddd;
       padding-bottom: 5px;
+
+      .clear-btn {
+        color: var(--ant-info-color);
+        cursor: pointer;
+      }
     }
+
     .content {
       padding-top: 5px;
       padding-bottom: 5px;
       padding-right: 10px;
-      .ant-checkbox-group-item {
-        width: 100%;
-        margin-top: 5px;
-      }
-    }
-
-    &.price {
-      .content {
-        margin-bottom: 25px;
-      }
     }
   }
 }

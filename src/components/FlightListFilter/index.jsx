@@ -1,44 +1,40 @@
-import { Col, Row, Slider, InputNumber, Space } from 'antd'
+import { Col, Row, Slider, InputNumber, Space, Typography } from 'antd'
 import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import './style.scss'
 
-const optionAirlines = [
-  {
-    label: 'VietJet Air',
-    value: 'VJ',
-  },
-  {
-    label: 'Vietnam Airlines',
-    value: 'VN',
-  },
-  {
-    label: 'Bamboo Airways',
-    value: 'QH',
-  },
-  {
-    label: 'Vietravel Airlines',
-    value: 'VU',
-  },
-]
+const { Text } = Typography
 
 const Flight = () => {
   let [searchParams, setSearchParams] = useSearchParams()
   let [minPrice, setMinPrice] = useState(0)
   let [maxPrice, setMaxPrice] = useState(10000)
-
-  const firstRender = useRef(true)
+  let [isClear, setIsClear] = useState(false)
 
   const handlePriceChange = (value) => {
+    setIsClear(false)
     setMinPrice(value[0])
     setMaxPrice(value[1])
   }
+
+  const clearPrice = () => {
+    setIsClear(true)
+    setMinPrice(0)
+    setMaxPrice(10000)
+    searchParams.delete('minPrice')
+    searchParams.delete('maxPrice')
+    setSearchParams(searchParams)
+  }
+
+  let firstRender = useRef(true)
 
   useEffect(() => {
     if (firstRender.current) {
       firstRender.current = false
       return
     }
+
+    if (isClear) return
 
     const delayChange = setTimeout(() => {
       setSearchParams({
@@ -55,7 +51,19 @@ const Flight = () => {
     <div className="filter">
       <Row className="filterItem price" justify="center">
         <Col span={24} className="title">
-          Price
+          <Space
+            style={{
+              justifyContent: 'space-between',
+              width: '100%',
+            }}
+          >
+            <Text>Price</Text>
+            {(minPrice !== 0 || maxPrice !== 10000) && (
+              <Text className="clear-btn" italic onClick={clearPrice}>
+                Clear
+              </Text>
+            )}
+          </Space>
         </Col>
         <Col span={20} className="content">
           <Slider
@@ -79,7 +87,7 @@ const Flight = () => {
               min={0}
               max={10000}
               value={minPrice}
-              onChange={(value) => setMinPrice(value)}
+              onChange={(value) => handlePriceChange([value, maxPrice])}
               prefix="$"
             />
             -
@@ -87,21 +95,12 @@ const Flight = () => {
               min={0}
               max={10000}
               value={maxPrice}
-              onChange={(value) => setMaxPrice(value)}
+              onChange={(value) => handlePriceChange(minPrice, value)}
               prefix="$"
             />
           </Space>
         </Col>
       </Row>
-      {/* <Row className="filterItem">
-        <Col span={24} className="title">
-          Airlines
-        </Col>
-        <Col span={24} className="content">
-
-          </Radio.Group>
-        </Col>
-      </Row> */}
     </div>
   )
 }

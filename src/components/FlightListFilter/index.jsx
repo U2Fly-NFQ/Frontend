@@ -31,11 +31,11 @@ const Flight = () => {
   }
 
   useEffect(() => {
-    setSearchParams({
-      ...searchParams,
-      minPrice: price[0],
-      maxPrice: price[1],
-    })
+    // setSearchParams({
+    //   ...searchParams,
+    //   minPrice: price[0],
+    //   maxPrice: price[1],
+    // })
   }, [price])
 
   return (

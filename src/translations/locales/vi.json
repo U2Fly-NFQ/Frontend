@@ -68,6 +68,9 @@
   },
 
   "home-page": {
+    "home-banner": {
+      "THE WHOLE WORLD AWAITS": "CẢ THẾ GIỚI ĐANG ĐỢI BẠN"
+    },
     "goBeyond-section": {
       "Gobeyond": "Vượt ra khỏi",
       "imagination": "trí tưởng tượng",
@@ -86,6 +89,20 @@
       "holiday": "Gói nghĩ dưỡng",
       "book-now": "Đặt ngay",
       "view-all": "Tất cả"
+    },
+    "offer-area-section": {
+      "Special Offers": "Ưu đãi Đặc biệt",
+      "Newsletter": "Bản tin",
+      "Travel tips": "Giải pháp du lịch",
+      "Holiday deals": "Kỳ nghĩ ưu đãi",
+      "Subscribe now": "Đăng ký ngay",
+      "Get tips": "Nhận ngay"
+    }
+  },
+
+  "flight-list-page": {
+    "flight-banner": {
+      "EXPLORE THE WORLD WITH US": "HÃY CÙNG CHÚNG TÔI KHÁM PHÁ THẾ GIỚI"
     }
   },
 

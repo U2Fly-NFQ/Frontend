@@ -68,6 +68,9 @@
   },
 
   "home-page": {
+    "home-banner": {
+      "THE WHOLE WORLD AWAITS": "THE WHOLE WORLD AWAITS"
+    },
     "goBeyond-section": {
       "Gobeyond": "Go beyond your",
       "imagination": "imagination",
@@ -84,6 +87,20 @@
       "holiday": "Holiday packages",
       "book-now": "Book Now",
       "view-all": "View all"
+    },
+    "offer-area-section": {
+      "Special Offers": "Special Offers",
+      "Newsletter": "News letter",
+      "Travel tips": "Travel tips",
+      "Holiday deals": "Holiday deals",
+      "Subscribe now": "Subscribe now",
+      "Get tips": "Get tips"
+    }
+  },
+
+  "flight-list-page": {
+    "flight-banner": {
+      "EXPLORE THE WORLD WITH US": "EXPLORE THE WORLD WITH US"
     }
   },
 

@@ -13,28 +13,32 @@ import {
 import { useEffect } from 'react'
 import { ScrollToTopButton } from '../../components'
 
-const { Title, Text } = Typography
+const { Title } = Typography
 
 function FlightList() {
-  const flights = useSelector((state) => state.flights.data.flight)
-  const pagination = useSelector((state) => state.flights.data.pagination)
+  const { data, status } = useSelector((state) => state.flights)
+  const { flight, pagination } = data
 
   let [searchParams, setSearchParams] = useSearchParams()
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   setSearchParams({
-  //     ...searchParams,
-  //     page: 1,
-  //     offset: 3,
-  //   })
-  // }, [])
-
-  console.log(pagination)
-
   useEffect(() => {
     dispatch(fetchFlights(searchParams))
   }, [searchParams])
+
+  const changePage = (value) => {
+    setSearchParams({
+      ...searchParams,
+      page: value,
+    })
+  }
+
+  const changeSize = (value) => {
+    setSearchParams({
+      ...searchParams,
+      offset: value,
+    })
+  }
 
   return (
     <>
@@ -46,7 +50,7 @@ function FlightList() {
         </div>
         <div className="grid wide">
           <div className="flight-search-title-container">
-            <Title level={4}>{flights.length} tours found</Title>
+            <Title level={4}>{pagination?.total} tours found</Title>
           </div>
           <Row gutter={[24, 24]}>
             <Col span={24} md={6}>
@@ -55,16 +59,18 @@ function FlightList() {
             <Col span={24} md={18}>
               <Row gutter={[16, 16]} justify="center">
                 <Col span={24}>
-                  {flights.map((f) => (
+                  {status === 'loading' && <h1>loading..</h1>}
+                  {flight.map((f) => (
                     <FlightCard key={f.id} data={f} />
                   ))}
-                  {flights.length === 0 && <NotFoundFlight />}
+                  {flight.length === 0 && <NotFoundFlight />}
                 </Col>
                 <Col flex={0} justify="center">
                   {pagination.page && (
                     <Pagination
+                      onChange={changePage}
                       defaultCurrent={pagination.page}
-                      onChange={(values) => console.log(values)}
+                      onShowSizeChange={changeSize}
                       total={pagination.total}
                       pageSize={pagination.offset}
                     />

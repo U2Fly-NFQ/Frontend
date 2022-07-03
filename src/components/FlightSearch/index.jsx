@@ -16,6 +16,7 @@ import {
   Select,
   Button,
   Tooltip,
+  Modal,
 } from 'antd'
 
 import { CloseOutlined } from '@ant-design/icons'
@@ -26,7 +27,6 @@ const { Option } = Select
 
 export default function FlightSearch() {
   const airports = useSelector((state) => state.airports.data)
-  const [airportOptions, setAirportOptions] = useState([])
   const [from, setFrom] = useState({})
   const [to, setTo] = useState({})
   const [searchFrom, setSearchFrom] = useState('')
@@ -36,6 +36,7 @@ export default function FlightSearch() {
   const [ticket, setTicket] = useState('oneWay')
   const [passengerClass, setPassengerClass] = useState('Economy')
   const [passengerNumber, setPassengerNumber] = useState(1)
+  const [modalContent, setModalContent] = useState('')
   const { t } = useTranslation()
 
   let [searchParams, setSearchParams] = useSearchParams()
@@ -43,33 +44,20 @@ export default function FlightSearch() {
   const submitRef = useRef(null)
 
   useEffect(() => {
+    // Get num passengers and class in local storage
     let existingBooking = JSON.parse(localStorage.getItem('flight') || '[]')
-    localStorage.setItem(
-      'flight',
-      JSON.stringify({
-        ...existingBooking,
-        setType: 'Economy',
-        passengerNumber: 1,
-      })
-    )
+    const { seatType, passengerNumber } = existingBooking
+    if (seatType) setPassengerClass(seatType)
+    if (passengerNumber) setPassengerClass(passengerNumber)
+
     dispatch(fetchAirports())
   }, [])
 
-  useEffect(() => {
-    if (airports && airports.length > 1) {
-      const airportOptionsMap = airports.map((op) => ({
-        value: op.iata,
-        label: op.city,
-        name: op.name,
-      }))
-      setAirportOptions(airportOptionsMap)
-    }
-  }, [airports])
-
   const onFinish = () => {
-    scrollTo(500)
-
     if (!from.value || !to.value) {
+      setModalContent(
+        'Please enter the origin, destination and your travel date to proceed'
+      )
       return
     }
 
@@ -81,6 +69,7 @@ export default function FlightSearch() {
     }
 
     let existingBooking = JSON.parse(localStorage.getItem('flight') || '[]')
+
     localStorage.setItem(
       'flight',
       JSON.stringify({
@@ -90,6 +79,8 @@ export default function FlightSearch() {
       })
     )
 
+    scrollTo(500)
+
     setSearchParams({
       ...searchParams,
       ...searchQuery,
@@ -97,18 +88,21 @@ export default function FlightSearch() {
   }
 
   const onChangeFrom = (option) => {
-    setFrom({
-      value: option.value,
-      label: option.label,
-    })
+    console.log(option)
+    if (option)
+      setFrom({
+        value: option.value,
+        label: option.label,
+      })
     setSearchFrom('')
   }
 
   const onChangeTo = (option) => {
-    setTo({
-      value: option.value,
-      label: option.label,
-    })
+    if (option)
+      setTo({
+        value: option.value,
+        label: option.label,
+      })
     setSearchTo('')
   }
 
@@ -117,6 +111,8 @@ export default function FlightSearch() {
     setTo({})
     setJourneyDay(moment())
     setPassengerClass('Economy')
+
+    // Clear search params
     searchParams.delete('seatType')
     searchParams.delete('departure')
     searchParams.delete('startTime')
@@ -166,6 +162,17 @@ export default function FlightSearch() {
       animate={{ opacity: 1, y: '-50%' }}
       transition={{ duration: 1 }}
     >
+      <Modal
+        visible={modalContent && true}
+        onOk={() => setModalContent('')}
+        onCancel={() => setModalContent('')}
+        centered
+        cancelButtonProps={{
+          hidden: 'true',
+        }}
+      >
+        {modalContent}
+      </Modal>
       <div className="flightSearch">
         <div className="flightSearchCategories">
           <Radio.Group
@@ -191,35 +198,36 @@ export default function FlightSearch() {
               <Select
                 size="large"
                 showSearch
-                showArrow={false}
-                labelInValue
-                filterOption={() => true}
                 value={from}
+                showArrow={false}
+                filterOption={() => true}
                 onChange={onChangeFrom}
                 onSearch={(text) => setSearchFrom(text)}
+                allowClear
+                bordered={false}
+                style={{
+                  width: '100%',
+                }}
                 dropdownStyle={{
                   borderRadius: '10px',
                 }}
-                style={{
-                  minWidth: '100%',
-                }}
               >
-                {airportOptions.map((airport) => {
+                {airports.map((airport) => {
                   return (
                     airport.label
                       .toLowerCase()
                       .includes(searchFrom.toLowerCase()) &&
                     airport.value !== to.value && (
-                      <Option key={airport.value} value={airport.value}>
-                        {airport.label}
+                      <Option key={airport.iata} value={airport.iata}>
+                        {airport.city}
                       </Option>
                     )
                   )
                 })}
               </Select>
               <p className="flightSearchSelected">
-                {airports &&
-                  airports.find((ap) => ap.iata === from?.value)?.name}
+                {/* {airports &&
+                  airports.find((ap) => ap.iata === from?.value)?.name} */}
               </p>
             </div>
           </Col>
@@ -230,34 +238,35 @@ export default function FlightSearch() {
               <Select
                 size="large"
                 showSearch
-                showArrow={false}
-                labelInValue
-                filterOption={() => true}
+                allowClear
                 value={to}
+                showArrow={false}
+                filterOption={() => true}
                 onChange={onChangeTo}
                 onSearch={(text) => setSearchTo(text)}
+                bordered={false}
                 style={{
-                  minWidth: '100%',
+                  width: '100%',
                 }}
                 dropdownStyle={{
                   borderRadius: '10px',
                 }}
               >
-                {airportOptions.map((airport) => {
+                {airports.map((airport) => {
                   return (
                     airport.label
                       .toLowerCase()
                       .includes(searchTo.toLowerCase()) &&
-                    airport.value !== from.value && (
-                      <Option key={airport.value} value={airport.value}>
-                        {airport.label}
+                    airport.value !== to.value && (
+                      <Option key={airport.iata} value={airport.iata}>
+                        {airport.city}
                       </Option>
                     )
                   )
                 })}
               </Select>
               <p className="flightSearchSelected">
-                {airports && airports.find((ap) => ap.iata === to?.value)?.name}
+                {/* {airports && airports.find((ap) => ap.iata === to?.value)?.name} */}
               </p>
             </div>
           </Col>

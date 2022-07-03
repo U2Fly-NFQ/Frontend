@@ -113,7 +113,7 @@ function Home() {
                   src="https://andit.co/projects/html/and-tour/assets/img/destination/big-img.png"
                   alt="img"
                 />
-                <div className="destinations_content_inner">
+                <div className="destinations_content_inner destinations_content_inner__left">
                   <h2>{t('home-page.top-destinations-section.up-to')}</h2>
                   <div className="destinations_big_offer">
                     <h1>50</h1>

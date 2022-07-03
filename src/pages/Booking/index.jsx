@@ -36,7 +36,6 @@ function FlightList() {
   const getDiscountInfo = useSelector(getDiscountForBookingAirline)
   const getFlightData = useSelector(getInfoFlightInBookingFight)
   const getSeatData = useSelector(getInfoFlightInBookingSeat)
-
   useEffect(() => {
     let dataFlight = JSON.parse(localStorage.getItem('flight'))
     let userInfo = JSON.parse(localStorage.getItem('user'))
@@ -143,11 +142,7 @@ function FlightList() {
                 <Form.Item
                   name="date_picker"
                   format="YYYY-MM-DD HH:mm"
-                  style={{
-                    display: 'inline-block',
-                    width: '50%',
-                    marginBottom: '1rem',
-                  }}
+                  style={{ display: 'inline-block', width: '50%' }}
                   rules={[
                     {
                       required: true,

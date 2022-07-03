@@ -19,7 +19,6 @@ const getUserData = (id) => {
 }
 
 const createATicket = (data) => axios.post(`/api/tickets`, data)
-
 export default {
   getList,
   get,

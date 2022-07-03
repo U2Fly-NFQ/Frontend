@@ -54,6 +54,16 @@
         }
       }
     }
+    .navbar__footer {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      &__search {
+        color: #fff;
+        font-size: 20px;
+      }
+    }
+
     .navbar_icons {
       // display: flex;
       justify-content: flex-end;
@@ -274,9 +284,9 @@
 
 @keyframes mymove {
   from {
-    height: 0;
+    height: 10px;
   }
   to {
-    height: 320px;
+    height: 360px;
   }
 }

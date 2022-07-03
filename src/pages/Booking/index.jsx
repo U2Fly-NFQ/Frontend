@@ -64,12 +64,18 @@ function FlightList() {
     }
     let fetchDataValue = {
       accountId: userInformation.id,
-      discountId: getDiscountInfo.id === undefined ? null : getDiscountInfo,
       flightId: getFlightData.id,
       seatTypeId: getSeatData.id,
       totalPrice: priceDiscount === 0 ? getPrice.price : priceDiscount,
       ticketOwner: values.firstName,
     }
+    if (getDiscountInfo.id !== undefined) {
+      fetchDataValue = {
+        ...fetchDataValue,
+        discountId: getDiscountInfo.id,
+      }
+    }
+
     // console.log(fetchDataValue)
     dispatch(createBookingFlight(fetchDataValue))
     dispatch(addDataIntoBookingFlight(valueResult))

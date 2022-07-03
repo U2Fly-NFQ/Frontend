@@ -7,6 +7,7 @@
   // max-width: ;
   padding-top: 100px;
   &__item {
+    min-width: 450px;
     &:first-child {
       flex: 2;
     }
@@ -30,7 +31,19 @@
   }
 }
 @media only screen and (max-width: 767px) {
-  .booking-page__container__item__content {
-    padding: 10px;
+  .booking-page__container__item {
+    &:first-child {
+      .booking-page__container__item__content {
+        padding: 20px;
+      }
+    }
+    &:last-child {
+      &:first-child {
+        padding: 20px;
+      }
+    }
+    // .booking-page__container__item__content {
+    //   padding: 10px;
+    // }
   }
 }

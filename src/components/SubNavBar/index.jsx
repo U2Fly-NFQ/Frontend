@@ -18,7 +18,7 @@ const SubNavBar = () => {
     <div className="sub-nav">
       <nav className="grid wide">
         <Row justify="space-between" align="middle" gutter={[2, 2]}>
-          <Col span={0} md={14}>
+          <Col md={12} xs={0}>
             <ul className="sub-nav-list">
               <li className="sub-nav-list__item">
                 <a href="#">

@@ -3,9 +3,36 @@ import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 import { HomeBanner } from '../../components'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
 
 function Home() {
   const { t } = useTranslation()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const goBeyond = document.querySelector('#go-beyond-area')
+      const topDestination = document.querySelector('#top_destination')
+      const offerArea = document.querySelector('#offer-area')
+      // console.log(window.scrollY)
+      if (window.scrollY > 300) {
+        goBeyond.classList.add('animate__fadeInUp')
+      }
+
+      if (window.scrollY > 800) {
+        topDestination.classList.add('animate__fadeInUp')
+      }
+
+      if (window.scrollY > 1560) {
+        offerArea.classList.add('animate__fadeInUp')
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <div className="home-page">
       <HomeBanner />

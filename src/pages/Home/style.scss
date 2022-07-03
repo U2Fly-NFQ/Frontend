@@ -1,4 +1,21 @@
 @use '../../assets/scss/abstracts/variables' as var;
+@use '../../assets/scss/base/animation' as animate;
+
+.animate__fadeInUp {
+  animation: animate.$fadeInUp;
+}
+
+.animate__fadeInDown {
+  animation: animate.$fadeInDown;
+}
+
+.animate__fadeInLeft {
+  animation: animate.$fadeInLeft;
+}
+
+.animate__fadeInRight {
+  animation: animate.$fadeInRight;
+}
 
 .btn {
   display: inline-block;

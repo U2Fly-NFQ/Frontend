@@ -34,13 +34,13 @@ const SubNavBar = () => {
                   <i className="fa-brands fa-linkedin"></i>
                 </a>
               </li>
-              <li className="sub-nav-list__item">+84 999 999 999</li>
-              <li className="sub-nav-list__item">contact@domain.com</li>
+              <li className="sub-nav-list__item">028 6681 2733</li>
+              <li className="sub-nav-list__item">career@nfq.asia</li>
             </ul>
           </Col>
           <Col flex="none">
             <ul className="sub-nav-list sub-nav-list-actions">
-              {(Object.keys(user).length && (
+              {(user.id && (
                 <li className="sub-nav-list__item">
                   <Select
                     className="lang-select"
@@ -52,9 +52,10 @@ const SubNavBar = () => {
                         }}
                       />
                     }
-                    defaultValue={user.username}
+                    defaultValue={user.username || 'u2fly@nfq.asia'}
                     onChange={(value) => {
                       if (value === 'booked') navigate('/user/booked')
+                      if (value === 'profile') navigate('/user/booked')
                       if (value === 'logout') {
                         localStorage.removeItem('user')
                         localStorage.removeItem('token')
@@ -62,10 +63,10 @@ const SubNavBar = () => {
                       }
                     }}
                     styles={{
-                      menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                      menuPortal: (base) => ({ ...base, zIndex: 9 }),
                     }}
                   >
-                    <Option key={'booked'}>Profile</Option>
+                    <Option key={'profile'}>Profile</Option>
                     <Option key={'booked'}>My Bookings</Option>
                     <Option key={'logout'}>Log out</Option>
                   </Select>

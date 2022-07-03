@@ -195,7 +195,7 @@ function Home() {
 
         <section id="offer-area">
           <Row gutter={[24, 24]}>
-            <Col span={24} md={12}>
+            <Col span={24} lg={12}>
               <div className="offer_area_box img_animation">
                 <img
                   src="https://andit.co/projects/html/and-tour/assets/img/offer/offer1.png"
@@ -215,7 +215,7 @@ function Home() {
                 </div>
               </div>
             </Col>
-            <Col span={24} md={12}>
+            <Col span={24} lg={12}>
               <Row gutter={[24, 24]}>
                 <Col span={24} md={12}>
                   <div className="offer_area_box img_animation">

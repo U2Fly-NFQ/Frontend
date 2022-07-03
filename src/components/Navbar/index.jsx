@@ -21,34 +21,34 @@ export default function Navbar() {
         </div>
 
         <ul className="navbar__links">
-          <NavLinkDropDown Title={t('header.navbar.home')} />
           <NavLinkDropDown
-            Title={'Flights'}
-            ListDropDown={['Flights', 'Flights Booking']}
+            Title={{ path: '', title: t('header.navbar.home') }}
           />
           <NavLinkDropDown
-            Title={t('header.navbar.flight')}
+            Title={{ path: 'flights', title: t('header.navbar.flight') }}
             ListDropDown={[
-              t('header.navbar.flight'),
-              t('header.navbar.flight_booking'),
+              {
+                path: 'flights',
+                title: t('header.navbar.flight'),
+              },
+              {
+                path: 'flights-booking',
+                title: t('header.navbar.flight_booking'),
+              },
             ]}
           />
           <NavLinkDropDown
-            Title={t('header.navbar.tour')}
+            Title={{ path: 'Tour', title: t('header.navbar.tour') }}
             ListDropDown={[
-              t('header.navbar.tour'),
-              t('header.navbar.tour_booking'),
-              t('header.navbar.top_destination'),
-              t('header.navbar.destination_booking'),
+              {
+                path: 'flights',
+                title: t('header.navbar.flight'),
+              },
+              {
+                path: 'flights-booking',
+                title: t('header.navbar.flight_booking'),
+              },
             ]}
-          />
-          <NavLinkDropDown
-            Title={t('header.navbar.news')}
-            ListDropDown={['Ajax Load More']}
-          />
-          <NavLinkDropDown
-            Title={t('header.navbar.pages')}
-            ListDropDown={['Ajax Load More']}
           />
         </ul>
         <div className="navbar__footer">
@@ -59,7 +59,6 @@ export default function Navbar() {
             <ButtonOfPage title={t('cta.become_partner')} />
           </div>
         </div>
-
         <div
           className="navbar_icons"
           onClick={() => {
@@ -73,11 +72,11 @@ export default function Navbar() {
         <ul className="navbar__dropdown-menu" ref={openNavbarModal}>
           <li className="navbar__dropdown-menu__item">
             <a>{t('header.navbar.home')}</a>
-            <div href="navbar__dropdown-menu__item__icon">+</div>
+            {/* <div href="navbar__dropdown-menu__item__icon">+</div> */}
           </li>
           <li className="navbar__dropdown-menu__item">
             <a>{t('header.navbar.flight')} </a>
-            <div href="navbar__dropdown-menu__item__icon">+</div>
+            {/* <div href="navbar__dropdown-menu__item__icon">+</div> */}
           </li>
           <li className="navbar__dropdown-menu__item">
             <a>{t('header.navbar.tour')}</a>

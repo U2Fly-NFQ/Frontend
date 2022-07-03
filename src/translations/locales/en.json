@@ -78,7 +78,9 @@
       "discount": "7% Discount for all",
       "discount_airlines": "Airlines",
       "travel": "Travel around",
-      "world": "the world"
+      "world": "the world",
+      "resort": "Luxury resorts",
+      "deal": "top deal"
     },
     "top-destinations-section": {
       "title": "Top destinations",

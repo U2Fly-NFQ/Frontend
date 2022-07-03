@@ -297,6 +297,9 @@
         font-size: 36px;
         font-weight: 500;
         line-height: 40px;
+        @media screen and (max-width: 576px) {
+          font-size: 24px;
+        }
       }
 
       p {
@@ -307,6 +310,9 @@
         font-weight: 400;
         font-family: 'Poppins', sans-serif;
         margin-bottom: 0;
+        @media screen and (max-width: 576px) {
+          display: none;
+        }
       }
     }
   }

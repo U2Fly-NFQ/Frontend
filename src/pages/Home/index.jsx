@@ -3,11 +3,23 @@ import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
 import { HomeBanner } from '../../components'
 import { useTranslation } from 'react-i18next'
-
+import { useLoadingContext } from 'react-router-loading'
+import { useEffect } from 'react'
 function Home() {
   const { t } = useTranslation()
+  const loadingContext = useLoadingContext()
+
+  const loading = async () => {
+    // loading some data
+
+    // call method to indicate that loading is done and we are ready to switch
+    loadingContext.done()
+  }
+  useEffect(() => {
+    loading()
+  }, [])
   return (
-    <div className="home-page">
+    <div className="home-page" loading>
       <HomeBanner />
 
       <div className="grid wide">

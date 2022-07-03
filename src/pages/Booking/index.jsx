@@ -4,6 +4,7 @@ import './index.scss'
 import { FlightListBanner, SelectDropDown } from '../../components'
 import BookingPayment from './BookingPayment'
 import DetailFlights from './detailFlights'
+import { useLoadingContext } from 'react-router-loading'
 import BookingTravelDate from './BookingTravelDate'
 import BookingCoupon from './BookingCoupon'
 import { useEffect } from 'react'
@@ -16,16 +17,17 @@ import { useNavigate } from 'react-router-dom'
 import {
   getInfoFlightInBookingArrival,
   getInfoFlightInBookingSeat,
+  getUserInformation,
 } from '../../redux/selectors'
 import moment from 'moment'
 const { Header, Footer, Sider, Content } = Layout
 function FlightList() {
   const navigate = useNavigate()
-
+  const [form] = Form.useForm()
   const dispatch = useDispatch()
   const arrival = useSelector(getInfoFlightInBookingArrival)
   const getPrice = useSelector(getInfoFlightInBookingSeat)
-
+  const userInformation = useSelector(getUserInformation)
   useEffect(() => {
     let dataFlight = JSON.parse(localStorage.getItem('flight'))
     let userInfo = JSON.parse(localStorage.getItem('user'))
@@ -40,6 +42,27 @@ function FlightList() {
     dispatch(addDataIntoBookingFlight(values))
     // navigate('/booking-success')
   }
+  useEffect(() => {
+    form.setFieldsValue({
+      firstName: userInformation.name,
+      date_picker: moment(userInformation.birthday),
+      email: userInformation.email,
+      streetAddress: userInformation.address,
+      identificationCard: userInformation.identification,
+    })
+  }, [userInformation])
+
+  const loadingContext = useLoadingContext()
+
+  const loading = async () => {
+    // loading some data
+
+    // call method to indicate that loading is done and we are ready to switch
+    loadingContext.done()
+  }
+  useEffect(() => {
+    loading()
+  }, [])
   return (
     <div className="booking-page ">
       <FlightListBanner />
@@ -54,10 +77,8 @@ function FlightList() {
                 wrapperCol={{
                   span: 22,
                 }}
-                initialValues={{
-                  firstName: 'default value',
-                  date_picker: moment(),
-                }}
+                form={form}
+                initialValues={{}}
                 onFinish={onFinish}
               >
                 <Form.Item
@@ -84,7 +105,10 @@ function FlightList() {
                   name="date_picker"
                   style={{ display: 'inline-block', width: '50%' }}
                   rules={[
-                    { required: true, message: 'Please input your last name!' },
+                    {
+                      required: true,
+                      message: 'Please input your last name!',
+                    },
                   ]}
                 >
                   <DatePicker
@@ -95,14 +119,24 @@ function FlightList() {
                   />
                 </Form.Item>
                 <Form.Item
-                  name="emailAddress"
+                  name="email"
                   style={{
                     display: 'inline-block',
                     width: '50%',
                   }}
+                  rules={[
+                    {
+                      type: 'email',
+                      message: 'The input is not valid E-mail!',
+                    },
+                    {
+                      required: true,
+                      message: 'Please input your E-mail!',
+                    },
+                  ]}
                 >
                   <input
-                    name="emailAddress"
+                    name="email"
                     className="form-control"
                     placeholder="Email address (Optional)*"
                   />
@@ -144,11 +178,11 @@ function FlightList() {
                 </Form.Item>
 
                 <Form.Item
-                  name="apartment"
+                  name="identificationCard"
                   style={{ display: 'inline-block', width: '50%' }}
                 >
                   <input
-                    name="apartment"
+                    name="Identification Card"
                     className="form-control"
                     placeholder="Apartment*"
                   />
@@ -168,33 +202,13 @@ function FlightList() {
                 </Form.Item>
 
                 <Form.Item
-                  name="state"
-                  style={{ display: 'inline-block', width: '50%' }}
-                >
-                  <SelectDropDown
-                    name="state"
-                    ListData={['Việt Nam', 'Malaysia', 'Lào']}
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="country"
-                  style={{
-                    display: 'inline-block',
-                    width: '50%',
-                    margin: '0px',
-                  }}
-                >
-                  <SelectDropDown
-                    name="country"
-                    ListData={['Việt Nam', 'Malaysia', 'Lào']}
-                  />
-                </Form.Item>
-
-                <Form.Item
                   name="passport"
                   style={{ display: 'inline-block', width: '50%' }}
                   rules={[
-                    { required: true, message: 'Please input your Passport!' },
+                    {
+                      required: true,
+                      message: 'Please input your Passport!',
+                    },
                   ]}
                 >
                   <input

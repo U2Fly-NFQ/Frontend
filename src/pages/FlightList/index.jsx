@@ -2,6 +2,7 @@ import { Col, Row, Typography } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { fetchFlights } from '../../redux/slices/flightSlice'
+import { useLoadingContext } from 'react-router-loading'
 import './style.scss'
 import {
   FlightListBanner,
@@ -23,6 +24,16 @@ function FlightList() {
   useEffect(() => {
     dispatch(fetchFlights(searchParams))
   }, [searchParams])
+  const loadingContext = useLoadingContext()
+  const loading = async () => {
+    // loading some data
+
+    // call method to indicate that loading is done and we are ready to switch
+    loadingContext.done()
+  }
+  useEffect(() => {
+    loading()
+  }, [])
 
   return (
     <div className="flight-list-page">

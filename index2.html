@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <!-- Replace "test" with your own sandbox Business account app client ID -->
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+    <!-- Set up a container element for the button -->
+    <div id="paypal-button-container"></div>
+    <script>
+      paypal
+        .Buttons({
+          // Sets up the transaction when a payment button is clicked
+          createOrder: (data, actions) => {
+            return actions.order.create({
+              purchase_units: [
+                {
+                  reference_id: 'PUHF',
+                  description: 'Sporting Goods',
+
+                  custom_id: 'CUST-HighFashions',
+                  soft_descriptor: 'HighFashions',
+                  amount: {
+                    currency_code: 'USD',
+                    value: '230.00',
+                    breakdown: {
+                      item_total: {
+                        currency_code: 'USD',
+                        value: '180.00',
+                      },
+                      shipping: {
+                        currency_code: 'USD',
+                        value: '30.00',
+                      },
+                      handling: {
+                        currency_code: 'USD',
+                        value: '10.00',
+                      },
+                      tax_total: {
+                        currency_code: 'USD',
+                        value: '20.00',
+                      },
+                      shipping_discount: {
+                        currency_code: 'USD',
+                        value: '10',
+                      },
+                    },
+                  },
+                  items: [
+                    {
+                      name: 'T-Shirt',
+                      description: 'Green XL',
+                      sku: 'sku01',
+                      unit_amount: {
+                        currency_code: 'USD',
+                        value: '90.00',
+                      },
+                      tax: {
+                        currency_code: 'USD',
+                        value: '10.00',
+                      },
+                      quantity: '1',
+                      category: 'PHYSICAL_GOODS',
+                    },
+          
+                    {
+                      name: 'Shoes',
+                      description: 'Running, Size 10.5',
+                      sku: 'sku02',
+                      unit_amount: {
+                        currency_code: 'USD',
+                        value: '45.00',
+                      },
+                      tax: {
+                        currency_code: 'USD',
+                        value: '5.00',
+                      },
+                      quantity: '2',
+                      category: 'PHYSICAL_GOODS',
+                    },
+                  ],
+                  shipping: {
+                    method: 'United States Postal Service',
+                    address: {
+                      name: {
+                        full_name: 'John',
+                        surname: 'Doe',
+                      },
+                      address_line_1: '123 Townsend St',
+                      address_line_2: 'Floor 6',
+                      admin_area_2: 'San Francisco',
+                      admin_area_1: 'CA',
+                      postal_code: '94107',
+                      country_code: 'US',
+                    },
+                  },
+                },
+              ],
+            })
+          },
+          // Finalize the transaction after payer approval
+          onApprove: (data, actions) => {
+            return actions.order.capture().then(function (orderData) {
+              // Successful capture! For dev/demo purposes:
+              window.location.replace('http://localhost:3000/flights-booking')
+              console.log(
+                'Capture result',
+                orderData,
+                JSON.stringify(orderData, null, 2)
+              )
+              const transaction =
+                orderData.purchase_units[0].payments.captures[0]
+              alert(
+                `Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`
+              )
+              // When ready to go live, remove the alert and show a success message within this page. For example:
+              // const element = document.getElementById('paypal-button-container');
+              // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+              // Or go to another URL:  actions.redirect('thank_you.html');
+            })
+          },
+        })
+        .render('#paypal-button-container')
+    </script>
+  </body>
+</html>

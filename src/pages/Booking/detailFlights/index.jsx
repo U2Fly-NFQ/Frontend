@@ -78,7 +78,12 @@ export default function DetailFlights() {
             <del>{seat.price}</del>
           </h6>
           <h3>
-            {'$' + seat.price} <sub> / {seat.name} X 1</sub>{' '}
+            {'$' + seat.price}{' '}
+            <sub>
+              {' '}
+              / {seat.name} X{' '}
+              {JSON.parse(localStorage.getItem('flight')).passengerNumber}
+            </sub>{' '}
           </h3>
         </div>
       </div>

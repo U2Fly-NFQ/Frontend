@@ -1,11 +1,7 @@
 import { Form, Layout, DatePicker } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import './index.scss'
-import {
-  ButtonOfPage,
-  FlightListBanner,
-  SelectDropDown,
-} from '../../components'
+import { FlightListBanner, SelectDropDown } from '../../components'
 import BookingPayment from './BookingPayment'
 import DetailFlights from './detailFlights'
 import BookingTravelDate from './BookingTravelDate'
@@ -42,7 +38,7 @@ function FlightList() {
   }, [])
   const onFinish = (values) => {
     dispatch(addDataIntoBookingFlight(values))
-    navigate('/booking-success')
+    // navigate('/booking-success')
   }
   return (
     <div className="booking-page ">
@@ -225,11 +221,8 @@ function FlightList() {
                 <div className="booking-page__container__item__title">
                   <h2>Payment method</h2>
                 </div>
-                <BookingPayment />
 
-                <Form.Item style={{ marginTop: '20px' }}>
-                  <ButtonOfPage title={'Pay Now'} />
-                </Form.Item>
+                <BookingPayment />
               </Form>
             </div>
           </div>

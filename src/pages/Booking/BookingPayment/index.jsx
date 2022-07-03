@@ -1,6 +1,6 @@
 import { Form, Radio, Space } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { InputOFPage } from '../../../components'
+import { ButtonOfPage, InputOFPage } from '../../../components'
 import './index.scss'
 export default function BookingPayment() {
   const [value, setValue] = useState(1)
@@ -15,100 +15,36 @@ export default function BookingPayment() {
     {
       paymentMethod: 'Paypal',
       render: (
-        <div>
-          <Form
-            name="basic"
-            wrapperCol={{
-              span: 22,
-            }}
-            initialValues={{
-              remember: true,
-            }}
-          >
-            <Form.Item
-              name="username"
-              style={{
-                display: 'inline-block',
-                width: '50%',
-                margin: '0px',
-              }}
-              rules={[
-                { required: true, message: 'Please input your username!' },
-              ]}
-            >
-              <InputOFPage placeholder="Card number" />
-            </Form.Item>
-            <Form.Item
-              name="username"
-              style={{
-                display: 'inline-block',
-                width: '50%',
-                marginBottom: '20px',
-              }}
-              rules={[
-                { required: true, message: 'Please input your username!' },
-              ]}
-            >
-              <InputOFPage placeholder="Cardholder name" />
-            </Form.Item>
-            <Form.Item
-              name="username"
-              style={{
-                display: 'inline-block',
-                width: '50%',
-                margin: '0px',
-              }}
-              rules={[
-                { required: true, message: 'Please input your username!' },
-              ]}
-            >
-              <InputOFPage placeholder="Date of expiry" />
-            </Form.Item>
-            <Form.Item
-              name="username"
-              style={{
-                display: 'inline-block',
-                width: '50%',
-                margin: '0px',
-              }}
-              rules={[
-                { required: true, message: 'Please input your username!' },
-              ]}
-            >
-              <InputOFPage placeholder="Security code" />
-            </Form.Item>
-          </Form>
-        </div>
+        <Form.Item
+          style={{ marginTop: '20px' }}
+          onClick={() => {
+            window.location.replace(
+              'https://www.sandbox.paypal.com/signin?returnUrl=http://localhost:3000/booking-success'
+            )
+          }}
+        >
+          <ButtonOfPage title={'Pay Now'} />
+        </Form.Item>
       ),
     },
     {
       paymentMethod: 'Payoneer',
       render: (
         <div>
-          <Form
-            name="basic"
-            wrapperCol={{
-              span: 22,
+          <Form.Item
+            name="username"
+            style={{
+              display: 'inline-block',
+              width: '50%',
+              margin: '0px',
             }}
-            initialValues={{
-              remember: true,
-            }}
+            rules={[{ required: true, message: 'Please input your username!' }]}
           >
-            {' '}
-            <Form.Item
-              name="username"
-              style={{
-                display: 'inline-block',
-                width: '50%',
-                margin: '0px',
-              }}
-              rules={[
-                { required: true, message: 'Please input your username!' },
-              ]}
-            >
-              <InputOFPage placeholder="Email Address" />
-            </Form.Item>
-          </Form>
+            <InputOFPage placeholder="Email Address" />
+          </Form.Item>
+          <Form.Item style={{ marginTop: '20px' }}>
+            <ButtonOfPage title={'Pay Now'} />
+          </Form.Item>
         </div>
       ),
     },

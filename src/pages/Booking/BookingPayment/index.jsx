@@ -1,114 +1,90 @@
-import { Form, Radio, Space } from 'antd'
+import { Form, Radio, Space, Checkbox } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { InputOFPage } from '../../../components'
+import { useLoadingContext } from 'react-router-loading'
+import { ButtonOfPage, InputOFPage } from '../../../components'
 import './index.scss'
 export default function BookingPayment() {
   const [value, setValue] = useState(1)
   const [dataBooking, setDataBooking] = useState()
+  const loadingContext = useLoadingContext()
   useEffect(() => {
     setDataBooking(dataPayment[value])
+    loading()
   }, [value])
   const onChange = (e) => {
     setValue(e.target.value)
   }
+
+  const loading = async () => {
+    // loading some data
+
+    // call method to indicate that loading is done and we are ready to switch
+    loadingContext.done()
+  }
+
   let dataPayment = [
     {
       paymentMethod: 'Paypal',
       render: (
-        <div>
-          <Form
-            name="basic"
-            wrapperCol={{
-              span: 22,
-            }}
-            initialValues={{
-              remember: true,
-            }}
+        <>
+          <Form.Item
+            name="agreement"
+            valuePropName="checked"
+            style={{ marginTop: '10px' }}
+            rules={[
+              {
+                validator: (_, value) =>
+                  value
+                    ? Promise.resolve()
+                    : Promise.reject(new Error('Should accept agreement')),
+              },
+            ]}
           >
-            <Form.Item
-              name="username"
-              style={{
-                display: 'inline-block',
-                width: '50%',
-                margin: '0px',
-              }}
-              rules={[
-                { required: true, message: 'Please input your username!' },
-              ]}
-            >
-              <InputOFPage placeholder="Card number" />
-            </Form.Item>
-            <Form.Item
-              name="username"
-              style={{
-                display: 'inline-block',
-                width: '50%',
-                marginBottom: '20px',
-              }}
-              rules={[
-                { required: true, message: 'Please input your username!' },
-              ]}
-            >
-              <InputOFPage placeholder="Cardholder name" />
-            </Form.Item>
-            <Form.Item
-              name="username"
-              style={{
-                display: 'inline-block',
-                width: '50%',
-                margin: '0px',
-              }}
-              rules={[
-                { required: true, message: 'Please input your username!' },
-              ]}
-            >
-              <InputOFPage placeholder="Date of expiry" />
-            </Form.Item>
-            <Form.Item
-              name="username"
-              style={{
-                display: 'inline-block',
-                width: '50%',
-                margin: '0px',
-              }}
-              rules={[
-                { required: true, message: 'Please input your username!' },
-              ]}
-            >
-              <InputOFPage placeholder="Security code" />
-            </Form.Item>
-          </Form>
-        </div>
+            <Checkbox>
+              I have read the <a href="">agreement</a>
+            </Checkbox>
+          </Form.Item>
+          <Form.Item style={{ marginTop: '20px' }}>
+            <ButtonOfPage title={'Pay Now'} />
+          </Form.Item>
+        </>
       ),
     },
     {
       paymentMethod: 'Payoneer',
       render: (
         <div>
-          <Form
-            name="basic"
-            wrapperCol={{
-              span: 22,
+          <Form.Item
+            name="username"
+            style={{
+              display: 'inline-block',
+              width: '50%',
+              margin: '0px',
             }}
-            initialValues={{
-              remember: true,
-            }}
+            rules={[{ required: true, message: 'Please input your username!' }]}
           >
-            {' '}
-            <Form.Item
-              name="username"
-              style={{
-                display: 'inline-block',
-                width: '50%',
-                margin: '0px',
-              }}
-              rules={[
-                { required: true, message: 'Please input your username!' },
-              ]}
-            >
-              <InputOFPage placeholder="Email Address" />
-            </Form.Item>
-          </Form>
+            <InputOFPage placeholder="Email Address" />
+          </Form.Item>
+          <Form.Item
+            name="agreement"
+            valuePropName="checked"
+            style={{ marginTop: '10px' }}
+            rules={[
+              {
+                validator: (_, value) =>
+                  value
+                    ? Promise.resolve()
+                    : Promise.reject(new Error('Should accept agreement')),
+              },
+            ]}
+          >
+            <Checkbox>
+              I have read the <a href="">agreement</a>
+            </Checkbox>
+          </Form.Item>
+          <Form.Item style={{ marginTop: '20px' }}>
+            <ButtonOfPage title={'Pay Now'} />
+          </Form.Item>
         </div>
       ),
     },

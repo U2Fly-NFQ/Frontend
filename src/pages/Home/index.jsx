@@ -34,7 +34,7 @@ function Home() {
   }, [])
 
   return (
-    <div className="home-page">
+    <div className="home-page" loading>
       <HomeBanner />
 
       <div className="grid wide">

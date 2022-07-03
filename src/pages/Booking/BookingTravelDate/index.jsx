@@ -6,9 +6,8 @@ import {
 } from '../../../redux/selectors'
 import './index.scss'
 export default function BookingTravelDate() {
-  const getPrice = useSelector(getInfoFlightInBookingSeat)
+  const getSeat = useSelector(getInfoFlightInBookingSeat)
   const getDiscount = useSelector(getDiscountForBookingAirline)
-  console.log(getDiscount)
   return (
     <div className="booking-travel-date">
       <div className="booking-page__container__item__title">
@@ -18,10 +17,10 @@ export default function BookingTravelDate() {
         <ul className="booking-travel-date__container__value">
           <li>
             <div className="booking-travel-date__container__key">
-              Adult Price x 1
+              {getSeat.name} Price x 1
             </div>
             <div className="booking-travel-date__container__key">
-              {'$ ' + getPrice.price}
+              {'$ ' + getSeat.price}
             </div>
           </li>
           <li>
@@ -45,7 +44,7 @@ export default function BookingTravelDate() {
                 Subtotal
               </div>
               <div className="booking-travel-date__container__value">
-                ${getPrice.price}
+                ${getSeat.price}
               </div>
             </li>
             <li>
@@ -53,7 +52,7 @@ export default function BookingTravelDate() {
                 Coupon code (OFF 5000)
               </div>
               <div className="booking-travel-date__container__value">
-                ${getPrice.price * getDiscount.percent}
+                ${getSeat.price * getDiscount.percent}
               </div>
             </li>
           </ul>
@@ -63,10 +62,7 @@ export default function BookingTravelDate() {
             Total Amount
           </div>
           <div className="booking-travel-date__container__amount__total__value">
-            $
-            {getPrice.price -
-              getPrice.price * getDiscount.percent -
-              getPrice.price * 0.05}
+            ${getSeat.price - getSeat.price * getDiscount.percent}
           </div>
         </div>
       </div>

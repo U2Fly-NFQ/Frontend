@@ -9,9 +9,9 @@ export const getInfoFlightInBookingFight = (state) =>
 // flightRules: [],
 // duration: 1.5,
 // airline: {},
-// airplane: {},
 // seat: {},
 // price: 30.5,
+// airplane: {},
 
 export const getInfoFlightInBookingArrival = (state) =>
   state.bookingFlight.dataFlight.arrival
@@ -28,7 +28,13 @@ export const getInfoFlightInBookingAirline = (state) =>
 export const getInfoFlightInBookingSeat = (state) =>
   state.bookingFlight.dataFlight.seat
 
+export const getInfoPriceAfterDiscount = (state) =>
+  state.bookingFlight.priceAfterDiscount
 /// discount information
 
 export const getDiscountForBookingAirline = (state) =>
   state.bookingFlight.discountInfo
+
+///  get user information
+
+export const getUserInformation = (state) => state.bookingFlight.userInformation

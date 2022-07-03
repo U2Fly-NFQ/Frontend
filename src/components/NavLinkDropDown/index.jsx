@@ -10,9 +10,9 @@ export default function NavLinkDropDown({ Title, ListDropDown }) {
   }
   return (
     <li className="navbar__link">
-      <NavLinkCustom to={`/${Title.toLowerCase()}`}>
+      <NavLinkCustom to={`/${Title.path}`}>
         <p className="navbar__link__data">
-          {Title}{' '}
+          {Title.title}{' '}
           {ListDropDown && (
             <DownOutlined style={{ fontSize: '10px', fontWeight: '500' }} />
           )}
@@ -29,10 +29,10 @@ export default function NavLinkDropDown({ Title, ListDropDown }) {
                       key={index}
                       className="list__dropdown__item"
                       onClick={() => {
-                        navigate(`/${changeNavigation(item)}`)
+                        navigate(`/${changeNavigation(item.path)}`)
                       }}
                     >
-                      {item}
+                      {item.title}
                     </li>
                   )
                 })}

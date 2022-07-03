@@ -1,6 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit'
 import flightAPI from '../../api/Flight'
 import discountInfo from '../../api/Discount'
+import moment from 'moment'
 const initialState = {
   loadding: false,
   userInformation: {},
@@ -8,35 +9,64 @@ const initialState = {
   discountInfo: {
     percent: 0,
   },
+  priceAfterDiscount: 0,
 }
 export const getDataFlights = createAsyncThunk(
   'flight/getDataFlights',
   async (idFlight) => {
-    const respone = await flightAPI.get(1)
+    const respone = await flightAPI.get(idFlight)
     return respone.data
   }
 )
 
 export const getDiscountCheck = createAsyncThunk(
-  'discount/getDiscountCheck',
+  'flight/getDiscountCheck',
   async (idFlight) => {
     const respone = await discountInfo.getDiscountById(idFlight.idDiscount)
     return respone.data
   }
 )
+export const getUserDataInBooking = createAsyncThunk(
+  'flight/getUserData',
+  async (idUser) => {
+    const respone = await flightAPI.getUserData(idUser)
+    return respone.data
+  }
+)
+
+export const createBookingFlight = createAsyncThunk(
+  'flight/createBooking',
+  async (params) => {
+    const respone = await flightAPI.createATicket(params)
+    return respone.data
+  }
+)
+
 const bookingFlightsSlice = createSlice({
   name: 'filterSlice',
   initialState,
   reducers: {
     addDataIntoBookingFlight: (state, action) => {
       let { apartment, city, country, emailAddress } = action.payload
+      // console.log(action.payload)
       state.userInformation = {
         ...action.payload,
-        dateOfBirth: action.payload.dateTimePicker,
+        dateOfBirth: moment(action.payload.dateTimePicker).format('DD.MM.YYYY'),
       }
     },
   },
   extraReducers: {
+    [getUserDataInBooking.pending]: (state, action) => {
+      state.loadding = true
+    },
+    [getUserDataInBooking.rejected]: (state, action) => {
+      state.loadding = false
+    },
+    [getUserDataInBooking.fulfilled]: (state, action) => {
+      state.loadding = false
+      let { data } = action.payload
+      state.userInformation = data
+    },
     [getDiscountCheck.pending]: (state, action) => {
       state.loadding = true
     },
@@ -47,8 +77,11 @@ const bookingFlightsSlice = createSlice({
     [getDiscountCheck.fulfilled]: (state, action) => {
       const { status, data } = action.payload
       if (status === 'success') {
-        console.log(data)
         state.discountInfo = data
+        let getSeat = current(state.dataFlight).seat
+
+        state.priceAfterDiscount = getSeat.price - getSeat.price * data.percent
+        // state.priceAfterDiscount = current(state.dataFlight). current(state.discountInfo)
       }
     },
     [getDataFlights.pending]: (state) => {
@@ -60,8 +93,17 @@ const bookingFlightsSlice = createSlice({
     [getDataFlights.fulfilled]: (state, action) => {
       state.loadding = false
       const { status, data } = action.payload
+      let allSeatNameAvailable = data.seat.map((item) => item.name)
+      let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
       if (status === 'success') {
-        state.dataFlight = { ...data, seat: data.seat[0] }
+        state.dataFlight = {
+          ...data,
+          seat: data.seat[
+            allSeatNameAvailable.indexOf(dataSeatChoose.setType) < 0
+              ? 0
+              : allSeatNameAvailable.indexOf(dataSeatChoose.setType)
+          ],
+        }
       }
     },
   },

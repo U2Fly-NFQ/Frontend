@@ -14,10 +14,17 @@ const update = (id, data) => axios.put(`/api/flights/${id}`, data)
 
 const destroy = (id) => axios.delete(`/api/flights/${id}`)
 
+const getUserData = (id) => {
+  return axios.get(`/api/account/1`)
+}
+
+const createATicket = (data) => axios.post(`/api/tickets`, data)
 export default {
   getList,
   get,
   create,
   update,
+  createATicket,
   destroy,
+  getUserData,
 }

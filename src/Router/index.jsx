@@ -1,11 +1,11 @@
+// import React from 'react'
+
 import React, { Suspense, lazy } from 'react'
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
 import { PageLoadingAnimation } from '../components'
 
 import {
   Login,
-  // Home,
-  // FlightList,
   Register,
   NoMatch,
   AdminDashboard,

@@ -1,4 +1,4 @@
-import { Col, Row, Typography } from 'antd'
+import { Col, Row, Typography, Pagination } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { fetchFlights } from '../../redux/slices/flightSlice'
@@ -17,9 +17,20 @@ const { Title, Text } = Typography
 
 function FlightList() {
   const flights = useSelector((state) => state.flights.data.flight)
+  const pagination = useSelector((state) => state.flights.data.pagination)
 
-  let [searchParams] = useSearchParams()
+  let [searchParams, setSearchParams] = useSearchParams()
   const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   setSearchParams({
+  //     ...searchParams,
+  //     page: 1,
+  //     offset: 3,
+  //   })
+  // }, [])
+
+  console.log(pagination)
 
   useEffect(() => {
     dispatch(fetchFlights(searchParams))
@@ -38,7 +49,7 @@ function FlightList() {
   return (
     <div className="flight-list-page">
       <FlightListBanner />
-      <div className="flight-search-container wide grid">
+      <div className="wide grid">
         <FlightSearch />
       </div>
       <div className="grid wide">
@@ -57,14 +68,16 @@ function FlightList() {
                 ))}
                 {flights.length === 0 && <NotFoundFlight />}
               </Col>
-              {/* <Col flex={0} justify="center">
-                <Pagination
-                  current={1}
-                  onChange={(values) => console.log(values)}
-                  total={100}
-                  pageSize={5}
-                />
-              </Col> */}
+              <Col flex={0} justify="center">
+                {pagination.page && (
+                  <Pagination
+                    defaultCurrent={pagination.page}
+                    onChange={(values) => console.log(values)}
+                    total={pagination.total}
+                    pageSize={pagination.offset}
+                  />
+                )}
+              </Col>
             </Row>
           </Col>
         </Row>

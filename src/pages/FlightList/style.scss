@@ -5,9 +5,7 @@
 }
 
 .flight-list-page {
-  .flight-search-container {
-    transform: translateY(-90px);
-  }
+  position: relative;
 }
 
 .flight-search-title-container {

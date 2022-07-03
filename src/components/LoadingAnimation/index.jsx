@@ -1,5 +1,5 @@
 const loadingStyle = {
-  width: '100%',
+  maxWidth: '100%',
   objectFit: 'contain',
 }
 

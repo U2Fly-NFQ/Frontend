@@ -53,6 +53,13 @@
     "No. of Passengers": "Số hành khách"
   },
 
+  "subscribe-form": {
+    "Get the latest news and offers": "Nhận thông tin và ưu đãi mới nhất",
+    "Subscribe to our newsletter": "Đăng ký nhận bản tin từ chúng tôi",
+    "Enter your email address": "Nhập vào email của bạn",
+    "Subscribe": "Đăng ký"
+  },
+
   "header": {
     "navbar": {
       "home": "Trang chủ",
@@ -106,7 +113,33 @@
     }
   },
 
-  "footer": {},
+  "footer": {
+    "Need any help?": "Cần trợ giúp?",
+    "Call 24/7 for any help": "Gọi 24/7",
+    "CMail to our support team": "Mail đội ngũ hổ trợ của chúng tôi",
+    "Company": "Công ty",
+    "About Us": "Về chúng tôi",
+    "Testimonials": "Lời chứng thực",
+    "Rewards": "Phần thưởng",
+    "Work with Us": "Làm việc với chúng tôi",
+    "Meet the Team": "Gặp gỡ đội ngũ",
+    "Blog": "Blog",
+    "Support": "Hổ trợ",
+    "Account": "Tài khoản",
+    "Faq": "Câu hỏi thường gập",
+    "Legal": "Hợp pháp",
+    "Contact": "Liên hệ",
+    "Affiliate Program": "Chương trình liên kết",
+    "Privacy Policy": "Chính sách bảo mật",
+    "Other Services": "Các dịch vụ khác",
+    "Community program": "Chương trình cộng đồng",
+    "Investor Relations": "Quan hệ đầu tư",
+    "Rewards Program": "Chương trình khen thưởng",
+    "Partners": "Đối tác",
+    "PointsPLUS": "PointsPLUS",
+    "Blog": "Blog",
+    "Top cities": "Các thành phố hàng đầu"
+  },
 
   "filter": {},
 

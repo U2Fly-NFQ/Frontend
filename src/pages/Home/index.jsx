@@ -213,7 +213,7 @@ function Home() {
                   src="https://andit.co/projects/html/and-tour/assets/img/offer/offer1.png"
                   alt="img"
                 />
-                <div class="offer_area_content">
+                <div className="offer_area_content">
                   <h2>{t('home-page.offer-area-section.Special Offers')}</h2>
                   <p>
                     Invidunt ut labore et dolore magna aliquyam erat, sed diam
@@ -221,7 +221,7 @@ function Home() {
                     rebum. Stet clita kasd dolor sit amet. Lorem ipsum dolor sit
                     amet.
                   </p>
-                  <Link to="/flights" class="btn btn_theme btn_md">
+                  <Link to="/flights" className="btn btn_theme btn_md">
                     {t('home-page.offer-area-section.Holiday deals')}
                   </Link>
                 </div>
@@ -235,13 +235,13 @@ function Home() {
                       src="https://andit.co/projects/html/and-tour/assets/img/offer/offer2.png"
                       alt="img"
                     />
-                    <div class="offer_area_content">
+                    <div className="offer_area_content">
                       <h2>{t('home-page.offer-area-section.Newsletter')}</h2>
                       <p>
                         Invidunt ut labore et dolore magna aliquyam erat, sed
                         diam voluptua. At vero eos et.
                       </p>
-                      <Link to="/flights" class="btn btn_theme btn_md">
+                      <Link to="/flights" className="btn btn_theme btn_md">
                         {t('home-page.offer-area-section.Subscribe now')}
                       </Link>
                     </div>
@@ -253,13 +253,13 @@ function Home() {
                       src="https://andit.co/projects/html/and-tour/assets/img/offer/offer3.png"
                       alt="img"
                     />
-                    <div class="offer_area_content">
+                    <div className="offer_area_content">
                       <h2>{t('home-page.offer-area-section.Travel tips')}</h2>
                       <p>
                         Invidunt ut labore et dolore magna aliquyam erat, sed
                         diam voluptua. At vero eos et.
                       </p>
-                      <Link to="/flights" class="btn btn_theme btn_md">
+                      <Link to="/flights" className="btn btn_theme btn_md">
                         {t('home-page.offer-area-section.Get tips')}
                       </Link>
                     </div>

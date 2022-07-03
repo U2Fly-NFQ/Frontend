@@ -10,10 +10,10 @@ function UserProfile(props) {
       <FlightListBanner />
       <div className="userProfile-container wide grid">
         <Row gutter={[0, 12]} justify="space-around">
-          <Col xs={24} md={6}>
+          <Col xs={24} md={5}>
             <UserProfileSidebar />
           </Col>
-          <Col xs={24} md={17} className="userProfile-container-main">
+          <Col xs={24} md={18} className="userProfile-container-main">
             <Outlet />
           </Col>
         </Row>

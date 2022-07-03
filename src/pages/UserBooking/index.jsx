@@ -1,49 +1,44 @@
 import React, { useState } from 'react'
-import { Col, Row, Table, Space, Button } from 'antd'
-import { EyeOutlined } from '@ant-design/icons'
-import { UserTicket } from '../../components'
+import { Col, Row, Table, Space } from 'antd'
+import { UserBookingDetail } from '../../components'
 
 function UserBooking(props) {
   //initiation
   const [loading, setLoading] = useState(false)
-  const [viewTicket, setViewTicket] = useState(false)
-  const [bookings, setBookings] = useState([])
 
   //Data for UI
   const bookingListColumn = [
-    // {
-    //   title: 'ID',
-    //   dataIndex: 'key',
-    //   width: 50,
-    //   sorter: (a, b) => a.key - b.key,
-    // },
     {
-      title: 'Airline',
-      dataIndex: 'airline',
-      width: 150,
-      align: 'center',
-      render: (_, { airline }) => <img width="100%" src={airline} alt="" />,
-    },
-    {
-      title: 'Code',
-      dataIndex: 'code',
+      title: 'Booking ID',
+      dataIndex: 'key',
       align: 'center',
       sorter: (a, b) => a.code - b.code,
     },
     {
-      title: 'Arrival',
-      dataIndex: 'flightArrival',
+      title: 'Journey',
+      dataIndex: 'flights',
       align: 'center',
-      sorter: (a, b) => a.flightArrival.length - b.flightArrival.length,
+      sorter: (a, b) => a.flights.length - b.flights.length,
+      render: (_, { flights }) => (
+        <>
+          {flights[0].departure}
+          {flights.length === 2 ? (
+            <i
+              style={{ padding: '0 10px' }}
+              className="fa-solid fa-arrow-right-arrow-left"
+            ></i>
+          ) : (
+            <i
+              style={{ padding: '0 10px' }}
+              className="fa-solid fa-arrow-right-long"
+            ></i>
+          )}
+          {flights[0].arrival}
+        </>
+      ),
     },
     {
-      title: 'Departure',
-      dataIndex: 'flightDeparture',
-      align: 'center',
-      sorter: (a, b) => a.flightDeparture.length > b.flightDeparture.length,
-    },
-    {
-      title: 'Booking amount',
+      title: 'Booking Amount',
       dataIndex: 'bookingAmount',
       align: 'center',
       sorter: (a, b) => a.bookingAmount - b.bookingAmount,
@@ -51,7 +46,8 @@ function UserBooking(props) {
     {
       title: 'Status',
       dataIndex: 'status',
-      sorter: (a, b) => a.airline.length - b.airline.length,
+      align: 'center',
+      sorter: (a, b) => a.status.length - b.status.length,
     },
     {
       title: 'Action',
@@ -60,32 +56,48 @@ function UserBooking(props) {
       align: 'center',
       render: (_, record) => (
         <Space>
-          <Button
-            type="default"
-            shape="default"
-            onClick={() => setViewTicket(true)}
-            icon={<EyeOutlined />}
-          />
+          {/*<Button*/}
+          {/*  type="default"*/}
+          {/*  shape="default"*/}
+          {/*  onClick={() => setViewTicket(true)}*/}
+          {/*  icon={<EyeOutlined />}*/}
+          {/*/>*/}
         </Space>
       ),
     },
   ]
-
   //Logical handling functions
-
   const data = [
     {
-      code: 7,
-      flightArrival: 'VCA',
-      flightDeparture: 'HAN',
-      airline:
-        'https://www.vietnamairlines.com/~/media/Images/VNANew/Home/Logo%20Header/logo_vna-mobile.png',
-      flightStartTime: '2022-03-26 21:30:29',
-      bookingAmount: '$750.00',
-      key: 7,
-      status: '',
+      key: 1,
+      bookingAmount: '$ 750.00',
+      status: 'Booking success',
+      owner: 'Sang Sáng Sủa',
+      email: 'sang@gg.com',
+      date: '03/7/2022',
+      flights: [
+        {
+          key: '1',
+          airline:
+            'https://www.vietnamairlines.com/~/media/Images/VNANew/Home/Logo%20Header/logo_vna-mobile.png',
+          departure: 'Ha Noi',
+          arrival: 'Can Tho',
+          startTime: '2022-07-04 07:00',
+          duration: '1.5',
+        },
+        {
+          key: '2',
+          airline:
+            'https://www.vietnamairlines.com/~/media/Images/VNANew/Home/Logo%20Header/logo_vna-mobile.png',
+          departure: 'Can Tho',
+          arrival: 'Ha Noi',
+          startTime: '2022-07-04 07:00:00',
+          duration: '1.5',
+        },
+      ],
     },
   ]
+
   return (
     <Row className="userProfile-container-booking">
       <Col span={24} className="userProfile-container-booking-title">
@@ -94,6 +106,11 @@ function UserBooking(props) {
       <Col span={24}>
         <Table
           columns={bookingListColumn}
+          expandable={{
+            expandedRowRender: (record) => (
+              <UserBookingDetail detailData={record} />
+            ),
+          }}
           dataSource={data}
           loading={loading}
           scroll={{
@@ -101,9 +118,7 @@ function UserBooking(props) {
           }}
         />
       </Col>
-      <UserTicket setViewTicket={setViewTicket} visible={viewTicket} />
     </Row>
   )
 }
-
 export default UserBooking

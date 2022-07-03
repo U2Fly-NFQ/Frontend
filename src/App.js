@@ -1,5 +1,4 @@
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import 'antd/dist/antd.variable.min.css'
 import './App.scss'
@@ -15,11 +14,9 @@ ConfigProvider.config({
 function App() {
   return (
     <Provider store={store}>
-      <Router>
-        <ConfigProvider>
-          <RouterApp />
-        </ConfigProvider>
-      </Router>
+      <ConfigProvider>
+        <RouterApp />
+      </ConfigProvider>
     </Provider>
   )
 }

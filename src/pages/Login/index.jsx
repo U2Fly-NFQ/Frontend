@@ -1,18 +1,17 @@
 import { Row, Col, Typography, Form } from 'antd'
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { loginApi } from '../../api/Auth'
 
-import { LoginBanner } from '../../components'
+import { LoginBanner, PageLoadingAnimation } from '../../components'
 import './style.scss'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import axiosInstance from '../../api'
 
 const { Title } = Typography
 
 const Login = () => {
-  const dispatch = useDispatch()
   const user = JSON.parse(localStorage.getItem('user') || '[]')
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -30,15 +29,18 @@ const Login = () => {
   }, [user.id])
 
   const onFinish = async (values) => {
+    setIsLoading(true)
     const { data } = await loginApi(values)
     localStorage.setItem('user', JSON.stringify(data.user))
 
-    // Update token
+    // Update token, loading animation
     axiosInstance.setToken(data.token)
+    setIsLoading(false)
   }
 
   return (
     <>
+      {isLoading === true && <PageLoadingAnimation />}
       <div className="login-page">
         <LoginBanner />
         <div className="grid wide">

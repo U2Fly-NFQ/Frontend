@@ -1,13 +1,11 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-
-import HomeLayout from '../layouts/Home'
-import AdminLayout from '../layouts/Admin'
+import React, { Suspense, lazy } from 'react'
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
+import { PageLoadingAnimation } from '../components'
 
 import {
   Login,
-  Home,
-  FlightList,
+  // Home,
+  // FlightList,
   Register,
   NoMatch,
   AdminDashboard,
@@ -16,36 +14,39 @@ import {
   BookingSuccessPage,
 } from '../pages'
 
-import { useSelector } from 'react-redux'
+const HomeLayout = lazy(() => import('../layouts/Home'))
+const AdminLayout = lazy(() => import('../layouts/Admin'))
+const Home = lazy(() => import('../pages/Home'))
+const FlightList = lazy(() => import('../pages/FlightList'))
 
 const RoutesApp = () => {
-  const userData = useSelector((state) => state.login)
-
   return (
-    <Routes>
-      {/* Public */}
-      <Route path="/" element={<HomeLayout />}>
-        <Route path="" element={<Home />} />
-        <Route path="flights" element={<FlightList />} />
-        <Route path="/flights-booking" element={<Booking />} />
-        <Route path="/booking-success" element={<BookingSuccessPage />} />
+    <Router>
+      <Suspense fallback={<PageLoadingAnimation />}>
+        <Routes>
+          {/* Public */}
+          <Route path="/" element={<HomeLayout />}>
+            <Route path="" element={<Home />} />
+            <Route path="flights" element={<FlightList />} />
+            <Route path="/booking-success" element={<BookingSuccessPage />} />
+            <Route path="flights-booking" element={<Booking />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
 
-        {/* Authentication */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Route>
+          {/* For users */}
+          <Route path="/user/booked" element={<Booked />} />
 
-      {/* For users */}
-      <Route path="/user/booked" element={<Booked />} />
+          {/* For admins */}
+          <Route path="admin" element={<AdminLayout />}>
+            <Route path="" element={<AdminDashboard />} />
+          </Route>
 
-      {/* For admins */}
-      <Route path="admin" element={<AdminLayout />}>
-        <Route path="" element={<AdminDashboard />} />
-      </Route>
-
-      {/* Invalid route */}
-      <Route path="*" element={<NoMatch />} />
-    </Routes>
+          {/* Invalid route */}
+          <Route path="*" element={<NoMatch />} />
+        </Routes>
+      </Suspense>
+    </Router>
   )
 }
 

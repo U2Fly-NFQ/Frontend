@@ -3,7 +3,6 @@ import { useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { scrollTo } from '../../utils/scroll'
-import { motion } from 'framer-motion'
 
 import './style.scss'
 import {
@@ -154,14 +153,7 @@ export default function FlightSearch() {
   )
 
   return (
-    <motion.section
-      initial={{
-        opacity: 0,
-        y: 200,
-      }}
-      animate={{ opacity: 1, y: '-50%' }}
-      transition={{ duration: 1 }}
-    >
+    <div className="flightSearchContainer">
       <Modal
         visible={modalContent && true}
         onOk={() => setModalContent('')}
@@ -214,10 +206,10 @@ export default function FlightSearch() {
               >
                 {airports.map((airport) => {
                   return (
-                    airport.label
+                    airport.city
                       .toLowerCase()
                       .includes(searchFrom.toLowerCase()) &&
-                    airport.value !== to.value && (
+                    airport.iata !== to.value && (
                       <Option key={airport.iata} value={airport.iata}>
                         {airport.city}
                       </Option>
@@ -254,10 +246,10 @@ export default function FlightSearch() {
               >
                 {airports.map((airport) => {
                   return (
-                    airport.label
+                    airport.city
                       .toLowerCase()
                       .includes(searchTo.toLowerCase()) &&
-                    airport.value !== to.value && (
+                    airport.iata !== to.value && (
                       <Option key={airport.iata} value={airport.iata}>
                         {airport.city}
                       </Option>
@@ -360,6 +352,6 @@ export default function FlightSearch() {
           </Tooltip>
         </div>
       </div>
-    </motion.section>
+    </div>
   )
 }

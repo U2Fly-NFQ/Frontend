@@ -20,6 +20,11 @@ function UserProfileSidebar(props) {
       2,
       <i className="fa-solid fa-address-card"></i>
     ),
+    getItem(
+      <Link to="/profile/history">Booking History</Link>,
+      3,
+      <i className="fa-solid fa-address-card"></i>
+    ),
   ]
 
   return (

@@ -13,6 +13,7 @@ import {
   BookingSuccessPage,
   UserProfile,
   UserBooking,
+  UserHistory,
 } from '../pages'
 
 const HomeLayout = lazy(() => import('../layouts/Home'))
@@ -38,6 +39,7 @@ const RoutesApp = () => {
             <Route path="profile" element={<UserProfile />}>
               {/*<Route index element={<UserBooking />} />*/}
               <Route path="booking" element={<UserBooking />} />
+              <Route path="history" element={<UserHistory />} />
             </Route>
           </Route>
 

@@ -40,8 +40,9 @@
       }
 
       .flight-info {
+        align-items: center;
         &-from {
-          text-align: right;
+          text-align: center;
         }
 
         &-icon {
@@ -49,12 +50,21 @@
         }
 
         &-to {
-          text-align: left;
+          text-align: center;
         }
       }
 
+      .info_empty:after {
+        content: '';
+        border-bottom: 1px dashed a.$main-color;
+        position: absolute;
+        left: 0;
+        right: 20px;
+        bottom: 10px;
+      }
+
       &-left {
-        padding: 15px;
+        padding: 15px 0;
         & > div {
           align-items: center;
         }
@@ -69,7 +79,7 @@
         }
 
         .flight-info {
-          padding: 50px 0;
+          padding: 40px 0;
 
           &-from,
           &-icon,
@@ -84,7 +94,8 @@
       }
 
       &-right {
-        padding: 15px;
+        padding: 15px 0;
+        padding-right: 15px;
         .barcode {
           img {
             max-height: 75px;
@@ -103,10 +114,12 @@
     }
 
     &-footer {
-      padding: 15px;
       background-color: a.$bg-color;
       border-bottom-left-radius: 25px;
       border-bottom-right-radius: 25px;
+      & > div {
+        padding: 10px;
+      }
       &-left {
         text-align: center;
       }
@@ -117,7 +130,7 @@
       position: absolute;
       border: 1px a.$main-color dashed;
       bottom: 0;
-      left: 70%;
+      left: 68.5%;
     }
   }
 }

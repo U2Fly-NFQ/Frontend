@@ -15,7 +15,7 @@ function UserBookingDetail({ detailData }) {
       title: 'Airline',
       dataIndex: 'airline',
       align: 'center',
-      width: '200px',
+      width: '150px',
       render: (_, { airline }) => (
         <img width="100%" src={airline} alt="airline" />
       ),
@@ -28,12 +28,10 @@ function UserBookingDetail({ detailData }) {
     {
       title: 'Departure',
       dataIndex: 'departure',
-      align: 'center',
     },
     {
       title: 'Arrival',
       dataIndex: 'arrival',
-      align: 'center',
     },
     {
       title: 'Action',
@@ -61,8 +59,8 @@ function UserBookingDetail({ detailData }) {
   useEffect(() => {
     const flights = detailData.flights.map((flight) => ({
       ...flight,
-      departure: `${flight.departure} ${flight.startTime}`,
-      arrival: `${flight.departure} ${flight.startTime + flight.duration}`,
+      departure: `${flight.startTime} - ${flight.departure}`,
+      arrival: `${flight.endTime} - ${flight.arrival}`,
     }))
     setFlights(flights)
   }, [detailData])

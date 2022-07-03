@@ -27,7 +27,7 @@ const Flight = () => {
   let [minPrice, setMinPrice] = useState(0)
   let [maxPrice, setMaxPrice] = useState(10000)
 
-  const firstRender = useRef(false)
+  const firstRender = useRef(true)
 
   const handlePriceChange = (value) => {
     setMinPrice(value[0])

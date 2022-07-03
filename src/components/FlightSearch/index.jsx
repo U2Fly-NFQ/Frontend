@@ -13,7 +13,6 @@ import {
   Popover,
   InputNumber,
   Select,
-  Button,
   Tooltip,
   Modal,
 } from 'antd'
@@ -47,7 +46,7 @@ export default function FlightSearch() {
     let existingBooking = JSON.parse(localStorage.getItem('flight') || '[]')
     const { seatType, passengerNumber } = existingBooking
     if (seatType) setPassengerClass(seatType)
-    if (passengerNumber) setPassengerClass(passengerNumber)
+    if (passengerNumber) setPassengerNumber(passengerNumber)
 
     dispatch(fetchAirports())
   }, [])
@@ -96,19 +95,16 @@ export default function FlightSearch() {
     setSearchTo('')
   }
 
-  const clearAllSearch = () => {
+  const clearFrom = () => {
     setFrom('')
-    setTo('')
-    setJourneyDay(moment())
-    setPassengerClass('Economy')
-
-    // Clear search params
-    searchParams.delete('seatType')
     searchParams.delete('departure')
-    searchParams.delete('startTime')
-    searchParams.delete('arrival')
+    setSearchParams(searchParams)
+  }
 
-    setSearchParams({})
+  const clearTo = () => {
+    setTo('')
+    searchParams.delete('arrival')
+    setSearchParams(searchParams)
   }
 
   const passengerPopover = (
@@ -180,6 +176,7 @@ export default function FlightSearch() {
               </label>
               <Select
                 size="large"
+                onClear={clearFrom}
                 clearIcon={
                   <CloseOutlined
                     style={{
@@ -236,6 +233,7 @@ export default function FlightSearch() {
                 size="large"
                 showSearch
                 allowClear
+                onClear={clearTo}
                 defaultValue={to}
                 showArrow={false}
                 filterOption={() => true}
@@ -344,16 +342,16 @@ export default function FlightSearch() {
             >
               Search
             </button>
-            <Button
+            {/* <Button
               className="close-btn"
-              type="dashed"
-              shape="circle"
               icon={<CloseOutlined />}
               onClick={clearAllSearch}
               style={{
                 display: (from && to && 'block') || 'none',
               }}
-            />
+            >
+              Clear all
+            </Button> */}
           </Tooltip>
         </div>
       </div>

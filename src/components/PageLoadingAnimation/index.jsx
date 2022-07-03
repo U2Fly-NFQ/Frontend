@@ -5,7 +5,7 @@ import './style.css'
 const PageLoadingAnimation = () => {
   return (
     <div className="page-loading">
-      <div class="loader loader2">
+      <div className="loader loader2">
         <span style={{ '--i': 1 }}></span>
         <span style={{ '--i': 2 }}></span>
         <span style={{ '--i': 3 }}></span>
@@ -26,7 +26,7 @@ const PageLoadingAnimation = () => {
         <span style={{ '--i': 18 }}></span>
         <span style={{ '--i': 19 }}></span>
         <span style={{ '--i': 20 }}></span>
-        <div class="plane"></div>
+        <div className="plane"></div>
       </div>
     </div>
   )

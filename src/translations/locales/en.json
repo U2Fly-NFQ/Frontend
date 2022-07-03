@@ -104,7 +104,34 @@
     }
   },
 
-  "footer": {},
+  "footer": {
+    "Need any help?": "Need any help?",
+    "Call 24/7 for any help": "Call 24/7 for any help",
+    "CMail to our support team": "CMail to our support team",
+    "Call 24/7 for any help": "Call 24/7 for any help",
+    "Company": "Company",
+    "About Us": "About Us",
+    "Testimonials": "Testimonials",
+    "Rewards": "Rewards",
+    "Work with Us": "Work with Us",
+    "Meet the Team": "Meet the Team",
+    "Blog": "Blog",
+    "Support": "Support",
+    "Account": "Account",
+    "Faq": "Faq",
+    "Legal": "Legal",
+    "Contact": "Contact",
+    "Affiliate Program": "Affiliate Program",
+    "Privacy Policy": "Privacy Policy",
+    "Other Services": "Other Services",
+    "Community program": "Community program",
+    "Investor Relations": "Investor Relations",
+    "Rewards Program": "Rewards Program",
+    "Partners": "Partners",
+    "PointsPLUS": "PointsPLUS",
+    "Blog": "Blog",
+    "Top cities": "Top cities"
+  },
 
   "filter": {},
 

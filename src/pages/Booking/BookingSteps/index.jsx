@@ -11,8 +11,6 @@ export default function BookingSteps({ contentTop, contentBottom }) {
 
   const { Step } = Steps
   const onChange = (value) => {
-    // setCurrent(value)
-    console.log(value)
     dispatch(changeCurrentMethod(value))
   }
   return (
@@ -20,7 +18,6 @@ export default function BookingSteps({ contentTop, contentBottom }) {
       type="navigation"
       className="booking-steps"
       current={getCurrentMethod}
-      onChange={onChange}
     >
       <Step
         status="finish"

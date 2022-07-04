@@ -1,3 +1,9 @@
 .BookingPayment-content {
   padding-top: 20px;
 }
+.payment-booking {
+  width: 100%;
+  &__radio {
+    width: 100%;
+  }
+}

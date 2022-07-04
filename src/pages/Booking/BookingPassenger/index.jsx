@@ -2,57 +2,29 @@ import React, { useEffect } from 'react'
 import { Form, DatePicker, Checkbox } from 'antd'
 import moment from 'moment'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  getDiscountForBookingAirline,
-  getInfoFlightInBookingFight,
-  getInfoFlightInBookingSeat,
-  getInfoPriceAfterDiscount,
-  getUserInformation,
-} from '../../../redux/selectors'
+import { getUserInformation } from '../../../redux/selectors'
 import {
   addDataIntoBookingFlight,
-  createBookingFlight,
+  changeCurrentMethod,
 } from '../../../redux/slices/bookingFlightsSlice'
 import { ButtonOfPage, SelectDropDown } from '../../../components'
 export default function BookingPassenger() {
-  const priceDiscount = useSelector(getInfoPriceAfterDiscount)
-  const getDiscountInfo = useSelector(getDiscountForBookingAirline)
-  const getPrice = useSelector(getInfoFlightInBookingSeat)
-  const getFlightData = useSelector(getInfoFlightInBookingFight)
-  const getSeatData = useSelector(getInfoFlightInBookingSeat)
   const userInformation = useSelector(getUserInformation)
   const dispatch = useDispatch()
   const [form] = Form.useForm()
   const onFinish = (values) => {
     let valueResult = {
       ...values,
-
-      date_picker: moment(values.date_picker).format('DD.MM.YYYY'),
+      date_picker: moment(values.date_picker).format('YYYY-MM-DD'),
     }
-    let fetchDataValue = {
-      accountId: userInformation.id,
-      flightId: getFlightData.id,
-      seatTypeId: getSeatData.id,
-      totalPrice: priceDiscount === 0 ? getPrice.price : priceDiscount,
-      ticketOwner: values.firstName,
-    }
-    if (getDiscountInfo.id !== undefined) {
-      fetchDataValue = {
-        ...fetchDataValue,
-        discountId: getDiscountInfo.id,
-      }
-    }
-
-    // console.log(fetchDataValue)
-    dispatch(createBookingFlight(fetchDataValue))
+    dispatch(changeCurrentMethod(1))
     dispatch(addDataIntoBookingFlight(valueResult))
-    // navigate('/booking-success')
   }
 
   useEffect(() => {
     form.setFieldsValue({
       firstName: userInformation.name,
-      date_picker: moment(userInformation.birthday),
+      date_picker: moment(),
       email: userInformation.email,
       streetAddress: userInformation.address,
       identificationCard: userInformation.identification,
@@ -90,7 +62,7 @@ export default function BookingPassenger() {
 
         <Form.Item
           name="date_picker"
-          format="YYYY-MM-DD HH:mm"
+          format="DD-MM-YYYY"
           style={{ display: 'inline-block', width: '50%' }}
           rules={[
             {
@@ -102,7 +74,7 @@ export default function BookingPassenger() {
           <DatePicker
             placeholder="Ngày Sinh của bạn"
             className="form-control"
-            format="YYYY-MM-DD"
+            format="DD-MM-YYYY"
             style={{ display: 'flex' }}
           />
         </Form.Item>

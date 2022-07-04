@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { getTicketInformation } from '../../../redux/slices/bookingSuccessSlice'
+import { getTicketInformation } from '../../../../redux/slices/bookingSuccessSlice'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getFlightInformationSuccess } from '../../../redux/selectors/bookingSuccessSelector'
+import { getFlightInformationSuccess } from '../../../../redux/selectors/bookingSuccessSelector'
 export default function BookingSuccessDetail() {
   const getInforFlight = useSelector(getFlightInformationSuccess)
   const navigate = useNavigate()

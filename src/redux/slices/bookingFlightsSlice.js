@@ -50,6 +50,7 @@ const bookingFlightsSlice = createSlice({
     addDataIntoBookingFlight: (state, action) => {
       let { apartment, city, country, emailAddress } = action.payload
       state.userInformation = {
+        ...state.userInformation,
         ...action.payload,
         dateOfBirth: moment(action.payload.dateTimePicker).format('DD.MM.YYYY'),
       }

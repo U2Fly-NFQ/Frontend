@@ -1,4 +1,4 @@
-import { Form, Radio, Space, Checkbox } from 'antd'
+import { Form, Radio, Checkbox } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useLoadingContext } from 'react-router-loading'
 import { ButtonOfPage, InputOFPage } from '../../../components'
@@ -88,18 +88,18 @@ export default function BookingPayment() {
   ]
 
   return (
-    <div className="">
+    <div className="payment-booking">
       <Radio.Group onChange={onChange} value={value}>
-        <Space direction="vertical">
-          {dataPayment &&
-            dataPayment.map((item, index) => {
-              return (
-                <Radio value={index} key={index}>
-                  {item.paymentMethod}
-                </Radio>
-              )
-            })}
-        </Space>
+        {/* <Space direction="vertical" className="payment-booking__radio"> */}
+        {dataPayment &&
+          dataPayment.map((item, index) => {
+            return (
+              <Radio value={index} key={index}>
+                {item.paymentMethod}
+              </Radio>
+            )
+          })}
+        {/* </Space> */}
       </Radio.Group>
       <div className="BookingPayment-content">
         {dataBooking && dataBooking.render}

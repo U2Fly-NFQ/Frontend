@@ -9,7 +9,7 @@ function LoginBanner() {
         <Row gutter={16}>
           <Col xs={24}>
             <div className="login-banner__text">
-              <h2>Log In</h2>
+              <h2>Authentification</h2>
             </div>
           </Col>
         </Row>

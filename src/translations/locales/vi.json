@@ -125,6 +125,32 @@
     "Action": "Action"
   },
 
+  "login": {
+    "Login": "Đăng nhập",
+    "Welcome back": "Mừng bạn quay lại",
+    "Logged in to stay in touch": "Đăng nhập để giữ liên lạc",
+    "Don't have an account?": "Không có tài khoản?",
+    "Register now": "Đăng ký ngay",
+    "Enter your email": "Nhập email của bạn",
+    "Enter password": "Nhập mật khẩu của bạn",
+    "Forgot password?": "Quên mật khẩu?",
+    "Please input your email": "Vui lòng nhập vào email của bạn",
+    "Email is not valid": "Email không hợp lệ",
+    "Please input your password": "Vui lòng nhập vào password của bạn"
+  },
+
+  "register": {
+    "Register": "Đăng ký",
+    "To join a whole new world": "Tham gia vào một thế giới hoàn toàn mới",
+    "Register your account": "Đăng ký tài khoản",
+    "Enter your name": "Nhập tên tài khoản",
+    "Enter your email": "Nhập email",
+    "Enter your phone": "Nhập số điện thoại",
+    "Enter password": "Nhập mật khẩu",
+    "Already have an account?": "Đã có tài khoản.",
+    "Login now": "Đăng nhập ngay"
+  },
+
   "footer": {
     "Need any help?": "Cần trợ giúp?",
     "Call 24/7 for any help": "Gọi 24/7",

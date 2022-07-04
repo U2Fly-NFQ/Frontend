@@ -1,11 +1,11 @@
 import { Row, Col, Typography, Form } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { loginApi } from '../../api/Auth'
-
 import { LoginBanner, PageLoadingAnimation } from '../../components'
 import './style.scss'
 import { useEffect, useState } from 'react'
 import axiosInstance from '../../api'
+import { useTranslation } from 'react-i18next'
 
 const { Title } = Typography
 
@@ -13,6 +13,7 @@ const Login = () => {
   const user = JSON.parse(localStorage.getItem('user') || '[]')
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (user.id) {
@@ -48,26 +49,28 @@ const Login = () => {
             <Col lg={16}>
               <div className="content">
                 <div className="box">
-                  <Title level={3}>Welcome back</Title>
-                  <Title level={2}>Logged in to stay in touch</Title>
+                  <Title level={3}>{t('login.Welcome back')}</Title>
+                  <Title level={2}>
+                    {t('login.Logged in to stay in touch')}
+                  </Title>
                   <Form className="form" name="login-form" onFinish={onFinish}>
                     <Form.Item
                       name="username"
                       rules={[
                         {
                           required: true,
-                          message: 'Please input your email!',
+                          message: t('login.Please input your email!'),
                         },
                         {
                           type: 'email',
-                          message: 'Email is not valid',
+                          message: t('login.Email is not valid'),
                         },
                       ]}
                     >
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Enter your email"
+                        placeholder={t('login.Enter your email')}
                       />
                     </Form.Item>
                     <Form.Item
@@ -75,23 +78,25 @@ const Login = () => {
                       rules={[
                         {
                           required: true,
-                          message: 'Please input your password',
+                          message: t('login.Please input your password'),
                         },
                       ]}
                     >
                       <input
                         type="password"
                         className="form-control"
-                        placeholder="Enter password"
+                        placeholder={t('login.Enter password')}
                       />
                     </Form.Item>
                     <div className="form-submit">
-                      <button className="btn btn-primary btn-md">Log in</button>
+                      <button className="btn btn-primary btn-md">
+                        {t('login.Login')}
+                      </button>
                     </div>
                     <div className="switch">
                       <p>
-                        Dont have an account?{' '}
-                        <a href="register.html">Register now</a>
+                        {t("login.Don't have an account?")}{' '}
+                        <a href="register.html">{t('login.Register now')}</a>
                       </p>
                     </div>
                   </Form>

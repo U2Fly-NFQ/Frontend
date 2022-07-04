@@ -125,6 +125,31 @@
     "Action": "Action"
   },
 
+  "login": {
+    "Login": "Login",
+    "Welcome back": "Welcome back",
+    "Logged in to stay in touch": "Logged in to stay in touch",
+    "Don't have an account?": "Don't have an account?",
+    "Register now": "Register now",
+    "Enter your email": "Enter your email",
+    "Enter password": "Enter password",
+    "Forgot password?": "Forgot password?",
+    "Please input your email!": "Please input your email!",
+    "Email is not valid": "Email is not valid",
+    "Please input your password": "Please input your password"
+  },
+
+  "register": {
+    "Register": "Register",
+    "To join a whole new world": "To join a whole new world",
+    "Register your account": "Register your account",
+    "Enter your name": "Enter your name",
+    "Enter your email": "Enter your email",
+    "Enter your phone": "Enter your phone",
+    "Enter password": "Enter password",
+    "Login now": "Login now",
+    "Already have an account?": "Already have an account?"
+  },
 
   "footer": {
     "Need any help?": "Need any help?",

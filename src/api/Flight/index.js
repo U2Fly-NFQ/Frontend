@@ -18,11 +18,16 @@ const getUserData = (id) => {
   return axios.get(`/api/account/1`)
 }
 
-const createATicket = (data) => axios.post(`/api/tickets`, data)
+const getInfoTickerById = (idTicket) =>
+  axios.get(`/api/manage/tickets=${idTicket}`)
+
+const createATicket = (data) => axios.post(`/api/payment/stripe`, data)
+
 export default {
   getList,
   get,
   create,
+  getInfoTickerById,
   update,
   createATicket,
   destroy,

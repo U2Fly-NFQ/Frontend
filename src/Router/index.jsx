@@ -31,7 +31,10 @@ const RoutesApp = () => {
           <Route path="/" element={<HomeLayout />}>
             <Route path="" element={<Home />} />
             <Route path="flights" element={<FlightList />} />
-            <Route path="/booking-success" element={<BookingSuccessPage />} />
+            <Route
+              path="/booking-success/:ticketId"
+              element={<BookingSuccessPage />}
+            />
             <Route path="flights-booking" element={<Booking />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

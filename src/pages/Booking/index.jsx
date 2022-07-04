@@ -18,24 +18,33 @@ import { useNavigate } from 'react-router-dom'
 import {
   getDiscountForBookingAirline,
   getInfoFlightInBookingArrival,
+  getInfoFlightInBookingDeparture,
   getInfoFlightInBookingFight,
   getInfoFlightInBookingSeat,
   getInfoPriceAfterDiscount,
   getUserInformation,
 } from '../../redux/selectors'
 import moment from 'moment'
+import BookingSteps from './BookingSteps'
 const { Header, Footer, Sider, Content } = Layout
 function FlightList() {
   const navigate = useNavigate()
   const [form] = Form.useForm()
   const dispatch = useDispatch()
   const arrival = useSelector(getInfoFlightInBookingArrival)
+  const departure = useSelector(getInfoFlightInBookingDeparture)
   const getPrice = useSelector(getInfoFlightInBookingSeat)
   const userInformation = useSelector(getUserInformation)
   const priceDiscount = useSelector(getInfoPriceAfterDiscount)
   const getDiscountInfo = useSelector(getDiscountForBookingAirline)
   const getFlightData = useSelector(getInfoFlightInBookingFight)
   const getSeatData = useSelector(getInfoFlightInBookingSeat)
+  // console.log(JSON.parse(localStorage.getItem('flight')))
+  // localStorage.setItem(
+  //   'flight',
+  //   '{"id":3,"username":"sang@gg.com","roles":{"1":"ROLE_ADMIN","2":"ROLE_USER"}}'
+  // )
+
   useEffect(() => {
     let dataFlight = JSON.parse(localStorage.getItem('flight'))
     let userInfo = JSON.parse(localStorage.getItem('user'))
@@ -47,15 +56,6 @@ function FlightList() {
     }
   }, [])
   const onFinish = (values) => {
-    // console.log(moment(values.date_picker).format('DD.MM.YYYY'))
-    //   {
-    //     "accountId":3,
-    //     "discountId":1,
-    //     "flightId":1,
-    //     "seatTypeId":2,
-    //     "totalPrice":102.5,
-    //     "ticketOwner":"NGUYEN THANH SANG"
-    // }
     let valueResult = {
       ...values,
 
@@ -93,9 +93,6 @@ function FlightList() {
   const loadingContext = useLoadingContext()
 
   const loading = async () => {
-    // loading some data
-
-    // call method to indicate that loading is done and we are ready to switch
     loadingContext.done()
   }
   useEffect(() => {
@@ -105,6 +102,7 @@ function FlightList() {
     <div className="booking-page ">
       <FlightListBanner />
       <div className="booking-page__container grid wide">
+        {arrival && <BookingSteps />}
         <div className="booking-page__container__item">
           <div className="booking-page__container__itemContent">
             <div className="booking-page__container__item__title">

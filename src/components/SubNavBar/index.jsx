@@ -21,20 +21,6 @@ const SubNavBar = () => {
           <Col md={12} xs={0}>
             <ul className="sub-nav-list">
               <li className="sub-nav-list__item">
-                <a href="#">
-                  <i className="fa-brands fa-facebook-square"></i>
-                </a>
-                <a href="#">
-                  <i className="fa-brands fa-twitter-square"></i>
-                </a>
-                <a href="#">
-                  <i className="fa-brands fa-instagram"></i>
-                </a>
-                <a href="#">
-                  <i className="fa-brands fa-linkedin"></i>
-                </a>
-              </li>
-              <li className="sub-nav-list__item">
                 <a href="#">028 6681 2733</a>
               </li>
               <li className="sub-nav-list__item">

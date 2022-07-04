@@ -1,46 +1,23 @@
-import { Form, Radio, Space, Checkbox } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { useLoadingContext } from 'react-router-loading'
-import { ButtonOfPage, InputOFPage } from '../../../components'
 import './index.scss'
-export default function BookingPayment() {
+import { Form, Radio, Space } from 'antd'
+import { ButtonOfPage, InputOFPage } from '../../../components'
+export default function PaymentFlight() {
   const [value, setValue] = useState(1)
   const [dataBooking, setDataBooking] = useState()
-  const loadingContext = useLoadingContext()
-  useEffect(() => {
-    setDataBooking(dataPayment[value])
-    loading()
-  }, [value])
+
   const onChange = (e) => {
     setValue(e.target.value)
   }
-
-  const loading = async () => {
-    loadingContext.done()
-  }
+  useEffect(() => {
+    setDataBooking(dataPayment[value])
+  }, [value])
 
   let dataPayment = [
     {
-      paymentMethod: 'Paypal',
+      paymentMethod: 'Payoneer',
       render: (
         <>
-          <Form.Item
-            name="agreement"
-            valuePropName="checked"
-            style={{ marginTop: '10px' }}
-            rules={[
-              {
-                validator: (_, value) =>
-                  value
-                    ? Promise.resolve()
-                    : Promise.reject(new Error('Should accept agreement')),
-              },
-            ]}
-          >
-            <Checkbox>
-              I have read the <a href="">agreement</a>
-            </Checkbox>
-          </Form.Item>
           <Form.Item style={{ marginTop: '20px' }}>
             <ButtonOfPage title={'Pay Now'} />
           </Form.Item>
@@ -48,7 +25,7 @@ export default function BookingPayment() {
       ),
     },
     {
-      paymentMethod: 'Payoneer',
+      paymentMethod: 'Paypal',
       render: (
         <div>
           <Form.Item
@@ -65,7 +42,6 @@ export default function BookingPayment() {
           <Form.Item
             name="agreement"
             valuePropName="checked"
-            style={{ marginTop: '10px' }}
             rules={[
               {
                 validator: (_, value) =>
@@ -74,12 +50,8 @@ export default function BookingPayment() {
                     : Promise.reject(new Error('Should accept agreement')),
               },
             ]}
-          >
-            <Checkbox>
-              I have read the <a href="">agreement</a>
-            </Checkbox>
-          </Form.Item>
-          <Form.Item style={{ marginTop: '20px' }}>
+          ></Form.Item>
+          <Form.Item>
             <ButtonOfPage title={'Pay Now'} />
           </Form.Item>
         </div>
@@ -88,15 +60,17 @@ export default function BookingPayment() {
   ]
 
   return (
-    <div className="">
-      <Radio.Group onChange={onChange} value={value}>
+    <div className="" style={{ width: '100%' }}>
+      <Radio.Group onChange={onChange} value={value} style={{ width: '100%' }}>
         <Space direction="vertical">
           {dataPayment &&
             dataPayment.map((item, index) => {
               return (
-                <Radio value={index} key={index}>
-                  {item.paymentMethod}
-                </Radio>
+                <div className="radio-payment">
+                  <Radio value={index} key={index}>
+                    {item.paymentMethod}
+                  </Radio>
+                </div>
               )
             })}
         </Space>

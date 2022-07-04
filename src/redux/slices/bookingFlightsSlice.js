@@ -9,6 +9,7 @@ const initialState = {
   discountInfo: {
     percent: 0,
   },
+  currentMethods: 0,
   priceAfterDiscount: 0,
 }
 export const getDataFlights = createAsyncThunk(
@@ -48,14 +49,30 @@ const bookingFlightsSlice = createSlice({
   reducers: {
     addDataIntoBookingFlight: (state, action) => {
       let { apartment, city, country, emailAddress } = action.payload
-      // console.log(action.payload)
       state.userInformation = {
         ...action.payload,
         dateOfBirth: moment(action.payload.dateTimePicker).format('DD.MM.YYYY'),
       }
     },
+    changeCurrentMethod: (state, action) => {
+      let value = action.payload
+      state.currentMethods = value
+    },
   },
   extraReducers: {
+    [createBookingFlight.pending]: (state, action) => {
+      state.loadding = true
+    },
+    [createBookingFlight.rejected]: (state, action) => {
+      state.loadding = false
+    },
+    [createBookingFlight.fulfilled]: (state, action) => {
+      const { status, data } = action.payload
+      state.loadding = false
+      if (status === 'success') {
+        window.location.replace(data.checkoutURL)
+      }
+    },
     [getUserDataInBooking.pending]: (state, action) => {
       state.loadding = true
     },
@@ -108,5 +125,6 @@ const bookingFlightsSlice = createSlice({
     },
   },
 })
-export const { addDataIntoBookingFlight } = bookingFlightsSlice.actions
+export const { addDataIntoBookingFlight, changeCurrentMethod } =
+  bookingFlightsSlice.actions
 export default bookingFlightsSlice

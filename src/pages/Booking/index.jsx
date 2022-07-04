@@ -1,31 +1,27 @@
-import { Form, Layout, DatePicker } from 'antd'
+import { Form, Layout } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import './index.scss'
-import { FlightListBanner, SelectDropDown } from '../../components'
-import BookingPayment from './BookingPayment'
+import { FlightListBanner } from '../../components'
 import DetailFlights from './detailFlights'
 import { useLoadingContext } from 'react-router-loading'
 import BookingTravelDate from './BookingTravelDate'
 import BookingCoupon from './BookingCoupon'
 import { useEffect } from 'react'
 import {
-  addDataIntoBookingFlight,
-  createBookingFlight,
   getDataFlights,
   getUserDataInBooking,
 } from '../../redux/slices/bookingFlightsSlice'
 import { useNavigate } from 'react-router-dom'
 import {
-  getDiscountForBookingAirline,
+  getCurrentMethodInBookingFlight,
   getInfoFlightInBookingArrival,
   getInfoFlightInBookingDeparture,
-  getInfoFlightInBookingFight,
   getInfoFlightInBookingSeat,
-  getInfoPriceAfterDiscount,
   getUserInformation,
 } from '../../redux/selectors'
-import moment from 'moment'
 import BookingSteps from './BookingSteps'
+import BookingPassenger from './BookingPassenger'
+import PaymentFlight from './PaymentFlight'
 const { Header, Footer, Sider, Content } = Layout
 function FlightList() {
   const navigate = useNavigate()
@@ -35,10 +31,7 @@ function FlightList() {
   const departure = useSelector(getInfoFlightInBookingDeparture)
   const getPrice = useSelector(getInfoFlightInBookingSeat)
   const userInformation = useSelector(getUserInformation)
-  const priceDiscount = useSelector(getInfoPriceAfterDiscount)
-  const getDiscountInfo = useSelector(getDiscountForBookingAirline)
-  const getFlightData = useSelector(getInfoFlightInBookingFight)
-  const getSeatData = useSelector(getInfoFlightInBookingSeat)
+  const getCurrentMethod = useSelector(getCurrentMethodInBookingFlight)
   // console.log(JSON.parse(localStorage.getItem('flight')))
   // localStorage.setItem(
   //   'flight',
@@ -55,40 +48,6 @@ function FlightList() {
       navigate('/flight')
     }
   }, [])
-  const onFinish = (values) => {
-    let valueResult = {
-      ...values,
-
-      date_picker: moment(values.date_picker).format('DD.MM.YYYY'),
-    }
-    let fetchDataValue = {
-      accountId: userInformation.id,
-      flightId: getFlightData.id,
-      seatTypeId: getSeatData.id,
-      totalPrice: priceDiscount === 0 ? getPrice.price : priceDiscount,
-      ticketOwner: values.firstName,
-    }
-    if (getDiscountInfo.id !== undefined) {
-      fetchDataValue = {
-        ...fetchDataValue,
-        discountId: getDiscountInfo.id,
-      }
-    }
-
-    // console.log(fetchDataValue)
-    dispatch(createBookingFlight(fetchDataValue))
-    dispatch(addDataIntoBookingFlight(valueResult))
-    // navigate('/booking-success')
-  }
-  useEffect(() => {
-    form.setFieldsValue({
-      firstName: userInformation.name,
-      date_picker: moment(userInformation.birthday),
-      email: userInformation.email,
-      streetAddress: userInformation.address,
-      identificationCard: userInformation.identification,
-    })
-  }, [userInformation])
 
   const loadingContext = useLoadingContext()
 
@@ -105,11 +64,17 @@ function FlightList() {
         {arrival && <BookingSteps />}
         <div className="booking-page__container__item">
           <div className="booking-page__container__itemContent">
-            <div className="booking-page__container__item__title">
-              <h2>Passenger information</h2>
-            </div>
             <div className="booking-page__container__item__content">
-              <Form
+              <div className="booking-page__container__item__title">
+                <h2>Passenger information</h2>
+              </div>
+              {getCurrentMethod === 0 ? (
+                <BookingPassenger />
+              ) : (
+                <PaymentFlight />
+              )}
+
+              {/* <Form
                 wrapperCol={{
                   span: 22,
                 }}
@@ -274,7 +239,7 @@ function FlightList() {
                 </div>
 
                 <BookingPayment />
-              </Form>
+              </Form> */}
             </div>
           </div>
         </div>

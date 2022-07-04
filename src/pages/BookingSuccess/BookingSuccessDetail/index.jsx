@@ -79,11 +79,7 @@ export default function BookingSuccessDetail() {
         <ul style={{ border: 'none' }}>
           <li className="change-color">
             <span>Total Amount</span>
-            <span>
-              $
-              {getInforFlight.price -
-                getInforFlight.price * getInforFlight.percent || 0}
-            </span>
+            <span>${getInforFlight.price}</span>
           </li>
         </ul>
       </div>

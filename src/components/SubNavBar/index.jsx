@@ -24,18 +24,22 @@ const SubNavBar = () => {
                 <a href="#">
                   <i className="fa-brands fa-facebook-square"></i>
                 </a>
-                <a href="">
+                <a href="#">
                   <i className="fa-brands fa-twitter-square"></i>
                 </a>
-                <a href="">
+                <a href="#">
                   <i className="fa-brands fa-instagram"></i>
                 </a>
-                <a href="">
+                <a href="#">
                   <i className="fa-brands fa-linkedin"></i>
                 </a>
               </li>
-              <li className="sub-nav-list__item">028 6681 2733</li>
-              <li className="sub-nav-list__item">career@nfq.asia</li>
+              <li className="sub-nav-list__item">
+                <a href="#">028 6681 2733</a>
+              </li>
+              <li className="sub-nav-list__item">
+                <a href="#">career@nfq.asia</a>
+              </li>
             </ul>
           </Col>
           <Col flex="none">

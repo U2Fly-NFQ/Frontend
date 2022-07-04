@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import ButtonOfPage from '../ButtonOfPage'
 import NavLinkDropDown from '../NavLinkDropDown'
 import './index.scss'
-import getLogo from '../../assets/images/system/logo-rectangle.png'
+import getLogo from '../../assets/images/system/logo.png'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 export default function Navbar() {

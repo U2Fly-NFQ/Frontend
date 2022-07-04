@@ -1,0 +1,25 @@
+@use '../../assets/scss/abstracts' as a;
+.booking-detail {
+  &-info {
+    background-color: a.$background-white;
+    padding: 15px;
+    border: 2px solid a.$bg-color;
+    .booking-info,
+    .flight-info {
+      &-title {
+        font-weight: bold;
+        font-size: 16px;
+        border-bottom: 1px solid a.$main-color;
+        margin-bottom: 10px;
+      }
+    }
+    .booking-info {
+      margin-bottom: 10px;
+      &-label {
+        font-weight: bold;
+      }
+    }
+    .flight-info {
+    }
+  }
+}

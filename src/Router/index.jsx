@@ -9,9 +9,12 @@ import {
   Register,
   NoMatch,
   AdminDashboard,
-  Booked,
   Booking,
   BookingSuccessPage,
+  UserProfile,
+  UserBooking,
+  UserHistory,
+  UserProfileDetail,
 } from '../pages'
 
 const HomeLayout = lazy(() => import('../layouts/Home'))
@@ -32,10 +35,14 @@ const RoutesApp = () => {
             <Route path="flights-booking" element={<Booking />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-          </Route>
 
-          {/* For users */}
-          <Route path="/user/booked" element={<Booked />} />
+            {/* For users */}
+            <Route path="profile" element={<UserProfile />}>
+              <Route index element={<UserProfileDetail />} />
+              <Route path="booking" element={<UserBooking />} />
+              <Route path="history" element={<UserHistory />} />
+            </Route>
+          </Route>
 
           {/* For admins */}
           <Route path="admin" element={<AdminLayout />}>

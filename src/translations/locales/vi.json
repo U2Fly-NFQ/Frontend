@@ -114,6 +114,43 @@
     }
   },
 
+  
+  "flight-booking-page": {
+    "Passenger information": "Thông tin hành khách",
+    "Flights": "Chuyến bay",
+    "Payment method": "Phương thức thanh toán",
+    "Pay Now": "Thanh toán ngay",
+    "First name": "Tên",
+    "Email address": "Địa chỉ email",
+    "Optional": "Tùy chọn",
+    "Mobile number": "Số điện thoại",
+    "Street address": "Địa chỉ đường",
+    "Apartment": "Địa chỉ nhà",
+    "Passport no.": "Số hộ chiếu",
+    "Visa no.": "Mã số Visa",
+    "I have read the agreement": "Tôi đã đọc thỏa thuận",
+    "From": "Từ",
+    "To": "Đến",
+    "hours": "giờ",
+    "minutes": "phút",
+    "Prices": "Giá",
+    "Buffet breakfast as per the Itinerary": "Bữa sáng tự chọn theo hành trình",
+    "Visit eight villages showcasing Polynesian culture": "Ghé thăm tám ngôi làng thể hiện văn hóa Polynesia",
+    "Complimentary Camel safari, Bonfire": "Miễn phí Camel safari, Bonfire",
+    "All toll tax, parking, fuel, and driver allowances": "Tất cả thuế phí, đậu xe, nhiên liệu và phụ cấp lái xe",
+    "Comfortable and hygienic vehicle": "Xe thoải mái và hợp vệ sinh",
+    "Coupon code": "Mã giảm giá",
+    "input your discount number": "Nhập mã giảm giá",
+    "Apply voucher": "Áp dụng phiếu giảm giá",
+    "Booking amount": "Tiền đặt",
+    "Economy Price": "Giá hạng phổ thông",
+    "Discount": "Giảm",
+    "Tax": "Tax",
+    "Subtotal": "Tạm tính",
+    "remove": "xóa",
+    "Total Amount": "Tổng giá"
+  },
+
   "profile-page": {
     "My Booking": "My Booking",
     "Booking History": "Booking History",

@@ -1,5 +1,5 @@
-import { Col, Row, Slider } from 'antd'
-import { useEffect, useState } from 'react'
+import { Col, Row, Slider, InputNumber, Space } from 'antd'
+import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import './style.scss'
 
@@ -24,37 +24,73 @@ const optionAirlines = [
 
 const Flight = () => {
   let [searchParams, setSearchParams] = useSearchParams()
-  let [price, setPrice] = useState([0, 10000])
+  let [minPrice, setMinPrice] = useState(0)
+  let [maxPrice, setMaxPrice] = useState(10000)
+
+  const firstRender = useRef(true)
 
   const handlePriceChange = (value) => {
-    setPrice(value)
+    setMinPrice(value[0])
+    setMaxPrice(value[1])
   }
 
   useEffect(() => {
-    // setSearchParams({
-    //   ...searchParams,
-    //   minPrice: price[0],
-    //   maxPrice: price[1],
-    // })
-  }, [price])
+    if (firstRender.current) {
+      firstRender.current = false
+      return
+    }
+
+    const delayChange = setTimeout(() => {
+      setSearchParams({
+        ...searchParams,
+        minPrice,
+        maxPrice,
+      })
+    }, 1000)
+
+    return () => clearTimeout(delayChange)
+  }, [minPrice, maxPrice])
 
   return (
     <div className="filter">
       <Row className="filterItem price" justify="center">
         <Col span={24} className="title">
-          Filter by price
+          Price
         </Col>
         <Col span={20} className="content">
           <Slider
+            tipFormatter={(value) => `${value} USD`}
             range
             min={0}
             max={10000}
-            defaultValue={[0, 10000]}
-            // onChange={handleChangePrice}
-            onAfterChange={handlePriceChange}
-            tooltipVisible
+            value={[minPrice, maxPrice]}
+            onChange={handlePriceChange}
             tooltipPlacement="bottom"
+            tooltipVisible={false}
           />
+
+          <Space
+            style={{
+              justifyContent: 'space-between',
+              width: '100%',
+            }}
+          >
+            <InputNumber
+              min={0}
+              max={10000}
+              value={minPrice}
+              onChange={(value) => setMinPrice(value)}
+              prefix="$"
+            />
+            -
+            <InputNumber
+              min={0}
+              max={10000}
+              value={maxPrice}
+              onChange={(value) => setMaxPrice(value)}
+              prefix="$"
+            />
+          </Space>
         </Col>
       </Row>
       {/* <Row className="filterItem">

@@ -109,8 +109,20 @@
 
   "flight-list-page": {
     "flight-banner": {
-      "EXPLORE THE WORLD WITH US": "HÃY CÙNG CHÚNG TÔI KHÁM PHÁ THẾ GIỚI"
+      "EXPLORE THE WORLD WITH US": "HÃY CÙNG CHÚNG TÔI KHÁM PHÁ THẾ GIỚI",
+      "Amazing journeys. Every day.": "Những cuộc hành trình tuyệt vời. Mỗi ngày."
     }
+  },
+
+  "profile-page": {
+    "My Booking": "My Booking",
+    "Booking History": "Booking History",
+    "My Profile": "My Profile",
+    "Booking ID": "Booking ID",
+    "Journey": "Journey",
+    "Booking Amount": "Booking Amount",
+    "Status": "Status",
+    "Action": "Action"
   },
 
   "footer": {

@@ -109,9 +109,22 @@
 
   "flight-list-page": {
     "flight-banner": {
-      "EXPLORE THE WORLD WITH US": "EXPLORE THE WORLD WITH US"
+      "EXPLORE THE WORLD WITH US": "EXPLORE THE WORLD WITH US",
+      "Amazing journeys. Every day.": "Amazing journeys. Every day."
     }
   },
+
+  "profile-page": {
+    "My Booking": "My Booking",
+    "Booking History": "Booking History",
+    "My Profile": "My Profile",
+    "Booking ID": "Booking ID",
+    "Journey": "Journey",
+    "Booking Amount": "Booking Amount",
+    "Status": "Status",
+    "Action": "Action"
+  },
+
 
   "footer": {
     "Need any help?": "Need any help?",

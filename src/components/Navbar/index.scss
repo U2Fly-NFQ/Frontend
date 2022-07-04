@@ -16,15 +16,13 @@
 
   .wide.grid {
     padding-right: 40px;
-    .navbar__logo {
-      width: 150px;
-    }
+
     padding-top: 10px;
     display: flex;
     gap: 2rem;
     padding: 0 10px;
     .navbar__logo {
-      width: 180px;
+      max-height: 65px;
       img {
         width: 100%;
       }

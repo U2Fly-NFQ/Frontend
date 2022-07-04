@@ -8,9 +8,8 @@ const initialState = {
     flight: [],
     pagination: {},
   },
-  search: {
-    existingRoundTrip: false,
-  },
+  existingRoundTrip: false,
+  roundWayParams: {},
 }
 
 const flightSlice = createSlice({
@@ -39,7 +38,11 @@ const flightSlice = createSlice({
       })
       .addCase(checkExistingRoundTrip.fulfilled, (state, action) => {
         state.status = 'idle'
-        state.existingRoundTrip = action.payload
+        if (Object.keys(action.payload).length) {
+          state.existingRoundTrip = true
+          state.roundWayParams = action.payload
+        }
+        state.existingRoundTrip = false
       })
   },
 })
@@ -60,15 +63,18 @@ export const checkExistingRoundTrip = createAsyncThunk(
       seatType,
     })
 
-    const roundWays = await flight.getList({
+    const roundWayParams = {
       departure: arrival,
       arrival: departure,
       startTime: roundTime,
       seatType,
-    })
+    }
 
-    if (oneWays.data?.data?.length && roundWays.data?.data?.length) return true
-    return false
+    const roundWays = await flight.getList(roundWayParams)
+
+    if (oneWays.data?.data?.length && roundWays.data?.data?.length)
+      return roundWayParams
+    return {}
   }
 )
 

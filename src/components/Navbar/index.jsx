@@ -49,7 +49,7 @@ export default function Navbar() {
       <div className="navbar__dropdown__modal" ref={openNavbarModal}>
         <ul className="navbar__dropdown-menu">
           {navLinkDropDownData.map((item) => (
-            <li className="navbar__dropdown-menu__item">
+            <li key={item.path} className="navbar__dropdown-menu__item">
               <NavLink to={item.path}>{t(item.name)}</NavLink>
             </li>
           ))}

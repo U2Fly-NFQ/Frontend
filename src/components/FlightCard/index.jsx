@@ -2,21 +2,36 @@ import React from 'react'
 import { Skeleton } from 'antd'
 import { motion } from 'framer-motion'
 import './style.scss'
-import { useNavigate } from 'react-router-dom'
+import {
+  useNavigate,
+  useSearchParams,
+  createSearchParams,
+} from 'react-router-dom'
+import { getLsObj, updateLs } from '../../utils/localStorage'
+import { useSelector } from 'react-redux'
 
 export default function FlightCard({ data }) {
   const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const flight = useSelector((state) => state.flights)
 
   const onBooking = () => {
-    let existingBooking = JSON.parse(localStorage.getItem('flight') || {})
-    localStorage.setItem(
-      'flight',
-      JSON.stringify({
-        ...existingBooking,
-        id: data.id,
+    let flight = getLsObj('flight')
+    if (flight.seatType) {
+      updateLs('flight', {
+        oneWay: data.id,
       })
-    )
-    navigate('/flights-booking')
+
+      if (flight.seatType === 'oneWay') navigate('/flights-booking')
+      if (flight.seatType === 'roundTrip')
+        navigate({
+          pathname: 'flights',
+          search: createSearchParams({
+            ...searchParams,
+            ...flight.roundWayParams,
+          }).toString(),
+        })
+    }
   }
 
   return (

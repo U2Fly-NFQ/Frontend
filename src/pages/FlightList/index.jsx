@@ -1,8 +1,10 @@
 import { Col, Row, Typography, Pagination } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
-import { fetchFlights } from '../../redux/slices/flightSlice'
-import { useLoadingContext } from 'react-router-loading'
+import {
+  fetchFlights,
+  checkExistingRoundTrip,
+} from '../../redux/slices/flightSlice'
 import './style.scss'
 import {
   FlightListBanner,
@@ -13,6 +15,7 @@ import {
 } from '../../components'
 import { useEffect } from 'react'
 import { ScrollToTopButton } from '../../components'
+import { getLsObj } from '../../utils/localStorage'
 
 const { Title, Text } = Typography
 
@@ -24,18 +27,14 @@ function FlightList() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchFlights(searchParams))
-  }, [searchParams])
-  const loadingContext = useLoadingContext()
-  const loading = async () => {
-    // loading some data
+    const flight = getLsObj('flight')
+    if (flight.ticketType === 'roundWay')
+      dispatch(checkExistingRoundTrip(searchParams))
 
-    // call method to indicate that loading is done and we are ready to switch
-    loadingContext.done()
-  }
-  useEffect(() => {
-    loading()
-  }, [])
+    if (flight.existingRoundTrip) {
+      dispatch(fetchFlights(searchParams))
+    }
+  }, [searchParams])
 
   const changePage = (value) => {
     setSearchParams({

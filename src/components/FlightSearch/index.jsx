@@ -1,5 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import {
+  useLocation,
+  useNavigate,
+  createSearchParams,
+  useSearchParams,
+} from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { scrollTo } from '../../utils/scroll'
@@ -20,15 +25,19 @@ import {
 import { CloseOutlined } from '@ant-design/icons'
 import moment from 'moment'
 import { fetchAirports } from '../../redux/slices/airportSlice'
-import { updateLocalStorage } from '../../utils/localStorage'
+import { updateLs, getLsObj } from '../../utils/localStorage'
 
 const { Option } = Select
 
 export default function FlightSearch() {
+  const location = useLocation()
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const submitRef = useRef(null)
+  const [searchParams, setSearchParams] = useSearchParams()
+
   const airports = useSelector((state) => state.airports.data)
-  const existingRoundTrip = useSelector(
-    (state) => state.flights.search.existingRoundTrip
-  )
   const [ticketType, setTicketType] = useState('oneWay')
   const [from, setFrom] = useState('')
   const [to, setTo] = useState('')
@@ -39,18 +48,14 @@ export default function FlightSearch() {
   const [passengerClass, setPassengerClass] = useState('Economy')
   const [passengerNumber, setPassengerNumber] = useState(1)
   const [modalContent, setModalContent] = useState('')
-  const { t } = useTranslation()
-
-  let [searchParams, setSearchParams] = useSearchParams()
-  const dispatch = useDispatch()
-  const submitRef = useRef(null)
 
   useEffect(() => {
     // Get num passengers and class in local storage
-    let existingBooking = JSON.parse(localStorage.getItem('flight') || '[]')
-    const { seatType, passengerNumber } = existingBooking
+    let existingFlight = getLsObj('flight')
+    const { seatType, seatAvailable, ticketType } = existingFlight
+    if (ticketType) setPassengerClass(ticketType)
     if (seatType) setPassengerClass(seatType)
-    if (passengerNumber) setPassengerNumber(passengerNumber)
+    if (seatAvailable) setPassengerNumber(seatAvailable)
 
     dispatch(fetchAirports())
   }, [])
@@ -63,11 +68,6 @@ export default function FlightSearch() {
       return
     }
 
-    // if (ticketType === 'roundTrip')
-    //   dispatch(checkExistingRoundTrip())
-
-    // if (!existingRoundTrip) return;
-
     const searchQuery = {
       departure: from,
       arrival: to,
@@ -75,21 +75,31 @@ export default function FlightSearch() {
       seatType: passengerClass,
     }
 
-    updateLocalStorage('flight', {
+    updateLs('flight', {
+      ticketType,
       setType: passengerClass,
-      passengerNumber,
+      seatAvailable: passengerNumber,
     })
 
     scrollTo(500)
 
-    setSearchParams({
-      ...searchParams,
-      ...searchQuery,
+    if (location.pathname === '/flights')
+      setSearchParams({
+        ...searchParams,
+        ...searchQuery,
+      })
+
+    navigate({
+      pathname: 'flights',
+      search: createSearchParams({
+        ...searchParams,
+        ...searchQuery,
+      }).toString(),
     })
   }
 
   const onChangeTicketType = (value) => {
-    updateLocalStorage('flight', {
+    updateLs('flight', {
       ticketType: value,
     })
     setTicketType(value)

@@ -48,12 +48,12 @@ export default function FlightSearch() {
 
     let existingFlight = getLsObj('flight')
 
-    const { seatType, seatAvailable, departure, arrival, startTime } =
+    const { seatType, seatAvailable, departure, arrival, startDate } =
       existingFlight
 
     if (departure) setFrom(departure)
     if (arrival) setTo(arrival)
-    if (startTime) setJourneyDay(moment(startTime))
+    if (startDate) setJourneyDay(moment(startDate))
     if (ticketType) setTicketType(ticketType)
     if (seatType) setPassengerClass(seatType)
     if (seatAvailable) setPassengerNumber(seatAvailable)
@@ -72,7 +72,7 @@ export default function FlightSearch() {
     const searchQuery = {
       departure: from,
       arrival: to,
-      startTime: journeyDay.format('YYYY-MM-DD'),
+      startDate: journeyDay.format('YYYY-MM-DD'),
       seatType: passengerClass,
       seatAvailable: passengerNumber,
       ticketType,
@@ -84,7 +84,7 @@ export default function FlightSearch() {
       ...searchParams,
       departure: from,
       arrival: to,
-      startTime: journeyDay.format('YYYY-MM-DD'),
+      startDate: journeyDay.format('YYYY-MM-DD'),
       seatType: passengerClass,
       seatAvailable: passengerNumber,
     })
@@ -280,7 +280,7 @@ export default function FlightSearch() {
                     allowClear={false}
                     disabledDate={(current) => {
                       return (
-                        moment().add(-1, 'days') >= current ||
+                        moment().add(-3, 'days') >= current ||
                         moment().add(1, 'month') <= current
                       )
                     }}

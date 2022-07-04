@@ -119,7 +119,7 @@ function FlightList() {
                   {flight.length === 0 && <NotFoundFlight />}
                 </Col>
                 <Col flex={0} justify="center">
-                  {pagination.page && (
+                  {pagination.page && pagination.page !== 1 && (
                     <Pagination
                       onChange={changePage}
                       current={pagination.page}

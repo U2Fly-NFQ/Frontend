@@ -8,8 +8,18 @@ const { Text } = Typography
 const Flight = () => {
   let [searchParams, setSearchParams] = useSearchParams()
   let [minPrice, setMinPrice] = useState(0)
-  let [maxPrice, setMaxPrice] = useState(10000)
+  let [maxPrice, setMaxPrice] = useState(1500)
   let [isClear, setIsClear] = useState(false)
+
+  const getParams = () => {
+    const params = {}
+
+    searchParams.forEach((key, value) => {
+      params[value] = key
+    })
+
+    return params
+  }
 
   const handlePriceChange = (value) => {
     setIsClear(false)
@@ -20,7 +30,7 @@ const Flight = () => {
   const clearPrice = () => {
     setIsClear(true)
     setMinPrice(0)
-    setMaxPrice(10000)
+    setMaxPrice(1500)
     searchParams.delete('minPrice')
     searchParams.delete('maxPrice')
     setSearchParams(searchParams)
@@ -37,11 +47,9 @@ const Flight = () => {
     if (isClear) return
 
     const delayChange = setTimeout(() => {
-      setSearchParams({
-        ...searchParams,
-        minPrice,
-        maxPrice,
-      })
+      searchParams.set('minPrice', minPrice)
+      searchParams.set('maxPrice', maxPrice)
+      setSearchParams(searchParams)
     }, 1000)
 
     return () => clearTimeout(delayChange)
@@ -58,7 +66,7 @@ const Flight = () => {
             }}
           >
             <Text>Price</Text>
-            {(minPrice !== 0 || maxPrice !== 10000) && (
+            {(minPrice !== 0 || maxPrice !== 1500) && (
               <Text className="clear-btn" italic onClick={clearPrice}>
                 Clear
               </Text>
@@ -70,7 +78,7 @@ const Flight = () => {
             tipFormatter={(value) => `${value} USD`}
             range
             min={0}
-            max={10000}
+            max={1500}
             value={[minPrice, maxPrice]}
             onChange={handlePriceChange}
             tooltipPlacement="bottom"
@@ -85,7 +93,7 @@ const Flight = () => {
           >
             <InputNumber
               min={0}
-              max={10000}
+              max={1500}
               value={minPrice}
               onChange={(value) => handlePriceChange([value, maxPrice])}
               prefix="$"
@@ -93,7 +101,7 @@ const Flight = () => {
             -
             <InputNumber
               min={0}
-              max={10000}
+              max={1500}
               value={maxPrice}
               onChange={(value) => handlePriceChange(minPrice, value)}
               prefix="$"

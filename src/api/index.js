@@ -1,17 +1,16 @@
 import axios from 'axios'
 
-function getLocalToken() {
-  const token = window.localStorage.getItem('token')
-  return token
-}
-
-const axiosInstance = axios.create({
+let config = {
   baseURL: process.env.REACT_APP_SERVER_API,
   timeout: 300000,
-  headers: {
+}
+
+if (localStorage.getItem('token'))
+  config.headers = {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
-  },
-})
+  }
+
+const axiosInstance = axios.create(config)
 
 axiosInstance.setToken = (token) => {
   axiosInstance.defaults.headers.Authorization = `Bearer ${token}`

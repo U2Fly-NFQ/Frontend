@@ -26,10 +26,7 @@ export default function Navbar() {
 
         <ul className="navbar__links">
           <NavLinkDropDown
-            Title={{ path: '', title: t('header.navbar.home') }}
-          />
-          <NavLinkDropDown
-            Title={{ path: 'flights', title: t('header.navbar.flight') }}
+            Title={{ path: '', title: t('header.navbar.flight') }}
           />
         </ul>
         <div className="navbar__footer">

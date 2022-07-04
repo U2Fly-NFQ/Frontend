@@ -1,10 +1,7 @@
-import { Col, Row, Typography, Pagination } from 'antd'
+import { Col, Row, Typography, Pagination, Select } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
-import {
-  fetchFlights,
-  checkExistingRoundTrip,
-} from '../../redux/slices/flightSlice'
+import { fetchFlights } from '../../redux/slices/flightSlice'
 import './style.scss'
 import {
   FlightListBanner,
@@ -13,41 +10,37 @@ import {
   FlightCard,
   NotFoundFlight,
 } from '../../components'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { ScrollToTopButton } from '../../components'
-import { getLsObj } from '../../utils/localStorage'
 
 const { Title, Text } = Typography
+const { Option } = Select
 
 function FlightList() {
   const { data, status } = useSelector((state) => state.flights)
   const { flight, pagination } = data
 
-  let [searchParams, setSearchParams] = useSearchParams()
   const dispatch = useDispatch()
+  let [searchParams, setSearchParams] = useSearchParams()
+
+  const [order, setOrder] = useState('price.asc')
 
   useEffect(() => {
-    const flight = getLsObj('flight')
-    if (flight.ticketType === 'roundWay')
-      dispatch(checkExistingRoundTrip(searchParams))
-
-    if (flight.existingRoundTrip) {
-      dispatch(fetchFlights(searchParams))
-    }
+    dispatch(fetchFlights(searchParams))
   }, [searchParams])
 
+  const changeOrder = (value) => {
+    setOrder(value)
+    searchParams.set('order', value)
+    setSearchParams(searchParams)
+  }
+
   const changePage = (value) => {
-    setSearchParams({
-      ...searchParams,
-      page: value,
-    })
+    setSearchParams(searchParams.set('page', value))
   }
 
   const changeSize = (value) => {
-    setSearchParams({
-      ...searchParams,
-      offset: value,
-    })
+    setSearchParams(searchParams.set('offset', value))
   }
 
   return (
@@ -99,15 +92,25 @@ function FlightList() {
                   </div>
                 </div>
               </div>
-              <div className="flight-search-title-container">
-                <Title level={4}>{pagination?.total} tours found</Title>
-              </div>
             </Col>
             <Col span={24} md={6}>
               <FlightListFilter />
             </Col>
             <Col span={24} md={18}>
               <Row gutter={[16, 16]} justify="center">
+                <Col span={24}>
+                  <div className="flight-search-title-container">
+                    <Title level={4}>{pagination?.total} tours found</Title>
+                    <Select
+                      value={order}
+                      style={{ width: 180, textAlign: 'left' }}
+                      onChange={changeOrder}
+                    >
+                      <Option value="price.asc">Cheapest price first</Option>
+                      <Option value="duration.asc">Fastest time first</Option>
+                    </Select>
+                  </div>
+                </Col>
                 <Col span={24}>
                   {status === 'loading' && <h1>loading..</h1>}
                   {flight.map((f) => (
@@ -119,7 +122,7 @@ function FlightList() {
                   {pagination.page && (
                     <Pagination
                       onChange={changePage}
-                      defaultCurrent={pagination.page}
+                      current={pagination.page}
                       onShowSizeChange={changeSize}
                       total={pagination.total}
                       pageSize={pagination.offset}

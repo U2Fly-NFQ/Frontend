@@ -1,13 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
-import {
-  useLocation,
-  useNavigate,
-  createSearchParams,
-  useSearchParams,
-} from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { scrollTo } from '../../utils/scroll'
 
 import './style.scss'
 import {
@@ -22,7 +16,6 @@ import {
   Modal,
 } from 'antd'
 
-import { CloseOutlined } from '@ant-design/icons'
 import moment from 'moment'
 import { fetchAirports } from '../../redux/slices/airportSlice'
 import { updateLs, getLsObj } from '../../utils/localStorage'
@@ -38,11 +31,12 @@ export default function FlightSearch() {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const airports = useSelector((state) => state.airports.data)
-  const [ticketType, setTicketType] = useState('oneWay')
+  const [searchTo, setSearchTo] = useState('')
+  const [searchFrom, setSearchFrom] = useState('')
+
   const [from, setFrom] = useState('')
   const [to, setTo] = useState('')
-  const [searchFrom, setSearchFrom] = useState('')
-  const [searchTo, setSearchTo] = useState('')
+  const [ticketType, setTicketType] = useState('oneWay')
   const [journeyDay, setJourneyDay] = useState(moment())
   const [returnDay, setReturnDay] = useState(moment().add(3, 'days'))
   const [passengerClass, setPassengerClass] = useState('Economy')
@@ -50,14 +44,21 @@ export default function FlightSearch() {
   const [modalContent, setModalContent] = useState('')
 
   useEffect(() => {
-    // Get num passengers and class in local storage
+    dispatch(fetchAirports())
+
     let existingFlight = getLsObj('flight')
-    const { seatType, seatAvailable, ticketType } = existingFlight
-    if (ticketType) setPassengerClass(ticketType)
+
+    const { seatType, seatAvailable, departure, arrival, startTime } =
+      existingFlight
+
+    if (departure) setFrom(departure)
+    if (arrival) setTo(arrival)
+    if (startTime) setJourneyDay(moment(startTime))
+    if (ticketType) setTicketType(ticketType)
     if (seatType) setPassengerClass(seatType)
     if (seatAvailable) setPassengerNumber(seatAvailable)
 
-    dispatch(fetchAirports())
+    setSearchParams({ ...existingFlight })
   }, [])
 
   const onFinish = () => {
@@ -73,35 +74,23 @@ export default function FlightSearch() {
       arrival: to,
       startTime: journeyDay.format('YYYY-MM-DD'),
       seatType: passengerClass,
+      seatAvailable: passengerNumber,
+      ticketType,
     }
 
-    updateLs('flight', {
-      ticketType,
-      setType: passengerClass,
+    updateLs('flight', searchQuery)
+
+    setSearchParams({
+      ...searchParams,
+      departure: from,
+      arrival: to,
+      startTime: journeyDay.format('YYYY-MM-DD'),
+      seatType: passengerClass,
       seatAvailable: passengerNumber,
-    })
-
-    scrollTo(500)
-
-    if (location.pathname === '/flights')
-      setSearchParams({
-        ...searchParams,
-        ...searchQuery,
-      })
-
-    navigate({
-      pathname: 'flights',
-      search: createSearchParams({
-        ...searchParams,
-        ...searchQuery,
-      }).toString(),
     })
   }
 
   const onChangeTicketType = (value) => {
-    updateLs('flight', {
-      ticketType: value,
-    })
     setTicketType(value)
   }
 
@@ -117,12 +106,18 @@ export default function FlightSearch() {
 
   const clearFrom = () => {
     setFrom('')
+    updateLs('flight', {
+      departure: '',
+    })
     searchParams.delete('departure')
     setSearchParams(searchParams)
   }
 
   const clearTo = () => {
     setTo('')
+    updateLs('flight', {
+      arrival: '',
+    })
     searchParams.delete('arrival')
     setSearchParams(searchParams)
   }
@@ -197,15 +192,8 @@ export default function FlightSearch() {
               <Select
                 size="large"
                 onClear={clearFrom}
-                clearIcon={
-                  <CloseOutlined
-                    style={{
-                      fontSize: '20px',
-                    }}
-                  />
-                }
                 showSearch
-                defaultValue={from}
+                value={from}
                 showArrow={false}
                 filterOption={() => true}
                 onChange={onChangeFrom}
@@ -233,8 +221,7 @@ export default function FlightSearch() {
                 })}
               </Select>
               <p className="flightSearchSelected">
-                {/* {airports &&
-                  airports.find((ap) => ap.iata === from?.value)?.name} */}
+                {airports && airports.find((ap) => ap.iata === from)?.name}
               </p>
             </div>
           </Col>
@@ -243,18 +230,11 @@ export default function FlightSearch() {
               <i className="flightSearchBox__Icon fa-solid fa-plane-arrival"></i>
               <label className="flightSearchLabel">{t('search_form.to')}</label>
               <Select
-                clearIcon={
-                  <CloseOutlined
-                    style={{
-                      fontSize: '20px',
-                    }}
-                  />
-                }
                 size="large"
                 showSearch
                 allowClear
                 onClear={clearTo}
-                defaultValue={to}
+                value={to}
                 showArrow={false}
                 filterOption={() => true}
                 onChange={onChangeTo}
@@ -281,7 +261,7 @@ export default function FlightSearch() {
                 })}
               </Select>
               <p className="flightSearchSelected">
-                {/* {airports && airports.find((ap) => ap.iata === to?.value)?.name} */}
+                {airports && airports.find((ap) => ap.iata === to)?.name}
               </p>
             </div>
           </Col>
@@ -362,16 +342,6 @@ export default function FlightSearch() {
             >
               Search
             </button>
-            {/* <Button
-              className="close-btn"
-              icon={<CloseOutlined />}
-              onClick={clearAllSearch}
-              style={{
-                display: (from && to && 'block') || 'none',
-              }}
-            >
-              Clear all
-            </Button> */}
           </Tooltip>
         </div>
       </div>

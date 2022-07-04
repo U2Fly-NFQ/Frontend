@@ -16,14 +16,9 @@ const Login = () => {
 
   useEffect(() => {
     if (user.id) {
-      // admin
-      if (user.roles['2']) {
-        navigate('/admin')
-      }
-
       // user
       if (user.roles['1']) {
-        navigate('/flights')
+        navigate('/')
       }
     }
   }, [user.id])

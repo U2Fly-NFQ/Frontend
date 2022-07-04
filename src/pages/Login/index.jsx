@@ -6,6 +6,8 @@ import { LoginBanner, PageLoadingAnimation } from '../../components'
 import './style.scss'
 import { useEffect, useState } from 'react'
 import axiosInstance from '../../api'
+import { findKey } from 'lodash'
+import { User_Roles } from '../../Constants'
 
 const { Title } = Typography
 
@@ -16,13 +18,11 @@ const Login = () => {
 
   useEffect(() => {
     if (user.id) {
+      const index = findKey(user.roles, (o) => o === User_Roles.Admin)
       // admin
-      if (user.roles['2']) {
+      if (index) {
         navigate('/admin')
-      }
-
-      // user
-      if (user.roles['1']) {
+      } else {
         navigate('/flights')
       }
     }

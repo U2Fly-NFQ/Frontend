@@ -1,71 +1,106 @@
-import { Col, Row, Slider } from 'antd'
-import { useEffect, useState } from 'react'
+import { Col, Row, Slider, InputNumber, Space, Typography } from 'antd'
+import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import './style.scss'
 
-const optionAirlines = [
-  {
-    label: 'VietJet Air',
-    value: 'VJ',
-  },
-  {
-    label: 'Vietnam Airlines',
-    value: 'VN',
-  },
-  {
-    label: 'Bamboo Airways',
-    value: 'QH',
-  },
-  {
-    label: 'Vietravel Airlines',
-    value: 'VU',
-  },
-]
+const { Text } = Typography
 
 const Flight = () => {
   let [searchParams, setSearchParams] = useSearchParams()
-  let [price, setPrice] = useState([0, 10000])
+  let [minPrice, setMinPrice] = useState(0)
+  let [maxPrice, setMaxPrice] = useState(10000)
+  let [isClear, setIsClear] = useState(false)
 
   const handlePriceChange = (value) => {
-    setPrice(value)
+    setIsClear(false)
+    setMinPrice(value[0])
+    setMaxPrice(value[1])
   }
 
+  const clearPrice = () => {
+    setIsClear(true)
+    setMinPrice(0)
+    setMaxPrice(10000)
+    searchParams.delete('minPrice')
+    searchParams.delete('maxPrice')
+    setSearchParams(searchParams)
+  }
+
+  let firstRender = useRef(true)
+
   useEffect(() => {
-    // setSearchParams({
-    //   ...searchParams,
-    //   minPrice: price[0],
-    //   maxPrice: price[1],
-    // })
-  }, [price])
+    if (firstRender.current) {
+      firstRender.current = false
+      return
+    }
+
+    if (isClear) return
+
+    const delayChange = setTimeout(() => {
+      setSearchParams({
+        ...searchParams,
+        minPrice,
+        maxPrice,
+      })
+    }, 1000)
+
+    return () => clearTimeout(delayChange)
+  }, [minPrice, maxPrice])
 
   return (
     <div className="filter">
       <Row className="filterItem price" justify="center">
         <Col span={24} className="title">
-          Filter by price
+          <Space
+            style={{
+              justifyContent: 'space-between',
+              width: '100%',
+            }}
+          >
+            <Text>Price</Text>
+            {(minPrice !== 0 || maxPrice !== 10000) && (
+              <Text className="clear-btn" italic onClick={clearPrice}>
+                Clear
+              </Text>
+            )}
+          </Space>
         </Col>
         <Col span={20} className="content">
           <Slider
+            tipFormatter={(value) => `${value} USD`}
             range
             min={0}
             max={10000}
-            defaultValue={[0, 10000]}
-            // onChange={handleChangePrice}
-            onAfterChange={handlePriceChange}
-            tooltipVisible
+            value={[minPrice, maxPrice]}
+            onChange={handlePriceChange}
             tooltipPlacement="bottom"
+            tooltipVisible={false}
           />
+
+          <Space
+            style={{
+              justifyContent: 'space-between',
+              width: '100%',
+            }}
+          >
+            <InputNumber
+              min={0}
+              max={10000}
+              value={minPrice}
+              onChange={(value) => handlePriceChange([value, maxPrice])}
+              prefix="$"
+            />
+            -
+            <InputNumber
+              min={0}
+              max={10000}
+              value={maxPrice}
+              onChange={(value) => handlePriceChange(minPrice, value)}
+              prefix="$"
+            />
+          </Space>
         </Col>
       </Row>
-      {/* <Row className="filterItem">
-        <Col span={24} className="title">
-          Airlines
-        </Col>
-        <Col span={24} className="content">
-
-          </Radio.Group>
-        </Col>
-      </Row> */}
     </div>
   )
 }

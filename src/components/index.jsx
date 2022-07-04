@@ -30,3 +30,9 @@ export { default as ScrollToTopButton } from './ScrollToTopButton'
 //For admin
 export { default as AdminSidebar } from './AdminSidebar'
 export { default as AdminHeader } from './AdminHeader'
+
+//For User
+export { default as UserProfileSidebar } from './UserProfileSidebar'
+export { default as UserTicket } from './UserTicket'
+export { default as UserBookingDetail } from './UserBookingDetail'
+export { default as UserBookingTable } from './UserBookingTable'

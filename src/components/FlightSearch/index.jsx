@@ -20,18 +20,22 @@ import {
 import { CloseOutlined } from '@ant-design/icons'
 import moment from 'moment'
 import { fetchAirports } from '../../redux/slices/airportSlice'
+import { updateLocalStorage } from '../../utils/localStorage'
 
 const { Option } = Select
 
 export default function FlightSearch() {
   const airports = useSelector((state) => state.airports.data)
+  const existingRoundTrip = useSelector(
+    (state) => state.flights.search.existingRoundTrip
+  )
+  const [ticketType, setTicketType] = useState('oneWay')
   const [from, setFrom] = useState('')
   const [to, setTo] = useState('')
   const [searchFrom, setSearchFrom] = useState('')
   const [searchTo, setSearchTo] = useState('')
   const [journeyDay, setJourneyDay] = useState(moment())
   const [returnDay, setReturnDay] = useState(moment().add(3, 'days'))
-  const [ticket, setTicket] = useState('oneWay')
   const [passengerClass, setPassengerClass] = useState('Economy')
   const [passengerNumber, setPassengerNumber] = useState(1)
   const [modalContent, setModalContent] = useState('')
@@ -59,23 +63,22 @@ export default function FlightSearch() {
       return
     }
 
+    // if (ticketType === 'roundTrip')
+    //   dispatch(checkExistingRoundTrip())
+
+    // if (!existingRoundTrip) return;
+
     const searchQuery = {
       departure: from,
       arrival: to,
-      // startTime: journeyDay.format('YYYY-MM-DD'),
+      startTime: journeyDay.format('YYYY-MM-DD'),
       seatType: passengerClass,
     }
 
-    let existingBooking = JSON.parse(localStorage.getItem('flight') || '[]')
-
-    localStorage.setItem(
-      'flight',
-      JSON.stringify({
-        ...existingBooking,
-        setType: passengerClass,
-        passengerNumber,
-      })
-    )
+    updateLocalStorage('flight', {
+      setType: passengerClass,
+      passengerNumber,
+    })
 
     scrollTo(500)
 
@@ -83,6 +86,13 @@ export default function FlightSearch() {
       ...searchParams,
       ...searchQuery,
     })
+  }
+
+  const onChangeTicketType = (value) => {
+    updateLocalStorage('flight', {
+      ticketType: value,
+    })
+    setTicketType(value)
   }
 
   const onChangeFrom = (option) => {
@@ -155,8 +165,8 @@ export default function FlightSearch() {
       <div className="flightSearch">
         <div className="flightSearchCategories">
           <Radio.Group
-            value={ticket}
-            onChange={(e) => setTicket(e.target.value)}
+            value={ticketType}
+            onChange={(e) => onChangeTicketType(e.target.value)}
           >
             <Radio.Button value="oneWay">
               {t('search_form.one_way')}
@@ -289,7 +299,7 @@ export default function FlightSearch() {
                     format={'MM/DD/YY'}
                   />
                 </Col>
-                {ticket !== 'oneWay' && (
+                {ticketType !== 'oneWay' && (
                   <Col span={12}>
                     <label className="flightSearchLabel">
                       {t('search_form.return_date')}

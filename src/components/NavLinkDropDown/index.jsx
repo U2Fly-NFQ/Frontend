@@ -12,10 +12,7 @@ export default function NavLinkDropDown({ Title, ListDropDown }) {
     <li className="navbar__link">
       <NavLinkCustom to={`/${Title.path}`}>
         <p className="navbar__link__data">
-          {Title.title}{' '}
-          {ListDropDown && (
-            <DownOutlined style={{ fontSize: '10px', fontWeight: '500' }} />
-          )}
+          {Title.title} {ListDropDown && <DownOutlined />}
         </p>
       </NavLinkCustom>
       {ListDropDown && (

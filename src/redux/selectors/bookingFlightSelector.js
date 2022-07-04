@@ -21,7 +21,9 @@ export const getInfoFlightInBookingSeat = (state) =>
 
 export const getInfoPriceAfterDiscount = (state) =>
   state.bookingFlight.priceAfterDiscount
-/// discount information
+
+export const getInfoStartTime = (state) =>
+  state.bookingFlight.dataFlight.startTime
 
 export const getDiscountForBookingAirline = (state) =>
   state.bookingFlight.discountInfo

@@ -1,4 +1,3 @@
-import { SearchOutlined } from '@ant-design/icons'
 import React, { useRef } from 'react'
 import ButtonOfPage from '../ButtonOfPage'
 import NavLinkDropDown from '../NavLinkDropDown'
@@ -16,10 +15,6 @@ export default function Navbar() {
   const navLinkDropDownData = [
     { path: '', name: 'header.navbar.home' },
     { path: '/flights', name: 'header.navbar.flight' },
-    { path: '/tour', name: 'header.navbar.tour' },
-
-    { path: '/admin', name: 'header.navbar.admin' },
-    { path: '/pages', name: 'header.navbar.pages' },
   ]
   const { t } = useTranslation()
   return (
@@ -35,35 +30,9 @@ export default function Navbar() {
           />
           <NavLinkDropDown
             Title={{ path: 'flights', title: t('header.navbar.flight') }}
-            ListDropDown={[
-              {
-                path: 'flights',
-                title: t('header.navbar.flight'),
-              },
-              {
-                path: 'flights-booking',
-                title: t('header.navbar.flight_booking'),
-              },
-            ]}
-          />
-          <NavLinkDropDown
-            Title={{ path: 'Tour', title: t('header.navbar.tour') }}
-            ListDropDown={[
-              {
-                path: 'flights',
-                title: t('header.navbar.flight'),
-              },
-              {
-                path: 'flights-booking',
-                title: t('header.navbar.flight_booking'),
-              },
-            ]}
           />
         </ul>
         <div className="navbar__footer">
-          <div className="navbar__footer__search">
-            <SearchOutlined />
-          </div>
           <div className="navbar__footer__btn">
             <ButtonOfPage title={t('cta.become_partner')} />
           </div>

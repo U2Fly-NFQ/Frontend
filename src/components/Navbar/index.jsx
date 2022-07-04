@@ -2,7 +2,6 @@ import React, { useRef } from 'react'
 import ButtonOfPage from '../ButtonOfPage'
 import NavLinkDropDown from '../NavLinkDropDown'
 import './index.scss'
-import getLogo from '../../assets/images/system/logo.png'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 export default function Navbar() {
@@ -19,11 +18,12 @@ export default function Navbar() {
   const { t } = useTranslation()
   return (
     <nav className="navbar">
-      <div className="wide grid">
-        <div className="navbar__logo">
-          <img src={getLogo} className="navbar__logo" />
-        </div>
-
+      <div
+        className="wide grid"
+        style={{
+          padding: '10px 0',
+        }}
+      >
         <ul className="navbar__links">
           <NavLinkDropDown
             Title={{ path: '', title: t('header.navbar.flight') }}

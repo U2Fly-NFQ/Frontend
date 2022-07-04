@@ -16,15 +16,13 @@
 
   .wide.grid {
     padding-right: 40px;
-    .navbar__logo {
-      width: 150px;
-    }
+
     padding-top: 10px;
     display: flex;
     gap: 2rem;
     padding: 0 10px;
     .navbar__logo {
-      width: 180px;
+      max-height: 65px;
       img {
         width: 100%;
       }
@@ -41,9 +39,9 @@
         gap: 0.6rem;
         align-items: center;
         color: #fff;
-        font-size: 14px;
+        font-size: 18px;
         span {
-          font: 14px;
+          font: 18px;
         }
       }
       .navbar__link:hover {
@@ -252,7 +250,7 @@
         display: block;
         .navbar__dropdown-menu {
           // display: block;
-          animation: mymove 0.5s;
+
           display: flex;
           justify-content: center;
           flex-direction: column;
@@ -279,14 +277,5 @@
         }
       }
     }
-  }
-}
-
-@keyframes mymove {
-  from {
-    height: 10px;
-  }
-  to {
-    height: 360px;
   }
 }

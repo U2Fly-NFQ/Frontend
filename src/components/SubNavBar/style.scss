@@ -17,18 +17,17 @@
       list-style-type: none;
       display: inline-block;
       color: a.$white-color;
-
       font-size: 14px;
 
       &::before {
         content: '';
         position: absolute;
-        top: 3px;
-        right: -15px;
+        top: 0;
+        right: 0px;
         width: 1px;
-        height: 15px;
+        height: 70%;
+        transform: translateY(20%);
         background-color: #dbdbdb78;
-        z-index: 9999;
       }
 
       &:last-of-type::before {
@@ -37,7 +36,6 @@
 
       a {
         padding-right: 7px;
-        line-height: 20px;
       }
     }
 
@@ -60,9 +58,4 @@
       justify-content: flex-end;
     }
   }
-}
-@media only screen and (max-width: 580px) {
-  // .sub-nav {
-  //   display: none;
-  // }
 }

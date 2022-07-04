@@ -17,20 +17,37 @@ export default function FlightCard({ data }) {
 
   const onBooking = () => {
     let flight = getLsObj('flight')
-    if (flight.seatType) {
-      updateLs('flight', {
-        oneWay: data.id,
-      })
 
-      if (flight.seatType === 'oneWay') navigate('/flights-booking')
-      if (flight.seatType === 'roundTrip')
-        navigate({
-          pathname: 'flights',
-          search: createSearchParams({
-            ...searchParams,
-            ...flight.roundWayParams,
-          }).toString(),
+    if (flight.ticketType) {
+      if (flight.ticketType === 'oneWay') {
+        updateLs('flight', {
+          id: data.id,
         })
+        navigate('/flights-booking')
+        return
+      }
+
+      if (flight.seatType === 'roundTrip') {
+        if (flight.id) {
+          updateLs('flight', {
+            roundId: data.id,
+          })
+          navigate('/flights-booking')
+          return
+        } else {
+          navigate({
+            pathname: 'flights',
+            search: createSearchParams({
+              departure: flight.arrival,
+              arrival: flight.departure,
+              startDate: flight.returnDate,
+              seatType: flight.seatType,
+              seatAvailable: flight.seatAvailable,
+            }).toString(),
+          })
+          return
+        }
+      }
     }
   }
 
@@ -80,7 +97,13 @@ export default function FlightCard({ data }) {
                     src="https://andit.co/projects/html/and-tour/assets/img/icon/right_arrow.png"
                     alt=""
                   />
-                  <h6>Non-stop</h6>
+                  <h6
+                    style={{
+                      color: 'var(--ant-infor-color)',
+                    }}
+                  >
+                    Direct
+                  </h6>
                   <p>{data.duration} hour</p>
                 </div>
                 <div className="flight-card-place__to">

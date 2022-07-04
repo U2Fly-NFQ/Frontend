@@ -76,12 +76,12 @@ export default function FlightSearch() {
       seatType: passengerClass,
       seatAvailable: passengerNumber,
       ticketType,
+      returnDay,
     }
 
     updateLs('flight', searchQuery)
 
     setSearchParams({
-      ...searchParams,
       departure: from,
       arrival: to,
       startDate: journeyDay.format('YYYY-MM-DD'),

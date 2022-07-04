@@ -54,7 +54,7 @@ const SubNavBar = () => {
                     }
                     defaultValue={user.username}
                     onChange={(value) => {
-                      if (value === 'booked') navigate('/user/booked')
+                      if (value === 'booked') navigate('profile')
                       if (value === 'logout') {
                         localStorage.removeItem('user')
                         localStorage.removeItem('token')

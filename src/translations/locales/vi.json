@@ -125,7 +125,16 @@
     "Times": "Buổi",
     "Price": "Giá",
     "Clear": "Xóa",
-    "$": "₫"
+    "$": "₫",
+    "From": "Từ",
+    "To": "Đến",
+    "OFF": "*GIẢM {{number}}%",
+    "Direct": "Thẳng",
+    "hour": "giờ",
+    "Book now": "Đặt ngay",
+    "Flight details": "Chi tiết chuyến bay",
+    "Delete": "Xóa bỏ",
+    "Selected outbound": "Đã chọn"
   },
 
   

@@ -9,11 +9,13 @@ import {
 } from 'react-router-dom'
 import { getLsObj, updateLs } from '../../utils/localStorage'
 import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 export default function FlightCard({ data }) {
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   const flight = useSelector((state) => state.flights)
+  const { t } = useTranslation()
 
   const onBooking = () => {
     let flight = getLsObj('flight')
@@ -79,7 +81,7 @@ export default function FlightCard({ data }) {
                 <div className="flight-card-place__from">
                   <div className="flight-card-place-destination">
                     <p className="flight-card-place-destination__sub-title">
-                      From
+                      {t('flight-list-page.From')}
                     </p>
                     <h3 className="flight-card-place-destination__title">
                       {data.departure.city} ({data.departure.iata})
@@ -102,14 +104,16 @@ export default function FlightCard({ data }) {
                       color: 'var(--ant-infor-color)',
                     }}
                   >
-                    Direct
+                    {t('flight-list-page.Direct')}
                   </h6>
-                  <p>{data.duration} hour</p>
+                  <p>
+                    {data.duration} {t('flight-list-page.hour')}
+                  </p>
                 </div>
                 <div className="flight-card-place__to">
                   <div className="flight-card-place-destination">
                     <p className="flight-card-place-destination__sub-title">
-                      To
+                      {t('flight-list-page.To')}
                     </p>
                     <h3 className="flight-card-place-destination__title">
                       {data.arrival.city} ({data.arrival.iata})
@@ -128,11 +132,11 @@ export default function FlightCard({ data }) {
                 </h5>
                 <h2 className="flight-card-price__off">
                   ${data.seat.price}
-                  <sup>*20% OFF</sup>
+                  <sup>{t('flight-list-page.OFF', { number: 20 })}</sup>
                 </h2>
               </div>
               <button className="btn btn-primary btn-md" onClick={onBooking}>
-                Book now
+                {t('flight-list-page.Book now')}
               </button>
             </div>
           </div>

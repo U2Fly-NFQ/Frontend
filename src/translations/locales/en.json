@@ -126,7 +126,16 @@
     "Times": "Times",
     "Price": "Price",
     "Clear": "Clear",
-    "$": "$"
+    "$": "$",
+    "From": "From",
+    "To": "To",
+    "OFF": "*{{number}}% OFF",
+    "Direct": "Direct",
+    "hour": "hour",
+    "Book now": "Book now",
+    "Flight details": "Flight details",
+    "Delete": "Delete",
+    "Selected outbound": "Selected outbound"
   },
 
   "flight-booking-page": {

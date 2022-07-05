@@ -82,10 +82,12 @@ function FlightList() {
                 <div className="selected-outbound">
                   <div className="wrapper">
                     <div className="header">
-                      <Text className="main-title">Selected outbound</Text>
+                      <Text className="main-title">
+                        {t('flight-list-page.Selected outbound')}
+                      </Text>
                       <div className="sub-title">
-                        <Text>Flight details</Text>
-                        <Text>Delete</Text>
+                        <Text>{t('flight-list-page.Flight details')}</Text>
+                        <Text>{t('flight-list-page.Delete')}</Text>
                       </div>
                     </div>
                     <div className="content">

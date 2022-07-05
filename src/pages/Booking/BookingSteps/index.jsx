@@ -1,47 +1,70 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Steps } from 'antd'
-import {
-  getInfoFlightInBookingArrival,
-  getInfoFlightInBookingDeparture,
-  getInfoStartTime,
-} from '../../../redux/selectors'
+import { getCurrentMethodInBookingFlight } from '../../../redux/selectors'
 import './index.scss'
+import { changeCurrentMethod } from '../../../redux/slices/bookingFlightsSlice'
 
-import { ArrowRightOutlined } from '@ant-design/icons'
-import moment from 'moment'
-export default function BookingSteps() {
-  const arrival = useSelector(getInfoFlightInBookingArrival)
-  const departure = useSelector(getInfoFlightInBookingDeparture)
-  const startTime = useSelector(getInfoStartTime)
+export default function BookingSteps({ contentTop, contentBottom }) {
+  const dispatch = useDispatch()
+  const getCurrentMethod = useSelector(getCurrentMethodInBookingFlight)
+
   const { Step } = Steps
-  console.log()
+  const onChange = (value) => {
+    dispatch(changeCurrentMethod(value))
+  }
   return (
-    <Steps type="navigation" className="booking-steps">
+    <Steps
+      type="navigation"
+      className="booking-steps"
+      current={getCurrentMethod}
+    >
       <Step
         status="finish"
         className="booking-steps__flight"
         title={
           <div className="booking-steps__flight__container">
-            <div className="booking-steps__flight__content">
-              <div>
-                <i class="fa-solid fa-plane-up"></i>
-              </div>
-              <div> {arrival.iata}</div>
-              <div>
-                <ArrowRightOutlined />
-              </div>
-              <div>{departure.iata}</div>
+            <div className="booking-steps__flight__logo">
+              <i class="fa-regular fa-user"></i>
             </div>
-            <div className="booking-steps__flight__content">
-              <p>{moment(startTime.date).format('DD.MM.YYYY')}</p>
+            <div>
+              <div className="booking-steps__flight__content">
+                <h4>Thông tin khách Hàng</h4>
+              </div>
             </div>
           </div>
         }
       />
-      <Step status="process" title="Step 2" />
-      <Step status="wait" title="Step 3" />
-      <Step status="wait" title="Step 4" />
+      <Step
+        status="wait"
+        title={
+          <div className="booking-steps__flight__container">
+            <div className="booking-steps__flight__logo">
+              <i class="fa-solid fa-credit-card"></i>
+            </div>
+            <div>
+              <div className="booking-steps__flight__content">
+                <h4>Phương Thức Thanh Toán</h4>
+              </div>
+            </div>
+          </div>
+        }
+      />
+      <Step
+        status="wait"
+        title={
+          <div className="booking-steps__flight__container">
+            <div className="booking-steps__flight__logo">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div>
+              <div className="booking-steps__flight__content">
+                <h4>Thanh Toán Thành Công</h4>
+              </div>
+            </div>
+          </div>
+        }
+      />
     </Steps>
   )
 }

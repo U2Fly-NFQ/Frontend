@@ -1,5 +1,5 @@
 import { Row, Col, Typography, Form } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { loginApi } from '../../api/Auth'
 
 import { LoginBanner, PageLoadingAnimation } from '../../components'
@@ -86,7 +86,7 @@ const Login = () => {
                     <div className="switch">
                       <p>
                         Dont have an account?{' '}
-                        <a href="register.html">Register now</a>
+                        <Link to="/register">Register now</Link>
                       </p>
                     </div>
                   </Form>

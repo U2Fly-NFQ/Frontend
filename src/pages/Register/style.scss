@@ -37,6 +37,17 @@
           text-align: right;
 
           .form-control {
+            input {
+              border: none;
+              outline: none;
+              width: 100%;
+            }
+
+            .ant-form-item-explain-error {
+              margin-top: 10px;
+              text-align: start;
+            }
+
             height: 55px;
             border: 2px dashed #dddddd75;
             padding: 10px 22px;
@@ -54,7 +65,7 @@
             transition: border-color 0.15s ease-in-out,
               box-shadow 0.15s ease-in-out;
 
-            &:focus {
+            &:focus-within {
               background-color: #fff;
               border: 2px dashed a.$main-color;
               outline: none;

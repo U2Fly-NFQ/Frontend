@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Col, Row, Space, Table, Button } from 'antd'
 import { EyeOutlined } from '@ant-design/icons'
 import { UserTicket } from '../index'
@@ -6,7 +6,6 @@ import { isEmpty } from 'lodash/lang'
 import './style.scss'
 
 function UserBookingDetail({ detailData }) {
-  const [flights, setFlights] = useState([])
   const [viewTicket, setViewTicket] = useState(false)
   const [ticketData, setTicketData] = useState({})
 
@@ -26,12 +25,30 @@ function UserBookingDetail({ detailData }) {
       align: 'center',
     },
     {
-      title: 'Departure',
-      dataIndex: 'departure',
+      title: 'Journey',
+      align: 'center',
+      render: (_, { departure, arrival }) => (
+        <>
+          {departure}
+          <i
+            style={{ padding: '0 10px' }}
+            className="fa-solid fa-arrow-right-long"
+          ></i>
+          {arrival}
+        </>
+      ),
     },
     {
-      title: 'Arrival',
-      dataIndex: 'arrival',
+      title: 'ETD',
+      dataIndex: 'startTime',
+      width: '150px',
+      align: 'center',
+    },
+    {
+      title: 'ETA',
+      dataIndex: 'endTime',
+      width: '150px',
+      align: 'center',
     },
     {
       title: 'Action',
@@ -55,15 +72,6 @@ function UserBookingDetail({ detailData }) {
       ),
     },
   ]
-
-  useEffect(() => {
-    const flights = detailData.flights.map((flight) => ({
-      ...flight,
-      departure: `${flight.startTime} - ${flight.departure}`,
-      arrival: `${flight.endTime} - ${flight.arrival}`,
-    }))
-    setFlights(flights)
-  }, [detailData])
 
   return (
     <Row className="booking-detail">
@@ -104,7 +112,7 @@ function UserBookingDetail({ detailData }) {
           <Col className="flight-info-content" span={24}>
             <Table
               columns={flightsColumn}
-              dataSource={flights}
+              dataSource={detailData.flights}
               pagination={false}
             />
           </Col>

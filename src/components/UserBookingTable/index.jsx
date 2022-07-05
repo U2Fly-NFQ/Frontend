@@ -1,6 +1,6 @@
 import React from 'react'
 import { UserBookingDetail } from '../index'
-import { Space, Table } from 'antd'
+import { Button, Space, Table } from 'antd'
 
 function UserBookingTable({ loading, data }) {
   //Data for UI
@@ -15,7 +15,6 @@ function UserBookingTable({ loading, data }) {
       title: 'Journey',
       dataIndex: 'flights',
       align: 'center',
-      sorter: (a, b) => a.flights.length - b.flights.length,
       render: (_, { flights }) => (
         <>
           {flights[0].departure}
@@ -53,12 +52,16 @@ function UserBookingTable({ loading, data }) {
       align: 'center',
       render: (_, record) => (
         <Space>
-          {/*<Button*/}
-          {/*  type="default"*/}
-          {/*  shape="default"*/}
-          {/*  onClick={() => setViewTicket(true)}*/}
-          {/*  icon={<EyeOutlined />}*/}
-          {/*/>*/}
+          {/* eslint-disable-next-line react/jsx-no-undef */}
+          <Button
+            danger
+            type="primary"
+            shape="default"
+            // onClick={() => ()}
+          >
+            Cancel
+          </Button>
+          {}
         </Space>
       ),
     },

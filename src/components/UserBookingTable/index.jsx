@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { UserBookingDetail } from '../index'
 import { Button, Space, Table } from 'antd'
+import { bookingStatus } from '../../Constants'
+import { useNavigate } from 'react-router-dom'
 
 function UserBookingTable({ loading, data }) {
+  //initiation
+  const [expandedRowKeys, setExpandedRowKeys] = useState([])
+  const navigate = useNavigate()
+
   //Data for UI
   const bookingListColumn = [
     {
       title: 'Booking ID',
-      dataIndex: 'key',
+      dataIndex: 'id',
       align: 'center',
       sorter: (a, b) => a.code - b.code,
     },
@@ -34,10 +40,10 @@ function UserBookingTable({ loading, data }) {
       ),
     },
     {
-      title: 'Booking Amount',
-      dataIndex: 'bookingAmount',
+      title: 'Booking Amount (USD)',
+      dataIndex: 'total_price',
       align: 'center',
-      sorter: (a, b) => a.bookingAmount - b.bookingAmount,
+      sorter: (a, b) => a.total_price - b.total_price,
     },
     {
       title: 'Status',
@@ -53,26 +59,52 @@ function UserBookingTable({ loading, data }) {
       render: (_, record) => (
         <Space>
           {/* eslint-disable-next-line react/jsx-no-undef */}
-          <Button
-            danger
-            type="primary"
-            shape="default"
-            // onClick={() => ()}
-          >
-            Cancel
-          </Button>
-          {}
+          {record.status === bookingStatus['0'] && (
+            <Button
+              danger
+              type="primary"
+              shape="default"
+              // onClick={() => ()}
+            >
+              Cancel
+            </Button>
+          )}
+          {(record.status === bookingStatus['1'] ||
+            record.status === bookingStatus['3']) && (
+            <Button
+              type="default"
+              shape="default"
+              onClick={() => navigate('/')}
+            >
+              Booking Again
+            </Button>
+          )}
+          {record.status === bookingStatus['2'] && (
+            <Button
+              type="primary"
+              shape="default"
+              // onClick={() => ()}
+            >
+              Rating
+            </Button>
+          )}
         </Space>
       ),
     },
   ]
+  const onExpandRowKey = (expanded, record) => {
+    expanded ? setExpandedRowKeys(record.id) : setExpandedRowKeys([])
+  }
   return (
     <Table
       columns={bookingListColumn}
+      rowKey={(record) => record.id}
       expandable={{
         expandedRowRender: (record) => (
           <UserBookingDetail detailData={record} />
         ),
+        expandedRowKeys: expandedRowKeys,
+        onExpand: onExpandRowKey,
       }}
       dataSource={data}
       loading={loading}

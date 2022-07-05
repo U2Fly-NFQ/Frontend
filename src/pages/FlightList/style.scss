@@ -46,8 +46,29 @@
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
-        gap: 30px;
-        height: 58px;
+        gap: 80px;
+
+        @media screen and (max-width: 784px) {
+          gap: 20px;
+        }
+
+        @media screen and (max-width: 694px) {
+          .airline {
+            img {
+              display: none;
+            }
+          }
+        }
+
+        @media screen and (max-width: 634px) {
+          justify-content: flex-end;
+          gap: 10px;
+          .airline {
+            img {
+              display: none;
+            }
+          }
+        }
 
         .airline {
           img {
@@ -59,6 +80,7 @@
         }
 
         .line-way {
+          flex: 1;
           display: flex;
           justify-content: center;
           gap: 20px;
@@ -68,10 +90,12 @@
           }
 
           .way {
-            min-width: 300px;
+            flex: 1;
+            min-width: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
 
             .flight-segment {
               flex: 1;
@@ -80,6 +104,14 @@
 
             i {
               color: #aaa;
+              font-size: 18px;
+            }
+
+            .duration {
+              position: absolute;
+              top: 35%;
+              left: 50%;
+              transform: translate(-50%, -50%);
             }
           }
 
@@ -95,10 +127,27 @@
           }
         }
 
-        .price {
+        .price-box {
           margin-bottom: 0;
-          color: var(--ant-primary-color);
           font-weight: 400;
+
+          .price-old,
+          .price-new {
+            display: inline;
+            margin-right: 10px;
+          }
+
+          .price-new {
+            color: var(--ant-primary-7);
+          }
+
+          sup {
+            font-size: 13px;
+            color: var(--ant-primary-color);
+            font-weight: 600;
+            top: -19px;
+            padding-left: 5px;
+          }
         }
       }
     }

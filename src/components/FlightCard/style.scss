@@ -2,112 +2,98 @@
 
 .flight-card {
   margin-bottom: 24px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  font-size: 14px;
 
-  .flight-card-items {
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .flight-card-place {
-    flex: 1;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-  }
-
-  .flight-card-place__arrow {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    h6 {
-      font-size: 14px;
-      font-weight: 600;
-      padding-top: 10px;
-    }
-    p {
-      font-size: 14px;
-      line-height: 18px;
-    }
-  }
-
-  .flight-card-place__left,
-  .flight-card-place__right {
+  .place {
+    flex-grow: 1;
+    padding: 10px 20px;
+    gap: 60px;
     display: flex;
     align-items: center;
 
-    .flight-card-place-airline {
+    .airline {
+      display: flex;
+      align-items: center;
+
       img {
-        display: none;
+        max-height: 54px;
+        object-fit: contain;
       }
     }
-  }
 
-  .flight-card-place-destination {
-    padding-left: 33px;
+    .destination {
+      p {
+        margin-bottom: 5px;
+      }
 
-    &__sub-title,
-    &__title,
-    &__decs {
-      margin: 0;
-      padding: 0;
-      font-size: 14px;
+      .title {
+        font-size: 22px;
+      }
+
+      .desc {
+        font-size: 14px;
+      }
     }
 
-    &__sub-title {
-      line-height: 16px;
-      color: var.$paragraph-color;
-    }
+    .arrow {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
-    &__title {
-      font-weight: 500;
-      padding-top: 5px;
-      font-size: 24px;
-    }
+      i {
+        font-size: 22px;
+        padding: 10px;
+        background-color: rgba(139, 62, 234, 0.0901960784);
+        border-radius: 50vh;
+        color: #999;
+      }
 
-    &__desc {
-      max-width: 200px;
-      padding-top: 5px;
-      font-size: 14px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: var.$dark;
+      h6 {
+        font-size: 14px;
+        font-weight: 600;
+        padding-top: 10px;
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 18px;
+      }
     }
   }
 
   .flight-card-deal {
+    min-width: 200px;
+    flex: 1;
+    position: relative;
+
     .flight-card-price {
       background-color: var(--ant-primary-1);
       padding: 10px 20px;
-      min-width: 200px;
+      overflow: hidden;
 
       &__origin {
         color: var.$paragraph-color;
+        margin-bottom: 0;
         font-size: 18px;
         font-weight: 500;
+        position: relative;
       }
 
-      .flight-card-price__off {
+      &__discount {
         margin-bottom: 0;
         padding-top: 10px;
-        font-size: 36px;
+        font-size: 28px;
         font-weight: 500;
         line-height: 40px;
         color: var(--ant-primary-7);
-
-        sup {
-          font-size: 13px;
-          color: var.$main-color;
-          font-weight: 600;
-          top: -19px;
-          padding-left: 5px;
-        }
       }
 
       &__condition {
@@ -121,6 +107,54 @@
         font-weight: 500;
         padding-top: 7px;
         cursor: pointer;
+      }
+
+      .discount-label {
+        padding: 4px;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        &:after {
+          right: 100%;
+          border: solid transparent;
+          content: ' ';
+          height: 0;
+          width: 0;
+          position: absolute;
+          border-color: rgba(136, 183, 213, 0);
+          border-width: 15.5px;
+          top: 50%;
+          margin-top: -15.5px;
+        }
+
+        &:before {
+          content: '';
+          z-index: 2;
+          position: absolute;
+          top: 42%;
+          right: 100%;
+          width: 5px;
+          height: 5px;
+          opacity: 0.95;
+          background: #ffffff;
+          border-radius: 7px;
+          box-shadow: inset 0.5px 0 rgba(0, 0, 0, 0.6);
+        }
+
+        & span {
+          color: #ffffff;
+          font-size: 14px;
+          text-align: center;
+        }
+
+        &.red {
+          background-color: #e80707;
+        }
+
+        &.red:after {
+          border-right-color: #e80707;
+        }
       }
     }
 
@@ -181,6 +215,37 @@
         transform-origin: bottom center;
         border: none;
       }
+    }
+  }
+  @media screen and (max-width: 1234px) {
+    gap: 40px;
+  }
+  @media screen and (max-width: 720px) {
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .place {
+      .airline {
+        img {
+          display: none;
+        }
+      }
+
+      .destination {
+        .sub-title,
+        .title {
+          margin-bottom: 0;
+          font-size: 20px;
+        }
+
+        .desc {
+          display: none;
+        }
+      }
+    }
+
+    .flight-card-deal {
+      min-width: 140px;
     }
   }
 }

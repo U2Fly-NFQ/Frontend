@@ -44,15 +44,8 @@ function FlightList() {
         id: '',
         roundtrip: '',
       })
-      return
-    }
-
-    if (searchParams.get('ticketType') === 'oneWay') {
-      updateLs('flight', {
-        id: '',
-      })
-
       setSelectedFlight({})
+      return
     }
 
     if (flightStorage.ticketType === 'roundTrip' && flightStorage.id) {
@@ -95,6 +88,13 @@ function FlightList() {
     navigate(0)
   }
 
+  let selectedPrice = 0
+
+  if (selectedFlight.seat && selectedFlight.seat.length)
+    selectedPrice =
+      (flightStorage.seatType === 'Economy' && selectedFlight.seat[0].price) ||
+      selectedFlight.seat[1].price
+
   return (
     <>
       <ScrollToTopButton />
@@ -113,9 +113,9 @@ function FlightList() {
                       <div className="header">
                         <Text className="main-title">Selected outbound</Text>
                         <div className="sub-title">
-                          <Button type="link" size="small">
+                          {/* <Button type="link" size="small">
                             Flight details
-                          </Button>
+                          </Button> */}
                           <Button
                             type="link"
                             size="small"
@@ -135,13 +135,19 @@ function FlightList() {
                         </div>
                         <div className="line-way">
                           <div className="line-way-item from">
-                            <Title level={3}>{selectedFlight.startTime}</Title>
+                            <Title level={3}>
+                              {moment(
+                                selectedFlight.startTime,
+                                'HH:mm:ss'
+                              ).format('HH:mm')}
+                            </Title>
                             <Text>{selectedFlight.departure.iata}</Text>
                           </div>
                           <div className="line-way-item way">
                             <i className="fa-solid fa-plane"></i>
                             <span className="flight-segment"></span>
                             <i className="fa-solid fa-map-location-dot"></i>
+                            <span className="duration">1.5 hour</span>
                           </div>
                           <div className="line-way-item to">
                             <Title level={3}>
@@ -152,12 +158,15 @@ function FlightList() {
                             <Text>{selectedFlight.arrival.iata}</Text>
                           </div>
                         </div>
-                        <Title level={3} className="price">
-                          {flightStorage.seatType === 'Economy' &&
-                            selectedFlight.seat[0].price}
-                          {flightStorage.seatType === 'Business' &&
-                            selectedFlight.seat[1].price}
-                        </Title>
+                        <div className="price-box">
+                          <Title level={3} className="price-old">
+                            $<del>{selectedPrice}</del>
+                          </Title>
+                          <Title level={3} className="price-new">
+                            ${selectedPrice}
+                          </Title>
+                          <sup>0% OFF</sup>
+                        </div>
                       </div>
                     </div>
                   </div>

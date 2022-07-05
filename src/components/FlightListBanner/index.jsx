@@ -46,7 +46,9 @@ function FlightListBanner() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            <Title level={3}>Amazing journeys. Every day.</Title>
+            <Title level={3}>
+              {t('flight-list-page.flight-banner.Amazing journeys. Every day.')}
+            </Title>
           </motion.div>
         </div>
       </div>

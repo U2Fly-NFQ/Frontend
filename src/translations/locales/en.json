@@ -33,7 +33,8 @@
     "add": "Add",
     "cancle": "Cancle",
     "update": "Update",
-    "become_partner": "Become a partner"
+    "become_partner": "Become a partner",
+    "loading": "loading"
   },
 
   "search_form": {
@@ -63,7 +64,7 @@
   "header": {
     "navbar": {
       "home": "Home",
-      "flight": "U2Flight",
+      "flight": "Flight",
       "flight_booking": "Flight booking",
       "tour": "Tour",
       "tour_booking": "Tour booking",
@@ -111,7 +112,21 @@
     "flight-banner": {
       "EXPLORE THE WORLD WITH US": "EXPLORE THE WORLD WITH US",
       "Amazing journeys. Every day.": "Amazing journeys. Every day."
-    }
+    },
+
+    "flights found": "{{number}} flights found",
+    "Cheapest price first": "Cheapest price first",
+    "Price Low to High": "Price: Low to High",
+    "Fly time Fastest": "Fly time: Fastest",
+    "All time": "All time",
+    "Early Morning": "Early Morning",
+    "Morning": "Morning",
+    "Afternoon": "Afternoon",
+    "Evening": "Evening",
+    "Times": "Times",
+    "Price": "Price",
+    "Clear": "Clear",
+    "$": "$"
   },
 
   "flight-booking-page": {

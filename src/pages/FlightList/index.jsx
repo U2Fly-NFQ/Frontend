@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react'
 import { ScrollToTopButton } from '../../components'
 import { getLsObj, updateLs } from '../../utils/localStorage'
 import moment from 'moment'
+import { useTranslation } from 'react-i18next'
 
 const { Title, Text } = Typography
 const { Option } = Select
@@ -25,6 +26,7 @@ function FlightList() {
 
   const dispatch = useDispatch()
   let [searchParams, setSearchParams] = useSearchParams()
+  const { t } = useTranslation()
 
   const [order, setOrder] = useState('price.asc')
 
@@ -132,20 +134,27 @@ function FlightList() {
                 <Col span={24}>
                   <div className="flight-search-title-container">
                     <Title level={4}>
-                      {pagination?.total || 0} tours found
+                      {t('flight-list-page.flights found', {
+                        number: pagination?.total || 0,
+                      })}
                     </Title>
+
                     <Select
                       value={order}
-                      style={{ width: 180, textAlign: 'left' }}
+                      style={{ width: '200px', textAlign: 'left' }}
                       onChange={changeOrder}
                     >
-                      <Option value="price.asc">Cheapest price first</Option>
-                      <Option value="duration.asc">Fastest time first</Option>
+                      <Option value="price.asc">
+                        {t('flight-list-page.Price Low to High')}
+                      </Option>
+                      <Option value="duration.asc">
+                        {t('flight-list-page.Fly time Fastest')}
+                      </Option>
                     </Select>
                   </div>
                 </Col>
                 <Col span={24}>
-                  {status === 'loading' && <h1>loading..</h1>}
+                  {status === 'loading' && <h1>{t('cta.loading')}..</h1>}
                   {flight.map((f) => (
                     <FlightCard key={f.id} data={f} />
                   ))}

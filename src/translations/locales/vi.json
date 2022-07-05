@@ -33,7 +33,8 @@
     "add": "Thêm",
     "cancle": "Trở về",
     "update": "Cập nhật",
-    "become_partner": "Trở thành đối tác"
+    "become_partner": "Trở thành đối tác",
+    "loading": "đang tải"
   },
 
   "search_form": {
@@ -111,7 +112,20 @@
     "flight-banner": {
       "EXPLORE THE WORLD WITH US": "HÃY CÙNG CHÚNG TÔI KHÁM PHÁ THẾ GIỚI",
       "Amazing journeys. Every day.": "Những cuộc hành trình tuyệt vời. Mỗi ngày."
-    }
+    },
+    "flights found": "Tìm được {{number}} chuyến bay",
+    "Cheapest price first": "Cheapest price first",
+    "Price Low to High": "Giá: Thấp đến Cao",
+    "Fly time Fastest": "Thời gian bay: Nhanh nhất",
+    "All time": "Mọi lúc",
+    "Early Morning": "Rạng sáng",
+    "Morning": "Sáng",
+    "Afternoon": "Chiều",
+    "Evening": "Tối",
+    "Times": "Buổi",
+    "Price": "Giá",
+    "Clear": "Xóa",
+    "$": "₫"
   },
 
   

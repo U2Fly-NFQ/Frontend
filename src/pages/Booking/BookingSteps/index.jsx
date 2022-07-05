@@ -18,11 +18,10 @@ export default function BookingSteps({ contentTop, contentBottom, ticketId }) {
     <Steps
       type="navigation"
       className="booking-steps"
-      // current={ticketId ? 2 : getCurrentMethod}
-      current={0}
+      current={ticketId ? 2 : getCurrentMethod}
+      // current={0}
     >
       <Step
-        status="finish"
         className="booking-steps__flight"
         title={
           <div className="booking-steps__flight__container">
@@ -38,7 +37,6 @@ export default function BookingSteps({ contentTop, contentBottom, ticketId }) {
         }
       />
       <Step
-        status="wait"
         title={
           <div className="booking-steps__flight__container">
             <div className="booking-steps__flight__logo">

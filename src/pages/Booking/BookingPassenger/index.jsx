@@ -32,6 +32,9 @@ export default function BookingPassenger() {
   }, [userInformation])
   return (
     <>
+      <div class="booking-page__container__item__title">
+        <h2>Passengers information</h2>
+      </div>
       <Form
         wrapperCol={{
           span: 22,
@@ -98,7 +101,7 @@ export default function BookingPassenger() {
           <input
             name="email"
             className="form-control"
-            placeholder="Email address (Optional)*"
+            placeholder="Email address"
           />
         </Form.Item>
 

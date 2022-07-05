@@ -107,14 +107,14 @@ function FlightList() {
                 className="booking-page__container__item__content block-container"
                 // style={{ padding: '20px', marginTop: '20px' }}
               >
-                {<BookingCoupon />}
+                {<BookingTravelDate />}
               </div>
               <div
                 className="booking-page__container__item__content block-container"
                 // style={{ padding: '20px', marginTop: '20px' }}
               >
                 <div className="booking-page__container__itemContent">
-                  {<BookingTravelDate />}
+                  {<BookingCoupon />}
                 </div>
               </div>
             </div>

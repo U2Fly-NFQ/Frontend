@@ -6,10 +6,46 @@ import './style.scss'
 
 const { Title } = Typography
 
+const MOCK_URL = 'https://62c4071b7d83a75e39edba50.mockapi.io/users'
+
+const postData = async (url = '', data = {}) => {
+  const res = await fetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    body: JSON.stringify(data),
+  })
+  return res
+}
+
 const Register = () => {
   const onFinish = (values) => {
-    console.log(values)
-    message.success('Register successful!')
+    const { email, password, username, idno } = values
+
+    const data = {
+      user: {
+        email: email,
+        password: password,
+        roles: { 1: 'ROLE_USER' },
+      },
+      passenger: {
+        name: username,
+        identification: idno,
+      },
+    }
+    const res = postData(MOCK_URL, data)
+
+    res.then((data) => {
+      if (data.status === 201) {
+        message.success('Register successful!')
+      }
+    })
   }
 
   /* eslint-enable no-template-curly-in-string */
@@ -28,6 +64,21 @@ const Register = () => {
                   <Form className="form" onFinish={onFinish} autoComplete="off">
                     <div className="form-group">
                       <Form.Item
+                        name="idno"
+                        className="form-control"
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please fill your ID number!',
+                          },
+                        ]}
+                      >
+                        <input type="text" placeholder="ID number" />
+                      </Form.Item>
+                    </div>
+
+                    <div className="form-group">
+                      <Form.Item
                         name="email"
                         className="form-control"
                         rules={[
@@ -44,6 +95,7 @@ const Register = () => {
                         <input type="text" placeholder="Email" />
                       </Form.Item>
                     </div>
+
                     <div className="form-group">
                       <Form.Item
                         name="username"

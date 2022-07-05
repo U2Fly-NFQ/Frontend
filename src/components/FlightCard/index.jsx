@@ -82,7 +82,7 @@ export default function FlightCard({ data }) {
                       From
                     </p>
                     <h3 className="flight-card-place-destination__title">
-                      {data.departure.city}
+                      {data.departure.city} ({data.departure.iata})
                     </h3>
                     <h6 className="flight-card-place-destination__desc">
                       {data.departure.name}
@@ -112,10 +112,10 @@ export default function FlightCard({ data }) {
                       To
                     </p>
                     <h3 className="flight-card-place-destination__title">
-                      {data.arrival.city}
+                      {data.arrival.city} ({data.arrival.iata})
                     </h3>
                     <h6 className="flight-card-place-destination__desc">
-                      {data.departure.name}
+                      {data.arrival.name}
                     </h6>
                   </div>
                 </div>

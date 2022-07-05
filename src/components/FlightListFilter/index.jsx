@@ -117,11 +117,6 @@ const Flight = () => {
             }}
           >
             <Text>Times</Text>
-            {(minPrice !== 0 || maxPrice !== 1500) && (
-              <Text className="clear-btn" italic onClick={clearPrice}>
-                Clear
-              </Text>
-            )}
           </Space>
         </Col>
         <Col span={20} className="content">

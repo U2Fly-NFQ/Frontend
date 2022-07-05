@@ -54,14 +54,15 @@ export default function FlightSearch() {
     if (departure) setFrom(departure)
     if (arrival) setTo(arrival)
     if (startDate) setJourneyDay(moment(startDate))
-    if (ticketType) setTicketType(ticketType)
     if (seatType) setPassengerClass(seatType)
     if (seatAvailable) setPassengerNumber(seatAvailable)
+
+    // if (ticketType) setTicketType(ticketType)
 
     setSearchParams({ ...existingFlight })
   }, [])
 
-  const onFinish = () => {
+  const onFinish = async () => {
     if (!from || !to) {
       setModalContent(
         'Please enter the origin, destination and your travel date to proceed'

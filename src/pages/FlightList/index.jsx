@@ -13,7 +13,7 @@ import {
 } from '../../components'
 import { useEffect, useState } from 'react'
 import { ScrollToTopButton } from '../../components'
-import { getLsObj } from '../../utils/localStorage'
+import { getLsObj, updateLs } from '../../utils/localStorage'
 import moment from 'moment'
 
 const { Title, Text } = Typography
@@ -51,6 +51,11 @@ function FlightList() {
   let flightStorage = getLsObj('flight')
 
   useEffect(() => {
+    if (flightStorage.ticketType === 'oneWay')
+      updateLs('flight', {
+        id: '',
+      })
+    else fetchData()
     async function fetchData() {
       if (flightStorage.id) {
         const rs = await FlightApi.get(flightStorage.id)
@@ -58,7 +63,6 @@ function FlightList() {
         setSelected(rs.data.data)
       }
     }
-    fetchData()
   }, [])
 
   return (

@@ -81,7 +81,7 @@ function FlightList() {
         </div>
         {!checkFirstVisitWithoutParams() && (
           <div className="grid wide">
-            <Row gutter={[24, 24]}>
+            <Row gutter={[16, 16]}>
               <Col span={24}>
                 {Object.keys(selectedFlight).length !== 0 && (
                   <div className="selected-outbound">
@@ -131,10 +131,10 @@ function FlightList() {
                   </div>
                 )}
               </Col>
-              <Col span={24} md={6}>
+              <Col md={6} sm={7} xs={24}>
                 <FlightListFilter />
               </Col>
-              <Col span={24} md={18}>
+              <Col md={18} sm={17} xs={24}>
                 <Row gutter={[16, 16]} justify="center">
                   <Col span={24}>
                     <div className="flight-search-title-container">

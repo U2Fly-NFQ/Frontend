@@ -22,6 +22,7 @@ export default function Navbar() {
         className="wide grid"
         style={{
           padding: '10px 0',
+          justifyContent: 'flex-end',
         }}
       >
         <ul className="navbar__links">

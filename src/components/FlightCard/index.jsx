@@ -61,55 +61,39 @@ export default function FlightCard(props) {
         <div className="flight-card-items">
           <div className="flight-card-place">
             <div className="flight-card-place__left">
-              <div className="flight-card-place__airline">
+              <div className="flight-card-place-airline">
                 <img
-                  className="flight-card-place__airline-imgage"
+                  className="flight-card-place-airline-image"
                   src="https://andit.co/projects/html/and-tour/assets/img/common/biman_bangla.png"
                 />
               </div>
 
-              <div className="flight-card-place__from">
-                <div className="flight-card-place-destination">
-                  <p className="flight-card-place-destination__sub-title">
-                    From
-                  </p>
-                  <h3 className="flight-card-place-destination__title">
-                    {data.departure.city} ({data.departure.iata})
-                  </h3>
-                  <h6 className="flight-card-place-destination__desc">
-                    {moment(data.startTime, 'HH:mm:ss').format('HH:mm')}
-                  </h6>
-                </div>
+              <div className="flight-card-place-destination">
+                <p className="flight-card-place-destination__sub-title">From</p>
+                <h3 className="flight-card-place-destination__title">
+                  {data.departure.city} ({data.departure.iata})
+                </h3>
+                <h6 className="flight-card-place-destination__desc">
+                  {moment(data.startTime, 'HH:mm:ss').format('HH:mm')}
+                </h6>
               </div>
             </div>
-
+            <div className="flight-card-place__arrow">
+              <i class="fa-solid fa-arrow-right-long"></i>
+              <h6>Direct</h6>
+              <p>{data.duration} hour</p>
+            </div>
             <div className="flight-card-place__right">
-              <div className="flight-card-place__arrow">
-                <img
-                  src="https://andit.co/projects/html/and-tour/assets/img/icon/right_arrow.png"
-                  alt=""
-                />
-                <h6
-                  style={{
-                    color: 'var(--ant-infor-color)',
-                  }}
-                >
-                  Direct
+              <div className="flight-card-place-destination">
+                <p className="flight-card-place-destination__sub-title">To</p>
+                <h3 className="flight-card-place-destination__title">
+                  {data.arrival.city} ({data.arrival.iata})
+                </h3>
+                <h6 className="flight-card-place-destination__desc">
+                  {moment(data.startTime, 'HH:mm:ss')
+                    .add(data.duration * 60, 'minutes')
+                    .format('HH:mm')}
                 </h6>
-                <p>{data.duration} hour</p>
-              </div>
-              <div className="flight-card-place__to">
-                <div className="flight-card-place-destination">
-                  <p className="flight-card-place-destination__sub-title">To</p>
-                  <h3 className="flight-card-place-destination__title">
-                    {data.arrival.city} ({data.arrival.iata})
-                  </h3>
-                  <h6 className="flight-card-place-destination__desc">
-                    {moment(data.startTime, 'HH:mm:ss')
-                      .add(data.duration * 60, 'minutes')
-                      .format('HH:mm')}
-                  </h6>
-                </div>
               </div>
             </div>
           </div>

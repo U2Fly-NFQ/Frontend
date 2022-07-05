@@ -118,6 +118,7 @@ const Flight = () => {
           <Space
             style={{
               justifyContent: 'space-between',
+              flexWrap: 'wrap',
               width: '100%',
             }}
           >
@@ -128,7 +129,6 @@ const Flight = () => {
               onChange={(value) => handlePriceChange([value, maxPrice])}
               prefix="$"
             />
-            -
             <InputNumber
               min={0}
               max={1500}

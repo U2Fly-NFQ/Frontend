@@ -27,7 +27,7 @@ export default function FlightCard({ data }) {
         return
       }
 
-      if (flight.seatType === 'roundTrip') {
+      if (flight.ticketType === 'roundTrip') {
         if (flight.id) {
           updateLs('flight', {
             roundId: data.id,
@@ -35,8 +35,14 @@ export default function FlightCard({ data }) {
           navigate('/flights-booking')
           return
         } else {
+          updateLs('flight', {
+            id: data.id,
+          })
+
+          console.log('add first trip')
+
           navigate({
-            pathname: 'flights',
+            pathname: '/',
             search: createSearchParams({
               departure: flight.arrival,
               arrival: flight.departure,

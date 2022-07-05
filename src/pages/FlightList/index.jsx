@@ -13,7 +13,7 @@ import {
 } from '../../components'
 import { useEffect, useState } from 'react'
 import { ScrollToTopButton } from '../../components'
-import { getLsObj, updateLs } from '../../utils/localStorage'
+import { getLsObj } from '../../utils/localStorage'
 import moment from 'moment'
 
 const { Title, Text } = Typography
@@ -27,6 +27,23 @@ function FlightList() {
   let [searchParams, setSearchParams] = useSearchParams()
 
   const [order, setOrder] = useState('price.asc')
+
+  let flightStorage = getLsObj('flight')
+
+  const [selected, setSelected] = useState({})
+
+  useEffect(() => {
+    if (flightStorage.ticketType === 'roundTrip') {
+      fetchData()
+      async function fetchData() {
+        if (flightStorage.id) {
+          const rs = await FlightApi.get(flightStorage.id)
+
+          setSelected(rs.data.data)
+        }
+      }
+    }
+  }, [])
 
   useEffect(() => {
     dispatch(fetchFlights(searchParams))
@@ -45,25 +62,6 @@ function FlightList() {
   const changeSize = (value) => {
     setSearchParams(searchParams.set('offset', value))
   }
-
-  const [selected, setSelected] = useState({})
-
-  let flightStorage = getLsObj('flight')
-
-  useEffect(() => {
-    if (flightStorage.ticketType === 'oneWay')
-      updateLs('flight', {
-        id: '',
-      })
-    else fetchData()
-    async function fetchData() {
-      if (flightStorage.id) {
-        const rs = await FlightApi.get(flightStorage.id)
-
-        setSelected(rs.data.data)
-      }
-    }
-  }, [])
 
   return (
     <>

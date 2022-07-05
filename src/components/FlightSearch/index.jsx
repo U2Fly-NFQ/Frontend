@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import './style.scss'
 import {
@@ -38,7 +39,7 @@ export default function FlightSearch() {
   const [to, setTo] = useState('')
   const [ticketType, setTicketType] = useState('oneWay')
   const [journeyDay, setJourneyDay] = useState(moment())
-  const [returnDay, setReturnDay] = useState(moment().add(3, 'days'))
+  const [returnDate, setReturnDate] = useState(moment().add(3, 'days'))
   const [passengerClass, setPassengerClass] = useState('Economy')
   const [passengerNumber, setPassengerNumber] = useState(1)
   const [modalContent, setModalContent] = useState('')
@@ -56,8 +57,7 @@ export default function FlightSearch() {
     if (startDate) setJourneyDay(moment(startDate))
     if (seatType) setPassengerClass(seatType)
     if (seatAvailable) setPassengerNumber(seatAvailable)
-
-    // if (ticketType) setTicketType(ticketType)
+    if (ticketType) setTicketType(ticketType)
 
     setSearchParams({ ...existingFlight })
   }, [])
@@ -77,18 +77,12 @@ export default function FlightSearch() {
       seatType: passengerClass,
       seatAvailable: passengerNumber,
       ticketType,
-      returnDay,
+      returnDate: returnDate.format('YYYY-MM-DD'),
     }
 
     updateLs('flight', searchQuery)
 
-    setSearchParams({
-      departure: from,
-      arrival: to,
-      startDate: journeyDay.format('YYYY-MM-DD'),
-      seatType: passengerClass,
-      seatAvailable: passengerNumber,
-    })
+    setSearchParams(searchQuery)
   }
 
   const onChangeTicketType = (value) => {
@@ -107,20 +101,10 @@ export default function FlightSearch() {
 
   const clearFrom = () => {
     setFrom('')
-    updateLs('flight', {
-      departure: '',
-    })
-    searchParams.delete('departure')
-    setSearchParams(searchParams)
   }
 
   const clearTo = () => {
     setTo('')
-    updateLs('flight', {
-      arrival: '',
-    })
-    searchParams.delete('arrival')
-    setSearchParams(searchParams)
   }
 
   const passengerPopover = (
@@ -268,7 +252,7 @@ export default function FlightSearch() {
           </Col>
           <Col span={24} md={12} lg={7}>
             <div className="flightSearchBox">
-              <Row gutter={[8, 8]}>
+              <Row gutter={[8, 8]} justify="center">
                 <Col span={12}>
                   <label className="flightSearchLabel">
                     {t('search_form.journey_date')}
@@ -290,25 +274,41 @@ export default function FlightSearch() {
                     format={'MM/DD/YY'}
                   />
                 </Col>
-                {ticketType !== 'oneWay' && (
-                  <Col span={12}>
-                    <label className="flightSearchLabel">
-                      {t('search_form.return_date')}
-                    </label>
-                    <DatePicker
-                      allowClear={false}
-                      disabledDate={(current) => {
-                        return (
-                          journeyDay >= returnDay ||
-                          moment().add(1, 'month') <= current
-                        )
-                      }}
-                      value={returnDay}
-                      onChange={(date) => setReturnDay(date)}
-                      format={'MM/DD/YY'}
-                    />
-                  </Col>
-                )}
+                <Col span={12}>
+                  <AnimatePresence>
+                    {ticketType !== 'oneWay' && (
+                      <motion.div
+                        initial={{ x: -100, opacity: 0 }}
+                        animate={{
+                          x: 0,
+                          opacity: 1,
+                          transition: { duration: 0.6 },
+                        }}
+                        exit={{
+                          x: -100,
+                          opacity: 0,
+                          transition: { duration: 0.6 },
+                        }}
+                      >
+                        <label className="flightSearchLabel">
+                          {t('search_form.return_date')}
+                        </label>
+                        <DatePicker
+                          allowClear={false}
+                          disabledDate={(current) => {
+                            return (
+                              journeyDay >= returnDate ||
+                              moment().add(1, 'month') <= current
+                            )
+                          }}
+                          value={returnDate}
+                          onChange={(date) => setReturnDate(date)}
+                          format={'MM/DD/YY'}
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </Col>
               </Row>
             </div>
           </Col>

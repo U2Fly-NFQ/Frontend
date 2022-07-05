@@ -2,16 +2,15 @@ import React, { useEffect } from 'react'
 import { FlightListBanner } from '../../components'
 import './index.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { getInfoUserInBookingFight } from '../../redux/selectors'
 import { useNavigate, useParams } from 'react-router-dom'
-import moment from 'moment'
 import { getTicketInformation } from '../../redux/slices/bookingSuccessSlice'
+import { getUserInformationSuccess } from '../../redux/selectors/bookingSuccessSelector'
+import BookingSuccessDetail from './BookingSuccessDetail'
 export default function BookingSuccessPage() {
   const navigate = useNavigate()
   let { ticketId } = useParams()
   const dispatch = useDispatch()
-  const dateUserBooking = useSelector(getInfoUserInBookingFight)
-
+  const dateUserBooking = useSelector(getUserInformationSuccess)
   useEffect(() => {
     if (ticketId === undefined) {
       navigate('/flights-booking')
@@ -33,15 +32,13 @@ export default function BookingSuccessPage() {
               </div>
               <div className="Booking-success__container__content__mess">
                 <h3>
-                  <span className="highlight-main">
-                    {dateUserBooking.firstName}
-                  </span>
+                  <span className="highlight-main">{dateUserBooking.name}</span>
                   , your order was paid successfully!
                 </h3>
                 <h6>
                   our booking details has been sent to:
                   <span className="highlight-main">
-                    {dateUserBooking.firstName}
+                    {dateUserBooking.email || 'thang@nfq.com'}
                   </span>
                 </h6>
               </div>
@@ -52,14 +49,12 @@ export default function BookingSuccessPage() {
             <div className="Booking-success__container__content">
               <ul className="Booking-success__container__content-info">
                 <li className="Booking-success__container__">
-                  <span>First name:</span>
-                  <span className="value">{dateUserBooking.firstName}</span>
+                  <span>Full name:</span>
+                  <span className="value">{dateUserBooking.name}</span>
                 </li>
                 <li>
                   <span>Day of Bỉrth:</span>
-                  <span className="value">
-                    {moment(dateUserBooking.date_picker).format('DD-MM-YYYY')}
-                  </span>
+                  <span className="value">{dateUserBooking.birthday}</span>
                 </li>
                 <li>
                   <span>Email address:</span>
@@ -68,23 +63,12 @@ export default function BookingSuccessPage() {
                   </span>
                 </li>
                 <li>
-                  <span>Address:</span>
+                  <span>identification:</span>
                   <span className="value">
-                    {dateUserBooking.streetAddress || 'No Address'}
+                    {dateUserBooking.identification || 'No identification'}
                   </span>
                 </li>
-                <li>
-                  <span>Number:</span>
-                  <span className="value">
-                    {dateUserBooking.number || 'No Phone'}
-                  </span>
-                </li>
-                <li>
-                  <span>State:</span>
-                  <span className="value">
-                    {dateUserBooking.firstName || 'No State'}
-                  </span>
-                </li>
+
                 <li>
                   <span>Passport:</span>
                   <span className="value">
@@ -102,7 +86,7 @@ export default function BookingSuccessPage() {
           </div>
 
           <div className="Booking-success__container__item">
-            {/* <BookingSuccessDetail /> */}
+            <BookingSuccessDetail />
           </div>
         </div>
       </div>

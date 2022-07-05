@@ -8,7 +8,7 @@
   padding-top: 100px;
   &__item {
     min-width: 450px;
-    &:first-child {
+    &:nth-child(2) {
       flex: 2;
     }
     &__title {

@@ -15,7 +15,7 @@ const update = (id, data) => axios.put(`/api/flights/${id}`, data)
 const destroy = (id) => axios.delete(`/api/flights/${id}`)
 
 const getUserData = (id) => {
-  return axios.get(`/api/passengers/2`)
+  return axios.get(`/api/passengers/${id}`)
 }
 
 const getInfoTickerById = (idTicket) => axios.get(`/api/tickets/${idTicket}`)

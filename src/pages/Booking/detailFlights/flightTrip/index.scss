@@ -1,0 +1,83 @@
+@use '../../../../assets/scss/abstracts' as a;
+.detail-flights__container__trip {
+  display: flex;
+  gap: 22px;
+  &__from {
+    p {
+      margin: 0;
+      font-size: 10px;
+    }
+    h3 {
+      margin: 0;
+    }
+    h6 {
+      white-space: nowrap;
+      width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  &__icon {
+    i {
+      font-size: 20px;
+
+      color: a.$main-color;
+    }
+    h3 {
+      margin: 0;
+    }
+    p {
+      margin: 0;
+      font-size: 10px;
+      text-overflow: ellipsis;
+    }
+  }
+  &__to {
+    h3 {
+      margin: 0;
+    }
+    p {
+      margin: 0;
+      font-size: 10px;
+    }
+  }
+  &__detail {
+    flex: 0.5;
+    text-align: right;
+    h5 {
+      color: blue;
+    }
+  }
+}
+.ant-collapse-item {
+  &:last-child {
+    border-top: 1px solid a.$main-color;
+  }
+}
+.info-plane_trip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 15px;
+  &__info {
+    font-size: 12px;
+  }
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    img {
+      width: 15px;
+    }
+    h5 {
+      margin: 0;
+    }
+  }
+  &-icon__rotate {
+    transform: rotate(180deg);
+  }
+}
+.ant-steps-item-description {
+  padding: 0;
+}

@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit'
 import flightAPI from '../../api/Flight'
 import discountInfo from '../../api/Discount'
 import moment from 'moment'
+import { useNavigate } from 'react-router-dom'
 const initialState = {
   loadding: false,
   userInformation: {},
@@ -62,10 +63,12 @@ const bookingFlightsSlice = createSlice({
   },
   extraReducers: {
     [createBookingFlight.pending]: (state, action) => {
-      state.loadding = true
+      state.loadding = false
     },
     [createBookingFlight.rejected]: (state, action) => {
       state.loadding = false
+      let navigate = useNavigate()
+      navigate('/flights')
     },
     [createBookingFlight.fulfilled]: (state, action) => {
       const { status, data } = action.payload
@@ -75,10 +78,12 @@ const bookingFlightsSlice = createSlice({
       }
     },
     [getUserDataInBooking.pending]: (state, action) => {
-      state.loadding = true
+      state.loadding = false
     },
     [getUserDataInBooking.rejected]: (state, action) => {
       state.loadding = false
+      let navigate = useNavigate()
+      navigate('/flights')
     },
     [getUserDataInBooking.fulfilled]: (state, action) => {
       state.loadding = false
@@ -86,27 +91,29 @@ const bookingFlightsSlice = createSlice({
       state.userInformation = data
     },
     [getDiscountCheck.pending]: (state, action) => {
-      state.loadding = true
+      state.loadding = false
     },
     [getDiscountCheck.rejected]: (state, action) => {
       state.loadding = false
       state.discountInfo.percent = 0
+      let navigate = useNavigate()
+      navigate('/flights')
     },
     [getDiscountCheck.fulfilled]: (state, action) => {
       const { status, data } = action.payload
       if (status === 'success') {
         state.discountInfo = data
         let getSeat = current(state.dataFlight).seat
-
         state.priceAfterDiscount = getSeat.price - getSeat.price * data.percent
-        // state.priceAfterDiscount = current(state.dataFlight). current(state.discountInfo)
       }
     },
     [getDataFlights.pending]: (state) => {
       state.loadding = true
     },
     [getDataFlights.rejected]: (state) => {
-      state.loadding = true
+      state.loadding = false
+      let navigate = useNavigate()
+      navigate('/flights')
     },
     [getDataFlights.fulfilled]: (state, action) => {
       state.loadding = false

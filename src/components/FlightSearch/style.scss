@@ -133,13 +133,13 @@
     }
 
     & .formControl {
-      padding-top: 30px;
+      padding-top: 40px;
       display: flex;
       justify-content: center;
+      position: relative;
 
       .btn {
         display: inline-block;
-        font-weight: 400;
         line-height: 1.5;
         text-align: center;
         text-decoration: none;
@@ -166,8 +166,17 @@
         }
 
         &.btn-md {
-          padding: 12px 35px;
-          font-size: 18px;
+          padding: 16px 42px;
+          font-size: 22px;
+          border-radius: 12px;
+          text-transform: uppercase;
+
+          width: 400px;
+          max-width: 100%;
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
         }
 
         &::before {
@@ -179,7 +188,7 @@
           width: 580px;
           height: 550px;
           margin: auto;
-          background: var.$black-color;
+          background-color: var(--ant-primary-5);
           border-radius: 50%;
           z-index: -1;
           transform-origin: top center;
@@ -192,16 +201,6 @@
           transform: translateX(-50%) translateY(0) scale(1);
           transform-origin: bottom center;
           border: none;
-        }
-      }
-      .search-submit {
-        position: relative;
-
-        .close-btn {
-          position: absolute;
-          right: 0;
-          top: 50%;
-          transform: translate(110%, -50%);
         }
       }
     }

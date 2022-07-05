@@ -32,7 +32,7 @@ export default function FlightCard(props) {
           updateLs('flight', {
             id: data.id,
           })
-          navigate('/')
+          navigate(0)
         }
         return
       }
@@ -79,7 +79,7 @@ export default function FlightCard(props) {
               </div>
             </div>
             <div className="flight-card-place__arrow">
-              <i class="fa-solid fa-arrow-right-long"></i>
+              <i className="fa-solid fa-arrow-right-long"></i>
               <h6>Direct</h6>
               <p>{data.duration} hour</p>
             </div>

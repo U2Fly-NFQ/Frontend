@@ -13,8 +13,10 @@ import {
   Popover,
   InputNumber,
   Select,
+  Button,
   Tooltip,
   Modal,
+  Space,
 } from 'antd'
 
 import moment from 'moment'
@@ -50,8 +52,14 @@ export default function FlightSearch() {
 
     let existingFlight = getLsObj('flight')
 
-    const { seatType, seatAvailable, departure, arrival, startDate } =
-      existingFlight
+    const {
+      seatType,
+      seatAvailable,
+      departure,
+      arrival,
+      startDate,
+      ticketType,
+    } = existingFlight
 
     if (departure) setFrom(departure)
     if (arrival) setTo(arrival)
@@ -156,13 +164,13 @@ export default function FlightSearch() {
           <Radio.Group
             value={ticketType}
             onChange={(e) => onChangeTicketType(e.target.value)}
+            style={{
+              padding: '10px',
+              borderRadius: '12px',
+            }}
           >
-            <Radio.Button value="oneWay">
-              {t('search_form.one_way')}
-            </Radio.Button>
-            <Radio.Button value="roundTrip">
-              {t('search_form.round_trip')}
-            </Radio.Button>
+            <Radio value="oneWay">{t('search_form.one_way')}</Radio>
+            <Radio value="roundTrip">{t('search_form.round_trip')}</Radio>
           </Radio.Group>
         </div>
 
@@ -277,7 +285,7 @@ export default function FlightSearch() {
                 </Col>
                 <Col span={12}>
                   <AnimatePresence>
-                    {ticketType !== 'oneWay' && (
+                    {(ticketType === 'roundTrip' && (
                       <motion.div
                         initial={{ x: -100, opacity: 0 }}
                         animate={{
@@ -307,6 +315,22 @@ export default function FlightSearch() {
                           format={'MM/DD/YY'}
                         />
                       </motion.div>
+                    )) || (
+                      <Space
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'flex-end',
+                          height: '100%',
+                        }}
+                      >
+                        <Button
+                          type="link"
+                          onClick={() => setTicketType('roundTrip')}
+                        >
+                          Add return date
+                        </Button>
+                      </Space>
                     )}
                   </AnimatePresence>
                 </Col>

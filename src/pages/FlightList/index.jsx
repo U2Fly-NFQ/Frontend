@@ -1,8 +1,7 @@
-import { Col, Row, Typography, Pagination, Select } from 'antd'
+import { Col, Row, Typography, Pagination, Select, Button } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { fetchFlights } from '../../redux/slices/flightSlice'
-import FlightApi from '../../api/Flight'
 import './style.scss'
 import {
   FlightListBanner,
@@ -13,19 +12,23 @@ import {
 } from '../../components'
 import { useEffect, useState } from 'react'
 import { ScrollToTopButton } from '../../components'
-import { getLsObj } from '../../utils/localStorage'
+import { getLsObj, updateLs } from '../../utils/localStorage'
 import moment from 'moment'
+import axios from 'axios'
 
 const { Title, Text } = Typography
 const { Option } = Select
 
 function FlightList() {
   const dispatch = useDispatch()
-  const { data, status } = useSelector((state) => state.flights)
-  const { flight, pagination } = data
+  const { onetrip, roundtrip, status } = useSelector((state) => state.flights)
   const [searchParams, setSearchParams] = useSearchParams()
-
+  const navigate = useNavigate()
   const [order, setOrder] = useState('price.asc')
+  const [selectedFlight, setSelectedFlight] = useState({})
+  const flightStorage = getLsObj('flight')
+  const activeData = flightStorage.ticketType === 'oneWay' ? onetrip : roundtrip
+  const { pagination } = activeData
 
   const changeOrder = (value) => {
     setOrder(value)
@@ -35,7 +38,35 @@ function FlightList() {
 
   useEffect(() => {
     dispatch(fetchFlights(searchParams))
-  }, [searchParams])
+
+    if (checkFirstVisitWithoutParams()) {
+      updateLs('flight', {
+        id: '',
+        roundtrip: '',
+      })
+      return
+    }
+
+    if (searchParams.get('ticketType') === 'oneWay') {
+      updateLs('flight', {
+        id: '',
+      })
+
+      setSelectedFlight({})
+    }
+
+    if (flightStorage.ticketType === 'roundTrip' && flightStorage.id) {
+      async function fetchData() {
+        // const rs = await FlightApi.get(flightStorage.id)
+        const rs = await axios.get(
+          'https://62c45182abea8c085a729073.mockapi.io/flights-by-id/' +
+            flightStorage.id
+        )
+        setSelectedFlight(rs.data)
+      }
+      fetchData()
+    }
+  }, [searchParams, flightStorage.id])
 
   const changePage = (value) => {
     setSearchParams(searchParams.set('page', value))
@@ -57,19 +88,12 @@ function FlightList() {
     return false
   }
 
-  const [selectedFlight, setSelectedFlight] = useState({})
-
-  let flightStorage = getLsObj('flight')
-
-  useEffect(() => {
-    if (flightStorage.ticketType === 'roundTrip' && flightStorage.id) {
-      async function fetchData() {
-        const rs = await FlightApi.get(flightStorage.id)
-        setSelectedFlight(rs.data.data)
-      }
-      fetchData()
-    }
-  }, [])
+  const deleteSelected = () => {
+    updateLs('flight', {
+      id: '',
+    })
+    navigate(0)
+  }
 
   return (
     <>
@@ -89,8 +113,16 @@ function FlightList() {
                       <div className="header">
                         <Text className="main-title">Selected outbound</Text>
                         <div className="sub-title">
-                          <Text>Flight details</Text>
-                          <Text>Delete</Text>
+                          <Button type="link" size="small">
+                            Flight details
+                          </Button>
+                          <Button
+                            type="link"
+                            size="small"
+                            onClick={deleteSelected}
+                          >
+                            Delete
+                          </Button>
                         </div>
                       </div>
                       <div className="content">
@@ -152,10 +184,6 @@ function FlightList() {
                     </div>
                   </Col>
                   <Col span={24}>
-                    {
-                      // flightStorage.ticketType === 'roundTrip'
-                      // Handle one way list or round list
-                    }
                     {status === 'loading' && (
                       <>
                         <FlightCard loading={true} />
@@ -164,11 +192,12 @@ function FlightList() {
                         <FlightCard loading={true} />
                       </>
                     )}
-                    {flight.map((f) => (
-                      <FlightCard key={f.id} data={f} />
-                    ))}
-                    {flight.length === 0 && <NotFoundFlight />}
-                    {pagination.page && pagination.page !== 1 && (
+                    {(!activeData.flight.length && <NotFoundFlight />) ||
+                      roundtrip.flight.map((f) => (
+                        <FlightCard key={f.id} data={f} />
+                      ))}
+
+                    {pagination.total > 0 && (
                       <Pagination
                         onChange={changePage}
                         current={pagination.page}

@@ -1,10 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 import flight from '../../api/Flight'
 
 const initialState = {
   status: '',
-  data: {
+  onetrip: {
+    flight: [],
+    pagination: {},
+  },
+  roundtrip: {
     flight: [],
     pagination: {},
   },
@@ -25,8 +30,8 @@ const flightSlice = createSlice({
       })
       .addCase(fetchFlights.fulfilled, (state, action) => {
         state.status = 'idle'
-        state.data.flight = action.payload?.data?.flight || []
-        state.data.pagination = action.payload?.data?.pagination || {}
+        state.onetrip = action.payload.onetrip
+        state.roundtrip = action.payload.roundtrip
       })
   },
 })
@@ -37,6 +42,9 @@ export const fetchFlights = createAsyncThunk(
   'flight/fetchFlights',
   async (urlParams) => {
     let rs = await flight.getList(urlParams)
-    return rs.data
+    let mockRs = await axios.get(
+      'https://62c45182abea8c085a729073.mockapi.io/flights'
+    )
+    return mockRs.data.data
   }
 )

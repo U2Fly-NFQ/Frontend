@@ -3,7 +3,7 @@ import React from 'react'
 const SmokeAnimation = () => {
   return (
     <>
-      <div class="ag-smoke-block">
+      <div className="ag-smoke-block">
         <picture>
           <source
             srcset="https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/animation-smoke-images/images/smoke-pink.webp"
@@ -12,7 +12,7 @@ const SmokeAnimation = () => {
           <img
             src="https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/animation-smoke-images/images/smoke-pink.png"
             alt="smoke-pink"
-            class="ag-smoke_img ag-smoke_img__left"
+            className="ag-smoke_img ag-smoke_img__left"
             width="1920"
             height="1080"
           />
@@ -25,7 +25,7 @@ const SmokeAnimation = () => {
           <img
             src="https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/animation-smoke-images/images/smoke-blue.png"
             alt="smoke-blue"
-            class="ag-smoke_img ag-smoke_img__right"
+            className="ag-smoke_img ag-smoke_img__right"
             width="1920"
             height="1080"
           />

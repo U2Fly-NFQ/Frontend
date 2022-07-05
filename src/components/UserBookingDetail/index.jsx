@@ -8,7 +8,6 @@ import './style.scss'
 function UserBookingDetail({ detailData }) {
   const [viewTicket, setViewTicket] = useState(false)
   const [ticketData, setTicketData] = useState({})
-
   const flightsColumn = [
     {
       title: 'Airline',
@@ -16,12 +15,12 @@ function UserBookingDetail({ detailData }) {
       align: 'center',
       width: '150px',
       render: (_, { airline }) => (
-        <img width="100%" src={airline} alt="airline" />
+        <img width="100%" src={airline.image} alt="airline" />
       ),
     },
     {
       title: 'Flight',
-      dataIndex: 'key',
+      dataIndex: 'code',
       align: 'center',
     },
     {
@@ -62,7 +61,7 @@ function UserBookingDetail({ detailData }) {
             onClick={() => {
               setTicketData({
                 ...detailData,
-                flights: detailData.flights[record.key - 1],
+                flights: detailData.flights[record.id - 1],
               })
               setViewTicket(true)
             }}
@@ -112,6 +111,7 @@ function UserBookingDetail({ detailData }) {
           <Col className="flight-info-content" span={24}>
             <Table
               columns={flightsColumn}
+              rowKey={(record) => record.id}
               dataSource={detailData.flights}
               pagination={false}
             />

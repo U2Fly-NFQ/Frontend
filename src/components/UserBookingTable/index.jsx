@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { UserBookingDetail } from '../index'
 import { Button, Space, Table } from 'antd'
 
 function UserBookingTable({ loading, data }) {
+  //initiation
+  const [expandedRowKeys, setExpandedRowKeys] = useState([])
+
   //Data for UI
   const bookingListColumn = [
     {
@@ -34,10 +37,10 @@ function UserBookingTable({ loading, data }) {
       ),
     },
     {
-      title: 'Booking Amount',
-      dataIndex: 'bookingAmount',
+      title: 'Booking Amount (USD)',
+      dataIndex: 'total_price',
       align: 'center',
-      sorter: (a, b) => a.bookingAmount - b.bookingAmount,
+      sorter: (a, b) => a.total_price - b.total_price,
     },
     {
       title: 'Status',
@@ -66,13 +69,19 @@ function UserBookingTable({ loading, data }) {
       ),
     },
   ]
+  const onExpandRowKey = (expanded, record) => {
+    expanded ? setExpandedRowKeys(record.id) : setExpandedRowKeys([])
+  }
   return (
     <Table
       columns={bookingListColumn}
+      rowKey={(record) => record.id}
       expandable={{
         expandedRowRender: (record) => (
           <UserBookingDetail detailData={record} />
         ),
+        expandedRowKeys: expandedRowKeys,
+        onExpand: onExpandRowKey,
       }}
       dataSource={data}
       loading={loading}

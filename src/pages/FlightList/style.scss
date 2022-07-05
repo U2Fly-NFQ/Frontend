@@ -104,8 +104,13 @@
 }
 
 .flight-search-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-align: right;
+
   .ant-typography {
     color: a.$paragraph-color;
+    margin-bottom: 0;
   }
 }

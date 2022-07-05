@@ -52,7 +52,7 @@ function FlightList() {
       dispatch(getDataFlights(dataFlight.id))
       dispatch(getUserDataInBooking(userInfo.id))
     } else {
-      navigate('/flight')
+      navigate('/')
     }
   }, [])
   const onFinish = (values) => {

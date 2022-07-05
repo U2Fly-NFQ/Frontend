@@ -7,7 +7,7 @@ import store from './redux/store'
 
 ConfigProvider.config({
   theme: {
-    primaryColor: '#8b3eea',
+    primaryColor: '#0E86D4',
   },
 })
 

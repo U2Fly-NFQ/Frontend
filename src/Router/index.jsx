@@ -19,7 +19,6 @@ import {
 
 const HomeLayout = lazy(() => import('../layouts/Home'))
 const AdminLayout = lazy(() => import('../layouts/Admin'))
-const Home = lazy(() => import('../pages/Home'))
 const FlightList = lazy(() => import('../pages/FlightList'))
 
 const RoutesApp = () => {
@@ -29,8 +28,7 @@ const RoutesApp = () => {
         <Routes>
           {/* Public */}
           <Route path="/" element={<HomeLayout />}>
-            <Route path="" element={<Home />} />
-            <Route path="flights" element={<FlightList />} />
+            <Route path="" element={<FlightList />} />
             <Route
               path="/booking-success/:ticketId"
               element={<BookingSuccessPage />}

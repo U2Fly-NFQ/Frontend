@@ -2,21 +2,53 @@ import React from 'react'
 import { Skeleton } from 'antd'
 import { motion } from 'framer-motion'
 import './style.scss'
-import { useNavigate } from 'react-router-dom'
+import {
+  useNavigate,
+  useSearchParams,
+  createSearchParams,
+} from 'react-router-dom'
+import { getLsObj, updateLs } from '../../utils/localStorage'
+import { useSelector } from 'react-redux'
 
 export default function FlightCard({ data }) {
   const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const flight = useSelector((state) => state.flights)
 
   const onBooking = () => {
-    let existingBooking = JSON.parse(localStorage.getItem('flight') || {})
-    localStorage.setItem(
-      'flight',
-      JSON.stringify({
-        ...existingBooking,
-        id: data.id,
-      })
-    )
-    navigate('/flights-booking')
+    let flight = getLsObj('flight')
+
+    if (flight.ticketType) {
+      if (flight.ticketType === 'oneWay') {
+        updateLs('flight', {
+          id: data.id,
+        })
+        navigate('/flights-booking')
+        return
+      }
+
+      if (flight.seatType === 'roundTrip') {
+        if (flight.id) {
+          updateLs('flight', {
+            roundId: data.id,
+          })
+          navigate('/flights-booking')
+          return
+        } else {
+          navigate({
+            pathname: 'flights',
+            search: createSearchParams({
+              departure: flight.arrival,
+              arrival: flight.departure,
+              startDate: flight.returnDate,
+              seatType: flight.seatType,
+              seatAvailable: flight.seatAvailable,
+            }).toString(),
+          })
+          return
+        }
+      }
+    }
   }
 
   return (
@@ -50,7 +82,7 @@ export default function FlightCard({ data }) {
                       From
                     </p>
                     <h3 className="flight-card-place-destination__title">
-                      {data.departure.city}
+                      {data.departure.city} ({data.departure.iata})
                     </h3>
                     <h6 className="flight-card-place-destination__desc">
                       {data.departure.name}
@@ -65,7 +97,13 @@ export default function FlightCard({ data }) {
                     src="https://andit.co/projects/html/and-tour/assets/img/icon/right_arrow.png"
                     alt=""
                   />
-                  <h6>Non-stop</h6>
+                  <h6
+                    style={{
+                      color: 'var(--ant-infor-color)',
+                    }}
+                  >
+                    Direct
+                  </h6>
                   <p>{data.duration} hour</p>
                 </div>
                 <div className="flight-card-place__to">
@@ -74,10 +112,10 @@ export default function FlightCard({ data }) {
                       To
                     </p>
                     <h3 className="flight-card-place-destination__title">
-                      {data.arrival.city}
+                      {data.arrival.city} ({data.arrival.iata})
                     </h3>
                     <h6 className="flight-card-place-destination__desc">
-                      {data.departure.name}
+                      {data.arrival.name}
                     </h6>
                   </div>
                 </div>

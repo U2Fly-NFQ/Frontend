@@ -1,4 +1,4 @@
-export const updateLocalStorage = (key, value) => {
+export const updateLs = (key, value) => {
   const item = localStorage.getItem(key)
   if (typeof value === 'string') localStorage.setItem(key, value)
   if (typeof value === 'object') {
@@ -11,4 +11,8 @@ export const updateLocalStorage = (key, value) => {
       })
     )
   }
+}
+
+export const getLsObj = (key) => {
+  return JSON.parse(localStorage.getItem(key) || '[]')
 }

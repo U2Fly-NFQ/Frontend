@@ -28,6 +28,8 @@ export const getInfoStartTime = (state) =>
 export const getDiscountForBookingAirline = (state) =>
   state.bookingFlight.discountInfo
 
+export const getCurrentMethodInBookingFlight = (state) =>
+  state.bookingFlight.currentMethods
 ///  get user information
 
 export const getUserInformation = (state) => state.bookingFlight.userInformation

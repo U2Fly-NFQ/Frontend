@@ -20,6 +20,7 @@ import {
 import moment from 'moment'
 import { fetchAirports } from '../../redux/slices/airportSlice'
 import { updateLs, getLsObj } from '../../utils/localStorage'
+import { CloseOutlined } from '@ant-design/icons'
 
 const { Option } = Select
 
@@ -58,8 +59,6 @@ export default function FlightSearch() {
     if (seatType) setPassengerClass(seatType)
     if (seatAvailable) setPassengerNumber(seatAvailable)
     if (ticketType) setTicketType(ticketType)
-
-    setSearchParams({ ...existingFlight })
   }, [])
 
   const onFinish = async () => {
@@ -176,6 +175,8 @@ export default function FlightSearch() {
               </label>
               <Select
                 size="large"
+                allowClear
+                clearIcon={<CloseOutlined />}
                 onClear={clearFrom}
                 showSearch
                 value={from}
@@ -183,10 +184,9 @@ export default function FlightSearch() {
                 filterOption={() => true}
                 onChange={onChangeFrom}
                 onSearch={(text) => setSearchFrom(text)}
-                allowClear
                 bordered={false}
                 style={{
-                  width: '70%',
+                  width: '100%',
                 }}
                 dropdownStyle={{
                   borderRadius: '10px',
@@ -199,7 +199,7 @@ export default function FlightSearch() {
                       .includes(searchFrom.toLowerCase()) &&
                     airport.iata !== to && (
                       <Option key={airport.iata} value={airport.iata}>
-                        {airport.city}
+                        {airport.city} ({airport.iata})
                       </Option>
                     )
                   )
@@ -218,6 +218,7 @@ export default function FlightSearch() {
                 size="large"
                 showSearch
                 allowClear
+                clearIcon={<CloseOutlined />}
                 onClear={clearTo}
                 value={to}
                 showArrow={false}
@@ -226,7 +227,7 @@ export default function FlightSearch() {
                 onSearch={(text) => setSearchTo(text)}
                 bordered={false}
                 style={{
-                  width: '70%',
+                  width: '100%',
                 }}
                 dropdownStyle={{
                   borderRadius: '10px',
@@ -239,7 +240,7 @@ export default function FlightSearch() {
                       .includes(searchTo.toLowerCase()) &&
                     airport.iata !== from && (
                       <Option key={airport.iata} value={airport.iata}>
-                        {airport.city}
+                        {airport.city} ({airport.iata})
                       </Option>
                     )
                   )

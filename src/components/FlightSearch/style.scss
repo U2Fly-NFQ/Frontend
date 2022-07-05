@@ -44,10 +44,11 @@
 
       &__Icon {
         position: absolute;
-        top: 20%;
-        right: 12%;
-        font-size: 30px;
+        top: 10%;
+        right: 10%;
+        font-size: 40px;
         color: var.$paragraph-color;
+        opacity: 0.15;
       }
 
       .ant-picker {
@@ -200,4 +201,12 @@
 
 .flightSearchLabel {
   display: block;
+}
+.ant-select-clear {
+  background-color: transparent;
+  .anticon-close {
+    transform: scale(2);
+    background-color: transparent;
+    border-radius: 50%;
+  }
 }

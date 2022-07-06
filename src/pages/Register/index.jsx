@@ -1,12 +1,24 @@
-import { Row, Col, Typography, Form, message } from 'antd'
+import {
+  Row,
+  Col,
+  Typography,
+  Form,
+  message,
+  Radio,
+  Input,
+  DatePicker,
+} from 'antd'
+import { Button } from './Button'
 import { Link } from 'react-router-dom'
-import { LoginBanner } from '../../components'
-
+import RegisterBanner from './RegisterBanner'
+import axios from 'axios'
 import './style.scss'
 
 const { Title } = Typography
 
-const MOCK_URL = 'https://62c4071b7d83a75e39edba50.mockapi.io/users'
+const MOCK_URL = 'https://62bb0d28573ca8f83291bd89.mockapi.io/api/register'
+
+const registerApi = (data) => axios.post(MOCK_URL, data)
 
 const postData = async (url = '', data = {}) => {
   const res = await fetch(url, {
@@ -21,26 +33,31 @@ const postData = async (url = '', data = {}) => {
     redirect: 'follow', // manual, *follow, error
     body: JSON.stringify(data),
   })
-  return res
+
+  console.log(data)
 }
 
 const Register = () => {
   const onFinish = (values) => {
-    const { email, password, username, idno } = values
+    const { idno, name, gender, birthDate, address, email, password } = values
 
     const data = {
       user: {
         email: email,
         password: password,
-        roles: { 1: 'ROLE_USER' },
       },
       passenger: {
-        name: username,
+        name: name,
+        gender: gender === 'male',
+        birthday: birthDate.toISOString(),
+        address: address,
         identification: idno,
       },
     }
-    const res = postData(MOCK_URL, data)
 
+    const res = registerApi(JSON.stringify(data))
+
+    console.log(res)
     res.then((data) => {
       if (data.status === 201) {
         message.success('Register successful!')
@@ -53,7 +70,7 @@ const Register = () => {
   return (
     <>
       <div className="register-page">
-        <LoginBanner />
+        <RegisterBanner />
         <div className="grid wide">
           <Row justify="center">
             <Col lg={16}>
@@ -73,7 +90,72 @@ const Register = () => {
                           },
                         ]}
                       >
-                        <input type="text" placeholder="ID number" />
+                        <Input placeholder="ID number" />
+                      </Form.Item>
+                    </div>
+
+                    <div className="form-group">
+                      <Form.Item
+                        name="name"
+                        className="form-control"
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please fill your display name!',
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Display name" />
+                      </Form.Item>
+                    </div>
+
+                    <div className="form-group">
+                      <Form.Item
+                        name="gender"
+                        label="Gender"
+                        style={{ textAlign: 'left' }}
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please pick a gender!',
+                          },
+                        ]}
+                      >
+                        <Radio.Group>
+                          <Radio value="male"> Male </Radio>
+                          <Radio value="female"> Female </Radio>
+                        </Radio.Group>
+                      </Form.Item>
+                    </div>
+
+                    <div className="form-group">
+                      <Form.Item
+                        name="birthDate"
+                        label="Birth Date"
+                        style={{ textAlign: 'left' }}
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please pick the birth date!',
+                          },
+                        ]}
+                      >
+                        <DatePicker />
+                      </Form.Item>
+                    </div>
+
+                    <div className="form-group">
+                      <Form.Item
+                        name="address"
+                        className="form-control"
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please fill your address',
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Address" />
                       </Form.Item>
                     </div>
 
@@ -84,30 +166,15 @@ const Register = () => {
                         rules={[
                           {
                             required: true,
-                            message: 'Please fill your email',
+                            message: 'Please fill your email!',
                           },
                           {
                             type: 'email',
-                            message: 'The input is not valid E-mail!',
+                            message: 'Invalid E-mail!',
                           },
                         ]}
                       >
-                        <input type="text" placeholder="Email" />
-                      </Form.Item>
-                    </div>
-
-                    <div className="form-group">
-                      <Form.Item
-                        name="username"
-                        className="form-control"
-                        rules={[
-                          {
-                            required: true,
-                            message: 'Please fill your name!',
-                          },
-                        ]}
-                      >
-                        <input type="text" placeholder="Name" />
+                        <Input placeholder="Email" />
                       </Form.Item>
                     </div>
 
@@ -122,15 +189,15 @@ const Register = () => {
                           },
                         ]}
                       >
-                        <input type="password" placeholder="Password" />
+                        <Input.Password placeholder="Password" />
                       </Form.Item>
                     </div>
+
                     <div className="form-group">
                       <Form.Item
                         className="form-control"
                         name="confirm"
                         dependencies={['password']}
-                        hasFeedback
                         rules={[
                           {
                             required: true,
@@ -152,14 +219,13 @@ const Register = () => {
                           }),
                         ]}
                       >
-                        <input type="password" placeholder="Confirm password" />
+                        <Input.Password placeholder="Confirm password" />
                       </Form.Item>
-                      <Link to="forgot-password">Forgot password?</Link>
                     </div>
                     <div className="form-submit">
-                      <button type="submit" className="btn btn-primary btn-md">
+                      <Button type="submit" className="btn btn-primary btn-md">
                         Register
-                      </button>
+                      </Button>
                     </div>
                     <div className="switch">
                       <p>

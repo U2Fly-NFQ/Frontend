@@ -10,6 +10,7 @@
     .box {
       background: #f3f6fd;
       padding: 45px 20px;
+      border-radius: 10px;
 
       h2,
       h3 {
@@ -30,7 +31,12 @@
       }
 
       .form {
-        padding: 50px 100px 0px 100px;
+        padding: 0 100px;
+        @media screen and (max-width: 992px) {
+          padding-left: 0;
+          padding-right: 0;
+        }
+        padding-top: 50px;
 
         .form-group {
           margin-bottom: 20px;
@@ -41,6 +47,15 @@
               border: none;
               outline: none;
               width: 100%;
+            }
+
+            input:focus {
+              box-shadow: none;
+            }
+
+            span {
+              border: none;
+              box-shadow: none;
             }
 
             .ant-form-item-explain-error {

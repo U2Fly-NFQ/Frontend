@@ -1,19 +1,25 @@
+@use '../../assets/scss/abstracts' as a;
+
 .nav-link {
   position: relative;
   display: inline-block;
   color: inherit;
 
   &.active {
-    color: red;
+    color: #000;
 
     &::before {
       content: '';
-      position: absolute;
-      height: 2px;
-      width: 100%;
-      left: 0;
+      width: 0;
+      height: 1px;
       bottom: 0;
-      background-color: red;
+      position: absolute;
+      left: auto;
+      right: 0;
+      z-index: -1;
+      -webkit-transition: width 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+      transition: width 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+      background: #000;
     }
   }
 }

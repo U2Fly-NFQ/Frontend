@@ -1,0 +1,39 @@
+@use '../../assets/scss/abstracts' as a;
+
+.filter {
+  .filterItem {
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 30px;
+    font-size: 16px;
+
+    .title {
+      border-bottom: 1px solid #dddddd;
+      padding-bottom: 5px;
+
+      .clear-btn {
+        color: var(--ant-info-color);
+        cursor: pointer;
+      }
+    }
+
+    .content {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-right: 10px;
+    }
+  }
+}
+
+.ant-tooltip-arrow-content {
+  --antd-arrow-background-color: #ddd;
+}
+
+.ant-tooltip-inner {
+  color: #000;
+  background-color: transparent;
+  box-shadow: none;
+  border: 1px solid #ddd;
+}

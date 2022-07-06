@@ -1,0 +1,68 @@
+@use '../../assets/scss/abstracts' as a;
+
+$borderRadius: 15px;
+
+.userProfile {
+  &-container {
+    margin-top: 50px;
+    margin-bottom: 25px;
+
+    .userProfile-sidebar {
+      border: 1px a.$bg-color solid;
+      border-radius: $borderRadius;
+      box-shadow: a.$box-shadow;
+
+      &-header {
+        background-color: a.$bg-color;
+        padding: 15px 0;
+        border-top-right-radius: $borderRadius;
+        border-top-left-radius: $borderRadius;
+        text-align: center;
+
+        & > div > div {
+          line-height: 2;
+        }
+
+        &-avatar {
+          padding-top: 15px;
+          padding-bottom: 15px;
+        }
+
+        &-name {
+          font-weight: bold;
+          font-size: 20px;
+        }
+      }
+
+      &-menu {
+        .ant-menu {
+          border-bottom-left-radius: $borderRadius;
+          border-bottom-right-radius: $borderRadius;
+          border-right: none;
+
+          .ant-menu-item {
+            margin: auto;
+          }
+        }
+      }
+    }
+
+    &-main {
+      padding: 20px;
+      border-radius: $borderRadius;
+      background-color: a.$bg-color;
+      box-shadow: a.$box-shadow;
+    }
+
+    &-booking,
+    &-history,
+    &-profile {
+      &-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        border-bottom: 1px solid a.$main-color;
+      }
+    }
+  }
+}

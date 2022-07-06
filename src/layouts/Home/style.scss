@@ -1,5 +1,23 @@
 @use '../../assets/scss/abstracts' as a;
 
-.test-h1 {
-  color: a.$red;
+.home-header {
+  position: absolute;
+  width: 100%;
+  z-index: 99;
+  padding-right: 0;
+  padding-left: 0;
+  background-color: transparent;
+  line-height: normal;
+  height: unset;
 }
+
+.ant-layout-footer {
+  background-color: #fff;
+}
+
+// @media screen and (max-width: 972px) {
+//   .ant-layout-footer {
+//     padding: 10px;
+//     // padding-top: 10px;
+//   }
+// }

@@ -1,0 +1,85 @@
+@use '../../../assets/scss/abstracts/' as a;
+.Booking-success {
+  .Booking-success__container {
+    // padding-top: 100px;
+
+    &__items {
+      display: flex;
+      gap: 1rem;
+    }
+    &__item {
+      flex: 1;
+      &:first-child {
+        flex: 2;
+      }
+    }
+    &__content {
+      &__info {
+        margin-top: 10px;
+        > ul {
+          border-bottom: 1px solid a.$main-color;
+
+          li {
+            display: flex;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            justify-content: space-between;
+          }
+          li.change-color {
+            color: a.$main-color;
+            font-style: italic;
+          }
+        }
+      }
+      &:first-child {
+        display: flex;
+        align-items: center;
+      }
+
+      gap: 2rem;
+      background-color: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+      &__title {
+        margin: 20px 0;
+        width: fit-content;
+        h3 {
+          font-weight: 500;
+          font-size: 24px;
+          border-bottom: 1px solid a.$main-color;
+        }
+      }
+      .Booking-success__container__content-info {
+        & > li {
+          display: flex;
+          border-bottom: 1px solid #dfdfdf94;
+          padding-bottom: 20px;
+          margin-bottom: 20px;
+          display: flex;
+          font-size: 16px;
+          span {
+            &:first-child {
+              width: 40%;
+            }
+          }
+          .value {
+            font-weight: 600;
+          }
+        }
+      }
+      h3 {
+        font-weight: 500;
+        font-size: 27px;
+      }
+      h6 {
+        font-size: 18px;
+      }
+    }
+  }
+  .highlight-main {
+    color: a.$main-color;
+  }
+}

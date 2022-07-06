@@ -1,20 +1,25 @@
 import { Button, Result } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-
-import { HomeFooter, HomeNavigation } from '../../components'
+import notFoundImg from '../../assets/images/system/not-found.png'
 
 const NoMatch = () => {
   const navigate = useNavigate()
 
   return (
     <>
-      <HomeNavigation />
       <Result
         style={{
           paddingTop: '128px',
         }}
-        status="404"
+        icon={
+          <img
+            src={notFoundImg}
+            style={{
+              maxWidth: '100%',
+            }}
+          />
+        }
         title="404"
         subTitle="Sorry, the page you visited does not exist."
         extra={
@@ -23,7 +28,6 @@ const NoMatch = () => {
           </Button>
         }
       />
-      <HomeFooter />
     </>
   )
 }

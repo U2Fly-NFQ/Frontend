@@ -1,46 +1,39 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+
+import AirlineApi from '../../api/Airline'
 
 const initialState = {
-  price: [0, 10000],
-  type: [],
-  gender: [],
-  brand: [],
-  material: [],
-  orderPrice: 'none',
+  status: '',
+  airlines: [],
 }
 
 const filterSlice = createSlice({
-  name: 'filterSlice',
+  name: 'filter',
   initialState,
-  reducers: {
-    priceChange: (state, action) => {
-      state.price = action.payload
-    },
-    typeChange: (state, action) => {
-      state.type = action.payload
-    },
-    genderChange: (state, action) => {
-      state.gender = action.payload
-    },
-    brandChange: (state, action) => {
-      state.brand = action.payload
-    },
-    materialChange: (state, action) => {
-      state.material = action.payload
-    },
-    orderPriceChange: (state, action) => {
-      state.orderPrice = action.payload
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAllFilter.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(fetchAllFilter.rejected, (state) => {
+        state.status = 'error'
+      })
+      .addCase(fetchAllFilter.fulfilled, (state, { payload }) => {
+        state.status = 'idle'
+        state.airlines = payload.airlines
+      })
   },
 })
 
-export const {
-  priceChange,
-  typeChange,
-  genderChange,
-  brandChange,
-  materialChange,
-  orderPriceChange,
-} = filterSlice.actions
-
 export default filterSlice
+
+export const fetchAllFilter = createAsyncThunk(
+  'filter/fetchAllFilter',
+  async () => {
+    const airlines = await AirlineApi.getList()
+    return {
+      airlines: airlines.data.data,
+    }
+  }
+)

@@ -1,0 +1,61 @@
+@use '../../assets/scss/abstracts' as a;
+
+.sub-nav {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: a.$border-dark;
+  height: 45px;
+
+  &-list {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &__item {
+      position: relative;
+      list-style-type: none;
+      display: inline-block;
+      color: a.$white-color;
+      font-size: 14px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0px;
+        width: 1px;
+        height: 70%;
+        transform: translateY(20%);
+        background-color: #dbdbdb78;
+      }
+
+      &:last-of-type::before {
+        background-color: transparent;
+      }
+
+      a {
+        padding-right: 7px;
+      }
+    }
+
+    &-actions {
+      font-weight: 500;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .sub-nav {
+    background-color: a.$main-color;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 768px) {
+  .sub-nav {
+    .ant-row {
+      justify-content: flex-end;
+    }
+  }
+}

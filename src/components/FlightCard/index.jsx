@@ -105,7 +105,10 @@ export default function FlightCard(props) {
         <div className="flight-card-deal">
           <div className="flight-card-price">
             <h5 className="flight-card-price__origin">
-              <del>${data.seat.price}</del>
+              <del>
+                {t('flight-list-page.$')}
+                {data.seat.price}
+              </del>
             </h5>
             <h2 className="flight-card-price__discount">
               {t('flight-list-page.$')}

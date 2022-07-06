@@ -173,10 +173,12 @@ function FlightList() {
                         </div>
                         <div className="price-box">
                           <Title level={3} className="price-old">
-                            $<del>{selectedPrice}</del>
+                            {t('flight-list-page.$')}
+                            <del>{selectedPrice}</del>
                           </Title>
                           <Title level={3} className="price-new">
-                            ${selectedPrice}
+                            {t('flight-list-page.$')}
+                            {selectedPrice}
                           </Title>
                           <sup>{t('flight-list-page.OFF', { number: 0 })}</sup>
                         </div>

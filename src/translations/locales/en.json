@@ -178,7 +178,16 @@
     "Your birthdate": "Your birthdate",
     "I have read the": "I have read the",
     "agreement": "agreements",
-    "Continue to payment": "Continue to payment"
+    "Continue to payment": "Continue to payment",
+    "Please input your birthdate!": "Please input your birthdate!",
+    "Please input your apartment!": "Please input your apartment!",
+    "Please input your first name!": "Please input your first name!",
+    "Please input your E-mail!": "Please input your E-mail!",
+    "Please input your phone number!": "Please input your phone number!",
+    "Please input your street address!": "Please input your street address!",
+    "Please input your Passport!": "Please input your Passport!",
+    "Please input your visa!": "Please input your visa!",
+    "Should accept agreement": "Should accept agreement"
   },
 
   "profile-page": {

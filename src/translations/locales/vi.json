@@ -176,7 +176,16 @@
     "Your birthdate": "Ngày Sinh của bạn",
     "I have read the": "Tôi đã đọc",
     "agreement": "thỏa thuận",
-    "Continue to payment": "Tiếp tục thanh toán"
+    "Continue to payment": "Tiếp tục thanh toán",
+    "Please input your birthdate!": "Xin vui lòng nhập ngày sinh!",
+    "Please input your apartment!": "Xin vui lòng nhập địa chỉ nhà!",
+    "Please input your first name!": "Xin vui lòng nhập Tên!",
+    "Please input your E-mail!": "Xin vui lòng nhập E-mail!",
+    "Please input your phone number!": "Xin vui lòng nhập số điện thoại!",
+    "Please input your street address!": "Xin vui lòng nhập địa chỉ đường!",
+    "Please input your Passport!": "Xin vui lòng nhập mã số hộ chiếu!",
+    "Please input your visa!": "Xin vui lòng nhập mã số visa!",
+    "Should accept agreement": "Bạn chưa đồng ý với thỏa thuận"
   },
 
   "profile-page": {

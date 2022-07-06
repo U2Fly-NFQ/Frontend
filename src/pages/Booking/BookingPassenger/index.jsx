@@ -54,7 +54,7 @@ export default function BookingPassenger() {
           rules={[
             {
               required: true,
-              message: 'Please input your first name!',
+              message: t('flight-booking-page.Please input your first name!'),
             },
           ]}
         >
@@ -72,7 +72,7 @@ export default function BookingPassenger() {
           rules={[
             {
               required: true,
-              message: 'Please input your last name!',
+              message: t('flight-booking-page.Please input your birthdate!'),
             },
           ]}
         >
@@ -92,11 +92,11 @@ export default function BookingPassenger() {
           rules={[
             {
               type: 'email',
-              message: 'The input is not valid E-mail!',
+              message: t('flight-booking-page.The input is not valid E-mail!'),
             },
             {
               required: true,
-              message: 'Please input your E-mail!',
+              message: t('flight-booking-page.Please input your E-mail!'),
             },
           ]}
         >
@@ -110,7 +110,12 @@ export default function BookingPassenger() {
         <Form.Item
           name="number"
           style={{ display: 'inline-block', width: '50%' }}
-          rules={[{ required: true, message: 'Please input your number !' }]}
+          rules={[
+            {
+              required: true,
+              message: t('flight-booking-page.Please input your phone number!'),
+            },
+          ]}
         >
           <input
             name="number"
@@ -129,7 +134,9 @@ export default function BookingPassenger() {
           rules={[
             {
               required: true,
-              message: 'Please input your street address!',
+              message: t(
+                'flight-booking-page.Please input your street address!'
+              ),
             },
           ]}
         >
@@ -143,6 +150,12 @@ export default function BookingPassenger() {
         <Form.Item
           name="identificationCard"
           style={{ display: 'inline-block', width: '50%' }}
+          rules={[
+            {
+              required: true,
+              message: t('flight-booking-page.Please input your apartment!'),
+            },
+          ]}
         >
           <input
             name="Identification Card"
@@ -170,7 +183,7 @@ export default function BookingPassenger() {
           rules={[
             {
               required: true,
-              message: 'Please input your Passport!',
+              message: t('flight-booking-page.Please input your Passport!'),
             },
           ]}
         >
@@ -184,7 +197,12 @@ export default function BookingPassenger() {
         <Form.Item
           name="visa"
           style={{ display: 'inline-block', width: '50%' }}
-          rules={[{ required: true, message: 'Please input your visa!' }]}
+          rules={[
+            {
+              required: true,
+              message: t('flight-booking-page.Please input your visa!'),
+            },
+          ]}
         >
           <input
             name="visa"
@@ -201,7 +219,11 @@ export default function BookingPassenger() {
               validator: (_, value) =>
                 value
                   ? Promise.resolve()
-                  : Promise.reject(new Error('Should accept agreement')),
+                  : Promise.reject(
+                      new Error(
+                        t('flight-booking-page.Should accept agreement')
+                      )
+                    ),
             },
           ]}
         >

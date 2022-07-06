@@ -37,8 +37,9 @@ const RoutesApp = () => {
               element={<BookingSuccessPage />}
             />
             <Route path="flights-booking" element={<Booking />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
+            <Route path="flights-booking/:ticketId" element={<Booking />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
 
             {/* For users */}
             {token && (

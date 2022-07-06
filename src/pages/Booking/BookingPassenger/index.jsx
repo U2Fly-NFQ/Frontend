@@ -6,12 +6,19 @@ import { getUserInformation } from '../../../redux/selectors'
 import {
   addDataIntoBookingFlight,
   changeCurrentMethod,
+  getUserDataInBooking,
 } from '../../../redux/slices/bookingFlightsSlice'
 import { ButtonOfPage, SelectDropDown } from '../../../components'
 export default function BookingPassenger() {
   const userInformation = useSelector(getUserInformation)
   const dispatch = useDispatch()
   const [form] = Form.useForm()
+  useEffect(() => {
+    let userInfo = JSON.parse(localStorage.getItem('user'))
+    if (userInfo) {
+      dispatch(getUserDataInBooking(userInfo.id))
+    }
+  }, [])
   const onFinish = (values) => {
     let valueResult = {
       ...values,
@@ -32,6 +39,9 @@ export default function BookingPassenger() {
   }, [userInformation])
   return (
     <>
+      <div class="booking-page__container__item__title">
+        <h2>Passengers information</h2>
+      </div>
       <Form
         wrapperCol={{
           span: 22,
@@ -98,7 +108,7 @@ export default function BookingPassenger() {
           <input
             name="email"
             className="form-control"
-            placeholder="Email address (Optional)*"
+            placeholder="Email address"
           />
         </Form.Item>
 

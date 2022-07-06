@@ -1,28 +1,29 @@
 import { Form, Layout } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import './index.scss'
-import { FlightListBanner } from '../../components'
+import { FlightListBanner, PageLoadingAnimation } from '../../components'
 import DetailFlights from './detailFlights'
 import { useLoadingContext } from 'react-router-loading'
 import BookingTravelDate from './BookingTravelDate'
 import BookingCoupon from './BookingCoupon'
 import { useEffect } from 'react'
-import {
-  getDataFlights,
-  getUserDataInBooking,
-} from '../../redux/slices/bookingFlightsSlice'
-import { useNavigate } from 'react-router-dom'
+import { getDataFlights } from '../../redux/slices/bookingFlightsSlice'
+import { useNavigate, useParams } from 'react-router-dom'
 import {
   getCurrentMethodInBookingFlight,
   getInfoFlightInBookingArrival,
   getInfoFlightInBookingDeparture,
   getInfoFlightInBookingSeat,
+  getLoaddingMethodInBookingFlight,
   getUserInformation,
 } from '../../redux/selectors'
 import BookingSteps from './BookingSteps'
 import BookingPassenger from './BookingPassenger'
 import PaymentFlight from './PaymentFlight'
 import BookingSuccessPage from './BookingSuccess'
+import { scrollTo } from '../../utils/scroll'
+import { getBookingInformationSuccess } from '../../redux/selectors/bookingSuccessSelector'
+import { getTicketInformation } from '../../redux/slices/bookingSuccessSlice'
 const { Header, Footer, Sider, Content } = Layout
 function FlightList() {
   const navigate = useNavigate()
@@ -32,7 +33,11 @@ function FlightList() {
   const departure = useSelector(getInfoFlightInBookingDeparture)
   const getPrice = useSelector(getInfoFlightInBookingSeat)
   const userInformation = useSelector(getUserInformation)
-  const getCurrentMethod = useSelector(getCurrentMethodInBookingFlight)
+  const getTicketStatus = useSelector(getBookingInformationSuccess)
+  const getCurrentMethod = useSelector(getCurrentMethodInBookingFlight) || 0
+  const getLoadding = useSelector(getLoaddingMethodInBookingFlight)
+  const { ticketId } = useParams()
+
   // console.log(JSON.parse(localStorage.getItem('flight')))
   // localStorage.setItem(
   //   'flight',
@@ -41,71 +46,79 @@ function FlightList() {
 
   useEffect(() => {
     let dataFlight = JSON.parse(localStorage.getItem('flight'))
-    let userInfo = JSON.parse(localStorage.getItem('user'))
-    if (dataFlight.id !== undefined) {
+    if (dataFlight) {
       dispatch(getDataFlights(dataFlight.id))
-      dispatch(getUserDataInBooking(userInfo.id))
     } else {
       navigate('/')
     }
   }, [])
 
-  const loadingContext = useLoadingContext()
+  useEffect(() => {
+    if (ticketId === undefined) {
+      navigate('/flights-booking')
+    } else {
+      dispatch(getTicketInformation(ticketId))
+    }
+  }, [])
 
+  const loadingContext = useLoadingContext()
   const loading = async () => {
     loadingContext.done()
   }
   useEffect(() => {
-    loading()
+    scrollTo('650')
   }, [])
   return (
-    <div className="booking-page ">
-      <FlightListBanner />
-      <div
-        className="booking-page__container grid wide"
-        style={{ display: getCurrentMethod < 2 ? 'flex' : 'block' }}
-      >
-        {arrival && <BookingSteps />}
-        {getCurrentMethod < 2 ? (
-          <div className="booking-page__container__item">
-            <div className="booking-page__container__itemContent">
-              <div className="booking-page__container__item__content">
-                {getCurrentMethod === 0 ? (
-                  <BookingPassenger />
-                ) : (
-                  <PaymentFlight />
-                )}
-              </div>
-            </div>
-          </div>
-        ) : (
-          <BookingSuccessPage />
-        )}
-        {getCurrentMethod < 2 && (
-          <div className="booking-page__container__item">
-            <div className="booking-page__container__item__content">
+    <>
+      {getLoadding && <PageLoadingAnimation />}
+      <div className="booking-page ">
+        <FlightListBanner />
+        <div
+          className="booking-page__container grid wide"
+          style={{ display: ticketId === undefined ? 'flex' : 'block' }}
+        >
+          <BookingSteps ticketId={ticketId} />
+          {ticketId === undefined ? (
+            <div className="booking-page__container__item">
               <div className="booking-page__container__itemContent">
-                {arrival && <DetailFlights />}
+                <div className="booking-page__container__item__content">
+                  {getCurrentMethod === 0 ? (
+                    <BookingPassenger />
+                  ) : (
+                    <PaymentFlight />
+                  )}
+                </div>
               </div>
             </div>
-            <div
-              className="booking-page__container__item__content"
-              style={{ padding: '20px', marginTop: '20px' }}
-            >
-              {getPrice && <BookingCoupon />}
-            </div>
-            <div
-              className="booking-page__container__item__content"
-              style={{ padding: '20px', marginTop: '20px' }}
-            >
-              <div className="booking-page__container__itemContent">
-                {getPrice && <BookingTravelDate />}
+          ) : (
+            <BookingSuccessPage />
+          )}
+          {ticketId === undefined && (
+            <div className="booking-page__container__item">
+              <div className="booking-page__container__item__content block-container">
+                <div className="booking-page__container__itemContent">
+                  {<DetailFlights />}
+                </div>
+              </div>
+              <div
+                className="booking-page__container__item__content block-container"
+                // style={{ padding: '20px', marginTop: '20px' }}
+              >
+                {<BookingTravelDate />}
+              </div>
+              <div
+                className="booking-page__container__item__content block-container"
+                // style={{ padding: '20px', marginTop: '20px' }}
+              >
+                <div className="booking-page__container__itemContent">
+                  {<BookingCoupon />}
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

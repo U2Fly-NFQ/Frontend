@@ -34,7 +34,9 @@
     "cancle": "Cancle",
     "update": "Update",
     "become_partner": "Become a partner",
-    "loading": "loading"
+    "loading": "loading",
+    "economy": "Economy",
+    "business": "Business"
   },
 
   "search_form": {
@@ -187,7 +189,9 @@
     "Please input your street address!": "Please input your street address!",
     "Please input your Passport!": "Please input your Passport!",
     "Please input your visa!": "Please input your visa!",
-    "Should accept agreement": "Should accept agreement"
+    "Should accept agreement": "Should accept agreement",
+    "multiply price": "$t(cta.{{class}}) Price x {{multiply}}",
+    "OFF": "Giảm"
   },
 
   "profile-page": {

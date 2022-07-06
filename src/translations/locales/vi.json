@@ -34,7 +34,9 @@
     "cancle": "Trở về",
     "update": "Cập nhật",
     "become_partner": "Trở thành đối tác",
-    "loading": "đang tải"
+    "loading": "đang tải",
+    "economy": "phổ thông",
+    "business": "thương gia"
   },
 
   "search_form": {
@@ -185,7 +187,9 @@
     "Please input your street address!": "Xin vui lòng nhập địa chỉ đường!",
     "Please input your Passport!": "Xin vui lòng nhập mã số hộ chiếu!",
     "Please input your visa!": "Xin vui lòng nhập mã số visa!",
-    "Should accept agreement": "Bạn chưa đồng ý với thỏa thuận"
+    "Should accept agreement": "Bạn chưa đồng ý với thỏa thuận",
+    "multiply price": "Giá $t(cta.{{class}}) x {{multiply}}",
+    "OFF": "Giảm"
   },
 
   "profile-page": {

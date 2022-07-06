@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import bookingFlightsSlice from './slices/bookingFlightsSlice'
 
 import flightSlice from './slices/flightSlice'
+import filterSlice from './slices/filterSlice'
 import airportSlice from './slices/airportSlice'
 import bookingSuccessFlightsSlice from './slices/bookingSuccessSlice'
 import ticketSlice from './slices/ticketSlice'
@@ -13,6 +14,7 @@ const store = configureStore({
     airports: airportSlice.reducer,
     bookingSuccess: bookingSuccessFlightsSlice.reducer,
     tickets: ticketSlice.reducer,
+    filter: filterSlice.reducer,
   },
 })
 

@@ -25,7 +25,7 @@ export default function BookingSteps({ contentTop, contentBottom }) {
         title={
           <div className="booking-steps__flight__container">
             <div className="booking-steps__flight__logo">
-              <i class="fa-regular fa-user"></i>
+              <i className="fa-regular fa-user"></i>
             </div>
             <div>
               <div className="booking-steps__flight__content">
@@ -40,7 +40,7 @@ export default function BookingSteps({ contentTop, contentBottom }) {
         title={
           <div className="booking-steps__flight__container">
             <div className="booking-steps__flight__logo">
-              <i class="fa-solid fa-credit-card"></i>
+              <i className="fa-solid fa-credit-card"></i>
             </div>
             <div>
               <div className="booking-steps__flight__content">
@@ -55,7 +55,7 @@ export default function BookingSteps({ contentTop, contentBottom }) {
         title={
           <div className="booking-steps__flight__container">
             <div className="booking-steps__flight__logo">
-              <i class="fa-solid fa-circle-check"></i>
+              <i className="fa-solid fa-circle-check"></i>
             </div>
             <div>
               <div className="booking-steps__flight__content">

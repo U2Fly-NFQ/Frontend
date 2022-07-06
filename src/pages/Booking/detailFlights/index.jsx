@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './index.scss'
-
+import { useDispatch, useSelector } from 'react-redux'
 import FlightTrip from './flightTrip'
+import {
+  getDataFlights,
+  getRoundTripBookingFlight,
+} from '../../../redux/slices/bookingFlightsSlice'
+import { useNavigate } from 'react-router-dom'
+import { getInfoFlightInBookingFight } from '../../../redux/selectors'
 export default function DetailFlights() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const getDataFlight = useSelector(getInfoFlightInBookingFight)
   // const allDataFight = useSelector(getInfoFlightInBookingFight)
   // const arrival = useSelector(getInfoFlightInBookingArrival)
   // const departure = useSelector(getInfoFlightInBookingDeparture)
@@ -10,13 +19,23 @@ export default function DetailFlights() {
   // const airline = useSelector(getInfoFlightInBookingAirline)
   // const seat = useSelector(getInfoFlightInBookingSeat)
 
+  useEffect(() => {
+    let dataFlight = JSON.parse(localStorage.getItem('flight'))
+
+    if (dataFlight) {
+      dispatch(getDataFlights(dataFlight.id))
+      dispatch(getRoundTripBookingFlight(dataFlight.roundId))
+    } else {
+      navigate('/')
+    }
+  }, [])
+  console.log(getDataFlight.name)
   return (
     <div className="detail-flights__container">
       <div className="booking-page__container__item__title">
         <h2>Flights</h2>
       </div>
-      <FlightTrip />
-
+      {getDataFlight.name && <FlightTrip />}
       <div className="detail-flights__container__package-rules">
         <div className="booking-page__container__item__title">
           <h3>Flights</h3>

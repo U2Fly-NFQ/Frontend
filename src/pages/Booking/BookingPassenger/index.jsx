@@ -6,12 +6,19 @@ import { getUserInformation } from '../../../redux/selectors'
 import {
   addDataIntoBookingFlight,
   changeCurrentMethod,
+  getUserDataInBooking,
 } from '../../../redux/slices/bookingFlightsSlice'
 import { ButtonOfPage, SelectDropDown } from '../../../components'
 export default function BookingPassenger() {
   const userInformation = useSelector(getUserInformation)
   const dispatch = useDispatch()
   const [form] = Form.useForm()
+  useEffect(() => {
+    let userInfo = JSON.parse(localStorage.getItem('user'))
+    if (userInfo) {
+      dispatch(getUserDataInBooking(userInfo.id))
+    }
+  }, [])
   const onFinish = (values) => {
     let valueResult = {
       ...values,

@@ -10,6 +10,7 @@ const initialState = {
   discountInfo: {
     percent: 0,
   },
+  dataRoundTripFlight: {},
   currentMethods: 0,
   priceAfterDiscount: 0,
 }
@@ -44,6 +45,13 @@ export const createBookingFlight = createAsyncThunk(
   }
 )
 
+export const getRoundTripBookingFlight = createAsyncThunk(
+  'flight/RoundTripBooking',
+  async (idFlight) => {
+    const respone = await flightAPI.get(idFlight)
+    return respone.data
+  }
+)
 const bookingFlightsSlice = createSlice({
   name: 'filterSlice',
   initialState,
@@ -88,6 +96,7 @@ const bookingFlightsSlice = createSlice({
     [getUserDataInBooking.fulfilled]: (state, action) => {
       state.loadding = false
       let { data } = action.payload
+      // console.log(data)
       state.userInformation = data
     },
     [getDiscountCheck.pending]: (state, action) => {
@@ -117,18 +126,34 @@ const bookingFlightsSlice = createSlice({
     },
     [getDataFlights.fulfilled]: (state, action) => {
       state.loadding = false
-      const { status, data } = action.payload
+      // const { status, data } = action.payload
+      const data = action.payload
+
       let allSeatNameAvailable = data.seat.map((item) => item.name)
       let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
-      if (status === 'success') {
-        state.dataFlight = {
-          ...data,
-          seat: data.seat[
-            allSeatNameAvailable.indexOf(dataSeatChoose.setType) < 0
-              ? 0
-              : allSeatNameAvailable.indexOf(dataSeatChoose.setType)
-          ],
-        }
+      // if (status === 'success') {
+      state.dataFlight = {
+        ...data,
+        seat: data.seat[
+          allSeatNameAvailable.indexOf(dataSeatChoose.setType) < 0
+            ? 0
+            : allSeatNameAvailable.indexOf(dataSeatChoose.setType)
+        ],
+      }
+      // }
+    },
+    [getRoundTripBookingFlight.pending]: (state, action) => {
+      state.loadding = false
+    },
+    [getRoundTripBookingFlight.rejected]: (state, action) => {
+      state.loadding = false
+    },
+    [getRoundTripBookingFlight.fulfilled]: (state, action) => {
+      state.loadding = false
+      const data = action.payload
+      console.log(data)
+      state.dataRoundTripFlight = {
+        ...data,
       }
     },
   },

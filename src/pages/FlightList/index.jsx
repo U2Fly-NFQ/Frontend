@@ -16,6 +16,8 @@ import { getLsObj, updateLs } from '../../utils/localStorage'
 import moment from 'moment'
 import axios from 'axios'
 import { CloseOutlined } from '@ant-design/icons'
+import { scrollTo } from '../../utils/scroll'
+import Home from '../Home'
 
 const { Title, Text } = Typography
 const { Option } = Select
@@ -38,12 +40,10 @@ function FlightList() {
   }
 
   useEffect(() => {
-    dispatch(fetchFlights(searchParams))
-
     if (checkFirstVisitWithoutParams()) {
       updateLs('flight', {
         id: '',
-        roundtrip: '',
+        roundId: '',
       })
       setSelectedFlight({})
       return
@@ -52,8 +52,13 @@ function FlightList() {
     if (searchParams.get('ticketType') === 'oneWay') {
       updateLs('flight', {
         id: '',
+        roundId: '',
       })
       setSelectedFlight({})
+    }
+
+    if (window.location.search) {
+      scrollTo(400)
     }
 
     if (flightStorage.ticketType === 'roundTrip' && flightStorage.id) {
@@ -67,6 +72,9 @@ function FlightList() {
       }
       fetchData()
     }
+
+    // Before action is searching
+    dispatch(fetchFlights(searchParams))
   }, [searchParams, flightStorage.id])
 
   const changePage = (value) => {
@@ -111,7 +119,7 @@ function FlightList() {
         <div className="grid wide">
           <FlightSearch />
         </div>
-        {!checkFirstVisitWithoutParams() && (
+        {(!checkFirstVisitWithoutParams() && (
           <div className="grid wide">
             <Row gutter={[16, 16]}>
               <Col span={24}>
@@ -227,7 +235,7 @@ function FlightList() {
               </Col>
             </Row>
           </div>
-        )}
+        )) || <Home />}
       </div>
     </>
   )

@@ -44,10 +44,7 @@ const Login = () => {
             <Col lg={16}>
               <div className="content">
                 <div className="box">
-                  <Title level={3}>{t('login.Welcome back')}</Title>
-                  <Title level={2}>
-                    {t('login.Logged in to stay in touch')}
-                  </Title>
+                  <Title level={2}>Login</Title>
                   <Form className="form" name="login-form" onFinish={onFinish}>
                     <Form.Item
                       name="username"

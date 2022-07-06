@@ -8,7 +8,6 @@ function UserBookingTable({ loading, data }) {
   //initiation
   const [expandedRowKeys, setExpandedRowKeys] = useState([])
   const navigate = useNavigate()
-
   //Data for UI
   const bookingListColumn = [
     {

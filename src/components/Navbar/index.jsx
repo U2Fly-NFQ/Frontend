@@ -50,10 +50,7 @@ export default function Navbar() {
               U2FLy
             </Title>
           </motion.div>
-          <NavLinkDropDown
-            Title={{ path: '', title: t('header.navbar.home') }}
-          />
-          <NavLinkDropDown Title={{ path: '', title: 'Flights' }} />
+          <NavLinkDropDown Title={{ path: '', title: 'Home' }} />
         </ul>
         <div className="navbar__footer">
           <div className="navbar__footer__btn">

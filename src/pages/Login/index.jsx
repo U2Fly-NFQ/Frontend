@@ -18,14 +18,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user.id && token) {
-      // user
-      if (user.roles['1']) {
-        navigate(-1)
-      }
-      // admin
-      if (user.roles['2']) {
-        navigate(-1)
-      }
+      navigate(-1)
     }
   }, [])
 

@@ -27,7 +27,7 @@ const SubNavBar = () => {
     if (value === 'logout') {
       localStorage.removeItem('user')
       localStorage.removeItem('token')
-      navigate('/')
+      navigate(-1)
     }
   }
 

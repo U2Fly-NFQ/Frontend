@@ -27,7 +27,9 @@ const Login = () => {
         navigate(-1)
       }
     }
-  }, [user.id])
+  }, [])
+
+  const [errTxt, setErrTxt] = useState('')
 
   const onFinish = async (values) => {
     setIsLoading(true)
@@ -37,9 +39,9 @@ const Login = () => {
       localStorage.setItem('user', JSON.stringify(data.user))
       axiosInstance.setToken(data.token)
       // Navigate to previous page
-      navigate(-1)
+      navigate(0)
     } catch (error) {
-      console.error('esdfd')
+      setErrTxt('Wrong email or password')
     }
     setIsLoading(false)
   }
@@ -90,6 +92,16 @@ const Login = () => {
                         placeholder="Enter password"
                       />
                     </Form.Item>
+                    {errTxt && (
+                      <p
+                        style={{
+                          textAlign: 'right',
+                          color: 'var(--ant-error-color)',
+                        }}
+                      >
+                        Wrong email or password
+                      </p>
+                    )}
                     <div className="form-submit">
                       <button className="btn btn-primary btn-md">Log in</button>
                     </div>

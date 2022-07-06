@@ -108,7 +108,8 @@ export default function FlightCard(props) {
               <del>${data.seat.price}</del>
             </h5>
             <h2 className="flight-card-price__discount">
-              ${(data.seat.price * (1 - randomDiscount)).toFixed(2)}
+              {t('flight-list-page.$')}
+              {(data.seat.price * (1 - randomDiscount)).toFixed(2)}
             </h2>
             <h4 className="discount-label red">
               <span>
@@ -119,7 +120,7 @@ export default function FlightCard(props) {
             </h4>
           </div>
           <button className="btn btn-primary btn-md" onClick={onBooking}>
-            Book now
+            {t('flight-list-page.Book now')}
           </button>
         </div>
       </div>

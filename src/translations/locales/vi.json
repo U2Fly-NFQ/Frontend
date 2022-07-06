@@ -51,7 +51,8 @@
     "economy": "Phổ thông",
     "business": "Thương gia",
     "first_class": "Hạng nhất",
-    "No. of Passengers": "Số hành khách"
+    "No. of Passengers": "Số hành khách",
+    "Add return date": "Thêm ngày về"
   },
 
   "subscribe-form": {
@@ -134,7 +135,8 @@
     "Book now": "Đặt ngay",
     "Flight details": "Chi tiết chuyến bay",
     "Delete": "Xóa bỏ",
-    "Selected outbound": "Đã chọn"
+    "Selected outbound": "Đã chọn",
+    "Airline": "Hãng hàng không"
   },
 
   

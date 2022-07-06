@@ -158,7 +158,9 @@ function FlightList() {
                             <i className="fa-solid fa-plane"></i>
                             <span className="flight-segment"></span>
                             <i className="fa-solid fa-map-location-dot"></i>
-                            <span className="duration">1.5 hour</span>
+                            <span className="duration">
+                              1.5 {t('flight-list-page.hour')}
+                            </span>
                           </div>
                           <div className="line-way-item to">
                             <Title level={3}>
@@ -176,7 +178,7 @@ function FlightList() {
                           <Title level={3} className="price-new">
                             ${selectedPrice}
                           </Title>
-                          <sup>0% OFF</sup>
+                          <sup>{t('flight-list-page.OFF', { number: 0 })}</sup>
                         </div>
                       </div>
                     </div>

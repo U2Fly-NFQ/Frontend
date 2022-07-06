@@ -51,7 +51,8 @@
     "economy": "Economy",
     "business": "Business",
     "first_class": "First Class",
-    "No. of Passengers": "No. of Passengers"
+    "No. of Passengers": "No. of Passengers",
+    "Add return date": "Add return date"
   },
 
   "subscribe-form": {
@@ -135,7 +136,8 @@
     "Book now": "Book now",
     "Flight details": "Flight details",
     "Delete": "Delete",
-    "Selected outbound": "Selected outbound"
+    "Selected outbound": "Selected outbound",
+    "Airline": "Airline"
   },
 
   "flight-booking-page": {

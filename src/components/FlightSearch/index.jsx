@@ -331,7 +331,7 @@ export default function FlightSearch() {
                             paddingLeft: 0,
                           }}
                         >
-                          Add return date
+                          {t('search_form.Add return date')}
                         </Button>
                       </Space>
                     )}
@@ -369,8 +369,12 @@ export default function FlightSearch() {
               onClick={onFinish}
               ref={submitRef}
             >
-              {t('cta.search')}
-              {ticketType === 'oneWay' ? 'one way' : 'round trip'}
+              {t('cta.search')}{' '}
+              {t(
+                `search_form.${
+                  ticketType === 'oneWay' ? 'one_way' : 'round_trip'
+                }`
+              )}
             </button>
           </Tooltip>
         </div>

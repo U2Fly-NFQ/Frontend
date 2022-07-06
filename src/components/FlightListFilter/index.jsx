@@ -182,10 +182,10 @@ const Flight = () => {
               width: '100%',
             }}
           >
-            <Text>Airline</Text>
+            <Text>{t('flight-list-page.Airline')}</Text>
             {airlines.length === airlinesOptions.length && (
               <Text className="clear-btn" italic onClick={clearAirline}>
-                Clear
+                {t('flight-list-page.Clear')}
               </Text>
             )}
           </Space>

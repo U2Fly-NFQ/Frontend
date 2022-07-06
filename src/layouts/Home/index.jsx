@@ -4,7 +4,6 @@ import './style.scss'
 import { FooterOfPage, Navbar } from '../../components'
 
 import SubNavBar from '../../components/SubNavBar'
-import FooterEmail from '../../components/FooterOfPage/FooterEmail'
 
 const { Header, Footer, Content } = Layout
 
@@ -18,7 +17,6 @@ function Home() {
         </Header>
         <Content>
           <Outlet />
-          <FooterEmail />
         </Content>
         <Footer>
           <FooterOfPage />

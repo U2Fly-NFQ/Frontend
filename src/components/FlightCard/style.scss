@@ -34,7 +34,8 @@
       }
 
       .title {
-        font-size: 22px;
+        font-size: 20px;
+        font-weight: 400;
       }
 
       .desc {
@@ -53,7 +54,7 @@
         padding: 10px;
         background-color: rgba(139, 62, 234, 0.0901960784);
         border-radius: 50vh;
-        color: #999;
+        color: var(--ant-primary-7);
       }
 
       h6 {

@@ -51,6 +51,7 @@ export default function Navbar() {
             </Title>
           </motion.div>
           <NavLinkDropDown Title={{ path: '', title: 'Home' }} />
+          <NavLinkDropDown Title={{ path: 'flights', title: 'Flights' }} />
         </ul>
         <div className="navbar__footer">
           <div className="navbar__footer__btn">

@@ -6,7 +6,7 @@ import { LoginBanner, PageLoadingAnimation } from '../../components'
 import './style.scss'
 import { useEffect, useState } from 'react'
 import axiosInstance from '../../api'
-import { getLsObj } from '../../utils/localStorage'
+import { getLsObj, updateLs } from '../../utils/localStorage'
 
 const { Title } = Typography
 
@@ -28,8 +28,7 @@ const Login = () => {
     setIsLoading(true)
     try {
       const { data } = await loginApi(values)
-      // Update token, loading animation
-      localStorage.setItem('user', JSON.stringify(data.user))
+      updateLs('user', data.user)
       axiosInstance.setToken(data.token)
       // Navigate to previous page
       navigate(0)

@@ -89,6 +89,7 @@ export default function FlightSearch() {
 
     updateLs('flight', searchQuery)
 
+    navigate('/flights')
     setSearchParams(searchQuery)
   }
 

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 let config = {
-  baseURL: 'https://62c45182abea8c085a729073.mockapi.io',
+  baseURL: process.env.REACT_APP_SERVER_API,
   timeout: 300000,
 }
 

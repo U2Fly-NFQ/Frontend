@@ -6,19 +6,25 @@ import { LoginBanner, PageLoadingAnimation } from '../../components'
 import './style.scss'
 import { useEffect, useState } from 'react'
 import axiosInstance from '../../api'
+import { getLsObj } from '../../utils/localStorage'
 
 const { Title } = Typography
 
 const Login = () => {
-  const user = JSON.parse(localStorage.getItem('user') || '[]')
+  const user = getLsObj('user')
+  const token = localStorage.getItem('token')
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (user.id) {
+    if (user.id && token) {
       // user
       if (user.roles['1']) {
-        navigate('/')
+        navigate(-1)
+      }
+      // admin
+      if (user.roles['2']) {
+        navigate(-1)
       }
     }
   }, [user.id])
@@ -31,6 +37,9 @@ const Login = () => {
     // Update token, loading animation
     axiosInstance.setToken(data.token)
     setIsLoading(false)
+
+    // Navigate to previous page
+    navigate(-1)
   }
 
   return (

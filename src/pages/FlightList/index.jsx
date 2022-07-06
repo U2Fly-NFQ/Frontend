@@ -16,6 +16,7 @@ import { getLsObj, updateLs } from '../../utils/localStorage'
 import moment from 'moment'
 import axios from 'axios'
 import { CloseOutlined } from '@ant-design/icons'
+import { scrollTo } from '../../utils/scroll'
 
 const { Title, Text } = Typography
 const { Option } = Select
@@ -38,8 +39,6 @@ function FlightList() {
   }
 
   useEffect(() => {
-    dispatch(fetchFlights(searchParams))
-
     if (checkFirstVisitWithoutParams()) {
       updateLs('flight', {
         id: '',
@@ -52,8 +51,13 @@ function FlightList() {
     if (searchParams.get('ticketType') === 'oneWay') {
       updateLs('flight', {
         id: '',
+        roundtrip: '',
       })
       setSelectedFlight({})
+    }
+
+    if (window.location.search) {
+      scrollTo(400)
     }
 
     if (flightStorage.ticketType === 'roundTrip' && flightStorage.id) {
@@ -67,6 +71,9 @@ function FlightList() {
       }
       fetchData()
     }
+
+    // Before action is searching
+    dispatch(fetchFlights(searchParams))
   }, [searchParams, flightStorage.id])
 
   const changePage = (value) => {

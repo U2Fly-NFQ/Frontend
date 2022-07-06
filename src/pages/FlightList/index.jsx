@@ -15,6 +15,7 @@ import { ScrollToTopButton } from '../../components'
 import { getLsObj, updateLs } from '../../utils/localStorage'
 import moment from 'moment'
 import axios from 'axios'
+import { CloseOutlined } from '@ant-design/icons'
 
 const { Title, Text } = Typography
 const { Option } = Select
@@ -124,12 +125,11 @@ function FlightList() {
                             Flight details
                           </Button> */}
                           <Button
-                            type="link"
+                            icon={<CloseOutlined color="#ddd" />}
                             size="small"
+                            shape="circle"
                             onClick={deleteSelected}
-                          >
-                            Delete
-                          </Button>
+                          ></Button>
                         </div>
                       </div>
                       <div className="content">

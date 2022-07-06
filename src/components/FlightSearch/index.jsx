@@ -284,6 +284,9 @@ export default function FlightSearch() {
                   />
                 </Col>
                 <Col span={12}>
+                  <label className="flightSearchLabel">
+                    {t('search_form.return_date')}
+                  </label>
                   <AnimatePresence>
                     {(ticketType === 'roundTrip' && (
                       <motion.div
@@ -299,9 +302,6 @@ export default function FlightSearch() {
                           transition: { duration: 0.6 },
                         }}
                       >
-                        <label className="flightSearchLabel">
-                          {t('search_form.return_date')}
-                        </label>
                         <DatePicker
                           allowClear={false}
                           disabledDate={(current) => {
@@ -318,15 +318,15 @@ export default function FlightSearch() {
                     )) || (
                       <Space
                         style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'flex-end',
-                          height: '100%',
+                          display: 'block',
                         }}
                       >
                         <Button
                           type="link"
                           onClick={() => setTicketType('roundTrip')}
+                          style={{
+                            paddingLeft: 0,
+                          }}
                         >
                           Add return date
                         </Button>
@@ -366,7 +366,7 @@ export default function FlightSearch() {
               onClick={onFinish}
               ref={submitRef}
             >
-              Search
+              Search {ticketType === 'oneWay' ? 'one way' : 'round trip'}
             </button>
           </Tooltip>
         </div>

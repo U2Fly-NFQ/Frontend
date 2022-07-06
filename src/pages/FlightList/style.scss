@@ -17,7 +17,6 @@
     border: 1px solid rgb(221, 223, 226);
 
     .wrapper {
-      position: relative;
       flex-direction: column;
       display: flex;
       background-color: rgb(255, 255, 255);
@@ -37,6 +36,12 @@
 
           .ant-typography {
             color: var(--ant-info-color);
+          }
+
+          .ant-btn {
+            position: absolute;
+            top: -10%;
+            right: -5px;
           }
         }
       }

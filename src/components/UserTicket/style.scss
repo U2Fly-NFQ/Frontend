@@ -1,0 +1,214 @@
+@use '../../assets/scss/abstracts' as a;
+
+.userTicket {
+  width: 1000px !important;
+  padding-bottom: 0;
+
+  .ant-modal-content {
+    border-radius: 25px;
+
+    .ant-modal-body {
+      padding: 0;
+    }
+  }
+
+  .ticket {
+    img {
+      width: 100%;
+    }
+
+    &-header {
+      text-align: center;
+      align-items: center;
+      padding: 15px;
+      background-color: a.$bg-color;
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+    }
+
+    &-content {
+      align-items: center;
+      .passenger-info-title,
+      .flight-details-title {
+        font-size: 16px;
+      }
+
+      .passenger-info-text,
+      .flight-details-text {
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .flight-info {
+        align-items: center;
+        &-from {
+          text-align: center;
+        }
+
+        &-icon {
+          text-align: center;
+        }
+
+        &-to {
+          text-align: center;
+        }
+      }
+
+      .info_empty:after {
+        content: '';
+        border-bottom: 1px dashed a.$main-color;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 10px;
+      }
+
+      &-left {
+        padding: 15px 0;
+        & > div {
+          align-items: center;
+        }
+
+        &-barcode {
+          img {
+            transform: rotate(-90deg);
+          }
+        }
+
+        .passenger-info {
+          text-align: center;
+        }
+
+        .flight-info {
+          padding: 40px 0;
+
+          &-from,
+          &-icon,
+          &-to {
+            font-weight: bold;
+            font-size: 40px;
+          }
+        }
+
+        .flight-details {
+          text-align: center;
+        }
+      }
+
+      &-right {
+        padding: 15px 0;
+        padding-right: 15px;
+        .barcode {
+          img {
+            max-height: 75px;
+          }
+        }
+
+        .passenger-info > div > div {
+          margin-bottom: 5px;
+        }
+
+        .flight-info {
+          font-weight: bold;
+          font-size: 20px;
+        }
+      }
+    }
+
+    &-footer {
+      background-color: a.$bg-color;
+      border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+      & > div {
+        padding: 10px;
+      }
+      &-left {
+        text-align: center;
+      }
+    }
+    &:after {
+      content: '';
+      top: 0;
+      position: absolute;
+      border: 1px a.$main-color dashed;
+      bottom: 0;
+      left: 68.5%;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .userTicket {
+    width: 900px !important;
+
+    .ticket {
+      zoom: 0.9;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .userTicket {
+    width: 800px !important;
+
+    .ticket {
+      zoom: 0.8;
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .userTicket {
+    width: 700px !important;
+
+    .ticket {
+      zoom: 0.7;
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .userTicket {
+    width: 600px !important;
+
+    .ticket {
+      zoom: 0.6;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .userTicket {
+    width: 500px !important;
+
+    .ticket {
+      zoom: 0.5;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .userTicket {
+    width: 400px !important;
+
+    .ticket {
+      zoom: 0.4;
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .userTicket {
+    width: 300px !important;
+
+    .ticket {
+      zoom: 0.3;
+    }
+  }
+}
+
+@media only screen and (max-width: 319px) {
+  .userTicket {
+    display: none;
+  }
+}

@@ -1,45 +1,95 @@
-import { Row, Col } from 'antd'
+import { Space, Row, Col, Menu, Dropdown } from 'antd'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { DownOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 import './style.scss'
 import LangSelect from '../LangSelect'
+import { getLsObj } from '../../utils/localStorage'
 
 const SubNavBar = () => {
   const { t } = useTranslation()
+  const user = getLsObj('user')
+  const navigate = useNavigate()
+  const [visible, setVisible] = useState(false)
+  const handleVisibleChange = (flag) => {
+    setVisible(flag)
+  }
+
+  const handleMenuClick = (e) => {
+    const value = e.key
+
+    if (value === 'booked') navigate('/profile/booking')
+    if (value === 'profile') navigate('/profile')
+
+    if (value === 'logout') {
+      localStorage.removeItem('user')
+      localStorage.removeItem('token')
+      navigate(-1)
+    }
+  }
+
+  const menu = (
+    <Menu
+      onClick={handleMenuClick}
+      items={[
+        {
+          label: 'Profile',
+          key: 'profile',
+        },
+        {
+          label: 'My booking',
+          key: 'booked',
+        },
+        {
+          label: 'Log out',
+          key: 'logout',
+        },
+      ]}
+    />
+  )
 
   return (
     <div className="sub-nav">
       <nav className="grid wide">
         <Row justify="space-between" align="middle" gutter={[2, 2]}>
-          <Col md={12} sm={0}>
+          <Col md={12} xs={0}>
             <ul className="sub-nav-list">
               <li className="sub-nav-list__item">
-                <a href="#">
-                  <i className="fa-brands fa-facebook-square"></i>
-                </a>
-                <a href="">
-                  <i className="fa-brands fa-twitter-square"></i>
-                </a>
-                <a href="">
-                  <i className="fa-brands fa-instagram"></i>
-                </a>
-                <a href="">
-                  <i className="fa-brands fa-linkedin"></i>
-                </a>
+                <a href="#">028 6681 2733</a>
               </li>
-              <li className="sub-nav-list__item">+84 999 999 999</li>
-              <li className="sub-nav-list__item">contact@domain.com</li>
+              <li className="sub-nav-list__item">
+                <a href="#">career@nfq.asia</a>
+              </li>
             </ul>
           </Col>
           <Col flex="none">
             <ul className="sub-nav-list sub-nav-list-actions">
-              <li className="sub-nav-list__item">
-                <NavLink to={'/login'}>{t('cta.login')}</NavLink>
-              </li>
-              <li className="sub-nav-list__item">
-                <NavLink to={'/register'}>{t('cta.logout')}</NavLink>
-              </li>
+              {(user.id && (
+                <li className="sub-nav-list__item">
+                  <Dropdown
+                    overlay={menu}
+                    onVisibleChange={handleVisibleChange}
+                    visible={visible}
+                  >
+                    <Space style={{ paddingRight: '8px' }}>
+                      {user.username || 'career@nfq.asia'}
+                      <DownOutlined />
+                    </Space>
+                  </Dropdown>
+                </li>
+              )) || (
+                <>
+                  <li className="sub-nav-list__item">
+                    <NavLink to={'/login'}>{t('cta.login')}</NavLink>
+                  </li>
+                  <li className="sub-nav-list__item">
+                    <NavLink to={'/register'}>{t('cta.register')}</NavLink>
+                  </li>
+                </>
+              )}
               <li className="sub-nav-list__item">
                 <LangSelect />
               </li>

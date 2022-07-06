@@ -1,56 +1,49 @@
-.checkout-ctn {
-  width: 100%;
-  height: 100%;
-  margin-bottom: 5rem;
-  margin-top: 8rem;
+@use '../../assets/scss/abstracts' as a;
 
-  .checkout-content {
-    width: 100%;
-    height: fit-content;
-
-    .form-ctn {
-      border: 1px solid #ebebeb;
-      border-radius: 8px;
-      padding: 1rem 1rem;
-
-      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-      width: 100%;
-
-      .form-header {
-        background-color: #dd2f38;
-        padding: 0.5rem 0;
-        margin-bottom: 2rem;
-
-        .ant-typography {
-          text-align: center;
-          color: #fff;
-          margin: 0;
-        }
+.booking-page__container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  // max-width: ;
+  padding-top: 100px;
+  &__item {
+    min-width: 450px;
+    &:nth-child(2) {
+      flex: 2;
+    }
+    &__title {
+      border-bottom: 1px solid a.$main-color;
+      font-size: 18px;
+      display: inline-block;
+      font-weight: 500;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+    &__content {
+      background-color: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      padding-left: 40px;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      padding-right: 0;
+    }
+    flex: 1;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .booking-page__container__item {
+    &:first-child {
+      .booking-page__container__item__content {
+        padding: 20px;
       }
     }
-
-    .info-ctn {
-      border: 1px solid #ebebeb;
-      border-radius: 8px;
-      padding: 1rem 1rem;
-      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-
-      .info-header {
-        background-color: #dd2f38;
-        padding: 0.5rem 0;
-
-        .ant-typography {
-          text-align: center;
-          color: #fff;
-          margin: 0;
-        }
-        .ant-typography.name-bicycle {
-          width: 100%;
-          float: right;
-        }
+    &:last-child {
+      &:first-child {
+        padding: 20px;
       }
     }
+    // .booking-page__container__item__content {
+    //   padding: 10px;
+    // }
   }
 }

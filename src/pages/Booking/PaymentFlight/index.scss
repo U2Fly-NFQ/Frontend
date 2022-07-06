@@ -1,0 +1,25 @@
+.paymnet-button__radio {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
+  padding: 5px;
+  &__btn {
+    span {
+      font-size: 17px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      &:last-child {
+        flex: 1;
+        justify-content: space-between;
+      }
+    }
+  }
+  &__logo {
+    img {
+      width: 100px;
+    }
+  }
+}

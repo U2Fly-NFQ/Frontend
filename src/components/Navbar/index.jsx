@@ -1,96 +1,80 @@
-import { SearchOutlined } from '@ant-design/icons'
 import React, { useRef } from 'react'
 import ButtonOfPage from '../ButtonOfPage'
 import NavLinkDropDown from '../NavLinkDropDown'
 import './index.scss'
+import { useTranslation } from 'react-i18next'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { Typography } from 'antd'
+
+const { Title } = Typography
+
 export default function Navbar() {
   const openNavbarHamburger = useRef(null)
   const openNavbarModal = useRef(null)
+  const navigate = useNavigate()
   const openAndNavbarDropDown = () => {
     openNavbarHamburger.current.classList.toggle('open')
     openNavbarModal.current.classList.toggle('open')
   }
+  const navLinkDropDownData = [
+    { path: '', name: 'header.navbar.home' },
+    { path: '/flights', name: 'header.navbar.flight' },
+  ]
+  const { t } = useTranslation()
   return (
-    <header>
-      <nav>
-        <div className="wide grid">
-          <div className="navbar__logo">
-            <img
-              src="https://andit.co/projects/html/and-tour/assets/img/logo.png"
-              className="navbar__logo"
-            />
-          </div>
-
-          <ul className="navbar__links">
-            <NavLinkDropDown Title={'Home'} />
-            <NavLinkDropDown
-              Title={'Flights'}
-              ListDropDown={['Flight', 'Flight Booking']}
-            />
-            <NavLinkDropDown
-              Title={'Tours'}
-              ListDropDown={[
-                'Tours',
-                'Tour booking',
-                'Top Destination',
-                'Destination Booking',
-              ]}
-            />
-            <NavLinkDropDown
-              Title={'New'}
-              ListDropDown={['Ajax Load More', 'Ajax Load More', 'Home']}
-            />
-            <NavLinkDropDown
-              Title={'Pages'}
-              ListDropDown={['Ajax Load More', 'Ajax Load More', 'Home']}
-            />
-          </ul>
-          <div className="navbar__footer">
-            <div className="navbar__footer__search">
-              <SearchOutlined />
-            </div>
-            <div className="navbar__footer__btn">
-              <ButtonOfPage title={'Become a partner'} />
-            </div>
-          </div>
-
-          <div
-            class="navbar_icons"
-            onClick={() => {
-              openAndNavbarDropDown()
-            }}
-          >
-            <div class="navbar_icon" ref={openNavbarHamburger}></div>
+    <nav className="navbar">
+      <div
+        className="wide grid"
+        style={{
+          padding: '10px 0',
+          justifyContent: 'flex-end',
+        }}
+      >
+        <ul className="navbar__links">
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Title
+              level={3}
+              onClick={() => navigate('/')}
+              style={{
+                display: 'flex',
+                margin: 0,
+                gap: '0.6rem',
+                alignItems: 'center',
+                color: '#fff',
+                fontSize: '22px',
+                cursor: 'pointer',
+                marginRight: '20px',
+              }}
+            >
+              U2FLy
+            </Title>
+          </motion.div>
+          <NavLinkDropDown Title={{ path: '', title: 'Home' }} />
+        </ul>
+        <div className="navbar__footer">
+          <div className="navbar__footer__btn">
+            <ButtonOfPage title={t('cta.become_partner')} />
           </div>
         </div>
-        <div className="navbar__dropdown__modal">
-          <ul className="navbar__dropdown-menu" ref={openNavbarModal}>
-            <li className="navbar__dropdown-menu__item">
-              <a>Home</a>
-              <div href="navbar__dropdown-menu__item__icon">+</div>
-            </li>
-            <li className="navbar__dropdown-menu__item">
-              <a>Flight </a>
-              <div href="navbar__dropdown-menu__item__icon">+</div>
-            </li>
-            <li className="navbar__dropdown-menu__item">
-              <a>Tour</a>
-            </li>
-            <li className="navbar__dropdown-menu__item">
-              <a>News</a>
-            </li>
-            <li className="navbar__dropdown-menu__item">
-              <a>PAges</a>
-            </li>
-            <li className="navbar__dropdown-menu__item">
-              <a>Hello</a>
-            </li>
-            <li className="navbar__dropdown-menu__item">
-              <a>Hello</a>
-            </li>
-          </ul>
+        <div
+          className="navbar_icons"
+          onClick={() => {
+            openAndNavbarDropDown()
+          }}
+        >
+          <div className="navbar_icon" ref={openNavbarHamburger}></div>
         </div>
-      </nav>
-    </header>
+      </div>
+      <div className="navbar__dropdown__modal" ref={openNavbarModal}>
+        <ul className="navbar__dropdown-menu">
+          {navLinkDropDownData.map((item) => (
+            <li key={item.path} className="navbar__dropdown-menu__item">
+              <NavLink to={item.path}>{t(item.name)}</NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
   )
 }

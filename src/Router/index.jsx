@@ -1,41 +1,68 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+// import React from 'react'
 
-import HomeLayout from '../layouts/Home'
-import AdminLayout from '../layouts/Admin'
+import React, { Suspense, lazy } from 'react'
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
+import { PageLoadingAnimation } from '../components'
 
 import {
   Login,
-  Home,
-  FlightList,
   Register,
   NoMatch,
   AdminDashboard,
-  AdminFlights,
+  Booking,
+  BookingSuccessPage,
+  UserProfile,
+  UserBooking,
+  UserHistory,
+  UserProfileDetail,
 } from '../pages'
 
+const HomeLayout = lazy(() => import('../layouts/Home'))
+const AdminLayout = lazy(() => import('../layouts/Admin'))
+const FlightList = lazy(() => import('../pages/FlightList'))
+
 const RoutesApp = () => {
+  const token = localStorage.getItem('token')
+
   return (
-    <Routes>
-      {/* For users */}
-      <Route path="/" element={<HomeLayout />}>
-        <Route path="" element={<Home />} />
-        <Route path="flights" element={<FlightList />} />
+    <Router>
+      <Suspense fallback={<PageLoadingAnimation />}>
+        <Routes>
+          {/* Public */}
+          <Route path="/" element={<HomeLayout />}>
+            <Route path="" element={<FlightList />} />
+            <Route path="/flights" element={<FlightList />} />
+            <Route
+              path="booking-success/:ticketId"
+              element={<BookingSuccessPage />}
+            />
+            <Route path="flights-booking" element={<Booking />} />
+            <Route path="flights-booking/:ticketId" element={<Booking />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
 
-        {/* Authentication */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Route>
+            {/* For users */}
+            {token && (
+              <Route path="profile" element={<UserProfile />}>
+                <Route index element={<UserProfileDetail />} />
+                <Route path="booking" element={<UserBooking />} />
+                <Route path="history" element={<UserHistory />} />
+              </Route>
+            )}
+          </Route>
 
-      {/* For admins */}
-      <Route path="admin" element={<AdminLayout />}>
-        <Route index element={<AdminDashboard />} />
-        <Route path="flights" element={<AdminFlights />} />
-      </Route>
+          {/* For admins */}
+          {token && (
+            <Route path="admin" element={<AdminLayout />}>
+              <Route path="" element={<AdminDashboard />} />
+            </Route>
+          )}
 
-      {/* Invalid route */}
-      <Route path="*" element={<NoMatch />} />
-    </Routes>
+          {/* Invalid route */}
+          <Route path="*" element={<NoMatch />} />
+        </Routes>
+      </Suspense>
+    </Router>
   )
 }
 

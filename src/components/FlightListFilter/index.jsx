@@ -1,145 +1,190 @@
-import { Checkbox, Col, Row, Slider } from 'antd'
+import {
+  Col,
+  Row,
+  Slider,
+  InputNumber,
+  Space,
+  Typography,
+  Radio,
+  Select,
+  Checkbox,
+} from 'antd'
+import { useEffect, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
+import { fetchAllFilter } from '../../redux/slices/filterSlice'
+import { getLsObj } from '../../utils/localStorage'
 import './style.scss'
 
-const Flight = () => {
-  // Data for UI
-  const optionDeparture = [
-    {
-      label: 'Early Morning (00:00 - 06:00)',
-      value: '1',
-    },
-    {
-      label: 'Morning (06:00 - 12:00)',
-      value: '2',
-    },
-    {
-      label: 'Afternoon (12:00 - 18:00)',
-      value: '3',
-    },
-    {
-      label: 'Evening (18:00 - 24:00)',
-      value: '4',
-    },
-  ]
-  const optionStops = [
-    {
-      label: 'Non-stop',
-      value: '0',
-    },
-    {
-      label: '1 stop',
-      value: '1',
-    },
-    {
-      label: '2 stop',
-      value: '2',
-    },
-    {
-      label: '2+ stop',
-      value: '3',
-    },
-  ]
-  const optionClass = [
-    {
-      label: 'Economy',
-      value: '0',
-    },
-    {
-      label: 'Business',
-      value: '1',
-    },
-  ]
-  const optionAirlines = [
-    {
-      label: 'VietJet Air',
-      value: 'VJ',
-    },
-    {
-      label: 'Vietnam Airlines',
-      value: 'VN',
-    },
-    {
-      label: 'Bamboo Airways',
-      value: 'QH',
-    },
-    {
-      label: 'Vietravel Airlines',
-      value: 'VU',
-    },
-  ]
+const { Text } = Typography
+const { Option } = Select
 
-  //Function get data
+const Flight = () => {
+  const airlinesFetch = useSelector((state) => state.filter.airlines)
+  const airlinesOptions = airlinesFetch.map((al) => ({
+    label: al.name,
+    value: al.icao,
+  }))
+
+  const dispatch = useDispatch()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [minPrice, setMinPrice] = useState(0)
+  const [maxPrice, setMaxPrice] = useState(1500)
+  const [time, setTime] = useState('')
+  const [airlines, setAirlines] = useState([])
 
   const handlePriceChange = (value) => {
-    console.log(value)
+    setMinPrice(value[0])
+    setMaxPrice(value[1])
   }
-  const handleDepartureChange = (value) => {
-    console.log(value)
+
+  const clearPrice = () => {
+    setMinPrice(0)
+    setMaxPrice(1500)
   }
-  const handleStopChange = (value) => {
-    console.log(value)
+
+  const clearAirline = () => setAirlines([])
+
+  let firstRender = useRef(true)
+
+  // Debounce price
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false
+      return
+    }
+
+    const flight = getLsObj('flight')
+
+    if (!flight.ticketType || flight.ticketType === 'oneWay') {
+      searchParams.set('startTime', time)
+      searchParams.set('airline', airlines)
+    }
+    if (flight.ticketType === 'roundTrip') {
+      searchParams.set('roundStartTime', time)
+      searchParams.set('roundAirline', airlines)
+    }
+
+    searchParams.set('minPrice', minPrice)
+    searchParams.set('maxPrice', maxPrice)
+
+    setSearchParams(searchParams)
+  }, [minPrice, maxPrice, time, airlines])
+
+  // Fetch filter options
+  useEffect(() => {
+    dispatch(fetchAllFilter())
+  }, [])
+
+  const changeTime = (e) => {
+    const value = e.target.value
+    setTime(value)
   }
-  const handleClassChange = (value) => {
-    console.log(value)
-  }
-  const handleAirlineChange = (value) => {
-    console.log(value)
+
+  const changeAirline = (list) => {
+    setAirlines(list)
   }
 
   return (
     <div className="filter">
-      <Row className="filterItem price">
+      <Row className="filterItem price" justify="center">
         <Col span={24} className="title">
-          Filter by price
+          <Space
+            style={{
+              justifyContent: 'space-between',
+              width: '100%',
+            }}
+          >
+            <Text>Price</Text>
+            {(minPrice !== 0 || maxPrice !== 1500) && (
+              <Text className="clear-btn" italic onClick={clearPrice}>
+                Clear
+              </Text>
+            )}
+          </Space>
         </Col>
         <Col span={24} className="content">
           <Slider
+            tipFormatter={(value) => `${value} USD`}
             range
             min={0}
-            max={1000}
-            // onChange={handleChangePrice}
+            max={1500}
+            defaultValue={[minPrice, maxPrice]}
             onAfterChange={handlePriceChange}
-            tooltipVisible
             tooltipPlacement="bottom"
-            defaultValue={[0, 500]}
+            tooltipVisible={false}
           />
+
+          <Space
+            style={{
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              width: '100%',
+            }}
+          >
+            <InputNumber
+              min={0}
+              max={1500}
+              value={minPrice}
+              onChange={(value) => handlePriceChange([value, maxPrice])}
+              prefix="$"
+            />
+            <InputNumber
+              min={0}
+              max={1500}
+              value={maxPrice}
+              onChange={(value) => handlePriceChange(minPrice, value)}
+              prefix="$"
+            />
+          </Space>
         </Col>
       </Row>
-      <Row className="filterItem departure ">
+
+      <Row className="filterItem" justify="center">
         <Col span={24} className="title">
-          Departure Time
+          <Space
+            style={{
+              justifyContent: 'space-between',
+              width: '100%',
+            }}
+          >
+            <Text>Times</Text>
+          </Space>
+        </Col>
+        <Col span={24} className="content">
+          <Radio.Group onChange={changeTime} value={time}>
+            <Space direction="vertical">
+              <Radio value="">All time</Radio>
+              <Radio value="morning">Early Morning (00:00 - 06:00)</Radio>
+              <Radio value="earlymorning">Morning (06:00 - 12:00)</Radio>
+              <Radio value="afternoon">Afternoon (12:00 - 18:00)</Radio>
+              <Radio value="evening">Evening (18:00 - 24:00)</Radio>
+            </Space>
+          </Radio.Group>
+        </Col>
+      </Row>
+
+      <Row className="filterItem" justify="center">
+        <Col span={24} className="title">
+          <Space
+            style={{
+              justifyContent: 'space-between',
+              width: '100%',
+            }}
+          >
+            <Text>Airline</Text>
+            {airlines.length === airlinesOptions.length && (
+              <Text className="clear-btn" italic onClick={clearAirline}>
+                Clear
+              </Text>
+            )}
+          </Space>
         </Col>
         <Col span={24} className="content">
           <Checkbox.Group
-            options={optionDeparture}
-            onChange={handleDepartureChange}
-          />
-        </Col>
-      </Row>
-      <Row className="filterItem">
-        <Col span={24} className="title">
-          Number of stops
-        </Col>
-        <Col span={24} className="content">
-          <Checkbox.Group options={optionStops} onChange={handleStopChange} />
-        </Col>
-      </Row>
-      <Row className="filterItem">
-        <Col span={24} className="title">
-          Flight class
-        </Col>
-        <Col span={24} className="content">
-          <Checkbox.Group options={optionClass} onChange={handleClassChange} />
-        </Col>
-      </Row>
-      <Row className="filterItem">
-        <Col span={24} className="title">
-          Airlines
-        </Col>
-        <Col span={24} className="content">
-          <Checkbox.Group
-            options={optionAirlines}
-            onChange={handleAirlineChange}
+            options={airlinesOptions}
+            value={airlines}
+            onChange={changeAirline}
           />
         </Col>
       </Row>

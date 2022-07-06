@@ -1,0 +1,44 @@
+@use '../../../assets/scss/abstracts' as a;
+
+.detail-flights__container__package-rules {
+  h5 {
+    font-weight: 500;
+    border-bottom: 1px solid a.$main-color;
+    padding-bottom: 10px;
+    display: inline-block;
+  }
+  &__content {
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      li {
+        i {
+          font-size: 6px;
+          padding-right: 7px;
+        }
+      }
+    }
+  }
+}
+.detail-flights__container__price__content {
+  display: flex;
+  align-items: center;
+  h3 {
+    padding-left: 10px;
+    font-size: 22px;
+    font-weight: 500;
+    color: a.$main-color;
+    sub {
+      color: #000;
+      font-weight: 400;
+      bottom: 0;
+      font-size: 14px;
+    }
+  }
+}
+
+.block-container {
+  padding: 20px;
+  margin-bottom: 20px;
+}

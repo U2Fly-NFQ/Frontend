@@ -1,23 +1,34 @@
-import axios from 'axios'
+import axios from '..'
 
-const endpoint = 'flights'
+const getList = (params) => {
+  return axios.get(`/api/flights`, {
+    params,
+  })
+}
 
-const getList = () => axios.get(`${endpoint}`)
+const get = (id) => axios.get(`/api/flights/${id}`)
 
-const get = (id) => axios.get(`${endpoint}/${id}`)
+const create = (data) => axios.post(`/api/flights`, data)
 
-const create = (data) => axios.post(`${endpoint}`, data)
+const update = (id, data) => axios.put(`/api/flights/${id}`, data)
 
-const update = (id, data) => axios.put(`${endpoint}/${id}`, data)
+const destroy = (id) => axios.delete(`api/flights/${id}`)
 
-const destroy = (id) => axios.delete(`${endpoint}/${id}`)
+const getUserData = (id) => {
+  return axios.get(`/api/passengers/${id}`)
+}
 
-const FlightApi = {
+const getInfoTickerById = (idTicket) => axios.get(`/tickets/${idTicket}`)
+
+const createATicket = (data) => axios.post(`/api/payment/stripe`, data)
+
+export default {
   getList,
   get,
   create,
+  getInfoTickerById,
   update,
+  createATicket,
   destroy,
+  getUserData,
 }
-
-export default FlightApi

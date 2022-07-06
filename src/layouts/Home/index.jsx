@@ -1,9 +1,10 @@
 import { Outlet } from 'react-router-dom'
 import { Layout } from 'antd'
 import './style.scss'
-import { Navbar } from '../../components'
+import { FooterOfPage, Navbar } from '../../components'
 
 import SubNavBar from '../../components/SubNavBar'
+import FooterEmail from '../../components/FooterOfPage/FooterEmail'
 
 const { Header, Footer, Content } = Layout
 
@@ -17,8 +18,11 @@ function Home() {
         </Header>
         <Content>
           <Outlet />
+          <FooterEmail />
         </Content>
-        <Footer>home footer</Footer>
+        <Footer>
+          <FooterOfPage />
+        </Footer>
       </Layout>
     </Layout>
   )

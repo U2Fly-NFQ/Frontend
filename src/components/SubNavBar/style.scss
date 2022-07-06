@@ -9,24 +9,25 @@
 
   &-list {
     display: flex;
+    align-items: center;
+    gap: 0.5rem;
 
     &__item {
       position: relative;
       list-style-type: none;
       display: inline-block;
       color: a.$white-color;
-      margin-right: 25px;
       font-size: 14px;
 
       &::before {
         content: '';
         position: absolute;
-        top: 3px;
-        right: -15px;
+        top: 0;
+        right: 0px;
         width: 1px;
-        height: 15px;
+        height: 70%;
+        transform: translateY(20%);
         background-color: #dbdbdb78;
-        z-index: 9999;
       }
 
       &:last-of-type::before {
@@ -41,6 +42,12 @@
     &-actions {
       font-weight: 500;
     }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .sub-nav {
+    background-color: a.$main-color;
   }
 }
 

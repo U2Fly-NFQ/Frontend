@@ -1,1 +1,54 @@
 @use '../abstracts' as a;
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    transform: translateY(-100px);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    transform: translateX(-100px);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    transform: translateX(100px);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+$fadeInUp: fadeInUp 1.25s ease-in-out;
+$fadeInDown: fadeInDown 1.25s ease-in-out;
+$fadeInLeft: fadeInLeft 1.25s ease-in-out;
+$fadeInRight: fadeInRight 1.25s ease-in-out;

@@ -1,5 +1,4 @@
 {
-  "hello": "Hello world!!",
   "cta": {
     "login": "Login",
     "logout": "Logout",
@@ -33,209 +32,117 @@
     "buy-it-now": "BUY IT NOW",
     "add": "Add",
     "cancle": "Cancle",
-    "update": "Update"
+    "update": "Update",
+    "become_partner": "Become a partner"
   },
 
-  "home-navigation": {
-    "home": "Home",
-    "bicycles": "Bicycles",
-    "clothing": "Clothing",
-    "helmet-and-shoes": "Helmet & Shoes",
-    "components": "Components",
-    "about": "About Us"
+  "search_form": {
+    "one_way": "One Way",
+    "round_trip": "Round Trip",
+    "from": "From",
+    "to": "To",
+    "journey_date": "Journey Date",
+    "return_date": "Return Date",
+    "passenger": "Passenger",
+    "passenger_one": "{{count}} passenger",
+    "passenger_other": "{{count}} passengers",
+    "class": "Class",
+    "economy": "Economy",
+    "business": "Business",
+    "first_class": "First Class",
+    "No. of Passengers": "No. of Passengers"
+  },
+
+  "subscribe-form": {
+    "Get the latest news and offers": "Get the latest news and offers",
+    "Subscribe to our newsletter": "Subscribe to our newsletter",
+    "Enter your email address": "Enter your email address",
+    "Subscribe": "Subscribe"
+  },
+
+  "header": {
+    "navbar": {
+      "home": "Home",
+      "flight": "U2Flight",
+      "flight_booking": "Flight booking",
+      "tour": "Tour",
+      "tour_booking": "Tour booking",
+      "top_destination": "Top destination",
+      "destination_booking": "Destination booking",
+      "news": "News",
+      "pages": "Pages"
+    }
   },
 
   "home-page": {
-    "categories": {
-      "title": "POPULAR CATEGORIES",
-      "item": {
-        "electric-bike": "Electric Bikes",
-        "mountain-bike": "Mountain Bikes",
-        "kid-bike": "Kid Bikes",
-        "road-bike": "Road Bikes",
-        "gravel-bike": "Gravel Bikes"
-      }
+    "home-banner": {
+      "THE WHOLE WORLD AWAITS": "THE WHOLE WORLD AWAITS"
     },
-    "trending": "TRENDING PRODUCTS",
-    "brand": "BRANDS",
-    "retailer": {
-      "title": "OUR FEATURED RETAILERS",
-      "description": "B4B Shop is the place to buy or sell any bike, accessory, component or part from anyone, anywhere, anytime. Shop and browse through thousands of bikes & cycling products for sale from hundreds of bike shops and thousands of brands nationwide."
+    "goBeyond-section": {
+      "Gobeyond": "Go beyond your",
+      "imagination": "imagination",
+      "discover_your_ideal": "Discover your ideal experience with us",
+      "discount": "7% Discount for all",
+      "discount_airlines": "Airlines",
+      "travel": "Travel around",
+      "world": "the world",
+      "resort": "Luxury resorts",
+      "deal": "top deal"
+    },
+    "top-destinations-section": {
+      "title": "Top destinations",
+      "up-to": "Up to",
+      "off": "Off",
+      "holiday": "Holiday packages",
+      "book-now": "Book Now",
+      "view-all": "View all"
+    },
+    "offer-area-section": {
+      "Special Offers": "Special Offers",
+      "Newsletter": "News letter",
+      "Travel tips": "Travel tips",
+      "Holiday deals": "Holiday deals",
+      "Subscribe now": "Subscribe now",
+      "Get tips": "Get tips"
+    }
+  },
+
+  "flight-list-page": {
+    "flight-banner": {
+      "EXPLORE THE WORLD WITH US": "EXPLORE THE WORLD WITH US"
     }
   },
 
   "footer": {
-    "title": "B4B-Shop is the one-stop shop for everything you need when buying your new bike. We are the US distributor and retailer for the global brands",
-    "shop-by": {
-      "title": "Shop By",
-      "item": {
-        "your-order": "Your Orders",
-        "payment": "Payment",
-        "delivery": "Delivery",
-        "condition": "Conditions"
-      }
-    },
-    "product": {
-      "title": "Products",
-      "item": {
-        "new-product": "New product",
-        "best-sale": "Best sales",
-        "price-drop": "Prices drop",
-        "store": "Stores"
-      }
-    },
-    "our-company": {
-      "title": "Our Company",
-      "item": {
-        "about-us": "About Us",
-        "contact-us": "Contact us",
-        "site-map": "Site map",
-        "help-service": "Help & Service"
-      }
-    },
-    "contact": {
-      "title": "Contact",
-      "item": {
-        "location": "Victoria Resort, Can Tho City"
-      }
-    }
+    "Need any help?": "Need any help?",
+    "Call 24/7 for any help": "Call 24/7 for any help",
+    "CMail to our support team": "CMail to our support team",
+    "Call 24/7 for any help": "Call 24/7 for any help",
+    "Company": "Company",
+    "About Us": "About Us",
+    "Testimonials": "Testimonials",
+    "Rewards": "Rewards",
+    "Work with Us": "Work with Us",
+    "Meet the Team": "Meet the Team",
+    "Blog": "Blog",
+    "Support": "Support",
+    "Account": "Account",
+    "Faq": "Faq",
+    "Legal": "Legal",
+    "Contact": "Contact",
+    "Affiliate Program": "Affiliate Program",
+    "Privacy Policy": "Privacy Policy",
+    "Other Services": "Other Services",
+    "Community program": "Community program",
+    "Investor Relations": "Investor Relations",
+    "Rewards Program": "Rewards Program",
+    "Partners": "Partners",
+    "PointsPLUS": "PointsPLUS",
+    "Blog": "Blog",
+    "Top cities": "Top cities"
   },
 
-  "filter": {
-    "filter-bar": {
-      "price": {
-        "title": "Price"
-      },
-      "brand": {
-        "title": "Brand"
-      },
-      "material": {
-        "title": "Material",
-        "carbon": "Carbon",
-        "aluminum": "Aluminum"
-      },
-      "gender": {
-        "title": "Gender",
-        "men": "Mens",
-        "women": "Womens",
-        "unisex": "Unisex"
-      },
-      "type": {
-        "title": "Type",
-        "electric-bike": "Electric Bikes",
-        "mountain-bike": "Mountain Bikes",
-        "kid-bike": "Kid Bikes",
-        "road-bike": "Road Bikes",
-        "gravel-bike": "Gravel Bikes"
-      }
-    }
-  },
-
-  "detail-page": {
-    "availability": {
-      "title": "Avalibility: ",
-      "content": "{{number}} in stock"
-    },
-    "price": "{{val, currency(currency: USD)}}",
-    "rating": "{{rating}} reviews",
-    "banner": {
-      "free-shipping": {
-        "title": "FREE SHIPPING",
-        "content": "Free shipping on all US order or order above $99"
-      },
-      "support": {
-        "title": "SUPPORT 24/7",
-        "content": "Contact us 24 hours a day, 7 days a week"
-      },
-      "return-title": {
-        "title": "30 DAYS RETURN",
-        "content": "Simply return it within 30 days"
-      }
-    },
-    "bicycle-part": {
-      "title": "Bicycle parts",
-      "item": {
-        "brand": "BRAND",
-        "type": "TYPE",
-        "gender": "GENDER",
-        "material": "MATERIAL",
-        "groupset": "GROUPSET",
-        "braking-type": "BRAKING TYPE",
-        "item-condition": "ITEM CONDITION",
-        "availability": "AVAILABILITY"
-      }
-    }
-  },
-
-  "checkout_page": {
-    "title": "CHECKOUT DETAILS",
-    "left_form": {
-      "title": "Check Out Details",
-      "fullname": "Full Name",
-      "email": "Email",
-      "address": "Address",
-      "phone": "Phone Number",
-      "note": "Write your note here ...",
-      "order": "ORDER"
-    },
-
-    "right_form": {
-      "title": "Info Details",
-      "type": "Type",
-      "number": "Number",
-      "provisional": "Provisional",
-      "total": "Total",
-      "slogan": "10% TAX NOT INCLUDED"
-    }
-  },
-
-  "admin_page": {
-    "table": {
-      "name": "Name",
-      "brand": "Brand",
-      "price": "Price ($)",
-      "type": "Type",
-      "action": {
-        "title": "Action",
-        "content": "Delete Selected"
-      }
-    },
-
-    "side_bar": {
-      "dashboard": "Dashboard",
-      "bicycle": "Bicycle",
-      "order": "Order"
-    },
-
-    "order_table": {
-      "bicycle": "Bicycle",
-      "quantity": "Quantity",
-      "customer": "Customer",
-      "phone_number": "Phone Number",
-      "action": {
-        "title": "Action",
-        "content": "Delete Selected"
-      }
-    },
-
-    "form": {
-      "add_form": {
-        "title": "Add a new bicycle"
-      },
-      "edit_form": {
-        "title": "Edit Bicycle"
-      },
-      "name": "Name",
-      "brand": "Brand",
-      "gender": "Gender",
-      "material": "Material",
-      "price": "Price",
-      "type": "Type",
-      "variants": "Variants",
-      "description": "Description",
-      "image": "Image"
-    }
-  },
+  "filter": {},
 
   "common": {
     "update": "Update",

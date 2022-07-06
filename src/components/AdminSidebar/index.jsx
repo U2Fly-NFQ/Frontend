@@ -1,7 +1,7 @@
 import { Col, Layout, Menu, Row } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from '../../assets/images/system/logo-rectangle.png'
+import Logo from '../../assets/images/system/logo.png'
 
 const { Sider } = Layout
 

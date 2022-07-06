@@ -21,16 +21,6 @@ function AdminSidebar({ collapsed, setCollapsed }) {
       1,
       <i className="fa-solid fa-gauge"></i>
     ),
-    getItem(
-      <Link to="/admin/flights">Flights</Link>,
-      2,
-      <i className="fa-solid fa-plane-circle-check"></i>
-    ),
-    // getItem(
-    //   <Link to="/admin/flights">Flights</Link>,
-    //   2,
-    //   <i className="fa-solid fa-plane-circle-check"></i>
-    // ),
   ]
 
   return (

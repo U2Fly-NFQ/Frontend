@@ -99,8 +99,6 @@ export default function FlightTrip() {
             <div className="detail-flights__container__trip">
               <div className="detail-flights__container__trip__from">
                 <p>From</p>
-                {/* <h3>HCM</h3>
-              <h6>Hồ Chí minh</h6> */}
                 <h3>{getRoundTrip.departure.city}</h3>
                 <h6>{getRoundTrip.departure.name}</h6>
               </div>

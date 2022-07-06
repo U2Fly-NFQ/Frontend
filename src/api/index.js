@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 let config = {
-  baseURL: 'https://629afeb4656cea05fc319faa.mockapi.io/',
+  baseURL: 'https://62c45182abea8c085a729073.mockapi.io',
   timeout: 300000,
 }
 

@@ -1,14 +1,14 @@
 import axios from '..'
 
-const getList = () => axios.get(`/api/airports`)
+const getList = () => axios.get(`/api/aiports`)
 
-const get = (id) => axios.get(`/api/airports/${id}`)
+const get = (id) => axios.get(`/api/aiports/${id}`)
 
-const create = (data) => axios.post(`/api/airports`, data)
+const create = (data) => axios.post(`/api/aiports`, data)
 
-const update = (id, data) => axios.put(`/api/airports/${id}`, data)
+const update = (id, data) => axios.put(`/api/aiports/${id}`, data)
 
-const destroy = (id) => axios.delete(`/api/airports/${id}`)
+const destroy = (id) => axios.delete(`/api/aiports/${id}`)
 
 const airportApi = {
   getList,

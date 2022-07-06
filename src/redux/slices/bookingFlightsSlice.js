@@ -3,6 +3,7 @@ import flightAPI from '../../api/Flight'
 import discountInfo from '../../api/Discount'
 import moment from 'moment'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 const initialState = {
   loadding: false,
   userInformation: {},
@@ -17,39 +18,48 @@ const initialState = {
 export const getDataFlights = createAsyncThunk(
   'flight/getDataFlights',
   async (idFlight) => {
-    const respone = await flightAPI.get(idFlight)
-    return respone.data
+    // const response = await flightAPI.get(idFlight)
+    const response = await axios.get(
+      `https://62c45182abea8c085a729073.mockapi.io/flights-by-id/${idFlight}`
+    )
+    return response.data
   }
 )
 
 export const getDiscountCheck = createAsyncThunk(
   'flight/getDiscountCheck',
   async (idFlight) => {
-    const respone = await discountInfo.getDiscountById(idFlight.idDiscount)
-    return respone.data
+    const response = await discountInfo.getDiscountById(idFlight.idDiscount)
+    return response.data
   }
 )
 export const getUserDataInBooking = createAsyncThunk(
   'flight/getUserData',
   async (idUser) => {
-    const respone = await flightAPI.getUserData(idUser)
-    return respone.data
+    // const response = await flightAPI.getUserData(idUser)
+    const response = await axios.get(
+      `https://62c45182abea8c085a729073.mockapi.io/passengers/${idUser}`
+    )
+    return response.data
   }
 )
 
 export const createBookingFlight = createAsyncThunk(
   'flight/createBooking',
   async (params) => {
-    const respone = await flightAPI.createATicket(params)
-    return respone.data
+    const response = await flightAPI.createATicket(params)
+    return response.data
   }
 )
 
 export const getRoundTripBookingFlight = createAsyncThunk(
   'flight/RoundTripBooking',
   async (idFlight) => {
-    const respone = await flightAPI.get(idFlight)
-    return respone.data
+    // const response = await flightAPI.get(idFlight)
+    const response = await axios.get(
+      `https://62c45182abea8c085a729073.mockapi.io/flights-by-id/${idFlight}`
+    )
+    return response.data
   }
 )
 const bookingFlightsSlice = createSlice({
@@ -128,7 +138,7 @@ const bookingFlightsSlice = createSlice({
       state.loadding = false
       // const { status, data } = action.payload
       const data = action.payload
-
+      console.log(data)
       let allSeatNameAvailable = data.seat.map((item) => item.name)
       let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
       // if (status === 'success') {
@@ -151,7 +161,6 @@ const bookingFlightsSlice = createSlice({
     [getRoundTripBookingFlight.fulfilled]: (state, action) => {
       state.loadding = false
       const data = action.payload
-      console.log(data)
       state.dataRoundTripFlight = {
         ...data,
       }

@@ -29,7 +29,6 @@ export default function DetailFlights() {
       navigate('/')
     }
   }, [])
-  console.log(getDataFlight.name)
   return (
     <div className="detail-flights__container">
       <div className="booking-page__container__item__title">

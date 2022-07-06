@@ -17,6 +17,7 @@ import moment from 'moment'
 import axios from 'axios'
 import { CloseOutlined } from '@ant-design/icons'
 import { scrollTo } from '../../utils/scroll'
+import Home from '../Home'
 
 const { Title, Text } = Typography
 const { Option } = Select
@@ -118,7 +119,7 @@ function FlightList() {
         <div className="grid wide">
           <FlightSearch />
         </div>
-        {!checkFirstVisitWithoutParams() && (
+        {(!checkFirstVisitWithoutParams() && (
           <div className="grid wide">
             <Row gutter={[16, 16]}>
               <Col span={24}>
@@ -234,7 +235,7 @@ function FlightList() {
               </Col>
             </Row>
           </div>
-        )}
+        )) || <Home />}
       </div>
     </>
   )

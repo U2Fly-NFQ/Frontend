@@ -3,12 +3,25 @@ import { UserBookingDetail } from '../index'
 import { Button, Space, Table } from 'antd'
 import { bookingStatus } from '../../Constants'
 import { useNavigate } from 'react-router-dom'
+import ModalRating from '../ModalRating'
 
 function UserBookingTable({ loading, data }) {
   //initiation
   const [expandedRowKeys, setExpandedRowKeys] = useState([])
   const navigate = useNavigate()
   //Data for UI
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const showModal = () => {
+    setIsModalVisible(true)
+  }
+
+  const handleOk = () => {
+    setIsModalVisible(false)
+  }
+
+  const handleCancel = () => {
+    setIsModalVisible(false)
+  }
   const bookingListColumn = [
     {
       title: 'Booking ID',
@@ -79,11 +92,7 @@ function UserBookingTable({ loading, data }) {
             </Button>
           )}
           {record.status === bookingStatus['2'] && (
-            <Button
-              type="primary"
-              shape="default"
-              // onClick={() => ()}
-            >
+            <Button type="primary" shape="default" onClick={showModal}>
               Rating
             </Button>
           )}
@@ -95,22 +104,25 @@ function UserBookingTable({ loading, data }) {
     expanded ? setExpandedRowKeys(record.id) : setExpandedRowKeys([])
   }
   return (
-    <Table
-      columns={bookingListColumn}
-      rowKey={(record) => record.id}
-      expandable={{
-        expandedRowRender: (record) => (
-          <UserBookingDetail detailData={record} />
-        ),
-        expandedRowKeys: expandedRowKeys,
-        onExpand: onExpandRowKey,
-      }}
-      dataSource={data}
-      loading={loading}
-      scroll={{
-        x: 'max-content',
-      }}
-    />
+    <>
+      <ModalRating visible={isModalVisible} />
+      <Table
+        columns={bookingListColumn}
+        rowKey={(record) => record.id}
+        expandable={{
+          expandedRowRender: (record) => (
+            <UserBookingDetail detailData={record} />
+          ),
+          expandedRowKeys: expandedRowKeys,
+          onExpand: onExpandRowKey,
+        }}
+        dataSource={data}
+        loading={loading}
+        scroll={{
+          x: 'max-content',
+        }}
+      />
+    </>
   )
 }
 

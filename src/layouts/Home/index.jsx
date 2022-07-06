@@ -10,17 +10,17 @@ const { Header, Footer, Content } = Layout
 function Home() {
   return (
     <Layout>
-      <Layout>
+      <Layout style={{ backgroundColor: '#ffffff' }}>
         <Header className="home-header">
           <SubNavBar />
           <Navbar />
         </Header>
-        <Content>
+        <Content style={{ minHeight: '100vh' }}>
           <Outlet />
         </Content>
-        <Footer>
+        <footer style={{ backgroundColor: '#ffffff', marginTop: '50px' }}>
           <FooterOfPage />
-        </Footer>
+        </footer>
       </Layout>
     </Layout>
   )

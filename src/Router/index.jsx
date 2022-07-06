@@ -29,13 +29,14 @@ const RoutesApp = () => {
           {/* Public */}
           <Route path="/" element={<HomeLayout />}>
             <Route path="" element={<FlightList />} />
+            <Route path="/flights" element={<FlightList />} />
             <Route
-              path="/booking-success/:ticketId"
+              path="booking-success/:ticketId"
               element={<BookingSuccessPage />}
             />
             <Route path="flights-booking" element={<Booking />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
 
             {/* For users */}
             <Route path="profile" element={<UserProfile />}>

@@ -42,7 +42,7 @@ function FlightList() {
     if (checkFirstVisitWithoutParams()) {
       updateLs('flight', {
         id: '',
-        roundtrip: '',
+        roundId: '',
       })
       setSelectedFlight({})
       return
@@ -51,7 +51,7 @@ function FlightList() {
     if (searchParams.get('ticketType') === 'oneWay') {
       updateLs('flight', {
         id: '',
-        roundtrip: '',
+        roundId: '',
       })
       setSelectedFlight({})
     }

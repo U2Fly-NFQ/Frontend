@@ -16,12 +16,15 @@ import {
   UserHistory,
   UserProfileDetail,
 } from '../pages'
+import { getLsObj } from '../utils/localStorage'
 
 const HomeLayout = lazy(() => import('../layouts/Home'))
 const AdminLayout = lazy(() => import('../layouts/Admin'))
 const FlightList = lazy(() => import('../pages/FlightList'))
 
 const RoutesApp = () => {
+  const user = getLsObj()
+
   return (
     <Router>
       <Suspense fallback={<PageLoadingAnimation />}>

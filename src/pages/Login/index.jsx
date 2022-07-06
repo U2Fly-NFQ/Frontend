@@ -31,15 +31,17 @@ const Login = () => {
 
   const onFinish = async (values) => {
     setIsLoading(true)
-    const { data } = await loginApi(values)
-    localStorage.setItem('user', JSON.stringify(data.user))
-
-    // Update token, loading animation
-    axiosInstance.setToken(data.token)
+    try {
+      const { data } = await loginApi(values)
+      // Update token, loading animation
+      localStorage.setItem('user', JSON.stringify(data.user))
+      axiosInstance.setToken(data.token)
+      // Navigate to previous page
+      navigate(-1)
+    } catch (error) {
+      console.error('esdfd')
+    }
     setIsLoading(false)
-
-    // Navigate to previous page
-    navigate(-1)
   }
 
   return (

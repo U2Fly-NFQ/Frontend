@@ -3,11 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import './index.scss'
 import { FlightListBanner, PageLoadingAnimation } from '../../components'
 import DetailFlights from './detailFlights'
-import { useLoadingContext } from 'react-router-loading'
 import BookingTravelDate from './BookingTravelDate'
 import BookingCoupon from './BookingCoupon'
 import { useEffect } from 'react'
-import { getDataFlights } from '../../redux/slices/bookingFlightsSlice'
 import { useNavigate, useParams } from 'react-router-dom'
 import {
   getCurrentMethodInBookingFlight,
@@ -23,7 +21,7 @@ import PaymentFlight from './PaymentFlight'
 import BookingSuccessPage from './BookingSuccess'
 import { scrollTo } from '../../utils/scroll'
 import { getBookingInformationSuccess } from '../../redux/selectors/bookingSuccessSelector'
-import { getTicketInformation } from '../../redux/slices/bookingSuccessSlice'
+import { getLsObj } from '../../utils/localStorage'
 const { Header, Footer, Sider, Content } = Layout
 function FlightList() {
   const navigate = useNavigate()
@@ -45,26 +43,16 @@ function FlightList() {
   // )
 
   useEffect(() => {
-    let dataFlight = JSON.parse(localStorage.getItem('flight'))
-    if (dataFlight) {
-      dispatch(getDataFlights(dataFlight.id))
+    let flight = getLsObj('flight')
+    let token = localStorage.getItem('token')
+
+    if (flight.id) {
+      if (!token) navigate('/login')
     } else {
-      navigate('/')
+      navigate(-1)
     }
   }, [])
 
-  useEffect(() => {
-    if (ticketId === undefined) {
-      navigate('/flights-booking')
-    } else {
-      dispatch(getTicketInformation(ticketId))
-    }
-  }, [])
-
-  const loadingContext = useLoadingContext()
-  const loading = async () => {
-    loadingContext.done()
-  }
   useEffect(() => {
     scrollTo('650')
   }, [])

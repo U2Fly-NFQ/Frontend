@@ -142,8 +142,9 @@
 
   "flight-booking-page": {
     "Passenger information": "Passenger information",
+    "Payment methods": "Payment methods",
+    "payment successful": "payment successful",
     "Flights": "Flights",
-    "Payment method": "Payment method",
     "Pay Now": "Pay Now",
     "First name": "First name",
     "Email address": "Email address",
@@ -173,7 +174,11 @@
     "Tax": "Tax",
     "Subtotal": "Subtotal",
     "remove": "remove",
-    "Total Amount": "Total Amount"
+    "Total Amount": "Total Amount",
+    "Your birthdate": "Your birthdate",
+    "I have read the": "I have read the",
+    "agreement": "agreements",
+    "Continue to payment": "Continue to payment"
   },
 
   "profile-page": {

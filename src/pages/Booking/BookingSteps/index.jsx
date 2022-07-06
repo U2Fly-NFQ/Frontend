@@ -4,10 +4,12 @@ import { Steps } from 'antd'
 import { getCurrentMethodInBookingFlight } from '../../../redux/selectors'
 import './index.scss'
 import { changeCurrentMethod } from '../../../redux/slices/bookingFlightsSlice'
+import { useTranslation } from 'react-i18next'
 
 export default function BookingSteps({ contentTop, contentBottom }) {
   const dispatch = useDispatch()
   const getCurrentMethod = useSelector(getCurrentMethodInBookingFlight)
+  const { t } = useTranslation()
 
   const { Step } = Steps
   const onChange = (value) => {
@@ -29,7 +31,7 @@ export default function BookingSteps({ contentTop, contentBottom }) {
             </div>
             <div>
               <div className="booking-steps__flight__content">
-                <h4>Thông tin khách Hàng</h4>
+                <h4>{t('flight-booking-page.Passenger information')}</h4>
               </div>
             </div>
           </div>
@@ -44,7 +46,7 @@ export default function BookingSteps({ contentTop, contentBottom }) {
             </div>
             <div>
               <div className="booking-steps__flight__content">
-                <h4>Phương Thức Thanh Toán</h4>
+                <h4>{t('flight-booking-page.Payment methods')}</h4>
               </div>
             </div>
           </div>
@@ -59,7 +61,7 @@ export default function BookingSteps({ contentTop, contentBottom }) {
             </div>
             <div>
               <div className="booking-steps__flight__content">
-                <h4>Thanh Toán Thành Công</h4>
+                <h4>{t('flight-booking-page.payment successful')}</h4>
               </div>
             </div>
           </div>

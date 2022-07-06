@@ -8,10 +8,15 @@ import {
   changeCurrentMethod,
 } from '../../../redux/slices/bookingFlightsSlice'
 import { ButtonOfPage, SelectDropDown } from '../../../components'
+import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
+
 export default function BookingPassenger() {
   const userInformation = useSelector(getUserInformation)
   const dispatch = useDispatch()
   const [form] = Form.useForm()
+  const { t } = useTranslation()
+
   const onFinish = (values) => {
     let valueResult = {
       ...values,
@@ -56,7 +61,7 @@ export default function BookingPassenger() {
           <input
             name="firstName"
             className="form-control"
-            placeholder="First name*"
+            placeholder={t('flight-booking-page.First name')}
           />
         </Form.Item>
 
@@ -72,7 +77,7 @@ export default function BookingPassenger() {
           ]}
         >
           <DatePicker
-            placeholder="Ngày Sinh của bạn"
+            placeholder={t('flight-booking-page.Your birthdate')}
             className="form-control"
             format="DD-MM-YYYY"
             style={{ display: 'flex' }}
@@ -98,7 +103,7 @@ export default function BookingPassenger() {
           <input
             name="email"
             className="form-control"
-            placeholder="Email address (Optional)*"
+            placeholder={t('flight-booking-page.Email address')}
           />
         </Form.Item>
 
@@ -110,7 +115,7 @@ export default function BookingPassenger() {
           <input
             name="number"
             className="form-control"
-            placeholder="Mobile number*"
+            placeholder={t('flight-booking-page.Mobile number')}
           />
         </Form.Item>
 
@@ -131,7 +136,7 @@ export default function BookingPassenger() {
           <input
             name="streetAddress"
             className="form-control"
-            placeholder="Street address*"
+            placeholder={t('flight-booking-page.Street address')}
           />
         </Form.Item>
 
@@ -142,7 +147,7 @@ export default function BookingPassenger() {
           <input
             name="Identification Card"
             className="form-control"
-            placeholder="Apartment*"
+            placeholder={t('flight-booking-page.Apartment')}
           />
         </Form.Item>
         <Form.Item
@@ -172,7 +177,7 @@ export default function BookingPassenger() {
           <input
             className="form-control"
             name="passport"
-            placeholder={'Passport no.'}
+            placeholder={t('flight-booking-page.Passport no.')}
           />
         </Form.Item>
 
@@ -184,7 +189,7 @@ export default function BookingPassenger() {
           <input
             name="visa"
             className="form-control"
-            placeholder={'Visa no.'}
+            placeholder={t('flight-booking-page.Visa no.')}
           />
         </Form.Item>
         <Form.Item
@@ -201,11 +206,12 @@ export default function BookingPassenger() {
           ]}
         >
           <Checkbox>
-            I have read the <a href="">agreement</a>
+            {t('flight-booking-page.I have read the')}{' '}
+            <Link to="">{t('flight-booking-page.agreement')}</Link>
           </Checkbox>
         </Form.Item>
         <Form.Item>
-          <ButtonOfPage title="Continue to payment" />
+          <ButtonOfPage title={t('flight-booking-page.Continue to payment')} />
         </Form.Item>
       </Form>
     </>

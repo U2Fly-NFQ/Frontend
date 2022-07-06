@@ -70,14 +70,13 @@
   }
 
   .flight-card-deal {
-    min-width: 200px;
-    flex: 1;
+    width: 200px;
     position: relative;
 
     .flight-card-price {
       background-color: var(--ant-primary-1);
       padding: 10px 20px;
-      overflow: hidden;
+      overflow: hidden !important;
 
       &__origin {
         color: var.$paragraph-color;
@@ -114,6 +113,7 @@
         position: absolute;
         top: 0;
         right: 0;
+        margin-bottom: 0;
 
         &:after {
           right: 100%;
@@ -123,9 +123,9 @@
           width: 0;
           position: absolute;
           border-color: rgba(136, 183, 213, 0);
-          border-width: 15.5px;
-          top: 50%;
-          margin-top: -15.5px;
+          border-width: 15px;
+          top: 49%;
+          margin-top: -15px;
         }
 
         &:before {
@@ -149,11 +149,11 @@
         }
 
         &.red {
-          background-color: #e80707;
+          background-color: #f14444;
         }
 
         &.red:after {
-          border-right-color: #e80707;
+          border-right-color: #f14444;
         }
       }
     }
@@ -217,20 +217,26 @@
       }
     }
   }
-  @media screen and (max-width: 1234px) {
-    gap: 40px;
-  }
-  @media screen and (max-width: 720px) {
-    flex-wrap: wrap;
-    gap: 20px;
 
+  @media screen and (max-width: 1234px) {
     .place {
+      gap: 20px;
+
       .airline {
         img {
           display: none;
         }
       }
+    }
+  }
 
+  @media screen and (max-width: 720px) {
+    flex-wrap: wrap;
+
+    .place {
+      gap: 5px;
+      justify-content: space-between;
+      flex: none;
       .destination {
         .sub-title,
         .title {
@@ -245,7 +251,7 @@
     }
 
     .flight-card-deal {
-      min-width: 140px;
+      flex: 1;
     }
   }
 }

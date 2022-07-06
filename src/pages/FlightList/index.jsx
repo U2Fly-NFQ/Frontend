@@ -48,6 +48,13 @@ function FlightList() {
       return
     }
 
+    if (searchParams.get('ticketType') === 'oneWay') {
+      updateLs('flight', {
+        id: '',
+      })
+      setSelectedFlight({})
+    }
+
     if (flightStorage.ticketType === 'roundTrip' && flightStorage.id) {
       async function fetchData() {
         // const rs = await FlightApi.get(flightStorage.id)

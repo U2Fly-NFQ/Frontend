@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import flight from '../../api/Flight'
-
 const initialState = {
   status: '',
   onetrip: {
@@ -41,7 +39,7 @@ export default flightSlice
 export const fetchFlights = createAsyncThunk(
   'flight/fetchFlights',
   async (urlParams) => {
-    let rs = await flight.getList(urlParams)
+    // let rs = await flight.getList(urlParams)
     let mockRs = await axios.get(
       'https://62c45182abea8c085a729073.mockapi.io/flights'
     )

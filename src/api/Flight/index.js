@@ -18,7 +18,7 @@ const getUserData = (id) => {
   return axios.get(`/api/passengers/${id}`)
 }
 
-const getInfoTickerById = (idTicket) => axios.get(`/tickets/${idTicket}`)
+const getInfoTickerById = (idTicket) => axios.get(`/api/tickets/${idTicket}`)
 
 const createATicket = (data) => axios.post(`/api/payment/stripe`, data)
 

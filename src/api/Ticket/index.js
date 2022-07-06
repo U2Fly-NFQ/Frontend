@@ -2,6 +2,7 @@
 import axios from 'axios'
 
 const endpoint = 'https://62c3e6bf7d83a75e39ea0b93.mockapi.io/ticket'
+// const endpoint = '/api/tickets'
 
 export const getList = (params) => {
   return axios.get(`${endpoint}`, {

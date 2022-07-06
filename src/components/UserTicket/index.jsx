@@ -85,13 +85,13 @@ function UserTicket({ visible, setViewTicket, ticketData }) {
                   <Col span={5}>
                     <div className="flight-details-title">ETD/Khởi Hành</div>
                     <div className="flight-details-text">
-                      {ticketData.flights.startTime}
+                      {ticketData.flights.ETD}
                     </div>
                   </Col>
                   <Col span={5}>
                     <div className="flight-details-title">ETA/Đến Nơi</div>
                     <div className="flight-details-text">
-                      {ticketData.flights.endTime}
+                      {ticketData.flights.ETA}
                     </div>
                   </Col>
                 </Row>

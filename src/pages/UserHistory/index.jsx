@@ -42,7 +42,6 @@ function UserHistory(props) {
         })
         return {
           ...ticket,
-          total_price: ticket.total_price,
           status: bookingStatus[ticket.status],
           flights: flights,
         }

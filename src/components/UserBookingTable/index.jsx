@@ -14,7 +14,7 @@ function UserBookingTable({ loading, data }) {
       title: 'Booking ID',
       dataIndex: 'id',
       align: 'center',
-      sorter: (a, b) => a.code - b.code,
+      sorter: (a, b) => a.id - b.id,
     },
     {
       title: 'Journey',
@@ -39,10 +39,10 @@ function UserBookingTable({ loading, data }) {
       ),
     },
     {
-      title: 'Booking Amount (USD)',
-      dataIndex: 'total_price',
+      title: 'Booking Amount',
+      dataIndex: 'totalPrice',
       align: 'center',
-      sorter: (a, b) => a.total_price - b.total_price,
+      sorter: (a, b) => a.totalPrice - b.totalPrice,
     },
     {
       title: 'Status',
@@ -92,18 +92,19 @@ function UserBookingTable({ loading, data }) {
     },
   ]
   const onExpandRowKey = (expanded, record) => {
-    expanded ? setExpandedRowKeys(record.id) : setExpandedRowKeys([])
+    expanded ? setExpandedRowKeys([record.id]) : setExpandedRowKeys([])
   }
+
   return (
     <Table
       columns={bookingListColumn}
       rowKey={(record) => record.id}
       expandable={{
+        expandedRowKeys: expandedRowKeys,
+        onExpand: onExpandRowKey,
         expandedRowRender: (record) => (
           <UserBookingDetail detailData={record} />
         ),
-        expandedRowKeys: expandedRowKeys,
-        onExpand: onExpandRowKey,
       }}
       dataSource={data}
       loading={loading}

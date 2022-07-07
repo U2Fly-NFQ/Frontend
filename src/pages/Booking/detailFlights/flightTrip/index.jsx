@@ -91,7 +91,7 @@ export default function FlightTrip() {
           />
         </Steps>
       </Panel>
-      {getRoundTrip.name && (
+      {getRoundTrip.code && (
         <Panel
           style={{ borderTop: '1px solid blue' }}
           showArrow={false}

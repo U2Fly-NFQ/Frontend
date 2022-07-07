@@ -41,7 +41,9 @@ export default function BookingSuccessPage() {
               </li>
               <li>
                 <span>Day of Birth:</span>
-                <span className="value">{dateUserBooking.birthday}</span>
+                <span className="value">
+                  {dateUserBooking.birthday || 'No provided'}
+                </span>
               </li>
               <li>
                 <span>Email address:</span>

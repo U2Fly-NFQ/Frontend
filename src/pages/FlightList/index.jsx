@@ -18,26 +18,21 @@ import axios from 'axios'
 import { CloseOutlined } from '@ant-design/icons'
 import { scrollTo } from '../../utils/scroll'
 import Home from '../Home'
+import { addHourToTime, getDurationFormat } from '../../utils/flight'
 
 const { Title, Text } = Typography
 const { Option } = Select
 
 function FlightList() {
   const dispatch = useDispatch()
-  const { onetrip, roundtrip, status } = useSelector((state) => state.flights)
-  const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
   const [order, setOrder] = useState('price.asc')
+  const [searchParams, setSearchParams] = useSearchParams()
   const [selectedFlight, setSelectedFlight] = useState({})
   const flightStorage = getLsObj('flight')
-  const activeData = flightStorage.ticketType === 'oneWay' ? onetrip : roundtrip
+  const { oneway, roundtrip, status } = useSelector((state) => state.flights)
+  const activeData = flightStorage.ticketType === 'oneWay' ? oneway : roundtrip
   const { pagination } = activeData
-
-  const changeOrder = (value) => {
-    setOrder(value)
-    searchParams.set('order', value)
-    setSearchParams(searchParams)
-  }
 
   useEffect(() => {
     if (checkFirstVisitWithoutParams()) {
@@ -77,12 +72,20 @@ function FlightList() {
     dispatch(fetchFlights(searchParams))
   }, [searchParams, flightStorage.id])
 
+  const changeOrder = (value) => {
+    setOrder(value)
+    searchParams.set('order', value)
+    setSearchParams(searchParams)
+  }
+
   const changePage = (value) => {
-    setSearchParams(searchParams.set('page', value))
+    searchParams.set('page', value)
+    setSearchParams(searchParams)
   }
 
   const changeSize = (value) => {
-    setSearchParams(searchParams.set('offset', value))
+    searchParams.set('offset', value)
+    setSearchParams(searchParams)
   }
 
   const checkFirstVisitWithoutParams = () => {
@@ -162,13 +165,13 @@ function FlightList() {
                             <i className="fa-solid fa-plane"></i>
                             <span className="flight-segment"></span>
                             <i className="fa-solid fa-map-location-dot"></i>
-                            <span className="duration">1.5 hour</span>
+                            <span className="duration">
+                              {getDurationFormat(selectedFlight.duration)}
+                            </span>
                           </div>
                           <div className="line-way-item to">
                             <Title level={3}>
-                              {moment(selectedFlight.startTime, 'HH:mm:ss')
-                                .add(selectedFlight.duration * 60, 'minutes')
-                                .format('HH:mm')}
+                              {addHourToTime(selectedFlight.startTime)}
                             </Title>
                             <Text>{selectedFlight.arrival.iata}</Text>
                           </div>

@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
+import axiosInstance from '../../api'
 
-const initialState = {
+export const initialState = {
   status: '',
-  onetrip: {
+  oneway: {
     flight: [],
     pagination: {},
   },
@@ -27,8 +27,8 @@ const flightSlice = createSlice({
         state.status = 'error'
       })
       .addCase(fetchFlights.fulfilled, (state, action) => {
-        state.status = 'idle'
-        state.onetrip = action.payload.onetrip
+        state.status = ''
+        state.oneway = action.payload.oneway
         state.roundtrip = action.payload.roundtrip
       })
   },
@@ -40,7 +40,7 @@ export const fetchFlights = createAsyncThunk(
   'flight/fetchFlights',
   async (urlParams) => {
     // let rs = await flight.getList(urlParams)
-    let mockRs = await axios.get(
+    let mockRs = await axiosInstance.get(
       'https://62c45182abea8c085a729073.mockapi.io/flights'
     )
     return mockRs.data.data

@@ -30,8 +30,8 @@ function FlightList() {
   const [searchParams, setSearchParams] = useSearchParams()
   const [selectedFlight, setSelectedFlight] = useState({})
   const flightStorage = getLsObj('flight')
-  const { onetrip, roundtrip, status } = useSelector((state) => state.flights)
-  const activeData = flightStorage.ticketType === 'oneWay' ? onetrip : roundtrip
+  const { oneway, roundtrip, status } = useSelector((state) => state.flights)
+  const activeData = flightStorage.ticketType === 'oneWay' ? oneway : roundtrip
   const { pagination } = activeData
 
   useEffect(() => {

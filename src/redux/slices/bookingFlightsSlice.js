@@ -3,8 +3,9 @@ import flightAPI from '../../api/Flight'
 import discountInfo from '../../api/Discount'
 import moment from 'moment'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-const initialState = {
+import axiosInstance from 'axios'
+
+export const initialState = {
   loadding: false,
   userInformation: {},
   dataFlight: {},
@@ -15,11 +16,12 @@ const initialState = {
   currentMethods: 0,
   priceAfterDiscount: 0,
 }
+
 export const getDataFlights = createAsyncThunk(
   'flight/getDataFlights',
   async (idFlight) => {
     // const response = await flightAPI.get(idFlight)
-    const response = await axios.get(
+    const response = await axiosInstance.get(
       `https://62c45182abea8c085a729073.mockapi.io/flights-by-id/${idFlight}`
     )
     return response.data
@@ -37,7 +39,7 @@ export const getUserDataInBooking = createAsyncThunk(
   'flight/getUserData',
   async (idUser) => {
     // const response = await flightAPI.getUserData(idUser)
-    const response = await axios.get(
+    const response = await axiosInstance.get(
       `https://62c45182abea8c085a729073.mockapi.io/passengers/${idUser}`
     )
     return response.data
@@ -56,7 +58,7 @@ export const getRoundTripBookingFlight = createAsyncThunk(
   'flight/RoundTripBooking',
   async (idFlight) => {
     // const response = await flightAPI.get(idFlight)
-    const response = await axios.get(
+    const response = await axiosInstance.get(
       `https://62c45182abea8c085a729073.mockapi.io/flights-by-id/${idFlight}`
     )
     return response.data

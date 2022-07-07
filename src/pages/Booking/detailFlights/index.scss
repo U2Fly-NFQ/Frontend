@@ -1,47 +1,5 @@
 @use '../../../assets/scss/abstracts' as a;
-.detail-flights__container__trip {
-  display: flex;
-  gap: 22px;
-  &__from {
-    p {
-      margin: 0;
-      font-size: 10px;
-    }
-    h3 {
-      margin: 0;
-    }
-    h6 {
-      white-space: nowrap;
-      width: 100px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-  &__icon {
-    i {
-      font-size: 20px;
 
-      color: a.$main-color;
-    }
-    h3 {
-      margin: 0;
-    }
-    p {
-      margin: 0;
-      font-size: 10px;
-      text-overflow: ellipsis;
-    }
-  }
-  &__to {
-    h3 {
-      margin: 0;
-    }
-    p {
-      margin: 0;
-      font-size: 10px;
-    }
-  }
-}
 .detail-flights__container__package-rules {
   h5 {
     font-weight: 500;
@@ -78,4 +36,9 @@
       font-size: 14px;
     }
   }
+}
+
+.block-container {
+  padding: 20px;
+  margin-bottom: 20px;
 }

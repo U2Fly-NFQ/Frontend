@@ -1,47 +1,56 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'antd'
 import { UserBookingTable } from '../../components'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchHistoryBooking } from '../../redux/slices/ticketSlice'
+import { ticketHistoryDataSelector } from '../../redux/selectors'
+import { isEmpty } from 'lodash/lang'
+import moment from 'moment'
+import { bookingStatus } from '../../Constants'
 
 function UserHistory(props) {
   //initiation
+  const dispatch = useDispatch()
+  const ticketHistory = useSelector(ticketHistoryDataSelector)
+
+  const [tickets, setTickets] = useState([])
   const [loading, setLoading] = useState(false)
 
   //Logical handling functions
-  //Fake Data
-  const data = [
-    {
-      key: 1,
-      bookingAmount: '$850.00',
-      status: 'Canceled',
-      owner: 'Sang Sáng Sủa',
-      email: 'sang@gg.com',
-      date: '13/06/2022',
-      flights: [
-        {
-          key: '1',
-          airline:
-            'https://www.vietnamairlines.com/~/media/Images/VNANew/Home/Logo%20Header/logo_vna-mobile.png',
-          departure: 'Ha Noi (HAN)',
-          arrival: 'Ho Chi Minh (HCM)',
-          dateTime: '2022-06-13',
-          boardingTime: '2022-06-13 06:30',
-          startTime: '2022-06-13 06:00',
-          endTime: '2022-06-13 8:30',
-        },
-        {
-          key: '2',
-          airline:
-            'https://www.vietnamairlines.com/~/media/Images/VNANew/Home/Logo%20Header/logo_vna-mobile.png',
-          departure: 'Ho Chi Minh (HCM)',
-          arrival: 'Ha Noi (HAN)',
-          dateTime: '2022-06-14',
-          boardingTime: '2022-06-14 06:30',
-          startTime: '2022-06-14 06:00',
-          endTime: '2022-06-14 8:30',
-        },
-      ],
-    },
-  ]
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      dispatch(fetchHistoryBooking())
+    }, 500)
+  }, [dispatch])
+
+  useEffect(() => {
+    if (!isEmpty(ticketHistory)) {
+      let ticketProcessedData = ticketHistory.map((ticket) => {
+        let flights = ticket.flights.map((flight) => {
+          let startDate = new Date(`${flight.startDate} ${flight.startTime}`)
+          let endDate = new Date(`${flight.startDate} ${flight.startTime}`)
+          endDate.setMinutes(endDate.getMinutes() + flight.duration * 60)
+          let boardingTime = new Date(`${flight.startDate} ${flight.startTime}`)
+          boardingTime.setMinutes(boardingTime.getMinutes() - 30)
+          return {
+            ...flight,
+            startTime: moment(startDate).format('DD/M/YYYY hh:mm A'),
+            endTime: moment(endDate).format('DD/M/YYYY hh:mm A'),
+            boardingTime: moment(boardingTime).format('DD/M/YYYY hh:mm A'),
+          }
+        })
+        return {
+          ...ticket,
+          total_price: ticket.total_price,
+          status: bookingStatus[ticket.status],
+          flights: flights,
+        }
+      })
+      setLoading(false)
+      setTickets(ticketProcessedData)
+    }
+  }, [ticketHistory])
 
   return (
     <Row className="userProfile-container-history">
@@ -49,7 +58,7 @@ function UserHistory(props) {
         Booking History
       </Col>
       <Col span={24}>
-        <UserBookingTable data={data} loading={loading} />
+        <UserBookingTable data={tickets} loading={loading} />
       </Col>
     </Row>
   )

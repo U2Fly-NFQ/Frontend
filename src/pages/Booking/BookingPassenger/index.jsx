@@ -6,6 +6,7 @@ import { getUserInformation } from '../../../redux/selectors'
 import {
   addDataIntoBookingFlight,
   changeCurrentMethod,
+  getUserDataInBooking,
 } from '../../../redux/slices/bookingFlightsSlice'
 import { ButtonOfPage, SelectDropDown } from '../../../components'
 import { useTranslation } from 'react-i18next'
@@ -17,6 +18,12 @@ export default function BookingPassenger() {
   const [form] = Form.useForm()
   const { t } = useTranslation()
 
+  useEffect(() => {
+    let userInfo = JSON.parse(localStorage.getItem('user'))
+    if (userInfo) {
+      dispatch(getUserDataInBooking(userInfo.id))
+    }
+  }, [])
   const onFinish = (values) => {
     let valueResult = {
       ...values,
@@ -37,6 +44,9 @@ export default function BookingPassenger() {
   }, [userInformation])
   return (
     <>
+      <div class="booking-page__container__item__title">
+        <h2>Passengers information</h2>
+      </div>
       <Form
         wrapperCol={{
           span: 22,

@@ -5,32 +5,38 @@ import { LoginBanner, PageLoadingAnimation } from '../../components'
 import './style.scss'
 import { useEffect, useState } from 'react'
 import axiosInstance from '../../api'
+import { getLsObj } from '../../utils/localStorage'
 import { useTranslation } from 'react-i18next'
 
 const { Title } = Typography
 
 const Login = () => {
-  const user = JSON.parse(localStorage.getItem('user') || '[]')
+  const user = getLsObj('user')
+  const token = localStorage.getItem('token')
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
   const { t } = useTranslation()
 
   useEffect(() => {
-    if (user.id) {
-      // user
-      if (user.roles['1']) {
-        navigate('/')
-      }
+    if (user.id && token) {
+      navigate(-1)
     }
-  }, [user.id])
+  }, [])
+
+  const [errTxt, setErrTxt] = useState('')
 
   const onFinish = async (values) => {
     setIsLoading(true)
-    const { data } = await loginApi(values)
-    localStorage.setItem('user', JSON.stringify(data.user))
-
-    // Update token, loading animation
-    axiosInstance.setToken(data.token)
+    try {
+      const { data } = await loginApi(values)
+      // Update token, loading animation
+      localStorage.setItem('user', JSON.stringify(data.user))
+      axiosInstance.setToken(data.token)
+      // Navigate to previous page
+      navigate(0)
+    } catch (error) {
+      setErrTxt('Wrong email or password')
+    }
     setIsLoading(false)
   }
 
@@ -80,6 +86,16 @@ const Login = () => {
                         placeholder={t('login.Enter password')}
                       />
                     </Form.Item>
+                    {errTxt && (
+                      <p
+                        style={{
+                          textAlign: 'right',
+                          color: 'var(--ant-error-color)',
+                        }}
+                      >
+                        Wrong email or password
+                      </p>
+                    )}
                     <div className="form-submit">
                       <button className="btn btn-primary btn-md">
                         {t('login.Login')}

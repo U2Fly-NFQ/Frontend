@@ -38,8 +38,8 @@ export default function FlightSearch() {
   const [searchTo, setSearchTo] = useState('')
   const [searchFrom, setSearchFrom] = useState('')
 
-  const [from, setFrom] = useState('')
-  const [to, setTo] = useState('')
+  const [from, setFrom] = useState(undefined)
+  const [to, setTo] = useState(undefined)
   const [ticketType, setTicketType] = useState('oneWay')
   const [journeyDay, setJourneyDay] = useState(moment())
   const [returnDay, setReturnDay] = useState(moment().add(3, 'days'))
@@ -198,10 +198,12 @@ export default function FlightSearch() {
                 bordered={false}
                 style={{
                   width: '100%',
+                  borderBottom: '1px solid #ddd',
                 }}
                 dropdownStyle={{
                   borderRadius: '10px',
                 }}
+                placeholder="Flying from..."
               >
                 {airports.map((airport) => {
                   return (
@@ -239,10 +241,12 @@ export default function FlightSearch() {
                 bordered={false}
                 style={{
                   width: '100%',
+                  borderBottom: '1px solid #ddd',
                 }}
                 dropdownStyle={{
                   borderRadius: '10px',
                 }}
+                placeholder="Flying to..."
               >
                 {airports.map((airport) => {
                   return (

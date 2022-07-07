@@ -92,34 +92,39 @@ export default function PaymentFlight() {
   ]
 
   return (
-    <div style={{ width: '100%' }}>
-      <Radio.Group
-        onChange={onChange}
-        value={value}
-        style={{ width: '100%' }}
-        className="paymnet-button__radio"
-      >
-        {dataPayment &&
-          dataPayment.map((item, index) => {
-            return (
-              <div className="paymnet-button__radio form-control">
-                <Radio
-                  value={index}
-                  key={index}
-                  className="paymnet-button__radio__btn"
-                >
-                  {item.paymentMethod}
-                  <div className="paymnet-button__radio__logo ">
-                    <img src={item.logo} alt="stripe-logo" />
-                  </div>
-                </Radio>
-              </div>
-            )
-          })}
-      </Radio.Group>
-      <div className="BookingPayment-content">
-        <Form onFinish={onFinish}>{dataBooking && dataBooking.render}</Form>
+    <>
+      <div class="booking-page__container__item__title">
+        <h2>Payment Method</h2>
       </div>
-    </div>
+      <div style={{ width: '100%' }}>
+        <Radio.Group
+          onChange={onChange}
+          value={value}
+          style={{ width: '100%' }}
+          className="paymnet-button__radio"
+        >
+          {dataPayment &&
+            dataPayment.map((item, index) => {
+              return (
+                <div className="paymnet-button__radio form-control">
+                  <Radio
+                    value={index}
+                    key={index}
+                    className="paymnet-button__radio__btn"
+                  >
+                    {item.paymentMethod}
+                    <div className="paymnet-button__radio__logo ">
+                      <img src={item.logo} alt="stripe-logo" />
+                    </div>
+                  </Radio>
+                </div>
+              )
+            })}
+        </Radio.Group>
+        <div className="BookingPayment-content">
+          <Form onFinish={onFinish}>{dataBooking && dataBooking.render}</Form>
+        </div>
+      </div>
+    </>
   )
 }

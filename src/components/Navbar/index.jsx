@@ -3,10 +3,16 @@ import ButtonOfPage from '../ButtonOfPage'
 import NavLinkDropDown from '../NavLinkDropDown'
 import './index.scss'
 import { useTranslation } from 'react-i18next'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { Typography } from 'antd'
+
+const { Title } = Typography
+
 export default function Navbar() {
   const openNavbarHamburger = useRef(null)
   const openNavbarModal = useRef(null)
+  const navigate = useNavigate()
   const openAndNavbarDropDown = () => {
     openNavbarHamburger.current.classList.toggle('open')
     openNavbarModal.current.classList.toggle('open')
@@ -26,9 +32,25 @@ export default function Navbar() {
         }}
       >
         <ul className="navbar__links">
-          <NavLinkDropDown
-            Title={{ path: '', title: t('header.navbar.flight') }}
-          />
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <Title
+              level={3}
+              onClick={() => navigate('/')}
+              style={{
+                display: 'flex',
+                margin: 0,
+                gap: '0.6rem',
+                alignItems: 'center',
+                color: '#fff',
+                fontSize: '22px',
+                cursor: 'pointer',
+                marginRight: '20px',
+              }}
+            >
+              U2FLy
+            </Title>
+          </motion.div>
+          <NavLinkDropDown Title={{ path: '', title: 'Home' }} />
         </ul>
         <div className="navbar__footer">
           <div className="navbar__footer__btn">

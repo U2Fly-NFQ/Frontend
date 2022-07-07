@@ -6,7 +6,7 @@ import './index.scss'
 import { changeCurrentMethod } from '../../../redux/slices/bookingFlightsSlice'
 import { useTranslation } from 'react-i18next'
 
-export default function BookingSteps({ contentTop, contentBottom }) {
+export default function BookingSteps({ contentTop, contentBottom, ticketId }) {
   const dispatch = useDispatch()
   const getCurrentMethod = useSelector(getCurrentMethodInBookingFlight)
   const { t } = useTranslation()
@@ -15,14 +15,15 @@ export default function BookingSteps({ contentTop, contentBottom }) {
   const onChange = (value) => {
     dispatch(changeCurrentMethod(value))
   }
+
   return (
     <Steps
       type="navigation"
       className="booking-steps"
-      current={getCurrentMethod}
+      current={ticketId ? 2 : getCurrentMethod}
+      // current={0}
     >
       <Step
-        status="finish"
         className="booking-steps__flight"
         title={
           <div className="booking-steps__flight__container">
@@ -38,7 +39,6 @@ export default function BookingSteps({ contentTop, contentBottom }) {
         }
       />
       <Step
-        status="wait"
         title={
           <div className="booking-steps__flight__container">
             <div className="booking-steps__flight__logo">

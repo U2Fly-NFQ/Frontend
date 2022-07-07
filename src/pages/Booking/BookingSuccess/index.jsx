@@ -1,21 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './index.scss'
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
-import { getTicketInformation } from '../../../redux/slices/bookingSuccessSlice'
+import { useSelector } from 'react-redux'
 import { getUserInformationSuccess } from '../../../redux/selectors/bookingSuccessSelector'
 import BookingSuccessDetail from './BookingSuccessDetail'
 export default function BookingSuccessPage() {
-  const navigate = useNavigate()
-  let { ticketId } = useParams()
-  const dispatch = useDispatch()
   const dateUserBooking = useSelector(getUserInformationSuccess)
-  useEffect(() => {
-    if (ticketId === undefined) {
-      navigate('/flights-booking')
-    }
-    dispatch(getTicketInformation(ticketId))
-  }, [])
+
   return (
     <div className="Booking-success">
       <div className="Booking-success__container__items">
@@ -50,7 +40,7 @@ export default function BookingSuccessPage() {
                 <span className="value">{dateUserBooking.name}</span>
               </li>
               <li>
-                <span>Day of Bỉrth:</span>
+                <span>Day of Birth:</span>
                 <span className="value">{dateUserBooking.birthday}</span>
               </li>
               <li>

@@ -21,7 +21,7 @@ export default function BookingCoupon() {
         <h3>{t('flight-booking-page.Coupon code')}</h3>
       </div>
       <div className="booking-coupon__container">
-        {discount.percent != 0 && <i className="fa-solid fa-circle-check"></i>}
+        {/* {discount.percent != 0 && <i className="fa-solid fa-circle-check"></i>} */}
         <Form onFinish={onFinish}>
           <Form.Item
             name="idDiscount"

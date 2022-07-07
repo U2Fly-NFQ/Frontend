@@ -32,4 +32,10 @@ export const getCurrentMethodInBookingFlight = (state) =>
   state.bookingFlight.currentMethods
 ///  get user information
 
+export const getLoaddingMethodInBookingFlight = (state) =>
+  state.bookingFlight.loadding
+
 export const getUserInformation = (state) => state.bookingFlight.userInformation
+
+export const getRoundTripBookingFlight = (state) =>
+  state.bookingFlight.dataRoundTripFlight

@@ -2,17 +2,21 @@
 
 .admin {
   min-height: 100vh;
-  .admin-sidebar {
+  &-sidebar {
     background-color: a.$background-white;
+    box-shadow: a.$box-shadow;
+    //border-right: 2px solid;
     &-header {
       padding: 5px;
       align-items: center;
       text-align: center;
       height: 100px;
       justify-content: center;
+      background-color: a.$bg-color;
       &-logo {
         img {
           width: 100%;
+          max-height: 90px;
         }
       }
       &-trigger {
@@ -23,6 +27,7 @@
       }
     }
     .ant-menu-item {
+      margin: auto !important;
       &:after {
         border-right-color: a.$main-color;
       }
@@ -35,9 +40,12 @@
       }
     }
   }
-  .admin-header {
+  &-header {
     height: 100px;
-    background-color: white;
+    background-color: a.$background-white;
+    box-shadow: a.$box-shadow;
+    -webkit-box-shadow: a.$box-shadow;
+    z-index: 1;
     &-content {
       position: relative;
       top: 50%;
@@ -51,6 +59,25 @@
       &-right {
         text-align: right;
       }
+    }
+  }
+  &-flights {
+    padding: 20px;
+    background-color: a.$bg-color;
+    &-action {
+      margin-bottom: 10px;
+      &-right {
+        text-align: right;
+      }
+    }
+  }
+
+  .ant-btn-primary {
+    background: a.$main-color;
+    border-color: a.$main-color;
+    &:hover {
+      background: a.$purple;
+      border-color: a.$purple;
     }
   }
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Menu } from 'antd'
 import { LogoutOutlined } from '@ant-design/icons'
 
-function ProfileMenu(props) {
+function ProfileMenu() {
   return (
     <Menu
       items={[

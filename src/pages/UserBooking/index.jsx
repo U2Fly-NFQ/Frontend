@@ -7,9 +7,8 @@ import { fetchTickets } from '../../redux/slices/ticketSlice'
 import { isEmpty } from 'lodash/lang'
 
 import { bookingStatus } from '../../Constants'
-import moment from 'moment'
-import { getBoardingDateTime, getEndDateTime } from '../../utils'
 import { convertNumberToUSD } from '../../utils/numberFormater'
+import { flightDataProcessed } from '../../utils/flightDataProcessing'
 
 function UserBooking(props) {
   //initiation
@@ -36,24 +35,11 @@ function UserBooking(props) {
   useEffect(() => {
     if (!isEmpty(ticketData)) {
       let ticketProcessedData = ticketData.map((ticket) => {
-        let flights = ticket.flights.map((flight) => {
-          let ETD = `${flight.startTime} ${flight.startDate}`
-          let endDate = getEndDateTime(flight.duration, ETD)
-          let boardingTime = getBoardingDateTime(flight.duration, ETD)
-          return {
-            ...flight,
-            departure: `${flight.departure.city} (${flight.departure.iata})`,
-            arrival: `${flight.arrival.city} (${flight.arrival.iata})`,
-            ETD: moment(ETD).format('DD/M/YYYY hh:mm A'),
-            ETA: moment(endDate).format('DD/M/YYYY hh:mm A'),
-            boardingTime: moment(boardingTime).format('DD/M/YYYY hh:mm A'),
-          }
-        })
         return {
           ...ticket,
           status: bookingStatus[0],
           totalPrice: convertNumberToUSD(ticket.totalPrice),
-          flights: flights,
+          flights: flightDataProcessed(ticket.flights),
         }
       })
       setTickets(ticketProcessedData)

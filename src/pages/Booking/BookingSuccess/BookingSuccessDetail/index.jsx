@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 import { getFlightInformationSuccess } from '../../../../redux/selectors/bookingSuccessSelector'
 export default function BookingSuccessDetail() {
   const getInforFlight = useSelector(getFlightInformationSuccess)
-  console.log(getInforFlight)
 
   return (
     <div

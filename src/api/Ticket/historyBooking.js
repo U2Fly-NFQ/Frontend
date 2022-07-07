@@ -8,6 +8,7 @@ export const getList = (params) => {
     params,
   })
 }
+export const getAllTicket = () => axios.get(`${endpoint}/`)
 
 export const get = (id) => axios.get(`${endpoint}/${id}`)
 

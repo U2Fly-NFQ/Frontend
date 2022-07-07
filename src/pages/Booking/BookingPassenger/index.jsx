@@ -31,7 +31,7 @@ export default function BookingPassenger() {
   useEffect(() => {
     form.setFieldsValue({
       firstName: userInformation.name,
-      date_picker: moment(),
+      date_picker: moment(userInformation.birthday),
       email: userInformation.email,
       streetAddress: userInformation.address,
       identificationCard: userInformation.identification,

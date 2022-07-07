@@ -33,7 +33,9 @@ export default function PaymentFlight() {
   const onFinish = () => {
     let fetchDataValue = {
       passengerId: userInformation.accountId,
-      flightId: `${getFlightData.id},${getRoundTrip.id}`,
+      flightId: getRoundTrip.id
+        ? `${getFlightData.id},${getRoundTrip.id}`
+        : `${getFlightData.id}`,
       seatTypeId: getSeatData.id,
       totalPrice:
         priceDiscount === 0 ? getPrice.price * 1000 : priceDiscount * 1000,

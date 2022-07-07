@@ -1,11 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getList } from '../../api/Ticket'
-import { getList as getHistory } from '../../api/Ticket/historyBooking'
+import {
+  getList as getHistory,
+  getAllTicket as getAllTickets,
+} from '../../api/Ticket/historyBooking'
 
 const initialState = {
   status: '',
   data: [],
   history: [],
+  getAllTicket: [],
 }
 
 const ticketSlice = createSlice({
@@ -37,6 +41,16 @@ const ticketSlice = createSlice({
         state.status = 'idle'
         state.history = action.payload
       })
+      .addCase(getAllTicketHistory.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(getAllTicketHistory.rejected, (state) => {
+        state.status = 'error'
+      })
+      .addCase(getAllTicketHistory.fulfilled, (state, action) => {
+        state.status = 'idle'
+        state.getAllTicket = [...action.payload]
+      })
   },
 })
 
@@ -54,6 +68,14 @@ export const fetchHistoryBooking = createAsyncThunk(
   'flight/fetchHistoryBooking',
   async (urlParams) => {
     let response = await getHistory(urlParams)
+    return response.data
+  }
+)
+
+export const getAllTicketHistory = createAsyncThunk(
+  'tickets/getAllTicketHistory',
+  async (urlParams) => {
+    let response = await getAllTickets(urlParams)
     return response.data
   }
 )

@@ -1,0 +1,293 @@
+[
+  {
+    "createdAt": "2022-07-01 10:00:00",
+    "passenger": {
+      "name": "Thanh Sang",
+      "gender": "Male",
+      "birthday": "22-03-2002",
+      "address": "123 DF",
+      "identification": "1232432534231",
+      "accountId": 2
+    },
+    "seat_type": {},
+    "total_price": 54,
+    "flights": [
+      {
+        "id": 1,
+        "code": "VN123",
+        "arrival": {
+          "id": 5,
+          "iata": "HAN",
+          "name": "Noi Bai International Airport",
+          "city": "Ha Noi",
+          "image": "https://s28477.pcdn.co/wp-content/uploads/2018/01/HAN_1-984x554.jpg"
+        },
+        "departure": {
+          "id": 4,
+          "iata": "VCA",
+          "name": "Can Tho Internation Airport",
+          "city": "Can Tho",
+          "image": "https://photo-cms-sggp.zadn.vn/Uploaded/2022/krlqzdhnw/2022_05_06/sanbaycantho_rybr.jpg"
+        },
+        "startTime": "18:30:00",
+        "startDate": "2022-07-02",
+        "duration": 1.5,
+        "airplane": { "id": 1, "name": "Airbus A320" },
+        "airline": {
+          "id": 1,
+          "name": "Vietnam Airline",
+          "icao": "HVN",
+          "image": "http://rubee.com.vn/admin/webroot/upload/image//images/tin-tuc/vietnam-airlines-logo-2.png"
+        },
+        "seat": [
+          {
+            "id": 1,
+            "name": "Economy",
+            "price": 50,
+            "seatAvailable": 50,
+            "discount": 0.1
+          }
+        ],
+        "isRating": 1
+      },
+      {
+        "id": 2,
+        "code": "VN321",
+        "arrival": {
+          "id": 5,
+          "iata": "HAN",
+          "name": "Noi Bai International Airport",
+          "city": "Ha Noi",
+          "image": "https://s28477.pcdn.co/wp-content/uploads/2018/01/HAN_1-984x554.jpg"
+        },
+        "departure": {
+          "id": 4,
+          "iata": "VCA",
+          "name": "Can Tho Internation Airport",
+          "city": "Can Tho",
+          "image": "https://photo-cms-sggp.zadn.vn/Uploaded/2022/krlqzdhnw/2022_05_06/sanbaycantho_rybr.jpg"
+        },
+        "startTime": "15:00:00",
+        "startDate": "2022-07-03",
+        "duration": 1.5,
+        "airplane": { "id": 1, "name": "Airbus A320" },
+        "airline": {
+          "id": 1,
+          "name": "Vietnam Airline",
+          "icao": "HVN",
+          "image": "http://rubee.com.vn/admin/webroot/upload/image//images/tin-tuc/vietnam-airlines-logo-2.png"
+        },
+        "seat": [
+          {
+            "id": 1,
+            "name": "Economy",
+            "price": 50,
+            "seatAvailable": 50,
+            "discount": 0.1
+          }
+        ],
+        "isRating": 0
+      }
+    ],
+    "status": 1,
+    "id": "1",
+    "totalPrice": 5000,
+    "ticketOwner": "Thanh Sang",
+    "discount": 1,
+    "seatType": "Economy"
+  },
+  {
+    "createdAt": "2022-07-05 10:00:00",
+    "passenger": {
+      "name": "Thanh Sang",
+      "gender": "Male",
+      "birthday": "22-03-2002",
+      "address": "123 DF",
+      "identification": "1232432534231",
+      "accountId": 2
+    },
+    "seat_type": {},
+    "total_price": 54,
+    "flights": [
+      {
+        "id": 1,
+        "code": "VN123",
+        "arrival": {
+          "id": 5,
+          "iata": "HAN",
+          "name": "Noi Bai International Airport",
+          "city": "Ha Noi",
+          "image": "https://s28477.pcdn.co/wp-content/uploads/2018/01/HAN_1-984x554.jpg"
+        },
+        "departure": {
+          "id": 4,
+          "iata": "VCA",
+          "name": "Can Tho Internation Airport",
+          "city": "Can Tho",
+          "image": "https://photo-cms-sggp.zadn.vn/Uploaded/2022/krlqzdhnw/2022_05_06/sanbaycantho_rybr.jpg"
+        },
+        "startTime": "18:30:00",
+        "startDate": "2022-07-06",
+        "duration": 1.5,
+        "airplane": { "id": 1, "name": "Airbus A320" },
+        "airline": {
+          "id": 1,
+          "name": "Vietnam Airline",
+          "icao": "HVN",
+          "image": "http://rubee.com.vn/admin/webroot/upload/image//images/tin-tuc/vietnam-airlines-logo-2.png"
+        },
+        "seat": [
+          {
+            "id": 1,
+            "name": "Economy",
+            "price": 50,
+            "seatAvailable": 50,
+            "discount": 0.1
+          }
+        ],
+        "isRating": 0
+      },
+      {
+        "id": 2,
+        "code": "VN321",
+        "arrival": {
+          "id": 5,
+          "iata": "HAN",
+          "name": "Noi Bai International Airport",
+          "city": "Ha Noi",
+          "image": "https://s28477.pcdn.co/wp-content/uploads/2018/01/HAN_1-984x554.jpg"
+        },
+        "departure": {
+          "id": 4,
+          "iata": "VCA",
+          "name": "Can Tho Internation Airport",
+          "city": "Can Tho",
+          "image": "https://photo-cms-sggp.zadn.vn/Uploaded/2022/krlqzdhnw/2022_05_06/sanbaycantho_rybr.jpg"
+        },
+        "startTime": "15:00:00",
+        "startDate": "2022-07-07",
+        "duration": 1.5,
+        "airplane": { "id": 1, "name": "Airbus A320" },
+        "airline": {
+          "id": 1,
+          "name": "Vietnam Airline",
+          "icao": "HVN",
+          "image": "http://rubee.com.vn/admin/webroot/upload/image//images/tin-tuc/vietnam-airlines-logo-2.png"
+        },
+        "seat": [
+          {
+            "id": 1,
+            "name": "Economy",
+            "price": 50,
+            "seatAvailable": 50,
+            "discount": 0.1
+          }
+        ],
+        "isRating": 0
+      }
+    ],
+    "status": 1,
+    "id": "2",
+    "totalPrice": 5000,
+    "ticketOwner": "Thanh Sang",
+    "discount": 1,
+    "seatType": "Economy"
+  },
+  {
+    "createdAt": "2022-06-01 10:00:00",
+    "passenger": {
+      "name": "Thanh Sang",
+      "gender": "Male",
+      "birthday": "22-03-2002",
+      "address": "123 DF",
+      "identification": "1232432534231",
+      "accountId": 2
+    },
+    "seat_type": {},
+    "total_price": 54,
+    "flights": [
+      {
+        "id": 1,
+        "code": "VN123",
+        "arrival": {
+          "id": 5,
+          "iata": "HAN",
+          "name": "Noi Bai International Airport",
+          "city": "Ha Noi",
+          "image": "https://s28477.pcdn.co/wp-content/uploads/2018/01/HAN_1-984x554.jpg"
+        },
+        "departure": {
+          "id": 4,
+          "iata": "VCA",
+          "name": "Can Tho Internation Airport",
+          "city": "Can Tho",
+          "image": "https://photo-cms-sggp.zadn.vn/Uploaded/2022/krlqzdhnw/2022_05_06/sanbaycantho_rybr.jpg"
+        },
+        "startTime": "18:30:00",
+        "startDate": "2022-06-05",
+        "duration": 1.5,
+        "airplane": { "id": 1, "name": "Airbus A320" },
+        "airline": {
+          "id": 1,
+          "name": "Vietnam Airline",
+          "icao": "HVN",
+          "image": "http://rubee.com.vn/admin/webroot/upload/image//images/tin-tuc/vietnam-airlines-logo-2.png"
+        },
+        "seat": [
+          {
+            "id": 1,
+            "name": "Economy",
+            "price": 50,
+            "seatAvailable": 50,
+            "discount": 0.1
+          }
+        ],
+        "isRating": 0
+      },
+      {
+        "id": 2,
+        "code": "VN321",
+        "arrival": {
+          "id": 5,
+          "iata": "HAN",
+          "name": "Noi Bai International Airport",
+          "city": "Ha Noi",
+          "image": "https://s28477.pcdn.co/wp-content/uploads/2018/01/HAN_1-984x554.jpg"
+        },
+        "departure": {
+          "id": 4,
+          "iata": "VCA",
+          "name": "Can Tho Internation Airport",
+          "city": "Can Tho",
+          "image": "https://photo-cms-sggp.zadn.vn/Uploaded/2022/krlqzdhnw/2022_05_06/sanbaycantho_rybr.jpg"
+        },
+        "startTime": "15:00:00",
+        "startDate": "2022-07-07",
+        "duration": 1.5,
+        "airplane": { "id": 1, "name": "Airbus A320" },
+        "airline": {
+          "id": 1,
+          "name": "Vietnam Airline",
+          "icao": "HVN",
+          "image": "http://rubee.com.vn/admin/webroot/upload/image//images/tin-tuc/vietnam-airlines-logo-2.png"
+        },
+        "seat": [
+          {
+            "id": 1,
+            "name": "Economy",
+            "price": 50,
+            "seatAvailable": 50,
+            "discount": 0.1
+          }
+        ],
+        "isRating": 0
+      }
+    ],
+    "status": 2,
+    "id": "3",
+    "totalPrice": 5000,
+    "ticketOwner": "Thanh Sang",
+    "discount": 1,
+    "seatType": "Economy"
+  }
+]

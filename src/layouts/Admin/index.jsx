@@ -16,7 +16,6 @@ function AdminLayout() {
       <Layout>
         <AdminHeader />
         <Outlet />
-        <Footer>admin footer</Footer>
       </Layout>
     </Layout>
   )

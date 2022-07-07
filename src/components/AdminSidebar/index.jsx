@@ -23,7 +23,7 @@ function AdminSidebar({ collapsed, setCollapsed }) {
     ),
     getItem(
       <Link to="/admin/ticket/">Tickets</Link>,
-      1,
+      2,
       <i className="fa-solid fa-gauge"></i>
     ),
   ]

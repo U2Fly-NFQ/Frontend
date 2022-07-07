@@ -1,5 +1,5 @@
 import { Row, Col, Typography, Form } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { loginApi } from '../../api/Auth'
 import { LoginBanner, PageLoadingAnimation } from '../../components'
 import './style.scss'
@@ -102,8 +102,8 @@ const Login = () => {
                     </div>
                     <div className="switch">
                       <p>
-                        {t("login.Don't have an account?")}{' '}
-                        <a href="register.html">{t('login.Register now')}</a>
+                        Dont have an account?{' '}
+                        <Link to="/register">Register now</Link>
                       </p>
                     </div>
                   </Form>

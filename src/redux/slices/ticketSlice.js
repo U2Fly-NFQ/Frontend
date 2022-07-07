@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getList } from '../../api/Ticket'
 import { getList as getHistory } from '../../api/Ticket/historyBooking'
 
-const initialState = {
+export const initialState = {
   status: '',
   data: [],
   history: [],
@@ -42,7 +42,7 @@ const ticketSlice = createSlice({
 export default ticketSlice
 
 export const fetchTickets = createAsyncThunk(
-  'flight/fetchTickets',
+  'ticket/fetchTickets',
   async (urlParams) => {
     let response = await getList(urlParams)
     return response.data
@@ -50,7 +50,7 @@ export const fetchTickets = createAsyncThunk(
 )
 
 export const fetchHistoryBooking = createAsyncThunk(
-  'flight/fetchHistoryBooking',
+  'ticket/fetchHistoryBooking',
   async (urlParams) => {
     let response = await getHistory(urlParams)
     return response.data

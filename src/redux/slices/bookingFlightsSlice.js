@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit'
 import flightAPI from '../../api/Flight'
 import discountInfo from '../../api/Discount'
 import moment from 'moment'
-import { useNavigate } from 'react-router-dom'
 import axiosInstance from 'axios'
 
 export const initialState = {
@@ -18,7 +17,7 @@ export const initialState = {
 }
 
 export const getDataFlights = createAsyncThunk(
-  'flight/getDataFlights',
+  'bookingFlight/getDataFlights',
   async (idFlight) => {
     // const response = await flightAPI.get(idFlight)
     const response = await axiosInstance.get(
@@ -87,8 +86,6 @@ const bookingFlightsSlice = createSlice({
     },
     [createBookingFlight.rejected]: (state, action) => {
       state.loadding = false
-      let navigate = useNavigate()
-      navigate('/flights')
     },
     [createBookingFlight.fulfilled]: (state, action) => {
       const { status, data } = action.payload
@@ -102,8 +99,6 @@ const bookingFlightsSlice = createSlice({
     },
     [getUserDataInBooking.rejected]: (state, action) => {
       state.loadding = false
-      let navigate = useNavigate()
-      navigate('/flights')
     },
     [getUserDataInBooking.fulfilled]: (state, action) => {
       state.loadding = false
@@ -117,8 +112,6 @@ const bookingFlightsSlice = createSlice({
     [getDiscountCheck.rejected]: (state, action) => {
       state.loadding = false
       state.discountInfo.percent = 0
-      let navigate = useNavigate()
-      navigate('/flights')
     },
     [getDiscountCheck.fulfilled]: (state, action) => {
       const { status, data } = action.payload
@@ -133,8 +126,6 @@ const bookingFlightsSlice = createSlice({
     },
     [getDataFlights.rejected]: (state) => {
       state.loadding = false
-      let navigate = useNavigate()
-      navigate('/flights')
     },
     [getDataFlights.fulfilled]: (state, action) => {
       state.loadding = false

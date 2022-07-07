@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Col, Row, Space, Table, Button } from 'antd'
-import { EyeOutlined } from '@ant-design/icons'
 import { UserTicket } from '../index'
 import { isEmpty } from 'lodash/lang'
 import './style.scss'
@@ -57,22 +56,30 @@ function UserBookingDetail({ detailData }) {
       align: 'center',
       render: (_, record) => (
         <Space>
-          <Button
-            type="default"
-            shape="default"
-            onClick={() => {
-              let index = findIndex(
-                detailData.flights,
-                (flight) => flight.id === record.id
-              )
-              setTicketData({
-                ...detailData,
-                flights: detailData.flights[index],
-              })
-              setViewTicket(true)
-            }}
-            icon={<EyeOutlined />}
-          />
+          {record.isRating === 0 && (
+            <Button type="primary" shape="default" onClick={() => {}}>
+              Rating
+            </Button>
+          )}
+          {record.isRating === 1 && (
+            <Button
+              type="default"
+              shape="default"
+              onClick={() => {
+                let index = findIndex(
+                  detailData.flights,
+                  (flight) => flight.id === record.id
+                )
+                setTicketData({
+                  ...detailData,
+                  flights: detailData.flights[index],
+                })
+                setViewTicket(true)
+              }}
+            >
+              View
+            </Button>
+          )}
         </Space>
       ),
     },

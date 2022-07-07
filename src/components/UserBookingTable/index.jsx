@@ -53,15 +53,14 @@ function UserBookingTable({ loading, data }) {
     {
       title: 'Action',
       key: 'action',
-      width: 100,
+      width: '100px',
       align: 'center',
       render: (_, record) => (
         <Space>
           {/* eslint-disable-next-line react/jsx-no-undef */}
           {record.status === bookingStatus['0'] && (
             <Button
-              danger
-              type="primary"
+              type="default"
               shape="default"
               // onClick={() => ()}
             >
@@ -69,22 +68,13 @@ function UserBookingTable({ loading, data }) {
             </Button>
           )}
           {(record.status === bookingStatus['1'] ||
-            record.status === bookingStatus['3']) && (
+            record.status === bookingStatus['2']) && (
             <Button
-              type="default"
+              type="primary"
               shape="default"
               onClick={() => navigate('/')}
             >
               Booking Again
-            </Button>
-          )}
-          {record.status === bookingStatus['2'] && (
-            <Button
-              type="primary"
-              shape="default"
-              // onClick={() => ()}
-            >
-              Rating
             </Button>
           )}
         </Space>

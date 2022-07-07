@@ -32,7 +32,7 @@ function UserHistory(props) {
           ...ticket,
           status: bookingStatus[ticket.status],
           totalPrice: convertNumberToUSD(ticket.totalPrice),
-          flights: flightDataProcessed(ticket.flights),
+          flights: flightDataProcessed(ticket),
         }
       })
       setTickets(ticketProcessedData)

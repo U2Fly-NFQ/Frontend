@@ -39,7 +39,7 @@ function UserBooking(props) {
           ...ticket,
           status: bookingStatus[0],
           totalPrice: convertNumberToUSD(ticket.totalPrice),
-          flights: flightDataProcessed(ticket.flights),
+          flights: flightDataProcessed(ticket),
         }
       })
       setTickets(ticketProcessedData)

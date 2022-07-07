@@ -1,1 +1,1 @@
-export * from './fightFunction'
+export * from './flight'

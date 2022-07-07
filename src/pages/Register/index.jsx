@@ -13,11 +13,13 @@ import { Link, useNavigate } from 'react-router-dom'
 import RegisterBanner from './RegisterBanner'
 import './style.scss'
 import { registerApi } from '../../api/Auth'
+import { useTranslation } from 'react-i18next'
 
 const { Title } = Typography
 
 const Register = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const onFinish = (values) => {
     const { idno, name, gender, birthDate, address, email, password } = values
@@ -60,8 +62,8 @@ const Register = () => {
             <Col lg={16}>
               <div className="content">
                 <div className="box">
-                  <Title level={3}>To join a whole new world</Title>
-                  <Title level={2}>Register your account</Title>
+                  <Title level={3}>{t('register.To join a whole new world')}</Title>
+                  <Title level={2}>{t('register.Register your account')}</Title>
                   <Form className="form" onFinish={onFinish} autoComplete="off">
                     <div className="form-group">
                       <Form.Item
@@ -213,7 +215,7 @@ const Register = () => {
                     </div>
                     <div className="switch">
                       <p>
-                        Dont have an account? <Link to="/login">Login now</Link>
+                        {t('register.Already have an account?')} <Link to="/login">{t('register.Login now')}</Link>
                       </p>
                     </div>
                   </Form>

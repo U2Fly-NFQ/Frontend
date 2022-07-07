@@ -15,6 +15,7 @@ import { useSearchParams } from 'react-router-dom'
 import { fetchAllFilter } from '../../redux/slices/filterSlice'
 import { getLsObj } from '../../utils/localStorage'
 import './style.scss'
+import { useTranslation } from 'react-i18next'
 
 const { Text } = Typography
 const { Option } = Select
@@ -30,6 +31,7 @@ const Flight = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const [minPrice, setMinPrice] = useState(0)
   const [maxPrice, setMaxPrice] = useState(1500)
+  const { t } = useTranslation()
   const [time, setTime] = useState('')
   const [airlines, setAirlines] = useState([])
 
@@ -95,10 +97,10 @@ const Flight = () => {
               width: '100%',
             }}
           >
-            <Text>Price</Text>
+            <Text>{t('flight-list-page.Price')}</Text>
             {(minPrice !== 0 || maxPrice !== 1500) && (
               <Text className="clear-btn" italic onClick={clearPrice}>
-                Clear
+                {t('flight-list-page.Clear')}
               </Text>
             )}
           </Space>
@@ -127,14 +129,14 @@ const Flight = () => {
               max={1500}
               value={minPrice}
               onChange={(value) => handlePriceChange([value, maxPrice])}
-              prefix="$"
+              prefix={t('flight-list-page.$')}
             />
             <InputNumber
               min={0}
               max={1500}
               value={maxPrice}
               onChange={(value) => handlePriceChange(minPrice, value)}
-              prefix="$"
+              prefix={t('flight-list-page.$')}
             />
           </Space>
         </Col>
@@ -148,17 +150,25 @@ const Flight = () => {
               width: '100%',
             }}
           >
-            <Text>Times</Text>
+            <Text>{t('flight-list-page.Times')}</Text>
           </Space>
         </Col>
         <Col span={24} className="content">
           <Radio.Group onChange={changeTime} value={time}>
             <Space direction="vertical">
-              <Radio value="">All time</Radio>
-              <Radio value="morning">Early Morning (00:00 - 06:00)</Radio>
-              <Radio value="earlymorning">Morning (06:00 - 12:00)</Radio>
-              <Radio value="afternoon">Afternoon (12:00 - 18:00)</Radio>
-              <Radio value="evening">Evening (18:00 - 24:00)</Radio>
+              <Radio value={''}>{t('flight-list-page.All time')}</Radio>
+              <Radio value={'morning'}>
+                {t('flight-list-page.Early Morning')} (00:00 - 06:00)
+              </Radio>
+              <Radio value={'earlymoning'}>
+                {t('flight-list-page.Morning')} (06:00 - 12:00)
+              </Radio>
+              <Radio value={'afternoon'}>
+                {t('flight-list-page.Afternoon')} (12:00 - 18:00)
+              </Radio>
+              <Radio value={'evening'}>
+                {t('flight-list-page.Evening')} (18:00 - 24:00)
+              </Radio>
             </Space>
           </Radio.Group>
         </Col>
@@ -172,10 +182,10 @@ const Flight = () => {
               width: '100%',
             }}
           >
-            <Text>Airline</Text>
+            <Text>{t('flight-list-page.Airline')}</Text>
             {airlines.length === airlinesOptions.length && (
               <Text className="clear-btn" italic onClick={clearAirline}>
-                Clear
+                {t('flight-list-page.Clear')}
               </Text>
             )}
           </Space>

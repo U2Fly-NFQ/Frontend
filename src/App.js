@@ -3,7 +3,7 @@ import { ConfigProvider } from 'antd'
 import 'antd/dist/antd.variable.min.css'
 import './App.scss'
 import RouterApp from './Router'
-import store from './redux/store'
+import { store } from './redux/store'
 
 ConfigProvider.config({
   theme: {

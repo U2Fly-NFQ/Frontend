@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import AirlineApi from '../../api/Airline'
 
-const initialState = {
+export const initialState = {
   status: '',
   airlines: [],
 }

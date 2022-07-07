@@ -6,14 +6,18 @@ import {
 } from '../../../redux/selectors'
 import { getRoundTripSeat } from '../../../redux/selectors/bookingFlightSelector'
 import './index.scss'
+import { useTranslation } from 'react-i18next'
+
 export default function BookingTravelDate() {
   const seat = useSelector(getInfoFlightInBookingSeat)
   const seatRoungTrip = useSelector(getRoundTripSeat)
   const getDiscount = useSelector(getDiscountForBookingAirline)
+  const { t } = useTranslation()
+
   return (
     <div className="booking-travel-date">
       <div className="booking-page__container__item__title">
-        <h3>Booking amount</h3>
+        <h3>{t('flight-booking-page.Booking amount')}</h3>
       </div>
       <div className="booking-travel-date__container">
         <ul className="booking-travel-date__container__value">
@@ -29,7 +33,9 @@ export default function BookingTravelDate() {
             </div>
           </li>
           <li>
-            <div className="booking-travel-date__container__key">Discount</div>
+            <div className="booking-travel-date__container__key">
+              {t('flight-booking-page.Discount')}
+            </div>
             <div className="booking-travel-date__container__key">
               {`${getDiscount.percent * 100}% ($${
                 (seatRoungTrip.price
@@ -43,7 +49,7 @@ export default function BookingTravelDate() {
           <ul>
             <li>
               <div className="booking-travel-date__container__key">
-                Subtotal
+                {t('flight-booking-page.Subtotal')}
               </div>
               <div className="booking-travel-date__container__value">
                 $
@@ -60,7 +66,8 @@ export default function BookingTravelDate() {
             </li>
             <li>
               <div className="booking-travel-date__container__key">
-                Coupon code (OFF 5000)
+                {t('flight-booking-page.Coupon code')} (
+                {t('flight-booking-page.OFF')} 5000)
               </div>
               <div className="booking-travel-date__container__value">
                 $
@@ -73,7 +80,7 @@ export default function BookingTravelDate() {
         </div>
         <div className="booking-travel-date__container__total">
           <div className="booking-travel-date__container__amount__total__key">
-            Total Amount
+            {t('flight-booking-page.Total Amount')}
           </div>
           <div className="booking-travel-date__container__amount__total__value">
             $

@@ -1,6 +1,6 @@
 import { Collapse, Steps } from 'antd'
 import React from 'react'
-import { converrtDuritionToTIme } from '../../../../utils'
+import { getDurationFormat } from '../../../../utils'
 import './index.scss'
 import { useSelector } from 'react-redux'
 import vietnameairline from '../../../../assets/images/system/vip.png'
@@ -28,7 +28,7 @@ export default function FlightTrip() {
             <div className="detail-flights__container__trip__icon">
               <i className="fa-solid fa-circle-arrow-right"></i>
               <h6>non stop</h6>
-              <p>{converrtDuritionToTIme(getDataFlight.duration)}</p>
+              <p>{getDurationFormat(getDataFlight.duration)}</p>
             </div>
             <div className="detail-flights__container__trip__to">
               <p>To</p>
@@ -105,7 +105,7 @@ export default function FlightTrip() {
               <div className="detail-flights__container__trip__icon">
                 <i className="fa-solid fa-circle-arrow-right"></i>
                 <h6>non stop</h6>
-                <p>{converrtDuritionToTIme(getRoundTrip.duration)}</p>
+                <p>{getDurationFormat(getRoundTrip.duration)}</p>
               </div>
               <div className="detail-flights__container__trip__to">
                 <p>To</p>

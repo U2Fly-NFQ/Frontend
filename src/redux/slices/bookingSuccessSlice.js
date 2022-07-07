@@ -6,6 +6,7 @@ import flightAPI from '../../api/Flight'
 export const getTicketInformation = createAsyncThunk(
   'flight/getTicketInformation',
   async (idTicket) => {
+    console.log(idTicket)
     const respone = await flightAPI.getInfoTickerById(idTicket)
     return respone.data
   }

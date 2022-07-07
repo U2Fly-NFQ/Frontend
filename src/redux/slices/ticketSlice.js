@@ -24,6 +24,7 @@ const ticketSlice = createSlice({
       .addCase(fetchTickets.fulfilled, (state, action) => {
         state.status = 'idle'
         state.data = action.payload
+        // state.data = action.payload.data
       })
       // fetch history booking
       .addCase(fetchHistoryBooking.pending, (state) => {

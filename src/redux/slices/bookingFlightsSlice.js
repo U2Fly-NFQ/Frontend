@@ -3,7 +3,9 @@ import flightAPI from '../../api/Flight'
 import discountInfo from '../../api/Discount'
 import moment from 'moment'
 import { useNavigate } from 'react-router-dom'
-const initialState = {
+import axiosInstance from 'axios'
+
+export const initialState = {
   loadding: false,
   userInformation: {},
   dataFlight: {},
@@ -14,13 +16,14 @@ const initialState = {
   currentMethods: 0,
   priceAfterDiscount: 0,
 }
+
 export const getDataFlights = createAsyncThunk(
   'flight/getDataFlights',
   async (idFlight) => {
-    const response = await flightAPI.get(idFlight)
-    // const response = await axios.get(
-    //   `https://62c45182abea8c085a729073.mockapi.io/flights-by-id/${idFlight}`
-    // )
+    // const response = await flightAPI.get(idFlight)
+    const response = await axiosInstance.get(
+      `https://62c45182abea8c085a729073.mockapi.io/flights-by-id/${idFlight}`
+    )
     return response.data
   }
 )
@@ -35,10 +38,10 @@ export const getDiscountCheck = createAsyncThunk(
 export const getUserDataInBooking = createAsyncThunk(
   'flight/getUserData',
   async (idUser) => {
-    const response = await flightAPI.getUserData(idUser)
-    // const response = await axios.get(
-    //   `https://62c45182abea8c085a729073.mockapi.io/passengers/${idUser}`
-    // )
+    // const response = await flightAPI.getUserData(idUser)
+    const response = await axiosInstance.get(
+      `https://62c45182abea8c085a729073.mockapi.io/passengers/${idUser}`
+    )
     return response.data
   }
 )
@@ -51,14 +54,13 @@ export const createBookingFlight = createAsyncThunk(
   }
 )
 
-export const getRoundTripBookingFlightAsync = createAsyncThunk(
+export const getRoundTripBookingFlight = createAsyncThunk(
   'flight/RoundTripBooking',
   async (idFlight) => {
-    console.log('hello')
-    const response = await flightAPI.get(idFlight)
-    // const response = await axios.get(
-    //   `https://62c45182abea8c085a729073.mockapi.io/flights-by-id/${idFlight}`
-    // )
+    // const response = await flightAPI.get(idFlight)
+    const response = await axiosInstance.get(
+      `https://62c45182abea8c085a729073.mockapi.io/flights-by-id/${idFlight}`
+    )
     return response.data
   }
 )
@@ -106,6 +108,7 @@ const bookingFlightsSlice = createSlice({
     [getUserDataInBooking.fulfilled]: (state, action) => {
       state.loadding = false
       let { data } = action.payload
+      // console.log(data)
       state.userInformation = data
     },
     [getDiscountCheck.pending]: (state, action) => {
@@ -135,29 +138,29 @@ const bookingFlightsSlice = createSlice({
     },
     [getDataFlights.fulfilled]: (state, action) => {
       state.loadding = false
-      const { status, data } = action.payload
-      // const data = action.payload
-
+      // const { status, data } = action.payload
+      const data = action.payload
+      console.log(data)
       let allSeatNameAvailable = data.seat.map((item) => item.name)
       let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
-      if (status === 'success') {
-        state.dataFlight = {
-          ...data,
-          seat: data.seat[
-            allSeatNameAvailable.indexOf(dataSeatChoose.setType) < 0
-              ? 0
-              : allSeatNameAvailable.indexOf(dataSeatChoose.setType)
-          ],
-        }
+      // if (status === 'success') {
+      state.dataFlight = {
+        ...data,
+        seat: data.seat[
+          allSeatNameAvailable.indexOf(dataSeatChoose.setType) < 0
+            ? 0
+            : allSeatNameAvailable.indexOf(dataSeatChoose.setType)
+        ],
       }
+      // }
     },
-    [getRoundTripBookingFlightAsync.pending]: (state, action) => {
+    [getRoundTripBookingFlight.pending]: (state, action) => {
       state.loadding = false
     },
-    [getRoundTripBookingFlightAsync.rejected]: (state, action) => {
+    [getRoundTripBookingFlight.rejected]: (state, action) => {
       state.loadding = false
     },
-    [getRoundTripBookingFlightAsync.fulfilled]: (state, action) => {
+    [getRoundTripBookingFlight.fulfilled]: (state, action) => {
       state.loadding = false
       const { status, data } = action.payload
       let allSeatNameAvailable = data.seat.map((item) => item.name)

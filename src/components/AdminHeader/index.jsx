@@ -10,17 +10,24 @@ function AdminHeader() {
   //initiation
   const [search, setSearch] = useState('')
 
+  //Logical handling functions
+  const handleSearch = (value) => {
+    console.log(value)
+    setSearch('')
+  }
   return (
     <Header className="admin-header">
       <Row className="admin-header-content">
-        <Col span={12} className="admin-header-content-left">
+        <Col xs={0} sm={12} className="admin-header-content-left">
           <Search
             placeholder="Search in app"
             enterButton="Search"
             value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onSearch={handleSearch}
           />
         </Col>
-        <Col span={12} className="admin-header-content-right">
+        <Col xs={24} sm={12} className="admin-header-content-right">
           <Dropdown className="profileMenu" overlay={<ProfileMenu />}>
             <Avatar size="large" icon={<UserOutlined />} />
           </Dropdown>

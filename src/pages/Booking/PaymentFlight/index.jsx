@@ -13,6 +13,8 @@ import {
   getUserInformation,
 } from '../../../redux/selectors'
 import { createBookingFlight } from '../../../redux/slices/bookingFlightsSlice'
+import { useTranslation } from 'react-i18next'
+
 export default function PaymentFlight() {
   const [value, setValue] = useState(1)
   const [dataBooking, setDataBooking] = useState()
@@ -24,6 +26,8 @@ export default function PaymentFlight() {
   const userInformation = useSelector(getUserInformation)
   const getRoundTrip = useSelector(getRoundTripBookingFlight)
   const dispatch = useDispatch()
+  const { t } = useTranslation()
+
   const onChange = (e) => {
     setValue(e.target.value)
   }
@@ -50,7 +54,7 @@ export default function PaymentFlight() {
       render: (
         <>
           <Form.Item style={{ marginTop: '20px' }}>
-            <ButtonOfPage title={'Pay Now'} />
+            <ButtonOfPage title={t('flight-booking-page.Pay Now')} />
           </Form.Item>
         </>
       ),

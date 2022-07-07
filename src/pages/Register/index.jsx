@@ -1,10 +1,13 @@
 import { Row, Col, Typography } from 'antd'
 import { LoginBanner } from '../../components'
 import './style.scss'
+import { useTranslation } from 'react-i18next'
 
 const { Title } = Typography
 
 const Register = () => {
+  const { t } = useTranslation()
+
   const onFinish = (values) => {
     console.log('Success:', values)
   }
@@ -22,47 +25,48 @@ const Register = () => {
             <Col lg={16}>
               <div className="content">
                 <div className="box">
-                  <Title level={3}>To join a whole new world</Title>
-                  <Title level={2}>Register your account</Title>
+                  <Title level={3}>
+                    {t('register.To join a whole new world')}
+                  </Title>
+                  <Title level={2}>{t('register.Register your account')}</Title>
                   <form action="#" className="form">
                     <div className="form-group">
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Your name"
+                        placeholder={t('register.Enter your name')}
                       />
                     </div>
                     <div className="form-group">
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Your mail"
+                        placeholder={t('register.Enter your email')}
                       />
                     </div>
                     <div className="form-group">
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Your phone"
+                        placeholder={t('register.Enter your phone')}
                       />
                     </div>
                     <div className="form-group">
                       <input
                         type="password"
                         className="form-control"
-                        placeholder="Enter password"
+                        placeholder={t('register.Enter password')}
                       />
-                      <a href="forgot-password.html">Forgot password?</a>
                     </div>
                     <div className="form-submit">
                       <button className="btn btn-primary btn-md">
-                        Register
+                        {t('register.Register')}
                       </button>
                     </div>
                     <div className="switch">
                       <p>
-                        Dont have an account?{' '}
-                        <a href="register.html">Login now</a>
+                        {t('register.Already have an account?')}{' '}
+                        <a href="register.html">{t('register.Login now')}</a>
                       </p>
                     </div>
                   </form>

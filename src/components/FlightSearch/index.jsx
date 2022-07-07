@@ -42,8 +42,9 @@ export default function FlightSearch() {
   const [to, setTo] = useState(undefined)
   const [ticketType, setTicketType] = useState('oneWay')
   const [journeyDay, setJourneyDay] = useState(moment())
+  const [returnDay, setReturnDay] = useState(moment().add(3, 'days'))
+  const [passengerClass, setPassengerClass] = useState('economy')
   const [returnDate, setReturnDate] = useState(moment().add(3, 'days'))
-  const [passengerClass, setPassengerClass] = useState('Economy')
   const [passengerNumber, setPassengerNumber] = useState(1)
   const [modalContent, setModalContent] = useState('')
 
@@ -89,6 +90,7 @@ export default function FlightSearch() {
 
     updateLs('flight', searchQuery)
 
+    navigate('/flights')
     setSearchParams(searchQuery)
   }
 
@@ -140,8 +142,10 @@ export default function FlightSearch() {
         value={passengerClass}
         onChange={(e) => setPassengerClass(e.target.value)}
       >
-        <Radio.Button value="Economy">Economy</Radio.Button>
-        <Radio.Button value="Business">Business</Radio.Button>
+        <Radio.Button value="economy">{t('search_form.economy')}</Radio.Button>
+        <Radio.Button value="business">
+          {t('search_form.business')}
+        </Radio.Button>
       </Radio.Group>
     </>
   )
@@ -332,7 +336,7 @@ export default function FlightSearch() {
                             paddingLeft: 0,
                           }}
                         >
-                          Add return date
+                          {t('search_form.Add return date')}
                         </Button>
                       </Space>
                     )}
@@ -355,7 +359,7 @@ export default function FlightSearch() {
                   {t('search_form.passenger', { count: passengerNumber })}
                 </div>
                 <p className="flightSearchSelected">
-                  {passengerClass.toUpperCase()}
+                  {t(`search_form.${passengerClass}`)}
                 </p>
               </div>
             </Popover>
@@ -370,7 +374,12 @@ export default function FlightSearch() {
               onClick={onFinish}
               ref={submitRef}
             >
-              Search {ticketType === 'oneWay' ? 'one way' : 'round trip'}
+              {t('cta.search')}{' '}
+              {t(
+                `search_form.${
+                  ticketType === 'oneWay' ? 'one_way' : 'round_trip'
+                }`
+              )}
             </button>
           </Tooltip>
         </div>

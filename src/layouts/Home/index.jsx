@@ -4,25 +4,23 @@ import './style.scss'
 import { FooterOfPage, Navbar } from '../../components'
 
 import SubNavBar from '../../components/SubNavBar'
-import FooterEmail from '../../components/FooterOfPage/FooterEmail'
 
 const { Header, Footer, Content } = Layout
 
 function Home() {
   return (
     <Layout>
-      <Layout>
+      <Layout style={{ backgroundColor: '#ffffff' }}>
         <Header className="home-header">
           <SubNavBar />
           <Navbar />
         </Header>
-        <Content>
+        <Content style={{ minHeight: '100vh' }}>
           <Outlet />
-          <FooterEmail />
         </Content>
-        <Footer>
+        <footer style={{ backgroundColor: '#ffffff', marginTop: '50px' }}>
           <FooterOfPage />
-        </Footer>
+        </footer>
       </Layout>
     </Layout>
   )

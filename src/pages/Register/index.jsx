@@ -9,7 +9,7 @@ import {
   DatePicker,
 } from 'antd'
 import { Button } from './Button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import RegisterBanner from './RegisterBanner'
 import axios from 'axios'
 import './style.scss'
@@ -20,24 +20,9 @@ const MOCK_URL = 'https://62bb0d28573ca8f83291bd89.mockapi.io/api/register'
 
 const registerApi = (data) => axios.post(MOCK_URL, data)
 
-const postData = async (url = '', data = {}) => {
-  const res = await fetch(url, {
-    method: 'POST',
-    mode: 'cors',
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
-    headers: {
-      'Content-Type': 'application/json',
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    redirect: 'follow', // manual, *follow, error
-    body: JSON.stringify(data),
-  })
-
-  console.log(data)
-}
-
 const Register = () => {
+  const navigate = useNavigate()
+
   const onFinish = (values) => {
     const { idno, name, gender, birthDate, address, email, password } = values
 
@@ -57,10 +42,10 @@ const Register = () => {
 
     const res = registerApi(JSON.stringify(data))
 
-    console.log(res)
     res.then((data) => {
       if (data.status === 201) {
         message.success('Register successful!')
+        navigate('/login')
       }
     })
   }

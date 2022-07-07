@@ -231,9 +231,11 @@
       "missing_delivery_date": "Proposed delivery date of some order lines is missing in file."
     }
   },
+
   "order": {
     "title": "Orders"
   },
+
   "order_detail": {
     "table_action": {
       "edit": "Edit Item",
@@ -243,6 +245,7 @@
       "accept_confirm_date": "Accept Confirm Delivery Date"
     }
   },
+
   "order_document": {
     "upload": {
       "title": "Upload document for Order #{{orderId}}",

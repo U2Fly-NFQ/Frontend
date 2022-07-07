@@ -1,0 +1,271 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home page test renders correctly 1`] = `
+<nav
+  className="navbar"
+>
+  <div
+    className="wide grid"
+    style={
+      Object {
+        "justifyContent": "flex-end",
+        "padding": "10px 0",
+      }
+    }
+  >
+    <ul
+      className="navbar__links"
+    >
+      <div
+        style={Object {}}
+      >
+        <h3
+          className="ant-typography"
+          onClick={[Function]}
+          style={
+            Object {
+              "WebkitLineClamp": undefined,
+              "alignItems": "center",
+              "color": "#fff",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "22px",
+              "gap": "0.6rem",
+              "margin": 0,
+              "marginRight": "20px",
+            }
+          }
+        >
+          U2FLy
+        </h3>
+      </div>
+      <li
+        className="navbar__link"
+      >
+        <a
+          aria-current="page"
+          className="nav-link active"
+          href="/"
+          onClick={[Function]}
+        >
+          <p
+            className="navbar__link__data"
+          >
+            Home
+             
+          </p>
+        </a>
+      </li>
+      <li
+        className="navbar__link"
+      >
+        <a
+          className="nav-link"
+          href="/flights"
+          onClick={[Function]}
+        >
+          <p
+            className="navbar__link__data"
+          >
+            Flights
+             
+          </p>
+        </a>
+      </li>
+    </ul>
+    <div
+      className="navbar__footer"
+    >
+      <div
+        className="navbar__footer__btn"
+      >
+        <div
+          className="form-submit"
+        >
+          <button
+            className="btn btn-primary btn-md"
+            id=""
+            type="submit"
+          >
+            cta.become_partner
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="navbar_icons"
+      onClick={[Function]}
+    >
+      <div
+        className="navbar_icon"
+      />
+    </div>
+  </div>
+  <div
+    className="navbar__dropdown__modal"
+  >
+    <ul
+      className="navbar__dropdown-menu"
+    >
+      <li
+        className="navbar__dropdown-menu__item"
+      >
+        <a
+          aria-current="page"
+          className="active"
+          href="/"
+          onClick={[Function]}
+        >
+          header.navbar.home
+        </a>
+      </li>
+      <li
+        className="navbar__dropdown-menu__item"
+      >
+        <a
+          className=""
+          href="/flights"
+          onClick={[Function]}
+        >
+          header.navbar.flight
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+`;
+
+exports[`Navigation bar test renders correctly 1`] = `
+<nav
+  className="navbar"
+>
+  <div
+    className="wide grid"
+    style={
+      Object {
+        "justifyContent": "flex-end",
+        "padding": "10px 0",
+      }
+    }
+  >
+    <ul
+      className="navbar__links"
+    >
+      <div
+        style={Object {}}
+      >
+        <h3
+          className="ant-typography"
+          onClick={[Function]}
+          style={
+            Object {
+              "WebkitLineClamp": undefined,
+              "alignItems": "center",
+              "color": "#fff",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "22px",
+              "gap": "0.6rem",
+              "margin": 0,
+              "marginRight": "20px",
+            }
+          }
+        >
+          U2FLy
+        </h3>
+      </div>
+      <li
+        className="navbar__link"
+      >
+        <a
+          aria-current="page"
+          className="nav-link active"
+          href="/"
+          onClick={[Function]}
+        >
+          <p
+            className="navbar__link__data"
+          >
+            Home
+             
+          </p>
+        </a>
+      </li>
+      <li
+        className="navbar__link"
+      >
+        <a
+          className="nav-link"
+          href="/flights"
+          onClick={[Function]}
+        >
+          <p
+            className="navbar__link__data"
+          >
+            Flights
+             
+          </p>
+        </a>
+      </li>
+    </ul>
+    <div
+      className="navbar__footer"
+    >
+      <div
+        className="navbar__footer__btn"
+      >
+        <div
+          className="form-submit"
+        >
+          <button
+            className="btn btn-primary btn-md"
+            id=""
+            type="submit"
+          >
+            cta.become_partner
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="navbar_icons"
+      onClick={[Function]}
+    >
+      <div
+        className="navbar_icon"
+      />
+    </div>
+  </div>
+  <div
+    className="navbar__dropdown__modal"
+  >
+    <ul
+      className="navbar__dropdown-menu"
+    >
+      <li
+        className="navbar__dropdown-menu__item"
+      >
+        <a
+          aria-current="page"
+          className="active"
+          href="/"
+          onClick={[Function]}
+        >
+          header.navbar.home
+        </a>
+      </li>
+      <li
+        className="navbar__dropdown-menu__item"
+      >
+        <a
+          className=""
+          href="/flights"
+          onClick={[Function]}
+        >
+          header.navbar.flight
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+`;

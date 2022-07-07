@@ -1,21 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { UserBookingDetail } from '../index'
-import { Space, Table } from 'antd'
+import { Button, Modal, Space, Table } from 'antd'
+import { bookingStatus } from '../../Constants'
+import { useNavigate } from 'react-router-dom'
+import { ExclamationCircleOutlined } from '@ant-design/icons'
 
-function UserBookingTable({ loading, data }) {
+function UserBookingTable({ loading, data, onCancel }) {
+  //initiation
+  const [expandedRowKeys, setExpandedRowKeys] = useState([])
+  const navigate = useNavigate()
+
   //Data for UI
+  const confirm = () => {
+    Modal.confirm({
+      title: 'Confirm',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Are you want to cancel this booking?',
+      okText: 'Yes',
+      cancelText: 'No',
+      onOk: onCancel,
+    })
+  }
   const bookingListColumn = [
     {
       title: 'Booking ID',
-      dataIndex: 'key',
+      dataIndex: 'id',
       align: 'center',
-      sorter: (a, b) => a.code - b.code,
+      sorter: (a, b) => a.id - b.id,
     },
     {
       title: 'Journey',
       dataIndex: 'flights',
       align: 'center',
-      sorter: (a, b) => a.flights.length - b.flights.length,
       render: (_, { flights }) => (
         <>
           {flights[0].departure}
@@ -36,9 +52,9 @@ function UserBookingTable({ loading, data }) {
     },
     {
       title: 'Booking Amount',
-      dataIndex: 'bookingAmount',
+      dataIndex: 'totalPrice',
       align: 'center',
-      sorter: (a, b) => a.bookingAmount - b.bookingAmount,
+      sorter: (a, b) => a.totalPrice - b.totalPrice,
     },
     {
       title: 'Status',
@@ -49,34 +65,54 @@ function UserBookingTable({ loading, data }) {
     {
       title: 'Action',
       key: 'action',
-      width: 100,
+      width: '100px',
+      dataIndex: 'id',
       align: 'center',
       render: (_, record) => (
         <Space>
-          {/*<Button*/}
-          {/*  type="default"*/}
-          {/*  shape="default"*/}
-          {/*  onClick={() => setViewTicket(true)}*/}
-          {/*  icon={<EyeOutlined />}*/}
-          {/*/>*/}
+          {/* eslint-disable-next-line react/jsx-no-undef */}
+          {record.status === bookingStatus['0'] && (
+            <Button type="default" shape="default" onClick={confirm}>
+              Cancel
+            </Button>
+          )}
+          {(record.status === bookingStatus['1'] ||
+            record.status === bookingStatus['2']) && (
+            <Button
+              type="primary"
+              shape="default"
+              onClick={() => navigate('/')}
+            >
+              Booking Again
+            </Button>
+          )}
         </Space>
       ),
     },
   ]
+  const onExpandRowKey = (expanded, record) => {
+    expanded ? setExpandedRowKeys([record.id]) : setExpandedRowKeys([])
+  }
+
   return (
-    <Table
-      columns={bookingListColumn}
-      expandable={{
-        expandedRowRender: (record) => (
-          <UserBookingDetail detailData={record} />
-        ),
-      }}
-      dataSource={data}
-      loading={loading}
-      scroll={{
-        x: 'max-content',
-      }}
-    />
+    <>
+      <Table
+        columns={bookingListColumn}
+        rowKey={(record) => record.id}
+        expandable={{
+          expandedRowKeys: expandedRowKeys,
+          onExpand: onExpandRowKey,
+          expandedRowRender: (record) => (
+            <UserBookingDetail detailData={record} />
+          ),
+        }}
+        dataSource={data}
+        loading={loading}
+        scroll={{
+          x: 'max-content',
+        }}
+      />
+    </>
   )
 }
 

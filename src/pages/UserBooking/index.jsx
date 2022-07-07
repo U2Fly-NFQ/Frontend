@@ -1,47 +1,53 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'antd'
 import { UserBookingTable } from '../../components'
+import { useDispatch, useSelector } from 'react-redux'
+import { ticketDataSelector } from '../../redux/selectors'
+import { fetchTickets } from '../../redux/slices/ticketSlice'
+import { isEmpty } from 'lodash/lang'
+
+import { bookingStatus } from '../../Constants'
+import { convertNumberToUSD } from '../../utils/numberFormater'
+import { flightDataProcessed } from '../../utils/flightDataProcessing'
 
 function UserBooking(props) {
   //initiation
-  const [loading, setLoading] = useState(false)
-  //Logical handling functions
+  const dispatch = useDispatch()
+  const ticketData = useSelector(ticketDataSelector)
+  const userLogin = JSON.parse(localStorage.getItem('user'))
 
-  //Fake Data
-  const data = [
-    {
-      key: 1,
-      bookingAmount: '$ 750.00',
-      status: 'Booking success',
-      owner: 'Sang Sáng Sủa',
-      email: 'sang@gg.com',
-      date: '04/07/2022',
-      flights: [
-        {
-          key: '1',
-          airline:
-            'https://www.vietnamairlines.com/~/media/Images/VNANew/Home/Logo%20Header/logo_vna-mobile.png',
-          departure: 'Ho Chi Minh (HCM)',
-          arrival: 'Can Tho (VCA)',
-          dateTime: '2022-07-04',
-          boardingTime: '2022-07-04 06:30',
-          startTime: '2022-07-04 07:00',
-          endTime: '2022-07-04 8:30',
-        },
-        {
-          key: '2',
-          airline:
-            'https://www.vietnamairlines.com/~/media/Images/VNANew/Home/Logo%20Header/logo_vna-mobile.png',
-          departure: 'Can Tho (VCA)',
-          arrival: 'Ha Noi (HAN)',
-          dateTime: '2022-07-05',
-          boardingTime: '2022-07-05 06:30',
-          startTime: '2022-07-05 07:00',
-          endTime: '2022-07-05 8:30',
-        },
-      ],
-    },
-  ]
+  const [loading, setLoading] = useState(false)
+  const [tickets, setTickets] = useState([])
+
+  //Logical handling functions
+  useEffect(() => {
+    setLoading(true)
+    dispatch(
+      fetchTickets({
+        // passenger: userLogin.id,
+        // effectiveness: 1,
+      })
+    )
+  }, [dispatch, userLogin.id])
+
+  useEffect(() => {
+    if (!isEmpty(ticketData)) {
+      let ticketProcessedData = ticketData.map((ticket) => {
+        return {
+          ...ticket,
+          status: bookingStatus[0],
+          totalPrice: convertNumberToUSD(ticket.totalPrice),
+          flights: flightDataProcessed(ticket),
+        }
+      })
+      setTickets(ticketProcessedData)
+      setLoading(false)
+    }
+  }, [ticketData])
+
+  const handleCancelBooking = () => {
+    console.log('cancel')
+  }
 
   return (
     <Row className="userProfile-container-booking">
@@ -49,9 +55,14 @@ function UserBooking(props) {
         My Booking
       </Col>
       <Col span={24}>
-        <UserBookingTable data={data} loading={loading} />
+        <UserBookingTable
+          data={tickets}
+          loading={loading}
+          onCancel={handleCancelBooking}
+        />
       </Col>
     </Row>
   )
 }
+
 export default UserBooking

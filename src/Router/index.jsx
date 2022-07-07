@@ -19,35 +19,44 @@ import {
 
 const HomeLayout = lazy(() => import('../layouts/Home'))
 const AdminLayout = lazy(() => import('../layouts/Admin'))
-const Home = lazy(() => import('../pages/Home'))
 const FlightList = lazy(() => import('../pages/FlightList'))
 
 const RoutesApp = () => {
+  const token = localStorage.getItem('token')
+
   return (
     <Router>
       <Suspense fallback={<PageLoadingAnimation />}>
         <Routes>
           {/* Public */}
           <Route path="/" element={<HomeLayout />}>
-            <Route path="" element={<Home />} />
-            <Route path="flights" element={<FlightList />} />
-            <Route path="/booking-success" element={<BookingSuccessPage />} />
+            <Route path="" element={<FlightList />} />
+            <Route path="/flights" element={<FlightList />} />
+
             <Route path="flights-booking" element={<Booking />} />
+            <Route
+              path="flights-booking/:ticketId"
+              element={<BookingSuccessPage />}
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
             {/* For users */}
-            <Route path="profile" element={<UserProfile />}>
-              <Route index element={<UserProfileDetail />} />
-              <Route path="booking" element={<UserBooking />} />
-              <Route path="history" element={<UserHistory />} />
-            </Route>
+            {token && (
+              <Route path="profile" element={<UserProfile />}>
+                <Route index element={<UserProfileDetail />} />
+                <Route path="booking" element={<UserBooking />} />
+                <Route path="history" element={<UserHistory />} />
+              </Route>
+            )}
           </Route>
 
           {/* For admins */}
-          <Route path="admin" element={<AdminLayout />}>
-            <Route path="" element={<AdminDashboard />} />
-          </Route>
+          {token && (
+            <Route path="admin" element={<AdminLayout />}>
+              <Route path="" element={<AdminDashboard />} />
+            </Route>
+          )}
 
           {/* Invalid route */}
           <Route path="*" element={<NoMatch />} />

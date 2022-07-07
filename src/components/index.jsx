@@ -2,7 +2,6 @@
 export { default as FlightCard } from './FlightCard'
 export { default as ImageGallery } from './ImageGallery'
 export { default as HomeNavigation } from './HomeNavigation'
-export { default as MainLogo } from './MainLogo'
 export { default as NavLink } from './NavLink'
 export { default as Table } from './Table'
 export { default as Select } from './Select'
@@ -26,6 +25,8 @@ export { default as FooterOfPage } from './FooterOfPage'
 export { default as NotFoundFlight } from './NotFoundFlight'
 export { default as PageLoadingAnimation } from './PageLoadingAnimation'
 export { default as ScrollToTopButton } from './ScrollToTopButton'
+export { default as MainLogo } from './MainLogo'
+export { default as SmokeAnimation } from './SmokeAnimation'
 
 //For admin
 export { default as AdminSidebar } from './AdminSidebar'

@@ -1,51 +1,91 @@
-import { Col, Row, Slider, InputNumber, Space, Typography } from 'antd'
+import {
+  Col,
+  Row,
+  Slider,
+  InputNumber,
+  Space,
+  Typography,
+  Radio,
+  Select,
+  Checkbox,
+} from 'antd'
 import { useEffect, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
+import { fetchAllFilter } from '../../redux/slices/filterSlice'
+import { getLsObj } from '../../utils/localStorage'
 import './style.scss'
+import { useTranslation } from 'react-i18next'
 
 const { Text } = Typography
+const { Option } = Select
 
 const Flight = () => {
-  let [searchParams, setSearchParams] = useSearchParams()
-  let [minPrice, setMinPrice] = useState(0)
-  let [maxPrice, setMaxPrice] = useState(10000)
-  let [isClear, setIsClear] = useState(false)
+  const airlinesFetch = useSelector((state) => state.filter.airlines)
+  const airlinesOptions = airlinesFetch.map((al) => ({
+    label: al.name,
+    value: al.icao,
+  }))
+
+  const dispatch = useDispatch()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [minPrice, setMinPrice] = useState(0)
+  const [maxPrice, setMaxPrice] = useState(1500)
+  const { t } = useTranslation()
+  const [time, setTime] = useState('')
+  const [airlines, setAirlines] = useState([])
 
   const handlePriceChange = (value) => {
-    setIsClear(false)
     setMinPrice(value[0])
     setMaxPrice(value[1])
   }
 
   const clearPrice = () => {
-    setIsClear(true)
     setMinPrice(0)
-    setMaxPrice(10000)
-    searchParams.delete('minPrice')
-    searchParams.delete('maxPrice')
-    setSearchParams(searchParams)
+    setMaxPrice(1500)
   }
+
+  const clearAirline = () => setAirlines([])
 
   let firstRender = useRef(true)
 
+  // Debounce price
   useEffect(() => {
     if (firstRender.current) {
       firstRender.current = false
       return
     }
 
-    if (isClear) return
+    const flight = getLsObj('flight')
 
-    const delayChange = setTimeout(() => {
-      setSearchParams({
-        ...searchParams,
-        minPrice,
-        maxPrice,
-      })
-    }, 1000)
+    if (!flight.ticketType || flight.ticketType === 'oneWay') {
+      searchParams.set('startTime', time)
+      searchParams.set('airline', airlines)
+    }
+    if (flight.ticketType === 'roundTrip') {
+      searchParams.set('roundStartTime', time)
+      searchParams.set('roundAirline', airlines)
+    }
 
-    return () => clearTimeout(delayChange)
-  }, [minPrice, maxPrice])
+    searchParams.set('minPrice', minPrice)
+    searchParams.set('maxPrice', maxPrice)
+
+    setSearchParams(searchParams)
+  }, [minPrice, maxPrice, time, airlines])
+
+  // Fetch filter options
+  useEffect(() => {
+    dispatch(fetchAllFilter())
+  }, [])
+
+  const changeTime = (e) => {
+    const value = e.target.value
+    setTime(value)
+  }
+
+  const changeAirline = (list) => {
+    setAirlines(list)
+  }
 
   return (
     <div className="filter">
@@ -57,22 +97,22 @@ const Flight = () => {
               width: '100%',
             }}
           >
-            <Text>Price</Text>
-            {(minPrice !== 0 || maxPrice !== 10000) && (
+            <Text>{t('flight-list-page.Price')}</Text>
+            {(minPrice !== 0 || maxPrice !== 1500) && (
               <Text className="clear-btn" italic onClick={clearPrice}>
-                Clear
+                {t('flight-list-page.Clear')}
               </Text>
             )}
           </Space>
         </Col>
-        <Col span={20} className="content">
+        <Col span={24} className="content">
           <Slider
             tipFormatter={(value) => `${value} USD`}
             range
             min={0}
-            max={10000}
-            value={[minPrice, maxPrice]}
-            onChange={handlePriceChange}
+            max={1500}
+            defaultValue={[minPrice, maxPrice]}
+            onAfterChange={handlePriceChange}
             tooltipPlacement="bottom"
             tooltipVisible={false}
           />
@@ -80,25 +120,82 @@ const Flight = () => {
           <Space
             style={{
               justifyContent: 'space-between',
+              flexWrap: 'wrap',
               width: '100%',
             }}
           >
             <InputNumber
               min={0}
-              max={10000}
+              max={1500}
               value={minPrice}
               onChange={(value) => handlePriceChange([value, maxPrice])}
-              prefix="$"
+              prefix={t('flight-list-page.$')}
             />
-            -
             <InputNumber
               min={0}
-              max={10000}
+              max={1500}
               value={maxPrice}
               onChange={(value) => handlePriceChange(minPrice, value)}
-              prefix="$"
+              prefix={t('flight-list-page.$')}
             />
           </Space>
+        </Col>
+      </Row>
+
+      <Row className="filterItem" justify="center">
+        <Col span={24} className="title">
+          <Space
+            style={{
+              justifyContent: 'space-between',
+              width: '100%',
+            }}
+          >
+            <Text>{t('flight-list-page.Times')}</Text>
+          </Space>
+        </Col>
+        <Col span={24} className="content">
+          <Radio.Group onChange={changeTime} value={time}>
+            <Space direction="vertical">
+              <Radio value={''}>{t('flight-list-page.All time')}</Radio>
+              <Radio value={'morning'}>
+                {t('flight-list-page.Early Morning')} (00:00 - 06:00)
+              </Radio>
+              <Radio value={'earlymoning'}>
+                {t('flight-list-page.Morning')} (06:00 - 12:00)
+              </Radio>
+              <Radio value={'afternoon'}>
+                {t('flight-list-page.Afternoon')} (12:00 - 18:00)
+              </Radio>
+              <Radio value={'evening'}>
+                {t('flight-list-page.Evening')} (18:00 - 24:00)
+              </Radio>
+            </Space>
+          </Radio.Group>
+        </Col>
+      </Row>
+
+      <Row className="filterItem" justify="center">
+        <Col span={24} className="title">
+          <Space
+            style={{
+              justifyContent: 'space-between',
+              width: '100%',
+            }}
+          >
+            <Text>{t('flight-list-page.Airline')}</Text>
+            {airlines.length === airlinesOptions.length && (
+              <Text className="clear-btn" italic onClick={clearAirline}>
+                {t('flight-list-page.Clear')}
+              </Text>
+            )}
+          </Space>
+        </Col>
+        <Col span={24} className="content">
+          <Checkbox.Group
+            options={airlinesOptions}
+            value={airlines}
+            onChange={changeAirline}
+          />
         </Col>
       </Row>
     </div>

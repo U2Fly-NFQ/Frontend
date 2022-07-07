@@ -1,13 +1,7 @@
-import {
-  DashboardOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UserOutlined,
-} from '@ant-design/icons'
 import { Col, Layout, Menu, Row } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from '../../assets/images/system/logo-rectangle.png'
+import Logo from '../../assets/images/system/logo.png'
 
 const { Sider } = Layout
 
@@ -22,31 +16,39 @@ function AdminSidebar({ collapsed, setCollapsed }) {
   }
 
   const Items = [
-    getItem(<Link to="/admin/">Dashboard</Link>, 1, <DashboardOutlined />),
-    getItem(<Link to="/admin/users">users</Link>, 2, <UserOutlined />),
+    getItem(
+      <Link to="/admin/">Dashboard</Link>,
+      1,
+      <i className="fa-solid fa-gauge"></i>
+    ),
   ]
 
   return (
     <Sider
       className="admin-sidebar"
       trigger={null}
+      breakpoint="md"
+      onBreakpoint={(broken) => {
+        setCollapsed(broken)
+      }}
       collapsedWidth="65"
       collapsed={collapsed}
     >
       <Row className="admin-sidebar-header">
-        {!collapsed && (
-          <Col span={18} className="admin-sidebar-header-logo">
+        <Col span={24} className="admin-sidebar-header-logo">
+          <Link to="/">
             <img src={Logo} alt="logo" />
-          </Col>
-        )}
-        <Col span={6} className="admin-sidebar-header-trigger">
-          {React.createElement(
-            collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-            {
-              onClick: () => setCollapsed(!collapsed),
-            }
-          )}
+          </Link>
         </Col>
+
+        {/*<Col span={6} className="admin-sidebar-header-trigger">*/}
+        {/*  {React.createElement(*/}
+        {/*    collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,*/}
+        {/*    {*/}
+        {/*      onClick: () => setCollapsed(!collapsed),*/}
+        {/*    }*/}
+        {/*  )}*/}
+        {/*</Col>*/}
       </Row>
       <Menu theme="light" mode="inline" items={Items} />
     </Sider>

@@ -17,13 +17,13 @@
     border: 1px solid rgb(221, 223, 226);
 
     .wrapper {
-      position: relative;
       flex-direction: column;
       display: flex;
       background-color: rgb(255, 255, 255);
 
       .header {
         display: flex;
+        align-items: center;
         justify-content: space-between;
 
         .main-title {
@@ -37,14 +37,43 @@
           .ant-typography {
             color: var(--ant-info-color);
           }
+
+          .ant-btn {
+            position: absolute;
+            top: -10%;
+            right: -5px;
+          }
         }
       }
 
       .content {
         display: flex;
-        justify-content: space-between;
+        flex-wrap: wrap;
         align-items: center;
-        height: 58px;
+        justify-content: center;
+        gap: 80px;
+
+        @media screen and (max-width: 784px) {
+          gap: 20px;
+        }
+
+        @media screen and (max-width: 694px) {
+          .airline {
+            img {
+              display: none;
+            }
+          }
+        }
+
+        @media screen and (max-width: 634px) {
+          justify-content: flex-end;
+          gap: 10px;
+          .airline {
+            img {
+              display: none;
+            }
+          }
+        }
 
         .airline {
           img {
@@ -66,10 +95,13 @@
           }
 
           .way {
-            min-width: 50%;
+            flex: 1;
+            min-width: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            transform: translateY(-12px);
 
             .flight-segment {
               flex: 1;
@@ -78,6 +110,14 @@
 
             i {
               color: #aaa;
+              font-size: 18px;
+            }
+
+            .duration {
+              position: absolute;
+              top: 35%;
+              left: 50%;
+              transform: translate(-50%, -50%);
             }
           }
 
@@ -93,10 +133,27 @@
           }
         }
 
-        .price {
+        .price-box {
           margin-bottom: 0;
-          color: var(--ant-primary-color);
           font-weight: 400;
+
+          .price-old,
+          .price-new {
+            display: inline;
+            margin-right: 10px;
+          }
+
+          .price-new {
+            color: var(--ant-primary-7);
+          }
+
+          sup {
+            font-size: 13px;
+            color: var(--ant-primary-color);
+            font-weight: 600;
+            top: -19px;
+            padding-left: 5px;
+          }
         }
       }
     }
@@ -104,8 +161,13 @@
 }
 
 .flight-search-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-align: right;
+
   .ant-typography {
     color: a.$paragraph-color;
+    margin-bottom: 0;
   }
 }

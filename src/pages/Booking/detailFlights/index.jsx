@@ -1,46 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './index.scss'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import FlightTrip from './flightTrip'
+
+import { useNavigate } from 'react-router-dom'
 import {
-  getInfoFlightInBookingArrival,
-  getInfoFlightInBookingDeparture,
-  getInfoFlightInBookingAirplane,
   getInfoFlightInBookingFight,
-  getInfoFlightInBookingAirline,
   getInfoFlightInBookingSeat,
 } from '../../../redux/selectors'
-import { converrtDuritionToTIme } from '../../../utils'
 export default function DetailFlights() {
-  const allDataFight = useSelector(getInfoFlightInBookingFight)
-  const arrival = useSelector(getInfoFlightInBookingArrival)
-  const departure = useSelector(getInfoFlightInBookingDeparture)
-  const airplane = useSelector(getInfoFlightInBookingAirplane)
-  const airline = useSelector(getInfoFlightInBookingAirline)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const getDataFlight = useSelector(getInfoFlightInBookingFight)
+  // const allDataFight = useSelector(getInfoFlightInBookingFight)
+  // const arrival = useSelector(getInfoFlightInBookingArrival)
+  // const departure = useSelector(getInfoFlightInBookingDeparture)
+  // const airplane = useSelector(getInfoFlightInBookingAirplane)
+  // const airline = useSelector(getInfoFlightInBookingAirline)
   const seat = useSelector(getInfoFlightInBookingSeat)
 
+  useEffect(() => {}, [])
   return (
     <div className="detail-flights__container">
       <div className="booking-page__container__item__title">
         <h2>Flights</h2>
       </div>
-      <div className="detail-flights__container__trip">
-        <div className="detail-flights__container__trip__from">
-          <p>From</p>
-          <h3>{departure.city}</h3>
-          <h6>{departure.name}</h6>
-        </div>
-        <div className="detail-flights__container__trip__icon">
-          <i className="fa-solid fa-circle-arrow-right"></i>
-          <h6>non stop</h6>
-          <p>{converrtDuritionToTIme(allDataFight.duration)}</p>
-        </div>
-        <div className="detail-flights__container__trip__to">
-          <p>To</p>
-          <h3>{arrival.city}</h3>
-          <p>{arrival.name} </p>
-        </div>
-      </div>
-
+      {getDataFlight.code && <FlightTrip />}
       <div className="detail-flights__container__package-rules">
         <div className="booking-page__container__item__title">
           <h3>Flights</h3>
@@ -75,15 +60,17 @@ export default function DetailFlights() {
         </div>
         <div className="detail-flights__container__price__content">
           <h6>
-            <del>{seat.price}</del>
+            {/* <del>{seat.price}</del> */}
+            <del>150</del>
           </h6>
           <h3>
-            {'$' + seat.price}{' '}
+            {'$' + seat.price}
+            {/* {'$ 150'} */}
             <sub>
-              {' '}
-              / {seat.name} X{' '}
-              {JSON.parse(localStorage.getItem('flight')).passengerNumber}
-            </sub>{' '}
+              / {seat.name} X
+              {/* {JSON.parse(localStorage.getItem('flight')).passengerNumber} */}
+              {/* {JSON.parse(localStorage.getItem('flight')).passengerNumber} */}
+            </sub>
           </h3>
         </div>
       </div>

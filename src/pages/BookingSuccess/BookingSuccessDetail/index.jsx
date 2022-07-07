@@ -1,13 +1,21 @@
-import React from 'react'
-import {
-  getDiscountForBookingAirline,
-  getInfoFlightInBookingSeat,
-} from '../../../redux/selectors'
-import { useSelector } from 'react-redux'
-import moment from 'moment'
+import React, { useEffect } from 'react'
+
+import { useSelector, useDispatch } from 'react-redux'
+import { getTicketInformation } from '../../../redux/slices/bookingSuccessSlice'
+import { useNavigate, useParams } from 'react-router-dom'
+import { getFlightInformationSuccess } from '../../../redux/selectors/bookingSuccessSelector'
 export default function BookingSuccessDetail() {
-  const getSeat = useSelector(getInfoFlightInBookingSeat)
-  const getDiscount = useSelector(getDiscountForBookingAirline)
+  const getInforFlight = useSelector(getFlightInformationSuccess)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { ticketId } = useParams()
+  useEffect(() => {
+    if (ticketId) {
+      dispatch(getTicketInformation(ticketId))
+    } else {
+      navigate('/flights')
+    }
+  }, [])
   return (
     <div
       className="Booking-success__container__content"
@@ -20,11 +28,11 @@ export default function BookingSuccessDetail() {
         <ul>
           <li>
             <span>Booking ID:</span>
-            <span>#RB5783GH</span>
+            <span>#{getInforFlight.id}</span>
           </li>
           <li>
             <span>Booking date:</span>
-            <span>{moment().format('LL')}</span>
+            <span>{getInforFlight.createAt}</span>
           </li>
           <li>
             <span>Payment method:</span>
@@ -39,12 +47,12 @@ export default function BookingSuccessDetail() {
       <div className="Booking-success__container__content__info">
         <ul>
           <li>
-            <span> {getSeat.name} Price x 1:</span>
-            <span>${getSeat.price}</span>
+            <span> thang Price x 1:</span>
+            <span>${getInforFlight.price}</span>
           </li>
           <li className="change-color">
             <span>Discount</span>
-            <span>{getDiscount.percent * 100} %</span>
+            <span>{getInforFlight.percent || 0 * 100} %</span>
           </li>
           <li>
             <span>Tax</span>
@@ -59,11 +67,11 @@ export default function BookingSuccessDetail() {
         <ul>
           <li className="change-color">
             <span>Subtotal</span>
-            <span>${getSeat.price}</span>
+            <span>${getInforFlight.price}</span>
           </li>
           <li>
             <span>Coupon code (OFF 5000)</span>
-            <span>{getDiscount.percent * 100} %</span>
+            <span>{getInforFlight.percent || 0 * 100} %</span>
           </li>
         </ul>
       </div>
@@ -71,7 +79,7 @@ export default function BookingSuccessDetail() {
         <ul style={{ border: 'none' }}>
           <li className="change-color">
             <span>Total Amount</span>
-            <span>${getSeat.price - getSeat.price * getDiscount.percent}</span>
+            <span>${getInforFlight.price}</span>
           </li>
         </ul>
       </div>

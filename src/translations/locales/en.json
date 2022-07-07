@@ -33,7 +33,10 @@
     "add": "Add",
     "cancle": "Cancle",
     "update": "Update",
-    "become_partner": "Become a partner"
+    "become_partner": "Become a partner",
+    "loading": "loading",
+    "economy": "Economy",
+    "business": "Business"
   },
 
   "search_form": {
@@ -50,7 +53,8 @@
     "economy": "Economy",
     "business": "Business",
     "first_class": "First Class",
-    "No. of Passengers": "No. of Passengers"
+    "No. of Passengers": "No. of Passengers",
+    "Add return date": "Add return date"
   },
 
   "subscribe-form": {
@@ -109,8 +113,122 @@
 
   "flight-list-page": {
     "flight-banner": {
-      "EXPLORE THE WORLD WITH US": "EXPLORE THE WORLD WITH US"
-    }
+      "EXPLORE THE WORLD WITH US": "EXPLORE THE WORLD WITH US",
+      "Amazing journeys. Every day.": "Amazing journeys. Every day."
+    },
+
+    "flights found": "{{number}} flights found",
+    "Cheapest price first": "Cheapest price first",
+    "Price Low to High": "Price: Low to High",
+    "Fly time Fastest": "Fly time: Fastest",
+    "All time": "All time",
+    "Early Morning": "Early Morning",
+    "Morning": "Morning",
+    "Afternoon": "Afternoon",
+    "Evening": "Evening",
+    "Times": "Times",
+    "Price": "Price",
+    "Clear": "Clear",
+    "$": "$",
+    "From": "From",
+    "To": "To",
+    "OFF": "*{{number}}% OFF",
+    "Direct": "Direct",
+    "hour": "hour",
+    "Book now": "Book now",
+    "Flight details": "Flight details",
+    "Delete": "Delete",
+    "Selected outbound": "Selected outbound",
+    "Airline": "Airline"
+  },
+
+  "flight-booking-page": {
+    "Passenger information": "Passenger information",
+    "Payment methods": "Payment methods",
+    "payment successful": "payment successful",
+    "Flights": "Flights",
+    "Pay Now": "Pay Now",
+    "First name": "First name",
+    "Email address": "Email address",
+    "Optional": "Optional",
+    "Mobile number": "Mobile number",
+    "Street address": "Street address",
+    "Apartment": "Apartment",
+    "Passport no.": "Passport no.",
+    "Visa no.": "Visa no.",
+    "I have read the agreement": "I have read the agreement",
+    "From": "From",
+    "To": "To",
+    "hours": "hours",
+    "minutes": "minutes",
+    "Prices": "Prices",
+    "Buffet breakfast as per the Itinerary": "Buffet breakfast as per the Itinerary",
+    "Visit eight villages showcasing Polynesian culture": "Visit eight villages showcasing Polynesian culture",
+    "Complimentary Camel safari, Bonfire": "Complimentary Camel safari, Bonfire",
+    "All toll tax, parking, fuel, and driver allowances": "All toll tax, parking, fuel, and driver allowances",
+    "Comfortable and hygienic vehicle": "Comfortable and hygienic vehicle",
+    "Coupon code": "Coupon code",
+    "input your discount number": "input your discount number",
+    "Apply voucher": "Apply voucher",
+    "Booking amount": "Booking amount",
+    "Economy Price": "Economy Price",
+    "Discount": "Discount",
+    "Tax": "Tax",
+    "Subtotal": "Subtotal",
+    "remove": "remove",
+    "Total Amount": "Total Amount",
+    "Your birthdate": "Your birthdate",
+    "I have read the": "I have read the",
+    "agreement": "agreements",
+    "Continue to payment": "Continue to payment",
+    "Please input your birthdate!": "Please input your birthdate!",
+    "Please input your apartment!": "Please input your apartment!",
+    "Please input your first name!": "Please input your first name!",
+    "Please input your E-mail!": "Please input your E-mail!",
+    "Please input your phone number!": "Please input your phone number!",
+    "Please input your street address!": "Please input your street address!",
+    "Please input your Passport!": "Please input your Passport!",
+    "Please input your visa!": "Please input your visa!",
+    "Should accept agreement": "Should accept agreement",
+    "multiply price": "$t(cta.{{class}}) Price x {{multiply}}",
+    "OFF": "Giảm"
+  },
+
+  "profile-page": {
+    "My Booking": "My Booking",
+    "Booking History": "Booking History",
+    "My Profile": "My Profile",
+    "Booking ID": "Booking ID",
+    "Journey": "Journey",
+    "Booking Amount": "Booking Amount",
+    "Status": "Status",
+    "Action": "Action"
+  },
+
+  "login": {
+    "Login": "Login",
+    "Welcome back": "Welcome back",
+    "Logged in to stay in touch": "Logged in to stay in touch",
+    "Don't have an account?": "Don't have an account?",
+    "Register now": "Register now",
+    "Enter your email": "Enter your email",
+    "Enter password": "Enter password",
+    "Forgot password?": "Forgot password?",
+    "Please input your email!": "Please input your email!",
+    "Email is not valid": "Email is not valid",
+    "Please input your password": "Please input your password"
+  },
+
+  "register": {
+    "Register": "Register",
+    "To join a whole new world": "To join a whole new world",
+    "Register your account": "Register your account",
+    "Enter your name": "Enter your name",
+    "Enter your email": "Enter your email",
+    "Enter your phone": "Enter your phone",
+    "Enter password": "Enter password",
+    "Login now": "Login now",
+    "Already have an account?": "Already have an account?"
   },
 
   "footer": {

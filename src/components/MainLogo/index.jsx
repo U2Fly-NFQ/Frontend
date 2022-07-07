@@ -19,9 +19,8 @@ const Logo = (props) => {
         <img
           src={LogoImg}
           style={{ ...logoStyle, ...style }}
-          alt="Shop logo"
+          alt="Main logo"
           onClick={() => navigate('/')}
-          className="shop-logo"
         />
       </motion.div>
     </>

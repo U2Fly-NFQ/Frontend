@@ -9,7 +9,7 @@ export default function FooterInformation() {
   return (
     <div className="footer-info  wide grid">
       <div className="footer-info__container ">
-        <Row>
+        <Row justify="space-between">
           <Col
             lg={{ span: 6 }}
             md={{ span: 8 }}
@@ -21,12 +21,6 @@ export default function FooterInformation() {
                 <h5>{t('footer.Need any help?')}</h5>
               </div>
               <div className="footer-info__container__contact-content">
-                <div className="footer-info__container__contact-content__item">
-                  <h5>{t('footer.Call 24/7 for any help')}</h5>
-                  <h3>
-                    <a href="#">+00 123 456 789</a>
-                  </h3>
-                </div>
                 <div className="footer-info__container__contact-content__item">
                   <h5>{t('footer.CMail to our support team')}</h5>
                   <h3>

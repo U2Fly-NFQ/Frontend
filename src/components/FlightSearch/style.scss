@@ -2,9 +2,18 @@
 
 .flightSearchContainer {
   position: relative;
-  height: 200px;
+  height: 240px;
+
+  @media only screen and (max-width: 992px) {
+    height: 360px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    height: 560px;
+  }
 
   .flightSearch {
+    margin: 10px;
     position: absolute;
     z-index: 10;
     top: -150px;
@@ -33,7 +42,7 @@
 
     &Box {
       background: var.$bg-search-box;
-      padding: 10px 10px 10px 20px;
+      padding: 10px 20px;
       border-radius: 10px;
       position: relative;
       height: 100%;
@@ -44,10 +53,11 @@
 
       &__Icon {
         position: absolute;
-        top: 20%;
-        right: 12%;
-        font-size: 30px;
+        top: 10%;
+        right: 10%;
+        font-size: 40px;
         color: var.$paragraph-color;
+        opacity: 0.15;
       }
 
       .ant-picker {
@@ -123,13 +133,13 @@
     }
 
     & .formControl {
-      padding-top: 30px;
+      padding-top: 40px;
       display: flex;
       justify-content: center;
+      position: relative;
 
       .btn {
         display: inline-block;
-        font-weight: 400;
         line-height: 1.5;
         text-align: center;
         text-decoration: none;
@@ -156,8 +166,17 @@
         }
 
         &.btn-md {
-          padding: 12px 35px;
-          font-size: 18px;
+          padding: 16px 42px;
+          font-size: 22px;
+          border-radius: 12px;
+          text-transform: uppercase;
+
+          width: 400px;
+          max-width: 100%;
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
         }
 
         &::before {
@@ -169,7 +188,7 @@
           width: 580px;
           height: 550px;
           margin: auto;
-          background: var.$black-color;
+          background-color: var(--ant-primary-5);
           border-radius: 50%;
           z-index: -1;
           transform-origin: top center;
@@ -184,20 +203,18 @@
           border: none;
         }
       }
-      .search-submit {
-        position: relative;
-
-        .close-btn {
-          position: absolute;
-          right: 0;
-          top: 50%;
-          transform: translate(110%, -50%);
-        }
-      }
     }
   }
 }
 
 .flightSearchLabel {
   display: block;
+}
+.ant-select-clear {
+  background-color: transparent;
+  .anticon-close {
+    transform: scale(2);
+    background-color: transparent;
+    border-radius: 50%;
+  }
 }

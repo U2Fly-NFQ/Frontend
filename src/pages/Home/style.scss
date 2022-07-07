@@ -71,7 +71,7 @@
     width: 580px;
     height: 550px;
     margin: auto;
-    background: var.$black-color;
+    background: var(--ant-primary-5);
     border-radius: 50%;
     z-index: -1;
     -webkit-transform-origin: top center;

@@ -54,7 +54,6 @@ export const createBookingFlight = createAsyncThunk(
 export const getRoundTripBookingFlightAsync = createAsyncThunk(
   'flight/RoundTripBooking',
   async (idFlight) => {
-    console.log('hello')
     const response = await flightAPI.get(idFlight)
     // const response = await axios.get(
     //   `https://62c45182abea8c085a729073.mockapi.io/flights-by-id/${idFlight}`

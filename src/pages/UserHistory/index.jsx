@@ -7,6 +7,8 @@ import { ticketHistoryDataSelector } from '../../redux/selectors'
 import { isEmpty } from 'lodash/lang'
 import moment from 'moment'
 import { bookingStatus } from '../../Constants'
+import { getBoardingDateTime, getEndDateTime } from '../../utils'
+import { convertNumberToUSD } from '../../utils/numberFormater'
 
 function UserHistory(props) {
   //initiation
@@ -19,6 +21,7 @@ function UserHistory(props) {
   //Logical handling functions
   useEffect(() => {
     setLoading(true)
+
     setTimeout(() => {
       dispatch(fetchHistoryBooking())
     }, 500)
@@ -28,26 +31,27 @@ function UserHistory(props) {
     if (!isEmpty(ticketHistory)) {
       let ticketProcessedData = ticketHistory.map((ticket) => {
         let flights = ticket.flights.map((flight) => {
-          let startDate = new Date(`${flight.startDate} ${flight.startTime}`)
-          let endDate = new Date(`${flight.startDate} ${flight.startTime}`)
-          endDate.setMinutes(endDate.getMinutes() + flight.duration * 60)
-          let boardingTime = new Date(`${flight.startDate} ${flight.startTime}`)
-          boardingTime.setMinutes(boardingTime.getMinutes() - 30)
+          let ETD = `${flight.startTime} ${flight.startDate}`
+          let endDate = getEndDateTime(flight.duration, ETD)
+          let boardingTime = getBoardingDateTime(flight.duration, ETD)
           return {
             ...flight,
-            startTime: moment(startDate).format('DD/M/YYYY hh:mm A'),
-            endTime: moment(endDate).format('DD/M/YYYY hh:mm A'),
+            departure: `${flight.departure.city} (${flight.departure.iata})`,
+            arrival: `${flight.arrival.city} (${flight.arrival.iata})`,
+            ETD: moment(ETD).format('DD/M/YYYY hh:mm A'),
+            ETA: moment(endDate).format('DD/M/YYYY hh:mm A'),
             boardingTime: moment(boardingTime).format('DD/M/YYYY hh:mm A'),
           }
         })
         return {
           ...ticket,
-          status: bookingStatus[ticket.status],
+          status: bookingStatus[2],
+          totalPrice: convertNumberToUSD(ticket.totalPrice),
           flights: flights,
         }
       })
-      setLoading(false)
       setTickets(ticketProcessedData)
+      setLoading(false)
     }
   }, [ticketHistory])
 

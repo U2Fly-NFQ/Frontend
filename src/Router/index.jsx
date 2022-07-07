@@ -55,6 +55,7 @@ const RoutesApp = () => {
           {token && (
             <Route path="admin" element={<AdminLayout />}>
               <Route path="" element={<AdminDashboard />} />
+              <Route path="ticket" element={<AdminDashboard />} />
             </Route>
           )}
 

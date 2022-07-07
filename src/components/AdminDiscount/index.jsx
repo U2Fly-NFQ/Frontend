@@ -15,14 +15,17 @@ function AddminDiscount() {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [form] = Form.useForm()
   const dispatch = useDispatch()
-  const data = useSelector(discountSelector).map((discount) => ({
-    ...discount,
-    key: discount.id,
-  }))
+  let data = useSelector(discountSelector)
+  if (data && data.length > 0) {
+    data = data.map((discount) => ({
+      ...discount,
+      key: discount.id,
+    }))
+  }
   const status = useSelector(discountStatusSelector)
 
   useEffect(() => {
-    if (data.length === 0) {
+    if (data && data.length === 0) {
       dispatch(fetchDiscounts())
     }
   }, [])

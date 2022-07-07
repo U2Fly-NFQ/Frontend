@@ -5,10 +5,26 @@ import { isEmpty } from 'lodash/lang'
 import './style.scss'
 import { findIndex } from 'lodash/array'
 import moment from 'moment'
+import ModalRating from '../ModalRating'
+import { useDispatch } from 'react-redux'
 
 function UserBookingDetail({ detailData }) {
+  //initiation
+  const dispatch = useDispatch()
   const [viewTicket, setViewTicket] = useState(false)
   const [ticketData, setTicketData] = useState({})
+  const [currentId, setCurrentId] = useState()
+  const [isModalVisible, setIsModalVisible] = useState(false)
+
+  const handleCancelRating = () => {
+    setIsModalVisible(false)
+  }
+  const showModal = () => {
+    setIsModalVisible(true)
+  }
+
+  const handleRating = (value) => {}
+
   const flightsColumn = [
     {
       title: 'Airline',
@@ -57,7 +73,14 @@ function UserBookingDetail({ detailData }) {
       render: (_, record) => (
         <Space>
           {record.isRating === 0 && (
-            <Button type="primary" shape="default" onClick={() => {}}>
+            <Button
+              type="primary"
+              shape="default"
+              onClick={() => {
+                showModal()
+                setCurrentId(record.id)
+              }}
+            >
               Rating
             </Button>
           )}
@@ -137,6 +160,12 @@ function UserBookingDetail({ detailData }) {
           visible={viewTicket}
         />
       )}
+      <ModalRating
+        visible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+        handleCancel={handleCancelRating}
+        handleOk={handleRating}
+      />
     </Row>
   )
 }

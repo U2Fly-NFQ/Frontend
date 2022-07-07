@@ -20,6 +20,7 @@ function UserHistory(props) {
   //Logical handling functions
   useEffect(() => {
     setLoading(true)
+
     setTimeout(() => {
       dispatch(fetchHistoryBooking())
     }, 500)

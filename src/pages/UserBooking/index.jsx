@@ -18,18 +18,16 @@ function UserBooking(props) {
 
   const [loading, setLoading] = useState(false)
   const [tickets, setTickets] = useState([])
+
   //Logical handling functions
   useEffect(() => {
     setLoading(true)
-    setTimeout(() => {
-      dispatch(
-        fetchTickets()
-        // fetchTickets({
-        //   passenger: userLogin.id,
-        //   effectiveness: 1,
-        // })
-      )
-    }, 500)
+    dispatch(
+      fetchTickets({
+        // passenger: userLogin.id,
+        // effectiveness: 1,
+      })
+    )
   }, [dispatch, userLogin.id])
 
   useEffect(() => {
@@ -47,13 +45,21 @@ function UserBooking(props) {
     }
   }, [ticketData])
 
+  const handleCancelBooking = () => {
+    console.log('cancel')
+  }
+
   return (
     <Row className="userProfile-container-booking">
       <Col span={24} className="userProfile-container-booking-title">
         My Booking
       </Col>
       <Col span={24}>
-        <UserBookingTable data={tickets} loading={loading} />
+        <UserBookingTable
+          data={tickets}
+          loading={loading}
+          onCancel={handleCancelBooking}
+        />
       </Col>
     </Row>
   )

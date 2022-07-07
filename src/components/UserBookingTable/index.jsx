@@ -1,14 +1,26 @@
 import React, { useState } from 'react'
 import { UserBookingDetail } from '../index'
-import { Button, Space, Table } from 'antd'
+import { Button, Modal, Space, Table } from 'antd'
 import { bookingStatus } from '../../Constants'
 import { useNavigate } from 'react-router-dom'
+import { ExclamationCircleOutlined } from '@ant-design/icons'
 
-function UserBookingTable({ loading, data }) {
+function UserBookingTable({ loading, data, onCancel }) {
   //initiation
   const [expandedRowKeys, setExpandedRowKeys] = useState([])
   const navigate = useNavigate()
+
   //Data for UI
+  const confirm = () => {
+    Modal.confirm({
+      title: 'Confirm',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Are you want to cancel this booking?',
+      okText: 'Yes',
+      cancelText: 'No',
+      onOk: onCancel,
+    })
+  }
   const bookingListColumn = [
     {
       title: 'Booking ID',
@@ -54,16 +66,13 @@ function UserBookingTable({ loading, data }) {
       title: 'Action',
       key: 'action',
       width: '100px',
+      dataIndex: 'id',
       align: 'center',
       render: (_, record) => (
         <Space>
           {/* eslint-disable-next-line react/jsx-no-undef */}
           {record.status === bookingStatus['0'] && (
-            <Button
-              type="default"
-              shape="default"
-              // onClick={() => ()}
-            >
+            <Button type="default" shape="default" onClick={confirm}>
               Cancel
             </Button>
           )}
@@ -86,22 +95,24 @@ function UserBookingTable({ loading, data }) {
   }
 
   return (
-    <Table
-      columns={bookingListColumn}
-      rowKey={(record) => record.id}
-      expandable={{
-        expandedRowKeys: expandedRowKeys,
-        onExpand: onExpandRowKey,
-        expandedRowRender: (record) => (
-          <UserBookingDetail detailData={record} />
-        ),
-      }}
-      dataSource={data}
-      loading={loading}
-      scroll={{
-        x: 'max-content',
-      }}
-    />
+    <>
+      <Table
+        columns={bookingListColumn}
+        rowKey={(record) => record.id}
+        expandable={{
+          expandedRowKeys: expandedRowKeys,
+          onExpand: onExpandRowKey,
+          expandedRowRender: (record) => (
+            <UserBookingDetail detailData={record} />
+          ),
+        }}
+        dataSource={data}
+        loading={loading}
+        scroll={{
+          x: 'max-content',
+        }}
+      />
+    </>
   )
 }
 

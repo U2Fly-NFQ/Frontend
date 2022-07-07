@@ -1,11 +1,6 @@
 import './style.scss'
 import { Row, Col } from 'antd'
 import { Link } from 'react-router-dom'
-import {
-  FlightListBanner,
-  FlightSearch,
-  ScrollToTopButton,
-} from '../../components'
 import { useTranslation } from 'react-i18next'
 
 function Home() {
@@ -13,12 +8,7 @@ function Home() {
 
   return (
     <>
-      <ScrollToTopButton />
       <div className="home-page">
-        <FlightListBanner />
-        <div className="grid wide">
-          <FlightSearch />
-        </div>
         <div className="grid wide">
           <section id="go-beyond-area">
             <Row gutter={[24, 24]}>

@@ -12,13 +12,13 @@ const create = (data) => axios.post(`/api/flights`, data)
 
 const update = (id, data) => axios.put(`/api/flights/${id}`, data)
 
-const destroy = (id) => axios.delete(`/api/flights/${id}`)
+const destroy = (id) => axios.delete(`api/flights/${id}`)
 
 const getUserData = (id) => {
-  return axios.get(`/api/passengers/2`)
+  return axios.get(`/api/passengers/${id}`)
 }
 
-const getInfoTickerById = (idTicket) => axios.get(`/api/tickets/${idTicket}`)
+const getInfoTickerById = (idTicket) => axios.get(`/tickets/${idTicket}`)
 
 const createATicket = (data) => axios.post(`/api/payment/stripe`, data)
 

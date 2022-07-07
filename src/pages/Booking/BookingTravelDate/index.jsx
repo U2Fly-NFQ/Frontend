@@ -17,16 +17,17 @@ export default function BookingTravelDate() {
         <ul className="booking-travel-date__container__value">
           <li>
             <div className="booking-travel-date__container__key">
-              {getSeat.name} Price x 1
+              {/* {getSeat.name} Price x 1 */}
+              Economy Price x 1
             </div>
             <div className="booking-travel-date__container__key">
-              {'$ ' + getSeat.price}
+              {/* {'$ ' + getSeat.price} */}$ 150
             </div>
           </li>
           <li>
             <div className="booking-travel-date__container__key">Discount</div>
             <div className="booking-travel-date__container__key">
-              - {getDiscount.percent * 100}%
+              {/* - {getDiscount.percent * 100}% */}- {0.3 * 100}%
             </div>
           </li>
           <li>
@@ -44,7 +45,7 @@ export default function BookingTravelDate() {
                 Subtotal
               </div>
               <div className="booking-travel-date__container__value">
-                ${getSeat.price}
+                {/* ${getSeat.price} */}$ 150
               </div>
             </li>
             <li>
@@ -52,7 +53,8 @@ export default function BookingTravelDate() {
                 Coupon code (OFF 5000)
               </div>
               <div className="booking-travel-date__container__value">
-                ${getSeat.price * getDiscount.percent}
+                {/* ${getSeat.price * getDiscount.percent} */}
+                149
               </div>
             </li>
           </ul>
@@ -62,7 +64,8 @@ export default function BookingTravelDate() {
             Total Amount
           </div>
           <div className="booking-travel-date__container__amount__total__value">
-            ${getSeat.price - getSeat.price * getDiscount.percent}
+            {/* ${getSeat.price - getSeat.price * getDiscount.percent} */}
+            "180"
           </div>
         </div>
       </div>

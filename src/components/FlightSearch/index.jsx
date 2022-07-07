@@ -280,7 +280,7 @@ export default function FlightSearch() {
                     allowClear={false}
                     disabledDate={(current) => {
                       return (
-                        moment().add(-3, 'days') >= current ||
+                        moment() >= current ||
                         moment().add(1, 'month') <= current
                       )
                     }}
@@ -312,7 +312,7 @@ export default function FlightSearch() {
                           allowClear={false}
                           disabledDate={(current) => {
                             return (
-                              journeyDay >= returnDate ||
+                              journeyDay > current ||
                               moment().add(1, 'month') <= current
                             )
                           }}

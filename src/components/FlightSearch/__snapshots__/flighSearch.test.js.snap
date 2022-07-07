@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Flight search test Flight search component renders correctly 1`] = `
+exports[`Flight search  renders correctly 1`] = `
 <div
   className="flightSearchContainer"
 >

@@ -1,7 +1,10 @@
 import React from 'react'
+import { Layout } from 'antd'
 
-function AdminDashboard(props) {
-  return <div>Dash board</div>
+const { Content } = Layout
+
+function AdminDashboard() {
+  return <Content>Dashboard</Content>
 }
 
 export default AdminDashboard

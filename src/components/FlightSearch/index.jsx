@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -27,7 +27,6 @@ import { CloseOutlined } from '@ant-design/icons'
 const { Option } = Select
 
 export default function FlightSearch() {
-  const location = useLocation()
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -42,7 +41,6 @@ export default function FlightSearch() {
   const [to, setTo] = useState(undefined)
   const [ticketType, setTicketType] = useState('oneWay')
   const [journeyDay, setJourneyDay] = useState(moment())
-  const [returnDay, setReturnDay] = useState(moment().add(3, 'days'))
   const [passengerClass, setPassengerClass] = useState('economy')
   const [returnDate, setReturnDate] = useState(moment().add(3, 'days'))
   const [passengerNumber, setPassengerNumber] = useState(1)

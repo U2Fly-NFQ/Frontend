@@ -11,14 +11,10 @@ import {
 import { Button } from './Button'
 import { Link, useNavigate } from 'react-router-dom'
 import RegisterBanner from './RegisterBanner'
-import axios from 'axios'
 import './style.scss'
+import { registerApi } from '../../api/Auth'
 
 const { Title } = Typography
-
-const MOCK_URL = 'https://62bb0d28573ca8f83291bd89.mockapi.io/api/register'
-
-const registerApi = (data) => axios.post(MOCK_URL, data)
 
 const Register = () => {
   const navigate = useNavigate()
@@ -28,22 +24,25 @@ const Register = () => {
 
     const data = {
       user: {
-        email: email,
-        password: password,
+        email,
+        password,
+        roles: {
+          1: 'ROLE_USER',
+        },
       },
       passenger: {
-        name: name,
-        gender: gender === 'male',
-        birthday: birthDate.toISOString(),
-        address: address,
+        gender,
+        birthDate,
+        address,
+        name,
         identification: idno,
       },
     }
 
     const res = registerApi(JSON.stringify(data))
 
-    res.then((data) => {
-      if (data.status === 201) {
+    res.then((result) => {
+      if (result.data.status === 'success') {
         message.success('Register successful!')
         navigate('/login')
       }

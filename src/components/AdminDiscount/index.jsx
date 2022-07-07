@@ -22,8 +22,8 @@ function AddminDiscount() {
       key: discount.id,
     }))
   }
-  const status = useSelector(discountStatusSelector)
 
+  const status = useSelector(discountStatusSelector)
   useEffect(() => {
     if (data && data.length === 0) {
       dispatch(fetchDiscounts())
@@ -32,7 +32,6 @@ function AddminDiscount() {
 
   const handleDelete = (record) => {
     // dispatch(deleteDiscount(record.id))
-    // dispatch(fetchDiscounts())
   }
 
   const handleCancel = () => {
@@ -45,7 +44,6 @@ function AddminDiscount() {
       percent: values.value,
     }
     dispatch(createDiscount(discount))
-    dispatch(fetchDiscounts())
     setIsModalVisible(false)
   }
 

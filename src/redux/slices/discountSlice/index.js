@@ -51,8 +51,10 @@ export const deleteDiscount = createAsyncThunk(
 
 export const createDiscount = createAsyncThunk(
   'discounts/createDiscount',
-  async (discountData) => {
+  async (discountData, thunkAPI) => {
     const response = await discountApi.createDiscount(discountData)
+    thunkAPI.dispatch(fetchDiscounts())
+    return response.data.data
   }
 )
 

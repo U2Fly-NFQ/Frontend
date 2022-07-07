@@ -53,7 +53,7 @@ export default function BookingSuccessPage() {
                   <span className="value">{dateUserBooking.name}</span>
                 </li>
                 <li>
-                  <span>Day of Bỉrth:</span>
+                  <span>Day of Birth:</span>
                   <span className="value">{dateUserBooking.birthday}</span>
                 </li>
                 <li>

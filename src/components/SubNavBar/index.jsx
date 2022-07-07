@@ -1,18 +1,55 @@
-import { Row, Col, Select } from 'antd'
+import { Space, Row, Col, Menu, Dropdown } from 'antd'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { DownOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 import './style.scss'
 import LangSelect from '../LangSelect'
-
-const { Option } = Select
+import { getLsObj } from '../../utils/localStorage'
 
 const SubNavBar = () => {
   const { t } = useTranslation()
-  const user = JSON.parse(localStorage.getItem('user') || '[]')
+  const user = getLsObj('user')
   const navigate = useNavigate()
+  const [visible, setVisible] = useState(false)
+  const handleVisibleChange = (flag) => {
+    setVisible(flag)
+  }
+
+  const handleMenuClick = (e) => {
+    const value = e.key
+
+    if (value === 'booked') navigate('/profile/booking')
+    if (value === 'profile') navigate('/profile')
+
+    if (value === 'logout') {
+      localStorage.removeItem('user')
+      localStorage.removeItem('token')
+      navigate(-1)
+    }
+  }
+
+  const menu = (
+    <Menu
+      onClick={handleMenuClick}
+      items={[
+        {
+          label: 'Profile',
+          key: 'profile',
+        },
+        {
+          label: 'My booking',
+          key: 'booked',
+        },
+        {
+          label: 'Log out',
+          key: 'logout',
+        },
+      ]}
+    />
+  )
 
   return (
     <div className="sub-nav">
@@ -32,35 +69,16 @@ const SubNavBar = () => {
             <ul className="sub-nav-list sub-nav-list-actions">
               {(user.id && (
                 <li className="sub-nav-list__item">
-                  <Select
-                    className="lang-select"
-                    size="small"
-                    suffixIcon={
-                      <DownOutlined
-                        style={{
-                          color: '#fff',
-                        }}
-                      />
-                    }
-                    defaultValue={user.username || 'u2fly@nfq.asia'}
-                    onChange={(value) => {
-                      if (value === 'booked') navigate('/profile/booking')
-                      if (value === 'profile') navigate('/profile')
-
-                      if (value === 'logout') {
-                        localStorage.removeItem('user')
-                        localStorage.removeItem('token')
-                        navigate('/flights')
-                      }
-                    }}
-                    styles={{
-                      menuPortal: (base) => ({ ...base, zIndex: 9 }),
-                    }}
+                  <Dropdown
+                    overlay={menu}
+                    onVisibleChange={handleVisibleChange}
+                    visible={visible}
                   >
-                    <Option key={'profile'}>Profile</Option>
-                    <Option key={'booked'}>My Bookings</Option>
-                    <Option key={'logout'}>Log out</Option>
-                  </Select>
+                    <Space style={{ paddingRight: '8px' }}>
+                      {user.username || 'career@nfq.asia'}
+                      <DownOutlined />
+                    </Space>
+                  </Dropdown>
                 </li>
               )) || (
                 <>

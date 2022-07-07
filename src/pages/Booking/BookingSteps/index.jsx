@@ -5,7 +5,7 @@ import { getCurrentMethodInBookingFlight } from '../../../redux/selectors'
 import './index.scss'
 import { changeCurrentMethod } from '../../../redux/slices/bookingFlightsSlice'
 
-export default function BookingSteps({ contentTop, contentBottom }) {
+export default function BookingSteps({ contentTop, contentBottom, ticketId }) {
   const dispatch = useDispatch()
   const getCurrentMethod = useSelector(getCurrentMethodInBookingFlight)
 
@@ -13,19 +13,20 @@ export default function BookingSteps({ contentTop, contentBottom }) {
   const onChange = (value) => {
     dispatch(changeCurrentMethod(value))
   }
+
   return (
     <Steps
       type="navigation"
       className="booking-steps"
-      current={getCurrentMethod}
+      current={ticketId ? 2 : getCurrentMethod}
+      // current={0}
     >
       <Step
-        status="finish"
         className="booking-steps__flight"
         title={
           <div className="booking-steps__flight__container">
             <div className="booking-steps__flight__logo">
-              <i class="fa-regular fa-user"></i>
+              <i className="fa-regular fa-user"></i>
             </div>
             <div>
               <div className="booking-steps__flight__content">
@@ -36,11 +37,10 @@ export default function BookingSteps({ contentTop, contentBottom }) {
         }
       />
       <Step
-        status="wait"
         title={
           <div className="booking-steps__flight__container">
             <div className="booking-steps__flight__logo">
-              <i class="fa-solid fa-credit-card"></i>
+              <i className="fa-solid fa-credit-card"></i>
             </div>
             <div>
               <div className="booking-steps__flight__content">
@@ -55,11 +55,11 @@ export default function BookingSteps({ contentTop, contentBottom }) {
         title={
           <div className="booking-steps__flight__container">
             <div className="booking-steps__flight__logo">
-              <i class="fa-solid fa-circle-check"></i>
+              <i className="fa-solid fa-circle-check"></i>
             </div>
             <div>
               <div className="booking-steps__flight__content">
-                <h4>Thanh Toán Thành Công</h4>
+                <h4>Hoàn tất thanh toán</h4>
               </div>
             </div>
           </div>

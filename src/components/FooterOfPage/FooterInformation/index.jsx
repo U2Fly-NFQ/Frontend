@@ -9,7 +9,7 @@ export default function FooterInformation() {
   return (
     <div className="footer-info  wide grid">
       <div className="footer-info__container ">
-        <Row>
+        <Row justify="space-between">
           <Col
             lg={{ span: 6 }}
             md={{ span: 8 }}

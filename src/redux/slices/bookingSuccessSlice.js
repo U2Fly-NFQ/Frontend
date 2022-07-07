@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import moment from 'moment'
+import { useNavigate } from 'react-router-dom'
 import flightAPI from '../../api/Flight'
 
 export const getTicketInformation = createAsyncThunk(
@@ -12,7 +13,8 @@ export const getTicketInformation = createAsyncThunk(
 const initialState = {
   userInformation: {},
   flightInformation: {},
-  loadding: false,
+  ticketStatus: false,
+  loadding: true,
 }
 const bookingSuccessFlightsSlice = createSlice({
   name: 'bookingSuccess',
@@ -26,8 +28,9 @@ const bookingSuccessFlightsSlice = createSlice({
       state.loadding = false
     },
     [getTicketInformation.fulfilled]: (state, action) => {
-      const { data, status } = action.payload
       state.loadding = false
+      const { data, status } = action.payload
+      console.log(action.payload)
       const {
         id,
         totalPrice,
@@ -38,31 +41,8 @@ const bookingSuccessFlightsSlice = createSlice({
         seatType,
         createdAt,
       } = data
-      //   {
-      //     "status": "success",
-      //     "data": {
-      //         "id": 1,
-      //         "flight": {
-      //             "arrival": "HAN",
-      //             "departure": "VCA",
-      //             "startTime": "1970-01-01 13:40:00"
-      //         },
-      //         "totalPrice": 10200,
-      //         "ticketOwner": "NGGUYEN THANH SANG",
-      //         "passenger": {
-      //             "name": "Thanh Sang",
-      //             "gender": "Male",
-      //             "birthday": "22-03-2002",
-      //             "address": "123 DF",
-      //             "identification": "1232432534231",
-      //             "accountId": 2
-      //         },
-      //         "discount": 1,
-      //         "seatType": "Economy",
-      //         "createdAt": "2022-01-03 12:00:00"
-      //     }
-      // }
       if (status === 'success') {
+        state.ticketStatus = true
         state.userInformation = {
           name: passenger.name,
           gender: passenger.gender,
@@ -78,6 +58,9 @@ const bookingSuccessFlightsSlice = createSlice({
           createdAt: moment(flight.createdAt).format('YYYY-MM-DD'),
           price: totalPrice,
         }
+      } else {
+        let navigate = useNavigate()
+        navigate('/')
       }
     },
   },

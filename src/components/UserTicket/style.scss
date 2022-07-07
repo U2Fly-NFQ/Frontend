@@ -59,7 +59,7 @@
         border-bottom: 1px dashed a.$main-color;
         position: absolute;
         left: 0;
-        right: 20px;
+        right: 0;
         bottom: 10px;
       }
 
@@ -76,6 +76,7 @@
         }
 
         .passenger-info {
+          text-align: center;
         }
 
         .flight-info {
@@ -90,6 +91,7 @@
         }
 
         .flight-details {
+          text-align: center;
         }
       }
 

@@ -88,22 +88,27 @@ export default function BookingPayment() {
   ]
 
   return (
-    <div className="payment-booking">
-      <Radio.Group onChange={onChange} value={value}>
-        {/* <Space direction="vertical" className="payment-booking__radio"> */}
-        {dataPayment &&
-          dataPayment.map((item, index) => {
-            return (
-              <Radio value={index} key={index}>
-                {item.paymentMethod}
-              </Radio>
-            )
-          })}
-        {/* </Space> */}
-      </Radio.Group>
-      <div className="BookingPayment-content">
-        {dataBooking && dataBooking.render}
+    <>
+      <div class="booking-page__container__item__title">
+        <h2>Payemnt methods</h2>
       </div>
-    </div>
+      <div className="payment-booking">
+        <Radio.Group onChange={onChange} value={value}>
+          {/* <Space direction="vertical" className="payment-booking__radio"> */}
+          {dataPayment &&
+            dataPayment.map((item, index) => {
+              return (
+                <Radio value={index} key={index}>
+                  {item.paymentMethod}
+                </Radio>
+              )
+            })}
+          {/* </Space> */}
+        </Radio.Group>
+        <div className="BookingPayment-content">
+          {dataBooking && dataBooking.render}
+        </div>
+      </div>
+    </>
   )
 }

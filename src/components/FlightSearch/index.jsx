@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import './style.scss'
 import {
@@ -12,13 +13,16 @@ import {
   Popover,
   InputNumber,
   Select,
+  Button,
   Tooltip,
   Modal,
+  Space,
 } from 'antd'
 
 import moment from 'moment'
 import { fetchAirports } from '../../redux/slices/airportSlice'
 import { updateLs, getLsObj } from '../../utils/localStorage'
+import { CloseOutlined } from '@ant-design/icons'
 
 const { Option } = Select
 
@@ -34,11 +38,11 @@ export default function FlightSearch() {
   const [searchTo, setSearchTo] = useState('')
   const [searchFrom, setSearchFrom] = useState('')
 
-  const [from, setFrom] = useState('')
-  const [to, setTo] = useState('')
+  const [from, setFrom] = useState(undefined)
+  const [to, setTo] = useState(undefined)
   const [ticketType, setTicketType] = useState('oneWay')
   const [journeyDay, setJourneyDay] = useState(moment())
-  const [returnDay, setReturnDay] = useState(moment().add(3, 'days'))
+  const [returnDate, setReturnDate] = useState(moment().add(3, 'days'))
   const [passengerClass, setPassengerClass] = useState('Economy')
   const [passengerNumber, setPassengerNumber] = useState(1)
   const [modalContent, setModalContent] = useState('')
@@ -48,18 +52,21 @@ export default function FlightSearch() {
 
     let existingFlight = getLsObj('flight')
 
-    const { seatType, seatAvailable, departure, arrival, startDate } =
-      existingFlight
+    const {
+      seatType,
+      seatAvailable,
+      departure,
+      arrival,
+      startDate,
+      ticketType,
+    } = existingFlight
 
     if (departure) setFrom(departure)
     if (arrival) setTo(arrival)
     if (startDate) setJourneyDay(moment(startDate))
     if (seatType) setPassengerClass(seatType)
     if (seatAvailable) setPassengerNumber(seatAvailable)
-
-    // if (ticketType) setTicketType(ticketType)
-
-    setSearchParams({ ...existingFlight })
+    if (ticketType) setTicketType(ticketType)
   }, [])
 
   const onFinish = async () => {
@@ -77,18 +84,12 @@ export default function FlightSearch() {
       seatType: passengerClass,
       seatAvailable: passengerNumber,
       ticketType,
-      returnDay,
+      returnDate: returnDate.format('YYYY-MM-DD'),
     }
 
     updateLs('flight', searchQuery)
 
-    setSearchParams({
-      departure: from,
-      arrival: to,
-      startDate: journeyDay.format('YYYY-MM-DD'),
-      seatType: passengerClass,
-      seatAvailable: passengerNumber,
-    })
+    setSearchParams(searchQuery)
   }
 
   const onChangeTicketType = (value) => {
@@ -107,20 +108,10 @@ export default function FlightSearch() {
 
   const clearFrom = () => {
     setFrom('')
-    updateLs('flight', {
-      departure: '',
-    })
-    searchParams.delete('departure')
-    setSearchParams(searchParams)
   }
 
   const clearTo = () => {
     setTo('')
-    updateLs('flight', {
-      arrival: '',
-    })
-    searchParams.delete('arrival')
-    setSearchParams(searchParams)
   }
 
   const passengerPopover = (
@@ -173,13 +164,13 @@ export default function FlightSearch() {
           <Radio.Group
             value={ticketType}
             onChange={(e) => onChangeTicketType(e.target.value)}
+            style={{
+              padding: '10px',
+              borderRadius: '12px',
+            }}
           >
-            <Radio.Button value="oneWay">
-              {t('search_form.one_way')}
-            </Radio.Button>
-            <Radio.Button value="roundTrip">
-              {t('search_form.round_trip')}
-            </Radio.Button>
+            <Radio value="oneWay">{t('search_form.one_way')}</Radio>
+            <Radio value="roundTrip">{t('search_form.round_trip')}</Radio>
           </Radio.Group>
         </div>
 
@@ -192,6 +183,8 @@ export default function FlightSearch() {
               </label>
               <Select
                 size="large"
+                allowClear
+                clearIcon={<CloseOutlined />}
                 onClear={clearFrom}
                 showSearch
                 value={from}
@@ -199,14 +192,15 @@ export default function FlightSearch() {
                 filterOption={() => true}
                 onChange={onChangeFrom}
                 onSearch={(text) => setSearchFrom(text)}
-                allowClear
                 bordered={false}
                 style={{
-                  width: '70%',
+                  width: '100%',
+                  borderBottom: '1px solid #ddd',
                 }}
                 dropdownStyle={{
                   borderRadius: '10px',
                 }}
+                placeholder="Flying from..."
               >
                 {airports.map((airport) => {
                   return (
@@ -215,7 +209,7 @@ export default function FlightSearch() {
                       .includes(searchFrom.toLowerCase()) &&
                     airport.iata !== to && (
                       <Option key={airport.iata} value={airport.iata}>
-                        {airport.city}
+                        {airport.city} ({airport.iata})
                       </Option>
                     )
                   )
@@ -234,6 +228,7 @@ export default function FlightSearch() {
                 size="large"
                 showSearch
                 allowClear
+                clearIcon={<CloseOutlined />}
                 onClear={clearTo}
                 value={to}
                 showArrow={false}
@@ -242,11 +237,13 @@ export default function FlightSearch() {
                 onSearch={(text) => setSearchTo(text)}
                 bordered={false}
                 style={{
-                  width: '70%',
+                  width: '100%',
+                  borderBottom: '1px solid #ddd',
                 }}
                 dropdownStyle={{
                   borderRadius: '10px',
                 }}
+                placeholder="Flying to..."
               >
                 {airports.map((airport) => {
                   return (
@@ -255,7 +252,7 @@ export default function FlightSearch() {
                       .includes(searchTo.toLowerCase()) &&
                     airport.iata !== from && (
                       <Option key={airport.iata} value={airport.iata}>
-                        {airport.city}
+                        {airport.city} ({airport.iata})
                       </Option>
                     )
                   )
@@ -268,7 +265,7 @@ export default function FlightSearch() {
           </Col>
           <Col span={24} md={12} lg={7}>
             <div className="flightSearchBox">
-              <Row gutter={[8, 8]}>
+              <Row gutter={[8, 8]} justify="center">
                 <Col span={12}>
                   <label className="flightSearchLabel">
                     {t('search_form.journey_date')}
@@ -290,25 +287,57 @@ export default function FlightSearch() {
                     format={'MM/DD/YY'}
                   />
                 </Col>
-                {ticketType !== 'oneWay' && (
-                  <Col span={12}>
-                    <label className="flightSearchLabel">
-                      {t('search_form.return_date')}
-                    </label>
-                    <DatePicker
-                      allowClear={false}
-                      disabledDate={(current) => {
-                        return (
-                          journeyDay >= returnDay ||
-                          moment().add(1, 'month') <= current
-                        )
-                      }}
-                      value={returnDay}
-                      onChange={(date) => setReturnDay(date)}
-                      format={'MM/DD/YY'}
-                    />
-                  </Col>
-                )}
+                <Col span={12}>
+                  <label className="flightSearchLabel">
+                    {t('search_form.return_date')}
+                  </label>
+                  <AnimatePresence>
+                    {(ticketType === 'roundTrip' && (
+                      <motion.div
+                        initial={{ x: -100, opacity: 0 }}
+                        animate={{
+                          x: 0,
+                          opacity: 1,
+                          transition: { duration: 0.6 },
+                        }}
+                        exit={{
+                          x: -100,
+                          opacity: 0,
+                          transition: { duration: 0.6 },
+                        }}
+                      >
+                        <DatePicker
+                          allowClear={false}
+                          disabledDate={(current) => {
+                            return (
+                              journeyDay >= returnDate ||
+                              moment().add(1, 'month') <= current
+                            )
+                          }}
+                          value={returnDate}
+                          onChange={(date) => setReturnDate(date)}
+                          format={'MM/DD/YY'}
+                        />
+                      </motion.div>
+                    )) || (
+                      <Space
+                        style={{
+                          display: 'block',
+                        }}
+                      >
+                        <Button
+                          type="link"
+                          onClick={() => setTicketType('roundTrip')}
+                          style={{
+                            paddingLeft: 0,
+                          }}
+                        >
+                          Add return date
+                        </Button>
+                      </Space>
+                    )}
+                  </AnimatePresence>
+                </Col>
               </Row>
             </div>
           </Col>
@@ -341,7 +370,7 @@ export default function FlightSearch() {
               onClick={onFinish}
               ref={submitRef}
             >
-              Search
+              Search {ticketType === 'oneWay' ? 'one way' : 'round trip'}
             </button>
           </Tooltip>
         </div>

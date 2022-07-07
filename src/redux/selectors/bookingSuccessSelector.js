@@ -3,3 +3,6 @@ export const getUserInformationSuccess = (state) =>
 
 export const getFlightInformationSuccess = (state) =>
   state.bookingSuccess.flightInformation
+
+export const getBookingInformationSuccess = (state) =>
+  state.bookingSuccess.ticketStatus

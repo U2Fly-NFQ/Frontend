@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Col, Row, Space, Table, Button } from 'antd'
 import { EyeOutlined } from '@ant-design/icons'
 import { UserTicket } from '../index'
 import { isEmpty } from 'lodash/lang'
 import './style.scss'
+import { findIndex } from 'lodash/array'
+import moment from 'moment'
 
 function UserBookingDetail({ detailData }) {
-  const [flights, setFlights] = useState([])
   const [viewTicket, setViewTicket] = useState(false)
   const [ticketData, setTicketData] = useState({})
-
   const flightsColumn = [
     {
       title: 'Airline',
@@ -17,21 +17,39 @@ function UserBookingDetail({ detailData }) {
       align: 'center',
       width: '150px',
       render: (_, { airline }) => (
-        <img width="100%" src={airline} alt="airline" />
+        <img width="100%" src={airline.image} alt="airline" />
       ),
     },
     {
       title: 'Flight',
-      dataIndex: 'key',
+      dataIndex: 'code',
       align: 'center',
     },
     {
-      title: 'Departure',
-      dataIndex: 'departure',
+      title: 'Journey',
+      align: 'center',
+      render: (_, { departure, arrival }) => (
+        <>
+          {departure}
+          <i
+            style={{ padding: '0 10px' }}
+            className="fa-solid fa-arrow-right-long"
+          ></i>
+          {arrival}
+        </>
+      ),
     },
     {
-      title: 'Arrival',
-      dataIndex: 'arrival',
+      title: 'ETD',
+      dataIndex: 'startTime',
+      // width: '150px',
+      align: 'center',
+    },
+    {
+      title: 'ETA',
+      dataIndex: 'endTime',
+      // width: '150px',
+      align: 'center',
     },
     {
       title: 'Action',
@@ -43,9 +61,13 @@ function UserBookingDetail({ detailData }) {
             type="default"
             shape="default"
             onClick={() => {
+              let index = findIndex(
+                detailData.flights,
+                (flight) => flight.id === record.id
+              )
               setTicketData({
                 ...detailData,
-                flights: detailData.flights[record.key - 1],
+                flights: detailData.flights[index],
               })
               setViewTicket(true)
             }}
@@ -55,16 +77,6 @@ function UserBookingDetail({ detailData }) {
       ),
     },
   ]
-
-  useEffect(() => {
-    const flights = detailData.flights.map((flight) => ({
-      ...flight,
-      departure: `${flight.startTime} - ${flight.departure}`,
-      arrival: `${flight.endTime} - ${flight.arrival}`,
-    }))
-    setFlights(flights)
-  }, [detailData])
-
   return (
     <Row className="booking-detail">
       <Col className="booking-detail-info" span={24}>
@@ -82,19 +94,19 @@ function UserBookingDetail({ detailData }) {
             Name:
           </Col>
           <Col className="booking-info-text" span={7}>
-            {detailData.owner}
+            {detailData.passenger.name}
           </Col>
           <Col className="booking-info-label" span={5}>
             Date:
           </Col>
           <Col className="booking-info-text" span={7}>
-            {detailData.date}
+            {moment(detailData.createdAt).format('DD/M/YYYY')}
           </Col>
           <Col className="booking-info-label" span={5}>
             Email:
           </Col>
           <Col className="booking-info-text" span={7}>
-            {detailData.email}
+            {detailData.passenger.email}
           </Col>
         </Row>
         <Row className="flight-info">
@@ -104,7 +116,8 @@ function UserBookingDetail({ detailData }) {
           <Col className="flight-info-content" span={24}>
             <Table
               columns={flightsColumn}
-              dataSource={flights}
+              rowKey={(record) => record.id}
+              dataSource={detailData.flights}
               pagination={false}
             />
           </Col>

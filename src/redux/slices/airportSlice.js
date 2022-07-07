@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-
-import airport from '../../api/Airport'
+import axios from 'axios'
 
 const initialState = {
   status: '',
@@ -31,7 +30,10 @@ export default airportSlice
 export const fetchAirports = createAsyncThunk(
   'ariport/fetchAirports',
   async () => {
-    const res = await airport.getList()
+    // const res = await airport.getList()
+    const res = await axios.get(
+      `https://62c45182abea8c085a729073.mockapi.io/aiports`
+    )
     return res.data
   }
 )

@@ -17,7 +17,7 @@ export default function BookingCoupon() {
         <h3>Coupon code</h3>
       </div>
       <div className="booking-coupon__container">
-        {discount.percent != 0 && <i className="fa-solid fa-circle-check"></i>}
+        {/* {discount.percent != 0 && <i className="fa-solid fa-circle-check"></i>} */}
         <Form onFinish={onFinish}>
           <Form.Item
             name="idDiscount"
@@ -39,7 +39,7 @@ export default function BookingCoupon() {
           <Form.Item style={{ marginTop: '20px' }}>
             <ButtonOfPage
               title={'Apply voucher'}
-              warning={discount.percent != 0 ? true : false}
+              // warning={discount.percent != 0 ? true : false}
             />
           </Form.Item>
         </Form>

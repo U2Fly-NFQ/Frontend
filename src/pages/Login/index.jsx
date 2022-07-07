@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import axiosInstance from '../../api'
 import { useTranslation } from 'react-i18next'
 import { getLsObj, updateLs } from '../../utils/localStorage'
+import { scrollTo } from '../../utils/scroll'
 
 const { Title } = Typography
 
@@ -18,6 +19,8 @@ const Login = () => {
   const { t } = useTranslation()
 
   useEffect(() => {
+    scrollTo(300)
+
     if (user.id && token) {
       navigate(-1)
     }

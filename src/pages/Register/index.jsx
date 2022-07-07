@@ -2,11 +2,17 @@ import { Row, Col, Typography } from 'antd'
 import { LoginBanner } from '../../components'
 import './style.scss'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
+import { scrollTo } from '../../utils/scroll'
 
 const { Title } = Typography
 
 const Register = () => {
   const { t } = useTranslation()
+
+  useEffect(() => {
+    scrollTo(400)
+  }, [])
 
   const onFinish = (values) => {
     console.log('Success:', values)

@@ -87,7 +87,7 @@ exports[`Navigation bar test renders correctly 1`] = `
             id=""
             type="submit"
           >
-            cta.become_partner
+            Become a partner
           </button>
         </div>
       </div>
@@ -116,7 +116,7 @@ exports[`Navigation bar test renders correctly 1`] = `
           href="/"
           onClick={[Function]}
         >
-          header.navbar.home
+          Home
         </a>
       </li>
       <li
@@ -127,7 +127,7 @@ exports[`Navigation bar test renders correctly 1`] = `
           href="/flights"
           onClick={[Function]}
         >
-          header.navbar.flight
+          Flight
         </a>
       </li>
     </ul>

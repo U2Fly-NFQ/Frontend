@@ -44,7 +44,7 @@ const LanguageSelect = () => {
           }}
         />
       }
-      defaultValue={'en'}
+      defaultValue={i18n.language}
       onChange={changeLanguage}
       styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
     >
@@ -57,6 +57,7 @@ const LanguageSelect = () => {
             }}
             src={option.icon}
             alt=""
+            value={option.value}
           />
           {option.value}
         </Option>

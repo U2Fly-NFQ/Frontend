@@ -18,7 +18,6 @@ import {
 import BookingSteps from './BookingSteps'
 import BookingPassenger from './BookingPassenger'
 import PaymentFlight from './PaymentFlight'
-import BookingSuccessPage from './BookingSuccess'
 import { scrollTo } from '../../utils/scroll'
 import { getBookingInformationSuccess } from '../../redux/selectors/bookingSuccessSelector'
 import { getLsObj } from '../../utils/localStorage'
@@ -49,7 +48,7 @@ function FlightList() {
     if (flight.id) {
       if (!token) navigate('/login')
     } else {
-      navigate(-1)
+      // navigate(-1)
     }
   }, [])
 
@@ -66,21 +65,19 @@ function FlightList() {
           style={{ display: ticketId === undefined ? 'flex' : 'block' }}
         >
           <BookingSteps ticketId={ticketId} />
-          {ticketId === undefined ? (
-            <div className="booking-page__container__item">
-              <div className="booking-page__container__itemContent">
-                <div className="booking-page__container__item__content">
-                  {getCurrentMethod === 0 ? (
-                    <BookingPassenger />
-                  ) : (
-                    <PaymentFlight />
-                  )}
-                </div>
+
+          <div className="booking-page__container__item">
+            <div className="booking-page__container__itemContent">
+              <div className="booking-page__container__item__content">
+                {getCurrentMethod === 0 ? (
+                  <BookingPassenger />
+                ) : (
+                  <PaymentFlight />
+                )}
               </div>
             </div>
-          ) : (
-            <BookingSuccessPage />
-          )}
+          </div>
+
           {ticketId === undefined && (
             <div className="booking-page__container__item">
               <div className="booking-page__container__item__content block-container">
@@ -88,16 +85,10 @@ function FlightList() {
                   {<DetailFlights />}
                 </div>
               </div>
-              <div
-                className="booking-page__container__item__content block-container"
-                // style={{ padding: '20px', marginTop: '20px' }}
-              >
+              <div className="booking-page__container__item__content block-container">
                 {<BookingTravelDate />}
               </div>
-              <div
-                className="booking-page__container__item__content block-container"
-                // style={{ padding: '20px', marginTop: '20px' }}
-              >
+              <div className="booking-page__container__item__content block-container">
                 <div className="booking-page__container__itemContent">
                   {<BookingCoupon />}
                 </div>

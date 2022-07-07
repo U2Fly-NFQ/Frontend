@@ -9,11 +9,10 @@ import {
   getInfoFlightInBookingFight,
   getInfoFlightInBookingSeat,
   getInfoPriceAfterDiscount,
+  getRoundTripBookingFlight,
   getUserInformation,
 } from '../../../redux/selectors'
-import { createBookingFlight } from '../../../redux/slices/bookingFlightsSlice'
 import { useTranslation } from 'react-i18next'
-
 export default function PaymentFlight() {
   const [value, setValue] = useState(1)
   const [dataBooking, setDataBooking] = useState()
@@ -23,6 +22,8 @@ export default function PaymentFlight() {
   const getFlightData = useSelector(getInfoFlightInBookingFight)
   const getSeatData = useSelector(getInfoFlightInBookingSeat)
   const userInformation = useSelector(getUserInformation)
+  const getRoundTrip = useSelector(getRoundTripBookingFlight)
+
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
@@ -35,14 +36,17 @@ export default function PaymentFlight() {
   const onFinish = () => {
     let fetchDataValue = {
       passengerId: userInformation.accountId,
-      flightId: getFlightData.id,
+      flightId: getRoundTrip.id
+        ? `${getFlightData.id},${getRoundTrip.id}`
+        : `${getFlightData.id}`,
       seatTypeId: getSeatData.id,
       totalPrice:
-        priceDiscount === 0 ? getPrice.price * 1000 : priceDiscount * 1000,
+        priceDiscount === 0 ? getPrice.price * 100 : priceDiscount * 100,
       discountId: getDiscountInfo.id || 1,
       ticketOwner: userInformation.firstName,
     }
-    dispatch(createBookingFlight(fetchDataValue))
+    console.log(fetchDataValue)
+    // dispatch(createBookingFlight(fetchDataValue))
   }
   let dataPayment = [
     {
@@ -56,39 +60,6 @@ export default function PaymentFlight() {
         </>
       ),
     },
-    // {
-    //   paymentMethod: 'Paypal',
-    //   render: (
-    //     <div style={{ marginTop: '20px' }}>
-    //       <Form.Item
-    //         name="username"
-    //         style={{
-    //           display: 'inline-block',
-    //           width: '50%',
-    //           margin: '0px',
-    //         }}
-    //         rules={[{ required: true, message: 'Please input your username!' }]}
-    //       >
-    //         <InputOFPage placeholder="Email Address" />
-    //       </Form.Item>
-    //       <Form.Item
-    //         name="agreement"
-    //         valuePropName="checked"
-    //         rules={[
-    //           {
-    //             validator: (_, value) =>
-    //               value
-    //                 ? Promise.resolve()
-    //                 : Promise.reject(new Error('Should accept agreement')),
-    //           },
-    //         ]}
-    //       ></Form.Item>
-    //       <Form.Item>
-    //         <ButtonOfPage title={'Pay Now'} />
-    //       </Form.Item>
-    //     </div>
-    //   ),
-    // },
   ]
 
   return (

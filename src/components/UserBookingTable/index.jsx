@@ -1,20 +1,32 @@
 import React, { useState } from 'react'
 import { UserBookingDetail } from '../index'
-import { Button, Space, Table } from 'antd'
+import { Button, Modal, Space, Table } from 'antd'
 import { bookingStatus } from '../../Constants'
 import { useNavigate } from 'react-router-dom'
+import { ExclamationCircleOutlined } from '@ant-design/icons'
 
-function UserBookingTable({ loading, data }) {
+function UserBookingTable({ loading, data, onCancel }) {
   //initiation
   const [expandedRowKeys, setExpandedRowKeys] = useState([])
   const navigate = useNavigate()
+
   //Data for UI
+  const confirm = () => {
+    Modal.confirm({
+      title: 'Confirm',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Are you want to cancel this booking?',
+      okText: 'Yes',
+      cancelText: 'No',
+      onOk: onCancel,
+    })
+  }
   const bookingListColumn = [
     {
       title: 'Booking ID',
       dataIndex: 'id',
       align: 'center',
-      sorter: (a, b) => a.code - b.code,
+      sorter: (a, b) => a.id - b.id,
     },
     {
       title: 'Journey',
@@ -39,10 +51,10 @@ function UserBookingTable({ loading, data }) {
       ),
     },
     {
-      title: 'Booking Amount (USD)',
-      dataIndex: 'total_price',
+      title: 'Booking Amount',
+      dataIndex: 'totalPrice',
       align: 'center',
-      sorter: (a, b) => a.total_price - b.total_price,
+      sorter: (a, b) => a.totalPrice - b.totalPrice,
     },
     {
       title: 'Status',
@@ -53,38 +65,25 @@ function UserBookingTable({ loading, data }) {
     {
       title: 'Action',
       key: 'action',
-      width: 100,
+      width: '100px',
+      dataIndex: 'id',
       align: 'center',
       render: (_, record) => (
         <Space>
           {/* eslint-disable-next-line react/jsx-no-undef */}
           {record.status === bookingStatus['0'] && (
-            <Button
-              danger
-              type="primary"
-              shape="default"
-              // onClick={() => ()}
-            >
+            <Button type="default" shape="default" onClick={confirm}>
               Cancel
             </Button>
           )}
           {(record.status === bookingStatus['1'] ||
-            record.status === bookingStatus['3']) && (
+            record.status === bookingStatus['2']) && (
             <Button
-              type="default"
+              type="primary"
               shape="default"
               onClick={() => navigate('/')}
             >
               Booking Again
-            </Button>
-          )}
-          {record.status === bookingStatus['2'] && (
-            <Button
-              type="primary"
-              shape="default"
-              // onClick={() => ()}
-            >
-              Rating
             </Button>
           )}
         </Space>
@@ -92,25 +91,28 @@ function UserBookingTable({ loading, data }) {
     },
   ]
   const onExpandRowKey = (expanded, record) => {
-    expanded ? setExpandedRowKeys(record.id) : setExpandedRowKeys([])
+    expanded ? setExpandedRowKeys([record.id]) : setExpandedRowKeys([])
   }
+
   return (
-    <Table
-      columns={bookingListColumn}
-      rowKey={(record) => record.id}
-      expandable={{
-        expandedRowRender: (record) => (
-          <UserBookingDetail detailData={record} />
-        ),
-        expandedRowKeys: expandedRowKeys,
-        onExpand: onExpandRowKey,
-      }}
-      dataSource={data}
-      loading={loading}
-      scroll={{
-        x: 'max-content',
-      }}
-    />
+    <>
+      <Table
+        columns={bookingListColumn}
+        rowKey={(record) => record.id}
+        expandable={{
+          expandedRowKeys: expandedRowKeys,
+          onExpand: onExpandRowKey,
+          expandedRowRender: (record) => (
+            <UserBookingDetail detailData={record} />
+          ),
+        }}
+        dataSource={data}
+        loading={loading}
+        scroll={{
+          x: 'max-content',
+        }}
+      />
+    </>
   )
 }
 

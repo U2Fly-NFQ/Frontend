@@ -1,15 +1,30 @@
 import React, { useState } from 'react'
 import { Col, Row, Space, Table, Button } from 'antd'
-import { EyeOutlined } from '@ant-design/icons'
 import { UserTicket } from '../index'
 import { isEmpty } from 'lodash/lang'
 import './style.scss'
 import { findIndex } from 'lodash/array'
 import moment from 'moment'
+import ModalRating from '../ModalRating'
+import { useDispatch } from 'react-redux'
 
 function UserBookingDetail({ detailData }) {
+  //initiation
+  const dispatch = useDispatch()
   const [viewTicket, setViewTicket] = useState(false)
   const [ticketData, setTicketData] = useState({})
+  const [currentId, setCurrentId] = useState()
+  const [isModalVisible, setIsModalVisible] = useState(false)
+
+  const handleCancelRating = () => {
+    setIsModalVisible(false)
+  }
+  const showModal = () => {
+    setIsModalVisible(true)
+  }
+
+  const handleRating = (value) => {}
+
   const flightsColumn = [
     {
       title: 'Airline',
@@ -41,14 +56,14 @@ function UserBookingDetail({ detailData }) {
     },
     {
       title: 'ETD',
-      dataIndex: 'startTime',
-      // width: '150px',
+      dataIndex: 'ETD',
+      width: '100px',
       align: 'center',
     },
     {
       title: 'ETA',
-      dataIndex: 'endTime',
-      // width: '150px',
+      dataIndex: 'ETA',
+      width: '100px',
       align: 'center',
     },
     {
@@ -57,22 +72,37 @@ function UserBookingDetail({ detailData }) {
       align: 'center',
       render: (_, record) => (
         <Space>
-          <Button
-            type="default"
-            shape="default"
-            onClick={() => {
-              let index = findIndex(
-                detailData.flights,
-                (flight) => flight.id === record.id
-              )
-              setTicketData({
-                ...detailData,
-                flights: detailData.flights[index],
-              })
-              setViewTicket(true)
-            }}
-            icon={<EyeOutlined />}
-          />
+          {record.isRating === 0 && (
+            <Button
+              type="primary"
+              shape="default"
+              onClick={() => {
+                showModal()
+                setCurrentId(record.id)
+              }}
+            >
+              Rating
+            </Button>
+          )}
+          {record.isRating === 1 && (
+            <Button
+              type="default"
+              shape="default"
+              onClick={() => {
+                let index = findIndex(
+                  detailData.flights,
+                  (flight) => flight.id === record.id
+                )
+                setTicketData({
+                  ...detailData,
+                  flights: detailData.flights[index],
+                })
+                setViewTicket(true)
+              }}
+            >
+              View
+            </Button>
+          )}
         </Space>
       ),
     },
@@ -130,6 +160,12 @@ function UserBookingDetail({ detailData }) {
           visible={viewTicket}
         />
       )}
+      <ModalRating
+        visible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+        handleCancel={handleCancelRating}
+        handleOk={handleRating}
+      />
     </Row>
   )
 }

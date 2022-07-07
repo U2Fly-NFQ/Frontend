@@ -1,6 +1,6 @@
 import { Collapse, Steps } from 'antd'
 import React from 'react'
-import { getDurationFormat } from '../../../../utils'
+import { getDurationFormat } from '../../../../utils/flight'
 import './index.scss'
 import { useSelector } from 'react-redux'
 import vietnameairline from '../../../../assets/images/system/vip.png'
@@ -91,7 +91,7 @@ export default function FlightTrip() {
           />
         </Steps>
       </Panel>
-      {getRoundTrip.name && (
+      {getRoundTrip.code && (
         <Panel
           style={{ borderTop: '1px solid blue' }}
           showArrow={false}

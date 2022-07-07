@@ -1,7 +1,7 @@
 import { Layout } from 'antd'
 import './style.scss'
 import { Outlet } from 'react-router-dom'
-import { AdminHeader, AdminSidebar } from '../../components'
+import { AdminSidebar } from '../../components'
 import { useState } from 'react'
 
 const { Footer } = Layout
@@ -14,7 +14,7 @@ function AdminLayout() {
     <Layout className="admin">
       <AdminSidebar collapsed={collapsed} setCollapsed={setCollapsed} />
       <Layout>
-        <AdminHeader />
+        {/* <AdminHeader /> */}
         <Outlet />
       </Layout>
     </Layout>

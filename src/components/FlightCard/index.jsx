@@ -9,7 +9,7 @@ import {
   addHourToTime,
   getDurationFormat,
   getPriceWithDiscount,
-} from '../../utils/fightFunction'
+} from '../../utils/flight'
 
 export default function FlightCard(props) {
   const { data, loading } = props

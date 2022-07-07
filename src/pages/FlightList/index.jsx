@@ -18,7 +18,7 @@ import axios from 'axios'
 import { CloseOutlined } from '@ant-design/icons'
 import { scrollTo } from '../../utils/scroll'
 import Home from '../Home'
-import { addHourToTime, getDurationFormat } from '../../utils/fightFunction'
+import { addHourToTime, getDurationFormat } from '../../utils/flight'
 
 const { Title, Text } = Typography
 const { Option } = Select

@@ -3,7 +3,9 @@ import './style.scss'
 import { Outlet } from 'react-router-dom'
 import { AdminHeader, AdminSidebar } from '../../components'
 import { useState } from 'react'
-const { Header, Footer, Sider, Content } = Layout
+
+const { Footer } = Layout
+
 function AdminLayout() {
   //Menu collapsed
   const [collapsed, setCollapsed] = useState(false)
@@ -13,9 +15,7 @@ function AdminLayout() {
       <AdminSidebar collapsed={collapsed} setCollapsed={setCollapsed} />
       <Layout>
         <AdminHeader />
-        <Content>
-          <Outlet />
-        </Content>
+        <Outlet />
         <Footer>admin footer</Footer>
       </Layout>
     </Layout>

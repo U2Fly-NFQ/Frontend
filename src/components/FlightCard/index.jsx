@@ -6,10 +6,11 @@ import { useNavigate } from 'react-router-dom'
 import { getLsObj, updateLs } from '../../utils/localStorage'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'
-
-Number.prototype.round = function (places) {
-  return +(Math.round(this + 'e+' + places) + 'e-' + places)
-}
+import {
+  addHourToTime,
+  getDurationFormat,
+  getPriceWithDiscount,
+} from '../../utils/flight'
 
 export default function FlightCard(props) {
   const { data, loading } = props
@@ -86,20 +87,14 @@ export default function FlightCard(props) {
           <div className="arrow">
             <h6>{t('flight-list-page.Direct')}</h6>
             <i className="fa-solid fa-arrow-right-long"></i>
-            <p>
-              {data.duration} {t('flight-list-page.hour')}{' '}
-            </p>
+            <p>{getDurationFormat(data.duration)}</p>
           </div>
           <div className="destination">
             <p className="sub-title">{t('flight-list-page.To')}</p>
             <h3 className="title">
               {data.arrival.city} ({data.arrival.iata})
             </h3>
-            <h6 className="desc">
-              {moment(data.startTime, 'HH:mm:ss')
-                .add(data.duration * 60, 'minutes')
-                .format('HH:mm')}
-            </h6>
+            <h6 className="desc">{addHourToTime(data.startTime)}</h6>
           </div>
         </div>
         <div className="flight-card-deal">
@@ -111,8 +106,7 @@ export default function FlightCard(props) {
               </del>
             </h5>
             <h2 className="flight-card-price__discount">
-              {t('flight-list-page.$')}
-              {(data.seat.price * (1 - randomDiscount)).toFixed(2)}
+              $ {getPriceWithDiscount(data.seat.price, randomDiscount)}
             </h2>
             <h4 className="discount-label red">
               <span>

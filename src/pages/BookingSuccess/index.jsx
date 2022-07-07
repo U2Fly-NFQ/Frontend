@@ -6,12 +6,9 @@ import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getLoaddingMethodInBookingFlight } from '../../redux/selectors'
 import { scrollTo } from '../../utils/scroll'
-import {
-  getFlightInformationSuccess,
-  getUserInformationSuccess,
-} from '../../redux/selectors/bookingSuccessSelector'
+import { getUserInformationSuccess } from '../../redux/selectors/bookingSuccessSelector'
 import BookingSteps from '../Booking/BookingSteps'
-import BookingSuccessDetail from '../Booking/BookingSuccess/BookingSuccessDetail'
+import BookingSuccessDetail from './BookingSuccessDetail'
 import './index.scss'
 import { getTicketInformation } from '../../redux/slices/bookingSuccessSlice'
 function BookingSuccessPage() {
@@ -19,7 +16,6 @@ function BookingSuccessPage() {
   const dateUserBooking = useSelector(getUserInformationSuccess)
   const getLoadding = useSelector(getLoaddingMethodInBookingFlight)
   const { ticketId } = useParams()
-  const getInforFlight = useSelector(getFlightInformationSuccess)
 
   const dispatch = useDispatch()
 
@@ -64,7 +60,9 @@ function BookingSuccessPage() {
                     <h6>
                       our booking details has been sent to:
                       <span className="highlight-main">
-                        {dateUserBooking.email || 'thang@nfq.com'}
+                        <a href="https://mail.google.com/mail/u/0/#search/support%40tolehoai.me">
+                          {dateUserBooking.email || 'thang@nfq.com'}
+                        </a>
                       </span>
                     </h6>
                   </div>
@@ -85,7 +83,7 @@ function BookingSuccessPage() {
                     <li>
                       <span>Email address:</span>
                       <span className="value">
-                        {dateUserBooking.emailAddress || 'No Email'}
+                        {dateUserBooking.email || 'No Email'}
                       </span>
                     </li>
                     <li>
@@ -101,16 +99,9 @@ function BookingSuccessPage() {
                         {dateUserBooking.passport || 'No Postal Passport'}
                       </span>
                     </li>
-                    <li>
-                      <span>visa:</span>
-                      <span className="value">
-                        {dateUserBooking.visa || 'No visa'}
-                      </span>
-                    </li>
                   </ul>
                 </div>
               </div>
-
               <div className="Booking-success__container__item">
                 <BookingSuccessDetail />
               </div>

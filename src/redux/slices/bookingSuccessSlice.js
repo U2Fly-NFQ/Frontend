@@ -12,7 +12,7 @@ export const getTicketInformation = createAsyncThunk(
 )
 const initialState = {
   userInformation: {},
-  flightInformation: {},
+  ticketInfomation: {},
   ticketStatus: false,
   loadding: true,
 }
@@ -30,32 +30,34 @@ const bookingSuccessFlightsSlice = createSlice({
     [getTicketInformation.fulfilled]: (state, action) => {
       state.loadding = false
       const { data, status } = action.payload
-      console.log(action.payload)
+
       const {
         id,
         totalPrice,
         flight,
-        ticketOwner,
-        passenger,
-        discount,
         seatType,
         createdAt,
+        passenger,
+        email,
+        discount,
       } = data
       if (status === 'success') {
         state.ticketStatus = true
         state.userInformation = {
           name: passenger.name,
+          email: email,
           gender: passenger.gender,
           birthday: passenger.birthday,
           identification: passenger.identification,
         }
-        state.flightInformation = {
+        state.ticketInfomation = {
           id: id,
-          arrival: flight.arrival,
-          departure: flight.departure,
-          startTime: moment(flight.startTime).format('YYYY-MM-DD'),
-          seatType: flight.seatType,
-          createdAt: moment(flight.createdAt).format('YYYY-MM-DD'),
+          //   arrival: flight.arrival,
+          //   departure: flight.departure,
+          discount: discount < 1 ? discount : 0,
+          //   startTime: moment(flight.startTime).format('YYYY-MM-DD'),
+          seatType: seatType,
+          createdAt: moment(createdAt).format('YYYY-MM-DD'),
           price: totalPrice,
         }
       } else {

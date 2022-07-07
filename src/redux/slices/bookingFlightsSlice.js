@@ -160,10 +160,16 @@ const bookingFlightsSlice = createSlice({
     [getRoundTripBookingFlightAsync.fulfilled]: (state, action) => {
       state.loadding = false
       const { status, data } = action.payload
-      console.log(data)
+      let allSeatNameAvailable = data.seat.map((item) => item.name)
+      let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
       if (status === 'success') {
         state.dataRoundTripFlight = {
           ...data,
+          seat: data.seat[
+            allSeatNameAvailable.indexOf(dataSeatChoose.setType) < 0
+              ? 0
+              : allSeatNameAvailable.indexOf(dataSeatChoose.setType)
+          ],
         }
       }
     },

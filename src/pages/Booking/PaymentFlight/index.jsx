@@ -12,7 +12,6 @@ import {
   getRoundTripBookingFlight,
   getUserInformation,
 } from '../../../redux/selectors'
-import { createBookingFlight } from '../../../redux/slices/bookingFlightsSlice'
 export default function PaymentFlight() {
   const [value, setValue] = useState(1)
   const [dataBooking, setDataBooking] = useState()
@@ -23,6 +22,7 @@ export default function PaymentFlight() {
   const getSeatData = useSelector(getInfoFlightInBookingSeat)
   const userInformation = useSelector(getUserInformation)
   const getRoundTrip = useSelector(getRoundTripBookingFlight)
+
   const dispatch = useDispatch()
   const onChange = (e) => {
     setValue(e.target.value)
@@ -33,15 +33,17 @@ export default function PaymentFlight() {
   const onFinish = () => {
     let fetchDataValue = {
       passengerId: userInformation.accountId,
-      flightId: `${getFlightData.id},${getRoundTrip.id}`,
+      flightId: getRoundTrip.id
+        ? `${getFlightData.id},${getRoundTrip.id}`
+        : `${getFlightData.id}`,
       seatTypeId: getSeatData.id,
       totalPrice:
-        priceDiscount === 0 ? getPrice.price * 1000 : priceDiscount * 1000,
+        priceDiscount === 0 ? getPrice.price * 100 : priceDiscount * 100,
       discountId: getDiscountInfo.id || 1,
       ticketOwner: userInformation.firstName,
     }
-
-    dispatch(createBookingFlight(fetchDataValue))
+    console.log(fetchDataValue)
+    // dispatch(createBookingFlight(fetchDataValue))
   }
   let dataPayment = [
     {

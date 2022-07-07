@@ -5,7 +5,6 @@ import { LoginBanner, PageLoadingAnimation } from '../../components'
 import './style.scss'
 import { useEffect, useState } from 'react'
 import axiosInstance from '../../api'
-import { getLsObj } from '../../utils/localStorage'
 import { useTranslation } from 'react-i18next'
 import { getLsObj, updateLs } from '../../utils/localStorage'
 

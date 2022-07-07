@@ -27,8 +27,6 @@ const { Option } = Select
 function FlightList() {
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  const { onetrip, roundtrip, status } = useSelector((state) => state.flights)
-  const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
   const [order, setOrder] = useState('price.asc')
   const [searchParams, setSearchParams] = useSearchParams()

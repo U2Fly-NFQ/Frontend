@@ -15,7 +15,9 @@ function AdminLayout() {
       <AdminSidebar collapsed={collapsed} setCollapsed={setCollapsed} />
       <Layout>
         <AdminHeader />
-        <Outlet />
+        <main style={{ padding: '16px', minHeight: '80vh' }}>
+          <Outlet />
+        </main>
         <Footer>admin footer</Footer>
       </Layout>
     </Layout>

@@ -85,6 +85,7 @@
     ]
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.10.0",
     "cypress": "^10.3.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",

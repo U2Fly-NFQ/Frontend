@@ -29,9 +29,6 @@ const Login = () => {
         navigate('/flights')
       }
     }
-    if (user.id && token) {
-      navigate(-1)
-    }
   }, [])
 
   const [errTxt, setErrTxt] = useState('')

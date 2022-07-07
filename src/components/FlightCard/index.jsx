@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import './style.scss'
 import { useNavigate } from 'react-router-dom'
 import { getLsObj, updateLs } from '../../utils/localStorage'
+import { useTranslation } from 'react-i18next'
 import moment from 'moment'
 import {
   addHourToTime,
@@ -14,6 +15,7 @@ import {
 export default function FlightCard(props) {
   const { data, loading } = props
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const onBooking = () => {
     let flight = getLsObj('flight')
@@ -74,7 +76,7 @@ export default function FlightCard(props) {
           </div>
 
           <div className="destination">
-            <p className="sub-title">From</p>
+            <p className="sub-title">{t('flight-list-page.From')}</p>
             <h3 className="title">
               {data.departure.city} ({data.departure.iata})
             </h3>
@@ -83,12 +85,12 @@ export default function FlightCard(props) {
             </h6>
           </div>
           <div className="arrow">
-            <h6>Direct</h6>
+            <h6>{t('flight-list-page.Direct')}</h6>
             <i className="fa-solid fa-arrow-right-long"></i>
             <p>{getDurationFormat(data.duration)}</p>
           </div>
           <div className="destination">
-            <p className="sub-title">To</p>
+            <p className="sub-title">{t('flight-list-page.To')}</p>
             <h3 className="title">
               {data.arrival.city} ({data.arrival.iata})
             </h3>
@@ -98,17 +100,24 @@ export default function FlightCard(props) {
         <div className="flight-card-deal">
           <div className="flight-card-price">
             <h5 className="flight-card-price__origin">
-              <del>${data.seat.price}</del>
+              <del>
+                {t('flight-list-page.$')}
+                {data.seat.price}
+              </del>
             </h5>
             <h2 className="flight-card-price__discount">
               $ {getPriceWithDiscount(data.seat.price, randomDiscount)}
             </h2>
             <h4 className="discount-label red">
-              <span>{(randomDiscount * 100).toFixed(0)}% OFF</span>
+              <span>
+                {t('flight-list-page.OFF', {
+                  number: (randomDiscount * 100).toFixed(0),
+                })}
+              </span>
             </h4>
           </div>
           <button className="btn btn-primary btn-md" onClick={onBooking}>
-            Book now
+            {t('flight-list-page.Book now')}
           </button>
         </div>
       </div>

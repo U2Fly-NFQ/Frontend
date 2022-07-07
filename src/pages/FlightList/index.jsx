@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react'
 import { ScrollToTopButton } from '../../components'
 import { getLsObj, updateLs } from '../../utils/localStorage'
 import moment from 'moment'
+import { useTranslation } from 'react-i18next'
 import axios from 'axios'
 import { CloseOutlined } from '@ant-design/icons'
 import { scrollTo } from '../../utils/scroll'
@@ -25,6 +26,9 @@ const { Option } = Select
 
 function FlightList() {
   const dispatch = useDispatch()
+  const { t } = useTranslation()
+  const { onetrip, roundtrip, status } = useSelector((state) => state.flights)
+  const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
   const [order, setOrder] = useState('price.asc')
   const [searchParams, setSearchParams] = useSearchParams()
@@ -130,7 +134,9 @@ function FlightList() {
                   <div className="selected-outbound">
                     <div className="wrapper">
                       <div className="header">
-                        <Text className="main-title">Selected outbound</Text>
+                        <Text className="main-title">
+                          {t('flight-list-page.Selected outbound')}
+                        </Text>
                         <div className="sub-title">
                           {/* <Button type="link" size="small">
                             Flight details
@@ -178,12 +184,14 @@ function FlightList() {
                         </div>
                         <div className="price-box">
                           <Title level={3} className="price-old">
-                            $<del>{selectedPrice}</del>
+                            {t('flight-list-page.$')}
+                            <del>{selectedPrice}</del>
                           </Title>
                           <Title level={3} className="price-new">
-                            ${selectedPrice}
+                            {t('flight-list-page.$')}
+                            {selectedPrice}
                           </Title>
-                          <sup>0% OFF</sup>
+                          <sup>{t('flight-list-page.OFF', { number: 0 })}</sup>
                         </div>
                       </div>
                     </div>
@@ -198,15 +206,21 @@ function FlightList() {
                   <Col span={24}>
                     <div className="flight-search-title-container">
                       <Title level={4}>
-                        {pagination?.total || 0} tours found
+                        {t('flight-list-page.flights found', {
+                          number: pagination?.total || 0,
+                        })}
                       </Title>
                       <Select
                         value={order}
                         style={{ width: 180, textAlign: 'left' }}
                         onChange={changeOrder}
                       >
-                        <Option value="price.asc">Cheapest price first</Option>
-                        <Option value="duration.asc">Fastest time first</Option>
+                        <Option value="price.asc">
+                          {t('flight-list-page.Price Low to High')}
+                        </Option>
+                        <Option value="duration.asc">
+                          {t('flight-list-page.Fly time Fastest')}
+                        </Option>
                       </Select>
                     </div>
                   </Col>

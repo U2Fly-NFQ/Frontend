@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FooterEmail search test FooterEmail search component renders correctly 1`] = `
+<div
+  className="footer-email"
+>
+  <div
+    className="footer-email container wide grid"
+  >
+    <div
+      className="ant-row"
+      style={
+        Object {
+          "alignItems": "center",
+        }
+      }
+    >
+      <div
+        className="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-12"
+        style={Object {}}
+      >
+        <div
+          className="footer-email__logo-content"
+        >
+          <div
+            className="footer-email__logo-content__logo"
+          >
+            <img
+              src="email.png"
+            />
+          </div>
+          <div
+            className="footer-email__logo-content__content"
+          >
+            <h4>
+              subscribe-form.Get the latest news and offers
+            </h4>
+            <h2>
+              subscribe-form.Subscribe to our newsletter
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-12"
+        style={Object {}}
+      >
+        <div
+          className="footer-email__email-send"
+        >
+          <input
+            className="form-control"
+            placeholder="subscribe-form.Enter your email address"
+          />
+          <div
+            className="form-submit"
+          >
+            <button
+              className="btn btn-primary btn-md"
+              id=""
+              type="submit"
+            >
+              subscribe-form.Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FooterEmail test FooterEmail component renders correctly 1`] = `
+<div
+  className="footer-email"
+>
+  <div
+    className="footer-email container wide grid"
+  >
+    <div
+      className="ant-row"
+      style={
+        Object {
+          "alignItems": "center",
+        }
+      }
+    >
+      <div
+        className="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-12"
+        style={Object {}}
+      >
+        <div
+          className="footer-email__logo-content"
+        >
+          <div
+            className="footer-email__logo-content__logo"
+          >
+            <img
+              src="email.png"
+            />
+          </div>
+          <div
+            className="footer-email__logo-content__content"
+          >
+            <h4>
+              subscribe-form.Get the latest news and offers
+            </h4>
+            <h2>
+              subscribe-form.Subscribe to our newsletter
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-12 ant-col-lg-12"
+        style={Object {}}
+      >
+        <div
+          className="footer-email__email-send"
+        >
+          <input
+            className="form-control"
+            placeholder="subscribe-form.Enter your email address"
+          />
+          <div
+            className="form-submit"
+          >
+            <button
+              className="btn btn-primary btn-md"
+              id=""
+              type="submit"
+            >
+              subscribe-form.Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

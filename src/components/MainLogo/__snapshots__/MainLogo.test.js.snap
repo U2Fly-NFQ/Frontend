@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainLogo search test MainLogo search component renders correctly 1`] = `
+<div
+  style={Object {}}
+>
+  <img
+    alt="Main logo"
+    onClick={[Function]}
+    src="logo.png"
+    style={
+      Object {
+        "cursor": "pointer",
+        "maxHeight": "64px",
+        "objectFit": "contain",
+        "transition": "all 0.2s linear",
+        "width": "160px",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`MainLogo test MainLogo component renders correctly 1`] = `
+<div
+  style={Object {}}
+>
+  <img
+    alt="Main logo"
+    onClick={[Function]}
+    src="logo.png"
+    style={
+      Object {
+        "cursor": "pointer",
+        "maxHeight": "64px",
+        "objectFit": "contain",
+        "transition": "all 0.2s linear",
+        "width": "160px",
+      }
+    }
+  />
+</div>
+`;

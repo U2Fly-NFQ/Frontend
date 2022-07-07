@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test snapshot Should match snapshot 1`] = `
+<div
+  className="form-submit"
+>
+  <button
+    className="btn btn-primary btn-md"
+    id=""
+    type="submit"
+  />
+</div>
+`;

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginBanner test LoginBanner component renders correctly 1`] = `
+<section
+  className="login-banner"
+>
+  <div
+    className="grid wide"
+  >
+    <div
+      style={
+        Object {
+          "opacity": 0,
+          "transform": "translateX(-200px) translateZ(0)",
+        }
+      }
+    >
+      <h1
+        className="ant-typography"
+        onClick={null}
+        style={
+          Object {
+            "WebkitLineClamp": undefined,
+          }
+        }
+      >
+        Welcome back
+      </h1>
+    </div>
+    <div
+      style={
+        Object {
+          "opacity": 0,
+          "transform": "translateX(200px) translateZ(0)",
+        }
+      }
+    >
+      <h3
+        className="ant-typography"
+        onClick={null}
+        style={
+          Object {
+            "WebkitLineClamp": undefined,
+          }
+        }
+      >
+        Logged in to stay in touch
+      </h3>
+    </div>
+  </div>
+</section>
+`;

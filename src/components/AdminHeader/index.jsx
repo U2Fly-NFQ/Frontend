@@ -12,7 +12,6 @@ function AdminHeader() {
 
   //Logical handling functions
   const handleSearch = (value) => {
-    console.log(value)
     setSearch('')
   }
   return (

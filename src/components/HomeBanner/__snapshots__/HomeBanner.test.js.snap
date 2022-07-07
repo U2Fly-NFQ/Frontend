@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomeBanner search test HomeBanner search component renders correctly 1`] = `
+<section
+  className="home-list-banner"
+>
+  <div
+    className="grid wide"
+  >
+    <div
+      className="ant-row"
+      style={
+        Object {
+          "marginLeft": -8,
+          "marginRight": -8,
+        }
+      }
+    >
+      <div
+        className="ant-col ant-col-xs-24"
+        style={
+          Object {
+            "paddingLeft": 8,
+            "paddingRight": 8,
+          }
+        }
+      >
+        <div
+          className="home-list-banner__text"
+        >
+          <h2>
+            THE WHOLE WORLD AWAITS
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`;

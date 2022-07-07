@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test snapshot Should match snapshot 1`] = `
+<aside
+  className="ant-layout-sider ant-layout-sider-dark admin-sidebar"
+  style={
+    Object {
+      "flex": "0 0 200px",
+      "maxWidth": "200px",
+      "minWidth": "200px",
+      "width": "200px",
+    }
+  }
+>
+  <div
+    className="ant-layout-sider-children"
+  >
+    <div
+      className="ant-row admin-sidebar-header"
+      style={Object {}}
+    >
+      <div
+        className="ant-col ant-col-24 admin-sidebar-header-logo"
+        style={Object {}}
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          <img
+            alt="logo"
+            src="logo.png"
+          />
+        </a>
+      </div>
+    </div>
+    <ul
+      className="ant-menu ant-menu-root ant-menu-inline ant-menu-light"
+      data-menu-list={true}
+      onKeyDown={[Function]}
+      role="menu"
+      tabIndex={0}
+    >
+      <li
+        className="ant-menu-item"
+        data-menu-id={null}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        role="menuitem"
+        style={
+          Object {
+            "paddingLeft": 24,
+          }
+        }
+        tabIndex={-1}
+      >
+        <i
+          className="fa-solid fa-gauge ant-menu-item-icon"
+        />
+        <span
+          className="ant-menu-title-content"
+        >
+          <a
+            href="/admin"
+            onClick={[Function]}
+          >
+            Dashboard
+          </a>
+        </span>
+      </li>
+      <li
+        className="ant-menu-item"
+        data-menu-id={null}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        role="menuitem"
+        style={
+          Object {
+            "paddingLeft": 24,
+          }
+        }
+        tabIndex={-1}
+      >
+        <i
+          class="fa-duotone fa-badge-dollar"
+          className="ant-menu-item-icon"
+        />
+        <span
+          className="ant-menu-title-content"
+        >
+          <a
+            href="/admin/discount"
+            onClick={[Function]}
+          >
+            Discount
+          </a>
+        </span>
+      </li>
+    </ul>
+    <div
+      aria-hidden={true}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    />
+  </div>
+</aside>
+`;

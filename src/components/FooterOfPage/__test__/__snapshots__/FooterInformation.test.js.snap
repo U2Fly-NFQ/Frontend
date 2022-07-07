@@ -1,0 +1,451 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FooterInformation search test FooterInformation search component renders correctly 1`] = `
+<div
+  className="footer-info  wide grid"
+>
+  <div
+    className="footer-info__container "
+  >
+    <div
+      className="ant-row ant-row-space-between"
+      style={Object {}}
+    >
+      <div
+        className="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-6"
+        style={Object {}}
+      >
+        <div
+          className="footer-info__container__contact"
+        >
+          <div
+            className="footer-info__container__title"
+          >
+            <h5>
+              Need any help?
+            </h5>
+          </div>
+          <div
+            className="footer-info__container__contact-content"
+          >
+            <div
+              className="footer-info__container__contact-content__item"
+            >
+              <h5>
+                CMail to our support team
+              </h5>
+              <h3>
+                <a
+                  href="#"
+                >
+                  support@domain.com
+                </a>
+              </h3>
+            </div>
+            <div
+              className="footer-info__container__contact-content__item"
+            >
+              <h5>
+                Call 24/7 for any help
+              </h5>
+              <h3>
+                <a
+                  href="#"
+                >
+                  +00 123 456 789
+                </a>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col ant-col-xs-12 ant-col-sm-12 ant-col-md-6 ant-col-lg-3"
+        style={Object {}}
+      >
+        <div
+          className="footer-info__container__company"
+        >
+          <div
+            className="footer-info__container__title"
+          >
+            <h5>
+              Company
+            </h5>
+          </div>
+          <div
+            className="footer-info__container__company__content"
+          >
+            <ul>
+              <li>
+                About Us
+              </li>
+              <li>
+                Testimonials
+              </li>
+              <li>
+                Rewards
+              </li>
+              <li>
+                Work with Us
+              </li>
+              <li>
+                Meet the Team
+              </li>
+              <li>
+                Blog
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col ant-col-xs-12 ant-col-sm-12 ant-col-md-6 ant-col-lg-4"
+        style={Object {}}
+      >
+        <div
+          className="footer-info__container__company"
+        >
+          <div
+            className="footer-info__container__title"
+          >
+            <h5>
+              Support
+            </h5>
+          </div>
+          <div
+            className="footer-info__container__company__content"
+          >
+            <ul>
+              <li>
+                Account
+              </li>
+              <li>
+                Faq
+                 
+              </li>
+              <li>
+                Legal
+              </li>
+              <li>
+                Contact
+              </li>
+              <li>
+                Affiliate Program
+              </li>
+              <li>
+                Privacy Policy
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col ant-col-xs-12 ant-col-sm-12 ant-col-md-5 ant-col-lg-4"
+        style={Object {}}
+      >
+        <div
+          className="footer-info__container__company"
+        >
+          <div
+            className="footer-info__container__title"
+          >
+            <h5>
+              Other Services
+            </h5>
+          </div>
+          <div
+            className="footer-info__container__company__content"
+          >
+            <ul>
+              <li>
+                Community program
+              </li>
+              <li>
+                Investor Relations
+              </li>
+              <li>
+                Rewards Program
+              </li>
+              <li>
+                Partners
+              </li>
+              <li>
+                PointsPLUS
+              </li>
+              <li>
+                Blog
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col ant-col-xs-12 ant-col-sm-12 ant-col-md-6 ant-col-lg-5"
+        style={Object {}}
+      >
+        <div
+          className="footer-info__container__company"
+        >
+          <div
+            className="footer-info__container__title"
+          >
+            <h5>
+              Top cities
+            </h5>
+          </div>
+          <div
+            className="footer-info__container__company__content"
+          >
+            <ul>
+              <li>
+                Chicago
+              </li>
+              <li>
+                New York
+              </li>
+              <li>
+                San Francisco
+              </li>
+              <li>
+                California
+              </li>
+              <li>
+                Ohio
+              </li>
+              <li>
+                Alaska
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FooterInformation test FooterInformation component renders correctly 1`] = `
+<div
+  className="footer-info  wide grid"
+>
+  <div
+    className="footer-info__container "
+  >
+    <div
+      className="ant-row ant-row-space-between"
+      style={Object {}}
+    >
+      <div
+        className="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-6"
+        style={Object {}}
+      >
+        <div
+          className="footer-info__container__contact"
+        >
+          <div
+            className="footer-info__container__title"
+          >
+            <h5>
+              Need any help?
+            </h5>
+          </div>
+          <div
+            className="footer-info__container__contact-content"
+          >
+            <div
+              className="footer-info__container__contact-content__item"
+            >
+              <h5>
+                CMail to our support team
+              </h5>
+              <h3>
+                <a
+                  href="#"
+                >
+                  support@domain.com
+                </a>
+              </h3>
+            </div>
+            <div
+              className="footer-info__container__contact-content__item"
+            >
+              <h5>
+                Call 24/7 for any help
+              </h5>
+              <h3>
+                <a
+                  href="#"
+                >
+                  +00 123 456 789
+                </a>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col ant-col-xs-12 ant-col-sm-12 ant-col-md-6 ant-col-lg-3"
+        style={Object {}}
+      >
+        <div
+          className="footer-info__container__company"
+        >
+          <div
+            className="footer-info__container__title"
+          >
+            <h5>
+              Company
+            </h5>
+          </div>
+          <div
+            className="footer-info__container__company__content"
+          >
+            <ul>
+              <li>
+                About Us
+              </li>
+              <li>
+                Testimonials
+              </li>
+              <li>
+                Rewards
+              </li>
+              <li>
+                Work with Us
+              </li>
+              <li>
+                Meet the Team
+              </li>
+              <li>
+                Blog
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col ant-col-xs-12 ant-col-sm-12 ant-col-md-6 ant-col-lg-4"
+        style={Object {}}
+      >
+        <div
+          className="footer-info__container__company"
+        >
+          <div
+            className="footer-info__container__title"
+          >
+            <h5>
+              Support
+            </h5>
+          </div>
+          <div
+            className="footer-info__container__company__content"
+          >
+            <ul>
+              <li>
+                Account
+              </li>
+              <li>
+                Faq
+                 
+              </li>
+              <li>
+                Legal
+              </li>
+              <li>
+                Contact
+              </li>
+              <li>
+                Affiliate Program
+              </li>
+              <li>
+                Privacy Policy
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col ant-col-xs-12 ant-col-sm-12 ant-col-md-5 ant-col-lg-4"
+        style={Object {}}
+      >
+        <div
+          className="footer-info__container__company"
+        >
+          <div
+            className="footer-info__container__title"
+          >
+            <h5>
+              Other Services
+            </h5>
+          </div>
+          <div
+            className="footer-info__container__company__content"
+          >
+            <ul>
+              <li>
+                Community program
+              </li>
+              <li>
+                Investor Relations
+              </li>
+              <li>
+                Rewards Program
+              </li>
+              <li>
+                Partners
+              </li>
+              <li>
+                PointsPLUS
+              </li>
+              <li>
+                Blog
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col ant-col-xs-12 ant-col-sm-12 ant-col-md-6 ant-col-lg-5"
+        style={Object {}}
+      >
+        <div
+          className="footer-info__container__company"
+        >
+          <div
+            className="footer-info__container__title"
+          >
+            <h5>
+              Top cities
+            </h5>
+          </div>
+          <div
+            className="footer-info__container__company__content"
+          >
+            <ul>
+              <li>
+                Chicago
+              </li>
+              <li>
+                New York
+              </li>
+              <li>
+                San Francisco
+              </li>
+              <li>
+                California
+              </li>
+              <li>
+                Ohio
+              </li>
+              <li>
+                Alaska
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

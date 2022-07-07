@@ -36,9 +36,6 @@ export default function BookingTravelDate() {
           </li>
         </ul>
         <div className="booking-travel-date__container__amount">
-          <div className="booking-travel-date__container__amount__remove">
-            remove
-          </div>
           <ul>
             <li>
               <div className="booking-travel-date__container__key">

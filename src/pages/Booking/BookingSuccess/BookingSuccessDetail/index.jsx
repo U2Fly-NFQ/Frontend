@@ -1,21 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
-import { useSelector, useDispatch } from 'react-redux'
-import { getTicketInformation } from '../../../../redux/slices/bookingSuccessSlice'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { getFlightInformationSuccess } from '../../../../redux/selectors/bookingSuccessSelector'
 export default function BookingSuccessDetail() {
   const getInforFlight = useSelector(getFlightInformationSuccess)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const { ticketId } = useParams()
-  useEffect(() => {
-    if (ticketId) {
-      dispatch(getTicketInformation(ticketId))
-    } else {
-      navigate('/flights')
-    }
-  }, [])
+  console.log(getInforFlight)
+
   return (
     <div
       className="Booking-success__container__content"
@@ -32,11 +22,11 @@ export default function BookingSuccessDetail() {
           </li>
           <li>
             <span>Booking date:</span>
-            <span>{getInforFlight.createAt}</span>
+            <span>{getInforFlight.createdAt}</span>
           </li>
           <li>
             <span>Payment method:</span>
-            <span>Bank transfer</span>
+            <span>Stripe</span>
           </li>
           <li>
             <span>Booking status:</span>
@@ -82,7 +72,7 @@ export default function BookingSuccessDetail() {
             <span>
               $
               {getInforFlight.price -
-                getInforFlight.price * getInforFlight.percent || 0}
+                getInforFlight.price * (getInforFlight.percent || 0)}
             </span>
           </li>
         </ul>

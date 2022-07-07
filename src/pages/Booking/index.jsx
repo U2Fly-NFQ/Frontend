@@ -11,7 +11,6 @@ import {
   getCurrentMethodInBookingFlight,
   getInfoFlightInBookingArrival,
   getInfoFlightInBookingDeparture,
-  getInfoFlightInBookingFight,
   getInfoFlightInBookingSeat,
   getLoaddingMethodInBookingFlight,
   getUserInformation,
@@ -23,10 +22,6 @@ import BookingSuccessPage from './BookingSuccess'
 import { scrollTo } from '../../utils/scroll'
 import { getBookingInformationSuccess } from '../../redux/selectors/bookingSuccessSelector'
 import { getLsObj } from '../../utils/localStorage'
-import {
-  getDataFlights,
-  getRoundTripBookingFlightAsync,
-} from '../../redux/slices/bookingFlightsSlice'
 const { Header, Footer, Sider, Content } = Layout
 function FlightList() {
   const navigate = useNavigate()
@@ -37,20 +32,22 @@ function FlightList() {
   const getPrice = useSelector(getInfoFlightInBookingSeat)
   const userInformation = useSelector(getUserInformation)
   const getTicketStatus = useSelector(getBookingInformationSuccess)
-  const getDataFlight = useSelector(getInfoFlightInBookingFight)
   const getCurrentMethod = useSelector(getCurrentMethodInBookingFlight) || 0
   const getLoadding = useSelector(getLoaddingMethodInBookingFlight)
   const { ticketId } = useParams()
+
+  // console.log(JSON.parse(localStorage.getItem('flight')))
+  // localStorage.setItem(
+  //   'flight',
+  //   '{"id":3,"username":"sang@gg.com","roles":{"1":"ROLE_ADMIN","2":"ROLE_USER"}}'
+  // )
 
   useEffect(() => {
     let flight = getLsObj('flight')
     let token = localStorage.getItem('token')
 
     if (flight.id) {
-      dispatch(getDataFlights(flight.id))
-      if (flight.roundId)
-        dispatch(getRoundTripBookingFlightAsync(flight.roundId))
-      if (flight.roundId) if (!token) navigate('/login')
+      if (!token) navigate('/login')
     } else {
       navigate(-1)
     }
@@ -88,14 +85,14 @@ function FlightList() {
             <div className="booking-page__container__item">
               <div className="booking-page__container__item__content block-container">
                 <div className="booking-page__container__itemContent">
-                  {getDataFlight.arrival && <DetailFlights />}
+                  {<DetailFlights />}
                 </div>
               </div>
               <div
                 className="booking-page__container__item__content block-container"
                 // style={{ padding: '20px', marginTop: '20px' }}
               >
-                {getDataFlight.arrival && <BookingTravelDate />}
+                {<BookingTravelDate />}
               </div>
               <div
                 className="booking-page__container__item__content block-container"

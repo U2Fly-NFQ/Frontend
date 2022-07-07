@@ -8,15 +8,12 @@ import ModalRating from '../ModalRating'
 function UserBookingTable({ loading, data }) {
   //initiation
   const [expandedRowKeys, setExpandedRowKeys] = useState([])
+  const [currentId, setCurrentId] = useState()
   const navigate = useNavigate()
   //Data for UI
   const [isModalVisible, setIsModalVisible] = useState(false)
   const showModal = () => {
     setIsModalVisible(true)
-  }
-
-  const handleOk = () => {
-    setIsModalVisible(false)
   }
 
   const handleCancel = () => {
@@ -27,7 +24,7 @@ function UserBookingTable({ loading, data }) {
       title: 'Booking ID',
       dataIndex: 'id',
       align: 'center',
-      sorter: (a, b) => a.code - b.code,
+      sorter: (a, b) => a.id - b.id,
     },
     {
       title: 'Journey',
@@ -52,10 +49,10 @@ function UserBookingTable({ loading, data }) {
       ),
     },
     {
-      title: 'Booking Amount (USD)',
-      dataIndex: 'total_price',
+      title: 'Booking Amount',
+      dataIndex: 'totalPrice',
       align: 'center',
-      sorter: (a, b) => a.total_price - b.total_price,
+      sorter: (a, b) => a.totalPrice - b.totalPrice,
     },
     {
       title: 'Status',
@@ -66,6 +63,7 @@ function UserBookingTable({ loading, data }) {
     {
       title: 'Action',
       key: 'action',
+      dataIndex: 'id',
       width: 100,
       align: 'center',
       render: (_, record) => (
@@ -92,7 +90,14 @@ function UserBookingTable({ loading, data }) {
             </Button>
           )}
           {record.status === bookingStatus['2'] && (
-            <Button type="primary" shape="default" onClick={showModal}>
+            <Button
+              type="primary"
+              shape="default"
+              onClick={() => {
+                showModal()
+                setCurrentId(record.id)
+              }}
+            >
               Rating
             </Button>
           )}
@@ -101,20 +106,25 @@ function UserBookingTable({ loading, data }) {
     },
   ]
   const onExpandRowKey = (expanded, record) => {
-    expanded ? setExpandedRowKeys(record.id) : setExpandedRowKeys([])
+    expanded ? setExpandedRowKeys([record.id]) : setExpandedRowKeys([])
   }
+
   return (
     <>
-      <ModalRating visible={isModalVisible} />
+      <ModalRating
+        visible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+        handleCancel={handleCancel}
+      />
       <Table
         columns={bookingListColumn}
         rowKey={(record) => record.id}
         expandable={{
+          expandedRowKeys: expandedRowKeys,
+          onExpand: onExpandRowKey,
           expandedRowRender: (record) => (
             <UserBookingDetail detailData={record} />
           ),
-          expandedRowKeys: expandedRowKeys,
-          onExpand: onExpandRowKey,
         }}
         dataSource={data}
         loading={loading}

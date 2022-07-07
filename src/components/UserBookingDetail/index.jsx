@@ -41,14 +41,14 @@ function UserBookingDetail({ detailData }) {
     },
     {
       title: 'ETD',
-      dataIndex: 'startTime',
-      // width: '150px',
+      dataIndex: 'ETD',
+      width: '100px',
       align: 'center',
     },
     {
       title: 'ETA',
-      dataIndex: 'endTime',
-      // width: '150px',
+      dataIndex: 'ETA',
+      width: '100px',
       align: 'center',
     },
     {

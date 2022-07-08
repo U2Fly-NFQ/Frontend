@@ -8,11 +8,13 @@ import {
   getInfoFlightInBookingFight,
   getRoundTripBookingFlight,
 } from '../../../../redux/selectors'
+import { getLsObj } from '../../../../utils/localStorage'
 export default function FlightTrip() {
   const { Panel } = Collapse
   const { Step } = Steps
   const getDataFlight = useSelector(getInfoFlightInBookingFight)
   const getRoundTrip = useSelector(getRoundTripBookingFlight)
+  let flight = getLsObj('flight')
   return (
     <Collapse defaultActiveKey={['1']} ghost>
       <Panel
@@ -91,7 +93,7 @@ export default function FlightTrip() {
           />
         </Steps>
       </Panel>
-      {getRoundTrip.code && (
+      {getRoundTrip.code && flight.roundId && (
         <Panel
           style={{ borderTop: '1px solid blue' }}
           showArrow={false}

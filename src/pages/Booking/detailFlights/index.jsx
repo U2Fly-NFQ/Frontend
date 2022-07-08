@@ -51,13 +51,11 @@ export default function DetailFlights() {
         <div className="booking-page__container__item__title">
           <h3>Prices</h3>
         </div>
+
         <div className="detail-flights__container__price__content">
-          <h6>
-            <del>{seat.price}</del>
-          </h6>
           <h3>
             {'$' +
-              (seatRoungTrip.price
+              (seatRoungTrip !== undefined
                 ? seatRoungTrip.price + seat.price
                 : seat.price)}
             <sub>

@@ -13,6 +13,7 @@ import {
   getUserInformation,
 } from '../../../redux/selectors'
 import { useTranslation } from 'react-i18next'
+import { createBookingFlight } from '../../../redux/slices/bookingFlightsSlice'
 export default function PaymentFlight() {
   const [value, setValue] = useState(1)
   const [dataBooking, setDataBooking] = useState()
@@ -41,12 +42,13 @@ export default function PaymentFlight() {
         : `${getFlightData.id}`,
       seatTypeId: getSeatData.id,
       totalPrice:
-        priceDiscount === 0 ? getPrice.price * 100 : priceDiscount * 100,
+        getDiscountInfo.percent !== 0
+          ? priceDiscount * 110
+          : getPrice * 110 + getRoundTrip.seat.price * 110,
       discountId: getDiscountInfo.id || 1,
       ticketOwner: userInformation.firstName,
     }
-    console.log(fetchDataValue)
-    // dispatch(createBookingFlight(fetchDataValue))
+    dispatch(createBookingFlight(fetchDataValue))
   }
   let dataPayment = [
     {

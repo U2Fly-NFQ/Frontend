@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 import { getFlightInformationSuccess } from '../../../../redux/selectors/bookingSuccessSelector'
 export default function BookingSuccessDetail() {
   const getInforFlight = useSelector(getFlightInformationSuccess)
-  console.log(getInforFlight)
 
   return (
     <div
@@ -37,7 +36,7 @@ export default function BookingSuccessDetail() {
       <div className="Booking-success__container__content__info">
         <ul>
           <li>
-            <span> thang Price x 1:</span>
+            <span> Price:</span>
             <span>${getInforFlight.price}</span>
           </li>
           <li className="change-color">

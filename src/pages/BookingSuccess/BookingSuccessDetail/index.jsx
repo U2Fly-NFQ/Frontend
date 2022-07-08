@@ -37,37 +37,26 @@ export default function BookingSuccessDetail() {
       <div className="Booking-success__container__content__info">
         <ul>
           <li>
-            <span> thang Price x 1:</span>
-            <span>${getInforFlight.price}</span>
+            <span> Price:</span>
+            <span>
+              $
+              {(getInforFlight.price +
+                getInforFlight.price * getInforFlight.discount) /
+                100}
+            </span>
           </li>
           <li className="change-color">
             <span>Discount</span>
-            <span>{getInforFlight.discount || 0 * 100} %</span>
+            <span>{getInforFlight.discount * 100 || 0 * 100} %</span>
           </li>
         </ul>
       </div>
-      <div className="Booking-success__container__content__info">
-        <div className="section-remove-coupon">
-          <span>remove</span>
-        </div>
-        <ul>
-          <li className="change-color">
-            <span>Subtotal</span>
-            <span>${getInforFlight.price}</span>
-          </li>
-          <li>
-            <span>Coupon code (OFF 5000)</span>
-            <span>{`- ${
-              getInforFlight.discount * getInforFlight.price || 0
-            }`}</span>
-          </li>
-        </ul>
-      </div>
+
       <div className="Booking-success__container__content__info">
         <ul style={{ border: 'none' }}>
           <li className="change-color">
             <span>Total Amount</span>
-            <span>${getInforFlight.discount * getInforFlight.price || 0}</span>
+            <span>${getInforFlight.price || 0}</span>
           </li>
         </ul>
       </div>

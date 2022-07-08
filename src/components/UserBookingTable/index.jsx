@@ -11,14 +11,14 @@ function UserBookingTable({ loading, data, onCancel }) {
   const navigate = useNavigate()
 
   //Data for UI
-  const confirm = () => {
+  const confirm = (paymentID) => {
     Modal.confirm({
       title: 'Confirm',
       icon: <ExclamationCircleOutlined />,
       content: 'Are you want to cancel this booking?',
       okText: 'Yes',
       cancelText: 'No',
-      onOk: onCancel,
+      onOk: () => onCancel(paymentID),
     })
   }
   const bookingListColumn = [
@@ -71,13 +71,16 @@ function UserBookingTable({ loading, data, onCancel }) {
       render: (_, record) => (
         <Space>
           {/* eslint-disable-next-line react/jsx-no-undef */}
-          {record.status === bookingStatus['0'] && (
-            <Button type="default" shape="default" onClick={confirm}>
+          {record.status === bookingStatus[1] && (
+            <Button
+              type="default"
+              shape="default"
+              onClick={() => confirm(record.paymentId)}
+            >
               Cancel
             </Button>
           )}
-          {(record.status === bookingStatus['1'] ||
-            record.status === bookingStatus['2']) && (
+          {record.status !== bookingStatus[1] && (
             <Button
               type="primary"
               shape="default"

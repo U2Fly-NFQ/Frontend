@@ -2,8 +2,6 @@ import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit'
 import flightAPI from '../../api/Flight'
 import discountInfo from '../../api/Discount'
 import moment from 'moment'
-import { useNavigate } from 'react-router-dom'
-import axiosInstance from 'axios'
 
 export const initialState = {
   loadding: false,
@@ -18,12 +16,9 @@ export const initialState = {
 }
 
 export const getDataFlights = createAsyncThunk(
-  'flight/getDataFlights',
+  'bookingFlight/getDataFlights',
   async (idFlight) => {
-    // const response = await flightAPI.get(idFlight)
-    const response = await axiosInstance.get(
-      `https://62c45182abea8c085a729073.mockapi.io/flights-by-id/${idFlight}`
-    )
+    const response = await flightAPI.get(idFlight)
     return response.data
   }
 )
@@ -38,10 +33,7 @@ export const getDiscountCheck = createAsyncThunk(
 export const getUserDataInBooking = createAsyncThunk(
   'flight/getUserData',
   async (idUser) => {
-    // const response = await flightAPI.getUserData(idUser)
-    const response = await axiosInstance.get(
-      `https://62c45182abea8c085a729073.mockapi.io/passengers/${idUser}`
-    )
+    const response = await flightAPI.getUserData(idUser)
     return response.data
   }
 )
@@ -54,13 +46,10 @@ export const createBookingFlight = createAsyncThunk(
   }
 )
 
-export const getRoundTripBookingFlight = createAsyncThunk(
+export const getRoundTripBookingFlightAsync = createAsyncThunk(
   'flight/RoundTripBooking',
-  async (idFlight) => {
-    // const response = await flightAPI.get(idFlight)
-    const response = await axiosInstance.get(
-      `https://62c45182abea8c085a729073.mockapi.io/flights-by-id/${idFlight}`
-    )
+  async (idFlight, thunkAPI) => {
+    const response = await flightAPI.get(idFlight)
     return response.data
   }
 )
@@ -87,8 +76,6 @@ const bookingFlightsSlice = createSlice({
     },
     [createBookingFlight.rejected]: (state, action) => {
       state.loadding = false
-      let navigate = useNavigate()
-      navigate('/flights')
     },
     [createBookingFlight.fulfilled]: (state, action) => {
       const { status, data } = action.payload
@@ -102,8 +89,6 @@ const bookingFlightsSlice = createSlice({
     },
     [getUserDataInBooking.rejected]: (state, action) => {
       state.loadding = false
-      let navigate = useNavigate()
-      navigate('/flights')
     },
     [getUserDataInBooking.fulfilled]: (state, action) => {
       state.loadding = false
@@ -117,15 +102,24 @@ const bookingFlightsSlice = createSlice({
     [getDiscountCheck.rejected]: (state, action) => {
       state.loadding = false
       state.discountInfo.percent = 0
-      let navigate = useNavigate()
-      navigate('/flights')
     },
     [getDiscountCheck.fulfilled]: (state, action) => {
       const { status, data } = action.payload
       if (status === 'success') {
         state.discountInfo = data
         let getSeat = current(state.dataFlight).seat
-        state.priceAfterDiscount = getSeat.price - getSeat.price * data.percent
+        let getRoundTripSeat = current(state.dataRoundTripFlight).seat
+
+        if (!getRoundTripSeat) {
+          state.priceAfterDiscount =
+            getSeat.price - getSeat.price * data.percent
+        } else {
+          state.priceAfterDiscount =
+            getSeat.price +
+            getRoundTripSeat.price -
+            getSeat.price * data.percent -
+            getRoundTripSeat.price * data.percent
+        }
       }
     },
     [getDataFlights.pending]: (state) => {
@@ -133,38 +127,53 @@ const bookingFlightsSlice = createSlice({
     },
     [getDataFlights.rejected]: (state) => {
       state.loadding = false
-      let navigate = useNavigate()
-      navigate('/flights')
     },
     [getDataFlights.fulfilled]: (state, action) => {
       state.loadding = false
-      // const { status, data } = action.payload
-      const data = action.payload
-      console.log(data)
+      const { status, data } = action.payload
       let allSeatNameAvailable = data.seat.map((item) => item.name)
       let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
-      // if (status === 'success') {
-      state.dataFlight = {
-        ...data,
-        seat: data.seat[
-          allSeatNameAvailable.indexOf(dataSeatChoose.setType) < 0
-            ? 0
-            : allSeatNameAvailable.indexOf(dataSeatChoose.setType)
-        ],
+      if (status === 'success') {
+        let tempResult = {
+          ...data,
+          seat: data.seat[
+            allSeatNameAvailable.indexOf(dataSeatChoose.seatType) < 0
+              ? 0
+              : allSeatNameAvailable.indexOf(dataSeatChoose.seatType)
+          ],
+        }
+        tempResult.seat.price =
+          tempResult.seat.price * dataSeatChoose.seatAvailable
+        state.dataFlight = tempResult
       }
-      // }
     },
-    [getRoundTripBookingFlight.pending]: (state, action) => {
+    [getRoundTripBookingFlightAsync.pending]: (state, action) => {
       state.loadding = false
     },
-    [getRoundTripBookingFlight.rejected]: (state, action) => {
+    [getRoundTripBookingFlightAsync.rejected]: (state, action) => {
       state.loadding = false
     },
-    [getRoundTripBookingFlight.fulfilled]: (state, action) => {
+    [getRoundTripBookingFlightAsync.fulfilled]: (state, action) => {
       state.loadding = false
-      const data = action.payload
-      state.dataRoundTripFlight = {
-        ...data,
+      const { status, data } = action.payload
+      let allSeatNameAvailable = data.seat.map((item) => item.name)
+      let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
+      if (status === 'success') {
+        let tempResult = {
+          ...data,
+          seat: data.seat[
+            allSeatNameAvailable.indexOf(dataSeatChoose.seatType) < 0
+              ? 0
+              : allSeatNameAvailable.indexOf(dataSeatChoose.seatType)
+          ],
+        }
+        tempResult.seat.price =
+          tempResult.seat.price * dataSeatChoose.seatAvailable
+        state.dataRoundTripFlight = tempResult
+
+        // state.addDataIntoBookingFlight.seat.price =
+        //   current(state.addDataIntoBookingFlight).seat.price *
+        //   dataSeatChoose.seatAvailable
       }
     },
   },

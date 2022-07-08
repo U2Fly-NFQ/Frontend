@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { bookingRating, cancelBooking, getList } from '../../api/Ticket'
 
-const initialState = {
+export const initialState = {
   status: '',
   data: [],
   history: [],

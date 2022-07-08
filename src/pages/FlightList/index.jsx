@@ -15,11 +15,15 @@ import { ScrollToTopButton } from '../../components'
 import { getLsObj, updateLs } from '../../utils/localStorage'
 import moment from 'moment'
 import { useTranslation } from 'react-i18next'
-import axios from 'axios'
+import FlightApi from '../../api/Flight'
 import { CloseOutlined } from '@ant-design/icons'
 import { scrollTo } from '../../utils/scroll'
 import Home from '../Home'
-import { addHourToTime, getDurationFormat } from '../../utils/flight'
+import {
+  addHourToTime,
+  getDurationFormat,
+  getPriceWithDiscount,
+} from '../../utils/flight'
 
 const { Title, Text } = Typography
 const { Option } = Select
@@ -33,7 +37,10 @@ function FlightList() {
   const [selectedFlight, setSelectedFlight] = useState({})
   const flightStorage = getLsObj('flight')
   const { oneway, roundtrip, status } = useSelector((state) => state.flights)
-  const activeData = flightStorage.ticketType === 'oneWay' ? oneway : roundtrip
+  const activeData =
+    flightStorage.ticketType === 'roundTrip' && flightStorage.id
+      ? roundtrip
+      : oneway
   const { pagination } = activeData
 
   useEffect(() => {
@@ -60,12 +67,8 @@ function FlightList() {
 
     if (flightStorage.ticketType === 'roundTrip' && flightStorage.id) {
       async function fetchData() {
-        // const rs = await FlightApi.get(flightStorage.id)
-        const rs = await axios.get(
-          'https://62c45182abea8c085a729073.mockapi.io/flights-by-id/' +
-            flightStorage.id
-        )
-        setSelectedFlight(rs.data)
+        const rs = await FlightApi.get(flightStorage.id)
+        setSelectedFlight(rs.data.data)
       }
       fetchData()
     }
@@ -109,12 +112,14 @@ function FlightList() {
     navigate(0)
   }
 
-  let selectedPrice = 0
+  let selectedSeat = 0
 
   if (selectedFlight.seat && selectedFlight.seat.length)
-    selectedPrice =
-      (flightStorage.seatType === 'Economy' && selectedFlight.seat[0].price) ||
-      selectedFlight.seat[1].price
+    selectedSeat =
+      (flightStorage.seatType === 'Economy' && selectedFlight.seat[0]) ||
+      selectedFlight.seat[1]
+
+  const emptyTrip = !activeData?.flight?.length
 
   return (
     <>
@@ -183,13 +188,20 @@ function FlightList() {
                         <div className="price-box">
                           <Title level={3} className="price-old">
                             {t('flight-list-page.$')}
-                            <del>{selectedPrice}</del>
+                            <del>{selectedSeat.price}</del>
                           </Title>
                           <Title level={3} className="price-new">
                             {t('flight-list-page.$')}
-                            {selectedPrice}
+                            {getPriceWithDiscount(
+                              selectedSeat.price,
+                              selectedSeat.discount
+                            )}
                           </Title>
-                          <sup>{t('flight-list-page.OFF', { number: 0 })}</sup>
+                          <sup>
+                            {t('flight-list-page.OFF', {
+                              number: selectedSeat.discount * 100,
+                            })}
+                          </sup>
                         </div>
                       </div>
                     </div>
@@ -231,12 +243,12 @@ function FlightList() {
                         <FlightCard loading={true} />
                       </>
                     )}
-                    {(!activeData.flight.length && <NotFoundFlight />) ||
-                      roundtrip.flight.map((f) => (
+                    {emptyTrip && <NotFoundFlight />}
+                    {!emptyTrip &&
+                      activeData.flight.map((f) => (
                         <FlightCard key={f.id} data={f} />
                       ))}
-
-                    {pagination.total > 0 && (
+                    {!emptyTrip && pagination.total > pagination.offset && (
                       <Pagination
                         onChange={changePage}
                         current={pagination.page}

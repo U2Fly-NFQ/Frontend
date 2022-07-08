@@ -6,14 +6,13 @@ import flightAPI from '../../api/Flight'
 export const getTicketInformation = createAsyncThunk(
   'flight/getTicketInformation',
   async (idTicket) => {
-    console.log(idTicket)
     const respone = await flightAPI.getInfoTickerById(idTicket)
     return respone.data
   }
 )
 const initialState = {
   userInformation: {},
-  flightInformation: {},
+  ticketInfomation: {},
   ticketStatus: false,
   loadding: true,
 }
@@ -31,32 +30,30 @@ const bookingSuccessFlightsSlice = createSlice({
     [getTicketInformation.fulfilled]: (state, action) => {
       state.loadding = false
       const { data, status } = action.payload
-      console.log(action.payload)
+
       const {
         id,
         totalPrice,
-        flights,
-        ticketOwner,
-        passenger,
-        discount,
         seatType,
         createdAt,
+        passenger,
+        email,
+        discount,
       } = data
       if (status === 'success') {
         state.ticketStatus = true
         state.userInformation = {
           name: passenger.name,
+          email: email,
           gender: passenger.gender,
           birthday: passenger.birthday,
           identification: passenger.identification,
         }
-        state.flightInformation = {
+        state.ticketInfomation = {
           id: id,
-          arrival: flights.arrival,
-          departure: flights.departure,
-          startTime: moment(flights.startTime).format('YYYY-MM-DD'),
-          seatType: flights.seatType,
-          createdAt: moment(flights.createdAt).format('YYYY-MM-DD'),
+          discount: discount < 1 ? discount : 0,
+          seatType: seatType,
+          createdAt: moment(createdAt).format('YYYY-MM-DD'),
           price: totalPrice,
         }
       } else {

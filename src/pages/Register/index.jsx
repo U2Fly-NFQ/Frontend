@@ -14,6 +14,8 @@ import RegisterBanner from './RegisterBanner'
 import './style.scss'
 import { registerApi } from '../../api/Auth'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
+import { scrollTo } from '../../utils/scroll'
 
 const { Title } = Typography
 
@@ -21,8 +23,12 @@ const Register = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
+  useEffect(() => {
+    scrollTo(400)
+  }, [])
+
   const onFinish = (values) => {
-    const { idno, name, gender, birthDate, address, email, password } = values
+    const { idno, name, gender, birthday, address, email, password } = values
 
     const data = {
       user: {
@@ -34,12 +40,13 @@ const Register = () => {
       },
       passenger: {
         gender,
-        birthDate,
+        birthday,
         address,
         name,
         identification: idno,
       },
     }
+    // console.log(JSON.stringify(data))
 
     const res = registerApi(JSON.stringify(data))
 
@@ -118,7 +125,7 @@ const Register = () => {
 
                     <div className="form-group">
                       <Form.Item
-                        name="birthDate"
+                        name="birthday"
                         label="Birth Date"
                         style={{ textAlign: 'left' }}
                         rules={[

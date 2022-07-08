@@ -1,25 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './index.scss'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import FlightTrip from './flightTrip'
 
-import { useNavigate } from 'react-router-dom'
 import {
   getInfoFlightInBookingFight,
   getInfoFlightInBookingSeat,
 } from '../../../redux/selectors'
+import { getRoundTripSeat } from '../../../redux/selectors/bookingFlightSelector'
 export default function DetailFlights() {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
   const getDataFlight = useSelector(getInfoFlightInBookingFight)
-  // const allDataFight = useSelector(getInfoFlightInBookingFight)
-  // const arrival = useSelector(getInfoFlightInBookingArrival)
-  // const departure = useSelector(getInfoFlightInBookingDeparture)
-  // const airplane = useSelector(getInfoFlightInBookingAirplane)
-  // const airline = useSelector(getInfoFlightInBookingAirline)
   const seat = useSelector(getInfoFlightInBookingSeat)
+  const seatRoungTrip = useSelector(getRoundTripSeat)
 
-  useEffect(() => {}, [])
   return (
     <div className="detail-flights__container">
       <div className="booking-page__container__item__title">
@@ -28,7 +21,7 @@ export default function DetailFlights() {
       {getDataFlight.code && <FlightTrip />}
       <div className="detail-flights__container__package-rules">
         <div className="booking-page__container__item__title">
-          <h3>Flights</h3>
+          <h3>Flights Rules</h3>
         </div>
         <div className="detail-flights__container__package-rules__content">
           <ul>
@@ -58,18 +51,16 @@ export default function DetailFlights() {
         <div className="booking-page__container__item__title">
           <h3>Prices</h3>
         </div>
+
         <div className="detail-flights__container__price__content">
-          <h6>
-            {/* <del>{seat.price}</del> */}
-            <del>150</del>
-          </h6>
           <h3>
-            {'$' + seat.price}
-            {/* {'$ 150'} */}
+            {'$' +
+              (seatRoungTrip !== undefined
+                ? seatRoungTrip.price + seat.price
+                : seat.price)}
             <sub>
               / {seat.name} X
-              {/* {JSON.parse(localStorage.getItem('flight')).passengerNumber} */}
-              {/* {JSON.parse(localStorage.getItem('flight')).passengerNumber} */}
+              {JSON.parse(localStorage.getItem('flight')).seatAvailable}
             </sub>
           </h3>
         </div>

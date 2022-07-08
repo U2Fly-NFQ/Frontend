@@ -3,6 +3,7 @@
 import React, { Suspense, lazy } from 'react'
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
 import { PageLoadingAnimation } from '../components'
+import AdminDiscount from '../components/AdminDiscount'
 
 import {
   Login,
@@ -55,6 +56,7 @@ const RoutesApp = () => {
           {token && (
             <Route path="admin" element={<AdminLayout />}>
               <Route path="" element={<AdminDashboard />} />
+              <Route path="discount" element={<AdminDiscount />} />
             </Route>
           )}
 

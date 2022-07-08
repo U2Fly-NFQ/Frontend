@@ -34,17 +34,19 @@ export default function BookingPassenger() {
   }
 
   useEffect(() => {
-    form.setFieldsValue({
-      firstName: userInformation.name,
-      date_picker: moment(),
-      email: userInformation.email,
-      streetAddress: userInformation.address,
-      identificationCard: userInformation.identification,
-    })
+    if (userInformation.name) {
+      form.setFieldsValue({
+        firstName: userInformation.name,
+        date_picker: moment(userInformation.birthday.date),
+        email: userInformation.email,
+        streetAddress: userInformation.address,
+        identificationCard: userInformation.identification,
+      })
+    }
   }, [userInformation])
   return (
     <>
-      <div class="booking-page__container__item__title">
+      <div className="booking-page__container__item__title">
         <h2>Passengers information</h2>
       </div>
       <Form
@@ -129,6 +131,7 @@ export default function BookingPassenger() {
         >
           <input
             name="number"
+            type="number"
             className="form-control"
             placeholder={t('flight-booking-page.Mobile number')}
           />

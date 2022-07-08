@@ -36,10 +36,6 @@ const SubNavBar = () => {
       onClick={handleMenuClick}
       items={[
         {
-          label: 'Profile',
-          key: 'profile',
-        },
-        {
           label: 'My booking',
           key: 'booked',
         },

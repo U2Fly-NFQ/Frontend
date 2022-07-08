@@ -23,7 +23,10 @@ function UserBookingDetail({ detailData }) {
     setIsModalVisible(true)
   }
 
-  const handleRating = (value) => {}
+  const handleRating = (value) => {
+    console.log(value)
+    console.log(ticketData)
+  }
 
   const flightsColumn = [
     {
@@ -72,19 +75,7 @@ function UserBookingDetail({ detailData }) {
       align: 'center',
       render: (_, record) => (
         <Space>
-          {record.isRating === 0 && (
-            <Button
-              type="primary"
-              shape="default"
-              onClick={() => {
-                showModal()
-                setCurrentId(record.id)
-              }}
-            >
-              Rating
-            </Button>
-          )}
-          {record.isRating === 1 && (
+          {record.isRating && (
             <Button
               type="default"
               shape="default"
@@ -101,6 +92,18 @@ function UserBookingDetail({ detailData }) {
               }}
             >
               View
+            </Button>
+          )}
+          {!record.isRating && (
+            <Button
+              type="primary"
+              shape="default"
+              onClick={() => {
+                showModal()
+                setCurrentId(record.id)
+              }}
+            >
+              Rating
             </Button>
           )}
         </Space>
@@ -124,7 +127,7 @@ function UserBookingDetail({ detailData }) {
             Name:
           </Col>
           <Col className="booking-info-text" span={7}>
-            {detailData.passenger.name}
+            {detailData.ticketOwner}
           </Col>
           <Col className="booking-info-label" span={5}>
             Date:
@@ -136,7 +139,7 @@ function UserBookingDetail({ detailData }) {
             Email:
           </Col>
           <Col className="booking-info-text" span={7}>
-            {detailData.passenger.email}
+            {detailData.email}
           </Col>
         </Row>
         <Row className="flight-info">

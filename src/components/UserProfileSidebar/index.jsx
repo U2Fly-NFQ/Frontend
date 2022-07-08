@@ -24,11 +24,6 @@ function UserProfileSidebar(props) {
       3,
       <i className="fa-solid fa-clock-rotate-left"></i>
     ),
-    getItem(
-      <Link to="/profile">My Profile</Link>,
-      4,
-      <i className="fa-solid fa-circle-user"></i>
-    ),
   ]
 
   return (

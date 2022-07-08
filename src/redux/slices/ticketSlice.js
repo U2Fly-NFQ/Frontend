@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getList } from '../../api/Ticket'
-import { getList as getHistory } from '../../api/Ticket/historyBooking'
+import { cancelBooking, getList } from '../../api/Ticket'
 
 const initialState = {
   status: '',
   data: [],
   history: [],
+  cancel: '',
 }
 
 const ticketSlice = createSlice({
@@ -23,8 +23,8 @@ const ticketSlice = createSlice({
       })
       .addCase(fetchTickets.fulfilled, (state, action) => {
         state.status = 'idle'
-        state.data = action.payload
-        // state.data = action.payload.data
+        state.data = action.payload.data
+        state.cancel = ''
       })
       // fetch history booking
       .addCase(fetchHistoryBooking.pending, (state) => {
@@ -35,7 +35,19 @@ const ticketSlice = createSlice({
       })
       .addCase(fetchHistoryBooking.fulfilled, (state, action) => {
         state.status = 'idle'
-        state.history = action.payload
+        state.history = action.payload.data
+      })
+      // fetch cancel booking
+      .addCase(fetchCancelBooking.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(fetchCancelBooking.rejected, (state) => {
+        state.status = 'error'
+        state.cancel = 'failed'
+      })
+      .addCase(fetchCancelBooking.fulfilled, (state, action) => {
+        state.status = 'idle'
+        state.cancel = 'success'
       })
   },
 })
@@ -43,17 +55,23 @@ const ticketSlice = createSlice({
 export default ticketSlice
 
 export const fetchTickets = createAsyncThunk(
-  'flight/fetchTickets',
+  'ticket/fetchTickets',
   async (urlParams) => {
     let response = await getList(urlParams)
     return response.data
   }
 )
-
 export const fetchHistoryBooking = createAsyncThunk(
-  'flight/fetchHistoryBooking',
+  'ticket/fetchHistoryBooking',
   async (urlParams) => {
-    let response = await getHistory(urlParams)
+    let response = await getList(urlParams)
+    return response.data
+  }
+)
+export const fetchCancelBooking = createAsyncThunk(
+  'ticket/fetchCancelBooking',
+  async (data) => {
+    let response = await cancelBooking(data)
     return response.data
   }
 )

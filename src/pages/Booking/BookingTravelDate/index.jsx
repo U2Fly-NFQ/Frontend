@@ -4,68 +4,94 @@ import {
   getDiscountForBookingAirline,
   getInfoFlightInBookingSeat,
 } from '../../../redux/selectors'
+import { getRoundTripSeat } from '../../../redux/selectors/bookingFlightSelector'
 import './index.scss'
+import { useTranslation } from 'react-i18next'
+
 export default function BookingTravelDate() {
-  const getSeat = useSelector(getInfoFlightInBookingSeat)
+  const seat = useSelector(getInfoFlightInBookingSeat)
+  const seatRoungTrip = useSelector(getRoundTripSeat)
   const getDiscount = useSelector(getDiscountForBookingAirline)
+  const { t } = useTranslation()
+
   return (
     <div className="booking-travel-date">
       <div className="booking-page__container__item__title">
-        <h3>Booking amount</h3>
+        <h3>{t('flight-booking-page.Booking amount')}</h3>
       </div>
       <div className="booking-travel-date__container">
         <ul className="booking-travel-date__container__value">
           <li>
             <div className="booking-travel-date__container__key">
-              {/* {getSeat.name} Price x 1 */}
-              Economy Price x 1
+              {seat.name} Price x 1
             </div>
             <div className="booking-travel-date__container__key">
-              {/* {'$ ' + getSeat.price} */}$ 150
-            </div>
-          </li>
-          <li>
-            <div className="booking-travel-date__container__key">Discount</div>
-            <div className="booking-travel-date__container__key">
-              {/* - {getDiscount.percent * 100}% */}- {0.3 * 100}%
+              {'$ ' +
+                (seatRoungTrip !== undefined
+                  ? seatRoungTrip.price + seat.price
+                  : seat.price)}
             </div>
           </li>
           <li>
             <div className="booking-travel-date__container__key">Tax</div>
-            <div className="booking-travel-date__container__key">5%</div>
+            <div className="booking-travel-date__container__key">
+              {seat.discount * 100}%
+            </div>
           </li>
         </ul>
         <div className="booking-travel-date__container__amount">
-          <div className="booking-travel-date__container__amount__remove">
-            remove
-          </div>
           <ul>
             <li>
               <div className="booking-travel-date__container__key">
-                Subtotal
+                {t('flight-booking-page.Subtotal')}
               </div>
               <div className="booking-travel-date__container__value">
-                {/* ${getSeat.price} */}$ 150
+                $
+                {seatRoungTrip !== undefined
+                  ? seatRoungTrip.price + seat.price
+                  : seat.price}
               </div>
             </li>
             <li>
               <div className="booking-travel-date__container__key">
-                Coupon code (OFF 5000)
+                {t('flight-booking-page.Discount')}
               </div>
               <div className="booking-travel-date__container__value">
-                {/* ${getSeat.price * getDiscount.percent} */}
-                149
+                {`${getDiscount.percent * 100}% ($${
+                  (seatRoungTrip !== undefined
+                    ? seatRoungTrip.price + seat.price
+                    : seat.price) * getDiscount.percent
+                })`}
+              </div>
+            </li>
+            <li>
+              <div className="booking-travel-date__container__key">
+                {t('flight-booking-page.Coupon code')}
+                {getDiscount.percent !== 0 && ` (${getDiscount.name})`}
+              </div>
+              <div className="booking-travel-date__container__value">
+                $
+                {(seatRoungTrip !== undefined
+                  ? seatRoungTrip.price + seat.price
+                  : seat.price) * getDiscount.percent}
               </div>
             </li>
           </ul>
         </div>
         <div className="booking-travel-date__container__total">
           <div className="booking-travel-date__container__amount__total__key">
-            Total Amount
+            {t('flight-booking-page.Total Amount')}
           </div>
           <div className="booking-travel-date__container__amount__total__value">
-            {/* ${getSeat.price - getSeat.price * getDiscount.percent} */}
-            "180"
+            $
+            {(seatRoungTrip !== undefined
+              ? seatRoungTrip.price + seat.price
+              : seat.price) -
+              (seatRoungTrip !== undefined
+                ? seatRoungTrip.price + seat.price
+                : seat.price) *
+                getDiscount.percent +
+              seat.discount * 100}
           </div>
         </div>
       </div>

@@ -51,10 +51,13 @@ export default function Navbar() {
             </Title>
           </motion.div>
           <NavLinkDropDown Title={{ path: '', title: 'Home' }} />
+          <NavLinkDropDown Title={{ path: 'flights', title: 'Flights' }} />
         </ul>
         <div className="navbar__footer">
           <div className="navbar__footer__btn">
-            <ButtonOfPage title={t('cta.become_partner')} />
+            <div onClick={() => navigate('/admin')} className="partner-btn">
+              <ButtonOfPage title={t('cta.become_partner')} />
+            </div>
           </div>
         </div>
         <div

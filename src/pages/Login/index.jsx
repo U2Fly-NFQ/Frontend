@@ -1,12 +1,13 @@
 import { Row, Col, Typography, Form } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { loginApi } from '../../api/Auth'
-
 import { LoginBanner, PageLoadingAnimation } from '../../components'
 import './style.scss'
 import { useEffect, useState } from 'react'
 import axiosInstance from '../../api'
-import { getLsObj } from '../../utils/localStorage'
+import { useTranslation } from 'react-i18next'
+import { getLsObj, updateLs } from '../../utils/localStorage'
+import { scrollTo } from '../../utils/scroll'
 
 const { Title } = Typography
 
@@ -15,8 +16,11 @@ const Login = () => {
   const token = localStorage.getItem('token')
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   useEffect(() => {
+    scrollTo(300)
+
     if (user.id && token) {
       navigate(-1)
     }
@@ -28,8 +32,7 @@ const Login = () => {
     setIsLoading(true)
     try {
       const { data } = await loginApi(values)
-      // Update token, loading animation
-      localStorage.setItem('user', JSON.stringify(data.user))
+      updateLs('user', data.user)
       axiosInstance.setToken(data.token)
       // Navigate to previous page
       navigate(0)
@@ -56,18 +59,18 @@ const Login = () => {
                       rules={[
                         {
                           required: true,
-                          message: 'Please input your email!',
+                          message: t('login.Please input your email!'),
                         },
                         {
                           type: 'email',
-                          message: 'Email is not valid',
+                          message: t('login.Email is not valid'),
                         },
                       ]}
                     >
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Enter your email"
+                        placeholder={t('login.Enter your email')}
                       />
                     </Form.Item>
                     <Form.Item
@@ -75,14 +78,14 @@ const Login = () => {
                       rules={[
                         {
                           required: true,
-                          message: 'Please input your password',
+                          message: t('login.Please input your password'),
                         },
                       ]}
                     >
                       <input
                         type="password"
                         className="form-control"
-                        placeholder="Enter password"
+                        placeholder={t('login.Enter password')}
                       />
                     </Form.Item>
                     {errTxt && (
@@ -96,12 +99,14 @@ const Login = () => {
                       </p>
                     )}
                     <div className="form-submit">
-                      <button className="btn btn-primary btn-md">Log in</button>
+                      <button className="btn btn-primary btn-md">
+                        {t('login.Login')}
+                      </button>
                     </div>
                     <div className="switch">
                       <p>
                         Dont have an account?{' '}
-                        <a href="register.html">Register now</a>
+                        <Link to="/register">Register now</Link>
                       </p>
                     </div>
                   </Form>

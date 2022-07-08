@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col, Avatar, Menu } from 'antd'
 import { Link } from 'react-router-dom'
 
-function UserProfileSidebar(props) {
+function UserProfileSidebar() {
   const getItem = (label, key, icon, children) => {
     return {
       key,
@@ -23,11 +23,6 @@ function UserProfileSidebar(props) {
       <Link to="/profile/history">Booking History</Link>,
       3,
       <i className="fa-solid fa-clock-rotate-left"></i>
-    ),
-    getItem(
-      <Link to="/profile">My Profile</Link>,
-      4,
-      <i className="fa-solid fa-circle-user"></i>
     ),
   ]
 

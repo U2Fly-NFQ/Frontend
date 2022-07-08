@@ -3,20 +3,39 @@ import './style.scss'
 import { Outlet } from 'react-router-dom'
 import { AdminHeader, AdminSidebar } from '../../components'
 import { useState } from 'react'
-const { Header, Footer, Sider, Content } = Layout
+
+const { Header, Content, Sider, Footer } = Layout
+
 function AdminLayout() {
   //Menu collapsed
   const [collapsed, setCollapsed] = useState(false)
 
   return (
     <Layout className="admin">
-      <AdminSidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+      <Sider
+        className="admin-sidebar"
+        trigger={null}
+        breakpoint="md"
+        onBreakpoint={(broken) => {
+          setCollapsed(broken)
+        }}
+        collapsedWidth="50"
+        collapsed={collapsed}
+      >
+        <AdminSidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+      </Sider>
       <Layout>
-        <AdminHeader />
-        <Content>
+        <Header className="admin-header">
+          <AdminHeader />
+        </Header>
+        <Content
+          style={{
+            padding: '20px',
+          }}
+        >
           <Outlet />
         </Content>
-        <Footer>admin footer</Footer>
+        {/* <Footer></Footer> */}
       </Layout>
     </Layout>
   )

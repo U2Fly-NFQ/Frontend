@@ -39,3 +39,6 @@ export const getUserInformation = (state) => state.bookingFlight.userInformation
 
 export const getRoundTripBookingFlight = (state) =>
   state.bookingFlight.dataRoundTripFlight
+
+export const getRoundTripSeat = (state) =>
+  state.bookingFlight.dataRoundTripFlight.seat

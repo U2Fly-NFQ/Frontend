@@ -9,8 +9,10 @@ import {
   getInfoFlightInBookingFight,
   getInfoFlightInBookingSeat,
   getInfoPriceAfterDiscount,
+  getRoundTripBookingFlight,
   getUserInformation,
 } from '../../../redux/selectors'
+import { useTranslation } from 'react-i18next'
 import { createBookingFlight } from '../../../redux/slices/bookingFlightsSlice'
 export default function PaymentFlight() {
   const [value, setValue] = useState(1)
@@ -21,7 +23,11 @@ export default function PaymentFlight() {
   const getFlightData = useSelector(getInfoFlightInBookingFight)
   const getSeatData = useSelector(getInfoFlightInBookingSeat)
   const userInformation = useSelector(getUserInformation)
+  const getRoundTrip = useSelector(getRoundTripBookingFlight)
+
   const dispatch = useDispatch()
+  const { t } = useTranslation()
+
   const onChange = (e) => {
     setValue(e.target.value)
   }
@@ -29,15 +35,26 @@ export default function PaymentFlight() {
     setDataBooking(dataPayment[value])
   }, [value])
   const onFinish = () => {
+    let priceTotal =
+      getRoundTrip.seat !== undefined
+        ? getPrice.price * 110 + getRoundTrip.seat.price * 110
+        : getPrice.price * 110
+
     let fetchDataValue = {
       passengerId: userInformation.accountId,
-      flightId: getFlightData.id,
+      flightId: getRoundTrip.id
+        ? `${getFlightData.id},${getRoundTrip.id}`
+        : `${getFlightData.id}`,
       seatTypeId: getSeatData.id,
       totalPrice:
-        priceDiscount === 0 ? getPrice.price * 1000 : priceDiscount * 1000,
+        getDiscountInfo.percent === 0
+          ? priceTotal
+          : priceTotal - priceTotal * getDiscountInfo.percent,
+
       discountId: getDiscountInfo.id || 1,
       ticketOwner: userInformation.firstName,
     }
+
     dispatch(createBookingFlight(fetchDataValue))
   }
   let dataPayment = [
@@ -47,49 +64,16 @@ export default function PaymentFlight() {
       render: (
         <>
           <Form.Item style={{ marginTop: '20px' }}>
-            <ButtonOfPage title={'Pay Now'} />
+            <ButtonOfPage title={t('flight-booking-page.Pay Now')} />
           </Form.Item>
         </>
       ),
     },
-    // {
-    //   paymentMethod: 'Paypal',
-    //   render: (
-    //     <div style={{ marginTop: '20px' }}>
-    //       <Form.Item
-    //         name="username"
-    //         style={{
-    //           display: 'inline-block',
-    //           width: '50%',
-    //           margin: '0px',
-    //         }}
-    //         rules={[{ required: true, message: 'Please input your username!' }]}
-    //       >
-    //         <InputOFPage placeholder="Email Address" />
-    //       </Form.Item>
-    //       <Form.Item
-    //         name="agreement"
-    //         valuePropName="checked"
-    //         rules={[
-    //           {
-    //             validator: (_, value) =>
-    //               value
-    //                 ? Promise.resolve()
-    //                 : Promise.reject(new Error('Should accept agreement')),
-    //           },
-    //         ]}
-    //       ></Form.Item>
-    //       <Form.Item>
-    //         <ButtonOfPage title={'Pay Now'} />
-    //       </Form.Item>
-    //     </div>
-    //   ),
-    // },
   ]
 
   return (
     <>
-      <div class="booking-page__container__item__title">
+      <div className="booking-page__container__item__title">
         <h2>Payment Method</h2>
       </div>
       <div style={{ width: '100%' }}>

@@ -1,10 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import {
-  motion,
-  useMotionValue,
-  useTransform,
-  useViewportScroll,
-} from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Typography } from 'antd'
 import './style.scss'
 
@@ -12,15 +7,6 @@ const { Title, Text } = Typography
 
 function FlightListBanner() {
   const { t } = useTranslation()
-
-  const x = useMotionValue(0)
-  const opacity = useTransform(x, [-100, 0, 100], [0, 1, 0])
-  const { scrollYProgress } = useViewportScroll()
-
-  const variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  }
 
   return (
     <motion.div
@@ -53,7 +39,12 @@ function FlightListBanner() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1 }}
             >
-              <Title level={3}>Amazing journeys. Every day.</Title>
+              <Title level={3}>
+                {' '}
+                {t(
+                  'flight-list-page.flight-banner.Amazing journeys. Every day.'
+                )}
+              </Title>
             </motion.div>
           </div>
         </div>

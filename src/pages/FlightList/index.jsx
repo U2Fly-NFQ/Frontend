@@ -14,30 +14,34 @@ import { useEffect, useState } from 'react'
 import { ScrollToTopButton } from '../../components'
 import { getLsObj, updateLs } from '../../utils/localStorage'
 import moment from 'moment'
-import axios from 'axios'
+import { useTranslation } from 'react-i18next'
+import FlightApi from '../../api/Flight'
 import { CloseOutlined } from '@ant-design/icons'
 import { scrollTo } from '../../utils/scroll'
 import Home from '../Home'
+import {
+  addHourToTime,
+  getDurationFormat,
+  getPriceWithDiscount,
+} from '../../utils/flight'
 
 const { Title, Text } = Typography
 const { Option } = Select
 
 function FlightList() {
   const dispatch = useDispatch()
-  const { onetrip, roundtrip, status } = useSelector((state) => state.flights)
-  const [searchParams, setSearchParams] = useSearchParams()
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const [order, setOrder] = useState('price.asc')
+  const [searchParams, setSearchParams] = useSearchParams()
   const [selectedFlight, setSelectedFlight] = useState({})
   const flightStorage = getLsObj('flight')
-  const activeData = flightStorage.ticketType === 'oneWay' ? onetrip : roundtrip
+  const { oneway, roundtrip, status } = useSelector((state) => state.flights)
+  const activeData =
+    flightStorage.ticketType === 'roundTrip' && flightStorage.id
+      ? roundtrip
+      : oneway
   const { pagination } = activeData
-
-  const changeOrder = (value) => {
-    setOrder(value)
-    searchParams.set('order', value)
-    setSearchParams(searchParams)
-  }
 
   useEffect(() => {
     if (checkFirstVisitWithoutParams()) {
@@ -63,12 +67,8 @@ function FlightList() {
 
     if (flightStorage.ticketType === 'roundTrip' && flightStorage.id) {
       async function fetchData() {
-        // const rs = await FlightApi.get(flightStorage.id)
-        const rs = await axios.get(
-          'https://62c45182abea8c085a729073.mockapi.io/flights-by-id/' +
-            flightStorage.id
-        )
-        setSelectedFlight(rs.data)
+        const rs = await FlightApi.get(flightStorage.id)
+        setSelectedFlight(rs.data.data)
       }
       fetchData()
     }
@@ -77,12 +77,20 @@ function FlightList() {
     dispatch(fetchFlights(searchParams))
   }, [searchParams, flightStorage.id])
 
+  const changeOrder = (value) => {
+    setOrder(value)
+    searchParams.set('order', value)
+    setSearchParams(searchParams)
+  }
+
   const changePage = (value) => {
-    setSearchParams(searchParams.set('page', value))
+    searchParams.set('page', value)
+    setSearchParams(searchParams)
   }
 
   const changeSize = (value) => {
-    setSearchParams(searchParams.set('offset', value))
+    searchParams.set('offset', value)
+    setSearchParams(searchParams)
   }
 
   const checkFirstVisitWithoutParams = () => {
@@ -104,12 +112,14 @@ function FlightList() {
     navigate(0)
   }
 
-  let selectedPrice = 0
+  let selectedSeat = 0
 
   if (selectedFlight.seat && selectedFlight.seat.length)
-    selectedPrice =
-      (flightStorage.seatType === 'Economy' && selectedFlight.seat[0].price) ||
-      selectedFlight.seat[1].price
+    selectedSeat =
+      (flightStorage.seatType === 'Economy' && selectedFlight.seat[0]) ||
+      selectedFlight.seat[1]
+
+  const emptyTrip = !activeData?.flight?.length
 
   return (
     <>
@@ -127,7 +137,9 @@ function FlightList() {
                   <div className="selected-outbound">
                     <div className="wrapper">
                       <div className="header">
-                        <Text className="main-title">Selected outbound</Text>
+                        <Text className="main-title">
+                          {t('flight-list-page.Selected outbound')}
+                        </Text>
                         <div className="sub-title">
                           {/* <Button type="link" size="small">
                             Flight details
@@ -162,25 +174,34 @@ function FlightList() {
                             <i className="fa-solid fa-plane"></i>
                             <span className="flight-segment"></span>
                             <i className="fa-solid fa-map-location-dot"></i>
-                            <span className="duration">1.5 hour</span>
+                            <span className="duration">
+                              {getDurationFormat(selectedFlight.duration)}
+                            </span>
                           </div>
                           <div className="line-way-item to">
                             <Title level={3}>
-                              {moment(selectedFlight.startTime, 'HH:mm:ss')
-                                .add(selectedFlight.duration * 60, 'minutes')
-                                .format('HH:mm')}
+                              {addHourToTime(selectedFlight.startTime)}
                             </Title>
                             <Text>{selectedFlight.arrival.iata}</Text>
                           </div>
                         </div>
                         <div className="price-box">
                           <Title level={3} className="price-old">
-                            $<del>{selectedPrice}</del>
+                            {t('flight-list-page.$')}
+                            <del>{selectedSeat.price}</del>
                           </Title>
                           <Title level={3} className="price-new">
-                            ${selectedPrice}
+                            {t('flight-list-page.$')}
+                            {getPriceWithDiscount(
+                              selectedSeat.price,
+                              selectedSeat.discount
+                            )}
                           </Title>
-                          <sup>0% OFF</sup>
+                          <sup>
+                            {t('flight-list-page.OFF', {
+                              number: selectedSeat.discount * 100,
+                            })}
+                          </sup>
                         </div>
                       </div>
                     </div>
@@ -195,15 +216,21 @@ function FlightList() {
                   <Col span={24}>
                     <div className="flight-search-title-container">
                       <Title level={4}>
-                        {pagination?.total || 0} tours found
+                        {t('flight-list-page.flights found', {
+                          number: pagination?.total || 0,
+                        })}
                       </Title>
                       <Select
                         value={order}
                         style={{ width: 180, textAlign: 'left' }}
                         onChange={changeOrder}
                       >
-                        <Option value="price.asc">Cheapest price first</Option>
-                        <Option value="duration.asc">Fastest time first</Option>
+                        <Option value="price.asc">
+                          {t('flight-list-page.Price Low to High')}
+                        </Option>
+                        <Option value="duration.asc">
+                          {t('flight-list-page.Fly time Fastest')}
+                        </Option>
                       </Select>
                     </div>
                   </Col>
@@ -216,12 +243,12 @@ function FlightList() {
                         <FlightCard loading={true} />
                       </>
                     )}
-                    {(!activeData.flight.length && <NotFoundFlight />) ||
-                      roundtrip.flight.map((f) => (
+                    {emptyTrip && <NotFoundFlight />}
+                    {!emptyTrip &&
+                      activeData.flight.map((f) => (
                         <FlightCard key={f.id} data={f} />
                       ))}
-
-                    {pagination.total > 0 && (
+                    {!emptyTrip && pagination.total > pagination.offset && (
                       <Pagination
                         onChange={changePage}
                         current={pagination.page}

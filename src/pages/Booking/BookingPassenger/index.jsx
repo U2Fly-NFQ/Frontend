@@ -9,10 +9,15 @@ import {
   getUserDataInBooking,
 } from '../../../redux/slices/bookingFlightsSlice'
 import { ButtonOfPage, SelectDropDown } from '../../../components'
+import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
+
 export default function BookingPassenger() {
   const userInformation = useSelector(getUserInformation)
   const dispatch = useDispatch()
   const [form] = Form.useForm()
+  const { t } = useTranslation()
+
   useEffect(() => {
     let userInfo = JSON.parse(localStorage.getItem('user'))
     if (userInfo) {
@@ -29,17 +34,19 @@ export default function BookingPassenger() {
   }
 
   useEffect(() => {
-    form.setFieldsValue({
-      firstName: userInformation.name,
-      date_picker: moment(),
-      email: userInformation.email,
-      streetAddress: userInformation.address,
-      identificationCard: userInformation.identification,
-    })
+    if (userInformation.name) {
+      form.setFieldsValue({
+        firstName: userInformation.name,
+        date_picker: moment(userInformation.birthday.date),
+        email: userInformation.email,
+        streetAddress: userInformation.address,
+        identificationCard: userInformation.identification,
+      })
+    }
   }, [userInformation])
   return (
     <>
-      <div class="booking-page__container__item__title">
+      <div className="booking-page__container__item__title">
         <h2>Passengers information</h2>
       </div>
       <Form
@@ -59,14 +66,14 @@ export default function BookingPassenger() {
           rules={[
             {
               required: true,
-              message: 'Please input your first name!',
+              message: t('flight-booking-page.Please input your first name!'),
             },
           ]}
         >
           <input
             name="firstName"
             className="form-control"
-            placeholder="First name*"
+            placeholder={t('flight-booking-page.First name')}
           />
         </Form.Item>
 
@@ -77,12 +84,12 @@ export default function BookingPassenger() {
           rules={[
             {
               required: true,
-              message: 'Please input your last name!',
+              message: t('flight-booking-page.Please input your birthdate!'),
             },
           ]}
         >
           <DatePicker
-            placeholder="Ngày Sinh của bạn"
+            placeholder={t('flight-booking-page.Your birthdate')}
             className="form-control"
             format="DD-MM-YYYY"
             style={{ display: 'flex' }}
@@ -97,30 +104,36 @@ export default function BookingPassenger() {
           rules={[
             {
               type: 'email',
-              message: 'The input is not valid E-mail!',
+              message: t('flight-booking-page.The input is not valid E-mail!'),
             },
             {
               required: true,
-              message: 'Please input your E-mail!',
+              message: t('flight-booking-page.Please input your E-mail!'),
             },
           ]}
         >
           <input
             name="email"
             className="form-control"
-            placeholder="Email address"
+            placeholder={t('flight-booking-page.Email address')}
           />
         </Form.Item>
 
         <Form.Item
           name="number"
           style={{ display: 'inline-block', width: '50%' }}
-          rules={[{ required: true, message: 'Please input your number !' }]}
+          rules={[
+            {
+              required: true,
+              message: t('flight-booking-page.Please input your phone number!'),
+            },
+          ]}
         >
           <input
             name="number"
+            type="number"
             className="form-control"
-            placeholder="Mobile number*"
+            placeholder={t('flight-booking-page.Mobile number')}
           />
         </Form.Item>
 
@@ -134,25 +147,33 @@ export default function BookingPassenger() {
           rules={[
             {
               required: true,
-              message: 'Please input your street address!',
+              message: t(
+                'flight-booking-page.Please input your street address!'
+              ),
             },
           ]}
         >
           <input
             name="streetAddress"
             className="form-control"
-            placeholder="Street address*"
+            placeholder={t('flight-booking-page.Street address')}
           />
         </Form.Item>
 
         <Form.Item
           name="identificationCard"
           style={{ display: 'inline-block', width: '50%' }}
+          rules={[
+            {
+              required: true,
+              message: t('flight-booking-page.Please input your apartment!'),
+            },
+          ]}
         >
           <input
             name="Identification Card"
             className="form-control"
-            placeholder="Apartment*"
+            placeholder={t('flight-booking-page.Apartment')}
           />
         </Form.Item>
         <Form.Item
@@ -175,26 +196,31 @@ export default function BookingPassenger() {
           rules={[
             {
               required: true,
-              message: 'Please input your Passport!',
+              message: t('flight-booking-page.Please input your Passport!'),
             },
           ]}
         >
           <input
             className="form-control"
             name="passport"
-            placeholder={'Passport no.'}
+            placeholder={t('flight-booking-page.Passport no.')}
           />
         </Form.Item>
 
         <Form.Item
           name="visa"
           style={{ display: 'inline-block', width: '50%' }}
-          rules={[{ required: true, message: 'Please input your visa!' }]}
+          rules={[
+            {
+              required: true,
+              message: t('flight-booking-page.Please input your visa!'),
+            },
+          ]}
         >
           <input
             name="visa"
             className="form-control"
-            placeholder={'Visa no.'}
+            placeholder={t('flight-booking-page.Visa no.')}
           />
         </Form.Item>
         <Form.Item
@@ -206,16 +232,21 @@ export default function BookingPassenger() {
               validator: (_, value) =>
                 value
                   ? Promise.resolve()
-                  : Promise.reject(new Error('Should accept agreement')),
+                  : Promise.reject(
+                      new Error(
+                        t('flight-booking-page.Should accept agreement')
+                      )
+                    ),
             },
           ]}
         >
           <Checkbox>
-            I have read the <a href="">agreement</a>
+            {t('flight-booking-page.I have read the')}{' '}
+            <Link to="">{t('flight-booking-page.agreement')}</Link>
           </Checkbox>
         </Form.Item>
         <Form.Item>
-          <ButtonOfPage title="Continue to payment" />
+          <ButtonOfPage title={t('flight-booking-page.Continue to payment')} />
         </Form.Item>
       </Form>
     </>

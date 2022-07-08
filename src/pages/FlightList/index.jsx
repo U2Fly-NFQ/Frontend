@@ -37,7 +37,10 @@ function FlightList() {
   const [selectedFlight, setSelectedFlight] = useState({})
   const flightStorage = getLsObj('flight')
   const { oneway, roundtrip, status } = useSelector((state) => state.flights)
-  const activeData = flightStorage.ticketType === 'oneWay' ? oneway : roundtrip
+  const activeData =
+    flightStorage.ticketType === 'roundTrip' && flightStorage.id
+      ? roundtrip
+      : oneway
   const { pagination } = activeData
 
   useEffect(() => {

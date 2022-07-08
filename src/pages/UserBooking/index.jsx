@@ -70,7 +70,7 @@ function UserBooking(props) {
         })
       )
     }
-  }, [ticketCancelStatus])
+  }, [dispatch, ticketCancelStatus, userLogin.id])
 
   const handleCancelBooking = (data) => {
     dispatch(

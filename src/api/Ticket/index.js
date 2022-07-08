@@ -3,7 +3,7 @@ import axios from '..'
 const endpoint = '/tickets'
 
 export const getList = (params) => {
-  return axiosInstance.get(`${endpoint}`, {
+  return axios.get(`${endpoint}`, {
     params,
   })
 }

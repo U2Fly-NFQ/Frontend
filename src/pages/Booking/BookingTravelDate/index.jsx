@@ -33,15 +33,9 @@ export default function BookingTravelDate() {
             </div>
           </li>
           <li>
+            <div className="booking-travel-date__container__key">Tax</div>
             <div className="booking-travel-date__container__key">
-              {t('flight-booking-page.Discount')}
-            </div>
-            <div className="booking-travel-date__container__key">
-              {`${getDiscount.percent * 100}% ($${
-                (seatRoungTrip !== undefined
-                  ? seatRoungTrip.price + seat.price
-                  : seat.price) * seat.discount
-              })`}
+              {seat.discount * 100}%
             </div>
           </li>
         </ul>
@@ -59,15 +53,21 @@ export default function BookingTravelDate() {
               </div>
             </li>
             <li>
-              <div className="booking-travel-date__container__key">Tax</div>
+              <div className="booking-travel-date__container__key">
+                {t('flight-booking-page.Discount')}
+              </div>
               <div className="booking-travel-date__container__value">
-                {seat.discount * 100}%
+                {`${getDiscount.percent * 100}% ($${
+                  (seatRoungTrip !== undefined
+                    ? seatRoungTrip.price + seat.price
+                    : seat.price) * getDiscount.percent
+                })`}
               </div>
             </li>
             <li>
               <div className="booking-travel-date__container__key">
-                {t('flight-booking-page.Coupon code')} (
-                {t('flight-booking-page.OFF')} 5000)
+                {t('flight-booking-page.Coupon code')}
+                {getDiscount.percent !== 0 && ` (${getDiscount.name})`}
               </div>
               <div className="booking-travel-date__container__value">
                 $

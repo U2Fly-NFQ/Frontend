@@ -57,7 +57,7 @@ function UserBooking(props) {
 
   useEffect(() => {
     if (ticketCancelStatus === 'failed') {
-      message.error("Can't cancel this booking! Damn!")
+      message.error("Can't cancel this booking!")
     }
     if (ticketCancelStatus === 'success') {
       message.success('Cancel this booking success!')

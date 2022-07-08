@@ -14,12 +14,18 @@ import RegisterBanner from './RegisterBanner'
 import './style.scss'
 import { registerApi } from '../../api/Auth'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
+import { scrollTo } from '../../utils/scroll'
 
 const { Title } = Typography
 
 const Register = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
+
+  useEffect(() => {
+    scrollTo(400)
+  }, [])
 
   const onFinish = (values) => {
     const { idno, name, gender, birthDate, address, email, password } = values

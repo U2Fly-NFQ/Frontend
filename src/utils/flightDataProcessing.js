@@ -1,4 +1,4 @@
-import { getBoardingDateTime, getEndDateTime } from './fightFunction'
+import { getBoardingDateTime, getEndDateTime } from './flight'
 import moment from 'moment'
 
 export const flightDataProcessed = (ticket) => {

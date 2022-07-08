@@ -1,6 +1,6 @@
 import { Collapse, Steps } from 'antd'
 import React from 'react'
-import { getDurationFormat } from '../../../../utils'
+import { getDurationFormat } from '../../../../utils/flight'
 import './index.scss'
 import { useSelector } from 'react-redux'
 import vietnameairline from '../../../../assets/images/system/vip.png'

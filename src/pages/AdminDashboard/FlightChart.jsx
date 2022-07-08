@@ -1,27 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Line } from '@ant-design/plots'
 
-const FlightChart = () => {
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    asyncFetch()
-  }, [])
-
-  const asyncFetch = () => {
-    fetch(
-      'https://gw.alipayobjects.com/os/bmw-prod/e00d52f4-2fa6-47ee-a0d7-105dd95bde20.json'
-    )
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => {
-        console.log('Fetch data failed', error)
-      })
-  }
+const FlightChart = ({ data }) => {
+  const { flightCancel, flightTotal, flightSuccess } = data
+  const dataMap = [...flightCancel, ...flightTotal, ...flightSuccess]
   const config = {
-    data,
-    xField: 'year',
-    yField: 'gdp',
+    data: dataMap,
+    xField: 'time',
+    yField: 'value',
     seriesField: 'name',
     yAxis: {
       label: {

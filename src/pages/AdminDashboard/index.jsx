@@ -4,6 +4,7 @@ import { Bar } from '@ant-design/charts'
 import { Typography } from 'antd/es'
 import './style.scss'
 import FlightChart from './FlightChart'
+import { get } from '../../api/Dashboard'
 
 const { Title } = Typography
 
@@ -54,7 +55,7 @@ function AdminDashboard() {
   const [statics, setStatics] = useState()
 
   useEffect(() => {
-    // get().then((rs) => console.log(rs))
+    get().then((rs) => console.log(rs))
   }, [])
 
   return (
@@ -84,7 +85,13 @@ function AdminDashboard() {
       <div className="line-chart-area">
         <Row gutter={[20, 20]}>
           <Col span={24}>
-            <FlightChart />
+            <Card
+              className="routes"
+              title={<Title level={5}>Booking</Title>}
+              bordered={false}
+            >
+              <FlightChart />
+            </Card>
           </Col>
         </Row>
       </div>

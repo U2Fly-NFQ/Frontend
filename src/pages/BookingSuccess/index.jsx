@@ -11,6 +11,7 @@ import BookingSteps from '../Booking/BookingSteps'
 import BookingSuccessDetail from './BookingSuccessDetail'
 import './index.scss'
 import { getTicketInformation } from '../../redux/slices/bookingSuccessSlice'
+import moment from 'moment'
 function BookingSuccessPage() {
   const navigate = useNavigate()
   const dateUserBooking = useSelector(getUserInformationSuccess)
@@ -30,6 +31,7 @@ function BookingSuccessPage() {
   useEffect(() => {
     scrollTo('650')
   }, [])
+  console.log(dateUserBooking.birthday)
   return (
     <>
       {getLoadding && <PageLoadingAnimation />}
@@ -39,7 +41,7 @@ function BookingSuccessPage() {
           className="booking-page__container grid wide"
           style={{ display: ticketId === undefined ? 'flex' : 'block' }}
         >
-          <BookingSteps ticketId={ticketId} />
+          <BookingSteps ticketId={ticketId} step={2} />
           <div className="Booking-success">
             <div className="Booking-success__container__items">
               <div className="Booking-success__container__item">
@@ -78,7 +80,12 @@ function BookingSuccessPage() {
                     </li>
                     <li>
                       <span>Day of Birth:</span>
-                      <span className="value">{dateUserBooking.birthday}</span>
+                      <span className="value">
+                        {dateUserBooking.birthday &&
+                          moment(dateUserBooking.birthday.date).format(
+                            'DD-MM-YYYY'
+                          )}
+                      </span>
                     </li>
                     <li>
                       <span>Email address:</span>

@@ -47,7 +47,7 @@ function FlightList() {
       dispatch(getRoundTripBookingFlightAsync(flight.roundId))
       if (!token) navigate('/login')
     } else {
-      // navigate(-1)
+      navigate(-1)
     }
   }, [])
 

@@ -6,7 +6,7 @@ import './index.scss'
 import { changeCurrentMethod } from '../../../redux/slices/bookingFlightsSlice'
 import { useTranslation } from 'react-i18next'
 
-export default function BookingSteps({ contentTop, contentBottom, ticketId }) {
+export default function BookingSteps({ step }) {
   const dispatch = useDispatch()
   const getCurrentMethod = useSelector(getCurrentMethodInBookingFlight)
   const { t } = useTranslation()
@@ -23,7 +23,7 @@ export default function BookingSteps({ contentTop, contentBottom, ticketId }) {
     <Steps
       type="navigation"
       className="booking-steps"
-      current={getCurrentMethod}
+      current={step || getCurrentMethod}
       onChange={onChange}
     >
       <Step

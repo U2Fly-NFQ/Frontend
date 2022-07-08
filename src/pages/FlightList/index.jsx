@@ -19,7 +19,11 @@ import FlightApi from '../../api/Flight'
 import { CloseOutlined } from '@ant-design/icons'
 import { scrollTo } from '../../utils/scroll'
 import Home from '../Home'
-import { addHourToTime, getDurationFormat } from '../../utils/flight'
+import {
+  addHourToTime,
+  getDurationFormat,
+  getPriceWithDiscount,
+} from '../../utils/flight'
 
 const { Title, Text } = Typography
 const { Option } = Select
@@ -61,7 +65,7 @@ function FlightList() {
     if (flightStorage.ticketType === 'roundTrip' && flightStorage.id) {
       async function fetchData() {
         const rs = await FlightApi.get(flightStorage.id)
-        setSelectedFlight(rs.data)
+        setSelectedFlight(rs.data.data)
       }
       fetchData()
     }
@@ -105,12 +109,12 @@ function FlightList() {
     navigate(0)
   }
 
-  let selectedPrice = 0
+  let selectedSeat = 0
 
   if (selectedFlight.seat && selectedFlight.seat.length)
-    selectedPrice =
-      (flightStorage.seatType === 'Economy' && selectedFlight.seat[0].price) ||
-      selectedFlight.seat[1].price
+    selectedSeat =
+      (flightStorage.seatType === 'Economy' && selectedFlight.seat[0]) ||
+      selectedFlight.seat[1]
 
   const emptyTrip = !activeData?.flight?.length
 
@@ -181,13 +185,20 @@ function FlightList() {
                         <div className="price-box">
                           <Title level={3} className="price-old">
                             {t('flight-list-page.$')}
-                            <del>{selectedPrice}</del>
+                            <del>{selectedSeat.price}</del>
                           </Title>
                           <Title level={3} className="price-new">
                             {t('flight-list-page.$')}
-                            {selectedPrice}
+                            {getPriceWithDiscount(
+                              selectedSeat.price,
+                              selectedSeat.discount
+                            )}
                           </Title>
-                          <sup>{t('flight-list-page.OFF', { number: 0 })}</sup>
+                          <sup>
+                            {t('flight-list-page.OFF', {
+                              number: selectedSeat.discount * 100,
+                            })}
+                          </sup>
                         </div>
                       </div>
                     </div>

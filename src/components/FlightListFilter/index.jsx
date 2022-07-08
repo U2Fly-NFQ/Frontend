@@ -157,16 +157,16 @@ const Flight = () => {
           <Radio.Group onChange={changeTime} value={time}>
             <Space direction="vertical">
               <Radio value={''}>{t('flight-list-page.All time')}</Radio>
-              <Radio value={'morning'}>
+              <Radio value={'earlymorning'}>
                 {t('flight-list-page.Early Morning')} (00:00 - 06:00)
               </Radio>
-              <Radio value={'earlymoning'}>
+              <Radio value={'morning'}>
                 {t('flight-list-page.Morning')} (06:00 - 12:00)
               </Radio>
               <Radio value={'afternoon'}>
                 {t('flight-list-page.Afternoon')} (12:00 - 18:00)
               </Radio>
-              <Radio value={'evening'}>
+              <Radio value={'night'}>
                 {t('flight-list-page.Evening')} (18:00 - 24:00)
               </Radio>
             </Space>

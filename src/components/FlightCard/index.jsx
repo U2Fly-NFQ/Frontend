@@ -71,7 +71,11 @@ export default function FlightCard(props) {
           <div className="airline">
             <img
               className="airline-image"
-              src="https://andit.co/projects/html/and-tour/assets/img/common/biman_bangla.png"
+              src={data.airline.image}
+              style={{
+                width: '180px',
+                objectFit: 'contain',
+              }}
             />
           </div>
 
@@ -94,7 +98,9 @@ export default function FlightCard(props) {
             <h3 className="title">
               {data.arrival.city} ({data.arrival.iata})
             </h3>
-            <h6 className="desc">{addHourToTime(data.startTime)}</h6>
+            <h6 className="desc">
+              {addHourToTime(data.startTime, data.duration)}
+            </h6>
           </div>
         </div>
         <div className="flight-card-deal">
@@ -106,12 +112,12 @@ export default function FlightCard(props) {
               </del>
             </h5>
             <h2 className="flight-card-price__discount">
-              $ {getPriceWithDiscount(data.seat.price, randomDiscount)}
+              $ {getPriceWithDiscount(data.seat.price, data.seat.discount)}
             </h2>
             <h4 className="discount-label red">
               <span>
                 {t('flight-list-page.OFF', {
-                  number: (randomDiscount * 100).toFixed(0),
+                  number: (data.seat.discount * 100).toFixed(0),
                 })}
               </span>
             </h4>

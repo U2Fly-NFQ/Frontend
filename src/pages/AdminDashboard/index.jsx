@@ -57,29 +57,11 @@ function AdminDashboard() {
         <Row gutter={20}>
           <Col lg={6}>
             <Card
-              className="aiports"
-              title={<Title level={5}>Top Airports</Title>}
-              bordered={false}
-            >
-              <Bar data={data.top_airport.data} {...barConfig} />
-            </Card>
-          </Col>
-          <Col lg={6}>
-            <Card
               className="airlines"
               title={<Title level={5}>Top Airlines</Title>}
               bordered={false}
             >
               <Bar data={data.top_airline.data} {...barConfig} />
-            </Card>
-          </Col>
-          <Col lg={6}>
-            <Card
-              className="aircaft"
-              title={<Title level={5}>Top Aircaft</Title>}
-              bordered={false}
-            >
-              <Bar data={data.top_aircraft.data} {...barConfig} />
             </Card>
           </Col>
           <Col lg={6}>

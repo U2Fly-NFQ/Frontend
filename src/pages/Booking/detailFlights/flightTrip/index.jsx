@@ -53,7 +53,7 @@ export default function FlightTrip() {
               <div className="info-plane_trip">
                 <div className="info-plane_trip-icon__rotate">
                   <i
-                    class="fa-solid fa-plane-up"
+                    className="fa-solid fa-plane-up"
                     style={{ transform: 'rotate(45deg);' }}
                   ></i>
                 </div>
@@ -84,7 +84,7 @@ export default function FlightTrip() {
             title={
               <div className="info-plane_trip">
                 <div className="info-plane_trip-icon">
-                  <i class="fa-solid fa-location-dot"></i>
+                  <i className="fa-solid fa-location-dot"></i>
                 </div>
 
                 <span>{getDataFlight.arrival.city}</span>
@@ -129,7 +129,7 @@ export default function FlightTrip() {
                 <div className="info-plane_trip">
                   <div className="info-plane_trip-icon__rotate">
                     <i
-                      class="fa-solid fa-plane-up"
+                      className="fa-solid fa-plane-up"
                       style={{ transform: 'rotate(45deg);' }}
                     ></i>
                   </div>
@@ -160,7 +160,7 @@ export default function FlightTrip() {
               title={
                 <div className="info-plane_trip">
                   <div className="info-plane_trip-icon">
-                    <i class="fa-solid fa-location-dot"></i>
+                    <i className="fa-solid fa-location-dot"></i>
                   </div>
 
                   <span>{getDataFlight.arrival.city}</span>

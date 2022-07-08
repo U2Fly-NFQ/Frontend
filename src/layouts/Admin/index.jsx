@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 import { AdminHeader, AdminSidebar } from '../../components'
 import { useState } from 'react'
 
-const { Footer } = Layout
+const { Header, Content, Sider, Footer } = Layout
 
 function AdminLayout() {
   //Menu collapsed
@@ -12,13 +12,30 @@ function AdminLayout() {
 
   return (
     <Layout className="admin">
-      <AdminSidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+      <Sider
+        className="admin-sidebar"
+        trigger={null}
+        breakpoint="md"
+        onBreakpoint={(broken) => {
+          setCollapsed(broken)
+        }}
+        collapsedWidth="50"
+        collapsed={collapsed}
+      >
+        <AdminSidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+      </Sider>
       <Layout>
-        <AdminHeader />
-        <main style={{ padding: '16px', minHeight: '80vh' }}>
+        <Header className="admin-header">
+          <AdminHeader />
+        </Header>
+        <Content
+          style={{
+            padding: '20px',
+          }}
+        >
           <Outlet />
-        </main>
-        <Footer>admin footer</Footer>
+        </Content>
+        {/* <Footer></Footer> */}
       </Layout>
     </Layout>
   )

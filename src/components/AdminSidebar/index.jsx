@@ -1,7 +1,6 @@
 import { Col, Layout, Menu, Row } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from '../../assets/images/system/logo.png'
 
 const { Sider } = Layout
 
@@ -23,40 +22,27 @@ function AdminSidebar({ collapsed, setCollapsed }) {
     ),
     getItem(
       <Link to="/admin/discount">Discount</Link>,
-      1,
-      <i class="fa-duotone fa-badge-dollar"></i>
+      2,
+      <i className="fa-solid fa-tags"></i>
     ),
   ]
 
   return (
-    <Sider
-      className="admin-sidebar"
-      trigger={null}
-      breakpoint="md"
-      onBreakpoint={(broken) => {
-        setCollapsed(broken)
-      }}
-      collapsedWidth="65"
-      collapsed={collapsed}
-    >
+    <>
       <Row className="admin-sidebar-header">
         <Col span={24} className="admin-sidebar-header-logo">
-          <Link to="/">
-            <img src={Logo} alt="logo" />
+          <Link
+            to="/"
+            style={{
+              fontSize: 24,
+            }}
+          >
+            U2Fly
           </Link>
         </Col>
-
-        {/*<Col span={6} className="admin-sidebar-header-trigger">*/}
-        {/*  {React.createElement(*/}
-        {/*    collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,*/}
-        {/*    {*/}
-        {/*      onClick: () => setCollapsed(!collapsed),*/}
-        {/*    }*/}
-        {/*  )}*/}
-        {/*</Col>*/}
       </Row>
       <Menu theme="light" mode="inline" items={Items} />
-    </Sider>
+    </>
   )
 }
 

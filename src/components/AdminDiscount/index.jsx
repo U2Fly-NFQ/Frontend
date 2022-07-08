@@ -58,9 +58,7 @@ function AddminDiscount() {
     {
       title: 'Discount name',
       dataIndex: 'name',
-      render: (text) => (
-        <Typography.Paragraph strong>{text}</Typography.Paragraph>
-      ),
+      render: (text) => <Typography.Paragraph>{text}</Typography.Paragraph>,
     },
     {
       title: 'Value',
@@ -69,7 +67,7 @@ function AddminDiscount() {
         compare: (a, b) => a.value - b.value,
       },
       render: (text) => (
-        <Typography.Paragraph strong>{text + '%'}</Typography.Paragraph>
+        <Typography.Paragraph>{text + '%'}</Typography.Paragraph>
       ),
     },
     {
@@ -79,7 +77,7 @@ function AddminDiscount() {
         compare: (a, b) => a.createdAt - b.createdAt,
       },
       render: (text) => (
-        <Typography.Paragraph strong>
+        <Typography.Paragraph>
           {moment(text).format('MMMM Do YYYY, h:mm:ss')}
         </Typography.Paragraph>
       ),

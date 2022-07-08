@@ -73,7 +73,7 @@ export default function PaymentFlight() {
 
   return (
     <>
-      <div class="booking-page__container__item__title">
+      <div className="booking-page__container__item__title">
         <h2>Payment Method</h2>
       </div>
       <div style={{ width: '100%' }}>

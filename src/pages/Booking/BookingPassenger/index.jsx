@@ -46,7 +46,7 @@ export default function BookingPassenger() {
   }, [userInformation])
   return (
     <>
-      <div class="booking-page__container__item__title">
+      <div className="booking-page__container__item__title">
         <h2>Passengers information</h2>
       </div>
       <Form

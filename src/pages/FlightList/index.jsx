@@ -236,16 +236,14 @@ function FlightList() {
                       </Select>
                     </div>
                   </Col>
-                  <Col span={24}>
+                  <Col span={24} style={{ position: 'relative' }}>
                     {status === 'loading' && (
                       <>
                         <FlightCard loading={true} />
                         <FlightCard loading={true} />
-                        <FlightCard loading={true} />
-                        <FlightCard loading={true} />
                       </>
                     )}
-                    {emptyFlight && <NotFoundFlight />}
+                    {status !== 'loading' && emptyFlight && <NotFoundFlight />}
                     {!emptyFlight &&
                       activeData.flight.map((f) => (
                         <FlightCard key={f.id} data={f} />

@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import ButtonOfPage from '../ButtonOfPage'
 import NavLinkDropDown from '../NavLinkDropDown'
 import './index.scss'
 import { useTranslation } from 'react-i18next'
@@ -53,13 +52,7 @@ export default function Navbar() {
           <NavLinkDropDown Title={{ path: '', title: 'Home' }} />
           <NavLinkDropDown Title={{ path: 'flights', title: 'Flights' }} />
         </ul>
-        <div className="navbar__footer">
-          <div className="navbar__footer__btn">
-            <div onClick={() => navigate('/admin')} className="partner-btn">
-              <ButtonOfPage title={t('cta.become_partner')} />
-            </div>
-          </div>
-        </div>
+
         <div
           className="navbar_icons"
           onClick={() => {

@@ -7,25 +7,36 @@ import { findIndex } from 'lodash/array'
 import moment from 'moment'
 import ModalRating from '../ModalRating'
 import { useDispatch } from 'react-redux'
+import { fetchRatingBooking } from '../../redux/slices/ticketSlice'
 
 function UserBookingDetail({ detailData }) {
   //initiation
   const dispatch = useDispatch()
   const [viewTicket, setViewTicket] = useState(false)
   const [ticketData, setTicketData] = useState({})
-  const [currentId, setCurrentId] = useState()
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const [dataRating, setDataRating] = useState({})
 
   const handleCancelRating = () => {
     setIsModalVisible(false)
   }
-  const showModal = () => {
+  const showRatingForm = (value) => {
     setIsModalVisible(true)
+    setDataRating({
+      ticketFlightId: value.ticketFlight.id,
+      accountId: JSON.parse(localStorage.getItem('user')).id,
+    })
   }
 
   const handleRating = (value) => {
-    console.log(value)
-    console.log(ticketData)
+    dispatch(
+      fetchRatingBooking({
+        ...dataRating,
+        rate: value.status,
+        comment: value.description,
+      })
+    )
+    setIsModalVisible(false)
   }
 
   const flightsColumn = [
@@ -99,8 +110,7 @@ function UserBookingDetail({ detailData }) {
               type="primary"
               shape="default"
               onClick={() => {
-                showModal()
-                setCurrentId(record.id)
+                showRatingForm(record)
               }}
             >
               Rating

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { cancelBooking, getList } from '../../api/Ticket'
+import { bookingRating, cancelBooking, getList } from '../../api/Ticket'
 
 const initialState = {
   status: '',
@@ -49,6 +49,16 @@ const ticketSlice = createSlice({
         state.status = 'idle'
         state.cancel = 'success'
       })
+      // fetch history booking
+      .addCase(fetchRatingBooking.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(fetchRatingBooking.rejected, (state) => {
+        state.status = 'error'
+      })
+      .addCase(fetchRatingBooking.fulfilled, (state, action) => {
+        state.status = 'idle'
+      })
   },
 })
 
@@ -72,6 +82,13 @@ export const fetchCancelBooking = createAsyncThunk(
   'ticket/fetchCancelBooking',
   async (data) => {
     let response = await cancelBooking(data)
+    return response.data
+  }
+)
+export const fetchRatingBooking = createAsyncThunk(
+  'ticket/fetchRatingBooking',
+  async (data) => {
+    let response = await bookingRating(data)
     return response.data
   }
 )

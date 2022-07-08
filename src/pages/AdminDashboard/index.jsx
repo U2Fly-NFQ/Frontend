@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, Col, Row } from 'antd'
 import { Bar } from '@ant-design/charts'
 import { Typography } from 'antd/es'
@@ -51,11 +51,17 @@ function AdminDashboard() {
     height: 200,
   }
 
+  const [statics, setStatics] = useState()
+
+  useEffect(() => {
+    // get().then((rs) => console.log(rs))
+  }, [])
+
   return (
     <div className="admin-layout">
       <div className="bar-chart-area">
         <Row gutter={20}>
-          <Col lg={6}>
+          <Col lg={12}>
             <Card
               className="airlines"
               title={<Title level={5}>Top Airlines</Title>}
@@ -64,7 +70,7 @@ function AdminDashboard() {
               <Bar data={data.top_airline.data} {...barConfig} />
             </Card>
           </Col>
-          <Col lg={6}>
+          <Col lg={12}>
             <Card
               className="routes"
               title={<Title level={5}>Top Routes</Title>}

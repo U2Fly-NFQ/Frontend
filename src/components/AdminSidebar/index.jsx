@@ -17,9 +17,14 @@ function AdminSidebar({ collapsed, setCollapsed }) {
 
   const Items = [
     getItem(
-      <Link to="/admin/">Dashboard</Link>,
+      <Link to="/admin">Dashboard</Link>,
       1,
       <i className="fa-solid fa-gauge"></i>
+    ),
+    getItem(
+      <Link to="/admin/discount">Discount</Link>,
+      1,
+      <i class="fa-duotone fa-badge-dollar"></i>
     ),
   ]
 

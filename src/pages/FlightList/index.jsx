@@ -15,7 +15,7 @@ import { ScrollToTopButton } from '../../components'
 import { getLsObj, updateLs } from '../../utils/localStorage'
 import moment from 'moment'
 import { useTranslation } from 'react-i18next'
-import axios from 'axios'
+import FlightApi from '../../api/Flight'
 import { CloseOutlined } from '@ant-design/icons'
 import { scrollTo } from '../../utils/scroll'
 import Home from '../Home'
@@ -60,11 +60,7 @@ function FlightList() {
 
     if (flightStorage.ticketType === 'roundTrip' && flightStorage.id) {
       async function fetchData() {
-        // const rs = await FlightApi.get(flightStorage.id)
-        const rs = await axios.get(
-          'https://62c45182abea8c085a729073.mockapi.io/flights-by-id/' +
-            flightStorage.id
-        )
+        const rs = await FlightApi.get(flightStorage.id)
         setSelectedFlight(rs.data)
       }
       fetchData()
@@ -115,6 +111,8 @@ function FlightList() {
     selectedPrice =
       (flightStorage.seatType === 'Economy' && selectedFlight.seat[0].price) ||
       selectedFlight.seat[1].price
+
+  const emptyTrip = !activeData?.flight?.length
 
   return (
     <>
@@ -231,12 +229,12 @@ function FlightList() {
                         <FlightCard loading={true} />
                       </>
                     )}
-                    {(!activeData.flight.length && <NotFoundFlight />) ||
-                      roundtrip.flight.map((f) => (
+                    {emptyTrip && <NotFoundFlight />}
+                    {!emptyTrip &&
+                      activeData.flight.map((f) => (
                         <FlightCard key={f.id} data={f} />
                       ))}
-
-                    {pagination.total > 0 && (
+                    {!emptyTrip && pagination.total > pagination.offset && (
                       <Pagination
                         onChange={changePage}
                         current={pagination.page}

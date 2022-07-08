@@ -21,9 +21,7 @@ const getFlightRs = {
 const mockNetWorkResponse = () => {
   const mock = new MockAdapter(axiosInstance)
 
-  mock
-    .onGet(`https://62c45182abea8c085a729073.mockapi.io/flights`)
-    .reply(200, getFlightRs)
+  mock.onGet(`/flights`).reply(200, getFlightRs)
 }
 
 test('Should return initial state', () => {
@@ -40,7 +38,7 @@ describe('FlightSlice', () => {
   })
 
   it('Should be able to get all flights', async () => {
-    const result = await store.dispatch(fetchFlights())
+    const result = await store.dispatch(fetchFlights({}))
 
     const flightData = result.payload
 

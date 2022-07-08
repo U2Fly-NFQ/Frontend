@@ -5,7 +5,6 @@ import React, { Suspense } from 'react'
 import { store } from '../../redux/store'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { screen } from '@testing-library/react'
 import FlightSearch from './'
 import { ConfigProvider } from 'antd'
 
@@ -26,11 +25,6 @@ describe('Flight search', () => {
         </I18nextProvider>
       )
       .toJSON()
-
-    expect(screen.getByRole('heading')).toHaveTextContent(/Doggy Directory/)
-    expect(screen.getByRole('combobox')).toHaveDisplayValue('Select a breed')
-    expect(screen.getByRole('button', { name: 'Search' })).toBeDisabled()
-    expect(screen.getByRole('img')).toBeInTheDocument()
 
     expect(tree).toMatchSnapshot()
   })

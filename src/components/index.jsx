@@ -1,11 +1,8 @@
 // For user layout
 export { default as FlightCard } from './FlightCard'
-export { default as ImageGallery } from './ImageGallery'
-export { default as HomeNavigation } from './HomeNavigation'
 export { default as NavLink } from './NavLink'
 export { default as Table } from './Table'
 export { default as Select } from './Select'
-export { default as HomeFooter } from './HomeFooter'
 export { default as SearchInput } from './SearchInput'
 export { default as LoadingAnimation } from './LoadingAnimation'
 export { default as Pagination } from './Pagination'

@@ -178,9 +178,14 @@ export default function FlightSearch() {
               padding: '10px',
               borderRadius: '12px',
             }}
+            buttonStyle="solid"
           >
-            <Radio value="oneWay">{t('search_form.one_way')}</Radio>
-            <Radio value="roundTrip">{t('search_form.round_trip')}</Radio>
+            <Radio.Button value="oneWay">
+              {t('search_form.one_way')}
+            </Radio.Button>
+            <Radio.Button value="roundTrip">
+              {t('search_form.round_trip')}
+            </Radio.Button>
           </Radio.Group>
         </div>
 

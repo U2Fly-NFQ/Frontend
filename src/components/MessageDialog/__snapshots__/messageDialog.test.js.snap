@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home page test renders correctly 1`] = `null`;
+
+exports[`Message dialog page test renders correctly 1`] = `null`;

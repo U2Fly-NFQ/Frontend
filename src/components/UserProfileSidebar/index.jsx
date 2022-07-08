@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col, Avatar, Menu } from 'antd'
 import { Link } from 'react-router-dom'
 
-function UserProfileSidebar(props) {
+function UserProfileSidebar() {
   const getItem = (label, key, icon, children) => {
     return {
       key,

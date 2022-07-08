@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home page test renders correctly 1`] = `
+<div
+  className="ag-smoke-block-container"
+>
+  <div
+    className="ag-smoke-block"
+  >
+    <picture>
+      <source
+        srcSet="https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/animation-smoke-images/images/smoke-blue.webp"
+        type="image/webp"
+      />
+      <img
+        alt="smoke-blue"
+        className="ag-smoke_img"
+        height="1080"
+        src="https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/animation-smoke-images/images/smoke-blue.png"
+        width="1920"
+      />
+    </picture>
+  </div>
+</div>
+`;
+
+exports[`Smoke animation test renders correctly 1`] = `
+<div
+  className="ag-smoke-block-container"
+>
+  <div
+    className="ag-smoke-block"
+  >
+    <picture>
+      <source
+        srcSet="https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/animation-smoke-images/images/smoke-blue.webp"
+        type="image/webp"
+      />
+      <img
+        alt="smoke-blue"
+        className="ag-smoke_img"
+        height="1080"
+        src="https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/animation-smoke-images/images/smoke-blue.png"
+        width="1920"
+      />
+    </picture>
+  </div>
+</div>
+`;

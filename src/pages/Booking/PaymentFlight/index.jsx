@@ -43,11 +43,12 @@ export default function PaymentFlight() {
       seatTypeId: getSeatData.id,
       totalPrice:
         getDiscountInfo.percent !== 0
-          ? priceDiscount * 110
-          : getPrice * 110 + getRoundTrip.seat.price * 110,
+          ? getPrice.price * 10
+          : getPrice.price * 110 + getRoundTrip.seat.price * 110,
       discountId: getDiscountInfo.id || 1,
       ticketOwner: userInformation.firstName,
     }
+    // console.log(getPrice)
     dispatch(createBookingFlight(fetchDataValue))
   }
   let dataPayment = [

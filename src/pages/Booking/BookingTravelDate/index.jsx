@@ -27,7 +27,7 @@ export default function BookingTravelDate() {
             </div>
             <div className="booking-travel-date__container__key">
               {'$ ' +
-                (seatRoungTrip.price
+                (seatRoungTrip !== undefined
                   ? seatRoungTrip.price + seat.price
                   : seat.price)}
             </div>
@@ -38,7 +38,7 @@ export default function BookingTravelDate() {
             </div>
             <div className="booking-travel-date__container__key">
               {`${getDiscount.percent * 100}% ($${
-                (seatRoungTrip.price
+                (seatRoungTrip !== undefined
                   ? seatRoungTrip.price + seat.price
                   : seat.price) * seat.discount
               })`}
@@ -53,7 +53,7 @@ export default function BookingTravelDate() {
               </div>
               <div className="booking-travel-date__container__value">
                 $
-                {seatRoungTrip.price
+                {seatRoungTrip !== undefined
                   ? seatRoungTrip.price + seat.price
                   : seat.price}
               </div>
@@ -71,7 +71,7 @@ export default function BookingTravelDate() {
               </div>
               <div className="booking-travel-date__container__value">
                 $
-                {(seatRoungTrip.price
+                {(seatRoungTrip !== undefined
                   ? seatRoungTrip.price + seat.price
                   : seat.price) * getDiscount.percent}
               </div>
@@ -84,10 +84,10 @@ export default function BookingTravelDate() {
           </div>
           <div className="booking-travel-date__container__amount__total__value">
             $
-            {(seatRoungTrip.price
+            {(seatRoungTrip !== undefined
               ? seatRoungTrip.price + seat.price
               : seat.price) -
-              (seatRoungTrip.price
+              (seatRoungTrip !== undefined
                 ? seatRoungTrip.price + seat.price
                 : seat.price) *
                 getDiscount.percent +

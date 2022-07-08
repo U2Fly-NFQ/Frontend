@@ -45,9 +45,7 @@ function UserBooking(props) {
     }
   }, [ticketData])
 
-  const handleCancelBooking = () => {
-    console.log('cancel')
-  }
+  const handleCancelBooking = () => {}
 
   return (
     <Row className="userProfile-container-booking">

@@ -57,7 +57,7 @@ const SubNavBar = () => {
                 <a href="#">028 6681 2733</a>
               </li>
               <li className="sub-nav-list__item">
-                <a href="#">career@nfq.asia</a>
+                <a href="#">u2fly@nfq.asia</a>
               </li>
             </ul>
           </Col>

@@ -206,7 +206,7 @@ const FlightListFilter = ({ emptyFlight }) => {
             }}
           >
             <Text>{t('flight-list-page.Airline')}</Text>
-            {airlines.length === airlinesOptions.length && (
+            {airlines.length > 1 && (
               <Text className="clear-btn" italic onClick={clearAirline}>
                 {t('flight-list-page.Clear')}
               </Text>

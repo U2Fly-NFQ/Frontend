@@ -6,7 +6,7 @@ const NotFoundFlight = () => {
       style={{
         display: 'block',
         margin: 'auto',
-        maxWidth: '500px',
+        maxWidth: '100%',
         objectFit: 'contain',
       }}
       src={LoadingGif}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   useNavigate,
   useSearchParams,
@@ -34,7 +34,6 @@ export default function FlightSearch() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const submitRef = useRef(null)
   const [searchParams, setSearchParams] = useSearchParams()
 
   const airports = useSelector((state) => state.airports.data)
@@ -379,7 +378,6 @@ export default function FlightSearch() {
               size="large"
               className="searchBtn btn btn-md btn-primary"
               onClick={onFinish}
-              ref={submitRef}
             >
               {t('cta.search')}{' '}
               {t(

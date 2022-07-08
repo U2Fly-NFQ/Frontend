@@ -17,7 +17,6 @@ import moment from 'moment'
 import { useTranslation } from 'react-i18next'
 import FlightApi from '../../api/Flight'
 import { CloseOutlined } from '@ant-design/icons'
-import { scrollTo } from '../../utils/scroll'
 import Home from '../Home'
 import {
   addHourToTime,
@@ -29,19 +28,28 @@ const { Title, Text } = Typography
 const { Option } = Select
 
 function FlightList() {
-  const dispatch = useDispatch()
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [order, setOrder] = useState('price.asc')
   const [searchParams, setSearchParams] = useSearchParams()
   const [selectedFlight, setSelectedFlight] = useState({})
   const flightStorage = getLsObj('flight')
   const { oneway, roundtrip, status } = useSelector((state) => state.flights)
+  const currentTicketType = searchParams.get('ticketType')
   const activeData =
-    flightStorage.ticketType === 'roundTrip' && flightStorage.id
-      ? roundtrip
-      : oneway
+    currentTicketType === 'roundTrip' && flightStorage.id ? roundtrip : oneway
   const { pagination } = activeData
+
+  const checkEmptyFlight = () => {
+    if (!activeData?.flight?.length) return true
+    if (currentTicketType === 'roundTrip' && !roundtrip?.flight?.length) {
+      return true
+    }
+    return false
+  }
+
+  const emptyFlight = checkEmptyFlight()
 
   useEffect(() => {
     if (checkFirstVisitWithoutParams()) {
@@ -53,7 +61,7 @@ function FlightList() {
       return
     }
 
-    if (searchParams.get('ticketType') === 'oneWay') {
+    if (currentTicketType === 'oneWay' && flightStorage.id) {
       updateLs('flight', {
         id: '',
         roundId: '',
@@ -61,11 +69,7 @@ function FlightList() {
       setSelectedFlight({})
     }
 
-    if (window.location.search) {
-      scrollTo(400)
-    }
-
-    if (flightStorage.ticketType === 'roundTrip' && flightStorage.id) {
+    if (currentTicketType === 'roundTrip' && flightStorage.id) {
       async function fetchData() {
         const rs = await FlightApi.get(flightStorage.id)
         setSelectedFlight(rs.data.data)
@@ -75,7 +79,7 @@ function FlightList() {
 
     // Before action is searching
     dispatch(fetchFlights(searchParams))
-  }, [searchParams, flightStorage.id])
+  }, [searchParams])
 
   const changeOrder = (value) => {
     setOrder(value)
@@ -118,8 +122,6 @@ function FlightList() {
     selectedSeat =
       (flightStorage.seatType === 'Economy' && selectedFlight.seat[0]) ||
       selectedFlight.seat[1]
-
-  const emptyTrip = !activeData?.flight?.length
 
   return (
     <>
@@ -191,7 +193,7 @@ function FlightList() {
                             <del>{selectedSeat.price}</del>
                           </Title>
                           <Title level={3} className="price-new">
-                            {t('flight-list-page.$')}
+                            $
                             {getPriceWithDiscount(
                               selectedSeat.price,
                               selectedSeat.discount
@@ -209,7 +211,7 @@ function FlightList() {
                 )}
               </Col>
               <Col md={6} sm={7} xs={24}>
-                <FlightListFilter />
+                <FlightListFilter emptyFlight={emptyFlight} />
               </Col>
               <Col md={18} sm={17} xs={24}>
                 <Row gutter={[16, 16]} justify="center">
@@ -217,7 +219,7 @@ function FlightList() {
                     <div className="flight-search-title-container">
                       <Title level={4}>
                         {t('flight-list-page.flights found', {
-                          number: pagination?.total || 0,
+                          number: emptyFlight ? 0 : pagination.total,
                         })}
                       </Title>
                       <Select
@@ -243,12 +245,12 @@ function FlightList() {
                         <FlightCard loading={true} />
                       </>
                     )}
-                    {emptyTrip && <NotFoundFlight />}
-                    {!emptyTrip &&
+                    {emptyFlight && <NotFoundFlight />}
+                    {!emptyFlight &&
                       activeData.flight.map((f) => (
                         <FlightCard key={f.id} data={f} />
                       ))}
-                    {!emptyTrip && pagination.total > pagination.offset && (
+                    {!emptyFlight && pagination.total > pagination.offset && (
                       <Pagination
                         onChange={changePage}
                         current={pagination.page}

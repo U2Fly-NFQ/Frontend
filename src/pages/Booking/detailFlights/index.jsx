@@ -60,7 +60,7 @@ export default function DetailFlights() {
                 : seat.price)}
             <sub>
               / {seat.name} X
-              {JSON.parse(localStorage.getItem('flight')).passengerNumber}
+              {JSON.parse(localStorage.getItem('flight')).seatAvailable}
             </sub>
           </h3>
         </div>

@@ -134,7 +134,7 @@ const bookingFlightsSlice = createSlice({
       let allSeatNameAvailable = data.seat.map((item) => item.name)
       let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
       if (status === 'success') {
-        state.dataFlight = {
+        let tempResult = {
           ...data,
           seat: data.seat[
             allSeatNameAvailable.indexOf(dataSeatChoose.seatType) < 0
@@ -142,6 +142,9 @@ const bookingFlightsSlice = createSlice({
               : allSeatNameAvailable.indexOf(dataSeatChoose.seatType)
           ],
         }
+        tempResult.seat.price =
+          tempResult.seat.price * dataSeatChoose.seatAvailable
+        state.dataFlight = tempResult
       }
     },
     [getRoundTripBookingFlightAsync.pending]: (state, action) => {
@@ -156,7 +159,7 @@ const bookingFlightsSlice = createSlice({
       let allSeatNameAvailable = data.seat.map((item) => item.name)
       let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
       if (status === 'success') {
-        state.dataRoundTripFlight = {
+        let tempResult = {
           ...data,
           seat: data.seat[
             allSeatNameAvailable.indexOf(dataSeatChoose.seatType) < 0
@@ -164,6 +167,13 @@ const bookingFlightsSlice = createSlice({
               : allSeatNameAvailable.indexOf(dataSeatChoose.seatType)
           ],
         }
+        tempResult.seat.price =
+          tempResult.seat.price * dataSeatChoose.seatAvailable
+        state.dataRoundTripFlight = tempResult
+
+        // state.addDataIntoBookingFlight.seat.price =
+        //   current(state.addDataIntoBookingFlight).seat.price *
+        //   dataSeatChoose.seatAvailable
       }
     },
   },

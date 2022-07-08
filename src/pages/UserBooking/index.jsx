@@ -3,6 +3,7 @@ import { Col, Row } from 'antd'
 import { UserBookingTable } from '../../components'
 import { useDispatch, useSelector } from 'react-redux'
 import { ticketDataSelector } from '../../redux/selectors'
+import { useLoadingContext } from 'react-router-loading'
 import { fetchTickets } from '../../redux/slices/ticketSlice'
 import { isEmpty } from 'lodash/lang'
 
@@ -29,6 +30,18 @@ function UserBooking(props) {
       })
     )
   }, [dispatch, userLogin.id])
+
+  const loadingContext = useLoadingContext()
+
+  const loadingContent = async () => {
+    // loading some data
+
+    // call method to indicate that loading is done and we are ready to switch
+    loadingContext.done()
+  }
+  useEffect(() => {
+    loadingContent()
+  }, [])
 
   useEffect(() => {
     if (!isEmpty(ticketData)) {

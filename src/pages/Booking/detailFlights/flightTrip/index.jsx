@@ -3,7 +3,6 @@ import React from 'react'
 import { getDurationFormat } from '../../../../utils/flight'
 import './index.scss'
 import { useSelector } from 'react-redux'
-import vietnameairline from '../../../../assets/images/system/vip.png'
 import {
   getInfoFlightInBookingFight,
   getRoundTripBookingFlight,
@@ -15,6 +14,7 @@ export default function FlightTrip() {
   const getDataFlight = useSelector(getInfoFlightInBookingFight)
   const getRoundTrip = useSelector(getRoundTripBookingFlight)
   let flight = getLsObj('flight')
+  console.log(getDataFlight)
   return (
     <Collapse defaultActiveKey={['1']} ghost>
       <Panel
@@ -67,11 +67,11 @@ export default function FlightTrip() {
               <div className="info-plane_trip">
                 <div className="info-plane_trip__info">
                   <div className="info-plane_trip__title">
-                    <img src={vietnameairline} alt="" />
-                    <h5>Vietnam Airlines</h5>
+                    <img src={getDataFlight.airline.image} alt="" />
+                    <h5>{getDataFlight.name}</h5>
                   </div>
                   <div className="info-plane_trip__body">
-                    <span>204 | Airbus A321</span>
+                    <span>204 | {getDataFlight.airplane.name}</span>
                   </div>
                   <div className="info-plane_trip__footer">
                     <span>Economy class</span>
@@ -143,7 +143,7 @@ export default function FlightTrip() {
                 <div className="info-plane_trip">
                   <div className="info-plane_trip__info">
                     <div className="info-plane_trip__title">
-                      <img src={vietnameairline} alt="" />
+                      <img src={getRoundTrip.airline.image} alt="" />
                       <h5>{getRoundTrip.airline.name}</h5>
                     </div>
                     <div className="info-plane_trip__body">
@@ -162,7 +162,6 @@ export default function FlightTrip() {
                   <div className="info-plane_trip-icon">
                     <i class="fa-solid fa-location-dot"></i>
                   </div>
-
                   <span>{getDataFlight.arrival.city}</span>
                 </div>
               }

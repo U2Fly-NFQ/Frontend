@@ -170,10 +170,6 @@ const bookingFlightsSlice = createSlice({
         tempResult.seat.price =
           tempResult.seat.price * dataSeatChoose.seatAvailable
         state.dataRoundTripFlight = tempResult
-
-        // state.addDataIntoBookingFlight.seat.price =
-        //   current(state.addDataIntoBookingFlight).seat.price *
-        //   dataSeatChoose.seatAvailable
       }
     },
   },

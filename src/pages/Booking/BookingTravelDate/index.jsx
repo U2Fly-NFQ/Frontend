@@ -12,6 +12,7 @@ export default function BookingTravelDate() {
   const seat = useSelector(getInfoFlightInBookingSeat)
   const seatRoungTrip = useSelector(getRoundTripSeat)
   const getDiscount = useSelector(getDiscountForBookingAirline)
+  // const flight =
   const { t } = useTranslation()
 
   return (
@@ -23,7 +24,9 @@ export default function BookingTravelDate() {
         <ul className="booking-travel-date__container__value">
           <li>
             <div className="booking-travel-date__container__key">
-              {seat.name} Price x 1
+              {seat.name +
+                ' Price x ' +
+                JSON.parse(localStorage.getItem('flight')).seatAvailable}
             </div>
             <div className="booking-travel-date__container__key">
               {'$ ' +

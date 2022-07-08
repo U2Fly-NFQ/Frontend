@@ -1,21 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
-import { useSelector, useDispatch } from 'react-redux'
-import { getTicketInformation } from '../../../redux/slices/bookingSuccessSlice'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 import { getFlightInformationSuccess } from '../../../redux/selectors/bookingSuccessSelector'
+
 export default function BookingSuccessDetail() {
   const getInforFlight = useSelector(getFlightInformationSuccess)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const { ticketId } = useParams()
-  useEffect(() => {
-    if (ticketId) {
-      dispatch(getTicketInformation(ticketId))
-    } else {
-      navigate('/flights')
-    }
-  }, [])
   return (
     <div
       className="Booking-success__container__content"
@@ -32,7 +22,7 @@ export default function BookingSuccessDetail() {
           </li>
           <li>
             <span>Booking date:</span>
-            <span>{getInforFlight.createAt}</span>
+            <span>{getInforFlight.createdAt}</span>
           </li>
           <li>
             <span>Payment method:</span>
@@ -52,11 +42,7 @@ export default function BookingSuccessDetail() {
           </li>
           <li className="change-color">
             <span>Discount</span>
-            <span>{getInforFlight.percent || 0 * 100} %</span>
-          </li>
-          <li>
-            <span>Tax</span>
-            <span>5%</span>
+            <span>{getInforFlight.discount || 0 * 100} %</span>
           </li>
         </ul>
       </div>
@@ -71,7 +57,9 @@ export default function BookingSuccessDetail() {
           </li>
           <li>
             <span>Coupon code (OFF 5000)</span>
-            <span>{getInforFlight.percent || 0 * 100} %</span>
+            <span>{`- ${
+              getInforFlight.discount * getInforFlight.price || 0
+            }`}</span>
           </li>
         </ul>
       </div>
@@ -79,7 +67,7 @@ export default function BookingSuccessDetail() {
         <ul style={{ border: 'none' }}>
           <li className="change-color">
             <span>Total Amount</span>
-            <span>${getInforFlight.price}</span>
+            <span>${getInforFlight.discount * getInforFlight.price || 0}</span>
           </li>
         </ul>
       </div>

@@ -68,7 +68,9 @@ const Register = () => {
             <Col lg={16}>
               <div className="content">
                 <div className="box">
-                  <Title level={3}>{t('register.To join a whole new world')}</Title>
+                  <Title level={3}>
+                    {t('register.To join a whole new world')}
+                  </Title>
                   <Title level={2}>{t('register.Register your account')}</Title>
                   <Form className="form" onFinish={onFinish} autoComplete="off">
                     <div className="form-group">
@@ -221,7 +223,8 @@ const Register = () => {
                     </div>
                     <div className="switch">
                       <p>
-                        {t('register.Already have an account?')} <Link to="/login">{t('register.Login now')}</Link>
+                        {t('register.Already have an account?')}{' '}
+                        <Link to="/login">{t('register.Login now')}</Link>
                       </p>
                     </div>
                   </Form>

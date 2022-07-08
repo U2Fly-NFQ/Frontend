@@ -153,9 +153,18 @@ const bookingFlightsSlice = createSlice({
     },
     [getRoundTripBookingFlight.fulfilled]: (state, action) => {
       state.loadding = false
-      const data = action.payload
-      state.dataRoundTripFlight = {
-        ...data,
+      const { status, data } = action.payload
+      let allSeatNameAvailable = data.seat.map((item) => item.name)
+      let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
+      if (status === 'success') {
+        state.dataRoundTripFlight = {
+          ...data,
+          seat: data.seat[
+            allSeatNameAvailable.indexOf(dataSeatChoose.setType) < 0
+              ? 0
+              : allSeatNameAvailable.indexOf(dataSeatChoose.setType)
+          ],
+        }
       }
     },
   },

@@ -89,7 +89,8 @@ export default function FlightSearch() {
       seatType: passengerClass,
       seatAvailable: passengerNumber,
       ticketType,
-      startDateRoundTrip: returnDate.format('YYYY-MM-DD'),
+      startDateRoundTrip:
+        ticketType === 'roundTrip' ? returnDate.format('YYYY-MM-DD') : '',
     }
 
     updateLs('flight', searchQuery)

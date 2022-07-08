@@ -11,9 +11,7 @@ const bookingFlightsRs = {
 const mockNetWorkResponse = () => {
   const mock = new MockAdapter(axiosInstance)
 
-  mock
-    .onGet(`https://62c45182abea8c085a729073.mockapi.io/flights-by-id/1`)
-    .reply(200, bookingFlightsRs)
+  mock.onGet(`/flights/1`).reply(200, bookingFlightsRs)
 }
 
 test('Should return initial state', () => {

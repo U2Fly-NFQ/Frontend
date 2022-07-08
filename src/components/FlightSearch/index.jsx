@@ -281,9 +281,6 @@ export default function FlightSearch() {
                     {t('search_form.journey_date')}
                   </label>
                   <DatePicker
-                    popupStyle={{
-                      borderRadius: '10px',
-                    }}
                     className="journeyDate"
                     allowClear={false}
                     disabledDate={(current) => {

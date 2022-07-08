@@ -12,9 +12,7 @@ const getAirportListRs = {
 const mockNetWorkResponse = () => {
   const mock = new MockAdapter(axiosInstance)
 
-  mock
-    .onGet(`https://62c45182abea8c085a729073.mockapi.io/aiports`)
-    .reply(200, getAirportListRs)
+  mock.onGet(`/airports`).reply(200, getAirportListRs)
 }
 
 test('Should return initial state', () => {

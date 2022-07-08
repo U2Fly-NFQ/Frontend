@@ -8,8 +8,8 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import FlightSearch from './'
 import { ConfigProvider } from 'antd'
 
-describe('Flight search test', () => {
-  it('Flight search component renders correctly', () => {
+describe('Flight search', () => {
+  it('renders correctly', () => {
     const tree = renderer
       .create(
         <I18nextProvider i18n={i18n}>
@@ -25,6 +25,7 @@ describe('Flight search test', () => {
         </I18nextProvider>
       )
       .toJSON()
+
     expect(tree).toMatchSnapshot()
   })
 })

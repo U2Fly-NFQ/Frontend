@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   fetchDiscounts,
   createDiscount,
+  deleteDiscount,
 } from '../../redux/slices/discountSlice'
 import { discountSelector, discountStatusSelector } from '../../redux/selectors'
 
@@ -22,8 +23,8 @@ function AddminDiscount() {
       key: discount.id,
     }))
   }
-  const status = useSelector(discountStatusSelector)
 
+  const status = useSelector(discountStatusSelector)
   useEffect(() => {
     if (data && data.length === 0) {
       dispatch(fetchDiscounts())
@@ -31,8 +32,7 @@ function AddminDiscount() {
   }, [])
 
   const handleDelete = (record) => {
-    // dispatch(deleteDiscount(record.id))
-    // dispatch(fetchDiscounts())
+    dispatch(deleteDiscount(record.id))
   }
 
   const handleCancel = () => {
@@ -45,7 +45,6 @@ function AddminDiscount() {
       percent: values.value,
     }
     dispatch(createDiscount(discount))
-    dispatch(fetchDiscounts())
     setIsModalVisible(false)
   }
 

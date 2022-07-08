@@ -13,15 +13,18 @@ export default function BookingSteps({ contentTop, contentBottom, ticketId }) {
 
   const { Step } = Steps
   const onChange = (value) => {
-    dispatch(changeCurrentMethod(value))
+    // dispatch(changeCurrentMethod(value))
+    if (value < 2) {
+      dispatch(changeCurrentMethod(0))
+    }
   }
 
   return (
     <Steps
       type="navigation"
       className="booking-steps"
-      current={ticketId ? 2 : getCurrentMethod}
-      // current={0}
+      current={getCurrentMethod}
+      onChange={onChange}
     >
       <Step
         className="booking-steps__flight"

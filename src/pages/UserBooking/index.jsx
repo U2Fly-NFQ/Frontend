@@ -6,45 +6,38 @@ import { ticketDataSelector } from '../../redux/selectors'
 import { fetchTickets } from '../../redux/slices/ticketSlice'
 import { isEmpty } from 'lodash/lang'
 
-import moment from 'moment'
 import { bookingStatus } from '../../Constants'
+import { convertNumberToUSD } from '../../utils/numberFormater'
+import { flightDataProcessed } from '../../utils/flightDataProcessing'
 
 function UserBooking(props) {
   //initiation
   const dispatch = useDispatch()
   const ticketData = useSelector(ticketDataSelector)
+  const userLogin = JSON.parse(localStorage.getItem('user'))
 
   const [loading, setLoading] = useState(false)
   const [tickets, setTickets] = useState([])
+
   //Logical handling functions
   useEffect(() => {
     setLoading(true)
-    setTimeout(() => {
-      dispatch(fetchTickets())
-    }, 500)
-  }, [dispatch])
+    dispatch(
+      fetchTickets({
+        // passenger: userLogin.id,
+        // effectiveness: 1,
+      })
+    )
+  }, [dispatch, userLogin.id])
 
   useEffect(() => {
     if (!isEmpty(ticketData)) {
       let ticketProcessedData = ticketData.map((ticket) => {
-        let flights = ticket.flights.map((flight) => {
-          let startDate = new Date(`${flight.startDate} ${flight.startTime}`)
-          let endDate = new Date(`${flight.startDate} ${flight.startTime}`)
-          endDate.setMinutes(endDate.getMinutes() + flight.duration * 60)
-          let boardingTime = new Date(`${flight.startDate} ${flight.startTime}`)
-          boardingTime.setMinutes(boardingTime.getMinutes() - 30)
-          return {
-            ...flight,
-            startTime: moment(startDate).format('DD/M/YYYY hh:mm A'),
-            endTime: moment(endDate).format('DD/M/YYYY hh:mm A'),
-            boardingTime: moment(boardingTime).format('DD/M/YYYY hh:mm A'),
-          }
-        })
         return {
           ...ticket,
-          total_price: ticket.total_price,
-          status: bookingStatus[ticket.status],
-          flights: flights,
+          status: bookingStatus[0],
+          totalPrice: convertNumberToUSD(ticket.totalPrice),
+          flights: flightDataProcessed(ticket),
         }
       })
       setTickets(ticketProcessedData)
@@ -52,13 +45,19 @@ function UserBooking(props) {
     }
   }, [ticketData])
 
+  const handleCancelBooking = () => {}
+
   return (
     <Row className="userProfile-container-booking">
       <Col span={24} className="userProfile-container-booking-title">
         My Booking
       </Col>
       <Col span={24}>
-        <UserBookingTable data={tickets} loading={loading} />
+        <UserBookingTable
+          data={tickets}
+          loading={loading}
+          onCancel={handleCancelBooking}
+        />
       </Col>
     </Row>
   )

@@ -1,6 +1,6 @@
 import { Collapse, Steps } from 'antd'
 import React from 'react'
-import { getDurationFormat } from '../../../../utils'
+import { getDurationFormat } from '../../../../utils/flight'
 import './index.scss'
 import { useSelector } from 'react-redux'
 import vietnameairline from '../../../../assets/images/system/vip.png'
@@ -8,11 +8,13 @@ import {
   getInfoFlightInBookingFight,
   getRoundTripBookingFlight,
 } from '../../../../redux/selectors'
+import { getLsObj } from '../../../../utils/localStorage'
 export default function FlightTrip() {
   const { Panel } = Collapse
   const { Step } = Steps
   const getDataFlight = useSelector(getInfoFlightInBookingFight)
   const getRoundTrip = useSelector(getRoundTripBookingFlight)
+  let flight = getLsObj('flight')
   return (
     <Collapse defaultActiveKey={['1']} ghost>
       <Panel
@@ -91,7 +93,7 @@ export default function FlightTrip() {
           />
         </Steps>
       </Panel>
-      {getRoundTrip.name && (
+      {getRoundTrip.code && flight.roundId && (
         <Panel
           style={{ borderTop: '1px solid blue' }}
           showArrow={false}

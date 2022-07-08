@@ -1,15 +1,15 @@
 import axios from '..'
 
 export const getDiscountById = (idDiscount) =>
-  axios.get(`/api/discounts/${idDiscount}`)
+  axios.get(`/discounts/${idDiscount}`)
 
-export const getDiscounts = () => axios.get(`/api/discounts`)
+export const getDiscounts = () => axios.get(`/discounts`)
 
 export const deleteDiscount = (idDiscount) =>
-  axios.delete(`/api/discounts/${idDiscount}`)
+  axios.delete(`/discounts/${idDiscount}`)
 
 export const createDiscount = (discountData) =>
-  axios.post(`/api/discounts`, discountData)
+  axios.post(`/discounts`, discountData)
 
 export const discountApi = {
   getDiscountById,

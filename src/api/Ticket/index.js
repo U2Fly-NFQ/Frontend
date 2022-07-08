@@ -1,12 +1,21 @@
-// import axios from '..'
-import axiosInstance from '../'
+import axios from '..'
 
-export const endpoint = 'https://62c3e6bf7d83a75e39ea0b93.mockapi.io/ticket'
+const endpoint = '/tickets'
 
 export const getList = (params) => {
-  return axiosInstance.get(`${endpoint}`, {
+  return axios.get(`${endpoint}`, {
     params,
   })
 }
 
-export const get = (id) => axiosInstance.get(`${endpoint}/${id}`)
+export const get = (id) => axios.get(`${endpoint}/${id}`)
+
+export const create = (data) => axios.post(`${endpoint}`, data)
+
+export const update = (id, data) => axios.put(`${endpoint}/${id}`, data)
+
+export const destroy = (id) => axios.delete(`${endpoint}/${id}`)
+
+export const cancelBooking = (data) => axios.post('/stripe/refund', data)
+
+export const bookingRating = (data) => axios.post('/rate', data)

@@ -13,6 +13,7 @@ function UserHistory(props) {
   //initiation
   const dispatch = useDispatch()
   const ticketHistory = useSelector(ticketHistoryDataSelector)
+  const userLogin = JSON.parse(localStorage.getItem('user'))
 
   const [tickets, setTickets] = useState([])
   const [loading, setLoading] = useState(false)
@@ -20,11 +21,13 @@ function UserHistory(props) {
   //Logical handling functions
   useEffect(() => {
     setLoading(true)
-
-    setTimeout(() => {
-      dispatch(fetchHistoryBooking())
-    }, 500)
-  }, [dispatch])
+    dispatch(
+      fetchHistoryBooking({
+        passenger: userLogin.id,
+        effectiveness: 0,
+      })
+    )
+  }, [dispatch, userLogin.id])
 
   useEffect(() => {
     if (!isEmpty(ticketHistory)) {

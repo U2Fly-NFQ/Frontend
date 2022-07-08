@@ -2,18 +2,28 @@ import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'antd'
 import { UserBookingTable } from '../../components'
 import { useDispatch, useSelector } from 'react-redux'
-import { ticketDataSelector } from '../../redux/selectors'
-import { fetchTickets } from '../../redux/slices/ticketSlice'
+import {
+  ticketCancelStatusSelector,
+  ticketDataSelector,
+} from '../../redux/selectors'
+import {
+  fetchCancelBooking,
+  fetchTickets,
+} from '../../redux/slices/ticketSlice'
 import { isEmpty } from 'lodash/lang'
 
 import { bookingStatus } from '../../Constants'
 import { convertNumberToUSD } from '../../utils/numberFormater'
 import { flightDataProcessed } from '../../utils/flightDataProcessing'
+import { message } from 'antd/es'
+import { useNavigate } from 'react-router-dom'
 
 function UserBooking(props) {
   //initiation
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const ticketData = useSelector(ticketDataSelector)
+  const ticketCancelStatus = useSelector(ticketCancelStatusSelector)
   const userLogin = JSON.parse(localStorage.getItem('user'))
 
   const [loading, setLoading] = useState(false)
@@ -24,8 +34,8 @@ function UserBooking(props) {
     setLoading(true)
     dispatch(
       fetchTickets({
-        // passenger: userLogin.id,
-        // effectiveness: 1,
+        passenger: userLogin.id,
+        effectiveness: 1,
       })
     )
   }, [dispatch, userLogin.id])
@@ -35,7 +45,7 @@ function UserBooking(props) {
       let ticketProcessedData = ticketData.map((ticket) => {
         return {
           ...ticket,
-          status: bookingStatus[0],
+          status: bookingStatus[ticket.status],
           totalPrice: convertNumberToUSD(ticket.totalPrice),
           flights: flightDataProcessed(ticket),
         }
@@ -45,7 +55,30 @@ function UserBooking(props) {
     }
   }, [ticketData])
 
-  const handleCancelBooking = () => {}
+  useEffect(() => {
+    if (ticketCancelStatus === 'failed') {
+      message.error("Can't cancel this booking! Damn!")
+    }
+    if (ticketCancelStatus === 'success') {
+      message.success('Cancel this booking success!')
+    }
+    if (ticketCancelStatus) {
+      dispatch(
+        fetchTickets({
+          passenger: userLogin.id,
+          effectiveness: 1,
+        })
+      )
+    }
+  }, [dispatch, ticketCancelStatus, userLogin.id])
+
+  const handleCancelBooking = (data) => {
+    dispatch(
+      fetchCancelBooking({
+        paymentId: data,
+      })
+    )
+  }
 
   return (
     <Row className="userProfile-container-booking">

@@ -13,8 +13,7 @@ export const flightDataProcessed = (ticket) => {
       ETD: moment(ETD).format('DD/M/YYYY hh:mm A'),
       ETA: moment(endDate).format('DD/M/YYYY hh:mm A'),
       boardingTime: moment(boardingTime).format('DD/M/YYYY hh:mm A'),
-      isRating:
-        ticket.status === 1 || ticket.status === 0 ? 1 : flight.isRating,
+      isRating: ticket.status === 1 || flight.ticketFlight.isRating,
     }
   })
 }

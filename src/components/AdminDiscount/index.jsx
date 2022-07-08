@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   fetchDiscounts,
   createDiscount,
+  deleteDiscount,
 } from '../../redux/slices/discountSlice'
 import { discountSelector, discountStatusSelector } from '../../redux/selectors'
 
@@ -31,7 +32,7 @@ function AddminDiscount() {
   }, [])
 
   const handleDelete = (record) => {
-    // dispatch(deleteDiscount(record.id))
+    dispatch(deleteDiscount(record.id))
   }
 
   const handleCancel = () => {

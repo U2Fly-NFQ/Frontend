@@ -31,6 +31,15 @@ const discountSlice = createSlice({
       .addCase(createDiscount.fulfilled, (state) => {
         state.status = 'succeeded'
       })
+      .addCase(deleteDiscount.rejected, (state) => {
+        state.status = 'failed'
+      })
+      .addCase(deleteDiscount.pending, (state) => {
+        state.status = 'pending'
+      })
+      .addCase(deleteDiscount.fulfilled, (state) => {
+        state.status = 'succeeded'
+      })
   },
 })
 
@@ -44,8 +53,10 @@ export const fetchDiscounts = createAsyncThunk(
 
 export const deleteDiscount = createAsyncThunk(
   'discounts/deleteDiscount',
-  async (idDiscount) => {
+  async (idDiscount, thunkAPI) => {
     const response = await discountApi.deleteDiscount(idDiscount)
+    thunkAPI.dispatch(fetchDiscounts())
+    return response.data.data
   }
 )
 

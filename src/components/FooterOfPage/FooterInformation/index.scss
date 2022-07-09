@@ -25,9 +25,11 @@
     }
   }
   &__title {
-    border-bottom: 1px solid b.$main-color;
-    width: fit-content;
-    font-size: 22px;
+    h5 {
+      width: fit-content;
+      color: var(--ant-primary-color);
+      font-size: 22px;
+    }
   }
   &__company {
     &__content {

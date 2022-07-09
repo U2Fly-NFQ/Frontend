@@ -18,9 +18,9 @@ function Home() {
         <Content style={{ minHeight: '100vh' }}>
           <Outlet />
         </Content>
-        <footer style={{ backgroundColor: '#ffffff', marginTop: '50px' }}>
+        <Footer>
           <FooterOfPage />
-        </footer>
+        </Footer>
       </Layout>
     </Layout>
   )

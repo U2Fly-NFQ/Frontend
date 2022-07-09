@@ -5,11 +5,10 @@ import moment from 'moment'
 import { addHourToTime, getDurationFormat } from '../../utils/flight'
 
 import './style.scss'
+import { useTranslation } from 'react-i18next'
 
 const FlightDetailModal = ({ data, visible, setIsModalVisible }) => {
-  if (Object.keys(data).length === 0) {
-    return
-  }
+  const { t } = useTranslation()
 
   const { Step } = Steps
 
@@ -21,10 +20,14 @@ const FlightDetailModal = ({ data, visible, setIsModalVisible }) => {
     setIsModalVisible(false)
   }
 
+  if (Object.keys(data).length === 0) {
+    return
+  }
+
   return (
     <>
       <Modal
-        title="Flight Detail"
+        title={t('flight-list-page.Flight details')}
         visible={visible}
         onOk={handleOk}
         onCancel={handleCancel}

@@ -105,7 +105,12 @@ export default function FlightCard(props) {
           </div>
         </div>
         <div className="flight-card-deal">
-          <p className="flight-detail">
+          <p
+            className="flight-detail"
+            style={{
+              cursor: 'pointer',
+            }}
+          >
             {t('flight-list-page.Flight details')}
           </p>
           <div className="flight-card-price">

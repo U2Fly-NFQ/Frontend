@@ -5,6 +5,7 @@ import {
   Pagination,
   Select,
   Button,
+  Modal,
   Space,
   Spin,
 } from 'antd'
@@ -155,8 +156,65 @@ function FlightList() {
   const [showDetailModal, setShowDetailModal] = useState(true)
   const [modalData, setModalData] = useState({})
 
+  const [showAskModal, setShowAskModal] = useState(true)
+  const airports = useSelector((state) => state.airports.data)
+
+  const chooseDeparture = (value) => {
+    updateLs('flight', {
+      departure: value,
+    })
+    navigate(0)
+  }
+
+  console.log(checkFirstVisitWithoutParams())
+
   return (
     <>
+      {!flightStorage.departure && showAskModal && (
+        <Modal
+          visible={true}
+          style={{
+            borderRadius: '12px',
+            overflow: 'hidden',
+            paddingBottom: 0,
+          }}
+          maskStyle={{
+            backgroundColor: 'rgba(14, 134, 212, 0.4)',
+          }}
+          footer={false}
+          onCancel={() => setShowAskModal(false)}
+        >
+          Hey buddy, where is your departure?
+          <Select
+            size="large"
+            clearIcon={<CloseOutlined />}
+            autoFocus
+            showSearch
+            value={airports[0]}
+            showArrow={false}
+            onSelect={chooseDeparture}
+            bordered={false}
+            defaultOpen
+            placement="bottomLeft"
+            style={{
+              width: '100%',
+              borderBottom: '1px solid #ddd',
+            }}
+            dropdownStyle={{
+              borderRadius: '10px',
+            }}
+            placeholder="Flying from..."
+          >
+            {airports.map((airport) => {
+              return (
+                <Option key={airport.iata} value={airport.iata}>
+                  {airport.city} ({airport.iata})
+                </Option>
+              )
+            })}
+          </Select>
+        </Modal>
+      )}
       <ScrollToTopButton />
       <FlightDetailModal
         visible={showDetailModal}

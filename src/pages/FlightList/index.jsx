@@ -86,35 +86,6 @@ function FlightList() {
       fetchData()
     }
 
-    setSelectedFlight({
-      airline: { id: 1, name: 'Vietnam Airlines', icao: 'HVN' },
-      airplane: { id: 2, name: 'Airbus A350' },
-      arrival: {
-        id: 4,
-        iata: 'SGN',
-        name: 'Tan Son Nhat International Airport',
-        city: 'Tan Son Nhat',
-      },
-      code: 'VN123',
-      departure: {
-        id: 3,
-        iata: 'VCA',
-        name: 'Can Tho International Airport',
-        city: 'Can Tho',
-        image: 'google.com',
-      },
-      duration: 1.5,
-      id: 4,
-      seat: {
-        id: 1,
-        name: 'Economy',
-        price: 59,
-        seatAvailable: 50,
-        discount: 0.1,
-      },
-      startDate: '2022-07-10',
-      startTime: '15:00:00',
-    })
     // Before action is searching
     dispatch(fetchFlights(searchParams))
   }, [searchParams])

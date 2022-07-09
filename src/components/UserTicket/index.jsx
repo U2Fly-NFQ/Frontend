@@ -52,7 +52,9 @@ function UserTicket({ visible, setViewTicket, ticketData }) {
                   <Col span={5}>
                     <div className="passenger-info-title">Date/Ngày</div>
                     <div className="passenger-info-text">
-                      {moment(ticketData.flights.startDate).format('DD/M/YYYY')}
+                      {moment(ticketData.flights.startDate).format(
+                        'MM-DD-YYYY'
+                      )}
                     </div>
                   </Col>
                   <Col span={4} className="info_empty">
@@ -140,7 +142,9 @@ function UserTicket({ visible, setViewTicket, ticketData }) {
                   <Col span={24}>
                     <div className="passenger-info-title">Date/Ngày</div>
                     <div className="passenger-info-text">
-                      {moment(ticketData.flights.startDate).format('DD/M/YYYY')}
+                      {moment(ticketData.flights.startDate).format(
+                        'MM-DD-YYYY'
+                      )}
                     </div>
                   </Col>
                   <Col span={24} className="info_empty">

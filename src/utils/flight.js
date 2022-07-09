@@ -21,8 +21,8 @@ export const getEndDateTime = (duration, ETD) => {
   currentDateTime.setMinutes(currentDateTime.getMinutes() + duration * 60)
   return currentDateTime
 }
-export const getBoardingDateTime = (duration, ETD) => {
+export const getBoardingDateTime = (ETD) => {
   let currentDateTime = new Date(ETD)
-  currentDateTime.setMinutes(currentDateTime.getMinutes() - duration * 60)
+  currentDateTime.setMinutes(currentDateTime.getMinutes() - 30)
   return currentDateTime
 }

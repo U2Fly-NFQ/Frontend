@@ -66,7 +66,7 @@ const Register = () => {
         <RegisterBanner />
         <div className="grid wide">
           <Row justify="center">
-            <Col lg={16} sm={22}>
+            <Col md={16} xs={22}>
               <div className="content">
                 <div className="box">
                   <Title level={2}>{t('cta.register')}</Title>

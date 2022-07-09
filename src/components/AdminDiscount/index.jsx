@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   fetchDiscounts,
   createDiscount,
+  deleteDiscount,
 } from '../../redux/slices/discountSlice'
 import { discountSelector, discountStatusSelector } from '../../redux/selectors'
 
@@ -22,8 +23,8 @@ function AddminDiscount() {
       key: discount.id,
     }))
   }
-  const status = useSelector(discountStatusSelector)
 
+  const status = useSelector(discountStatusSelector)
   useEffect(() => {
     if (data && data.length === 0) {
       dispatch(fetchDiscounts())
@@ -31,8 +32,7 @@ function AddminDiscount() {
   }, [])
 
   const handleDelete = (record) => {
-    // dispatch(deleteDiscount(record.id))
-    // dispatch(fetchDiscounts())
+    dispatch(deleteDiscount(record.id))
   }
 
   const handleCancel = () => {
@@ -45,7 +45,6 @@ function AddminDiscount() {
       percent: values.value,
     }
     dispatch(createDiscount(discount))
-    dispatch(fetchDiscounts())
     setIsModalVisible(false)
   }
 
@@ -59,9 +58,7 @@ function AddminDiscount() {
     {
       title: 'Discount name',
       dataIndex: 'name',
-      render: (text) => (
-        <Typography.Paragraph strong>{text}</Typography.Paragraph>
-      ),
+      render: (text) => <Typography.Paragraph>{text}</Typography.Paragraph>,
     },
     {
       title: 'Value',
@@ -70,7 +67,7 @@ function AddminDiscount() {
         compare: (a, b) => a.value - b.value,
       },
       render: (text) => (
-        <Typography.Paragraph strong>{text + '%'}</Typography.Paragraph>
+        <Typography.Paragraph>{text + '%'}</Typography.Paragraph>
       ),
     },
     {
@@ -80,7 +77,7 @@ function AddminDiscount() {
         compare: (a, b) => a.createdAt - b.createdAt,
       },
       render: (text) => (
-        <Typography.Paragraph strong>
+        <Typography.Paragraph>
           {moment(text).format('MMMM Do YYYY, h:mm:ss')}
         </Typography.Paragraph>
       ),

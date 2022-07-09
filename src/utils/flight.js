@@ -15,3 +15,14 @@ export const addHourToTime = (time, hours) => {
 export const getPriceWithDiscount = (price, discount) => {
   return (price * (1 - discount)).toFixed(2)
 }
+
+export const getEndDateTime = (duration, ETD) => {
+  let currentDateTime = new Date(ETD)
+  currentDateTime.setMinutes(currentDateTime.getMinutes() + duration * 60)
+  return currentDateTime
+}
+export const getBoardingDateTime = (duration, ETD) => {
+  let currentDateTime = new Date(ETD)
+  currentDateTime.setMinutes(currentDateTime.getMinutes() - duration * 60)
+  return currentDateTime
+}

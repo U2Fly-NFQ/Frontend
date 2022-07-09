@@ -235,7 +235,6 @@
     "Need any help?": "Need any help?",
     "Call 24/7 for any help": "Call 24/7 for any help",
     "CMail to our support team": "CMail to our support team",
-    "Call 24/7 for any help": "Call 24/7 for any help",
     "Company": "Company",
     "About Us": "About Us",
     "Testimonials": "Testimonials",
@@ -350,9 +349,11 @@
       "missing_delivery_date": "Proposed delivery date of some order lines is missing in file."
     }
   },
+
   "order": {
     "title": "Orders"
   },
+
   "order_detail": {
     "table_action": {
       "edit": "Edit Item",
@@ -362,6 +363,7 @@
       "accept_confirm_date": "Accept Confirm Delivery Date"
     }
   },
+
   "order_document": {
     "upload": {
       "title": "Upload document for Order #{{orderId}}",

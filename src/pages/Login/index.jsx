@@ -1,5 +1,5 @@
 import { Row, Col, Typography, Form } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { loginApi } from '../../api/Auth'
 import { LoginBanner, PageLoadingAnimation } from '../../components'
 import './style.scss'
@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import axiosInstance from '../../api'
 import { useTranslation } from 'react-i18next'
 import { getLsObj, updateLs } from '../../utils/localStorage'
+import { scrollTo } from '../../utils/scroll'
 
 const { Title } = Typography
 
@@ -18,6 +19,8 @@ const Login = () => {
   const { t } = useTranslation()
 
   useEffect(() => {
+    scrollTo(300)
+
     if (user.id && token) {
       navigate(-1)
     }
@@ -102,8 +105,8 @@ const Login = () => {
                     </div>
                     <div className="switch">
                       <p>
-                        {t("login.Don't have an account?")}{' '}
-                        <a href="register.html">{t('login.Register now')}</a>
+                        Dont have an account?{' '}
+                        <Link to="/register">Register now</Link>
                       </p>
                     </div>
                   </Form>

@@ -13,19 +13,17 @@ describe('AirlineAPI', () => {
     mock.reset()
   })
 
-  describe('get list', () => {
-    it('get airline List', async () => {
-      const rs = {
-        status: 'success',
-        data: [],
-      }
+  it('get airline list', async () => {
+    const rs = {
+      status: 'success',
+      data: [],
+    }
 
-      mock.onGet(`${process.env.REACT_APP_SERVER_API}/airlines`).reply(200, rs)
+    mock.onGet(`${process.env.REACT_APP_SERVER_API}/airlines`).reply(200, rs)
 
-      const result = await AirlineApi.getList()
+    const result = await AirlineApi.getList()
 
-      expect(mock.history.get[0].url).toEqual(`/airlines`)
-      expect(result.data).toEqual(rs)
-    })
+    expect(mock.history.get[0].url).toEqual(`/airlines`)
+    expect(result.data).toEqual(rs)
   })
 })

@@ -1,5 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import {
+  useNavigate,
+  useSearchParams,
+  createSearchParams,
+} from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -58,6 +62,7 @@ export default function FlightSearch() {
       arrival,
       startDate,
       ticketType,
+      startDateRoundTrip,
     } = existingFlight
 
     if (departure) setFrom(departure)
@@ -66,6 +71,7 @@ export default function FlightSearch() {
     if (seatType) setPassengerClass(seatType)
     if (seatAvailable) setPassengerNumber(seatAvailable)
     if (ticketType) setTicketType(ticketType)
+    if (startDateRoundTrip) setReturnDate(moment(returnDate))
   }, [])
 
   const onFinish = async () => {
@@ -83,13 +89,16 @@ export default function FlightSearch() {
       seatType: passengerClass,
       seatAvailable: passengerNumber,
       ticketType,
-      returnDate: returnDate.format('YYYY-MM-DD'),
+      startDateRoundTrip:
+        ticketType === 'roundTrip' ? returnDate.format('YYYY-MM-DD') : '',
     }
 
     updateLs('flight', searchQuery)
 
-    navigate('/flights')
-    setSearchParams(searchQuery)
+    navigate({
+      pathname: '/flights',
+      search: createSearchParams(searchQuery).toString(),
+    })
   }
 
   const onChangeTicketType = (value) => {
@@ -280,7 +289,7 @@ export default function FlightSearch() {
                     allowClear={false}
                     disabledDate={(current) => {
                       return (
-                        moment().add(-3, 'days') >= current ||
+                        moment() >= current ||
                         moment().add(1, 'month') <= current
                       )
                     }}
@@ -312,7 +321,7 @@ export default function FlightSearch() {
                           allowClear={false}
                           disabledDate={(current) => {
                             return (
-                              journeyDay >= returnDate ||
+                              journeyDay > current ||
                               moment().add(1, 'month') <= current
                             )
                           }}

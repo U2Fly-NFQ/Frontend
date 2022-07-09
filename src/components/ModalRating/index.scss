@@ -1,0 +1,20 @@
+.modal-rating__items {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  .modal-rating__image {
+    img {
+      width: 50px;
+      filter: grayscale(100%);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    img:hover {
+      filter: grayscale(0);
+      transform: scale(1.2);
+    }
+    width: 50px;
+  }
+}

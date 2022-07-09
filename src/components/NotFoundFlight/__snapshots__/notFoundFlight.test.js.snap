@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Not found page test renders correctly 1`] = `
+<img
+  alt="Loading GIF"
+  src="loading-animated.gif"
+  style={
+    Object {
+      "display": "block",
+      "margin": "auto",
+      "maxWidth": "500px",
+      "objectFit": "contain",
+    }
+  }
+/>
+`;

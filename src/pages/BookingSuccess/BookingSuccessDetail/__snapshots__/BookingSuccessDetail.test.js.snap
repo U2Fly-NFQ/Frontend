@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Booking Passenger bar test renders correctly 1`] = `
+<div
+  className="Booking-success__container__content"
+  style={
+    Object {
+      "display": "block",
+    }
+  }
+>
+  <div
+    className="Booking-success__container__content__title"
+  >
+    <h3>
+      Booking details
+    </h3>
+  </div>
+  <div
+    className="Booking-success__container__content__info"
+  >
+    <ul>
+      <li>
+        <span>
+          Booking ID:
+        </span>
+        <span>
+          #
+        </span>
+      </li>
+      <li>
+        <span>
+          Booking date:
+        </span>
+        <span />
+      </li>
+      <li>
+        <span>
+          Payment method:
+        </span>
+        <span>
+          Bank transfer
+        </span>
+      </li>
+      <li>
+        <span>
+          Booking status:
+        </span>
+        <span>
+          Success
+        </span>
+      </li>
+    </ul>
+  </div>
+  <div
+    className="Booking-success__container__content__info"
+  >
+    <ul>
+      <li>
+        <span>
+           Price:
+        </span>
+        <span>
+          $
+          NaN
+        </span>
+      </li>
+      <li
+        className="change-color"
+      >
+        <span>
+          Discount
+        </span>
+        <span>
+          0
+           %
+        </span>
+      </li>
+    </ul>
+  </div>
+  <div
+    className="Booking-success__container__content__info"
+  >
+    <ul
+      style={
+        Object {
+          "border": "none",
+        }
+      }
+    >
+      <li
+        className="change-color"
+      >
+        <span>
+          Total Amount
+        </span>
+        <span>
+          $
+          0
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

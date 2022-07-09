@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Booking Passenger bar test renders correctly 1`] = `
+<div
+  className="detail-flights__container"
+>
+  <div
+    className="booking-page__container__item__title"
+  >
+    <h2>
+      Flights
+    </h2>
+  </div>
+  <div
+    className="detail-flights__container__package-rules"
+  >
+    <div
+      className="booking-page__container__item__title"
+    >
+      <h3>
+        Flights Rules
+      </h3>
+    </div>
+    <div
+      className="detail-flights__container__package-rules__content"
+    >
+      <ul>
+        <li>
+          <i
+            className="fas fa-circle"
+          />
+           Buffet breakfast as per the Itinerary
+        </li>
+        <li>
+          <i
+            className="fas fa-circle"
+          />
+           Visit eight villages showcasing Polynesian culture
+        </li>
+        <li>
+          <i
+            className="fas fa-circle"
+          />
+           Complimentary Camel safari, Bonfire,
+        </li>
+        <li>
+          <i
+            className="fas fa-circle"
+          />
+           All toll tax, parking, fuel, and driver allowances
+        </li>
+        <li>
+          <i
+            className="fas fa-circle"
+          />
+           Comfortable and hygienic vehicle
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    className="detail-flights__container__price"
+  >
+    <div
+      className="booking-page__container__item__title"
+    >
+      <h3>
+        Prices
+      </h3>
+    </div>
+    <div
+      className="detail-flights__container__price__content"
+    />
+  </div>
+</div>
+`;
+
+exports[`My Connected React-Redux Component should render with given state from Redux store 1`] = `
+<div
+  className="detail-flights__container"
+>
+  <div
+    className="booking-page__container__item__title"
+  >
+    <h2>
+      Flights
+    </h2>
+  </div>
+  <div
+    className="detail-flights__container__package-rules"
+  >
+    <div
+      className="booking-page__container__item__title"
+    >
+      <h3>
+        Flights Rules
+      </h3>
+    </div>
+    <div
+      className="detail-flights__container__package-rules__content"
+    >
+      <ul>
+        <li>
+          <i
+            className="fas fa-circle"
+          />
+           Buffet breakfast as per the Itinerary
+        </li>
+        <li>
+          <i
+            className="fas fa-circle"
+          />
+           Visit eight villages showcasing Polynesian culture
+        </li>
+        <li>
+          <i
+            className="fas fa-circle"
+          />
+           Complimentary Camel safari, Bonfire,
+        </li>
+        <li>
+          <i
+            className="fas fa-circle"
+          />
+           All toll tax, parking, fuel, and driver allowances
+        </li>
+        <li>
+          <i
+            className="fas fa-circle"
+          />
+           Comfortable and hygienic vehicle
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    className="detail-flights__container__price"
+  >
+    <div
+      className="booking-page__container__item__title"
+    >
+      <h3>
+        Prices
+      </h3>
+    </div>
+    <div
+      className="detail-flights__container__price__content"
+    >
+      <h3>
+        $112
+        <sub>
+          / 
+          50
+           X
+          1
+        </sub>
+      </h3>
+    </div>
+  </div>
+</div>
+`;

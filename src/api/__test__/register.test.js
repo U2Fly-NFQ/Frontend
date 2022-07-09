@@ -1,6 +1,6 @@
 import axiosInstance from '../'
 import MockAdapter from 'axios-mock-adapter'
-import { register } from '../Auth/register'
+import { registerApi } from '../Auth/register'
 
 describe('RegisterAPI', () => {
   let mock
@@ -23,7 +23,7 @@ describe('RegisterAPI', () => {
         .onPost(`${process.env.REACT_APP_SERVER_API}/users/register`)
         .reply(200, rs)
 
-      const result = await register({
+      const result = await registerApi({
         username: 'u2fly',
         password: '123',
       })

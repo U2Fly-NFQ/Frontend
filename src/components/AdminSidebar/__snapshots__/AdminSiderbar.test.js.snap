@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Booking Passenger bar test renders correctly 1`] = `
+Array [
+  <div
+    className="ant-row admin-sidebar-header"
+    style={Object {}}
+  >
+    <div
+      className="ant-col ant-col-24 admin-sidebar-header-logo"
+      style={Object {}}
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+        style={
+          Object {
+            "fontSize": 24,
+          }
+        }
+      >
+        U2Fly
+      </a>
+    </div>
+  </div>,
+  <ul
+    className="ant-menu ant-menu-root ant-menu-inline ant-menu-light"
+    data-menu-list={true}
+    onKeyDown={[Function]}
+    role="menu"
+    tabIndex={0}
+  >
+    <li
+      className="ant-menu-item"
+      data-menu-id={null}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      role="menuitem"
+      style={
+        Object {
+          "paddingLeft": 24,
+        }
+      }
+      tabIndex={-1}
+    >
+      <i
+        className="fa-solid fa-gauge ant-menu-item-icon"
+      />
+      <span
+        className="ant-menu-title-content"
+      >
+        <a
+          href="/admin"
+          onClick={[Function]}
+        >
+          Dashboard
+        </a>
+      </span>
+    </li>
+    <li
+      className="ant-menu-item"
+      data-menu-id={null}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      role="menuitem"
+      style={
+        Object {
+          "paddingLeft": 24,
+        }
+      }
+      tabIndex={-1}
+    >
+      <i
+        className="fa-solid fa-tags ant-menu-item-icon"
+      />
+      <span
+        className="ant-menu-title-content"
+      >
+        <a
+          href="/admin/discount"
+          onClick={[Function]}
+        >
+          Discount
+        </a>
+      </span>
+    </li>
+  </ul>,
+  <div
+    aria-hidden={true}
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  />,
+]
+`;

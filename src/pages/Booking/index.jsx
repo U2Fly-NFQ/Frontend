@@ -1,4 +1,3 @@
-import { Layout } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import './index.scss'
 import { FlightListBanner, PageLoadingAnimation } from '../../components'
@@ -22,8 +21,8 @@ import {
   getDataFlights,
   getRoundTripBookingFlightAsync,
 } from '../../redux/slices/bookingFlightsSlice'
-const { Header, Footer, Sider, Content } = Layout
-function FlightList() {
+
+function FlightList({ flight }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const getDataBookingFlight = useSelector(getInfoFlightInBookingFight)
@@ -54,6 +53,7 @@ function FlightList() {
   useEffect(() => {
     scrollTo('650')
   }, [])
+
   return (
     <>
       {getLoadding && <PageLoadingAnimation />}
@@ -81,15 +81,15 @@ function FlightList() {
             <div className="booking-page__container__item">
               <div className="booking-page__container__item__content block-container">
                 <div className="booking-page__container__itemContent">
-                  {seat.price && <DetailFlights seat={seat} />}
+                  {seat.price && <DetailFlights flight={flight} />}
                 </div>
               </div>
               <div className="booking-page__container__item__content block-container">
-                {seat.price && <BookingTravelDate seat={seat} />}
+                {seat.price && <BookingTravelDate flight={flight} />}
               </div>
               <div className="booking-page__container__item__content block-container">
                 <div className="booking-page__container__itemContent">
-                  {seat.price && <BookingCoupon />}
+                  {seat.price && <BookingCoupon flight={flight} />}
                 </div>
               </div>
             </div>

@@ -1,3 +1,3 @@
-import axios from '..'
+import axiosInstance from '..'
 
-export const registerApi = (data) => axios.post(`/register`, data)
+export const registerApi = (data) => axiosInstance.post(`/register`, data)

@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Booking Passenger bar test renders correctly 1`] = `
+Array [
+  <div
+    className="booking-page__container__item__title"
+  >
+    <h2>
+      Payment Method
+    </h2>
+  </div>,
+  <div
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      className="ant-radio-group ant-radio-group-outline paymnet-button__radio"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="paymnet-button__radio form-control"
+      >
+        <label
+          className="ant-radio-wrapper paymnet-button__radio__btn"
+        >
+          <span
+            className="ant-radio"
+            style={Object {}}
+          >
+            <input
+              checked={false}
+              className="ant-radio-input"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyPress={[Function]}
+              onKeyUp={[Function]}
+              type="radio"
+              value={0}
+            />
+            <span
+              className="ant-radio-inner"
+            />
+          </span>
+          <span>
+            Stripe
+            <div
+              className="paymnet-button__radio__logo "
+            >
+              <img
+                alt="stripe-logo"
+                src="stripe-icon.jpg"
+              />
+            </div>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div
+      className="BookingPayment-content"
+    >
+      <form
+        className="ant-form ant-form-horizontal"
+        onReset={[Function]}
+        onSubmit={[Function]}
+      />
+    </div>
+  </div>,
+]
+`;

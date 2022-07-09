@@ -1,0 +1,638 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`My Connected React-Redux Component should render with given state from Redux store 1`] = `
+<div
+  className="filter"
+>
+  <div
+    className="ant-row ant-row-center filterItem price"
+    style={Object {}}
+  >
+    <div
+      className="ant-col ant-col-24 title"
+      style={Object {}}
+    >
+      <div
+        className="ant-space ant-space-horizontal ant-space-align-center"
+        style={
+          Object {
+            "justifyContent": "space-between",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className="ant-space-item"
+          style={Object {}}
+        >
+          <span
+            className="ant-typography"
+            onClick={null}
+            style={
+              Object {
+                "WebkitLineClamp": undefined,
+              }
+            }
+          >
+            flight-list-page.Price
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-col ant-col-24 content"
+      style={Object {}}
+    >
+      <div
+        className="ant-slider ant-slider-horizontal"
+        onMouseDown={[Function]}
+      >
+        <div
+          className="ant-slider-rail"
+        />
+        <div
+          className="ant-slider-track ant-slider-track-1"
+          onMouseDown={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "left": "0%",
+              "width": "100%",
+            }
+          }
+        />
+        <div
+          className="ant-slider-step"
+        />
+        <div
+          aria-disabled={false}
+          aria-valuemax={1500}
+          aria-valuemin={0}
+          aria-valuenow={0}
+          className="ant-slider-handle ant-slider-handle-1"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          role="slider"
+          style={
+            Object {
+              "left": "0%",
+              "transform": "translateX(-50%)",
+            }
+          }
+          tabIndex={0}
+        />
+        <div
+          aria-disabled={false}
+          aria-valuemax={1500}
+          aria-valuemin={0}
+          aria-valuenow={1500}
+          className="ant-slider-handle ant-slider-handle-2"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          role="slider"
+          style={
+            Object {
+              "left": "100%",
+              "transform": "translateX(-50%)",
+            }
+          }
+          tabIndex={0}
+        />
+      </div>
+      <div
+        className="ant-space ant-space-horizontal ant-space-align-center"
+        style={
+          Object {
+            "flexWrap": "wrap",
+            "justifyContent": "space-between",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className="ant-space-item"
+          style={
+            Object {
+              "marginRight": 8,
+            }
+          }
+        >
+          <div
+            className="ant-input-number-affix-wrapper"
+            onMouseUp={[Function]}
+          >
+            <span
+              className="ant-input-number-prefix"
+            >
+              flight-list-page.$
+            </span>
+            <div
+              className="ant-input-number"
+              onBlur={[Function]}
+              onCompositionEnd={[Function]}
+              onCompositionStart={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              style={null}
+            >
+              <div
+                className="ant-input-number-handler-wrap"
+              >
+                <span
+                  aria-disabled={false}
+                  aria-label="Increase Value"
+                  className="ant-input-number-handler ant-input-number-handler-up"
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  role="button"
+                  unselectable="on"
+                >
+                  <span
+                    aria-label="up"
+                    className="anticon anticon-up ant-input-number-handler-up-inner"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="up"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+                <span
+                  aria-disabled={true}
+                  aria-label="Decrease Value"
+                  className="ant-input-number-handler ant-input-number-handler-down ant-input-number-handler-down-disabled"
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  role="button"
+                  unselectable="on"
+                >
+                  <span
+                    aria-label="down"
+                    className="anticon anticon-down ant-input-number-handler-down-inner"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="down"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </div>
+              <div
+                className="ant-input-number-input-wrap"
+              >
+                <input
+                  aria-valuemax={1500}
+                  aria-valuemin={0}
+                  aria-valuenow="0"
+                  autoComplete="off"
+                  className="ant-input-number-input"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  role="spinbutton"
+                  step={1}
+                  value="0"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="ant-space-item"
+          style={Object {}}
+        >
+          <div
+            className="ant-input-number-affix-wrapper"
+            onMouseUp={[Function]}
+          >
+            <span
+              className="ant-input-number-prefix"
+            >
+              flight-list-page.$
+            </span>
+            <div
+              className="ant-input-number"
+              onBlur={[Function]}
+              onCompositionEnd={[Function]}
+              onCompositionStart={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              style={null}
+            >
+              <div
+                className="ant-input-number-handler-wrap"
+              >
+                <span
+                  aria-disabled={true}
+                  aria-label="Increase Value"
+                  className="ant-input-number-handler ant-input-number-handler-up ant-input-number-handler-up-disabled"
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  role="button"
+                  unselectable="on"
+                >
+                  <span
+                    aria-label="up"
+                    className="anticon anticon-up ant-input-number-handler-up-inner"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="up"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3A8 8 0 00140 768h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+                <span
+                  aria-disabled={false}
+                  aria-label="Decrease Value"
+                  className="ant-input-number-handler ant-input-number-handler-down"
+                  onMouseDown={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  role="button"
+                  unselectable="on"
+                >
+                  <span
+                    aria-label="down"
+                    className="anticon anticon-down ant-input-number-handler-down-inner"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="down"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </div>
+              <div
+                className="ant-input-number-input-wrap"
+              >
+                <input
+                  aria-valuemax={1500}
+                  aria-valuemin={0}
+                  aria-valuenow="1500"
+                  autoComplete="off"
+                  className="ant-input-number-input"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  role="spinbutton"
+                  step={1}
+                  value="1500"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ant-row ant-row-center filterItem"
+    style={Object {}}
+  >
+    <div
+      className="ant-col ant-col-24 title"
+      style={Object {}}
+    >
+      <div
+        className="ant-space ant-space-horizontal ant-space-align-center"
+        style={
+          Object {
+            "justifyContent": "space-between",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className="ant-space-item"
+          style={Object {}}
+        >
+          <span
+            className="ant-typography"
+            onClick={null}
+            style={
+              Object {
+                "WebkitLineClamp": undefined,
+              }
+            }
+          >
+            flight-list-page.Times
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-col ant-col-24 content"
+      style={Object {}}
+    >
+      <div
+        className="ant-radio-group ant-radio-group-outline"
+      >
+        <div
+          className="ant-space ant-space-vertical"
+          style={Object {}}
+        >
+          <div
+            className="ant-space-item"
+            style={
+              Object {
+                "marginBottom": 8,
+              }
+            }
+          >
+            <label
+              className="ant-radio-wrapper ant-radio-wrapper-checked"
+            >
+              <span
+                className="ant-radio ant-radio-checked"
+                style={Object {}}
+              >
+                <input
+                  checked={true}
+                  className="ant-radio-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyPress={[Function]}
+                  onKeyUp={[Function]}
+                  type="radio"
+                  value=""
+                />
+                <span
+                  className="ant-radio-inner"
+                />
+              </span>
+              <span>
+                flight-list-page.All time
+              </span>
+            </label>
+          </div>
+          <div
+            className="ant-space-item"
+            style={
+              Object {
+                "marginBottom": 8,
+              }
+            }
+          >
+            <label
+              className="ant-radio-wrapper"
+            >
+              <span
+                className="ant-radio"
+                style={Object {}}
+              >
+                <input
+                  checked={false}
+                  className="ant-radio-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyPress={[Function]}
+                  onKeyUp={[Function]}
+                  type="radio"
+                  value="earlymorning"
+                />
+                <span
+                  className="ant-radio-inner"
+                />
+              </span>
+              <span>
+                flight-list-page.Early Morning
+                 (00:00 - 06:00)
+              </span>
+            </label>
+          </div>
+          <div
+            className="ant-space-item"
+            style={
+              Object {
+                "marginBottom": 8,
+              }
+            }
+          >
+            <label
+              className="ant-radio-wrapper"
+            >
+              <span
+                className="ant-radio"
+                style={Object {}}
+              >
+                <input
+                  checked={false}
+                  className="ant-radio-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyPress={[Function]}
+                  onKeyUp={[Function]}
+                  type="radio"
+                  value="morning"
+                />
+                <span
+                  className="ant-radio-inner"
+                />
+              </span>
+              <span>
+                flight-list-page.Morning
+                 (06:00 - 12:00)
+              </span>
+            </label>
+          </div>
+          <div
+            className="ant-space-item"
+            style={
+              Object {
+                "marginBottom": 8,
+              }
+            }
+          >
+            <label
+              className="ant-radio-wrapper"
+            >
+              <span
+                className="ant-radio"
+                style={Object {}}
+              >
+                <input
+                  checked={false}
+                  className="ant-radio-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyPress={[Function]}
+                  onKeyUp={[Function]}
+                  type="radio"
+                  value="afternoon"
+                />
+                <span
+                  className="ant-radio-inner"
+                />
+              </span>
+              <span>
+                flight-list-page.Afternoon
+                 (12:00 - 18:00)
+              </span>
+            </label>
+          </div>
+          <div
+            className="ant-space-item"
+            style={Object {}}
+          >
+            <label
+              className="ant-radio-wrapper"
+            >
+              <span
+                className="ant-radio"
+                style={Object {}}
+              >
+                <input
+                  checked={false}
+                  className="ant-radio-input"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyPress={[Function]}
+                  onKeyUp={[Function]}
+                  type="radio"
+                  value="night"
+                />
+                <span
+                  className="ant-radio-inner"
+                />
+              </span>
+              <span>
+                flight-list-page.Evening
+                 (18:00 - 24:00)
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ant-row ant-row-center filterItem"
+    style={Object {}}
+  >
+    <div
+      className="ant-col ant-col-24 title"
+      style={Object {}}
+    >
+      <div
+        className="ant-space ant-space-horizontal ant-space-align-center"
+        style={
+          Object {
+            "justifyContent": "space-between",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className="ant-space-item"
+          style={
+            Object {
+              "marginRight": 8,
+            }
+          }
+        >
+          <span
+            className="ant-typography"
+            onClick={null}
+            style={
+              Object {
+                "WebkitLineClamp": undefined,
+              }
+            }
+          >
+            flight-list-page.Airline
+          </span>
+        </div>
+        <div
+          className="ant-space-item"
+          style={Object {}}
+        >
+          <span
+            className="ant-typography clear-btn"
+            onClick={[Function]}
+            style={
+              Object {
+                "WebkitLineClamp": undefined,
+              }
+            }
+          >
+            <i>
+              flight-list-page.Clear
+            </i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-col ant-col-24 content"
+      style={Object {}}
+    >
+      <div
+        className="ant-checkbox-group"
+      />
+    </div>
+  </div>
+</div>
+`;

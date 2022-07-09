@@ -80,15 +80,20 @@ exports[`Navigation bar test renders correctly 1`] = `
         className="navbar__footer__btn"
       >
         <div
-          className="form-submit"
+          className="partner-btn"
+          onClick={[Function]}
         >
-          <button
-            className="btn btn-primary btn-md"
-            id=""
-            type="submit"
+          <div
+            className="form-submit"
           >
-            Become a partner
-          </button>
+            <button
+              className="btn btn-primary btn-md"
+              id=""
+              type="submit"
+            >
+              Become a partner
+            </button>
+          </div>
         </div>
       </div>
     </div>

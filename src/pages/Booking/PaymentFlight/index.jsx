@@ -86,7 +86,7 @@ export default function PaymentFlight() {
           {dataPayment &&
             dataPayment.map((item, index) => {
               return (
-                <div className="paymnet-button__radio form-control">
+                <div key={index} className="paymnet-button__radio form-control">
                   <Radio
                     value={index}
                     key={index}

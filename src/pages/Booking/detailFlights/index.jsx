@@ -4,10 +4,13 @@ import { useSelector } from 'react-redux'
 import FlightTrip from './flightTrip'
 
 import { getInfoFlightInBookingFight } from '../../../redux/selectors'
-import { getRoundTripSeat } from '../../../redux/selectors/bookingFlightSelector'
-export default function DetailFlights({ seat }) {
+import {
+  getInfoFlightInBookingSeat,
+  getRoundTripSeat,
+} from '../../../redux/selectors/bookingFlightSelector'
+export default function DetailFlights({ flight }) {
   const getDataFlight = useSelector(getInfoFlightInBookingFight)
-
+  const seat = useSelector(getInfoFlightInBookingSeat)
   const seatRoungTrip = useSelector(getRoundTripSeat)
 
   return (
@@ -56,8 +59,7 @@ export default function DetailFlights({ seat }) {
                 ? seatRoungTrip.price + seat.price
                 : seat.price)}
             <sub>
-              / {seat.name} X
-              {JSON.parse(localStorage.getItem('flight')).seatAvailable}
+              / {seat.name} X{flight.seatAvailable}
             </sub>
           </h3>
         </div>

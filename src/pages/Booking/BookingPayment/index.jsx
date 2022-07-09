@@ -94,7 +94,6 @@ export default function BookingPayment() {
       </div>
       <div className="payment-booking">
         <Radio.Group onChange={onChange} value={value}>
-          {/* <Space direction="vertical" className="payment-booking__radio"> */}
           {dataPayment &&
             dataPayment.map((item, index) => {
               return (
@@ -103,7 +102,6 @@ export default function BookingPayment() {
                 </Radio>
               )
             })}
-          {/* </Space> */}
         </Radio.Group>
         <div className="BookingPayment-content">
           {dataBooking && dataBooking.render}

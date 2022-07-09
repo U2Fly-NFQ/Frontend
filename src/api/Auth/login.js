@@ -1,5 +1,5 @@
-import axios from '..'
+import axiosInstance from '..'
 
 export const loginApi = (data) => {
-  return axios.post(`/login`, data)
+  return axiosInstance.post(`/login`, data)
 }

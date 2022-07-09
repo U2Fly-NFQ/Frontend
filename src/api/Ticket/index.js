@@ -1,21 +1,22 @@
-import axios from '..'
+import axiosInstance from '..'
 
 const endpoint = '/tickets'
 
 export const getList = (params) => {
-  return axios.get(`${endpoint}`, {
+  return axiosInstance.get(`${endpoint}`, {
     params,
   })
 }
 
-export const get = (id) => axios.get(`${endpoint}/${id}`)
+export const get = (id) => axiosInstance.get(`${endpoint}/${id}`)
 
-export const create = (data) => axios.post(`${endpoint}`, data)
+export const create = (data) => axiosInstance.post(`${endpoint}`, data)
 
-export const update = (id, data) => axios.put(`${endpoint}/${id}`, data)
+export const update = (id, data) => axiosInstance.put(`${endpoint}/${id}`, data)
 
-export const destroy = (id) => axios.delete(`${endpoint}/${id}`)
+export const destroy = (id) => axiosInstance.delete(`${endpoint}/${id}`)
 
-export const cancelBooking = (data) => axios.post('/stripe/refund', data)
+export const cancelBooking = (data) =>
+  axiosInstance.post('/stripe/refund', data)
 
-export const bookingRating = (data) => axios.post('/rate', data)
+export const bookingRating = (data) => axiosInstance.post('/rate', data)

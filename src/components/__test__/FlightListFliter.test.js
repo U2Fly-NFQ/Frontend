@@ -1,29 +1,23 @@
 import React from 'react'
 import { Provider } from 'react-redux'
+import { BrowserRouter as Router } from 'react-router-dom'
 import renderer from 'react-test-renderer'
 import configureStore from 'redux-mock-store'
-import MyConnectedComponent from '.'
-
+import FlightListFilter from '../FlightListFilter'
 const mockStore = configureStore([])
-
 describe('My Connected React-Redux Component', () => {
   let store
   let component
   beforeEach(() => {
-    store = mockStore({
-      bookingFlight: {
-        dataFlight: { seat: { price: 56, name: '50' } },
-        discountInfo: { percent: 0 },
-        dataRoundTripFlight: { seat: { price: 56, name: '50' } },
-      },
-    })
+    store = mockStore({ filter: { airlines: [] } })
     component = renderer.create(
       <Provider store={store}>
-        <MyConnectedComponent />
+        <Router>
+          <FlightListFilter />
+        </Router>
       </Provider>
     )
   })
-
   it('should render with given state from Redux store', () => {
     expect(component.toJSON()).toMatchSnapshot()
   })

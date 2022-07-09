@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Table, Typography, Button, Modal, Form, message } from 'antd'
 import moment from 'moment'
 
-import CreatgeDiscountForm from './CreateDiscountForm'
+import CreatgeDiscountForm from './CreateDiscountForm/CreateDiscountForm'
 
 import { useDispatch, useSelector } from 'react-redux'
 import {

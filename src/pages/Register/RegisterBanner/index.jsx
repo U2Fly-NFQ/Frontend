@@ -34,7 +34,7 @@ function RegisterBanner() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            <Title level={1}>{t('Register your account')}</Title>
+            <Title level={1}>{t('register.Register your account')}</Title>
           </motion.div>
           <motion.div
             initial={{
@@ -44,7 +44,7 @@ function RegisterBanner() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            <Title level={3}>To join a whole new world</Title>
+            <Title level={3}>{t('register.To join a whole new world')}</Title>
           </motion.div>
         </div>
       </div>

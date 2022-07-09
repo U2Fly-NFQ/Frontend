@@ -64,6 +64,7 @@ export default function FlightSearch() {
       startDateRoundTrip,
     } = existingFlight
 
+    // If exist query in local storage
     if (departure) setFrom(departure)
     if (arrival) setTo(arrival)
     if (startDate) setJourneyDay(moment(startDate))
@@ -71,6 +72,23 @@ export default function FlightSearch() {
     if (seatAvailable) setPassengerNumber(seatAvailable)
     if (ticketType) setTicketType(ticketType)
     if (startDateRoundTrip) setReturnDate(moment(returnDate))
+
+    // If exist query on URL
+    const departureParam = searchParams.get('departure')
+    const arrivalParam = searchParams.get('arrival')
+    const startDateParam = searchParams.get('startDate')
+    const seatTypeParam = searchParams.get('seatType')
+    const seatAvailableParam = searchParams.get('seatAvailable')
+    const ticketTypeParam = searchParams.get('ticketType')
+    const startDateRoundTripParam = searchParams.get('startDateRoundTrip')
+
+    if (departureParam) setFrom(departureParam)
+    if (arrivalParam) setTo(arrivalParam)
+    if (startDateParam) setJourneyDay(moment(startDateParam))
+    if (seatTypeParam) setPassengerClass(seatTypeParam)
+    if (seatAvailableParam) setPassengerNumber(seatAvailableParam)
+    if (ticketTypeParam) setTicketType(ticketTypeParam)
+    if (startDateRoundTripParam) setReturnDate(moment(startDateRoundTripParam))
   }, [])
 
   const onFinish = async () => {

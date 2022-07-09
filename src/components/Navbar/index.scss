@@ -101,15 +101,16 @@
       .navbar_icon.open {
         position: fixed;
         z-index: 3;
-        background: transparent;
       }
 
       .navbar_icon.open::before {
         transform: rotate(45deg) translate(10px, 0);
+        background-color: #222;
       }
 
       .navbar_icon.open::after {
         transform: rotate(-45deg) translate(0, 10px);
+        background-color: #222;
       }
     }
 

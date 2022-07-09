@@ -6,7 +6,7 @@ import loveIcon from '../../assets/icons/love.gif'
 import cryingIcon from '../../assets/icons/crying.gif'
 import { Modal, Tooltip, Input } from 'antd'
 import './index.scss'
-import { message } from 'antd/es'
+import { message } from 'antd'
 
 const { TextArea } = Input
 export default function ModalRating({

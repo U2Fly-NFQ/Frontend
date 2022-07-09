@@ -1,13 +1,13 @@
 import { I18nextProvider } from 'react-i18next'
-import i18n from '../../translations'
+import i18n from '../../../translations'
 import renderer from 'react-test-renderer'
 import React, { Suspense } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import SubNavBar from './'
 import { Provider } from 'react-redux'
-import { store } from '../../redux/store'
+import { store } from '../../../redux/store'
+import BookingSteps from './'
 
-describe('Sub nav bar test', () => {
+describe('Booking Passenger bar test', () => {
   it('renders correctly', () => {
     const tree = renderer
       .create(
@@ -15,7 +15,7 @@ describe('Sub nav bar test', () => {
           <I18nextProvider i18n={i18n}>
             <Router>
               <Suspense>
-                <SubNavBar />
+                <BookingSteps />
               </Suspense>
             </Router>
           </I18nextProvider>

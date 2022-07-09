@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sub nav bar test renders correctly 1`] = `
+<div
+  className="booking-coupon"
+>
+  <div
+    className="booking-page__container__item__title"
+  >
+    <h3>
+      Coupon code
+    </h3>
+  </div>
+  <div
+    className="booking-coupon__container"
+  >
+    <form
+      className="ant-form ant-form-horizontal"
+      onReset={[Function]}
+      onSubmit={[Function]}
+    >
+      <div
+        className="ant-row ant-form-item form-item-coupon ant-form-item-has-success"
+        style={
+          Object {
+            "display": "inline-block",
+            "margin": "0px",
+            "width": "100%",
+          }
+        }
+      >
+        <div
+          className="ant-col ant-form-item-control"
+          style={Object {}}
+        >
+          <div
+            className="ant-form-item-control-input"
+          >
+            <div
+              className="ant-form-item-control-input-content"
+            >
+              <input
+                className="form-control"
+                id="idDiscount"
+                name="idDiscount"
+                onChange={[Function]}
+                placeholder="input your discount number"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-row ant-form-item"
+        style={
+          Object {
+            "marginTop": "20px",
+          }
+        }
+      >
+        <div
+          className="ant-col ant-form-item-control"
+          style={Object {}}
+        >
+          <div
+            className="ant-form-item-control-input"
+          >
+            <div
+              className="ant-form-item-control-input-content"
+            >
+              <div
+                className="form-submit"
+              >
+                <button
+                  className="btn btn-primary btn-md"
+                  id=""
+                  type="submit"
+                >
+                  Apply voucher
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;

@@ -1,15 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import {
-  getDiscountForBookingAirline,
-  getInfoFlightInBookingSeat,
-} from '../../../redux/selectors'
+import { getDiscountForBookingAirline } from '../../../redux/selectors'
 import { getRoundTripSeat } from '../../../redux/selectors/bookingFlightSelector'
 import './index.scss'
 import { useTranslation } from 'react-i18next'
 
-export default function BookingTravelDate() {
-  const seat = useSelector(getInfoFlightInBookingSeat)
+export default function BookingTravelDate({ seat }) {
   const seatRoungTrip = useSelector(getRoundTripSeat)
   const getDiscount = useSelector(getDiscountForBookingAirline)
   const { t } = useTranslation()

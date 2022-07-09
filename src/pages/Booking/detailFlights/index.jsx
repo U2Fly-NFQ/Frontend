@@ -3,14 +3,11 @@ import './index.scss'
 import { useSelector } from 'react-redux'
 import FlightTrip from './flightTrip'
 
-import {
-  getInfoFlightInBookingFight,
-  getInfoFlightInBookingSeat,
-} from '../../../redux/selectors'
+import { getInfoFlightInBookingFight } from '../../../redux/selectors'
 import { getRoundTripSeat } from '../../../redux/selectors/bookingFlightSelector'
-export default function DetailFlights() {
+export default function DetailFlights({ seat }) {
   const getDataFlight = useSelector(getInfoFlightInBookingFight)
-  const seat = useSelector(getInfoFlightInBookingSeat)
+
   const seatRoungTrip = useSelector(getRoundTripSeat)
 
   return (

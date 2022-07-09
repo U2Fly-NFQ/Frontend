@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Booking Passenger bar test renders correctly 1`] = `
+Array [
+  <div
+    className="booking-page__container__item__title"
+  >
+    <h2>
+      Payemnt methods
+    </h2>
+  </div>,
+  <div
+    className="payment-booking"
+  >
+    <div
+      className="ant-radio-group ant-radio-group-outline"
+    >
+      <label
+        className="ant-radio-wrapper"
+      >
+        <span
+          className="ant-radio"
+          style={Object {}}
+        >
+          <input
+            checked={false}
+            className="ant-radio-input"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyPress={[Function]}
+            onKeyUp={[Function]}
+            type="radio"
+            value={0}
+          />
+          <span
+            className="ant-radio-inner"
+          />
+        </span>
+        <span>
+          Paypal
+        </span>
+      </label>
+      <label
+        className="ant-radio-wrapper ant-radio-wrapper-checked"
+      >
+        <span
+          className="ant-radio ant-radio-checked"
+          style={Object {}}
+        >
+          <input
+            checked={true}
+            className="ant-radio-input"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyPress={[Function]}
+            onKeyUp={[Function]}
+            type="radio"
+            value={1}
+          />
+          <span
+            className="ant-radio-inner"
+          />
+        </span>
+        <span>
+          Payoneer
+        </span>
+      </label>
+    </div>
+    <div
+      className="BookingPayment-content"
+    />
+  </div>,
+]
+`;

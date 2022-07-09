@@ -81,15 +81,15 @@ function FlightList() {
             <div className="booking-page__container__item">
               <div className="booking-page__container__item__content block-container">
                 <div className="booking-page__container__itemContent">
-                  {seat && <DetailFlights />}
+                  {seat.price && <DetailFlights seat={seat} />}
                 </div>
               </div>
               <div className="booking-page__container__item__content block-container">
-                {seat && <BookingTravelDate />}
+                {seat.price && <BookingTravelDate seat={seat} />}
               </div>
               <div className="booking-page__container__item__content block-container">
                 <div className="booking-page__container__itemContent">
-                  {seat && <BookingCoupon />}
+                  {seat.price && <BookingCoupon />}
                 </div>
               </div>
             </div>

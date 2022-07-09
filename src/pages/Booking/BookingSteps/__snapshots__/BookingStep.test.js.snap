@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Booking Passenger bar test renders correctly 1`] = `
+<div
+  className="ant-steps ant-steps-horizontal booking-steps ant-steps-label-horizontal ant-steps-navigation"
+  style={Object {}}
+>
+  <div
+    className="ant-steps-item ant-steps-item-process booking-steps__flight ant-steps-item-active"
+    style={Object {}}
+  >
+    <div
+      className="ant-steps-item-container"
+      onClick={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <div
+        className="ant-steps-item-tail"
+      />
+      <div
+        className="ant-steps-item-icon"
+      >
+        <span
+          className="ant-steps-icon"
+        >
+          1
+        </span>
+      </div>
+      <div
+        className="ant-steps-item-content"
+      >
+        <div
+          className="ant-steps-item-title"
+        >
+          <div
+            className="booking-steps__flight__container"
+          >
+            <div
+              className="booking-steps__flight__logo"
+            >
+              <i
+                className="fa-regular fa-user"
+              />
+            </div>
+            <div>
+              <div
+                className="booking-steps__flight__content"
+              >
+                <h4>
+                  Passenger information
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ant-steps-item ant-steps-item-wait"
+    style={Object {}}
+  >
+    <div
+      className="ant-steps-item-container"
+      onClick={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <div
+        className="ant-steps-item-tail"
+      />
+      <div
+        className="ant-steps-item-icon"
+      >
+        <span
+          className="ant-steps-icon"
+        >
+          2
+        </span>
+      </div>
+      <div
+        className="ant-steps-item-content"
+      >
+        <div
+          className="ant-steps-item-title"
+        >
+          <div
+            className="booking-steps__flight__container"
+          >
+            <div
+              className="booking-steps__flight__logo"
+            >
+              <i
+                className="fa-solid fa-credit-card"
+              />
+            </div>
+            <div>
+              <div
+                className="booking-steps__flight__content"
+              >
+                <h4>
+                  Payment methods
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ant-steps-item ant-steps-item-wait"
+    style={Object {}}
+  >
+    <div
+      className="ant-steps-item-container"
+      onClick={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <div
+        className="ant-steps-item-tail"
+      />
+      <div
+        className="ant-steps-item-icon"
+      >
+        <span
+          className="ant-steps-icon"
+        >
+          3
+        </span>
+      </div>
+      <div
+        className="ant-steps-item-content"
+      >
+        <div
+          className="ant-steps-item-title"
+        >
+          <div
+            className="booking-steps__flight__container"
+          >
+            <div
+              className="booking-steps__flight__logo"
+            >
+              <i
+                className="fa-solid fa-circle-check"
+              />
+            </div>
+            <div>
+              <div
+                className="booking-steps__flight__content"
+              >
+                <h4>
+                  payment successful
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

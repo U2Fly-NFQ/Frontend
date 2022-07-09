@@ -31,7 +31,7 @@ function BookingSuccessPage() {
   useEffect(() => {
     scrollTo('650')
   }, [])
-  console.log(dateUserBooking.birthday)
+
   return (
     <>
       {getLoadding && <PageLoadingAnimation />}
@@ -101,9 +101,9 @@ function BookingSuccessPage() {
                     </li>
 
                     <li>
-                      <span>Passport:</span>
+                      <span>Address:</span>
                       <span className="value">
-                        {dateUserBooking.passport || 'No Postal Passport'}
+                        {dateUserBooking.address || 'No address'}
                       </span>
                     </li>
                   </ul>

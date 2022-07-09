@@ -1,0 +1,22 @@
+@use '../../../assets/scss/abstracts' as a;
+
+.flight-list-banner {
+  background-image: url('../../../assets/images/system/flight-list-banner.webp');
+  padding: 220px 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__text {
+    text-align: center;
+
+    h1,
+    h3 {
+      font-weight: 400;
+      color: a.$white;
+    }
+
+    h3 {
+      font-style: italic;
+    }
+  }
+}

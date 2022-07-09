@@ -1,34 +1,26 @@
-import axios from '..'
+import axiosInstance from '..'
 
 const getList = (params) => {
-  return axios.get(`/flights`, {
+  return axiosInstance.get(`/flights`, {
     params,
   })
 }
 
-const get = (id) => axios.get(`/flights/${id}`)
-
-const create = (data) => axios.post(`/flights`, data)
-
-const update = (id, data) => axios.put(`/flights/${id}`, data)
-
-const destroy = (id) => axios.delete(`/flights/${id}`)
+const get = (id) => axiosInstance.get(`/flights/${id}`)
 
 const getUserData = (id) => {
-  return axios.get(`/passengers/${id}`)
+  return axiosInstance.get(`/passengers/${id}`)
 }
 
-const getInfoTickerById = (idTicket) => axios.get(`/tickets/${idTicket}`)
+const getInfoTickerById = (idTicket) =>
+  axiosInstance.get(`/tickets/${idTicket}`)
 
-const createATicket = (data) => axios.post(`/payment/stripe`, data)
+const createATicket = (data) => axiosInstance.post(`/stripe`, data)
 
 export default {
   getList,
   get,
-  create,
   getInfoTickerById,
-  update,
   createATicket,
-  destroy,
   getUserData,
 }

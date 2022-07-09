@@ -1,15 +1,44 @@
 import React, { useState } from 'react'
 import { Col, Row, Space, Table, Button } from 'antd'
-import { EyeOutlined } from '@ant-design/icons'
 import { UserTicket } from '../index'
 import { isEmpty } from 'lodash/lang'
 import './style.scss'
 import { findIndex } from 'lodash/array'
 import moment from 'moment'
+import ModalRating from '../ModalRating'
+import { useDispatch } from 'react-redux'
+import { fetchRatingBooking } from '../../redux/slices/ticketSlice'
 
 function UserBookingDetail({ detailData }) {
+  //initiation
+  const dispatch = useDispatch()
   const [viewTicket, setViewTicket] = useState(false)
   const [ticketData, setTicketData] = useState({})
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [dataRating, setDataRating] = useState({})
+
+  const handleCancelRating = () => {
+    setIsModalVisible(false)
+  }
+  const showRatingForm = (value) => {
+    setIsModalVisible(true)
+    setDataRating({
+      ticketFlightId: value.ticketFlight.id,
+      accountId: JSON.parse(localStorage.getItem('user')).id,
+    })
+  }
+
+  const handleRating = (value) => {
+    dispatch(
+      fetchRatingBooking({
+        ...dataRating,
+        rate: value.status,
+        comment: value.description,
+      })
+    )
+    setIsModalVisible(false)
+  }
+
   const flightsColumn = [
     {
       title: 'Airline',
@@ -41,14 +70,14 @@ function UserBookingDetail({ detailData }) {
     },
     {
       title: 'ETD',
-      dataIndex: 'startTime',
-      // width: '150px',
+      dataIndex: 'ETD',
+      width: '100px',
       align: 'center',
     },
     {
       title: 'ETA',
-      dataIndex: 'endTime',
-      // width: '150px',
+      dataIndex: 'ETA',
+      width: '100px',
       align: 'center',
     },
     {
@@ -57,22 +86,36 @@ function UserBookingDetail({ detailData }) {
       align: 'center',
       render: (_, record) => (
         <Space>
-          <Button
-            type="default"
-            shape="default"
-            onClick={() => {
-              let index = findIndex(
-                detailData.flights,
-                (flight) => flight.id === record.id
-              )
-              setTicketData({
-                ...detailData,
-                flights: detailData.flights[index],
-              })
-              setViewTicket(true)
-            }}
-            icon={<EyeOutlined />}
-          />
+          {record.isRating && (
+            <Button
+              type="default"
+              shape="default"
+              onClick={() => {
+                let index = findIndex(
+                  detailData.flights,
+                  (flight) => flight.id === record.id
+                )
+                setTicketData({
+                  ...detailData,
+                  flights: detailData.flights[index],
+                })
+                setViewTicket(true)
+              }}
+            >
+              View
+            </Button>
+          )}
+          {!record.isRating && (
+            <Button
+              type="primary"
+              shape="default"
+              onClick={() => {
+                showRatingForm(record)
+              }}
+            >
+              Rating
+            </Button>
+          )}
         </Space>
       ),
     },
@@ -94,7 +137,7 @@ function UserBookingDetail({ detailData }) {
             Name:
           </Col>
           <Col className="booking-info-text" span={7}>
-            {detailData.passenger.name}
+            {detailData.ticketOwner}
           </Col>
           <Col className="booking-info-label" span={5}>
             Date:
@@ -106,7 +149,7 @@ function UserBookingDetail({ detailData }) {
             Email:
           </Col>
           <Col className="booking-info-text" span={7}>
-            {detailData.passenger.email}
+            {detailData.email}
           </Col>
         </Row>
         <Row className="flight-info">
@@ -130,6 +173,12 @@ function UserBookingDetail({ detailData }) {
           visible={viewTicket}
         />
       )}
+      <ModalRating
+        visible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+        handleCancel={handleCancelRating}
+        handleOk={handleRating}
+      />
     </Row>
   )
 }

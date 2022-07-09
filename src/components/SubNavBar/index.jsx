@@ -27,7 +27,7 @@ const SubNavBar = () => {
     if (value === 'logout') {
       localStorage.removeItem('user')
       localStorage.removeItem('token')
-      navigate(-1)
+      navigate(0)
     }
   }
 
@@ -35,10 +35,6 @@ const SubNavBar = () => {
     <Menu
       onClick={handleMenuClick}
       items={[
-        {
-          label: 'Profile',
-          key: 'profile',
-        },
         {
           label: 'My booking',
           key: 'booked',

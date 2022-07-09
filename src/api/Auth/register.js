@@ -1,3 +1,3 @@
 import axios from '..'
 
-export const register = (data) => axios.post(`/users/register`, data)
+export const registerApi = (data) => axios.post(`/register`, data)

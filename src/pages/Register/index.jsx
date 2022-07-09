@@ -1,25 +1,69 @@
-import { Row, Col, Typography } from 'antd'
-import { LoginBanner } from '../../components'
+import {
+  Row,
+  Col,
+  Typography,
+  Form,
+  message,
+  Radio,
+  Input,
+  DatePicker,
+} from 'antd'
+import { Button } from './Button'
+import { Link, useNavigate } from 'react-router-dom'
+import RegisterBanner from './RegisterBanner'
 import './style.scss'
+import { registerApi } from '../../api/Auth'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
+import { scrollTo } from '../../utils/scroll'
 
 const { Title } = Typography
 
 const Register = () => {
+  const navigate = useNavigate()
   const { t } = useTranslation()
 
+  useEffect(() => {
+    scrollTo(400)
+  }, [])
+
   const onFinish = (values) => {
-    console.log('Success:', values)
+    const { idno, name, gender, birthday, address, email, password } = values
+
+    const data = {
+      user: {
+        email,
+        password,
+        roles: {
+          1: 'ROLE_USER',
+        },
+      },
+      passenger: {
+        gender,
+        birthday,
+        address,
+        name,
+        identification: idno,
+      },
+    }
+    // console.log(JSON.stringify(data))
+
+    const res = registerApi(JSON.stringify(data))
+
+    res.then((result) => {
+      if (result.data.status === 'success') {
+        message.success('Register successful!')
+        navigate('/login')
+      }
+    })
   }
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
+  /* eslint-enable no-template-curly-in-string */
 
   return (
     <>
       <div className="register-page">
-        <LoginBanner />
+        <RegisterBanner />
         <div className="grid wide">
           <Row justify="center">
             <Col lg={16}>
@@ -29,47 +73,162 @@ const Register = () => {
                     {t('register.To join a whole new world')}
                   </Title>
                   <Title level={2}>{t('register.Register your account')}</Title>
-                  <form action="#" className="form">
+                  <Form className="form" onFinish={onFinish} autoComplete="off">
                     <div className="form-group">
-                      <input
-                        type="text"
+                      <Form.Item
+                        name="idno"
                         className="form-control"
-                        placeholder={t('register.Enter your name')}
-                      />
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please fill your ID number!',
+                          },
+                        ]}
+                      >
+                        <Input placeholder="ID number" />
+                      </Form.Item>
                     </div>
+
                     <div className="form-group">
-                      <input
-                        type="text"
+                      <Form.Item
+                        name="name"
                         className="form-control"
-                        placeholder={t('register.Enter your email')}
-                      />
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please fill your display name!',
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Display name" />
+                      </Form.Item>
                     </div>
+
                     <div className="form-group">
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder={t('register.Enter your phone')}
-                      />
+                      <Form.Item
+                        name="gender"
+                        label="Gender"
+                        style={{ textAlign: 'left' }}
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please pick a gender!',
+                          },
+                        ]}
+                      >
+                        <Radio.Group>
+                          <Radio value="male"> Male </Radio>
+                          <Radio value="female"> Female </Radio>
+                        </Radio.Group>
+                      </Form.Item>
                     </div>
+
                     <div className="form-group">
-                      <input
-                        type="password"
+                      <Form.Item
+                        name="birthday"
+                        label="Birth Date"
+                        style={{ textAlign: 'left' }}
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please pick the birth date!',
+                          },
+                        ]}
+                      >
+                        <DatePicker />
+                      </Form.Item>
+                    </div>
+
+                    <div className="form-group">
+                      <Form.Item
+                        name="address"
                         className="form-control"
-                        placeholder={t('register.Enter password')}
-                      />
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please fill your address',
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Address" />
+                      </Form.Item>
+                    </div>
+
+                    <div className="form-group">
+                      <Form.Item
+                        name="email"
+                        className="form-control"
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please fill your email!',
+                          },
+                          {
+                            type: 'email',
+                            message: 'Invalid E-mail!',
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Email" />
+                      </Form.Item>
+                    </div>
+
+                    <div className="form-group">
+                      <Form.Item
+                        name="password"
+                        className="form-control"
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please fill your password!',
+                          },
+                        ]}
+                      >
+                        <Input.Password placeholder="Password" />
+                      </Form.Item>
+                    </div>
+
+                    <div className="form-group">
+                      <Form.Item
+                        className="form-control"
+                        name="confirm"
+                        dependencies={['password']}
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Please confirm your password!',
+                          },
+                          ({ getFieldValue }) => ({
+                            validator(_, value) {
+                              if (
+                                !value ||
+                                getFieldValue('password') === value
+                              ) {
+                                return Promise.resolve()
+                              }
+
+                              return Promise.reject(
+                                new Error('The password do not match!')
+                              )
+                            },
+                          }),
+                        ]}
+                      >
+                        <Input.Password placeholder="Confirm password" />
+                      </Form.Item>
                     </div>
                     <div className="form-submit">
-                      <button className="btn btn-primary btn-md">
-                        {t('register.Register')}
-                      </button>
+                      <Button type="submit" className="btn btn-primary btn-md">
+                        Register
+                      </Button>
                     </div>
                     <div className="switch">
                       <p>
                         {t('register.Already have an account?')}{' '}
-                        <a href="register.html">{t('register.Login now')}</a>
+                        <Link to="/login">{t('register.Login now')}</Link>
                       </p>
                     </div>
-                  </form>
+                  </Form>
                 </div>
               </div>
             </Col>

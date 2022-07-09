@@ -142,18 +142,9 @@ exports[`Sub nav bar test renders correctly 1`] = `
                 </span>
                 <span
                   className="ant-select-selection-item"
+                  title="en-US"
                 >
-                  <img
-                    alt=""
-                    src="united-kingdom.png"
-                    style={
-                      Object {
-                        "marginBottom": "2px",
-                        "marginRight": "4px",
-                      }
-                    }
-                  />
-                  ENG
+                  en-US
                 </span>
               </div>
               <span

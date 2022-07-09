@@ -10,7 +10,7 @@
       padding: 5px;
       align-items: center;
       text-align: center;
-      height: 100px;
+      height: 64px;
       justify-content: center;
       background-color: a.$bg-color;
       &-logo {
@@ -41,7 +41,7 @@
     }
   }
   &-header {
-    height: 100px;
+    height: 64px;
     background-color: a.$background-white;
     box-shadow: a.$box-shadow;
     -webkit-box-shadow: a.$box-shadow;

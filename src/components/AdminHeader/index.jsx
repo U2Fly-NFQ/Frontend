@@ -15,24 +15,22 @@ function AdminHeader() {
     setSearch('')
   }
   return (
-    <Header className="admin-header">
-      <Row className="admin-header-content">
-        <Col xs={0} sm={12} className="admin-header-content-left">
-          <Search
+    <Row className="admin-header-content">
+      <Col xs={0} sm={12} className="admin-header-content-left">
+        {/* <Search
             placeholder="Search in app"
             enterButton="Search"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onSearch={handleSearch}
-          />
-        </Col>
-        <Col xs={24} sm={12} className="admin-header-content-right">
-          <Dropdown className="profileMenu" overlay={<ProfileMenu />}>
-            <Avatar size="large" icon={<UserOutlined />} />
-          </Dropdown>
-        </Col>
-      </Row>
-    </Header>
+          /> */}
+      </Col>
+      <Col xs={24} sm={12} className="admin-header-content-right">
+        <Dropdown className="profileMenu" overlay={<ProfileMenu />}>
+          <Avatar size="large" icon={<UserOutlined />} />
+        </Dropdown>
+      </Col>
+    </Row>
   )
 }
 

@@ -1,6 +1,5 @@
 export const bookingStatus = {
-  0: 'Booking successful',
-  1: 'Canceled',
+  1: 'Booking successful',
+  0: 'Canceled',
   2: 'Complete',
-  3: 'Rated',
 }

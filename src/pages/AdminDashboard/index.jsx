@@ -5,42 +5,9 @@ import { Typography } from 'antd/es'
 import './style.scss'
 import FlightChart from './FlightChart'
 import { get } from '../../api/Dashboard'
+import PieChart from './PieChart'
 
 const { Title } = Typography
-
-// const data = {
-//   top_airport: {
-//     total: 2344,
-//     data: [
-//       { iata: 'VCN', name: 'Can Tho Airport', value: 13123 },
-//       { iata: 'ABC', name: 'Noi Bai Airport', value: 11123 },
-//       { iata: 'TTA', name: 'Tan Son Nhat Airport', value: 22123 },
-//     ],
-//   },
-//   top_airline: {
-//     total: 4123,
-//     data: [
-//       { iata: 'VCN', name: 'VietJetAir', value: 3123 },
-//       { iata: 'DDN', name: 'Vietnam Ailine', value: 1231 },
-//     ],
-//   },
-//   top_aircraft: {
-//     total: 5981,
-//     data: [
-//       { iata: 'VCN', name: 'Boeing 212', value: 2223 },
-//       { iata: 'ABN', name: 'Boeing 747', value: 3123 },
-//       { iata: 'SAN', name: 'B777 Sakas', value: 123 },
-//     ],
-//   },
-//   top_routes: {
-//     total: 821,
-//     data: [
-//       { iata: 'CGK - NAS', value: 323 },
-//       { iata: 'SIN - CG2', value: 223 },
-//       { iata: 'HUA - CIS', value: 123 },
-//     ],
-//   },
-// }
 
 function AdminDashboard() {
   const barConfig = {
@@ -66,7 +33,6 @@ function AdminDashboard() {
   useEffect(() => {
     get().then((rs) => {
       setData(rs.data.data)
-      console.log(rs.data.data)
     })
   }, [])
 
@@ -77,7 +43,15 @@ function AdminDashboard() {
     <div className="admin-layout">
       <div className="bar-chart-area">
         <Row gutter={20}>
-          <Col lg={8}>s</Col>
+          <Col lg={8}>
+            <Card
+              className="routes"
+              title={<Title level={5}>Class</Title>}
+              bordered={false}
+            >
+              <PieChart />
+            </Card>
+          </Col>
           <Col lg={8}>
             <Card
               className="airlines"

@@ -3,16 +3,36 @@ import { Line } from '@ant-design/plots'
 
 const FlightChart = ({ data }) => {
   const { flightCancel, flightTotal, flightSuccess } = data
-  const dataMap = [...flightCancel, ...flightTotal, ...flightSuccess]
+
+  let flightCancelMap = flightCancel.map((f) => ({
+    name: 'Flight canceled',
+    time: f.time,
+    value: f.value,
+  }))
+
+  let flightTotalMap = flightTotal.map((f) => ({
+    name: 'Flight total',
+    time: f.time,
+    value: f.value,
+  }))
+
+  let flightSuccessMap = flightSuccess.map((f) => ({
+    name: 'Flight Success',
+    time: f.time,
+    value: f.value,
+  }))
+
+  let resultChart = [...flightCancelMap, ...flightTotalMap, ...flightSuccessMap]
+
+  console.log(resultChart)
+
   const config = {
-    data: dataMap,
+    data: resultChart,
     xField: 'time',
     yField: 'value',
     seriesField: 'name',
     yAxis: {
-      label: {
-        formatter: (v) => `${(v / 10e8).toFixed(1)} B`,
-      },
+      label: {},
     },
     legend: {
       position: 'top',
@@ -24,7 +44,7 @@ const FlightChart = ({ data }) => {
         duration: 5000,
       },
     },
-    height: 200,
+    height: 400,
   }
 
   return (

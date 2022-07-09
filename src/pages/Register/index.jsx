@@ -24,7 +24,7 @@ const Register = () => {
   const { t } = useTranslation()
 
   useEffect(() => {
-    scrollTo(400)
+    scrollTo(0)
   }, [])
 
   const onFinish = (values) => {
@@ -66,13 +66,10 @@ const Register = () => {
         <RegisterBanner />
         <div className="grid wide">
           <Row justify="center">
-            <Col lg={16}>
+            <Col md={16} xs={22}>
               <div className="content">
                 <div className="box">
-                  <Title level={3}>
-                    {t('register.To join a whole new world')}
-                  </Title>
-                  <Title level={2}>{t('register.Register your account')}</Title>
+                  <Title level={2}>{t('cta.register')}</Title>
                   <Form className="form" onFinish={onFinish} autoComplete="off">
                     <div className="form-group">
                       <Form.Item

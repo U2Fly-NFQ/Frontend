@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   useNavigate,
   useSearchParams,
@@ -34,7 +34,6 @@ export default function FlightSearch() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const submitRef = useRef(null)
   const [searchParams, setSearchParams] = useSearchParams()
 
   const airports = useSelector((state) => state.airports.data)
@@ -65,6 +64,7 @@ export default function FlightSearch() {
       startDateRoundTrip,
     } = existingFlight
 
+    // If exist query in local storage
     if (departure) setFrom(departure)
     if (arrival) setTo(arrival)
     if (startDate) setJourneyDay(moment(startDate))
@@ -72,6 +72,23 @@ export default function FlightSearch() {
     if (seatAvailable) setPassengerNumber(seatAvailable)
     if (ticketType) setTicketType(ticketType)
     if (startDateRoundTrip) setReturnDate(moment(returnDate))
+
+    // If exist query on URL
+    const departureParam = searchParams.get('departure')
+    const arrivalParam = searchParams.get('arrival')
+    const startDateParam = searchParams.get('startDate')
+    const seatTypeParam = searchParams.get('seatType')
+    const seatAvailableParam = searchParams.get('seatAvailable')
+    const ticketTypeParam = searchParams.get('ticketType')
+    const startDateRoundTripParam = searchParams.get('startDateRoundTrip')
+
+    if (departureParam) setFrom(departureParam)
+    if (arrivalParam) setTo(arrivalParam)
+    if (startDateParam) setJourneyDay(moment(startDateParam))
+    if (seatTypeParam) setPassengerClass(seatTypeParam)
+    if (seatAvailableParam) setPassengerNumber(seatAvailableParam)
+    if (ticketTypeParam) setTicketType(ticketTypeParam)
+    if (startDateRoundTripParam) setReturnDate(moment(startDateRoundTripParam))
   }, [])
 
   const onFinish = async () => {
@@ -175,13 +192,14 @@ export default function FlightSearch() {
           <Radio.Group
             value={ticketType}
             onChange={(e) => onChangeTicketType(e.target.value)}
-            style={{
-              padding: '10px',
-              borderRadius: '12px',
-            }}
+            buttonStyle="solid"
           >
-            <Radio value="oneWay">{t('search_form.one_way')}</Radio>
-            <Radio value="roundTrip">{t('search_form.round_trip')}</Radio>
+            <Radio.Button value="oneWay">
+              {t('search_form.one_way')}
+            </Radio.Button>
+            <Radio.Button value="roundTrip">
+              {t('search_form.round_trip')}
+            </Radio.Button>
           </Radio.Group>
         </div>
 
@@ -277,14 +295,11 @@ export default function FlightSearch() {
           <Col span={24} md={12} lg={7}>
             <div className="flightSearchBox">
               <Row gutter={[8, 8]} justify="center">
-                <Col span={12}>
+                <Col sm={12} xs={24}>
                   <label className="flightSearchLabel">
                     {t('search_form.journey_date')}
                   </label>
                   <DatePicker
-                    popupStyle={{
-                      borderRadius: '10px',
-                    }}
                     className="journeyDate"
                     allowClear={false}
                     disabledDate={(current) => {
@@ -298,7 +313,7 @@ export default function FlightSearch() {
                     format={'MM/DD/YY'}
                   />
                 </Col>
-                <Col span={12}>
+                <Col sm={12} xs={24}>
                   <label className="flightSearchLabel">
                     {t('search_form.return_date')}
                   </label>
@@ -379,14 +394,8 @@ export default function FlightSearch() {
               size="large"
               className="searchBtn btn btn-md btn-primary"
               onClick={onFinish}
-              ref={submitRef}
             >
               {t('cta.search')}{' '}
-              {t(
-                `search_form.${
-                  ticketType === 'oneWay' ? 'one_way' : 'round_trip'
-                }`
-              )}
             </button>
           </Tooltip>
         </div>

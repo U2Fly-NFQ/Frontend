@@ -24,7 +24,7 @@ export default function PaymentFlight() {
   const getSeatData = useSelector(getInfoFlightInBookingSeat)
   const userInformation = useSelector(getUserInformation)
   const getRoundTrip = useSelector(getRoundTripBookingFlight)
-
+  const flightLocal = JSON.parse(localStorage.getItem('flight'))
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
@@ -36,9 +36,9 @@ export default function PaymentFlight() {
   }, [value])
   const onFinish = () => {
     let priceTotal =
-      getRoundTrip.seat !== undefined
+      (getRoundTrip.seat !== undefined
         ? getPrice.price * 110 + getRoundTrip.seat.price * 110
-        : getPrice.price * 110
+        : getPrice.price * 110) * flightLocal.seatAvailable
 
     let fetchDataValue = {
       passengerId: userInformation.accountId,
@@ -46,11 +46,7 @@ export default function PaymentFlight() {
         ? `${getFlightData.id},${getRoundTrip.id}`
         : `${getFlightData.id}`,
       seatTypeId: getSeatData.id,
-      totalPrice:
-        getDiscountInfo.percent === 0
-          ? priceTotal
-          : priceTotal - priceTotal * getDiscountInfo.percent,
-
+      totalPrice: priceTotal,
       discountId: getDiscountInfo.id || 1,
       ticketOwner: userInformation.firstName,
     }

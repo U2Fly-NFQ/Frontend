@@ -9,28 +9,28 @@ import './index.scss'
 import { message } from 'antd/es'
 
 const { TextArea } = Input
-export default function ModalRating({
-  visible,
-  handleCancel,
-  setIsModalVisible,
-  handleOk,
-}) {
+
+export default function ModalRating({ visible, setIsModalVisible, rating }) {
   const [status, setStatus] = useState()
   const [description, setDescription] = useState()
-  const handleOnOK = () => {
+  const handleOK = () => {
     if (!status) {
       message.error('Please choose your emotion')
       return false
     }
-    handleOk({
+    rating({
       status,
       description,
     })
+    handleCancel()
+  }
+  const handleCancel = () => {
     setStatus('')
     setDescription('')
+    setIsModalVisible(false)
   }
   return (
-    <Modal visible={visible} onOk={handleOnOK} onCancel={handleCancel}>
+    <Modal visible={visible} onOk={handleOK} onCancel={handleCancel}>
       <div className="modal-rating">
         <div className="modal-rating__title">
           <h3>How do you feel about this trip ?</h3>

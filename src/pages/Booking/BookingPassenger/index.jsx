@@ -27,7 +27,7 @@ export default function BookingPassenger() {
   const onFinish = (values) => {
     let valueResult = {
       ...values,
-      date_picker: moment(values.date_picker).format('YYYY-MM-DD'),
+      date_picker: moment(values.date_picker).format('MM-DD-YYYY'),
     }
     dispatch(changeCurrentMethod(1))
     dispatch(addDataIntoBookingFlight(valueResult))
@@ -79,7 +79,7 @@ export default function BookingPassenger() {
 
         <Form.Item
           name="date_picker"
-          format="DD-MM-YYYY"
+          format="MM-DD-YYYY"
           style={{ display: 'inline-block', width: '50%' }}
           rules={[
             {

@@ -4,12 +4,18 @@
   background-color: #fff;
 
   .content {
-    padding: 100px 0;
+    padding: 200px 0;
     position: relative;
 
     .box {
       background: #f3f6fd;
       padding: 45px 20px;
+      position: absolute;
+      top: -200px;
+      left: 0;
+      right: 0;
+      border-radius: 12px;
+      box-shadow: a.$box-shadow;
 
       h2,
       h3 {
@@ -30,7 +36,7 @@
       }
 
       .form {
-        padding: 50px 100px 0px 100px;
+        padding: 50px 20px;
 
         .form-control {
           height: 55px;
@@ -151,6 +157,16 @@
               color: a.$main-color;
             }
           }
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .content {
+      .box {
+        .form {
+          padding: 30px 0;
         }
       }
     }

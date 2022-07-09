@@ -19,12 +19,11 @@ const Login = () => {
   const { t } = useTranslation()
 
   useEffect(() => {
-    scrollTo(300)
+    scrollTo(0)
 
-    if (user.id && token) {
+    if (token && Object.values(user.roles).indexOf('ROLE_USER') !== -1 > -1)
       navigate(-1)
-    }
-  }, [])
+  }, [isLoading])
 
   const [errTxt, setErrTxt] = useState('')
 
@@ -35,7 +34,6 @@ const Login = () => {
       updateLs('user', data.user)
       axiosInstance.setToken(data.token)
       // Navigate to previous page
-      navigate(0)
     } catch (error) {
       setErrTxt('Wrong email or password')
     }
@@ -49,7 +47,7 @@ const Login = () => {
         <LoginBanner />
         <div className="grid wide">
           <Row justify="center">
-            <Col lg={16}>
+            <Col lg={16} xs={22}>
               <div className="content">
                 <div className="box">
                   <Title level={2}>Login</Title>

@@ -244,9 +244,6 @@ export default function FlightSearch() {
                   )
                 })}
               </Select>
-              <p className="flightSearchSelected">
-                {airports && airports.find((ap) => ap.iata === from)?.name}
-              </p>
             </div>
           </Col>
           <Col span={24} md={12} lg={6}>
@@ -287,9 +284,6 @@ export default function FlightSearch() {
                   )
                 })}
               </Select>
-              <p className="flightSearchSelected">
-                {airports && airports.find((ap) => ap.iata === to)?.name}
-              </p>
             </div>
           </Col>
           <Col span={24} md={12} lg={7}>

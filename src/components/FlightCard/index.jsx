@@ -105,7 +105,9 @@ export default function FlightCard(props) {
           </div>
         </div>
         <div className="flight-card-deal">
-          <p className="flight-detail">Flight details</p>
+          <p className="flight-detail">
+            {t('flight-list-page.Flight details')}
+          </p>
           <div className="flight-card-price">
             <h5 className="flight-card-price__origin">
               <del>

@@ -1,9 +1,12 @@
 import LoadingGif from '../../assets/images/system/not-found.webp'
 import { Typography, Row, Col } from 'antd'
+import { useTranslation } from 'react-i18next'
 
 const { Text } = Typography
 
 const NotFoundFlight = ({ style }) => {
+  const { t } = useTranslation()
+
   return (
     <>
       <div className="not-found-flight" style={style}>
@@ -15,7 +18,9 @@ const NotFoundFlight = ({ style }) => {
                 textAlign: 'center',
               }}
             >
-              Sorry we didn't find any results matching this search
+              {t(
+                "flight-list-page.Sorry we didn't find any results matching this search"
+              )}
             </Text>
             <img
               style={{

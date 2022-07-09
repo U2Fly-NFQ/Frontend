@@ -1,4 +1,4 @@
-import { Rate, Modal } from 'antd'
+import { Modal } from 'antd'
 import React from 'react'
 import { Steps } from 'antd'
 import moment from 'moment'
@@ -69,12 +69,6 @@ const FlightDetailModal = ({ data, visible, setIsModalVisible }) => {
                     <div className="info-plane_trip__title">
                       <img src={data.airline.image} alt="" />
                       <h5>{data.airline.name}</h5>
-                    </div>
-                    <div className="rating">
-                      <Rate
-                        disabled
-                        defaultValue={data?.airline?.rating || 0}
-                      />
                     </div>
                     <div className="info-plane_trip__body">
                       <span>{data.airplane.name}</span>

@@ -24,8 +24,6 @@ const FlightChart = ({ data }) => {
 
   let resultChart = [...flightCancelMap, ...flightTotalMap, ...flightSuccessMap]
 
-  console.log(resultChart)
-
   const config = {
     data: resultChart,
     xField: 'time',

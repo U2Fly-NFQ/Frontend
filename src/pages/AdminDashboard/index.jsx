@@ -5,26 +5,23 @@ import { Typography } from 'antd/es'
 import './style.scss'
 import FlightChart from './FlightChart'
 import { get } from '../../api/Dashboard'
-import PieChart from './PieChart'
 
 const { Title } = Typography
 
 function AdminDashboard() {
-  const barConfig = {
+  const airlineChartConfig = {
     xField: 'number',
     yField: 'name',
     seriesField: 'number',
-    colorField: 'number', // or seriesField in some cases
-    color: ['#19CDD7', '#DDB27C'],
+    colorField: 'name',
     height: 200,
   }
 
-  const routeConfig = {
+  const routeChartConfig = {
     xField: 'number',
     yField: 'journey',
     seriesField: 'number',
-    colorField: 'number', // or seriesField in some cases
-    color: ['#19CDD7', '#DDB27C'],
+    colorField: 'journey',
     height: 200,
   }
 
@@ -33,6 +30,7 @@ function AdminDashboard() {
   useEffect(() => {
     get().then((rs) => {
       setData(rs.data.data)
+      console.log(rs.data.data)
     })
   }, [])
 
@@ -43,31 +41,30 @@ function AdminDashboard() {
     <div className="admin-layout">
       <div className="bar-chart-area">
         <Row gutter={20}>
-          <Col lg={8}>
-            <Card
-              className="routes"
-              title={<Title level={5}>Class</Title>}
-              bordered={false}
-            >
-              <PieChart />
-            </Card>
-          </Col>
-          <Col lg={8}>
+          <Col lg={12} xs={24}>
             <Card
               className="airlines"
-              title={<Title level={5}>Top Airlines</Title>}
+              title={<Title level={5}>Top Airlines Report</Title>}
               bordered={false}
             >
-              <Bar data={data.top_airline} {...barConfig} />
+              <Bar
+                data={data.top_airline}
+                {...airlineChartConfig}
+                color={['#ffc53d', '#73d13d', '#1890ff']}
+              />
             </Card>
           </Col>
-          <Col lg={8}>
+          <Col lg={12} xs={24}>
             <Card
               className="routes"
-              title={<Title level={5}>Top Routes</Title>}
+              title={<Title level={5}>Top Routes Report</Title>}
               bordered={false}
             >
-              <Bar data={data.top_route} {...routeConfig} />
+              <Bar
+                data={data.top_route}
+                {...routeChartConfig}
+                color={['#ffc53d', '#73d13d', '#1890ff']}
+              />
             </Card>
           </Col>
         </Row>
@@ -77,7 +74,7 @@ function AdminDashboard() {
           <Col span={24}>
             <Card
               className="routes"
-              title={<Title level={5}>Booking</Title>}
+              title={<Title level={5}>Bookings Report</Title>}
               bordered={false}
             >
               <FlightChart data={data.flightAnalyze} />

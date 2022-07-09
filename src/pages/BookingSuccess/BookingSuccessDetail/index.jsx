@@ -1,3 +1,4 @@
+import moment from 'moment'
 import React from 'react'
 
 import { useSelector } from 'react-redux'
@@ -22,11 +23,19 @@ export default function BookingSuccessDetail() {
           </li>
           <li>
             <span>Booking date:</span>
-            <span>{getInforFlight.createdAt}</span>
+            <span>
+              {moment(getInforFlight.createdAt, 'YYYY-MM-DD').format(
+                'MM-DD-YYYY'
+              )}
+            </span>
+          </li>
+          <li>
+            <span>Seat Type:</span>
+            <span>{getInforFlight.seatType}</span>
           </li>
           <li>
             <span>Payment method:</span>
-            <span>Bank transfer</span>
+            <span>Stripe</span>
           </li>
           <li>
             <span>Booking status:</span>
@@ -37,17 +46,12 @@ export default function BookingSuccessDetail() {
       <div className="Booking-success__container__content__info">
         <ul>
           <li>
-            <span> Price:</span>
-            <span>
-              $
-              {(getInforFlight.price +
-                getInforFlight.price * getInforFlight.discount) /
-                100}
-            </span>
+            <span> Tax:</span>
+            <span>+ 10%</span>
           </li>
           <li className="change-color">
             <span>Discount</span>
-            <span>{getInforFlight.discount * 100 || 0 * 100} %</span>
+            <span>- {getInforFlight.discount * 100 || 0 * 100} %</span>
           </li>
         </ul>
       </div>

@@ -20,7 +20,7 @@ import {
   NotFoundFlight,
 } from '../../components'
 import { useEffect, useState } from 'react'
-import { ScrollToTopButton } from '../../components'
+import { ScrollToTopButton, FlightDetailModal } from '../../components'
 import { getLsObj, updateLs } from '../../utils/localStorage'
 import moment from 'moment'
 import { useTranslation } from 'react-i18next'
@@ -86,6 +86,35 @@ function FlightList() {
       fetchData()
     }
 
+    setSelectedFlight({
+      airline: { id: 1, name: 'Vietnam Airlines', icao: 'HVN' },
+      airplane: { id: 2, name: 'Airbus A350' },
+      arrival: {
+        id: 4,
+        iata: 'SGN',
+        name: 'Tan Son Nhat International Airport',
+        city: 'Tan Son Nhat',
+      },
+      code: 'VN123',
+      departure: {
+        id: 3,
+        iata: 'VCA',
+        name: 'Can Tho International Airport',
+        city: 'Can Tho',
+        image: 'google.com',
+      },
+      duration: 1.5,
+      id: 4,
+      seat: {
+        id: 1,
+        name: 'Economy',
+        price: 59,
+        seatAvailable: 50,
+        discount: 0.1,
+      },
+      startDate: '2022-07-10',
+      startTime: '15:00:00',
+    })
     // Before action is searching
     dispatch(fetchFlights(searchParams))
   }, [searchParams])
@@ -97,12 +126,24 @@ function FlightList() {
   }
 
   const changePage = (value) => {
-    searchParams.set('page', value)
+    if (currentTicketType === 'roundTrip') {
+      searchParams.set('page', '')
+      searchParams.set('pageRoundTrip', value)
+    } else {
+      searchParams.set('page', value)
+      searchParams.set('pageRoundTrip', '')
+    }
     setSearchParams(searchParams)
   }
 
   const changeSize = (value) => {
-    searchParams.set('offset', value)
+    if (currentTicketType === 'roundTrip') {
+      searchParams.set('offset', '')
+      searchParams.set('offsetRoundTrip', value)
+    } else {
+      searchParams.set('offset', value)
+      searchParams.set('offsetRoundTrip', value)
+    }
     setSearchParams(searchParams)
   }
 
@@ -132,9 +173,25 @@ function FlightList() {
       (flightStorage.seatType === 'Economy' && selectedFlight.seat[0]) ||
       selectedFlight.seat[1]
 
+  selectedSeat = {
+    id: 1,
+    name: 'Economy',
+    price: 59,
+    seatAvailable: 50,
+    discount: 0.1,
+  }
+
+  const [showDetailModal, setShowDetailModal] = useState(true)
+  const [modalData, setModalData] = useState({})
+
   return (
     <>
       <ScrollToTopButton />
+      <FlightDetailModal
+        visible={showDetailModal}
+        setIsModalVisible={(value) => setShowDetailModal(value)}
+        data={modalData}
+      />
       <div className="flight-list-page">
         <FlightListBanner />
         <div className="grid wide">
@@ -153,9 +210,6 @@ function FlightList() {
                             {t('flight-list-page.Selected outbound')}
                           </Text>
                           <div className="sub-title">
-                            {/* <Button type="link" size="small">
-                            Flight details
-                          </Button> */}
                             <Button
                               icon={<CloseOutlined color="#ddd" />}
                               size="small"
@@ -215,6 +269,17 @@ function FlightList() {
                               })}
                             </sup>
                           </div>
+                          <Button
+                            className="detail-btn"
+                            type="link"
+                            size="small"
+                            onClick={() => {
+                              setModalData(selectedFlight)
+                              setShowDetailModal(true)
+                            }}
+                          >
+                            Flight details
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -269,7 +334,14 @@ function FlightList() {
                       )}
                       {!emptyFlight &&
                         activeData.flight.map((f) => (
-                          <FlightCard key={f.id} data={f} />
+                          <FlightCard
+                            key={f.id}
+                            data={f}
+                            onClickDetail={() => {
+                              setModalData(f)
+                              setShowDetailModal(true)
+                            }}
+                          />
                         ))}
                       {!emptyFlight && pagination.total > pagination.offset && (
                         <Pagination

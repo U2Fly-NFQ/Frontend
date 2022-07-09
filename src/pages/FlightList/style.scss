@@ -51,31 +51,29 @@
       }
 
       .content {
+        padding-top: 10px;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
-        gap: 80px;
+        gap: 40px;
 
-        @media screen and (max-width: 784px) {
-          gap: 20px;
+        @media screen and (max-width: 920px) {
+          .airline {
+            display: none;
+          }
         }
 
-        @media screen and (max-width: 694px) {
-          .airline {
-            img {
-              display: none;
-            }
-          }
+        @media screen and (max-width: 728px) {
+          gap: 20px;
         }
 
         @media screen and (max-width: 634px) {
           justify-content: flex-end;
           gap: 10px;
-          .airline {
-            img {
-              display: none;
-            }
+
+          .detail-btn {
+            display: none;
           }
         }
 

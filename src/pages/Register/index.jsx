@@ -80,6 +80,22 @@ const Register = () => {
                             required: true,
                             message: 'Please fill your ID number!',
                           },
+                          {
+                            max: 20,
+                            message: 'Your ID not be longer than 20 characters',
+                          },
+                          ,
+                          () => ({
+                            validator(_, value) {
+                              if (!value) {
+                                return Promise.reject()
+                              }
+                              if (isNaN(value)) {
+                                return Promise.reject('ID must be a number.')
+                              }
+                              return Promise.resolve()
+                            },
+                          }),
                         ]}
                       >
                         <Input placeholder="ID number" />
@@ -94,6 +110,11 @@ const Register = () => {
                           {
                             required: true,
                             message: 'Please fill your display name!',
+                          },
+                          {
+                            max: 20,
+                            message:
+                              'Your name must not be longer than 20 characters',
                           },
                         ]}
                       >
@@ -145,6 +166,9 @@ const Register = () => {
                             required: true,
                             message: 'Please fill your address',
                           },
+                          {
+                            max: 40,
+                          },
                         ]}
                       >
                         <Input placeholder="Address" />
@@ -179,6 +203,10 @@ const Register = () => {
                             required: true,
                             message: 'Please fill your password!',
                           },
+                          {
+                            min: 8,
+                            message: 'password must be at least 8 characters',
+                          },
                         ]}
                       >
                         <Input.Password placeholder="Password" />
@@ -209,6 +237,15 @@ const Register = () => {
                               )
                             },
                           }),
+                          {
+                            min: 8,
+                            message: 'password must be at least 8 characters',
+                          },
+                          {
+                            max: 20,
+                            message:
+                              'password must not be longer than 20 characters',
+                          },
                         ]}
                       >
                         <Input.Password placeholder="Confirm password" />

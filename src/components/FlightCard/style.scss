@@ -12,18 +12,16 @@
   font-size: 14px;
 
   .place {
-    flex-grow: 1;
-    padding: 10px 20px;
-    gap: 60px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    gap: 60px;
 
     .airline {
-      display: flex;
-      align-items: center;
-
       img {
         max-height: 54px;
+        max-width: 160px;
         object-fit: contain;
       }
     }
@@ -66,6 +64,7 @@
       p {
         font-size: 14px;
         line-height: 18px;
+        text-align: center;
       }
     }
   }
@@ -222,6 +221,46 @@
   @media screen and (max-width: 1234px) {
     .place {
       gap: 20px;
+    }
+  }
+
+  @media screen and (max-width: 1234px) {
+    .place {
+      gap: 20px;
+    }
+  }
+
+  @media screen and (max-width: 876px) {
+    flex-wrap: wrap;
+
+    .place {
+      padding: 10px;
+      justify-content: flex-start;
+      width: 100%;
+
+      .airline {
+        img {
+          display: block;
+        }
+      }
+
+      .destination {
+        .sub-title,
+        .title {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .flight-card-deal {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 712px) {
+    .place {
+      padding-bottom: 0;
+      gap: 6px;
 
       .airline {
         img {
@@ -229,30 +268,15 @@
         }
       }
     }
-  }
-
-  @media screen and (max-width: 720px) {
-    flex-wrap: wrap;
-
-    .place {
-      gap: 5px;
-      justify-content: space-between;
-      flex: none;
-      .destination {
-        .sub-title,
-        .title {
-          margin-bottom: 0;
-          font-size: 20px;
-        }
-
-        .desc {
-          display: none;
-        }
-      }
-    }
 
     .flight-card-deal {
-      flex: 1;
+      .flight-card-price {
+        padding-top: 0;
+        padding-bottom: 0;
+        &__discount {
+          padding-top: 0;
+        }
+      }
     }
   }
 }

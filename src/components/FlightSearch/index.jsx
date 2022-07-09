@@ -192,10 +192,6 @@ export default function FlightSearch() {
           <Radio.Group
             value={ticketType}
             onChange={(e) => onChangeTicketType(e.target.value)}
-            style={{
-              padding: '10px',
-              borderRadius: '12px',
-            }}
             buttonStyle="solid"
           >
             <Radio.Button value="oneWay">
@@ -299,7 +295,7 @@ export default function FlightSearch() {
           <Col span={24} md={12} lg={7}>
             <div className="flightSearchBox">
               <Row gutter={[8, 8]} justify="center">
-                <Col span={12}>
+                <Col sm={12} xs={24}>
                   <label className="flightSearchLabel">
                     {t('search_form.journey_date')}
                   </label>
@@ -317,7 +313,7 @@ export default function FlightSearch() {
                     format={'MM/DD/YY'}
                   />
                 </Col>
-                <Col span={12}>
+                <Col sm={12} xs={24}>
                   <label className="flightSearchLabel">
                     {t('search_form.return_date')}
                   </label>
@@ -400,11 +396,6 @@ export default function FlightSearch() {
               onClick={onFinish}
             >
               {t('cta.search')}{' '}
-              {t(
-                `search_form.${
-                  ticketType === 'oneWay' ? 'one_way' : 'round_trip'
-                }`
-              )}
             </button>
           </Tooltip>
         </div>

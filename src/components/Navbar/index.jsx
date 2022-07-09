@@ -49,8 +49,14 @@ export default function Navbar() {
               U2FLy
             </Title>
           </motion.div>
-          <NavLinkDropDown Title={{ path: '', title: 'Home' }} />
-          <NavLinkDropDown Title={{ path: 'flights', title: 'Flights' }} />
+          <NavLinkDropDown
+            Title={{ path: '', title: 'Home' }}
+            onClick={() => openAndNavbarDropDown()}
+          />
+          <NavLinkDropDown
+            Title={{ path: 'flights', title: 'Flights' }}
+            onClick={() => openAndNavbarDropDown()}
+          />
         </ul>
 
         <div

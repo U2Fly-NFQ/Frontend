@@ -7,6 +7,10 @@
 .flight-list-page {
   position: relative;
 
+  .flight-list {
+    padding: 0 10px;
+  }
+
   .selected-outbound {
     position: relative;
     margin: 16px 0;
@@ -161,11 +165,6 @@
 }
 
 .flight-search-title-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: right;
-
   .ant-typography {
     color: a.$paragraph-color;
     margin-bottom: 0;

@@ -1,6 +1,10 @@
 @use '../../assets/scss/abstracts/variables' as var;
 @use '../../assets/scss/base/animation' as animate;
 
+.home-page {
+  padding: 10px;
+}
+
 .animate__fadeInUp {
   animation: animate.$fadeInUp;
 }

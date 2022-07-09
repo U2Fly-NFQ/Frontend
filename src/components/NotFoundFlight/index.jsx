@@ -6,15 +6,7 @@ const { Text } = Typography
 const NotFoundFlight = ({ style }) => {
   return (
     <>
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          ...style,
-        }}
-      >
+      <div className="not-found-flight" style={style}>
         <Row>
           <Col span={24} justify="center">
             <Text

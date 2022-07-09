@@ -1,4 +1,13 @@
-import { Col, Row, Typography, Pagination, Select, Button, Space } from 'antd'
+import {
+  Col,
+  Row,
+  Typography,
+  Pagination,
+  Select,
+  Button,
+  Space,
+  Spin,
+} from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { fetchFlights } from '../../redux/slices/flightSlice'
@@ -132,138 +141,150 @@ function FlightList() {
           <FlightSearch />
         </div>
         {(!checkFirstVisitWithoutParams() && (
-          <div className="grid wide">
-            <Row gutter={[16, 16]}>
-              <Col span={24}>
-                {Object.keys(selectedFlight).length !== 0 && (
-                  <div className="selected-outbound">
-                    <div className="wrapper">
-                      <div className="header">
-                        <Text className="main-title">
-                          {t('flight-list-page.Selected outbound')}
-                        </Text>
-                        <div className="sub-title">
-                          {/* <Button type="link" size="small">
+          <div className="flight-list">
+            <div className="grid wide">
+              <Row gutter={[16, 16]}>
+                <Col span={24}>
+                  {Object.keys(selectedFlight).length !== 0 && (
+                    <div className="selected-outbound">
+                      <div className="wrapper">
+                        <div className="header">
+                          <Text className="main-title">
+                            {t('flight-list-page.Selected outbound')}
+                          </Text>
+                          <div className="sub-title">
+                            {/* <Button type="link" size="small">
                             Flight details
                           </Button> */}
-                          <Button
-                            icon={<CloseOutlined color="#ddd" />}
-                            size="small"
-                            shape="circle"
-                            onClick={deleteSelected}
-                          ></Button>
+                            <Button
+                              icon={<CloseOutlined color="#ddd" />}
+                              size="small"
+                              shape="circle"
+                              onClick={deleteSelected}
+                            ></Button>
+                          </div>
                         </div>
-                      </div>
-                      <div className="content">
-                        <div className="airline">
-                          <img
-                            src="https://andit.co/projects/html/and-tour/assets/img/common/biman_bangla.png"
-                            alt="Airline image"
-                          />
-                          <Text>{selectedFlight.airline.name}</Text>
-                        </div>
-                        <div className="line-way">
-                          <div className="line-way-item from">
-                            <Title level={3}>
-                              {moment(
-                                selectedFlight.startTime,
-                                'HH:mm:ss'
-                              ).format('HH:mm')}
+                        <div className="content">
+                          <div className="airline">
+                            <img
+                              src="https://andit.co/projects/html/and-tour/assets/img/common/biman_bangla.png"
+                              alt="Airline image"
+                            />
+                            <Text>{selectedFlight.airline.name}</Text>
+                          </div>
+                          <div className="line-way">
+                            <div className="line-way-item from">
+                              <Title level={3}>
+                                {moment(
+                                  selectedFlight.startTime,
+                                  'HH:mm:ss'
+                                ).format('HH:mm')}
+                              </Title>
+                              <Text>{selectedFlight.departure.iata}</Text>
+                            </div>
+                            <div className="line-way-item way">
+                              <i className="fa-solid fa-plane"></i>
+                              <span className="flight-segment"></span>
+                              <i className="fa-solid fa-map-location-dot"></i>
+                              <span className="duration">
+                                {getDurationFormat(selectedFlight.duration)}
+                              </span>
+                            </div>
+                            <div className="line-way-item to">
+                              <Title level={3}>
+                                {addHourToTime(selectedFlight.startTime)}
+                              </Title>
+                              <Text>{selectedFlight.arrival.iata}</Text>
+                            </div>
+                          </div>
+                          <div className="price-box">
+                            <Title level={3} className="price-old">
+                              {t('flight-list-page.$')}
+                              <del>{selectedSeat.price}</del>
                             </Title>
-                            <Text>{selectedFlight.departure.iata}</Text>
-                          </div>
-                          <div className="line-way-item way">
-                            <i className="fa-solid fa-plane"></i>
-                            <span className="flight-segment"></span>
-                            <i className="fa-solid fa-map-location-dot"></i>
-                            <span className="duration">
-                              {getDurationFormat(selectedFlight.duration)}
-                            </span>
-                          </div>
-                          <div className="line-way-item to">
-                            <Title level={3}>
-                              {addHourToTime(selectedFlight.startTime)}
+                            <Title level={3} className="price-new">
+                              $
+                              {getPriceWithDiscount(
+                                selectedSeat.price,
+                                selectedSeat.discount
+                              )}
                             </Title>
-                            <Text>{selectedFlight.arrival.iata}</Text>
+                            <sup>
+                              {t('flight-list-page.OFF', {
+                                number: selectedSeat.discount * 100,
+                              })}
+                            </sup>
                           </div>
-                        </div>
-                        <div className="price-box">
-                          <Title level={3} className="price-old">
-                            {t('flight-list-page.$')}
-                            <del>{selectedSeat.price}</del>
-                          </Title>
-                          <Title level={3} className="price-new">
-                            $
-                            {getPriceWithDiscount(
-                              selectedSeat.price,
-                              selectedSeat.discount
-                            )}
-                          </Title>
-                          <sup>
-                            {t('flight-list-page.OFF', {
-                              number: selectedSeat.discount * 100,
-                            })}
-                          </sup>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
-              </Col>
-              <Col md={6} sm={7} xs={24}>
-                <FlightListFilter emptyFlight={emptyFlight} />
-              </Col>
-              <Col md={18} sm={17} xs={24}>
-                <Row gutter={[16, 16]} justify="center">
-                  <Col span={24}>
-                    <div className="flight-search-title-container">
-                      <Title level={4}>
-                        {t('flight-list-page.flights found', {
-                          number: emptyFlight ? 0 : pagination.total,
-                        })}
-                      </Title>
-                      <Space>
-                        Order by
-                        <Select
-                          value={order}
-                          style={{ width: 180, textAlign: 'left' }}
-                          onChange={changeOrder}
-                        >
-                          <Option value="price.asc">
-                            {t('flight-list-page.Price Low to High')}
-                          </Option>
-                          <Option value="duration.asc">
-                            {t('flight-list-page.Fly time Fastest')}
-                          </Option>
-                        </Select>
-                      </Space>
-                    </div>
-                  </Col>
-                  <Col span={24} style={{ position: 'relative' }}>
-                    {status === 'loading' && (
-                      <>
-                        <FlightCard loading={true} />
-                        <FlightCard loading={true} />
-                      </>
-                    )}
-                    {status !== 'loading' && emptyFlight && <NotFoundFlight />}
-                    {!emptyFlight &&
-                      activeData.flight.map((f) => (
-                        <FlightCard key={f.id} data={f} />
-                      ))}
-                    {!emptyFlight && pagination.total > pagination.offset && (
-                      <Pagination
-                        onChange={changePage}
-                        current={pagination.page}
-                        onShowSizeChange={changeSize}
-                        total={pagination.total}
-                        pageSize={pagination.offset}
-                      />
-                    )}
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
+                  )}
+                </Col>
+                <Col md={6} sm={7} xs={24}>
+                  <FlightListFilter emptyFlight={emptyFlight} />
+                </Col>
+                <Col md={18} sm={17} xs={24}>
+                  <Row gutter={[16, 16]} justify="center">
+                    <Col span={24}>
+                      <div className="flight-search-title-container">
+                        <Row gutter={[8, 8]} justify="space-between">
+                          <Col sm={12} xs={24}>
+                            <Title level={4}>
+                              {t('flight-list-page.flights found', {
+                                number: emptyFlight ? 0 : pagination.total,
+                              })}
+                            </Title>
+                          </Col>
+                          <Col flex={0}>
+                            <Space>
+                              Order by
+                              <Select
+                                value={order}
+                                style={{ width: 180, textAlign: 'left' }}
+                                onChange={changeOrder}
+                              >
+                                <Option value="price.asc">
+                                  {t('flight-list-page.Price Low to High')}
+                                </Option>
+                                <Option value="duration.asc">
+                                  {t('flight-list-page.Fly time Fastest')}
+                                </Option>
+                              </Select>
+                            </Space>
+                          </Col>
+                        </Row>
+                      </div>
+                    </Col>
+                    <Col span={24} style={{ position: 'relative' }}>
+                      {status === 'loading' && (
+                        <Spin
+                          size="large"
+                          style={{
+                            display: 'block',
+                          }}
+                        />
+                      )}
+                      {status !== 'loading' && emptyFlight && (
+                        <NotFoundFlight />
+                      )}
+                      {!emptyFlight &&
+                        activeData.flight.map((f) => (
+                          <FlightCard key={f.id} data={f} />
+                        ))}
+                      {!emptyFlight && pagination.total > pagination.offset && (
+                        <Pagination
+                          onChange={changePage}
+                          current={pagination.page}
+                          onShowSizeChange={changeSize}
+                          total={pagination.total}
+                          pageSize={pagination.offset}
+                        />
+                      )}
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </div>
           </div>
         )) || <Home />}
       </div>

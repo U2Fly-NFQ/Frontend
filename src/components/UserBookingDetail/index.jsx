@@ -21,6 +21,7 @@ function UserBookingDetail({ detailData }) {
   const showRatingForm = (value) => {
     setIsModalVisible(true)
     setDataRating({
+      airlineId: value.airline.id,
       ticketFlightId: value.ticketFlight.id,
       accountId: JSON.parse(localStorage.getItem('user')).id,
     })

@@ -6,6 +6,7 @@ export const initialState = {
   data: [],
   history: [],
   cancel: '',
+  rating: '',
 }
 
 const ticketSlice = createSlice({
@@ -58,6 +59,7 @@ const ticketSlice = createSlice({
       })
       .addCase(fetchRatingBooking.fulfilled, (state, action) => {
         state.status = 'idle'
+        state.rating = action.payload.status
       })
   },
 })

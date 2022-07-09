@@ -3,7 +3,10 @@ import { Col, Row } from 'antd'
 import { UserBookingTable } from '../../components'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchHistoryBooking } from '../../redux/slices/ticketSlice'
-import { ticketHistoryDataSelector } from '../../redux/selectors'
+import {
+  ticketHistoryDataSelector,
+  ticketRatingStatusSelector,
+} from '../../redux/selectors'
 import { isEmpty } from 'lodash/lang'
 import { bookingStatus } from '../../Constants'
 import { convertNumberToUSD } from '../../utils/numberFormater'
@@ -13,6 +16,7 @@ function UserHistory(props) {
   //initiation
   const dispatch = useDispatch()
   const ticketHistory = useSelector(ticketHistoryDataSelector)
+  const ticketRating = useSelector(ticketRatingStatusSelector)
   const userLogin = JSON.parse(localStorage.getItem('user'))
 
   const [tickets, setTickets] = useState([])
@@ -43,6 +47,15 @@ function UserHistory(props) {
       setLoading(false)
     }
   }, [ticketHistory])
+
+  useEffect(() => {
+    dispatch(
+      fetchHistoryBooking({
+        passenger: userLogin.id,
+        effectiveness: 0,
+      })
+    )
+  }, [ticketRating])
 
   return (
     <Row className="userProfile-container-history">

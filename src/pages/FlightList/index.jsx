@@ -1,4 +1,4 @@
-import { Col, Row, Typography, Pagination, Select, Button } from 'antd'
+import { Col, Row, Typography, Pagination, Select, Button, Space } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { fetchFlights } from '../../redux/slices/flightSlice'
@@ -222,18 +222,21 @@ function FlightList() {
                           number: emptyFlight ? 0 : pagination.total,
                         })}
                       </Title>
-                      <Select
-                        value={order}
-                        style={{ width: 180, textAlign: 'left' }}
-                        onChange={changeOrder}
-                      >
-                        <Option value="price.asc">
-                          {t('flight-list-page.Price Low to High')}
-                        </Option>
-                        <Option value="duration.asc">
-                          {t('flight-list-page.Fly time Fastest')}
-                        </Option>
-                      </Select>
+                      <Space>
+                        Order by
+                        <Select
+                          value={order}
+                          style={{ width: 180, textAlign: 'left' }}
+                          onChange={changeOrder}
+                        >
+                          <Option value="price.asc">
+                            {t('flight-list-page.Price Low to High')}
+                          </Option>
+                          <Option value="duration.asc">
+                            {t('flight-list-page.Fly time Fastest')}
+                          </Option>
+                        </Select>
+                      </Space>
                     </div>
                   </Col>
                   <Col span={24} style={{ position: 'relative' }}>

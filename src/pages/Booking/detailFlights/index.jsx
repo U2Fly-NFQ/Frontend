@@ -12,7 +12,6 @@ export default function DetailFlights({ flight }) {
   const getDataFlight = useSelector(getInfoFlightInBookingFight)
   const seat = useSelector(getInfoFlightInBookingSeat)
   const seatRoungTrip = useSelector(getRoundTripSeat)
-  // const flightLocal = JSON.parse(localStorage.getItem('flight'))
   return (
     <div className="detail-flights__container">
       <div className="booking-page__container__item__title">

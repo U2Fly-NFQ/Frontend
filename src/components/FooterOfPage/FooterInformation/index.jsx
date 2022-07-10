@@ -110,12 +110,11 @@ export default function FooterInformation() {
               </div>
               <div className="footer-info__container__company__content">
                 <ul>
-                  <li>Chicago</li>
-                  <li>New York</li>
-                  <li>San Francisco</li>
-                  <li>California</li>
-                  <li>Ohio</li>
-                  <li>Alaska</li>
+                  <li>Ha Noi</li>
+                  <li>Da Nang</li>
+                  <li>Ho Chi Minh</li>
+                  <li>Can Tho</li>
+                  <li>Bangkok</li>
                 </ul>
               </div>
             </div>

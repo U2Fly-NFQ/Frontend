@@ -12,7 +12,6 @@ export default function BookingTravelDate({ flight }) {
   const seatRoungTrip = useSelector(getRoundTripSeat)
   const getDiscount = useSelector(getDiscountForBookingAirline)
   const seat = useSelector(getInfoFlightInBookingSeat)
-  // const flightLocal = JSON.parse(localStorage.getItem('flight'))
   const { t } = useTranslation()
 
   return (

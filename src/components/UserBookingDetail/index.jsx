@@ -8,7 +8,7 @@ import moment from 'moment'
 import ModalRating from '../ModalRating'
 import { useDispatch } from 'react-redux'
 import { fetchRatingBooking } from '../../redux/slices/ticketSlice'
-import { message } from 'antd'
+import { message } from 'antd/es'
 
 function UserBookingDetail({ detailData }) {
   //initiation

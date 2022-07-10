@@ -192,41 +192,6 @@ export default function BookingPassenger() {
         </Form.Item>
 
         <Form.Item
-          name="passport"
-          style={{ display: 'inline-block', width: '50%' }}
-          rules={[
-            {
-              required: true,
-              message: t('flight-booking-page.Please input your Passport!'),
-            },
-          ]}
-        >
-          <input
-            data-testid="inputPassport"
-            className="form-control"
-            name="passport"
-            placeholder={t('flight-booking-page.Passport no.')}
-          />
-        </Form.Item>
-
-        <Form.Item
-          name="visa"
-          style={{ display: 'inline-block', width: '50%' }}
-          rules={[
-            {
-              required: true,
-              message: t('flight-booking-page.Please input your visa!'),
-            },
-          ]}
-        >
-          <input
-            data-testid="inputVisa"
-            name="visa"
-            className="form-control"
-            placeholder={t('flight-booking-page.Visa no.')}
-          />
-        </Form.Item>
-        <Form.Item
           name="agreement"
           valuePropName="checked"
           style={{ marginTop: '10px' }}

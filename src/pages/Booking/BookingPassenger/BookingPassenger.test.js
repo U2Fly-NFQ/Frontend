@@ -8,7 +8,7 @@ import { store } from '../../../redux/store'
 import BookingPassenger from './'
 
 describe('Booking Passenger bar test', () => {
-  it('renders correctly', () => {
+  it('renders correctly', async () => {
     const tree = renderer
       .create(
         <Provider store={store}>

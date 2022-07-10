@@ -39,11 +39,9 @@ exports[`Home page test renders correctly 1`] = `
               className="heading_left_area"
             >
               <h2>
-                Go beyond your
-                 
+                Top destinations
                 <span>
                    
-                  imagination
                 </span>
               </h2>
               <h5>
@@ -63,26 +61,18 @@ exports[`Home page test renders correctly 1`] = `
             }
           }
         >
-          <a
-            href="/flights"
+          <div
+            className="imagination_boxed"
             onClick={[Function]}
           >
-            <div
-              className="imagination_boxed"
-            >
-              <img
-                alt="img"
-                src="https://andit.co/projects/html/and-tour/assets/img/imagination/imagination1.png"
-              />
-              <h3>
-                7% Discount for all
-                 
-                <span>
-                  Airlines
-                </span>
-              </h3>
-            </div>
-          </a>
+            <img
+              alt="img"
+              src="https://wallpaperaccess.com/full/1631415.jpg"
+            />
+            <h3>
+              Ho Chi Minh
+            </h3>
+          </div>
         </div>
         <div
           className="ant-col ant-col-24 ant-col-sm-12 ant-col-lg-6"
@@ -95,25 +85,18 @@ exports[`Home page test renders correctly 1`] = `
             }
           }
         >
-          <a
-            href="/flights"
+          <div
+            className="imagination_boxed"
             onClick={[Function]}
           >
-            <div
-              className="imagination_boxed"
-            >
-              <img
-                alt="img"
-                src="https://andit.co/projects/html/and-tour/assets/img/imagination/imagination2.png"
-              />
-              <h3>
-                Travel around
-                <span>
-                  the world
-                </span>
-              </h3>
-            </div>
-          </a>
+            <img
+              alt="img"
+              src="https://res.klook.com/image/upload/c_crop,w_1125,h_624,x_1,y_0/w_1125,h_624/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/destination/ur2mrg23d91mex03l4mw.jpg"
+            />
+            <h3>
+              Da Nang
+            </h3>
+          </div>
         </div>
         <div
           className="ant-col ant-col-24 ant-col-sm-12 ant-col-lg-6"
@@ -126,452 +109,17 @@ exports[`Home page test renders correctly 1`] = `
             }
           }
         >
-          <a
-            href="/flights"
+          <div
+            className="imagination_boxed"
             onClick={[Function]}
           >
-            <div
-              className="imagination_boxed"
-            >
-              <img
-                alt="img"
-                src="https://andit.co/projects/html/and-tour/assets/img/imagination/imagination3.png"
-              />
-              <h3>
-                Luxury resorts
-                <span>
-                  top deal
-                </span>
-              </h3>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-    <section
-      id="top_destination"
-    >
-      <h2
-        className="top_destination_heading"
-      >
-        Top destinations
-      </h2>
-      <div
-        className="ant-row"
-        style={
-          Object {
-            "marginBottom": -12,
-            "marginLeft": -12,
-            "marginRight": -12,
-            "marginTop": -12,
-          }
-        }
-      >
-        <div
-          className="ant-col ant-col-24 ant-col-lg-12"
-          style={
-            Object {
-              "paddingBottom": 12,
-              "paddingLeft": 12,
-              "paddingRight": 12,
-              "paddingTop": 12,
-            }
-          }
-        >
-          <div
-            className="destinations_content_box img_animation"
-          >
             <img
               alt="img"
-              src="https://andit.co/projects/html/and-tour/assets/img/destination/big-img.png"
+              src="https://www.swedishnomad.com/wp-content/images/2016/05/Bangkok-reseguide.jpg"
             />
-            <div
-              className="destinations_content_inner destinations_content_inner__left"
-            >
-              <h2>
-                Up to
-              </h2>
-              <div
-                className="destinations_big_offer"
-              >
-                <h1>
-                  50
-                </h1>
-                <h6>
-                  <span>
-                    %
-                  </span>
-                   
-                  <span>
-                    Off
-                  </span>
-                </h6>
-              </div>
-              <h2>
-                Holiday packages
-              </h2>
-              <a
-                className="btn btn_theme btn_md"
-                href="/flights"
-                onClick={[Function]}
-              >
-                Book Now
-              </a>
-            </div>
-          </div>
-        </div>
-        <div
-          className="ant-col ant-col-24 ant-col-lg-12"
-          style={
-            Object {
-              "paddingBottom": 12,
-              "paddingLeft": 12,
-              "paddingRight": 12,
-              "paddingTop": 12,
-            }
-          }
-        >
-          <div
-            className="ant-row"
-            style={
-              Object {
-                "marginLeft": -12,
-                "marginRight": -12,
-              }
-            }
-          >
-            <div
-              className="ant-col ant-col-24 ant-col-sm-8"
-              style={
-                Object {
-                  "paddingLeft": 12,
-                  "paddingRight": 12,
-                }
-              }
-            >
-              <div
-                className="destinations_content_box img_animation"
-              >
-                <img
-                  alt="img"
-                  src="https://andit.co/projects/html/and-tour/assets/img/destination/destination1.png"
-                />
-                <div
-                  className="destinations_content_inner"
-                >
-                  <a
-                    href="/flights"
-                    onClick={[Function]}
-                  >
-                    China
-                  </a>
-                </div>
-              </div>
-              <div
-                className="destinations_content_box img_animation"
-              >
-                <img
-                  alt="img"
-                  src="https://andit.co/projects/html/and-tour/assets/img/destination/destination2.png"
-                />
-                <div
-                  className="destinations_content_inner"
-                >
-                  <a
-                    href="/flights"
-                    onClick={[Function]}
-                  >
-                    Darjeeling
-                  </a>
-                </div>
-              </div>
-              <div
-                className="destinations_content_box img_animation"
-              >
-                <img
-                  alt="img"
-                  src="https://andit.co/projects/html/and-tour/assets/img/destination/destination3.png"
-                />
-                <div
-                  className="destinations_content_inner"
-                >
-                  <a
-                    href="/flights"
-                    onClick={[Function]}
-                  >
-                    Malaysia
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div
-              className="ant-col ant-col-24 ant-col-sm-8"
-              style={
-                Object {
-                  "paddingLeft": 12,
-                  "paddingRight": 12,
-                }
-              }
-            >
-              <div
-                className="destinations_content_box img_animation"
-              >
-                <img
-                  alt="img"
-                  src="https://andit.co/projects/html/and-tour/assets/img/destination/destination4.png"
-                />
-                <div
-                  className="destinations_content_inner"
-                >
-                  <a
-                    href="/flights"
-                    onClick={[Function]}
-                  >
-                    Gangtok
-                  </a>
-                </div>
-              </div>
-              <div
-                className="destinations_content_box img_animation"
-              >
-                <img
-                  alt="img"
-                  src="https://andit.co/projects/html/and-tour/assets/img/destination/destination5.png"
-                />
-                <div
-                  className="destinations_content_inner"
-                >
-                  <a
-                    href="/flights"
-                    onClick={[Function]}
-                  >
-                    Thailand
-                  </a>
-                </div>
-              </div>
-              <div
-                className="destinations_content_box img_animation"
-              >
-                <img
-                  alt="img"
-                  src="https://andit.co/projects/html/and-tour/assets/img/destination/destination6.png"
-                />
-                <div
-                  className="destinations_content_inner"
-                >
-                  <a
-                    href="/flights"
-                    onClick={[Function]}
-                  >
-                    Australia
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div
-              className="ant-col ant-col-24 ant-col-sm-8"
-              style={
-                Object {
-                  "paddingLeft": 12,
-                  "paddingRight": 12,
-                }
-              }
-            >
-              <div
-                className="destinations_content_box img_animation"
-              >
-                <img
-                  alt="img"
-                  src="https://andit.co/projects/html/and-tour/assets/img/destination/destination7.png"
-                />
-                <div
-                  className="destinations_content_inner"
-                >
-                  <a
-                    href="/flights"
-                    onClick={[Function]}
-                  >
-                    London
-                  </a>
-                </div>
-              </div>
-              <div
-                className="destinations_content_box img_animation"
-              >
-                <img
-                  alt="img"
-                  src="https://andit.co/projects/html/and-tour/assets/img/destination/destination8.png"
-                />
-                <div
-                  className="destinations_content_inner"
-                >
-                  <a
-                    href="/flights"
-                    onClick={[Function]}
-                  >
-                    USA
-                  </a>
-                </div>
-              </div>
-              <a
-                className="btn btn_theme btn_md view-all-btn"
-                href="/flights"
-                onClick={[Function]}
-              >
-                View all
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section
-      id="offer-area"
-    >
-      <div
-        className="ant-row"
-        style={
-          Object {
-            "marginBottom": -12,
-            "marginLeft": -12,
-            "marginRight": -12,
-            "marginTop": -12,
-          }
-        }
-      >
-        <div
-          className="ant-col ant-col-24 ant-col-lg-12"
-          style={
-            Object {
-              "paddingBottom": 12,
-              "paddingLeft": 12,
-              "paddingRight": 12,
-              "paddingTop": 12,
-            }
-          }
-        >
-          <div
-            className="offer_area_box img_animation"
-          >
-            <img
-              alt="img"
-              src="https://andit.co/projects/html/and-tour/assets/img/offer/offer1.png"
-            />
-            <div
-              className="offer_area_content"
-            >
-              <h2>
-                Special Offers
-              </h2>
-              <p>
-                Invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd dolor sit amet. Lorem ipsum dolor sit amet.
-              </p>
-              <a
-                className="btn btn_theme btn_md"
-                href="/flights"
-                onClick={[Function]}
-              >
-                Holiday deals
-              </a>
-            </div>
-          </div>
-        </div>
-        <div
-          className="ant-col ant-col-24 ant-col-lg-12"
-          style={
-            Object {
-              "paddingBottom": 12,
-              "paddingLeft": 12,
-              "paddingRight": 12,
-              "paddingTop": 12,
-            }
-          }
-        >
-          <div
-            className="ant-row"
-            style={
-              Object {
-                "marginBottom": -12,
-                "marginLeft": -12,
-                "marginRight": -12,
-                "marginTop": -12,
-              }
-            }
-          >
-            <div
-              className="ant-col ant-col-24 ant-col-md-12"
-              style={
-                Object {
-                  "paddingBottom": 12,
-                  "paddingLeft": 12,
-                  "paddingRight": 12,
-                  "paddingTop": 12,
-                }
-              }
-            >
-              <div
-                className="offer_area_box img_animation"
-              >
-                <img
-                  alt="img"
-                  src="https://andit.co/projects/html/and-tour/assets/img/offer/offer2.png"
-                />
-                <div
-                  className="offer_area_content"
-                >
-                  <h2>
-                    News letter
-                  </h2>
-                  <p>
-                    Invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et.
-                  </p>
-                  <a
-                    className="btn btn_theme btn_md"
-                    href="/flights"
-                    onClick={[Function]}
-                  >
-                    Subscribe now
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div
-              className="ant-col ant-col-24 ant-col-md-12"
-              style={
-                Object {
-                  "paddingBottom": 12,
-                  "paddingLeft": 12,
-                  "paddingRight": 12,
-                  "paddingTop": 12,
-                }
-              }
-            >
-              <div
-                className="offer_area_box img_animation"
-              >
-                <img
-                  alt="img"
-                  src="https://andit.co/projects/html/and-tour/assets/img/offer/offer3.png"
-                />
-                <div
-                  className="offer_area_content"
-                >
-                  <h2>
-                    Travel tips
-                  </h2>
-                  <p>
-                    Invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et.
-                  </p>
-                  <a
-                    className="btn btn_theme btn_md"
-                    href="/flights"
-                    onClick={[Function]}
-                  >
-                    Get tips
-                  </a>
-                </div>
-              </div>
-            </div>
+            <h3>
+              Bangkok
+            </h3>
           </div>
         </div>
       </div>

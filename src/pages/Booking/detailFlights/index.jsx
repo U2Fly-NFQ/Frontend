@@ -12,7 +12,7 @@ export default function DetailFlights({ flight }) {
   const getDataFlight = useSelector(getInfoFlightInBookingFight)
   const seat = useSelector(getInfoFlightInBookingSeat)
   const seatRoungTrip = useSelector(getRoundTripSeat)
-
+  // const flightLocal = JSON.parse(localStorage.getItem('flight'))
   return (
     <div className="detail-flights__container">
       <div className="booking-page__container__item__title">
@@ -56,10 +56,11 @@ export default function DetailFlights({ flight }) {
           <h3>
             {'$' +
               (seatRoungTrip !== undefined
-                ? seatRoungTrip.price + seat.price
-                : seat.price)}
+                ? (seatRoungTrip.price + seat.price) * flight.seatAvailable
+                : seat.price * flight.seatAvailable)}
             <sub>
-              / {seat.name} X{flight.seatAvailable}
+              / {seat.name} X
+              {flight.roundId ? flight.seatAvailable * 2 : flight.seatAvailable}
             </sub>
           </h3>
         </div>

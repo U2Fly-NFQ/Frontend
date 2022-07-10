@@ -32,6 +32,14 @@ exports[`Booking Passenger bar test renders correctly 1`] = `
         <span>
           Booking date:
         </span>
+        <span>
+          Invalid date
+        </span>
+      </li>
+      <li>
+        <span>
+          Seat Type:
+        </span>
         <span />
       </li>
       <li>
@@ -39,7 +47,7 @@ exports[`Booking Passenger bar test renders correctly 1`] = `
           Payment method:
         </span>
         <span>
-          Bank transfer
+          Stripe
         </span>
       </li>
       <li>
@@ -58,11 +66,10 @@ exports[`Booking Passenger bar test renders correctly 1`] = `
     <ul>
       <li>
         <span>
-           Price:
+           Tax:
         </span>
         <span>
-          $
-          NaN
+          + 10%
         </span>
       </li>
       <li
@@ -72,6 +79,7 @@ exports[`Booking Passenger bar test renders correctly 1`] = `
           Discount
         </span>
         <span>
+          - 
           0
            %
         </span>

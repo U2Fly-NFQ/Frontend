@@ -15,7 +15,7 @@ Array [
         onClick={[Function]}
         style={
           Object {
-            "fontSize": 24,
+            "fontSize": 22,
           }
         }
       >

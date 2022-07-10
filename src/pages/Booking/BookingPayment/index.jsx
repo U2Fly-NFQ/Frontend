@@ -1,7 +1,7 @@
 import { Form, Radio, Checkbox } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useLoadingContext } from 'react-router-loading'
-import { ButtonOfPage, InputOFPage } from '../../../components'
+import { ButtonOfPage } from '../../../components'
 import './index.scss'
 export default function BookingPayment() {
   const [value, setValue] = useState(1)
@@ -45,44 +45,6 @@ export default function BookingPayment() {
             <ButtonOfPage title={'Pay Now'} />
           </Form.Item>
         </>
-      ),
-    },
-    {
-      paymentMethod: 'Payoneer',
-      render: (
-        <div>
-          <Form.Item
-            name="username"
-            style={{
-              display: 'inline-block',
-              width: '50%',
-              margin: '0px',
-            }}
-            rules={[{ required: true, message: 'Please input your username!' }]}
-          >
-            <InputOFPage placeholder="Email Address" />
-          </Form.Item>
-          <Form.Item
-            name="agreement"
-            valuePropName="checked"
-            style={{ marginTop: '10px' }}
-            rules={[
-              {
-                validator: (_, value) =>
-                  value
-                    ? Promise.resolve()
-                    : Promise.reject(new Error('Should accept agreement')),
-              },
-            ]}
-          >
-            <Checkbox>
-              I have read the <a href="">agreement</a>
-            </Checkbox>
-          </Form.Item>
-          <Form.Item style={{ marginTop: '20px' }}>
-            <ButtonOfPage title={'Pay Now'} />
-          </Form.Item>
-        </div>
       ),
     },
   ]

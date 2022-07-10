@@ -16,6 +16,7 @@ exports[`Sub nav bar test renders correctly 1`] = `
   >
     <form
       className="ant-form ant-form-horizontal"
+      data-testid="bookingCoupon"
       onReset={[Function]}
       onSubmit={[Function]}
     >
@@ -41,6 +42,7 @@ exports[`Sub nav bar test renders correctly 1`] = `
             >
               <input
                 className="form-control"
+                data-testid="inputDiscount"
                 id="idDiscount"
                 name="idDiscount"
                 onChange={[Function]}

@@ -53,7 +53,7 @@ exports[`Navigation bar test renders correctly 1`] = `
         className="ant-col ant-col-7 booking-info-text"
         style={Object {}}
       >
-        09/7/2022
+        07-09-2022
       </div>
       <div
         className="ant-col ant-col-5 booking-info-label"
@@ -113,7 +113,7 @@ exports[`Navigation bar test renders correctly 1`] = `
                         <col
                           style={
                             Object {
-                              "width": "150px",
+                              "width": "125px",
                             }
                           }
                         />
@@ -134,14 +134,14 @@ exports[`Navigation bar test renders correctly 1`] = `
                         <col
                           style={
                             Object {
-                              "width": "100px",
+                              "width": "115px",
                             }
                           }
                         />
                         <col
                           style={
                             Object {
-                              "width": "100px",
+                              "width": "115px",
                             }
                           }
                         />
@@ -204,7 +204,7 @@ exports[`Navigation bar test renders correctly 1`] = `
                               }
                             }
                           >
-                            ETD
+                            Departure
                           </th>
                           <th
                             className="ant-table-cell"
@@ -218,7 +218,7 @@ exports[`Navigation bar test renders correctly 1`] = `
                               }
                             }
                           >
-                            ETA
+                            Arrival
                           </th>
                           <th
                             className="ant-table-cell"

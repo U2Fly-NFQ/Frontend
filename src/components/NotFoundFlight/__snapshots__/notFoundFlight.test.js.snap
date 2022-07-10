@@ -1,16 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Not found page test renders correctly 1`] = `
-<img
-  alt="Loading GIF"
-  src="loading-animated.gif"
-  style={
-    Object {
-      "display": "block",
-      "margin": "auto",
-      "maxWidth": "500px",
-      "objectFit": "contain",
-    }
-  }
-/>
+<div
+  className="not-found-flight"
+>
+  <div
+    className="ant-row"
+    style={Object {}}
+  >
+    <div
+      className="ant-col ant-col-24"
+      justify="center"
+      style={Object {}}
+    >
+      <span
+        className="ant-typography"
+        onClick={null}
+        style={
+          Object {
+            "WebkitLineClamp": undefined,
+            "display": "block",
+            "textAlign": "center",
+          }
+        }
+      >
+        Sorry we didn't find any results matching this search
+      </span>
+      <img
+        alt="Loading GIF"
+        src="not-found.webp"
+        style={
+          Object {
+            "display": "block",
+            "margin": "auto",
+            "maxHeight": "300px",
+            "maxWidth": "100%",
+            "objectFit": "contain",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
 `;

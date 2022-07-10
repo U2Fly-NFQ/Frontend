@@ -587,11 +587,7 @@ exports[`My Connected React-Redux Component should render with given state from 
       >
         <div
           className="ant-space-item"
-          style={
-            Object {
-              "marginRight": 8,
-            }
-          }
+          style={Object {}}
         >
           <span
             className="ant-typography"
@@ -603,24 +599,6 @@ exports[`My Connected React-Redux Component should render with given state from 
             }
           >
             flight-list-page.Airline
-          </span>
-        </div>
-        <div
-          className="ant-space-item"
-          style={Object {}}
-        >
-          <span
-            className="ant-typography clear-btn"
-            onClick={[Function]}
-            style={
-              Object {
-                "WebkitLineClamp": undefined,
-              }
-            }
-          >
-            <i>
-              flight-list-page.Clear
-            </i>
           </span>
         </div>
       </div>

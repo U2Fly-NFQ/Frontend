@@ -1,3 +1,3 @@
 describe('Button of register Page', () => {
-  it('should register')
+  it('should button', () => {})
 })

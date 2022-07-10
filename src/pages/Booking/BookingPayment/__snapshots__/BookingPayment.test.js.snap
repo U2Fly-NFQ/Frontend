@@ -42,33 +42,6 @@ Array [
           Paypal
         </span>
       </label>
-      <label
-        className="ant-radio-wrapper ant-radio-wrapper-checked"
-      >
-        <span
-          className="ant-radio ant-radio-checked"
-          style={Object {}}
-        >
-          <input
-            checked={true}
-            className="ant-radio-input"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            onKeyPress={[Function]}
-            onKeyUp={[Function]}
-            type="radio"
-            value={1}
-          />
-          <span
-            className="ant-radio-inner"
-          />
-        </span>
-        <span>
-          Payoneer
-        </span>
-      </label>
     </div>
     <div
       className="BookingPayment-content"

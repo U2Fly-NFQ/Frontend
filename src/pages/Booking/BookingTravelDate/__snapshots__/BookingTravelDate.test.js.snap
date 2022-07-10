@@ -22,7 +22,9 @@ exports[`My Connected React-Redux Component should render with given state from 
           className="booking-travel-date__container__key"
         >
           50
-           Price x 1
+           Price x
+           
+          1
         </div>
         <div
           className="booking-travel-date__container__key"
@@ -100,7 +102,7 @@ exports[`My Connected React-Redux Component should render with given state from 
         className="booking-travel-date__container__amount__total__value"
       >
         $
-        NaN
+        123.2
       </div>
     </div>
   </div>

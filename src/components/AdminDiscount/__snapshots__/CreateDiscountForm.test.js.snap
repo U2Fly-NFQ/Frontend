@@ -84,145 +84,7 @@ Array [
                       rowSpan={null}
                       style={Object {}}
                     >
-                      Discount name
-                    </th>
-                    <th
-                      className="ant-table-cell ant-table-column-has-sorters"
-                      colSpan={null}
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      onMouseEnter={[Function]}
-                      onMouseLeave={[Function]}
-                      rowSpan={null}
-                      style={Object {}}
-                      tabIndex={0}
-                    >
-                      <div
-                        className="ant-table-column-sorters"
-                        onMouseEnter={[Function]}
-                        onMouseLeave={[Function]}
-                      >
-                        <span
-                          className="ant-table-column-title"
-                        >
-                          Value
-                        </span>
-                        <span
-                          className="ant-table-column-sorter ant-table-column-sorter-full"
-                        >
-                          <span
-                            className="ant-table-column-sorter-inner"
-                          >
-                            <span
-                              aria-label="caret-up"
-                              className="anticon anticon-caret-up ant-table-column-sorter-up"
-                              role="img"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                data-icon="caret-up"
-                                fill="currentColor"
-                                focusable="false"
-                                height="1em"
-                                viewBox="0 0 1024 1024"
-                                width="1em"
-                              >
-                                <path
-                                  d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
-                                />
-                              </svg>
-                            </span>
-                            <span
-                              aria-label="caret-down"
-                              className="anticon anticon-caret-down ant-table-column-sorter-down"
-                              role="img"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                data-icon="caret-down"
-                                fill="currentColor"
-                                focusable="false"
-                                height="1em"
-                                viewBox="0 0 1024 1024"
-                                width="1em"
-                              >
-                                <path
-                                  d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
-                                />
-                              </svg>
-                            </span>
-                          </span>
-                        </span>
-                      </div>
-                    </th>
-                    <th
-                      className="ant-table-cell ant-table-column-has-sorters"
-                      colSpan={null}
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      onMouseEnter={[Function]}
-                      onMouseLeave={[Function]}
-                      rowSpan={null}
-                      style={Object {}}
-                      tabIndex={0}
-                    >
-                      <div
-                        className="ant-table-column-sorters"
-                        onMouseEnter={[Function]}
-                        onMouseLeave={[Function]}
-                      >
-                        <span
-                          className="ant-table-column-title"
-                        >
-                          Date created
-                        </span>
-                        <span
-                          className="ant-table-column-sorter ant-table-column-sorter-full"
-                        >
-                          <span
-                            className="ant-table-column-sorter-inner"
-                          >
-                            <span
-                              aria-label="caret-up"
-                              className="anticon anticon-caret-up ant-table-column-sorter-up"
-                              role="img"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                data-icon="caret-up"
-                                fill="currentColor"
-                                focusable="false"
-                                height="1em"
-                                viewBox="0 0 1024 1024"
-                                width="1em"
-                              >
-                                <path
-                                  d="M858.9 689L530.5 308.2c-9.4-10.9-27.5-10.9-37 0L165.1 689c-12.2 14.2-1.2 35 18.5 35h656.8c19.7 0 30.7-20.8 18.5-35z"
-                                />
-                              </svg>
-                            </span>
-                            <span
-                              aria-label="caret-down"
-                              className="anticon anticon-caret-down ant-table-column-sorter-down"
-                              role="img"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                data-icon="caret-down"
-                                fill="currentColor"
-                                focusable="false"
-                                height="1em"
-                                viewBox="0 0 1024 1024"
-                                width="1em"
-                              >
-                                <path
-                                  d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
-                                />
-                              </svg>
-                            </span>
-                          </span>
-                        </span>
-                      </div>
+                      Name
                     </th>
                     <th
                       className="ant-table-cell"
@@ -232,7 +94,27 @@ Array [
                       rowSpan={null}
                       style={Object {}}
                     >
-                      Delete
+                      Value
+                    </th>
+                    <th
+                      className="ant-table-cell"
+                      colSpan={null}
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      Date created
+                    </th>
+                    <th
+                      className="ant-table-cell"
+                      colSpan={null}
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                      rowSpan={null}
+                      style={Object {}}
+                    >
+                      Act
                     </th>
                   </tr>
                 </thead>

@@ -1,12 +1,12 @@
-import { I18nextProvider } from 'react-i18next'
-import i18n from '../../../translations'
-import renderer from 'react-test-renderer'
 import React, { Suspense } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
-import BookingCoupon from './'
+import { I18nextProvider } from 'react-i18next'
 import { Provider } from 'react-redux'
-import { store } from '../../../redux/store'
 
+import { BrowserRouter as Router } from 'react-router-dom'
+import renderer from 'react-test-renderer'
+import { store } from '../../../redux/store'
+import i18n from '../../../translations'
+import BookingCoupon from './'
 describe('Sub nav bar test', () => {
   it('renders correctly', () => {
     const tree = renderer
@@ -24,4 +24,20 @@ describe('Sub nav bar test', () => {
       .toJSON()
     expect(tree).toMatchSnapshot()
   })
+  // test('it should finish', () => {
+  //   render(
+  //     <Router>
+  //       <Provider store={store}>
+  //         <BookingCoupon />
+  //       </Provider>
+  //     </Router>
+  //   )
+  //   const form = screen.queryByTestId('bookingCoupon')
+  //   const input = screen.queryByTestId('inputDiscount')
+
+  //   fireEvent.change(input, { target: { value: 2 } })
+  //   fireEvent.submit(form)
+  //   expect(input.value).toBe('2')
+  //   expect(window.scrollY).toBe(0)
+  // })
 })

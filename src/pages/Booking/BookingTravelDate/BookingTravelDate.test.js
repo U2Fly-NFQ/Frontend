@@ -17,9 +17,20 @@ describe('My Connected React-Redux Component', () => {
         dataRoundTripFlight: { seat: { price: 56, name: '50' } },
       },
     })
+    let flight = {
+      id: '',
+      roundId: '',
+      departure: 'VCA',
+      arrival: 'SGN',
+      startDate: '2022-07-10',
+      seatType: 'Economy',
+      seatAvailable: '1',
+      ticketType: 'roundTrip',
+      startDateRoundTrip: '2022-07-13',
+    }
     component = renderer.create(
       <Provider store={store}>
-        <MyConnectedComponent />
+        <MyConnectedComponent flight={flight} />
       </Provider>
     )
   })

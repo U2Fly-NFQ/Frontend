@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Typography, Button, Modal, Form, message } from 'antd'
+import {
+  Table,
+  Typography,
+  Button,
+  Modal,
+  Form,
+  message,
+  Popconfirm,
+} from 'antd'
 import moment from 'moment'
 
 import CreatgeDiscountForm from './CreateDiscountForm/CreateDiscountForm'
@@ -33,6 +41,7 @@ function AddminDiscount() {
 
   const handleDelete = (record) => {
     dispatch(deleteDiscount(record.id))
+    message.info(`${record.name} has been deleted!`)
   }
 
   const handleCancel = () => {
@@ -56,16 +65,13 @@ function AddminDiscount() {
 
   const columns = [
     {
-      title: 'Discount name',
+      title: 'Name',
       dataIndex: 'name',
       render: (text) => <Typography.Paragraph>{text}</Typography.Paragraph>,
     },
     {
       title: 'Value',
       dataIndex: 'percent',
-      sorter: {
-        compare: (a, b) => a.value - b.value,
-      },
       render: (text) => (
         <Typography.Paragraph>{text + '%'}</Typography.Paragraph>
       ),
@@ -73,9 +79,6 @@ function AddminDiscount() {
     {
       title: 'Date created',
       dataIndex: 'createdAt',
-      sorter: {
-        compare: (a, b) => a.createdAt - b.createdAt,
-      },
       render: (text) => (
         <Typography.Paragraph>
           {moment(text).format('MMMM Do YYYY, h:mm:ss')}
@@ -83,15 +86,18 @@ function AddminDiscount() {
       ),
     },
     {
-      title: 'Delete',
+      title: 'Act',
       render: (_, record) => (
-        <Button
-          type="text"
-          style={{ color: 'red' }}
-          onClick={() => handleDelete(record)}
+        <Popconfirm
+          title="Are you sure to delete this discount?"
+          onConfirm={() => handleDelete(record)}
+          okText="Yes"
+          cancelText="No"
         >
-          Delete
-        </Button>
+          <Button type="text" style={{ color: 'red' }}>
+            Delete
+          </Button>
+        </Popconfirm>
       ),
     },
   ]

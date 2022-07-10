@@ -10,7 +10,7 @@ export default function CreateDiscountForm({ form, onFinish, onFinishFailed }) {
         form={form}
       >
         <Form.Item
-          label="Discount name"
+          label="Name"
           name="discount"
           rules={[
             {
@@ -22,7 +22,7 @@ export default function CreateDiscountForm({ form, onFinish, onFinishFailed }) {
           <Input />
         </Form.Item>
         <Form.Item
-          label="Discount value"
+          label="Value"
           name="value"
           rules={[
             {

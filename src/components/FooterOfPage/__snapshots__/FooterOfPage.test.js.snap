@@ -41,11 +41,7 @@ exports[`Booking Passenger bar test renders correctly 1`] = `
                     CMail to our support team
                   </h5>
                   <h3>
-                    <a
-                      href="#"
-                    >
-                      support@domain.com
-                    </a>
+                    u2fly@nfq.asia
                   </h3>
                 </div>
                 <div
@@ -55,11 +51,7 @@ exports[`Booking Passenger bar test renders correctly 1`] = `
                     Call 24/7 for any help
                   </h5>
                   <h3>
-                    <a
-                      href="#"
-                    >
-                      +00 123 456 789
-                    </a>
+                    028 6681 2733
                   </h3>
                 </div>
               </div>
@@ -230,257 +222,13 @@ exports[`Booking Passenger bar test renders correctly 1`] = `
       </div>
     </div>
     <div
-      className="footer-copyright  wide grid"
+      className="footer-copyright wide grid"
     >
       <div
         className="footer-copyright"
       >
         <p>
-          Copyright © 2022 All Rights Reserved
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`User profile page search test renders correctly 1`] = `
-<div
-  className="contact-info "
->
-  <div
-    className="wide grid"
-  >
-    <div
-      className="footer-info  wide grid"
-    >
-      <div
-        className="footer-info__container "
-      >
-        <div
-          className="ant-row ant-row-space-between"
-          style={Object {}}
-        >
-          <div
-            className="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-6"
-            style={Object {}}
-          >
-            <div
-              className="footer-info__container__contact"
-            >
-              <div
-                className="footer-info__container__title"
-              >
-                <h5>
-                  footer.Need any help?
-                </h5>
-              </div>
-              <div
-                className="footer-info__container__contact-content"
-              >
-                <div
-                  className="footer-info__container__contact-content__item"
-                >
-                  <h5>
-                    footer.CMail to our support team
-                  </h5>
-                  <h3>
-                    <a
-                      href="#"
-                    >
-                      support@domain.com
-                    </a>
-                  </h3>
-                </div>
-                <div
-                  className="footer-info__container__contact-content__item"
-                >
-                  <h5>
-                    footer.Call 24/7 for any help
-                  </h5>
-                  <h3>
-                    <a
-                      href="#"
-                    >
-                      +00 123 456 789
-                    </a>
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="ant-col ant-col-xs-12 ant-col-sm-12 ant-col-md-6 ant-col-lg-3"
-            style={Object {}}
-          >
-            <div
-              className="footer-info__container__company"
-            >
-              <div
-                className="footer-info__container__title"
-              >
-                <h5>
-                  footer.Company
-                </h5>
-              </div>
-              <div
-                className="footer-info__container__company__content"
-              >
-                <ul>
-                  <li>
-                    footer.About Us
-                  </li>
-                  <li>
-                    footer.Testimonials
-                  </li>
-                  <li>
-                    footer.Rewards
-                  </li>
-                  <li>
-                    footer.Work with Us
-                  </li>
-                  <li>
-                    footer.Meet the Team
-                  </li>
-                  <li>
-                    footer.Blog
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div
-            className="ant-col ant-col-xs-12 ant-col-sm-12 ant-col-md-6 ant-col-lg-4"
-            style={Object {}}
-          >
-            <div
-              className="footer-info__container__company"
-            >
-              <div
-                className="footer-info__container__title"
-              >
-                <h5>
-                  footer.Support
-                </h5>
-              </div>
-              <div
-                className="footer-info__container__company__content"
-              >
-                <ul>
-                  <li>
-                    footer.Account
-                  </li>
-                  <li>
-                    footer.Faq
-                     
-                  </li>
-                  <li>
-                    footer.Legal
-                  </li>
-                  <li>
-                    footer.Contact
-                  </li>
-                  <li>
-                    footer.Affiliate Program
-                  </li>
-                  <li>
-                    footer.Privacy Policy
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div
-            className="ant-col ant-col-xs-12 ant-col-sm-12 ant-col-md-5 ant-col-lg-4"
-            style={Object {}}
-          >
-            <div
-              className="footer-info__container__company"
-            >
-              <div
-                className="footer-info__container__title"
-              >
-                <h5>
-                  footer.Other Services
-                </h5>
-              </div>
-              <div
-                className="footer-info__container__company__content"
-              >
-                <ul>
-                  <li>
-                    footer.Community program
-                  </li>
-                  <li>
-                    footer.Investor Relations
-                  </li>
-                  <li>
-                    footer.Rewards Program
-                  </li>
-                  <li>
-                    footer.Partners
-                  </li>
-                  <li>
-                    footer.PointsPLUS
-                  </li>
-                  <li>
-                    footer.Blog
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div
-            className="ant-col ant-col-xs-12 ant-col-sm-12 ant-col-md-6 ant-col-lg-5"
-            style={Object {}}
-          >
-            <div
-              className="footer-info__container__company"
-            >
-              <div
-                className="footer-info__container__title"
-              >
-                <h5>
-                  footer.Top cities
-                </h5>
-              </div>
-              <div
-                className="footer-info__container__company__content"
-              >
-                <ul>
-                  <li>
-                    Chicago
-                  </li>
-                  <li>
-                    New York
-                  </li>
-                  <li>
-                    San Francisco
-                  </li>
-                  <li>
-                    California
-                  </li>
-                  <li>
-                    Ohio
-                  </li>
-                  <li>
-                    Alaska
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="footer-copyright  wide grid"
-    >
-      <div
-        className="footer-copyright"
-      >
-        <p>
-          Copyright © 2022 All Rights Reserved
+          Copyright © 2022 U2Fly Booking Designed by U2FlyTeam
         </p>
       </div>
     </div>

@@ -27,7 +27,7 @@ export default function BookingPassenger() {
   const onFinish = (values) => {
     let valueResult = {
       ...values,
-      date_picker: moment(values.date_picker).format('YYYY-MM-DD'),
+      date_picker: moment(values.date_picker).format('MM-DD-YYYY'),
     }
     dispatch(changeCurrentMethod(1))
     dispatch(addDataIntoBookingFlight(valueResult))
@@ -56,6 +56,7 @@ export default function BookingPassenger() {
         form={form}
         initialValues={{}}
         onFinish={onFinish}
+        data-testid="bookingPassenger"
       >
         <Form.Item
           name="firstName"
@@ -79,7 +80,7 @@ export default function BookingPassenger() {
 
         <Form.Item
           name="date_picker"
-          format="DD-MM-YYYY"
+          format="MM-DD-YYYY"
           style={{ display: 'inline-block', width: '50%' }}
           rules={[
             {
@@ -201,6 +202,7 @@ export default function BookingPassenger() {
           ]}
         >
           <input
+            data-testid="inputPassport"
             className="form-control"
             name="passport"
             placeholder={t('flight-booking-page.Passport no.')}
@@ -218,6 +220,7 @@ export default function BookingPassenger() {
           ]}
         >
           <input
+            data-testid="inputVisa"
             name="visa"
             className="form-control"
             placeholder={t('flight-booking-page.Visa no.')}

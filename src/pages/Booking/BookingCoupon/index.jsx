@@ -11,6 +11,7 @@ export default function BookingCoupon() {
   const dispatch = useDispatch()
   const discount = useSelector(getDiscountForBookingAirline)
   const onFinish = (value) => {
+    window.scrollTo(550, 0)
     dispatch(getDiscountCheck(value))
   }
   const { t } = useTranslation()
@@ -22,7 +23,7 @@ export default function BookingCoupon() {
       </div>
       <div className="booking-coupon__container">
         {discount.percent != 0 && <i className="fa-solid fa-circle-check"></i>}
-        <Form onFinish={onFinish}>
+        <Form onFinish={onFinish} data-testid="bookingCoupon">
           <Form.Item
             name="idDiscount"
             style={{
@@ -36,6 +37,7 @@ export default function BookingCoupon() {
           >
             <input
               name="idDiscount"
+              data-testid="inputDiscount"
               className="form-control"
               placeholder={t('flight-booking-page.input your discount number')}
             />

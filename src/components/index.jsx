@@ -26,6 +26,8 @@ export { default as PageLoadingAnimation } from './PageLoadingAnimation'
 export { default as ScrollToTopButton } from './ScrollToTopButton'
 export { default as MainLogo } from './MainLogo'
 export { default as SmokeAnimation } from './SmokeAnimation'
+export { default as FlightDetailModal } from './FlightDetailModal'
+
 //For admin
 export { default as AdminSidebar } from './AdminSidebar'
 export { default as AdminHeader } from './AdminHeader'

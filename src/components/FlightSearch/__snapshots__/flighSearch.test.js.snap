@@ -11,24 +11,18 @@ exports[`Flight search renders correctly 1`] = `
       className="flightSearchCategories"
     >
       <div
-        className="ant-radio-group ant-radio-group-outline"
-        style={
-          Object {
-            "borderRadius": "12px",
-            "padding": "10px",
-          }
-        }
+        className="ant-radio-group ant-radio-group-solid"
       >
         <label
-          className="ant-radio-wrapper ant-radio-wrapper-checked"
+          className="ant-radio-button-wrapper ant-radio-button-wrapper-checked"
         >
           <span
-            className="ant-radio ant-radio-checked"
+            className="ant-radio-button ant-radio-button-checked"
             style={Object {}}
           >
             <input
               checked={true}
-              className="ant-radio-input"
+              className="ant-radio-button-input"
               onBlur={[Function]}
               onChange={[Function]}
               onFocus={[Function]}
@@ -39,7 +33,7 @@ exports[`Flight search renders correctly 1`] = `
               value="oneWay"
             />
             <span
-              className="ant-radio-inner"
+              className="ant-radio-button-inner"
             />
           </span>
           <span>
@@ -47,15 +41,15 @@ exports[`Flight search renders correctly 1`] = `
           </span>
         </label>
         <label
-          className="ant-radio-wrapper"
+          className="ant-radio-button-wrapper"
         >
           <span
-            className="ant-radio"
+            className="ant-radio-button"
             style={Object {}}
           >
             <input
               checked={false}
-              className="ant-radio-input"
+              className="ant-radio-button-input"
               onBlur={[Function]}
               onChange={[Function]}
               onFocus={[Function]}
@@ -66,7 +60,7 @@ exports[`Flight search renders correctly 1`] = `
               value="roundTrip"
             />
             <span
-              className="ant-radio-inner"
+              className="ant-radio-button-inner"
             />
           </span>
           <span>
@@ -280,7 +274,7 @@ exports[`Flight search renders correctly 1`] = `
             }
           >
             <div
-              className="ant-col ant-col-12"
+              className="ant-col ant-col-xs-24 ant-col-sm-12"
               style={
                 Object {
                   "paddingBottom": 4,
@@ -313,8 +307,8 @@ exports[`Flight search renders correctly 1`] = `
                     placeholder="Select date"
                     readOnly={true}
                     size={12}
-                    title="07/09/22"
-                    value="07/09/22"
+                    title="07/10/22"
+                    value="07/10/22"
                   />
                   <span
                     className="ant-picker-suffix"
@@ -343,7 +337,7 @@ exports[`Flight search renders correctly 1`] = `
               </div>
             </div>
             <div
-              className="ant-col ant-col-12"
+              className="ant-col ant-col-xs-24 ant-col-sm-12"
               style={
                 Object {
                   "paddingBottom": 4,
@@ -441,7 +435,6 @@ exports[`Flight search renders correctly 1`] = `
       >
         Search
          
-        One Way
       </button>
     </div>
   </div>

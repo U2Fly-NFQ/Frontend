@@ -8,6 +8,7 @@ import moment from 'moment'
 import ModalRating from '../ModalRating'
 import { useDispatch } from 'react-redux'
 import { fetchRatingBooking } from '../../redux/slices/ticketSlice'
+import { message } from 'antd'
 
 function UserBookingDetail({ detailData }) {
   //initiation
@@ -17,9 +18,6 @@ function UserBookingDetail({ detailData }) {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [dataRating, setDataRating] = useState({})
 
-  const handleCancelRating = () => {
-    setIsModalVisible(false)
-  }
   const showRatingForm = (value) => {
     setIsModalVisible(true)
     setDataRating({
@@ -36,7 +34,7 @@ function UserBookingDetail({ detailData }) {
         comment: value.description,
       })
     )
-    setIsModalVisible(false)
+    message.success('Thanks for your review. Wish you have a good trip!')
   }
 
   const flightsColumn = [
@@ -44,7 +42,7 @@ function UserBookingDetail({ detailData }) {
       title: 'Airline',
       dataIndex: 'airline',
       align: 'center',
-      width: '150px',
+      width: '125px',
       render: (_, { airline }) => (
         <img width="100%" src={airline.image} alt="airline" />
       ),
@@ -69,15 +67,15 @@ function UserBookingDetail({ detailData }) {
       ),
     },
     {
-      title: 'ETD',
+      title: 'Departure',
       dataIndex: 'ETD',
-      width: '100px',
+      width: '115px',
       align: 'center',
     },
     {
-      title: 'ETA',
+      title: 'Arrival',
       dataIndex: 'ETA',
-      width: '100px',
+      width: '115px',
       align: 'center',
     },
     {
@@ -120,6 +118,7 @@ function UserBookingDetail({ detailData }) {
       ),
     },
   ]
+
   return (
     <Row className="booking-detail">
       <Col className="booking-detail-info" span={24}>
@@ -143,7 +142,7 @@ function UserBookingDetail({ detailData }) {
             Date:
           </Col>
           <Col className="booking-info-text" span={7}>
-            {moment(detailData.createdAt).format('DD/M/YYYY')}
+            {moment(detailData.createdAt).format('MM-DD-YYYY')}
           </Col>
           <Col className="booking-info-label" span={5}>
             Email:
@@ -176,8 +175,7 @@ function UserBookingDetail({ detailData }) {
       <ModalRating
         visible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
-        handleCancel={handleCancelRating}
-        handleOk={handleRating}
+        rating={handleRating}
       />
     </Row>
   )

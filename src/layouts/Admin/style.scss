@@ -2,6 +2,7 @@
 
 .admin {
   min-height: 100vh;
+
   &-sidebar {
     background-color: a.$background-white;
     box-shadow: a.$box-shadow;
@@ -12,7 +13,6 @@
       text-align: center;
       height: 64px;
       justify-content: center;
-      background-color: a.$bg-color;
       &-logo {
         img {
           width: 100%;
@@ -40,11 +40,11 @@
       }
     }
   }
+
   &-header {
     height: 64px;
-    background-color: a.$background-white;
+    background-color: a.$main-color;
     box-shadow: a.$box-shadow;
-    -webkit-box-shadow: a.$box-shadow;
     z-index: 1;
     &-content {
       position: relative;
@@ -61,23 +61,16 @@
       }
     }
   }
-  &-flights {
+
+  &-content {
     padding: 20px;
-    background-color: a.$bg-color;
-    &-action {
-      margin-bottom: 10px;
-      &-right {
-        text-align: right;
-      }
-    }
   }
 
-  .ant-btn-primary {
-    background: a.$main-color;
-    border-color: a.$main-color;
-    &:hover {
-      background: a.$purple;
-      border-color: a.$purple;
+  &-footer {
+    padding: 10px 0;
+    text-align: center;
+    p {
+      margin-bottom: 0;
     }
   }
 }

@@ -74,30 +74,6 @@ exports[`Navigation bar test renders correctly 1`] = `
       </li>
     </ul>
     <div
-      className="navbar__footer"
-    >
-      <div
-        className="navbar__footer__btn"
-      >
-        <div
-          className="partner-btn"
-          onClick={[Function]}
-        >
-          <div
-            className="form-submit"
-          >
-            <button
-              className="btn btn-primary btn-md"
-              id=""
-              type="submit"
-            >
-              Become a partner
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
       className="navbar_icons"
       onClick={[Function]}
     >
@@ -121,7 +97,7 @@ exports[`Navigation bar test renders correctly 1`] = `
           href="/"
           onClick={[Function]}
         >
-          Home
+          header.navbar.home
         </a>
       </li>
       <li
@@ -132,7 +108,7 @@ exports[`Navigation bar test renders correctly 1`] = `
           href="/flights"
           onClick={[Function]}
         >
-          Flight
+          header.navbar.flight
         </a>
       </li>
     </ul>

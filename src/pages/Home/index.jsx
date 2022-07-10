@@ -31,7 +31,7 @@ function Home() {
       <div className="home-page">
         <div className="grid wide">
           <section id="go-beyond-area">
-            <Row gutter={[24, 24]}>
+            <Row gutter={[24, 24]} justify="center">
               <Col span={24}>
                 <div className="heading_left_area__wrapper">
                   <div className="heading_left_area">

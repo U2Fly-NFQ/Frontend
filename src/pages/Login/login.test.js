@@ -5,7 +5,7 @@ import { store } from '../../redux/store'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import FlightSearch from './'
+import Login from './'
 import { ConfigProvider } from 'antd'
 
 import EnzymeToJson from 'enzyme-to-json'
@@ -14,7 +14,7 @@ import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17'
 
 Enzyme.configure({ adapter: new EnzymeAdapter() })
 
-describe('Flight search', () => {
+describe('Login page', () => {
   it('renders correctly', () => {
     const tree = mount(
       <I18nextProvider i18n={i18n}>
@@ -22,7 +22,7 @@ describe('Flight search', () => {
           <ConfigProvider>
             <Router>
               <Suspense>
-                <FlightSearch />
+                <Login />
               </Suspense>
             </Router>
           </ConfigProvider>

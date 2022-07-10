@@ -13,22 +13,20 @@ describe('RegisterAPI', () => {
     mock.reset()
   })
 
-  describe('RegisterApI', () => {
+  describe('RegisterAPI', () => {
     it('register account with input data', async () => {
       const rs = {
         status: 'success',
       }
 
-      mock
-        .onPost(`${process.env.REACT_APP_SERVER_API}/users/register`)
-        .reply(200, rs)
+      mock.onPost(`${process.env.REACT_APP_SERVER_API}/register`).reply(200, rs)
 
       const result = await registerApi({
         username: 'u2fly',
         password: '123',
       })
 
-      expect(mock.history.post[0].url).toEqual(`/users/register`)
+      expect(mock.history.post[0].url).toEqual(`/register`)
       expect(result.data).toEqual(rs)
     })
   })

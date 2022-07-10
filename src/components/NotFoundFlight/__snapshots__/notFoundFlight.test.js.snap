@@ -24,7 +24,7 @@ exports[`Not found page test renders correctly 1`] = `
           }
         }
       >
-        flight-list-page.Sorry we didn't find any results matching this search
+        Sorry we didn't find any results matching this search
       </span>
       <img
         alt="Loading GIF"

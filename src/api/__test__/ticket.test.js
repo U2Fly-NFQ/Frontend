@@ -34,9 +34,9 @@ describe('TicketAPI', () => {
 
     const id = 1
 
-    mock.onGet(`${endpoint}/${id}`).reply(200, rs)
+    mock.onGet(`/tickets/1`).reply(200, rs)
 
-    const result = await get(id)
+    const result = await get(1)
 
     expect(result.data).toEqual(rs)
   })

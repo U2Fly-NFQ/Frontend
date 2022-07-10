@@ -8,7 +8,7 @@ exports[`My Connected React-Redux Component should render with given state from 
     className="booking-page__container__item__title"
   >
     <h3>
-      flight-booking-page.Booking amount
+      Booking amount
     </h3>
   </div>
   <div
@@ -54,7 +54,7 @@ exports[`My Connected React-Redux Component should render with given state from 
           <div
             className="booking-travel-date__container__key"
           >
-            flight-booking-page.Subtotal
+            Subtotal
           </div>
           <div
             className="booking-travel-date__container__value"
@@ -67,7 +67,7 @@ exports[`My Connected React-Redux Component should render with given state from 
           <div
             className="booking-travel-date__container__key"
           >
-            flight-booking-page.Discount
+            Discount
           </div>
           <div
             className="booking-travel-date__container__value"
@@ -79,7 +79,7 @@ exports[`My Connected React-Redux Component should render with given state from 
           <div
             className="booking-travel-date__container__key"
           >
-            flight-booking-page.Coupon code
+            Coupon code
           </div>
           <div
             className="booking-travel-date__container__value"
@@ -96,7 +96,7 @@ exports[`My Connected React-Redux Component should render with given state from 
       <div
         className="booking-travel-date__container__amount__total__key"
       >
-        flight-booking-page.Total Amount
+        Total Amount
       </div>
       <div
         className="booking-travel-date__container__amount__total__value"

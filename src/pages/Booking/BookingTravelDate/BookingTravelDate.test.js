@@ -3,6 +3,8 @@ import { Provider } from 'react-redux'
 import renderer from 'react-test-renderer'
 import configureStore from 'redux-mock-store'
 import MyConnectedComponent from '.'
+import { I18nextProvider } from 'react-i18next'
+import i18n from '../../../translations'
 
 const mockStore = configureStore([])
 
@@ -29,9 +31,11 @@ describe('My Connected React-Redux Component', () => {
       startDateRoundTrip: '2022-07-13',
     }
     component = renderer.create(
-      <Provider store={store}>
-        <MyConnectedComponent flight={flight} />
-      </Provider>
+      <I18nextProvider i18n={i18n}>
+        <Provider store={store}>
+          <MyConnectedComponent flight={flight} />
+        </Provider>
+      </I18nextProvider>
     )
   })
 

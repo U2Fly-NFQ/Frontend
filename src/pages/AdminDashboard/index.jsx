@@ -30,7 +30,6 @@ function AdminDashboard() {
   useEffect(() => {
     get().then((rs) => {
       setData(rs.data.data)
-      console.log(rs.data.data)
     })
   }, [])
 
@@ -50,7 +49,7 @@ function AdminDashboard() {
               <Bar
                 data={data.top_airline}
                 {...airlineChartConfig}
-                color={['#ffc53d', '#73d13d', '#1890ff']}
+                color={['#73d13d', '#ffc53d', '#1890ff']}
               />
             </Card>
           </Col>

@@ -79,11 +79,13 @@ export default function BookingTravelDate() {
               </div>
               <div className="booking-travel-date__container__value">
                 $
-                {(seatRoungTrip !== undefined
-                  ? seatRoungTrip.price + seat.price
-                  : seat.price) *
+                {(
+                  (seatRoungTrip !== undefined
+                    ? seatRoungTrip.price + seat.price
+                    : seat.price) *
                   getDiscount.percent *
-                  flightLocal.seatAvailable}
+                  flightLocal.seatAvailable
+                ).toFixed(2)}
               </div>
             </li>
           </ul>

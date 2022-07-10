@@ -1,3 +1,7 @@
 @use '../abstracts' as a;
 
 /* Flight list page */
+.ant-popover-inner {
+  border-radius: 12px;
+  overflow: hidden;
+}

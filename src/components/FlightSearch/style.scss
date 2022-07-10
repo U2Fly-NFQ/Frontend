@@ -9,7 +9,7 @@
   }
 
   @media only screen and (max-width: 768px) {
-    height: 560px;
+    height: 630px;
   }
 
   .flightSearch {
@@ -25,6 +25,10 @@
     border-radius: 20px;
     font-size: 16px;
 
+    @media only screen and (max-width: 768px) {
+      padding: 20px;
+    }
+
     &Passenger {
       min-height: 32px;
       font-size: 22px;
@@ -36,12 +40,20 @@
       .ant-radio-group {
         .ant-radio-button-wrapper {
           margin-right: 10px;
+          margin-bottom: 10px;
+          min-width: 32px;
+          border-radius: 8px;
+          overflow: hidden;
+
+          &:not(:first-child):before {
+            width: 2px;
+          }
         }
       }
     }
 
     &Box {
-      background: var.$bg-search-box;
+      background-color: var(--ant-primary-1);
       padding: 10px 20px;
       border-radius: 10px;
       position: relative;
@@ -216,4 +228,8 @@
     background-color: transparent;
     border-radius: 50%;
   }
+}
+
+.ant-picker-panel-container {
+  border-radius: 12px;
 }

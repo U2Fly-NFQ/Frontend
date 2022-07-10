@@ -1,32 +1,36 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Line } from '@ant-design/plots'
 
-const FlightChart = () => {
-  const [data, setData] = useState([])
+const FlightChart = ({ data }) => {
+  const { flightOfDay } = data
 
-  useEffect(() => {
-    asyncFetch()
-  }, [])
+  let flightCancel = flightOfDay.map((f) => ({
+    name: 'Flight Cancel',
+    time: f.date,
+    value: f.cancel || 0,
+  }))
 
-  const asyncFetch = () => {
-    fetch(
-      'https://gw.alipayobjects.com/os/bmw-prod/e00d52f4-2fa6-47ee-a0d7-105dd95bde20.json'
-    )
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => {
-        console.log('Fetch data failed', error)
-      })
-  }
+  let flightSuccess = flightOfDay.map((f) => ({
+    name: 'Flight Success',
+    time: f.date,
+    value: f.success || 0,
+  }))
+
+  let flightTotal = flightOfDay.map((f) => ({
+    name: 'Flight Total',
+    time: f.date,
+    value: f.cancel || 0 + f.success || 0,
+  }))
+
+  let resultChart = [...flightCancel, ...flightTotal, ...flightSuccess]
+
   const config = {
-    data,
-    xField: 'year',
-    yField: 'gdp',
+    data: resultChart,
+    xField: 'time',
+    yField: 'value',
     seriesField: 'name',
     yAxis: {
-      label: {
-        formatter: (v) => `${(v / 10e8).toFixed(1)} B`,
-      },
+      label: {},
     },
     legend: {
       position: 'top',
@@ -38,7 +42,7 @@ const FlightChart = () => {
         duration: 5000,
       },
     },
-    height: 200,
+    height: 400,
   }
 
   return (

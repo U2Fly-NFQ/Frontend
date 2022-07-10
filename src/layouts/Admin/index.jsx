@@ -28,14 +28,12 @@ function AdminLayout() {
         <Header className="admin-header">
           <AdminHeader />
         </Header>
-        <Content
-          style={{
-            padding: '20px',
-          }}
-        >
+        <Content className="admin-content">
           <Outlet />
         </Content>
-        {/* <Footer></Footer> */}
+        <Footer className="admin-footer">
+          <p>Copyright © 2022 U2Fly Booking Designed by U2FlyTeam</p>
+        </Footer>
       </Layout>
     </Layout>
   )

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   useNavigate,
   useSearchParams,
@@ -30,11 +30,25 @@ import { CloseOutlined } from '@ant-design/icons'
 
 const { Option } = Select
 
+export const variantsSelector = {
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      ease: 'easeOut',
+      duration: 0.5,
+    },
+  },
+  hide: {
+    y: -20,
+    opacity: 0,
+  },
+}
+
 export default function FlightSearch() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const submitRef = useRef(null)
   const [searchParams, setSearchParams] = useSearchParams()
 
   const airports = useSelector((state) => state.airports.data)
@@ -50,11 +64,13 @@ export default function FlightSearch() {
   const [passengerNumber, setPassengerNumber] = useState(1)
   const [modalContent, setModalContent] = useState('')
 
+  const flightStorage = getLsObj('flight')
+
   useEffect(() => {
     dispatch(fetchAirports())
+  }, [])
 
-    let existingFlight = getLsObj('flight')
-
+  useEffect(() => {
     const {
       seatType,
       seatAvailable,
@@ -63,8 +79,9 @@ export default function FlightSearch() {
       startDate,
       ticketType,
       startDateRoundTrip,
-    } = existingFlight
+    } = flightStorage
 
+    // If exist query in local storage
     if (departure) setFrom(departure)
     if (arrival) setTo(arrival)
     if (startDate) setJourneyDay(moment(startDate))
@@ -72,7 +89,24 @@ export default function FlightSearch() {
     if (seatAvailable) setPassengerNumber(seatAvailable)
     if (ticketType) setTicketType(ticketType)
     if (startDateRoundTrip) setReturnDate(moment(returnDate))
-  }, [])
+
+    // If exist query on URL
+    const departureParam = searchParams.get('departure')
+    const arrivalParam = searchParams.get('arrival')
+    const startDateParam = searchParams.get('startDate')
+    const seatTypeParam = searchParams.get('seatType')
+    const seatAvailableParam = searchParams.get('seatAvailable')
+    const ticketTypeParam = searchParams.get('ticketType')
+    const startDateRoundTripParam = searchParams.get('startDateRoundTrip')
+
+    if (departureParam) setFrom(departureParam)
+    if (arrivalParam) setTo(arrivalParam)
+    if (startDateParam) setJourneyDay(moment(startDateParam))
+    if (seatTypeParam) setPassengerClass(seatTypeParam)
+    if (seatAvailableParam) setPassengerNumber(seatAvailableParam)
+    if (ticketTypeParam) setTicketType(ticketTypeParam)
+    if (startDateRoundTripParam) setReturnDate(moment(startDateRoundTripParam))
+  }, [searchParams])
 
   const onFinish = async () => {
     if (!from || !to) {
@@ -157,8 +191,62 @@ export default function FlightSearch() {
     </>
   )
 
+  const [showAskModal, setShowAskModal] = useState(true)
+
+  const chooseDeparture = (value) => {
+    updateLs('flight', {
+      departure: value,
+    })
+    setFrom(value)
+  }
+
   return (
     <div className="flightSearchContainer">
+      {!flightStorage.departure && showAskModal && (
+        <Modal
+          visible={true}
+          style={{
+            borderRadius: '12px',
+            overflow: 'hidden',
+            paddingBottom: 0,
+          }}
+          maskStyle={{
+            backgroundColor: 'rgba(14, 134, 212, 0.4)',
+          }}
+          footer={false}
+          onCancel={() => setShowAskModal(false)}
+        >
+          Hey buddy, where is your departure?
+          <Select
+            size="large"
+            clearIcon={<CloseOutlined />}
+            autoFocus
+            showSearch
+            value={airports[0]}
+            showArrow={false}
+            onSelect={chooseDeparture}
+            bordered={false}
+            defaultOpen
+            placement="bottomLeft"
+            style={{
+              width: '100%',
+              borderBottom: '1px solid #ddd',
+            }}
+            dropdownStyle={{
+              borderRadius: '10px',
+            }}
+            placeholder="Flying from..."
+          >
+            {airports.map((airport) => {
+              return (
+                <Option key={airport.iata} value={airport.iata}>
+                  {airport.city} ({airport.iata})
+                </Option>
+              )
+            })}
+          </Select>
+        </Modal>
+      )}
       <Modal
         visible={modalContent && true}
         onOk={() => setModalContent('')}
@@ -175,13 +263,14 @@ export default function FlightSearch() {
           <Radio.Group
             value={ticketType}
             onChange={(e) => onChangeTicketType(e.target.value)}
-            style={{
-              padding: '10px',
-              borderRadius: '12px',
-            }}
+            buttonStyle="solid"
           >
-            <Radio value="oneWay">{t('search_form.one_way')}</Radio>
-            <Radio value="roundTrip">{t('search_form.round_trip')}</Radio>
+            <Radio.Button value="oneWay">
+              {t('search_form.one_way')}
+            </Radio.Button>
+            <Radio.Button value="roundTrip">
+              {t('search_form.round_trip')}
+            </Radio.Button>
           </Radio.Group>
         </div>
 
@@ -192,99 +281,104 @@ export default function FlightSearch() {
               <label className="flightSearchLabel">
                 {t('search_form.from')}
               </label>
-              <Select
-                size="large"
-                allowClear
-                clearIcon={<CloseOutlined />}
-                onClear={clearFrom}
-                showSearch
-                value={from}
-                showArrow={false}
-                filterOption={() => true}
-                onChange={onChangeFrom}
-                onSearch={(text) => setSearchFrom(text)}
-                bordered={false}
-                style={{
-                  width: '100%',
-                  borderBottom: '1px solid #ddd',
-                }}
-                dropdownStyle={{
-                  borderRadius: '10px',
-                }}
-                placeholder="Flying from..."
+              <motion.div
+                key={from}
+                variants={variantsSelector}
+                animate={'show'}
+                initial="hide"
               >
-                {airports.map((airport) => {
-                  return (
-                    airport.city
-                      .toLowerCase()
-                      .includes(searchFrom.toLowerCase()) &&
-                    airport.iata !== to && (
-                      <Option key={airport.iata} value={airport.iata}>
-                        {airport.city} ({airport.iata})
-                      </Option>
+                <Select
+                  size="large"
+                  allowClear
+                  clearIcon={<CloseOutlined />}
+                  onClear={clearFrom}
+                  showSearch
+                  value={from}
+                  showArrow={false}
+                  filterOption={() => true}
+                  onChange={onChangeFrom}
+                  onSearch={(text) => setSearchFrom(text)}
+                  bordered={false}
+                  style={{
+                    width: '100%',
+                    borderBottom: '1px solid #ddd',
+                  }}
+                  dropdownStyle={{
+                    borderRadius: '10px',
+                  }}
+                  placeholder="Flying from..."
+                >
+                  {airports.map((airport) => {
+                    return (
+                      airport.city
+                        .toLowerCase()
+                        .includes(searchFrom.toLowerCase()) &&
+                      airport.iata !== to && (
+                        <Option key={airport.iata} value={airport.iata}>
+                          {airport.city} ({airport.iata})
+                        </Option>
+                      )
                     )
-                  )
-                })}
-              </Select>
-              <p className="flightSearchSelected">
-                {airports && airports.find((ap) => ap.iata === from)?.name}
-              </p>
+                  })}
+                </Select>
+              </motion.div>
             </div>
           </Col>
           <Col span={24} md={12} lg={6}>
             <div className="flightSearchBox">
               <i className="flightSearchBox__Icon fa-solid fa-plane-arrival"></i>
               <label className="flightSearchLabel">{t('search_form.to')}</label>
-              <Select
-                size="large"
-                showSearch
-                allowClear
-                clearIcon={<CloseOutlined />}
-                onClear={clearTo}
-                value={to}
-                showArrow={false}
-                filterOption={() => true}
-                onChange={onChangeTo}
-                onSearch={(text) => setSearchTo(text)}
-                bordered={false}
-                style={{
-                  width: '100%',
-                  borderBottom: '1px solid #ddd',
-                }}
-                dropdownStyle={{
-                  borderRadius: '10px',
-                }}
-                placeholder="Flying to..."
+              <motion.div
+                key={to}
+                variants={variantsSelector}
+                animate={'show'}
+                initial="hide"
               >
-                {airports.map((airport) => {
-                  return (
-                    airport.city
-                      .toLowerCase()
-                      .includes(searchTo.toLowerCase()) &&
-                    airport.iata !== from && (
-                      <Option key={airport.iata} value={airport.iata}>
-                        {airport.city} ({airport.iata})
-                      </Option>
+                <Select
+                  size="large"
+                  showSearch
+                  allowClear
+                  clearIcon={<CloseOutlined />}
+                  onClear={clearTo}
+                  value={to}
+                  showArrow={false}
+                  filterOption={() => true}
+                  onChange={onChangeTo}
+                  onSearch={(text) => setSearchTo(text)}
+                  bordered={false}
+                  style={{
+                    width: '100%',
+                    borderBottom: '1px solid #ddd',
+                  }}
+                  dropdownStyle={{
+                    borderRadius: '10px',
+                  }}
+                  placeholder="Flying to..."
+                >
+                  {airports.map((airport) => {
+                    return (
+                      airport.city
+                        .toLowerCase()
+                        .includes(searchTo.toLowerCase()) &&
+                      airport.iata !== from && (
+                        <Option key={airport.iata} value={airport.iata}>
+                          {airport.city} ({airport.iata})
+                        </Option>
+                      )
                     )
-                  )
-                })}
-              </Select>
-              <p className="flightSearchSelected">
-                {airports && airports.find((ap) => ap.iata === to)?.name}
-              </p>
+                  })}
+                </Select>
+              </motion.div>
             </div>
           </Col>
           <Col span={24} md={12} lg={7}>
             <div className="flightSearchBox">
               <Row gutter={[8, 8]} justify="center">
-                <Col span={12}>
+                <Col sm={12} xs={24}>
                   <label className="flightSearchLabel">
                     {t('search_form.journey_date')}
                   </label>
                   <DatePicker
-                    popupStyle={{
-                      borderRadius: '10px',
-                    }}
                     className="journeyDate"
                     allowClear={false}
                     disabledDate={(current) => {
@@ -298,7 +392,7 @@ export default function FlightSearch() {
                     format={'MM/DD/YY'}
                   />
                 </Col>
-                <Col span={12}>
+                <Col sm={12} xs={24}>
                   <label className="flightSearchLabel">
                     {t('search_form.return_date')}
                   </label>
@@ -379,14 +473,8 @@ export default function FlightSearch() {
               size="large"
               className="searchBtn btn btn-md btn-primary"
               onClick={onFinish}
-              ref={submitRef}
             >
               {t('cta.search')}{' '}
-              {t(
-                `search_form.${
-                  ticketType === 'oneWay' ? 'one_way' : 'round_trip'
-                }`
-              )}
             </button>
           </Tooltip>
         </div>

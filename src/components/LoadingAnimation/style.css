@@ -1,34 +1,32 @@
 @charset "UTF-8";
 
-.page-loading {
+.loading-animation {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f7f7f7;
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  background-color: transparent;
+  position: relative;
+  z-index: 10;
+  height: 200px;
+  width: 200px;
+  max-width: 100%;
 }
-.page-loading .loader {
-  margin-left: 75px;
+.loading-animation .loader {
   padding: 30px 0;
   width: 150px;
   height: 150px;
   border: 1px solid rgba(125, 125, 125, 0.15);
   border-radius: 100%;
 }
-.page-loading .hide {
+.loading-animation .hide {
   display: none;
 }
-.page-loading .loader2 {
+.loading-animation .loader2 {
   position: relative;
   width: 120px;
   height: 120px;
 }
-.page-loading .loader2 span {
+.loading-animation .loader2 span {
   position: absolute;
   top: 0;
   left: 0;
@@ -36,7 +34,7 @@
   height: 100%;
   transform: rotate(calc(18deg * var(--i)));
 }
-.page-loading .loader2 span:before {
+.loading-animation .loader2 span:before {
   content: '';
   position: absolute;
   top: 0;
@@ -49,7 +47,7 @@
   animation: animate 1s linear infinite;
   animation-delay: calc(0.05s * var(--i));
 }
-.page-loading .loader2 .plane {
+.loading-animation .loader2 .plane {
   position: absolute;
   top: 0;
   left: 0;
@@ -58,7 +56,7 @@
   animation: rotating 1s linear infinite;
   animation-delay: -0.5s;
 }
-.page-loading .loader2 .plane:before {
+.loading-animation .loader2 .plane:before {
   content: '\f072';
   font-family: fontAwesome;
   position: absolute;

@@ -118,6 +118,8 @@
     },
 
     "flights found": "{{number}} flights found",
+    "Flight details": "Flight details",
+    "Sorry we didn't find any results matching this search": "Sorry we didn't find any results matching this search",
     "Cheapest price first": "Cheapest price first",
     "Price Low to High": "Price: Low to High",
     "Fly time Fastest": "Fly time: Fastest",
@@ -139,7 +141,8 @@
     "Flight details": "Flight details",
     "Delete": "Delete",
     "Selected outbound": "Selected outbound",
-    "Airline": "Airline"
+    "Airline": "Airline",
+    "Order by": "Order by"
   },
 
   "flight-booking-page": {

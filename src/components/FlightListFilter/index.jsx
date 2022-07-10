@@ -6,8 +6,8 @@ import {
   Space,
   Typography,
   Radio,
-  Select,
   Checkbox,
+  Skeleton,
 } from 'antd'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -18,10 +18,10 @@ import './style.scss'
 import { useTranslation } from 'react-i18next'
 
 const { Text } = Typography
-const { Option } = Select
 
-const Flight = () => {
+const FlightListFilter = ({ emptyFlight }) => {
   const airlinesFetch = useSelector((state) => state.filter.airlines)
+  const loadingStatus = useSelector((state) => state.filter.status)
   const airlinesOptions = airlinesFetch.map((al) => ({
     label: al.name,
     value: al.icao,
@@ -34,8 +34,12 @@ const Flight = () => {
   const { t } = useTranslation()
   const [time, setTime] = useState('')
   const [airlines, setAirlines] = useState([])
+  const flight = getLsObj('flight')
 
   const handlePriceChange = (value) => {
+    if (value[0] === null || value[0] === undefined) return
+    if (value[0] === value[1]) return
+
     setMinPrice(value[0])
     setMaxPrice(value[1])
   }
@@ -49,29 +53,34 @@ const Flight = () => {
 
   let firstRender = useRef(true)
 
-  // Debounce price
   useEffect(() => {
     if (firstRender.current) {
       firstRender.current = false
       return
     }
 
-    const flight = getLsObj('flight')
-
     if (!flight.ticketType || flight.ticketType === 'oneWay') {
       searchParams.set('startTime', time)
       searchParams.set('airline', airlines)
     }
+
     if (flight.ticketType === 'roundTrip') {
       searchParams.set('roundStartTime', time)
       searchParams.set('roundAirline', airlines)
     }
 
-    searchParams.set('minPrice', minPrice)
-    searchParams.set('maxPrice', maxPrice)
-
     setSearchParams(searchParams)
-  }, [minPrice, maxPrice, time, airlines])
+  }, [time, airlines])
+
+  useEffect(() => {
+    const timerPriceFilter = setTimeout(() => {
+      searchParams.set('minPrice', minPrice)
+      searchParams.set('maxPrice', maxPrice)
+      setSearchParams(searchParams)
+    }, 700)
+
+    return () => clearTimeout(timerPriceFilter)
+  }, [minPrice, maxPrice])
 
   // Fetch filter options
   useEffect(() => {
@@ -86,6 +95,19 @@ const Flight = () => {
   const changeAirline = (list) => {
     setAirlines(list)
   }
+
+  if (loadingStatus === 'loading')
+    return (
+      <>
+        <Skeleton
+          loading={true}
+          active
+          paragraph={{
+            rows: 18,
+          }}
+        ></Skeleton>
+      </>
+    )
 
   return (
     <div className="filter">
@@ -111,10 +133,11 @@ const Flight = () => {
             range
             min={0}
             max={1500}
-            defaultValue={[minPrice, maxPrice]}
-            onAfterChange={handlePriceChange}
+            value={[minPrice, maxPrice]}
+            onChange={handlePriceChange}
             tooltipPlacement="bottom"
             tooltipVisible={false}
+            step={20}
           />
 
           <Space
@@ -135,7 +158,7 @@ const Flight = () => {
               min={0}
               max={1500}
               value={maxPrice}
-              onChange={(value) => handlePriceChange(minPrice, value)}
+              onChange={(value) => handlePriceChange([minPrice, value])}
               prefix={t('flight-list-page.$')}
             />
           </Space>
@@ -183,7 +206,7 @@ const Flight = () => {
             }}
           >
             <Text>{t('flight-list-page.Airline')}</Text>
-            {airlines.length === airlinesOptions.length && (
+            {airlines.length > 1 && (
               <Text className="clear-btn" italic onClick={clearAirline}>
                 {t('flight-list-page.Clear')}
               </Text>
@@ -202,4 +225,4 @@ const Flight = () => {
   )
 }
 
-export default Flight
+export default FlightListFilter

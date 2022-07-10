@@ -15,12 +15,9 @@
   }
 
   .wide.grid {
-    padding-right: 40px;
-
-    padding-top: 10px;
     display: flex;
     gap: 2rem;
-    padding: 0 10px;
+    padding: 16px 0;
     .navbar__logo {
       max-height: 65px;
       img {
@@ -104,15 +101,16 @@
       .navbar_icon.open {
         position: fixed;
         z-index: 3;
-        background: transparent;
       }
 
       .navbar_icon.open::before {
         transform: rotate(45deg) translate(10px, 0);
+        background-color: #222;
       }
 
       .navbar_icon.open::after {
         transform: rotate(-45deg) translate(0, 10px);
+        background-color: #222;
       }
     }
 

@@ -8,6 +8,8 @@ import {
   message,
   Popconfirm,
 } from 'antd'
+
+import { DeleteOutlined } from '@ant-design/icons'
 import moment from 'moment'
 
 import CreatgeDiscountForm from './CreateDiscountForm/CreateDiscountForm'
@@ -86,7 +88,7 @@ function AddminDiscount() {
       ),
     },
     {
-      title: 'Act',
+      title: 'Actions',
       render: (_, record) => (
         <Popconfirm
           title="Are you sure to delete this discount?"
@@ -95,7 +97,7 @@ function AddminDiscount() {
           cancelText="No"
         >
           <Button type="text" style={{ color: 'red' }}>
-            Delete
+            <DeleteOutlined />
           </Button>
         </Popconfirm>
       ),
@@ -107,9 +109,17 @@ function AddminDiscount() {
       <div
         style={{
           marginBottom: '10px',
+          display: 'flex',
+          justifyContent: 'end',
         }}
       >
-        <Button type="primary" onClick={() => setIsModalVisible(true)}>
+        <Button
+          type="primary"
+          onClick={() => setIsModalVisible(true)}
+          style={{
+            borderRadius: '12px',
+          }}
+        >
           Add a discount
         </Button>
       </div>

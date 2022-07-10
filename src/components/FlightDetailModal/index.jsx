@@ -1,15 +1,14 @@
-import { Rate, Modal } from 'antd'
+import { Modal } from 'antd'
 import React from 'react'
 import { Steps } from 'antd'
 import moment from 'moment'
 import { addHourToTime, getDurationFormat } from '../../utils/flight'
 
 import './style.scss'
+import { useTranslation } from 'react-i18next'
 
 const FlightDetailModal = ({ data, visible, setIsModalVisible }) => {
-  if (Object.keys(data).length === 0) {
-    return
-  }
+  const { t } = useTranslation()
 
   const { Step } = Steps
 
@@ -21,10 +20,14 @@ const FlightDetailModal = ({ data, visible, setIsModalVisible }) => {
     setIsModalVisible(false)
   }
 
+  if (Object.keys(data).length === 0) {
+    return
+  }
+
   return (
     <>
       <Modal
-        title="Flight Detail"
+        title={t('flight-list-page.Flight details')}
         visible={visible}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -69,12 +72,6 @@ const FlightDetailModal = ({ data, visible, setIsModalVisible }) => {
                     <div className="info-plane_trip__title">
                       <img src={data.airline.image} alt="" />
                       <h5>{data.airline.name}</h5>
-                    </div>
-                    <div className="rating">
-                      <Rate
-                        disabled
-                        defaultValue={data?.airline?.rating || 0}
-                      />
                     </div>
                     <div className="info-plane_trip__body">
                       <span>{data.airplane.name}</span>

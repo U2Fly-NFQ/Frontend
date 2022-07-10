@@ -105,7 +105,14 @@ export default function FlightCard(props) {
           </div>
         </div>
         <div className="flight-card-deal">
-          <p className="flight-detail">Flight details</p>
+          <p
+            className="flight-detail"
+            style={{
+              cursor: 'pointer',
+            }}
+          >
+            {t('flight-list-page.Flight details')}
+          </p>
           <div className="flight-card-price">
             <h5 className="flight-card-price__origin">
               <del>
@@ -124,7 +131,11 @@ export default function FlightCard(props) {
               </span>
             </h4>
           </div>
-          <button className="btn btn-primary btn-md" onClick={onBooking}>
+          <button
+            data-testid="booking-btn"
+            className="btn btn-primary btn-md"
+            onClick={onBooking}
+          >
             {t('flight-list-page.Book now')}
           </button>
         </div>

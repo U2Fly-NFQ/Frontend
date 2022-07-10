@@ -6,12 +6,13 @@ import { getDiscountCheck } from '../../../redux/slices/bookingFlightsSlice'
 import { getDiscountForBookingAirline } from '../../../redux/selectors'
 import './index.scss'
 import { useTranslation } from 'react-i18next'
+import { scrollTo } from '../../../utils/scroll'
 
 export default function BookingCoupon() {
   const dispatch = useDispatch()
   const discount = useSelector(getDiscountForBookingAirline)
   const onFinish = (value) => {
-    window.scrollTo(550, 0)
+    scrollTo(550)
     dispatch(getDiscountCheck(value))
   }
   const { t } = useTranslation()

@@ -2,27 +2,27 @@ import React from 'react'
 import { Line } from '@ant-design/plots'
 
 const FlightChart = ({ data }) => {
-  const { flightCancel, flightTotal, flightSuccess } = data
+  const { flightOfDay } = data
 
-  let flightCancelMap = flightCancel.map((f) => ({
-    name: 'Flight canceled',
-    time: f.time,
-    value: f.value,
+  let flightCancel = flightOfDay.map((f) => ({
+    name: 'Flight Cancel',
+    time: f.date,
+    value: f.cancel || 0,
   }))
 
-  let flightTotalMap = flightTotal.map((f) => ({
-    name: 'Flight total',
-    time: f.time,
-    value: f.value,
-  }))
-
-  let flightSuccessMap = flightSuccess.map((f) => ({
+  let flightSuccess = flightOfDay.map((f) => ({
     name: 'Flight Success',
-    time: f.time,
-    value: f.value,
+    time: f.date,
+    value: f.success || 0,
   }))
 
-  let resultChart = [...flightCancelMap, ...flightTotalMap, ...flightSuccessMap]
+  let flightTotal = flightOfDay.map((f) => ({
+    name: 'Flight Total',
+    time: f.date,
+    value: f.cancel || 0 + f.success || 0,
+  }))
+
+  let resultChart = [...flightCancel, ...flightTotal, ...flightSuccess]
 
   const config = {
     data: resultChart,

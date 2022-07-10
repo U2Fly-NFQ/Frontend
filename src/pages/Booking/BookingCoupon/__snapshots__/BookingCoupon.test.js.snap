@@ -1,91 +1,210 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Sub nav bar test renders correctly 1`] = `
-<div
-  className="booking-coupon"
->
-  <div
-    className="booking-page__container__item__title"
-  >
-    <h3>
-      Coupon code
-    </h3>
-  </div>
-  <div
-    className="booking-coupon__container"
-  >
-    <form
-      className="ant-form ant-form-horizontal"
-      data-testid="bookingCoupon"
-      onReset={[Function]}
-      onSubmit={[Function]}
-    >
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
       <div
-        className="ant-row ant-form-item form-item-coupon ant-form-item-has-success"
-        style={
-          Object {
-            "display": "inline-block",
-            "margin": "0px",
-            "width": "100%",
-          }
-        }
+        class="booking-coupon"
       >
         <div
-          className="ant-col ant-form-item-control"
-          style={Object {}}
+          class="booking-page__container__item__title"
         >
-          <div
-            className="ant-form-item-control-input"
-          >
-            <div
-              className="ant-form-item-control-input-content"
-            >
-              <input
-                className="form-control"
-                data-testid="inputDiscount"
-                id="idDiscount"
-                name="idDiscount"
-                onChange={[Function]}
-                placeholder="input your discount number"
-              />
-            </div>
-          </div>
+          <h3>
+            Coupon code
+          </h3>
         </div>
-      </div>
-      <div
-        className="ant-row ant-form-item"
-        style={
-          Object {
-            "marginTop": "20px",
-          }
-        }
-      >
         <div
-          className="ant-col ant-form-item-control"
-          style={Object {}}
+          class="booking-coupon__container"
         >
-          <div
-            className="ant-form-item-control-input"
+          <form
+            class="ant-form ant-form-horizontal"
+            data-testid="bookingCoupon"
           >
             <div
-              className="ant-form-item-control-input-content"
+              class="ant-row ant-form-item form-item-coupon ant-form-item-has-success"
+              style="display: inline-block; width: 100%; margin: 0px;"
             >
               <div
-                className="form-submit"
+                class="ant-col ant-form-item-control"
               >
-                <button
-                  className="btn btn-primary btn-md"
-                  id=""
-                  type="submit"
+                <div
+                  class="ant-form-item-control-input"
                 >
-                  Apply voucher
-                </button>
+                  <div
+                    class="ant-form-item-control-input-content"
+                  >
+                    <input
+                      class="form-control"
+                      data-testid="inputDiscount"
+                      id="idDiscount"
+                      name="idDiscount"
+                      placeholder="input your discount number"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="ant-row ant-form-item"
+              style="margin-top: 20px;"
+            >
+              <div
+                class="ant-col ant-form-item-control"
+              >
+                <div
+                  class="ant-form-item-control-input"
+                >
+                  <div
+                    class="ant-form-item-control-input-content"
+                  >
+                    <div
+                      class="form-submit"
+                    >
+                      <button
+                        class="btn btn-primary btn-md"
+                        id=""
+                        type="submit"
+                      >
+                        Apply voucher
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="booking-coupon"
+    >
+      <div
+        class="booking-page__container__item__title"
+      >
+        <h3>
+          Coupon code
+        </h3>
+      </div>
+      <div
+        class="booking-coupon__container"
+      >
+        <form
+          class="ant-form ant-form-horizontal"
+          data-testid="bookingCoupon"
+        >
+          <div
+            class="ant-row ant-form-item form-item-coupon ant-form-item-has-success"
+            style="display: inline-block; width: 100%; margin: 0px;"
+          >
+            <div
+              class="ant-col ant-form-item-control"
+            >
+              <div
+                class="ant-form-item-control-input"
+              >
+                <div
+                  class="ant-form-item-control-input-content"
+                >
+                  <input
+                    class="form-control"
+                    data-testid="inputDiscount"
+                    id="idDiscount"
+                    name="idDiscount"
+                    placeholder="input your discount number"
+                    value=""
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+          <div
+            class="ant-row ant-form-item"
+            style="margin-top: 20px;"
+          >
+            <div
+              class="ant-col ant-form-item-control"
+            >
+              <div
+                class="ant-form-item-control-input"
+              >
+                <div
+                  class="ant-form-item-control-input-content"
+                >
+                  <div
+                    class="form-submit"
+                  >
+                    <button
+                      class="btn btn-primary btn-md"
+                      id=""
+                      type="submit"
+                    >
+                      Apply voucher
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-    </form>
-  </div>
-</div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

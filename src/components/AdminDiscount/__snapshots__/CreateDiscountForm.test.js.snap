@@ -5,6 +5,8 @@ Array [
   <div
     style={
       Object {
+        "display": "flex",
+        "justifyContent": "end",
         "marginBottom": "10px",
       }
     }
@@ -13,6 +15,11 @@ Array [
       className="ant-btn ant-btn-primary"
       disabled={false}
       onClick={[Function]}
+      style={
+        Object {
+          "borderRadius": "12px",
+        }
+      }
       type="button"
     >
       <span>
@@ -114,7 +121,7 @@ Array [
                       rowSpan={null}
                       style={Object {}}
                     >
-                      Act
+                      Actions
                     </th>
                   </tr>
                 </thead>

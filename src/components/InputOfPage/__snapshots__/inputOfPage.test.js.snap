@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Booking Passenger bar test renders correctly 1`] = `
-<input
-  className="form-control"
-/>
-`;

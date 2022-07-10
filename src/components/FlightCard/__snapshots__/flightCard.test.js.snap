@@ -408,6 +408,11 @@ exports[`component/FlightCard renders correctly 1`] = `
     >
       <p
         className="flight-detail"
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
       >
         Flight details
       </p>

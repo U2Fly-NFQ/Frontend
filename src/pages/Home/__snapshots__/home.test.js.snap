@@ -22,7 +22,7 @@ exports[`Home page test renders correctly 1`] = `
         }
       >
         <div
-          className="ant-col ant-col-24 ant-col-sm-12 ant-col-lg-6"
+          className="ant-col ant-col-24"
           style={
             Object {
               "paddingBottom": 12,
@@ -48,78 +48,6 @@ exports[`Home page test renders correctly 1`] = `
                 Discover your ideal experience with us
               </h5>
             </div>
-          </div>
-        </div>
-        <div
-          className="ant-col ant-col-24 ant-col-sm-12 ant-col-lg-6"
-          style={
-            Object {
-              "paddingBottom": 12,
-              "paddingLeft": 12,
-              "paddingRight": 12,
-              "paddingTop": 12,
-            }
-          }
-        >
-          <div
-            className="imagination_boxed"
-            onClick={[Function]}
-          >
-            <img
-              alt="img"
-              src="https://wallpaperaccess.com/full/1631415.jpg"
-            />
-            <h3>
-              Ho Chi Minh
-            </h3>
-          </div>
-        </div>
-        <div
-          className="ant-col ant-col-24 ant-col-sm-12 ant-col-lg-6"
-          style={
-            Object {
-              "paddingBottom": 12,
-              "paddingLeft": 12,
-              "paddingRight": 12,
-              "paddingTop": 12,
-            }
-          }
-        >
-          <div
-            className="imagination_boxed"
-            onClick={[Function]}
-          >
-            <img
-              alt="img"
-              src="https://res.klook.com/image/upload/c_crop,w_1125,h_624,x_1,y_0/w_1125,h_624/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/destination/ur2mrg23d91mex03l4mw.jpg"
-            />
-            <h3>
-              Da Nang
-            </h3>
-          </div>
-        </div>
-        <div
-          className="ant-col ant-col-24 ant-col-sm-12 ant-col-lg-6"
-          style={
-            Object {
-              "paddingBottom": 12,
-              "paddingLeft": 12,
-              "paddingRight": 12,
-              "paddingTop": 12,
-            }
-          }
-        >
-          <div
-            className="imagination_boxed"
-            onClick={[Function]}
-          >
-            <img
-              alt="img"
-              src="https://www.swedishnomad.com/wp-content/images/2016/05/Bangkok-reseguide.jpg"
-            />
-            <h3>
-              Bangkok
-            </h3>
           </div>
         </div>
       </div>

@@ -530,68 +530,6 @@ exports[`Booking Passenger bar test renders correctly 1`] = `
               className="ant-row ant-form-item"
               style={
                 Object {
-                  "display": "inline-block",
-                  "width": "50%",
-                }
-              }
-            >
-              <div
-                className="ant-col ant-col-22 ant-form-item-control"
-                style={Object {}}
-              >
-                <div
-                  className="ant-form-item-control-input"
-                >
-                  <div
-                    className="ant-form-item-control-input-content"
-                  >
-                    <input
-                      className="form-control"
-                      data-testid="inputPassport"
-                      id="passport"
-                      name="passport"
-                      onChange={[Function]}
-                      placeholder="Passport no."
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              className="ant-row ant-form-item"
-              style={
-                Object {
-                  "display": "inline-block",
-                  "width": "50%",
-                }
-              }
-            >
-              <div
-                className="ant-col ant-col-22 ant-form-item-control"
-                style={Object {}}
-              >
-                <div
-                  className="ant-form-item-control-input"
-                >
-                  <div
-                    className="ant-form-item-control-input-content"
-                  >
-                    <input
-                      className="form-control"
-                      data-testid="inputVisa"
-                      id="visa"
-                      name="visa"
-                      onChange={[Function]}
-                      placeholder="Visa no."
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              className="ant-row ant-form-item"
-              style={
-                Object {
                   "marginTop": "10px",
                 }
               }

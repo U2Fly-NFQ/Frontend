@@ -197,22 +197,19 @@ exports[`Booking Passenger bar test renders correctly 1`] = `
               >
                 <ul>
                   <li>
-                    Chicago
+                    Ha Noi
                   </li>
                   <li>
-                    New York
+                    Da Nang
                   </li>
                   <li>
-                    San Francisco
+                    Ho Chi Minh
                   </li>
                   <li>
-                    California
+                    Can Tho
                   </li>
                   <li>
-                    Ohio
-                  </li>
-                  <li>
-                    Alaska
+                    Bangkok
                   </li>
                 </ul>
               </div>

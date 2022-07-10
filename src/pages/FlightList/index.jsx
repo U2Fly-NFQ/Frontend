@@ -266,14 +266,16 @@ function FlightList() {
                         <Row gutter={[8, 8]} justify="space-between">
                           <Col sm={12} xs={24}>
                             <Title level={4}>
-                              {t('flight-list-page.flights found', {
-                                number: emptyFlight ? 0 : pagination.total,
-                              })}
+                              {emptyFlight
+                                ? ''
+                                : t('flight-list-page.flights found', {
+                                    number: pagination.total,
+                                  })}
                             </Title>
                           </Col>
                           <Col flex={0}>
                             <Space>
-                              Order by
+                              {t('flight-list-page.Order by')}
                               <Select
                                 value={order}
                                 style={{ width: 180, textAlign: 'left' }}

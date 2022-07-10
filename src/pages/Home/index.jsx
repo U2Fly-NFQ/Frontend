@@ -3,10 +3,12 @@ import './style.scss'
 import { Row, Col } from 'antd'
 import { useNavigate, createSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
 function Home() {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const airports = useSelector((state) => state.airports.data)
 
   const handleChangeTopDestination = (arrivalCode) => {
     const searchQuery = {
@@ -30,7 +32,7 @@ function Home() {
         <div className="grid wide">
           <section id="go-beyond-area">
             <Row gutter={[24, 24]}>
-              <Col span={24} sm={12} lg={6}>
+              <Col span={24}>
                 <div className="heading_left_area__wrapper">
                   <div className="heading_left_area">
                     <h2>
@@ -43,44 +45,17 @@ function Home() {
                   </div>
                 </div>
               </Col>
-              <Col span={24} sm={12} lg={6}>
-                <div
-                  className="imagination_boxed"
-                  onClick={() => handleChangeTopDestination('SGN')}
-                >
-                  <img
-                    src="https://wallpaperaccess.com/full/1631415.jpg"
-                    alt="img"
-                  />
-                  <h3>Ho Chi Minh</h3>
-                </div>
-              </Col>
-              <Col span={24} sm={12} lg={6}>
-                <div
-                  className="imagination_boxed"
-                  onClick={() => handleChangeTopDestination('DAD')}
-                >
-                  <img
-                    src="https://res.klook.com/image/upload/c_crop,w_1125,h_624,x_1,y_0/w_1125,h_624/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/destination/ur2mrg23d91mex03l4mw.jpg"
-                    alt="img"
-                  />
-
-                  <h3>Da Nang</h3>
-                </div>
-              </Col>
-              <Col span={24} sm={12} lg={6}>
-                <div
-                  className="imagination_boxed"
-                  onClick={() => handleChangeTopDestination('BKK')}
-                >
-                  <img
-                    src="https://www.swedishnomad.com/wp-content/images/2016/05/Bangkok-reseguide.jpg"
-                    alt="img"
-                  />
-
-                  <h3>Bangkok</h3>
-                </div>
-              </Col>
+              {airports.map((ap) => (
+                <Col key={ap.id} span={24} sm={12} lg={6}>
+                  <div
+                    className="imagination_boxed"
+                    onClick={() => handleChangeTopDestination(ap.iata)}
+                  >
+                    <img src={ap.image} alt="img" />
+                    <h3>{ap.city}</h3>
+                  </div>
+                </Col>
+              ))}
             </Row>
           </section>
         </div>

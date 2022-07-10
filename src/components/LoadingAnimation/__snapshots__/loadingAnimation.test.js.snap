@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="loading-animation"
+>
+  <div
+    className="loader loader2"
+  >
+    <span
+      style={
+        Object {
+          "--i": 1,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 2,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 3,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 4,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 5,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 6,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 7,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 8,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 9,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 10,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 11,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 12,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 13,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 14,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 15,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 16,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 17,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 18,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 19,
+        }
+      }
+    />
+    <span
+      style={
+        Object {
+          "--i": 20,
+        }
+      }
+    />
+    <div
+      className="plane"
+    />
+  </div>
+</div>
+`;

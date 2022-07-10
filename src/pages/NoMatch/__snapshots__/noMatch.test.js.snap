@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`No match image test renders correctly 1`] = `
+<div
+  className="ant-result ant-result-info"
+  style={
+    Object {
+      "paddingTop": "128px",
+    }
+  }
+>
+  <div
+    className="ant-result-icon"
+  >
+    <img
+      src="not-found.png"
+      style={
+        Object {
+          "maxWidth": "100%",
+        }
+      }
+    />
+  </div>
+  <div
+    className="ant-result-title"
+  >
+    404
+  </div>
+  <div
+    className="ant-result-subtitle"
+  >
+    Sorry, the page you visited does not exist.
+  </div>
+  <div
+    className="ant-result-extra"
+  >
+    <button
+      className="ant-btn ant-btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <span>
+        Back Home
+      </span>
+    </button>
+  </div>
+</div>
+`;

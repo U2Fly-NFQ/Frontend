@@ -18,7 +18,6 @@ export { default as FooterOfPage } from './FooterOfPage'
 export { default as NotFoundFlight } from './NotFoundFlight'
 export { default as PageLoadingAnimation } from './PageLoadingAnimation'
 export { default as ScrollToTopButton } from './ScrollToTopButton'
-export { default as MainLogo } from './MainLogo'
 export { default as SmokeAnimation } from './SmokeAnimation'
 export { default as FlightDetailModal } from './FlightDetailModal'
 

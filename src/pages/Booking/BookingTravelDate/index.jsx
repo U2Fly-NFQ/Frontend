@@ -63,13 +63,13 @@ export default function BookingTravelDate() {
                 {t('flight-booking-page.Discount')}
               </div>
               <div className="booking-travel-date__container__value">
-                {`${getDiscount.percent * 100}% ($${
+                {`${getDiscount.percent * 100}% ($${(
                   (seatRoungTrip !== undefined
                     ? seatRoungTrip.price + seat.price
                     : seat.price) *
                   flightLocal.seatAvailable *
                   getDiscount.percent
-                })`}
+                ).toFixed(2)})`}
               </div>
             </li>
             <li>
@@ -96,18 +96,19 @@ export default function BookingTravelDate() {
           </div>
           <div className="booking-travel-date__container__amount__total__value">
             $
-            {(seatRoungTrip !== undefined
-              ? seatRoungTrip.price +
-                seatRoungTrip.price * 0.1 +
-                seat.price +
-                seat.price * 0.1
-              : seat.price +
-                seat.price * 0.1 -
-                (seatRoungTrip !== undefined
-                  ? seatRoungTrip.price + seat.price
-                  : seat.price) *
-                  getDiscount.percent
-            ).toFixed(2) * flightLocal.seatAvailable}
+            {(
+              (seatRoungTrip !== undefined
+                ? seatRoungTrip.price +
+                  seatRoungTrip.price * 0.1 +
+                  seat.price +
+                  seat.price * 0.1
+                : seat.price +
+                  seat.price * 0.1 -
+                  (seatRoungTrip !== undefined
+                    ? seatRoungTrip.price + seat.price
+                    : seat.price) *
+                    getDiscount.percent) * flightLocal.seatAvailable
+            ).toFixed(2)}
           </div>
         </div>
       </div>

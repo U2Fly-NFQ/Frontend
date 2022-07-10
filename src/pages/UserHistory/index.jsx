@@ -6,15 +6,18 @@ import { fetchHistoryBooking } from '../../redux/slices/ticketSlice'
 import {
   ticketHistoryDataSelector,
   ticketRatingStatusSelector,
+  ticketStatusSelector,
 } from '../../redux/selectors'
-import { isEmpty } from 'lodash/lang'
-import { bookingStatus } from '../../Constants'
-import { convertNumberToUSD } from '../../utils/numberFormater'
-import { flightDataProcessed } from '../../utils/flightDataProcessing'
+import { message } from 'antd/es'
+import {
+  logicForUserPage,
+  processingTicketData,
+} from '../../utils/logicForUserPage'
 
 function UserHistory(props) {
   //initiation
   const dispatch = useDispatch()
+  const ticketLoadingStatus = useSelector(ticketStatusSelector)
   const ticketHistory = useSelector(ticketHistoryDataSelector)
   const ticketRating = useSelector(ticketRatingStatusSelector)
   const userLogin = JSON.parse(localStorage.getItem('user'))
@@ -22,9 +25,13 @@ function UserHistory(props) {
   const [tickets, setTickets] = useState([])
   const [loading, setLoading] = useState(false)
 
-  //Logical handling functions
+  //handle loading animation
   useEffect(() => {
-    setLoading(true)
+    logicForUserPage(ticketLoadingStatus, 'loading', setLoading)
+  }, [ticketLoadingStatus])
+
+  //load data for booking history
+  useEffect(() => {
     dispatch(
       fetchHistoryBooking({
         passenger: userLogin.id,
@@ -33,29 +40,23 @@ function UserHistory(props) {
     )
   }, [dispatch, userLogin.id])
 
+  //processing data when load success
   useEffect(() => {
-    if (!isEmpty(ticketHistory)) {
-      let ticketProcessedData = ticketHistory.map((ticket) => {
-        return {
-          ...ticket,
-          status: bookingStatus[ticket.status],
-          totalPrice: convertNumberToUSD(ticket.totalPrice),
-          flights: flightDataProcessed(ticket),
-        }
-      })
-      setTickets(ticketProcessedData)
-      setLoading(false)
-    }
+    processingTicketData(ticketHistory, setTickets)
   }, [ticketHistory])
 
+  //reload data when rating success
   useEffect(() => {
-    dispatch(
-      fetchHistoryBooking({
-        passenger: userLogin.id,
-        effectiveness: 0,
-      })
-    )
-  }, [ticketRating])
+    if (ticketRating) {
+      dispatch(
+        fetchHistoryBooking({
+          passenger: userLogin.id,
+          effectiveness: 0,
+        })
+      )
+      message.success('Thanks for your review. Wish you have a good trip!')
+    }
+  }, [dispatch, ticketRating, userLogin.id])
 
   return (
     <Row className="userProfile-container-history">

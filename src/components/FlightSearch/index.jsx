@@ -175,7 +175,10 @@ export default function FlightSearch() {
   )
 
   return (
-    <div className="flightSearchContainer">
+    <div
+      className="flightSearchContainer"
+      data-testid="flight-search-container"
+    >
       <Modal
         visible={modalContent && true}
         onOk={() => setModalContent('')}
@@ -193,6 +196,7 @@ export default function FlightSearch() {
             value={ticketType}
             onChange={(e) => onChangeTicketType(e.target.value)}
             buttonStyle="solid"
+            data-testid="radio-category"
           >
             <Radio.Button value="oneWay">
               {t('search_form.one_way')}

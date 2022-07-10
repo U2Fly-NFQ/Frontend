@@ -3,6 +3,7 @@
 exports[`Flight search renders correctly 1`] = `
 <div
   className="flightSearchContainer"
+  data-testid="flight-search-container"
 >
   <div
     className="flightSearch"
@@ -12,6 +13,7 @@ exports[`Flight search renders correctly 1`] = `
     >
       <div
         className="ant-radio-group ant-radio-group-solid"
+        data-testid="radio-category"
       >
         <label
           className="ant-radio-button-wrapper ant-radio-button-wrapper-checked"

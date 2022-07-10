@@ -86,7 +86,9 @@ export default function FlightCard(props) {
         <div className="place">
           <div className="destination">
             <p className="sub-title">{t('flight-list-page.From')}</p>
-            <h3 className="title">{data.departure.iata}</h3>
+            <h3 className="title" data-testid="departure-iata">
+              {data.departure.iata}
+            </h3>
             <h6 className="desc">
               {moment(data.startTime, 'HH:mm:ss').format('HH:mm')}
             </h6>
@@ -98,7 +100,9 @@ export default function FlightCard(props) {
           </div>
           <div className="destination">
             <p className="sub-title">{t('flight-list-page.To')}</p>
-            <h3 className="title">{data.arrival.iata}</h3>
+            <h3 className="title" data-testid="arrival-iata">
+              {data.arrival.iata}
+            </h3>
             <h6 className="desc">
               {addHourToTime(data.startTime, data.duration)}
             </h6>
@@ -124,7 +128,11 @@ export default function FlightCard(props) {
               </span>
             </h4>
           </div>
-          <button className="btn btn-primary btn-md" onClick={onBooking}>
+          <button
+            data-testid="booking-btn"
+            className="btn btn-primary btn-md"
+            onClick={onBooking}
+          >
             {t('flight-list-page.Book now')}
           </button>
         </div>

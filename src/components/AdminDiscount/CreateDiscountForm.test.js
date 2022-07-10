@@ -1,20 +1,35 @@
-import renderer from 'react-test-renderer'
+import { I18nextProvider } from 'react-i18next'
+import i18n from '../../translations'
 import React, { Suspense } from 'react'
-import { Provider } from 'react-redux'
 import { store } from '../../redux/store'
-import CreateDiscountForm from './'
+import { Provider } from 'react-redux'
+import { BrowserRouter as Router } from 'react-router-dom'
 
-describe('Booking Passenger bar test', () => {
+import AdminDiscount from './'
+import { ConfigProvider } from 'antd'
+
+import EnzymeToJson from 'enzyme-to-json'
+import Enzyme, { mount } from 'enzyme'
+import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17'
+
+Enzyme.configure({ adapter: new EnzymeAdapter() })
+
+describe('Admin discount Layout', () => {
   it('renders correctly', () => {
-    const tree = renderer
-      .create(
+    const tree = mount(
+      <I18nextProvider i18n={i18n}>
         <Provider store={store}>
-          <Suspense>
-            <CreateDiscountForm />
-          </Suspense>
+          <ConfigProvider>
+            <Router>
+              <Suspense>
+                <AdminDiscount />
+              </Suspense>
+            </Router>
+          </ConfigProvider>
         </Provider>
-      )
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+      </I18nextProvider>
+    )
+
+    expect(EnzymeToJson(tree)).toMatchSnapshot()
   })
 })

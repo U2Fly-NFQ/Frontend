@@ -48,6 +48,10 @@ function FlightList() {
   const currentTicketType = searchParams.get('ticketType')
   const activeData =
     currentTicketType === 'roundTrip' && flightStorage.id ? roundtrip : oneway
+  const activeSelect =
+    currentTicketType === 'roundTrip' && flightStorage.id
+      ? 'roundTrip'
+      : 'oneWay'
   const { pagination } = activeData
 
   const checkEmptyFlight = () => {
@@ -71,6 +75,7 @@ function FlightList() {
     }
 
     if (currentTicketType === 'oneWay' && flightStorage.id) {
+      // one way but keep
       updateLs('flight', {
         id: '',
         roundId: '',
@@ -78,7 +83,7 @@ function FlightList() {
       setSelectedFlight({})
     }
 
-    if (currentTicketType === 'roundTrip' && flightStorage.id) {
+    if (activeSelect === 'roundTrip') {
       async function fetchData() {
         const rs = await FlightApi.get(flightStorage.id)
         setSelectedFlight(rs.data.data)
@@ -92,12 +97,18 @@ function FlightList() {
 
   const changeOrder = (value) => {
     setOrder(value)
-    searchParams.set('order', value)
+    if (activeSelect === 'roundTrip') {
+      searchParams.set('orderRoundTrip', value)
+      searchParams.set('order', '')
+    } else {
+      searchParams.set('order', value)
+      searchParams.set('orderRoundTrip', '')
+    }
     setSearchParams(searchParams)
   }
 
   const changePage = (value) => {
-    if (currentTicketType === 'roundTrip') {
+    if (activeSelect === 'roundTrip') {
       searchParams.set('page', '')
       searchParams.set('pageRoundTrip', value)
     } else {
@@ -108,7 +119,7 @@ function FlightList() {
   }
 
   const changeSize = (value) => {
-    if (currentTicketType === 'roundTrip') {
+    if (activeSelect === 'roundTrip') {
       searchParams.set('offset', '')
       searchParams.set('offsetRoundTrip', value)
     } else {
@@ -192,7 +203,7 @@ function FlightList() {
                         <div className="content">
                           <div className="airline">
                             <img
-                              src="https://andit.co/projects/html/and-tour/assets/img/common/biman_bangla.png"
+                              src={selectedFlight.airline.image}
                               alt="Airline image"
                             />
                             <Text>{selectedFlight.airline.name}</Text>

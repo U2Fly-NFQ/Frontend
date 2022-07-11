@@ -191,62 +191,8 @@ export default function FlightSearch() {
     </>
   )
 
-  const [showAskModal, setShowAskModal] = useState(true)
-
-  const chooseDeparture = (value) => {
-    updateLs('flight', {
-      departure: value,
-    })
-    setFrom(value)
-  }
-
   return (
     <div className="flightSearchContainer">
-      {!flightStorage.departure && showAskModal && (
-        <Modal
-          visible={true}
-          style={{
-            borderRadius: '12px',
-            overflow: 'hidden',
-            paddingBottom: 0,
-          }}
-          maskStyle={{
-            backgroundColor: 'rgba(14, 134, 212, 0.4)',
-          }}
-          footer={false}
-          onCancel={() => setShowAskModal(false)}
-        >
-          Hey buddy, where is your departure?
-          <Select
-            size="large"
-            clearIcon={<CloseOutlined />}
-            autoFocus
-            showSearch
-            value={airports[0]}
-            showArrow={false}
-            onSelect={chooseDeparture}
-            bordered={false}
-            defaultOpen
-            placement="bottomLeft"
-            style={{
-              width: '100%',
-              borderBottom: '1px solid #ddd',
-            }}
-            dropdownStyle={{
-              borderRadius: '10px',
-            }}
-            placeholder="Flying from..."
-          >
-            {airports.map((airport) => {
-              return (
-                <Option key={airport.iata} value={airport.iata}>
-                  {airport.city} ({airport.iata})
-                </Option>
-              )
-            })}
-          </Select>
-        </Modal>
-      )}
       <Modal
         visible={modalContent && true}
         onOk={() => setModalContent('')}

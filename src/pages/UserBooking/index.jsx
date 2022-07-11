@@ -15,7 +15,7 @@ import { isEmpty } from 'lodash/lang'
 import { bookingStatus } from '../../Constants'
 import { convertNumberToUSD } from '../../utils/numberFormater'
 import { flightDataProcessed } from '../../utils/flightDataProcessing'
-import { message } from 'antd/es'
+import { message } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
 function UserBooking(props) {

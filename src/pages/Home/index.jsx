@@ -35,7 +35,7 @@ function Home() {
               <Col span={24}>
                 <div className="heading_left_area__wrapper">
                   <div className="heading_left_area">
-                    <h2>
+                    <h2 style={{ textAlign: 'center' }}>
                       {t('home-page.top-destinations-section.title')}
                       <span> </span>
                     </h2>

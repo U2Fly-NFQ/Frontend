@@ -461,5 +461,7 @@
     "order_timeslot": "$t(order_timeslot.{{value}})",
     "order_history_action": "$t(order_history_action.{{action}})",
     "delivery_status": "$t(delivery_status.{{status}})"
-  }
+  },
+  "My Booking": "My Booking",
+  "Booking History": "Booking History"
 }

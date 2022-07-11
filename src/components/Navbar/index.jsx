@@ -1,10 +1,10 @@
 import React, { useRef } from 'react'
 import NavLinkDropDown from '../NavLinkDropDown'
 import './index.scss'
-import { useTranslation } from 'react-i18next'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Typography } from 'antd'
+import { useTranslation } from 'react-i18next'
 
 const { Title } = Typography
 
@@ -12,6 +12,8 @@ export default function Navbar() {
   const openNavbarHamburger = useRef(null)
   const openNavbarModal = useRef(null)
   const navigate = useNavigate()
+  const { t } = useTranslation()
+
   const openAndNavbarDropDown = () => {
     openNavbarHamburger.current.classList.toggle('open')
     openNavbarModal.current.classList.toggle('open')
@@ -20,7 +22,6 @@ export default function Navbar() {
     { path: '', name: 'header.navbar.home' },
     { path: '/flights', name: 'header.navbar.flight' },
   ]
-  const { t } = useTranslation()
   return (
     <nav className="navbar">
       <div
@@ -50,11 +51,11 @@ export default function Navbar() {
             </Title>
           </motion.div>
           <NavLinkDropDown
-            Title={{ path: '', title: 'Home' }}
+            Title={{ path: '', title: t('header.navbar.home') }}
             onClick={() => openAndNavbarDropDown()}
           />
           <NavLinkDropDown
-            Title={{ path: 'flights', title: 'Flights' }}
+            Title={{ path: 'flights', title: t('header.navbar.flight') }}
             onClick={() => openAndNavbarDropDown()}
           />
         </ul>

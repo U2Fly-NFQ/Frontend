@@ -10,6 +10,7 @@ import {
   getInfoFlightInBookingSeat,
   getInfoPriceAfterDiscount,
   getRoundTripBookingFlight,
+  createBookingFlight,
   getUserInformation,
 } from '../../../redux/selectors'
 import { useTranslation } from 'react-i18next'
@@ -54,8 +55,8 @@ export default function PaymentFlight() {
       discountId: getDiscountInfo.id || 1,
       ticketOwner: userInformation.firstName,
     }
-    console.log(fetchDataValue)
-    // dispatch(createBookingFlight(fetchDataValue))
+    // console.log(fetchDataValue)
+    dispatch(createBookingFlight(fetchDataValue))
   }
   let dataPayment = [
     {

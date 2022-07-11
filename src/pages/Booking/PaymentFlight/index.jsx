@@ -10,9 +10,9 @@ import {
   getInfoFlightInBookingSeat,
   getInfoPriceAfterDiscount,
   getRoundTripBookingFlight,
-  createBookingFlight,
   getUserInformation,
 } from '../../../redux/selectors'
+import { createBookingFlight } from '../../../redux/slices/bookingFlightsSlice'
 import { useTranslation } from 'react-i18next'
 export default function PaymentFlight() {
   const [value, setValue] = useState(1)

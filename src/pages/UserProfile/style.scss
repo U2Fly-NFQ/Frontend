@@ -13,10 +13,10 @@ $borderRadius: 15px;
       box-shadow: a.$box-shadow;
 
       &-header {
-        background-color: a.$bg-color;
         padding: 15px 0;
         border-top-right-radius: $borderRadius;
         border-top-left-radius: $borderRadius;
+        border-bottom: 1px a.$main-color solid;
         text-align: center;
 
         & > div > div {
@@ -50,7 +50,7 @@ $borderRadius: 15px;
     &-main {
       padding: 20px;
       border-radius: $borderRadius;
-      background-color: a.$bg-color;
+      //background-color: a.$bg-color;
       box-shadow: a.$box-shadow;
     }
 

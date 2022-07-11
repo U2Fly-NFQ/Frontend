@@ -19,9 +19,10 @@ import {
   processingTicketData,
 } from '../../utils/logicForUserPage'
 import { isEmpty } from 'lodash/lang'
-
+import { useLoadingContext } from 'react-router-loading'
 function UserBooking(props) {
   //initiation
+  const loadingContext = useLoadingContext()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const ticketLoadingStatus = useSelector(ticketStatusSelector)
@@ -35,6 +36,7 @@ function UserBooking(props) {
   //handle loading animation
   useEffect(() => {
     logicForUserPage(ticketLoadingStatus, 'loading', setLoading)
+    loadingContext.done()
   }, [ticketLoadingStatus])
 
   //load data for user booking

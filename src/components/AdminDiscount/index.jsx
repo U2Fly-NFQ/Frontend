@@ -53,7 +53,6 @@ function AddminDiscount() {
 
   const onFinish = (values) => {
     const discount = {
-      id: values.discountID,
       name: values.name,
       percent: values.value / 100,
     }
@@ -69,12 +68,7 @@ function AddminDiscount() {
 
   const columns = [
     {
-      title: 'Discount ID',
-      dataIndex: 'id',
-      render: (text) => <Typography.Paragraph>{text}</Typography.Paragraph>,
-    },
-    {
-      title: 'Name',
+      title: 'Code',
       dataIndex: 'name',
       render: (text) => <Typography.Paragraph>{text}</Typography.Paragraph>,
     },

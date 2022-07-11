@@ -10,17 +10,6 @@ export default function CreateDiscountForm({ form, onFinish, onFinishFailed }) {
         form={form}
       >
         <Form.Item
-          name="discountID"
-          rules={[
-            {
-              required: true,
-              message: 'please fill discount ID',
-            },
-          ]}
-        >
-          <Input placeholder="Discount ID" />
-        </Form.Item>
-        <Form.Item
           name="name"
           rules={[
             {
@@ -29,7 +18,7 @@ export default function CreateDiscountForm({ form, onFinish, onFinishFailed }) {
             },
           ]}
         >
-          <Input placeholder="Name" />
+          <Input placeholder="Code" />
         </Form.Item>
         <Form.Item
           label="Value"

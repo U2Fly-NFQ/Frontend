@@ -41,6 +41,7 @@ export default function ModalRating({ visible, setIsModalVisible, rating }) {
               <img
                 src={cryingIcon}
                 alt=""
+                data-testid="TestIcon"
                 onClick={() => {
                   setStatus(0)
                 }}
@@ -96,7 +97,7 @@ export default function ModalRating({ visible, setIsModalVisible, rating }) {
             <Tooltip title="love">
               <img
                 src={loveIcon}
-                alt=""
+                alt="love"
                 onClick={() => {
                   setStatus(4)
                 }}

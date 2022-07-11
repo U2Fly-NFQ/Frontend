@@ -184,7 +184,7 @@ exports[`Admin discount Layout renders correctly 1`] = `
                         className="info-plane_trip__footer"
                       >
                         <span>
-                          07-11-2022 Invalid date
+                          07-12-2022 Invalid date
                         </span>
                       </div>
                     </div>

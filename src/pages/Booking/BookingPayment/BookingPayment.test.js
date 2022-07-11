@@ -1,10 +1,11 @@
 import { I18nextProvider } from 'react-i18next'
 import i18n from '../../../translations'
-import renderer from 'react-test-renderer'
 import React, { Suspense } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
-import { Provider } from 'react-redux'
 import { store } from '../../../redux/store'
+import { Provider } from 'react-redux'
+import renderer from 'react-test-renderer'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { fireEvent, render, screen } from '@testing-library/react'
 import BookingPayment from './'
 
 describe('Booking Passenger bar test', () => {
@@ -23,5 +24,19 @@ describe('Booking Passenger bar test', () => {
       )
       .toJSON()
     expect(tree).toMatchSnapshot()
+  })
+  it('should finish', async () => {
+    render(
+      <Provider store={store}>
+        <Router>
+          <Suspense>
+            <BookingPayment />
+          </Suspense>
+        </Router>
+      </Provider>
+    )
+
+    const radioButton = screen.getByDisplayValue('0')
+    fireEvent.click(radioButton)
   })
 })

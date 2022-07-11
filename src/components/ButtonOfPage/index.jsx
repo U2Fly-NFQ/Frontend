@@ -6,6 +6,7 @@ export default function ButtonOfPage({ title, width, height, warning }) {
     <div className="form-submit">
       <button
         type="submit"
+        data-testid="btnCoupon"
         className="btn btn-primary btn-md"
         id={warning ? 'success' : ''}
       >

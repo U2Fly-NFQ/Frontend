@@ -1,9 +1,10 @@
-import React, { Suspense } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
-import SubNavbar from './'
-import { render, screen, fireEvent } from '@testing-library/react'
 import { I18nextProvider } from 'react-i18next'
 import i18n from '../../translations'
+import React, { Suspense } from 'react'
+import renderer from 'react-test-renderer'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { fireEvent, render, screen } from '@testing-library/react'
+import SubNavBar from './'
 
 // Storage Mock
 const fakeLocalStorage = (function () {
@@ -30,8 +31,23 @@ describe('Sub nav bar test', () => {
       value: fakeLocalStorage,
     })
   })
+  it('renders sub correctly', () => {
+    const tree = renderer
+      .create(
+        <Router>
+          <Suspense>
+            <I18nextProvider i18n={i18n}>
+              <SubNavBar />
+            </I18nextProvider>
+          </Suspense>
+        </Router>
+      )
+      .toJSON()
 
-  it('renders correctly', () => {
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders correctly', async () => {
     localStorage.setItem(
       'user',
       JSON.stringify({
@@ -42,14 +58,15 @@ describe('Sub nav bar test', () => {
       <Router>
         <Suspense>
           <I18nextProvider i18n={i18n}>
-            <SubNavbar />
+            <SubNavBar />
           </I18nextProvider>
         </Suspense>
       </Router>
     )
-
-    fireEvent.click(screen.getByTestId('booking-profile'))
-
+    const infoProfile = screen.getByTestId('booking-profile')
+    const listBox = screen.getByText('career@nfq.asia')
+    fireEvent.click(infoProfile)
+    fireEvent.click(listBox)
     // userEvent.click(screen.getByTestId('bookingProflie'))
   })
 })

@@ -45,7 +45,7 @@ export default function BookingCoupon() {
           </Form.Item>
           <Form.Item style={{ marginTop: '20px' }}>
             <ButtonOfPage
-              data-testid="Button"
+              data-testid="btnCoupon"
               title={'Apply voucher'}
               warning={discount.percent != 0 ? true : false}
             />

@@ -360,6 +360,7 @@ Array [
             >
               <button
                 className="btn btn-primary btn-md"
+                data-testid="btnCoupon"
                 id=""
                 type="submit"
               >

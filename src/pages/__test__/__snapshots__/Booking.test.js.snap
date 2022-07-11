@@ -601,6 +601,7 @@ exports[`Booking Passenger bar test renders correctly 1`] = `
                     >
                       <button
                         className="btn btn-primary btn-md"
+                        data-testid="btnCoupon"
                         id=""
                         type="submit"
                       >

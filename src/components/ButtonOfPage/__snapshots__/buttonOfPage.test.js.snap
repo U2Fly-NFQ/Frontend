@@ -6,6 +6,7 @@ exports[`Button of page renders correctly 1`] = `
 >
   <button
     className="btn btn-primary btn-md"
+    data-testid="btnCoupon"
     id=""
     type="submit"
   />

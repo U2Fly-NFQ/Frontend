@@ -1,18 +1,17 @@
-import renderer from 'react-test-renderer'
 import React, { Suspense } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+
 import CreateDiscountForm from './CreateDiscountForm'
-describe('Modal rating', () => {
+
+import renderer from 'react-test-renderer'
+
+describe('Admin discount Layout', () => {
   it('renders correctly', () => {
-    const tree = renderer
-      .create(
-        <Router>
-          <Suspense>
-            <CreateDiscountForm />
-          </Suspense>
-        </Router>
-      )
-      .toJSON()
+    const tree = renderer.create(
+      <Suspense>
+        <CreateDiscountForm />
+      </Suspense>
+    )
+
     expect(tree).toMatchSnapshot()
   })
 })

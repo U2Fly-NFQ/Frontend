@@ -220,3 +220,224 @@ exports[`User history page  renders correctly 1`] = `
   </div>
 </div>
 `;
+
+exports[`User history page renders correctly 1`] = `
+<div
+  className="userProfile"
+>
+  <div
+    style={
+      Object {
+        "opacity": 0,
+      }
+    }
+  >
+    <section
+      className="flight-list-banner"
+    >
+      <div
+        className="grid wide"
+      >
+        <div
+          className="flight-list-banner__text"
+        >
+          <div
+            style={
+              Object {
+                "opacity": 0,
+                "transform": "translateX(-200px) translateZ(0)",
+              }
+            }
+          >
+            <h1
+              className="ant-typography"
+              onClick={null}
+              style={
+                Object {
+                  "WebkitLineClamp": undefined,
+                }
+              }
+            >
+              flight-list-page.flight-banner.EXPLORE THE WORLD WITH US
+            </h1>
+          </div>
+          <div
+            style={
+              Object {
+                "opacity": 0,
+                "transform": "translateX(200px) translateZ(0)",
+              }
+            }
+          >
+            <h3
+              className="ant-typography"
+              onClick={null}
+              style={
+                Object {
+                  "WebkitLineClamp": undefined,
+                }
+              }
+            >
+               
+              flight-list-page.flight-banner.Amazing journeys. Every day.
+            </h3>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div
+    className="userProfile-container wide grid"
+  >
+    <div
+      className="ant-row ant-row-space-around"
+      style={
+        Object {
+          "marginBottom": -6,
+          "marginTop": -6,
+        }
+      }
+    >
+      <div
+        className="ant-col ant-col-xs-24 ant-col-md-5"
+        style={
+          Object {
+            "paddingBottom": 6,
+            "paddingTop": 6,
+          }
+        }
+      >
+        <div
+          className="ant-row userProfile-sidebar"
+          style={Object {}}
+        >
+          <div
+            className="ant-col ant-col-24 userProfile-sidebar-header"
+            style={Object {}}
+          >
+            <div
+              className="ant-row"
+              style={Object {}}
+            >
+              <div
+                className="ant-col ant-col-24 userProfile-sidebar-header-avatar"
+                style={Object {}}
+              >
+                <span
+                  className="ant-avatar ant-avatar-circle ant-avatar-icon"
+                  style={Object {}}
+                >
+                  <img
+                    alt="avatar"
+                    src="https://scontent.fvca1-2.fna.fbcdn.net/v/t1.6435-9/147238869_2737423053135997_5432239568851874162_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=730e14&_nc_ohc=zVwQ59TvZ1gAX-S0gcK&_nc_oc=AQniGBrBuoIMCZqjMjJgtSgX28eONnyplXB0_vcD6rkL7Xmo9ZxGFXkV5X4duXIUSjU&_nc_ht=scontent.fvca1-2.fna&oh=00_AT9hHya5lsTA9w-XKjfm3koqclwvO7BrLjnfdu7H2luAOQ&oe=62E4B213"
+                  />
+                </span>
+              </div>
+              <div
+                className="ant-col ant-col-24 userProfile-sidebar-header-name"
+                style={Object {}}
+              >
+                Sang Sáng Sủa
+              </div>
+              <div
+                className="ant-col ant-col-24 userProfile-sidebar-header-phone"
+                style={Object {}}
+              >
+                +84 094 8478 487
+              </div>
+              <div
+                className="ant-col ant-col-24 userProfile-sidebar-header-email"
+                style={Object {}}
+              >
+                sangsangsua@gmail.com
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-col ant-col-24 userProfile-sidebar-menu"
+            style={Object {}}
+          >
+            <ul
+              className="ant-menu ant-menu-root ant-menu-vertical ant-menu-light"
+              data-menu-list={true}
+              onKeyDown={[Function]}
+              role="menu"
+              tabIndex={0}
+            >
+              <li
+                className="ant-menu-item"
+                data-menu-id={null}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                role="menuitem"
+                style={Object {}}
+                tabIndex={-1}
+              >
+                <i
+                  className="fa-solid fa-address-card ant-menu-item-icon"
+                />
+                <span
+                  className="ant-menu-title-content"
+                >
+                  <a
+                    href="/profile/booking"
+                    onClick={[Function]}
+                  >
+                    My Booking
+                  </a>
+                </span>
+              </li>
+              <li
+                className="ant-menu-item"
+                data-menu-id={null}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onMouseEnter={[Function]}
+                onMouseLeave={[Function]}
+                role="menuitem"
+                style={Object {}}
+                tabIndex={-1}
+              >
+                <i
+                  className="fa-solid fa-clock-rotate-left ant-menu-item-icon"
+                />
+                <span
+                  className="ant-menu-title-content"
+                >
+                  <a
+                    href="/profile/history"
+                    onClick={[Function]}
+                  >
+                    Booking History
+                  </a>
+                </span>
+              </li>
+            </ul>
+            <div
+              aria-hidden={true}
+              style={
+                Object {
+                  "display": "none",
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col userProfile-container-main ant-col-xs-24 ant-col-md-18"
+        style={
+          Object {
+            "paddingBottom": 6,
+            "paddingTop": 6,
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;

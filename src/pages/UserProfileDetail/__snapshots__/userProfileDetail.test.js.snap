@@ -17,3 +17,21 @@ exports[`User profile detail  renders correctly 1`] = `
   />
 </div>
 `;
+
+exports[`User profile detail renders correctly 1`] = `
+<div
+  className="ant-row userProfile-container-profile"
+  style={Object {}}
+>
+  <div
+    className="ant-col ant-col-24 userProfile-container-profile-title"
+    style={Object {}}
+  >
+    My Profile
+  </div>
+  <div
+    className="ant-col ant-col-24"
+    style={Object {}}
+  />
+</div>
+`;

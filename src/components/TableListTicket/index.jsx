@@ -63,41 +63,22 @@ function TableListTicket({ loading, data }) {
       width: 100,
       align: 'center',
       render: (_, record) => {
-        console.log(record)
+        let color = ''
+        switch (record.status) {
+          case bookingStatus[2]:
+            color = 'warning'
+            break
+          case bookingStatus[3]:
+            color = 'success'
+            break
+          default:
+            color = 'default'
+        }
         return (
           <Space>
-            {/* eslint-disable-next-line react/jsx-no-undef */}
-            {record.status === bookingStatus[0] && (
-              <Tag
-                danger
-                type="primary"
-                shape="default"
-                // onClick={() => ()}
-              >
-                {bookingStatus['0']}
-              </Tag>
-            )}
-            {(record.status === bookingStatus['1'] ||
-              record.status === bookingStatus['3']) && (
-              <Tag
-                danger
-                type="primary"
-                shape="default"
-                // onClick={() => ()}
-              >
-                {bookingStatus['1']}
-              </Tag>
-            )}
-            {record.status === bookingStatus['2'] && (
-              <Tag
-                icon={<CheckCircleOutlined />}
-                color="success"
-                shape="default"
-                // onClick={() => ()}
-              >
-                {bookingStatus['2']}
-              </Tag>
-            )}
+            <Tag icon={<CheckCircleOutlined />} color={color} shape="default">
+              {record.status}
+            </Tag>
           </Space>
         )
       },

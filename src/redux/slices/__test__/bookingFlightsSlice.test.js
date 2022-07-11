@@ -4,6 +4,7 @@ import bookingFlightsSlice, {
   getDiscountCheck,
   getUserDataInBooking,
   createBookingFlight,
+  getRoundTripBookingFlightAsync,
 } from '../bookingFlightsSlice'
 import axiosInstance from '../../../api'
 import { store } from '../../store'
@@ -138,5 +139,11 @@ describe('FlightSlice', () => {
     )
 
     expect(result.type).toBe('flight/createBooking/fulfilled')
+  })
+
+  it('get round trip booking flight async', async () => {
+    const result = await store.dispatch(getRoundTripBookingFlightAsync(1))
+
+    expect(result.type).toBe('flight/RoundTripBooking/fulfilled')
   })
 })

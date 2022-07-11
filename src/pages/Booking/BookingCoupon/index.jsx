@@ -42,7 +42,7 @@ export default function BookingCoupon() {
           </Form.Item>
           <Form.Item style={{ marginTop: '20px' }}>
             <ButtonOfPage
-              title={'Apply voucher'}
+              title={t('flight-booking-page.Apply voucher')}
               warning={discount.percent != 0 ? true : false}
             />
           </Form.Item>

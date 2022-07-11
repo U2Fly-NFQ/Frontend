@@ -9,7 +9,6 @@ function AdminHeader() {
   //initiation
   const [search, setSearch] = useState('')
 
-  //Logical handling functions
   const handleSearch = (value) => {
     setSearch('')
   }

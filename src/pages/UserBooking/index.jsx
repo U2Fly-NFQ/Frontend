@@ -18,6 +18,7 @@ import {
   logicForUserPage,
   processingTicketData,
 } from '../../utils/logicForUserPage'
+import { isEmpty } from 'lodash/lang'
 
 function UserBooking(props) {
   //initiation
@@ -48,6 +49,9 @@ function UserBooking(props) {
 
   //processing data when load success
   useEffect(() => {
+    if (isEmpty(ticketData)) {
+      setTickets([])
+    }
     processingTicketData(ticketData, setTickets)
   }, [ticketData])
 

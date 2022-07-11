@@ -455,5 +455,7 @@
     "order_timeslot": "$t(order_timeslot.{{value}})",
     "order_history_action": "$t(order_history_action.{{action}})",
     "delivery_status": "$t(delivery_status.{{status}})"
-  }
+  },
+  "My Booking": "Chuyến bay đã đặt",
+  "Booking History": "Lịch sử đặt vé"
 }

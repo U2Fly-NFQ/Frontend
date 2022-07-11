@@ -47,7 +47,7 @@ export default function BookingPassenger() {
   return (
     <>
       <div className="booking-page__container__item__title">
-        <h2>Passengers information</h2>
+        <h2>{t('flight-booking-page.Passenger information')}</h2>
       </div>
       <Form
         wrapperCol={{

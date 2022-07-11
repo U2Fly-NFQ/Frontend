@@ -42,13 +42,15 @@ export default function PaymentFlight() {
       (getRoundTrip.seat !== undefined
         ? getPrice.price + getRoundTrip.seat.price
         : getPrice.price) * getDiscountInfo.percent
+    console.log(priceTotal)
+    console.log(discount)
     let fetchDataValue = {
       passengerId: userInformation.accountId,
       flightId: getRoundTrip.id
         ? `${getFlightData.id},${getRoundTrip.id}`
         : `${getFlightData.id}`,
       seatTypeId: getSeatData.id,
-      totalPrice: (priceTotal - discount) * flightLocal.seatAvailable,
+      totalPrice: (priceTotal - discount * 100) * flightLocal.seatAvailable,
       discountId: getDiscountInfo.id || 1,
       ticketOwner: userInformation.firstName,
     }

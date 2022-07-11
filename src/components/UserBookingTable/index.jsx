@@ -95,7 +95,7 @@ function UserBookingTable({ loading, data, onCancel }) {
               shape="default"
               onClick={() => navigate(getURLForBookingAgain(record))}
             >
-              Booking Again
+              Book Again
             </Button>
           )}
         </Space>

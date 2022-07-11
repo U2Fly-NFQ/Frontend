@@ -76,7 +76,6 @@ const ticketSlice = createSlice({
       })
       .addCase(getAllTicketHistory.fulfilled, (state, action) => {
         state.status = 'idle'
-        console.log(action.payload)
         state.getAllTicket = action.payload.data
       })
   },

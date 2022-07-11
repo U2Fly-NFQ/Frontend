@@ -89,4 +89,24 @@ describe('Flight list filter', () => {
     })
     expect(timeRadioMorning.value).toEqual('afternoon')
   })
+
+  it('checkbox have initial correctly', async () => {
+    render(
+      <I18nextProvider i18n={i18n}>
+        <Provider store={store}>
+          <ConfigProvider>
+            <Router>
+              <Suspense>
+                <FLightListFilter />
+              </Suspense>
+            </Router>
+          </ConfigProvider>
+        </Provider>
+      </I18nextProvider>
+    )
+
+    const airlineCheckbox = await screen.findByTestId('airline-checkbox')
+
+    expect(airlineCheckbox.checked).toEqual(undefined)
+  })
 })

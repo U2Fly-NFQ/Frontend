@@ -2,17 +2,12 @@ import React, { useState } from 'react'
 import { UserBookingDetail } from '../index'
 import { Button, Modal, Space, Table } from 'antd'
 import { bookingStatus } from '../../Constants'
-import { useNavigate } from 'react-router-dom'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
-import {
-  checkTimeForCancelBooking,
-  getURLForBookingAgain,
-} from '../../utils/flightDataProcessing'
+import { checkTimeForCancelBooking } from '../../utils/flightDataProcessing'
 
 function UserBookingTable({ loading, data, onCancel }) {
   //initiation
   const [expandedRowKeys, setExpandedRowKeys] = useState([])
-  const navigate = useNavigate()
 
   //Data for UI
   const confirm = (paymentID) => {
@@ -91,11 +86,7 @@ function UserBookingTable({ loading, data, onCancel }) {
             </Button>
           )}
           {record.status !== bookingStatus[1] && (
-            <Button
-              type="primary"
-              shape="default"
-              onClick={() => navigate(getURLForBookingAgain(record))}
-            >
+            <Button type="primary" shape="default">
               Booking Again
             </Button>
           )}

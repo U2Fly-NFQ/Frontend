@@ -3,6 +3,7 @@
 exports[`Flight page search test renders correctly 1`] = `
 <div
   className="ant-select ant-select-sm lang-select ant-select-single ant-select-show-arrow"
+  data-testid="lang-select"
   onBlur={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}

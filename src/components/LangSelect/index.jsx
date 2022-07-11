@@ -30,6 +30,7 @@ const LanguageSelect = () => {
 
   return (
     <Select
+      data-testid="lang-select"
       className="lang-select"
       size="small"
       suffixIcon={
@@ -44,7 +45,7 @@ const LanguageSelect = () => {
       styles={{ menuPortal: (base) => ({ ...base, zIndex: 99 }) }}
     >
       {languageOptions.map((option) => (
-        <Option key={option.key}>
+        <Option key={option.key} data-testid={option.key}>
           <img
             style={{
               marginBottom: '2px',

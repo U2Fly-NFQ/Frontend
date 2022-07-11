@@ -169,6 +169,7 @@ export default function FlightSearch() {
         onChange={(value) => {
           setPassengerNumber(value)
         }}
+        data-testid="no-passenger"
       />
       <label
         className="flightSearchLabel"
@@ -191,62 +192,8 @@ export default function FlightSearch() {
     </>
   )
 
-  const [showAskModal, setShowAskModal] = useState(true)
-
-  const chooseDeparture = (value) => {
-    updateLs('flight', {
-      departure: value,
-    })
-    setFrom(value)
-  }
-
   return (
     <div className="flightSearchContainer">
-      {!flightStorage.departure && showAskModal && (
-        <Modal
-          visible={true}
-          style={{
-            borderRadius: '12px',
-            overflow: 'hidden',
-            paddingBottom: 0,
-          }}
-          maskStyle={{
-            backgroundColor: 'rgba(14, 134, 212, 0.4)',
-          }}
-          footer={false}
-          onCancel={() => setShowAskModal(false)}
-        >
-          Hey buddy, where is your departure?
-          <Select
-            size="large"
-            clearIcon={<CloseOutlined />}
-            autoFocus
-            showSearch
-            value={airports[0]}
-            showArrow={false}
-            onSelect={chooseDeparture}
-            bordered={false}
-            defaultOpen
-            placement="bottomLeft"
-            style={{
-              width: '100%',
-              borderBottom: '1px solid #ddd',
-            }}
-            dropdownStyle={{
-              borderRadius: '10px',
-            }}
-            placeholder="Flying from..."
-          >
-            {airports.map((airport) => {
-              return (
-                <Option key={airport.iata} value={airport.iata}>
-                  {airport.city} ({airport.iata})
-                </Option>
-              )
-            })}
-          </Select>
-        </Modal>
-      )}
       <Modal
         visible={modalContent && true}
         onOk={() => setModalContent('')}
@@ -264,11 +211,12 @@ export default function FlightSearch() {
             value={ticketType}
             onChange={(e) => onChangeTicketType(e.target.value)}
             buttonStyle="solid"
+            data-testid="ticket-type-radio"
           >
-            <Radio.Button value="oneWay">
+            <Radio.Button value="oneWay" data-testid="ticket-type-oneway">
               {t('search_form.one_way')}
             </Radio.Button>
-            <Radio.Button value="roundTrip">
+            <Radio.Button value="roundTrip" data-testid="roundtrip-radio">
               {t('search_form.round_trip')}
             </Radio.Button>
           </Radio.Group>
@@ -288,6 +236,7 @@ export default function FlightSearch() {
                 initial="hide"
               >
                 <Select
+                  data-testid="departure-select"
                   size="large"
                   allowClear
                   clearIcon={<CloseOutlined />}
@@ -379,6 +328,7 @@ export default function FlightSearch() {
                     {t('search_form.journey_date')}
                   </label>
                   <DatePicker
+                    data-testid="date-picker-start"
                     className="journeyDate"
                     allowClear={false}
                     disabledDate={(current) => {
@@ -412,6 +362,7 @@ export default function FlightSearch() {
                         }}
                       >
                         <DatePicker
+                          data-testid="date-picker-end"
                           allowClear={false}
                           disabledDate={(current) => {
                             return (
@@ -436,6 +387,7 @@ export default function FlightSearch() {
                           style={{
                             paddingLeft: 0,
                           }}
+                          data-testid="text-date"
                         >
                           {t('search_form.Add return date')}
                         </Button>
@@ -451,6 +403,7 @@ export default function FlightSearch() {
               content={passengerPopover}
               trigger="click"
               placement="bottomRight"
+              data-testid="popover"
             >
               <div className="flightSearchBox">
                 <label className="flightSearchLabel">
@@ -473,6 +426,7 @@ export default function FlightSearch() {
               size="large"
               className="searchBtn btn btn-md btn-primary"
               onClick={onFinish}
+              data-testid="search-submit"
             >
               {t('cta.search')}{' '}
             </button>

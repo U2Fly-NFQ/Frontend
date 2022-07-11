@@ -133,7 +133,9 @@ const bookingFlightsSlice = createSlice({
     [getDataFlights.fulfilled]: (state, action) => {
       state.loadding = false
       const { status, data } = action.payload
-      let allSeatNameAvailable = data.seat.map((item) => item.name)
+      let allSeatNameAvailable = data.seat.map((item) =>
+        item.name.toLowerCase()
+      )
       let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
       if (status === 'success') {
         let tempResult = {
@@ -159,7 +161,9 @@ const bookingFlightsSlice = createSlice({
     [getRoundTripBookingFlightAsync.fulfilled]: (state, action) => {
       state.loadding = false
       const { status, data } = action.payload
-      let allSeatNameAvailable = data.seat.map((item) => item.name)
+      let allSeatNameAvailable = data.seat.map((item) =>
+        item.name.toLowerCase()
+      )
       let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
       if (status === 'success') {
         let tempResult = {

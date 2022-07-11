@@ -7,6 +7,7 @@ export const getList = (params) => {
     params,
   })
 }
+export const getAllTickets = () => axios.get(`/admin${endpoint}`)
 
 export const get = (id) => axios.get(`${endpoint}/${id}`)
 

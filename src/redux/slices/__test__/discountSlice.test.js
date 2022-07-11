@@ -57,7 +57,7 @@ describe('DiscountSlice', () => {
     expect(result.type).toBe('discounts/deleteDiscount/fulfilled')
   })
 
-  it('Should be able creaet discount', async () => {
+  it('Should be able create discount', async () => {
     const result = await store.dispatch(createDiscount({}))
 
     expect(result.type).toBe('discounts/createDiscount/fulfilled')

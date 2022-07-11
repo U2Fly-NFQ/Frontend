@@ -5,6 +5,8 @@ import bookingFlightsSlice, {
   getUserDataInBooking,
   createBookingFlight,
   getRoundTripBookingFlightAsync,
+  addDataIntoBookingFlight,
+  changeCurrentMethod,
 } from '../bookingFlightsSlice'
 import axiosInstance from '../../../api'
 import { store } from '../../store'
@@ -145,5 +147,25 @@ describe('FlightSlice', () => {
     const result = await store.dispatch(getRoundTripBookingFlightAsync(1))
 
     expect(result.type).toBe('flight/RoundTripBooking/fulfilled')
+  })
+
+  it('add data into booking flight', async () => {
+    store.dispatch(
+      addDataIntoBookingFlight({
+        name: 'PN',
+      })
+    )
+
+    const state = store.getState().bookingFlight
+
+    expect(state.userInformation.name).toEqual('PN')
+  })
+
+  it('change current metho correctly', async () => {
+    store.dispatch(changeCurrentMethod('PN'))
+
+    const state = store.getState().bookingFlight
+
+    expect(state.currentMethods).toEqual('PN')
   })
 })

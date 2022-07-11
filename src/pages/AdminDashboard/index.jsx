@@ -76,6 +76,7 @@ function AdminDashboard() {
               title={<Title level={5}>Bookings Report</Title>}
               bordered={false}
             >
+              {/* istanbul ignore next */}
               <FlightChart data={data.flightAnalyze} />
             </Card>
           </Col>

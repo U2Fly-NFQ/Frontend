@@ -9,8 +9,8 @@ describe('to be Data Processed', () => {
   it('should return correct flight data', () => {
     const spy = jest
       .spyOn(flightDataUtil, 'flightDataProcessed')
-      .mockImplementation(() => {})
-    flightDataUtil.flightDataProcessed()
+      .mockImplementation(() => () => {})
+    flightDataUtil.flightDataProcessed()()
 
     expect(spy).toHaveBeenCalled()
   })

@@ -2,6 +2,8 @@ import {
   getDurationFormat,
   addHourToTime,
   getPriceWithDiscount,
+  getBoardingDateTime,
+  getEndDateTime,
 } from '../flight'
 
 describe('Test filght until functions', () => {
@@ -34,4 +36,16 @@ describe('Test filght until functions', () => {
       expect(getPriceWithDiscount(price, discount)).toEqual(expected)
     }
   )
+
+  test('should return correctly boarding time', () => {
+    expect(getBoardingDateTime('2020-07-12T14:00:00.000Z')).toStrictEqual(
+      new Date('2020-07-12T13:30:00.000Z')
+    )
+  })
+
+  test('should return end datetime correctly', () => {
+    expect(getEndDateTime(30, '2020-07-12T14:00:00.000Z')).toStrictEqual(
+      new Date('2020-07-13T20:00:00.000Z')
+    )
+  })
 })

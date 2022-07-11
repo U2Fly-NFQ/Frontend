@@ -30,7 +30,12 @@ export default function ModalRating({ visible, setIsModalVisible, rating }) {
     setIsModalVisible(false)
   }
   return (
-    <Modal visible={visible} onOk={handleOK} onCancel={handleCancel}>
+    <Modal
+      visible={visible}
+      onOk={handleOK}
+      onCancel={handleCancel}
+      data-testid="rating-modal"
+    >
       <div className="modal-rating">
         <div className="modal-rating__title">
           <h3>How do you feel about this trip ?</h3>
@@ -95,6 +100,7 @@ export default function ModalRating({ visible, setIsModalVisible, rating }) {
           <div className="modal-rating__image">
             <Tooltip title="love">
               <img
+                data-testid="love-rating"
                 src={loveIcon}
                 alt=""
                 onClick={() => {

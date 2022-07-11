@@ -2,6 +2,7 @@ import renderer from 'react-test-renderer'
 import React, { Suspense } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import ModalRating from './'
+import { render, fireEvent, screen } from '@testing-library/react'
 describe('Modal rating', () => {
   it('renders correctly', () => {
     const tree = renderer
@@ -14,5 +15,28 @@ describe('Modal rating', () => {
       )
       .toJSON()
     expect(tree).toMatchSnapshot()
+  })
+
+  it('close when cancel', async () => {
+    render(
+      <Router>
+        <Suspense>
+          <ModalRating visible={true} setIsModalVisible={() => {}} rating={5} />
+        </Suspense>
+      </Router>
+    )
+
+    const ratingModal = await screen.findByTestId('rating-modal')
+    const commentBox = await screen.findByTestId('comment-box')
+
+    fireEvent.change(commentBox, {
+      target: {
+        value: 'comment',
+      },
+    })
+    expect(commentBox.value).toBe('comment')
+
+    fireEvent.click(screen.queryByText('Cancel'))
+    expect(ratingModal).toBeInTheDocument()
   })
 })

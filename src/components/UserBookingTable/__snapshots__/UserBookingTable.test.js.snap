@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Navigation bar test renders correctly 1`] = `
+exports[`Booking table test renders correctly 1`] = `
 <div
   className="ant-table-wrapper"
 >

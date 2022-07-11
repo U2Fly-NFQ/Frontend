@@ -197,7 +197,7 @@ exports[`My Connected React-Redux Component should render with given state from 
                         <div
                           className="passenger-info-text"
                         >
-                          07-11-2022
+                          07-12-2022
                         </div>
                       </div>
                       <div
@@ -390,7 +390,7 @@ exports[`My Connected React-Redux Component should render with given state from 
                         <div
                           className="passenger-info-text"
                         >
-                          07-11-2022
+                          07-12-2022
                         </div>
                       </div>
                       <div

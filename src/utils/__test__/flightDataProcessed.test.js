@@ -23,28 +23,4 @@ describe('to be Data Processed', () => {
   ])('Check time for cancel booking', (start, end, expected) => {
     expect(flightDataUtil.checkTimeForCancelBooking(start, end)).toBe(expected)
   })
-
-  // get URL for booking again
-  it('Should return correctURL', () => {
-    const testObj = {
-      departure: 'VCA',
-      arrival: 'SGN',
-      startDate: '2022-07-13',
-      seatType: 'Economy',
-      ticketType: 'oneWay',
-    }
-
-    const spy = jest
-      .spyOn(flightDataUtil, 'getURLForBookingAgain')
-      .mockImplementation(
-        () =>
-          `/flights?departure=${testObj.departure}&arrival=${testObj.arrival}&startDate=${testObj.startDate}&seatType=${testObj.seatType}&seatAvailable=1&ticketType=${testObj.ticketType}`
-      )
-    const url = flightDataUtil.getURLForBookingAgain(testObj)
-
-    expect(spy).toHaveBeenCalled()
-    expect(url).toBe(
-      `/flights?departure=${testObj.departure}&arrival=${testObj.arrival}&startDate=${testObj.startDate}&seatType=${testObj.seatType}&seatAvailable=1&ticketType=${testObj.ticketType}`
-    )
-  })
 })

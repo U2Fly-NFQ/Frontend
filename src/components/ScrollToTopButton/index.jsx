@@ -38,7 +38,13 @@ const ScrollToTopButton = () => {
           }}
           whileTap={{ scale: 1 }}
         >
-          <Button size="large" type="primary" shape="circle" onClick={goToTop}>
+          <Button
+            size="large"
+            type="primary"
+            shape="circle"
+            onClick={goToTop}
+            data-testid="scroller"
+          >
             <i className="fa-solid fa-arrow-up"></i>
           </Button>
         </motion.div>

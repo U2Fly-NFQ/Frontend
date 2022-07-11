@@ -23,17 +23,3 @@ export const checkTimeForCancelBooking = (startDate, startTime) => {
     (new Date(`${startDate} ${startTime}`) - new Date()) / 1000 / 60 / 60 < 2
   )
 }
-
-export const getURLForBookingAgain = (ticket) => {
-  let departure = ticket.flights[0].departure.substring(
-    ticket.flights[0].departure.length - 4,
-    ticket.flights[0].departure.length - 1
-  )
-  let arrival = ticket.flights[0].arrival.substring(
-    ticket.flights[0].arrival.length - 4,
-    ticket.flights[0].arrival.length - 1
-  )
-  let seatType = ticket.seatType.toLowerCase()
-  let startDate = moment().format('YYYY-MM-DD')
-  let ticketType = 'oneWay'
-}

@@ -36,11 +36,11 @@ const SubNavBar = () => {
       onClick={handleMenuClick}
       items={[
         {
-          label: 'My booking',
+          label: t('My Booking'),
           key: 'booked',
         },
         {
-          label: 'Log out',
+          label: t('cta.logout'),
           key: 'logout',
         },
       ]}

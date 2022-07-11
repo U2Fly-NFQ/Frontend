@@ -4,7 +4,7 @@ import { FlightListBanner, UserProfileSidebar } from '../../components'
 import { Col, Row } from 'antd'
 import './style.scss'
 
-function UserProfile(props) {
+function UserProfile() {
   return (
     <div className="userProfile">
       <FlightListBanner />

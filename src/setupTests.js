@@ -23,3 +23,18 @@ global.matchMedia =
       removeListener: jest.fn(),
     }
   }
+
+class Worker {
+  constructor(stringUrl) {
+    this.url = stringUrl
+    this.onmessage = () => {}
+  }
+
+  postMessage(msg) {
+    this.onmessage(msg)
+  }
+}
+
+window.Worker = Worker
+
+window.URL.createObjectURL = function () {}

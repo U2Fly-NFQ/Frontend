@@ -45,7 +45,7 @@ export default function PaymentFlight() {
     console.log(priceTotal)
     console.log(discount)
     let fetchDataValue = {
-      passengerId: userInformation.accountId,
+      passengerId: userInformation.id,
       flightId: getRoundTrip.id
         ? `${getFlightData.id},${getRoundTrip.id}`
         : `${getFlightData.id}`,

@@ -110,6 +110,7 @@ function UserBookingTable({ loading, data, onCancel }) {
     <>
       <Table
         columns={bookingListColumn}
+        showSorterTooltip={false}
         rowKey={(record) => record.id}
         expandable={{
           expandedRowKeys: expandedRowKeys,

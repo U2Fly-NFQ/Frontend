@@ -11,6 +11,7 @@ export const initialState = {
   data: [],
   history: [],
   cancel: '',
+  rating: '',
   getAllTicket: [],
 }
 
@@ -23,6 +24,7 @@ const ticketSlice = createSlice({
       // fetch all
       .addCase(fetchTickets.pending, (state) => {
         state.status = 'loading'
+        state.cancel = ''
       })
       .addCase(fetchTickets.rejected, (state) => {
         state.status = 'error'
@@ -30,11 +32,11 @@ const ticketSlice = createSlice({
       .addCase(fetchTickets.fulfilled, (state, action) => {
         state.status = 'idle'
         state.data = action.payload.data
-        state.cancel = ''
       })
       // fetch history booking
       .addCase(fetchHistoryBooking.pending, (state) => {
         state.status = 'loading'
+        state.rating = ''
       })
       .addCase(fetchHistoryBooking.rejected, (state) => {
         state.status = 'error'
@@ -55,7 +57,7 @@ const ticketSlice = createSlice({
         state.status = 'idle'
         state.cancel = 'success'
       })
-      // fetch history booking
+      // fetch rating booking
       .addCase(fetchRatingBooking.pending, (state) => {
         state.status = 'loading'
       })
@@ -64,6 +66,7 @@ const ticketSlice = createSlice({
       })
       .addCase(fetchRatingBooking.fulfilled, (state, action) => {
         state.status = 'idle'
+        state.rating = action.payload.status
       })
       .addCase(getAllTicketHistory.pending, (state) => {
         state.status = 'loading'

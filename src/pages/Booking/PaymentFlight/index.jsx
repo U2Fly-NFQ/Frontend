@@ -10,10 +10,10 @@ import {
   getInfoFlightInBookingSeat,
   getInfoPriceAfterDiscount,
   getRoundTripBookingFlight,
+  createBookingFlight,
   getUserInformation,
 } from '../../../redux/selectors'
 import { useTranslation } from 'react-i18next'
-import { createBookingFlight } from '../../../redux/slices/bookingFlightsSlice'
 export default function PaymentFlight() {
   const [value, setValue] = useState(1)
   const [dataBooking, setDataBooking] = useState()
@@ -36,21 +36,26 @@ export default function PaymentFlight() {
   }, [value])
   const onFinish = () => {
     let priceTotal =
-      (getRoundTrip.seat !== undefined
+      getRoundTrip.seat !== undefined
         ? getPrice.price * 110 + getRoundTrip.seat.price * 110
-        : getPrice.price * 110) * flightLocal.seatAvailable
-
+        : getPrice.price * 110
+    let discount =
+      (getRoundTrip.seat !== undefined
+        ? getPrice.price + getRoundTrip.seat.price
+        : getPrice.price) * getDiscountInfo.percent
+    console.log(priceTotal)
+    console.log(discount)
     let fetchDataValue = {
-      passengerId: userInformation.accountId,
+      passengerId: userInformation.id,
       flightId: getRoundTrip.id
         ? `${getFlightData.id},${getRoundTrip.id}`
         : `${getFlightData.id}`,
       seatTypeId: getSeatData.id,
-      totalPrice: priceTotal,
+      totalPrice: (priceTotal - discount * 100) * flightLocal.seatAvailable,
       discountId: getDiscountInfo.id || 1,
       ticketOwner: userInformation.firstName,
     }
-
+    // console.log(fetchDataValue)
     dispatch(createBookingFlight(fetchDataValue))
   }
   let dataPayment = [

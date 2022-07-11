@@ -34,6 +34,11 @@ function AdminSidebar({ collapsed, setCollapsed }) {
       '/admin/discount',
       <i className="fa-solid fa-tags"></i>
     ),
+    getItem(
+      <Link to="/admin/ticket/">Tickets</Link>,
+      2,
+      <i className="fa-solid fa-gauge"></i>
+    ),
   ]
 
   return (

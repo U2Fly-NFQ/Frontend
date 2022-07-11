@@ -5,23 +5,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   ticketCancelStatusSelector,
   ticketDataSelector,
+  ticketStatusSelector,
 } from '../../redux/selectors'
 import {
   fetchCancelBooking,
   fetchTickets,
 } from '../../redux/slices/ticketSlice'
-import { isEmpty } from 'lodash/lang'
 
-import { bookingStatus } from '../../Constants'
-import { convertNumberToUSD } from '../../utils/numberFormater'
-import { flightDataProcessed } from '../../utils/flightDataProcessing'
 import { message } from 'antd/es'
 import { useNavigate } from 'react-router-dom'
+import {
+  logicForUserPage,
+  processingTicketData,
+} from '../../utils/logicForUserPage'
 
 function UserBooking(props) {
   //initiation
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const ticketLoadingStatus = useSelector(ticketStatusSelector)
   const ticketData = useSelector(ticketDataSelector)
   const ticketCancelStatus = useSelector(ticketCancelStatusSelector)
   const userLogin = JSON.parse(localStorage.getItem('user'))
@@ -29,9 +31,13 @@ function UserBooking(props) {
   const [loading, setLoading] = useState(false)
   const [tickets, setTickets] = useState([])
 
-  //Logical handling functions
+  //handle loading animation
   useEffect(() => {
-    setLoading(true)
+    logicForUserPage(ticketLoadingStatus, 'loading', setLoading)
+  }, [ticketLoadingStatus])
+
+  //load data for user booking
+  useEffect(() => {
     dispatch(
       fetchTickets({
         passenger: userLogin.id,
@@ -40,29 +46,27 @@ function UserBooking(props) {
     )
   }, [dispatch, userLogin.id])
 
+  //processing data when load success
   useEffect(() => {
-    if (!isEmpty(ticketData)) {
-      let ticketProcessedData = ticketData.map((ticket) => {
-        return {
-          ...ticket,
-          status: bookingStatus[ticket.status],
-          totalPrice: convertNumberToUSD(ticket.totalPrice),
-          flights: flightDataProcessed(ticket),
-        }
-      })
-      setTickets(ticketProcessedData)
-      setLoading(false)
-    }
+    processingTicketData(ticketData, setTickets)
   }, [ticketData])
 
+  //func handle cancel booking
+  const handleCancelBooking = (data) => {
+    dispatch(
+      fetchCancelBooking({
+        paymentId: data,
+      })
+    )
+  }
+
+  //reload data when cancel success
   useEffect(() => {
     if (ticketCancelStatus === 'failed') {
       message.error("Can't cancel this booking!")
     }
     if (ticketCancelStatus === 'success') {
       message.success('Cancel this booking success!')
-    }
-    if (ticketCancelStatus) {
       dispatch(
         fetchTickets({
           passenger: userLogin.id,
@@ -71,14 +75,6 @@ function UserBooking(props) {
       )
     }
   }, [dispatch, ticketCancelStatus, userLogin.id])
-
-  const handleCancelBooking = (data) => {
-    dispatch(
-      fetchCancelBooking({
-        paymentId: data,
-      })
-    )
-  }
 
   return (
     <Row className="userProfile-container-booking">

@@ -8,7 +8,6 @@ import moment from 'moment'
 import ModalRating from '../ModalRating'
 import { useDispatch } from 'react-redux'
 import { fetchRatingBooking } from '../../redux/slices/ticketSlice'
-import { message } from 'antd/es'
 
 function UserBookingDetail({ detailData }) {
   //initiation
@@ -21,6 +20,7 @@ function UserBookingDetail({ detailData }) {
   const showRatingForm = (value) => {
     setIsModalVisible(true)
     setDataRating({
+      airlineId: value.airline.id,
       ticketFlightId: value.ticketFlight.id,
       accountId: JSON.parse(localStorage.getItem('user')).id,
     })
@@ -34,7 +34,6 @@ function UserBookingDetail({ detailData }) {
         comment: value.description,
       })
     )
-    message.success('Thanks for your review. Wish you have a good trip!')
   }
 
   const flightsColumn = [

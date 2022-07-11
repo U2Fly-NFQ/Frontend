@@ -1,29 +1,24 @@
 import React, { useState } from 'react'
 import { UserBookingDetail } from '../index'
-import { Button, Modal, Space, Table } from 'antd'
+import { Space, Table, Tag } from 'antd'
 import { bookingStatus } from '../../Constants'
 import { useNavigate } from 'react-router-dom'
-import { ExclamationCircleOutlined } from '@ant-design/icons'
-import {
-  checkTimeForCancelBooking,
-  getURLForBookingAgain,
-} from '../../utils/flightDataProcessing'
+import ModalRating from '../ModalRating'
+import { CheckCircleOutlined } from '@ant-design/icons'
 
-function UserBookingTable({ loading, data, onCancel }) {
+function TableListTicket({ loading, data }) {
   //initiation
   const [expandedRowKeys, setExpandedRowKeys] = useState([])
+  const [currentId, setCurrentId] = useState()
   const navigate = useNavigate()
-
   //Data for UI
-  const confirm = (paymentID) => {
-    Modal.confirm({
-      title: 'Confirm',
-      icon: <ExclamationCircleOutlined />,
-      content: 'Are you want to cancel this booking?',
-      okText: 'Yes',
-      cancelText: 'No',
-      onOk: () => onCancel(paymentID),
-    })
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const showModal = () => {
+    setIsModalVisible(true)
+  }
+
+  const handleCancel = () => {
+    setIsModalVisible(false)
   }
   const bookingListColumn = [
     {
@@ -58,48 +53,54 @@ function UserBookingTable({ loading, data, onCancel }) {
       title: 'Booking Amount',
       dataIndex: 'totalPrice',
       align: 'center',
-      sorter: (a, b) =>
-        parseFloat(a.totalPrice.substring(1)) -
-        parseFloat(b.totalPrice.substring(1)),
+      sorter: (a, b) => a.totalPrice - b.totalPrice,
     },
+
     {
       title: 'Status',
-      dataIndex: 'status',
-      align: 'center',
-    },
-    {
-      title: 'Action',
       key: 'action',
-      width: '100px',
       dataIndex: 'id',
+      width: 100,
       align: 'center',
-      render: (_, record) => (
-        <Space>
-          {/* eslint-disable-next-line react/jsx-no-undef */}
-          {record.status === bookingStatus[1] && (
-            <Button
-              type="default"
-              shape="default"
-              disabled={checkTimeForCancelBooking(
-                record.flights[0].startDate,
-                record.flights[0].startTime
-              )}
-              onClick={() => confirm(record.paymentId)}
-            >
-              Cancel
-            </Button>
-          )}
-          {record.status !== bookingStatus[1] && (
-            <Button
-              type="primary"
-              shape="default"
-              onClick={() => navigate(getURLForBookingAgain(record))}
-            >
-              Booking Again
-            </Button>
-          )}
-        </Space>
-      ),
+      render: (_, record) => {
+        console.log(record)
+        return (
+          <Space>
+            {/* eslint-disable-next-line react/jsx-no-undef */}
+            {record.status === bookingStatus[0] && (
+              <Tag
+                danger
+                type="primary"
+                shape="default"
+                // onClick={() => ()}
+              >
+                {bookingStatus['0']}
+              </Tag>
+            )}
+            {(record.status === bookingStatus['1'] ||
+              record.status === bookingStatus['3']) && (
+              <Tag
+                danger
+                type="primary"
+                shape="default"
+                // onClick={() => ()}
+              >
+                {bookingStatus['1']}
+              </Tag>
+            )}
+            {record.status === bookingStatus['2'] && (
+              <Tag
+                icon={<CheckCircleOutlined />}
+                color="success"
+                shape="default"
+                // onClick={() => ()}
+              >
+                {bookingStatus['2']}
+              </Tag>
+            )}
+          </Space>
+        )
+      },
     },
   ]
   const onExpandRowKey = (expanded, record) => {
@@ -108,9 +109,13 @@ function UserBookingTable({ loading, data, onCancel }) {
 
   return (
     <>
+      <ModalRating
+        visible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+        handleCancel={handleCancel}
+      />
       <Table
         columns={bookingListColumn}
-        showSorterTooltip={false}
         rowKey={(record) => record.id}
         expandable={{
           expandedRowKeys: expandedRowKeys,
@@ -129,4 +134,4 @@ function UserBookingTable({ loading, data, onCancel }) {
   )
 }
 
-export default UserBookingTable
+export default TableListTicket

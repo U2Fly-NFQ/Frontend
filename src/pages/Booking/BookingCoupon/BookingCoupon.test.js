@@ -10,21 +10,6 @@ import i18n from '../../../translations'
 import BookingCoupon from './'
 import userEvent from '@testing-library/user-event'
 describe('Sub nav bar test', () => {
-  let root
-  // it('renders correctly', () => {
-  //   render(
-  //     <Provider store={store}>
-  //       <I18nextProvider i18n={i18n}>
-  //         <Router>
-  //           <Suspense>
-  //             <BookingCoupon />
-  //           </Suspense>
-  //         </Router>
-  //       </I18nextProvider>
-  //     </Provider>
-  //   )
-  //   toMatchSnapshot()
-  // })
   it('should finish', async () => {
     render(
       <Provider store={store}>

@@ -34,6 +34,7 @@ export default function Navbar() {
           <motion.div whileHover={{ scale: 1.1 }}>
             <Title
               level={3}
+              data-testid="u2flyIcon"
               onClick={() => navigate('/')}
               style={{
                 display: 'flex',

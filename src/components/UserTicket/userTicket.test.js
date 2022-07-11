@@ -1,16 +1,50 @@
-import React from 'react'
+import React, { Suspense } from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import UserTicket from './'
+import { render, screen, fireEvent } from '@testing-library/react'
+// Storage Mock
+const fakeLocalStorage = (function () {
+  let store = {}
 
-import FLightListFilter from './'
+  return {
+    getItem: function (key) {
+      return store[key] || null
+    },
+    setItem: function (key, value) {
+      store[key] = value.toString()
+    },
+    removeItem: function (key) {
+      delete store[key]
+    },
+    clear: function () {
+      store = {}
+    },
+  }
+})()
+describe('Sub nav bar test', () => {
+  beforeAll(() => {
+    Object.defineProperty(window, 'localStorage', {
+      value: fakeLocalStorage,
+    })
+  })
 
-import EnzymeToJson from 'enzyme-to-json'
-import { mount } from 'enzyme'
-
-// Enzyme.configure({ adapter: new EnzymeAdapter() })
-
-describe('Admin Layout', () => {
   it('renders correctly', () => {
-    const tree = mount(<FLightListFilter />)
+    localStorage.setItem(
+      'user',
+      JSON.stringify({
+        id: 1,
+      })
+    )
+    render(
+      <Router>
+        <Suspense>
+          <UserTicket />
+        </Suspense>
+      </Router>
+    )
 
-    expect(EnzymeToJson(tree)).toMatchSnapshot()
+    fireEvent.click(screen.getByTestId('booking-profile'))
+
+    // userEvent.click(screen.getByTestId('bookingProflie'))
   })
 })

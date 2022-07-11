@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigation bar test renders correctly 1`] = `
+<li
+  className="navbar__link"
+>
+  <a
+    className="nav-link"
+    href="/flights"
+    onClick={[Function]}
+  >
+    <p
+      className="navbar__link__data"
+    >
+      Flights
+       
+    </p>
+  </a>
+</li>
+`;

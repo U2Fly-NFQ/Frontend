@@ -64,7 +64,10 @@ const SubNavBar = () => {
           <Col flex="none">
             <ul className="sub-nav-list sub-nav-list-actions">
               {(user.id && (
-                <li className="sub-nav-list__item">
+                <li
+                  className="sub-nav-list__item"
+                  data-testid="booking-profile"
+                >
                   <Dropdown
                     overlay={menu}
                     onVisibleChange={handleVisibleChange}
@@ -78,7 +81,10 @@ const SubNavBar = () => {
                 </li>
               )) || (
                 <>
-                  <li className="sub-nav-list__item">
+                  <li
+                    className="sub-nav-list__item"
+                    data-testid="booking-profile"
+                  >
                     <NavLink to={'/login'}>{t('cta.login')}</NavLink>
                   </li>
                   <li className="sub-nav-list__item">

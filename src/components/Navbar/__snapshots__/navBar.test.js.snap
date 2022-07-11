@@ -21,6 +21,7 @@ exports[`Navigation bar test renders correctly 1`] = `
       >
         <h3
           className="ant-typography"
+          data-testid="u2flyIcon"
           onClick={[Function]}
           style={
             Object {

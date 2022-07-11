@@ -1,27 +1,50 @@
-import { I18nextProvider } from 'react-i18next'
-import i18n from '../../translations'
-import renderer from 'react-test-renderer'
 import React, { Suspense } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import SubNavBar from './'
-import { Provider } from 'react-redux'
-import { store } from '../../redux/store'
+import NavLinkDropDown from './'
+import { render, screen, fireEvent } from '@testing-library/react'
+// Storage Mock
+const fakeLocalStorage = (function () {
+  let store = {}
 
+  return {
+    getItem: function (key) {
+      return store[key] || null
+    },
+    setItem: function (key, value) {
+      store[key] = value.toString()
+    },
+    removeItem: function (key) {
+      delete store[key]
+    },
+    clear: function () {
+      store = {}
+    },
+  }
+})()
 describe('Sub nav bar test', () => {
+  beforeAll(() => {
+    Object.defineProperty(window, 'localStorage', {
+      value: fakeLocalStorage,
+    })
+  })
+
   it('renders correctly', () => {
-    const tree = renderer
-      .create(
-        <Provider store={store}>
-          <I18nextProvider i18n={i18n}>
-            <Router>
-              <Suspense>
-                <SubNavBar />
-              </Suspense>
-            </Router>
-          </I18nextProvider>
-        </Provider>
-      )
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+    localStorage.setItem(
+      'user',
+      JSON.stringify({
+        id: 1,
+      })
+    )
+    render(
+      <Router>
+        <Suspense>
+          <NavLinkDropDown />
+        </Suspense>
+      </Router>
+    )
+
+    fireEvent.click(screen.getByTestId('booking-profile'))
+
+    // userEvent.click(screen.getByTestId('bookingProflie'))
   })
 })

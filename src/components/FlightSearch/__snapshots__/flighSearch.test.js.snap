@@ -11286,7 +11286,7 @@ exports[`Flight search renders correctly 1`] = `
                                           disabledDate={[Function]}
                                           format="MM/DD/YY"
                                           onChange={[Function]}
-                                          value={"2022-07-11T07:28:59.372Z"}
+                                          value={"2022-07-11T09:43:37.352Z"}
                                         >
                                           <LocaleReceiver
                                             componentName="DatePicker"
@@ -11505,7 +11505,7 @@ exports[`Flight search renders correctly 1`] = `
                                                 />
                                               }
                                               transitionName="ant-slide-up"
-                                              value={"2022-07-11T07:28:59.372Z"}
+                                              value={"2022-07-11T09:43:37.352Z"}
                                             >
                                               <InnerPicker
                                                 allowClear={false}
@@ -11664,7 +11664,7 @@ exports[`Flight search renders correctly 1`] = `
                                                   />
                                                 }
                                                 transitionName="ant-slide-up"
-                                                value={"2022-07-11T07:28:59.372Z"}
+                                                value={"2022-07-11T09:43:37.352Z"}
                                               >
                                                 <PickerTrigger
                                                   dropdownAlign={
@@ -11848,7 +11848,7 @@ exports[`Flight search renders correctly 1`] = `
                                                         }
                                                         tabIndex={-1}
                                                         transitionName="ant-slide-up"
-                                                        value={"2022-07-11T07:28:59.372Z"}
+                                                        value={"2022-07-11T09:43:37.352Z"}
                                                       />
                                                     </div>
                                                   }
@@ -12099,7 +12099,7 @@ exports[`Flight search renders correctly 1`] = `
                                                           }
                                                           tabIndex={-1}
                                                           transitionName="ant-slide-up"
-                                                          value={"2022-07-11T07:28:59.372Z"}
+                                                          value={"2022-07-11T09:43:37.352Z"}
                                                         />
                                                       </div>
                                                     }

@@ -74,7 +74,7 @@ export default function PaymentFlight() {
   return (
     <>
       <div className="booking-page__container__item__title">
-        <h2>Payment Method</h2>
+        <h2>{t('flight-booking-page.Payment methods')}</h2>
       </div>
       <div style={{ width: '100%' }}>
         <Radio.Group

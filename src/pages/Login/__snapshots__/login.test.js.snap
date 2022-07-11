@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login page  renders correctly 1`] = `
+exports[`Login page renders correctly 1`] = `
 <div
   className="login-page"
 >

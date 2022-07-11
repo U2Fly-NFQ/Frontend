@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`User history page  renders correctly 1`] = `
+exports[`User history page renders correctly 1`] = `
 <div
   className="userProfile"
 >
@@ -37,7 +37,7 @@ exports[`User history page  renders correctly 1`] = `
                 }
               }
             >
-              EXPLORE THE WORLD WITH US
+              flight-list-page.flight-banner.EXPLORE THE WORLD WITH US
             </h1>
           </div>
           <div
@@ -58,7 +58,7 @@ exports[`User history page  renders correctly 1`] = `
               }
             >
                
-              Amazing journeys. Every day.
+              flight-list-page.flight-banner.Amazing journeys. Every day.
             </h3>
           </div>
         </div>

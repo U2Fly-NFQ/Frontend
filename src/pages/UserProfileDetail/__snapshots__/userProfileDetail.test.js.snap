@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`User profile detail  renders correctly 1`] = `
+exports[`User profile detail renders correctly 1`] = `
 <div
   className="ant-row userProfile-container-profile"
   style={Object {}}

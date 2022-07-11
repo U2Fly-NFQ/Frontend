@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Home Layout  renders correctly 1`] = `
+exports[`Home Layout renders correctly 1`] = `
 <section
   className="ant-layout"
 >
@@ -83,6 +83,7 @@ exports[`Home Layout  renders correctly 1`] = `
               >
                 <li
                   className="sub-nav-list__item"
+                  data-testid="booking-profile"
                 >
                   <a
                     className=""
@@ -234,6 +235,7 @@ exports[`Home Layout  renders correctly 1`] = `
             >
               <h3
                 className="ant-typography"
+                data-testid="u2flyIcon"
                 onClick={[Function]}
                 style={
                   Object {

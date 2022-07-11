@@ -12,6 +12,7 @@ import {
   getRoundTripBookingFlight,
   getUserInformation,
 } from '../../../redux/selectors'
+import { createBookingFlight } from '../../../redux/slices/bookingFlightsSlice'
 import { useTranslation } from 'react-i18next'
 import { createBookingFlight } from '../../../redux/slices/bookingFlightsSlice'
 export default function PaymentFlight() {

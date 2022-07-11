@@ -84,11 +84,11 @@ export default function FlightSearch() {
     // If exist query in local storage
     if (departure) setFrom(departure)
     if (arrival) setTo(arrival)
-    if (startDate) setJourneyDay(moment(startDate))
+    // if (startDate) setJourneyDay(moment(startDate))
     if (seatType) setPassengerClass(seatType)
     if (seatAvailable) setPassengerNumber(seatAvailable)
     if (ticketType) setTicketType(ticketType)
-    if (startDateRoundTrip) setReturnDate(moment(returnDate))
+    // if (startDateRoundTrip) setReturnDate(moment(returnDate))
 
     // If exist query on URL
     const departureParam = searchParams.get('departure')
@@ -383,8 +383,8 @@ export default function FlightSearch() {
                     allowClear={false}
                     disabledDate={(current) => {
                       return (
-                        moment() >= current ||
-                        moment().add(1, 'month') <= current
+                        moment().add(-1, 'days') > current ||
+                        moment().add(1, 'months') <= current
                       )
                     }}
                     value={journeyDay}

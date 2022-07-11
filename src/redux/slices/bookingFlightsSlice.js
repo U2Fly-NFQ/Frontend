@@ -48,7 +48,7 @@ export const createBookingFlight = createAsyncThunk(
 
 export const getRoundTripBookingFlightAsync = createAsyncThunk(
   'flight/RoundTripBooking',
-  async (idFlight, thunkAPI) => {
+  async (idFlight) => {
     const response = await flightAPI.get(idFlight)
     return response.data
   }
@@ -58,7 +58,6 @@ const bookingFlightsSlice = createSlice({
   initialState,
   reducers: {
     addDataIntoBookingFlight: (state, action) => {
-      let { apartment, city, country, emailAddress } = action.payload
       state.userInformation = {
         ...state.userInformation,
         ...action.payload,

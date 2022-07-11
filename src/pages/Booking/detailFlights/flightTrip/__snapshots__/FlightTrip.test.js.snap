@@ -1,0 +1,246 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Admin discount Layout renders correctly 1`] = `
+<div
+  className="ant-collapse ant-collapse-icon-position-start ant-collapse-ghost"
+  role={null}
+>
+  <div
+    className="ant-collapse-item ant-collapse-item-active ant-collapse-no-arrow"
+  >
+    <div
+      aria-expanded={true}
+      className="ant-collapse-header"
+      onClick={[Function]}
+      onKeyPress={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <span
+        className="ant-collapse-header-text"
+        onClick={null}
+      >
+        <div
+          className="detail-flights__container__trip"
+        >
+          <div
+            className="detail-flights__container__trip__from"
+          >
+            <p>
+              From
+            </p>
+            <h3>
+              hel;lo
+            </h3>
+            <h6 />
+          </div>
+          <div
+            className="detail-flights__container__trip__icon"
+          >
+            <i
+              className="fa-solid fa-circle-arrow-right"
+            />
+            <h6>
+              non stop
+            </h6>
+            <p>
+              NaNh NaNm
+            </p>
+          </div>
+          <div
+            className="detail-flights__container__trip__to"
+          >
+            <p>
+              To
+            </p>
+            <h3>
+              oke
+            </h3>
+            <h6 />
+          </div>
+          <div
+            className="detail-flights__container__trip__detail"
+          >
+            <h5>
+              <a>
+                Detail
+              </a>
+            </h5>
+          </div>
+        </div>
+      </span>
+    </div>
+    <div
+      className="ant-collapse-content ant-collapse-content-active"
+      role={null}
+    >
+      <div
+        className="ant-collapse-content-box"
+      >
+        <div
+          className="ant-steps ant-steps-vertical ant-steps-dot"
+          style={Object {}}
+        >
+          <div
+            className="ant-steps-item ant-steps-item-finish"
+            style={Object {}}
+          >
+            <div
+              className="ant-steps-item-container"
+            >
+              <div
+                className="ant-steps-item-tail"
+              />
+              <div
+                className="ant-steps-item-icon"
+              >
+                <span
+                  className="ant-steps-icon"
+                >
+                  <span
+                    className="ant-steps-icon-dot"
+                  />
+                </span>
+              </div>
+              <div
+                className="ant-steps-item-content"
+              >
+                <div
+                  className="ant-steps-item-title"
+                >
+                  <div
+                    className="info-plane_trip"
+                  >
+                    <div
+                      className="info-plane_trip-icon__rotate"
+                    >
+                      <i
+                        className="fa-solid fa-plane-up"
+                      />
+                    </div>
+                    <span>
+                      hel;lo
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-steps-item ant-steps-item-process ant-steps-item-active"
+            style={Object {}}
+          >
+            <div
+              className="ant-steps-item-container"
+            >
+              <div
+                className="ant-steps-item-tail"
+              />
+              <div
+                className="ant-steps-item-icon"
+              >
+                <span
+                  className="ant-steps-icon"
+                >
+                  <span
+                    className="ant-steps-icon-dot"
+                  />
+                </span>
+              </div>
+              <div
+                className="ant-steps-item-content"
+              >
+                <div
+                  className="ant-steps-item-title"
+                />
+                <div
+                  className="ant-steps-item-description"
+                >
+                  <div
+                    className="info-plane_trip"
+                  >
+                    <div
+                      className="info-plane_trip__info"
+                    >
+                      <div
+                        className="info-plane_trip__title"
+                      >
+                        <img
+                          alt=""
+                          src="123123"
+                        />
+                        <h5>
+                          thnag
+                        </h5>
+                      </div>
+                      <div
+                        className="info-plane_trip__body"
+                      >
+                        <span>
+                          oke
+                        </span>
+                      </div>
+                      <div
+                        className="info-plane_trip__footer"
+                      >
+                        <span>
+                          07-11-2022 Invalid date
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ant-steps-item ant-steps-item-wait"
+            style={Object {}}
+          >
+            <div
+              className="ant-steps-item-container"
+            >
+              <div
+                className="ant-steps-item-tail"
+              />
+              <div
+                className="ant-steps-item-icon"
+              >
+                <span
+                  className="ant-steps-icon"
+                >
+                  <span
+                    className="ant-steps-icon-dot"
+                  />
+                </span>
+              </div>
+              <div
+                className="ant-steps-item-content"
+              >
+                <div
+                  className="ant-steps-item-title"
+                >
+                  <div
+                    className="info-plane_trip"
+                  >
+                    <div
+                      className="info-plane_trip-icon"
+                    >
+                      <i
+                        className="fa-solid fa-location-dot"
+                      />
+                    </div>
+                    <span>
+                      oke
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

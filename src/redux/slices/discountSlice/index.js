@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import discountApi from '../../../api/Discount'
 
-const initialState = {
+export const initialState = {
   data: [],
   status: 'idle',
 }

@@ -114,6 +114,7 @@ export default function ModalRating({ visible, setIsModalVisible, rating }) {
         </div>
         <div>
           <TextArea
+            data-testid="comment-box"
             rows={4}
             placeholder="Enter your comment here!"
             value={description}

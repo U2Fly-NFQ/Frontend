@@ -1,8 +1,13 @@
-import ticketSlice, { initialState, fetchTickets } from '../ticketSlice'
+import ticketSlice, {
+  initialState,
+  fetchTickets,
+  fetchHistoryBooking,
+  fetchCancelBooking,
+  fetchRatingBooking,
+} from '../ticketSlice'
 import { store } from '../../store'
 import axiosInstance from '../../../api'
 import MockAdapter from 'axios-mock-adapter'
-import { endpoint } from '../../../api/Ticket'
 
 // Adding mock network response that is used in tests
 const getTicketsRs = {
@@ -13,7 +18,9 @@ const getTicketsRs = {
 const mockNetWorkResponse = () => {
   const mock = new MockAdapter(axiosInstance)
 
-  mock.onGet(endpoint).reply(200, getTicketsRs)
+  mock.onGet('/tickets').reply(200, getTicketsRs)
+  mock.onPost('/stripe/refund').reply(200, getTicketsRs)
+  mock.onPost('/rate').reply(200, getTicketsRs)
 }
 
 test('Should return initial state', () => {
@@ -43,5 +50,26 @@ describe('TicketSlice', () => {
     const state = store.getState().airports.data
 
     expect(state).toEqual(getTicketsRs.data)
+  })
+
+  it('Should be able to get all booking', async () => {
+    // Dispatching the action
+    const result = await store.dispatch(fetchHistoryBooking())
+
+    expect(result.type).toBe('ticket/fetchHistoryBooking/fulfilled')
+  })
+
+  it('Should cancel booking successfully', async () => {
+    // Dispatching the action
+    const result = await store.dispatch(fetchCancelBooking())
+
+    expect(result.type).toBe('ticket/fetchCancelBooking/fulfilled')
+  })
+
+  it('Should fetch rating successfully', async () => {
+    // Dispatching the action
+    const result = await store.dispatch(fetchRatingBooking())
+
+    expect(result.type).toBe('ticket/fetchRatingBooking/fulfilled')
   })
 })

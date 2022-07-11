@@ -1,6 +1,5 @@
 import { getBoardingDateTime, getEndDateTime } from './flight'
 import moment from 'moment'
-import { updateLs } from './localStorage'
 
 export const flightDataProcessed = (ticket) => {
   return ticket.flights.map((flight) => {
@@ -37,13 +36,4 @@ export const getURLForBookingAgain = (ticket) => {
   let seatType = ticket.seatType.toLowerCase()
   let startDate = moment().format('YYYY-MM-DD')
   let ticketType = 'oneWay'
-
-  updateLs('flight', {
-    departure,
-    arrival,
-    seatType,
-    startDate,
-    ticketType,
-  })
-  return `/flights?departure=${departure}&arrival=${arrival}&startDate=${startDate}&seatType=${seatType}&seatAvailable=1&ticketType=${ticketType}`
 }

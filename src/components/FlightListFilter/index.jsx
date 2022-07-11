@@ -19,7 +19,7 @@ import { useTranslation } from 'react-i18next'
 
 const { Text } = Typography
 
-const FlightListFilter = ({ emptyFlight }) => {
+const FlightListFilter = () => {
   const airlinesFetch = useSelector((state) => state.filter.airlines)
   const loadingStatus = useSelector((state) => state.filter.status)
   const airlinesOptions = airlinesFetch.map((al) => ({
@@ -153,6 +153,7 @@ const FlightListFilter = ({ emptyFlight }) => {
               value={minPrice}
               onChange={(value) => handlePriceChange([value, maxPrice])}
               prefix={t('flight-list-page.$')}
+              data-testid="maxPriceInput"
             />
             <InputNumber
               min={0}
@@ -160,6 +161,7 @@ const FlightListFilter = ({ emptyFlight }) => {
               value={maxPrice}
               onChange={(value) => handlePriceChange([minPrice, value])}
               prefix={t('flight-list-page.$')}
+              data-testid="minPriceInput"
             />
           </Space>
         </Col>
@@ -180,7 +182,7 @@ const FlightListFilter = ({ emptyFlight }) => {
           <Radio.Group onChange={changeTime} value={time}>
             <Space direction="vertical">
               <Radio value={''}>{t('flight-list-page.All time')}</Radio>
-              <Radio value={'earlymorning'}>
+              <Radio value={'earlymorning'} data-testid="morning-time">
                 {t('flight-list-page.Early Morning')} (00:00 - 06:00)
               </Radio>
               <Radio value={'morning'}>

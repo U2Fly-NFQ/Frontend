@@ -1,0 +1,451 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`My Connected React-Redux Component should render with given state from Redux store 1`] = `
+<div
+  className="ant-modal-root"
+>
+  <div
+    className="ant-modal-mask"
+    style={
+      Object {
+        "zIndex": undefined,
+      }
+    }
+  />
+  <div
+    className="ant-modal-wrap"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    style={
+      Object {
+        "display": null,
+        "zIndex": undefined,
+      }
+    }
+    tabIndex={-1}
+  >
+    <div
+      aria-labelledby={null}
+      aria-modal="true"
+      className="ant-modal userTicket"
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+      role="dialog"
+      style={
+        Object {
+          "width": 520,
+        }
+      }
+    >
+      <div
+        aria-hidden="true"
+        style={
+          Object {
+            "height": 0,
+            "outline": "none",
+            "overflow": "hidden",
+            "width": 0,
+          }
+        }
+        tabIndex={0}
+      />
+      <div
+        className="ant-modal-content"
+      >
+        <button
+          aria-label="Close"
+          className="ant-modal-close"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="ant-modal-close-x"
+          >
+            <span
+              aria-label="close"
+              className="anticon anticon-close ant-modal-close-icon"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                data-icon="close"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"
+                />
+              </svg>
+            </span>
+          </span>
+        </button>
+        <div
+          className="ant-modal-body"
+        >
+          <div
+            className="ticket"
+          >
+            <div
+              className="ant-row ant-row-space-between ticket-header"
+              style={Object {}}
+            >
+              <div
+                className="ant-col ant-col-8 ticket-header-logo"
+                style={Object {}}
+              >
+                <img
+                  alt="logo"
+                  src=""
+                />
+              </div>
+              <div
+                className="ant-col ant-col-8 ticket-header-class"
+                style={Object {}}
+              />
+              <div
+                className="ant-col ant-col-7 ticket-header-right"
+                style={Object {}}
+              >
+                <img
+                  alt="logo"
+                  src=""
+                />
+              </div>
+            </div>
+            <div
+              className="ant-row ant-row-space-between ticket-content"
+              style={Object {}}
+            >
+              <div
+                className="ant-col ant-col-16 ticket-content-left"
+                style={Object {}}
+              >
+                <div
+                  className="ant-row"
+                  style={
+                    Object {
+                      "marginLeft": -4,
+                      "marginRight": -4,
+                    }
+                  }
+                >
+                  <div
+                    className="ant-col ant-col-4 ticket-content-left-barcode"
+                    style={
+                      Object {
+                        "paddingLeft": 4,
+                        "paddingRight": 4,
+                      }
+                    }
+                  >
+                    <img
+                      alt="barcode"
+                      src="https://cdn.pixabay.com/photo/2014/04/02/16/19/barcode-306926__480.png"
+                    />
+                  </div>
+                  <div
+                    className="ant-col ant-col-20 ticket-content-left-info"
+                    style={
+                      Object {
+                        "paddingLeft": 4,
+                        "paddingRight": 4,
+                      }
+                    }
+                  >
+                    <div
+                      className="ant-row ant-row-space-between passenger-info"
+                      style={Object {}}
+                    >
+                      <div
+                        className="ant-col ant-col-8"
+                        style={Object {}}
+                      >
+                        <div
+                          className="passenger-info-title"
+                        >
+                          Full Name / Họ và Tên
+                        </div>
+                        <div
+                          className="passenger-info-text"
+                        />
+                      </div>
+                      <div
+                        className="ant-col ant-col-7"
+                        style={Object {}}
+                      >
+                        <div
+                          className="passenger-info-title"
+                        >
+                          Flight/Chuyến Bay
+                        </div>
+                        <div
+                          className="passenger-info-text"
+                        />
+                      </div>
+                      <div
+                        className="ant-col ant-col-5"
+                        style={Object {}}
+                      >
+                        <div
+                          className="passenger-info-title"
+                        >
+                          Date/Ngày
+                        </div>
+                        <div
+                          className="passenger-info-text"
+                        >
+                          07-11-2022
+                        </div>
+                      </div>
+                      <div
+                        className="ant-col ant-col-4 info_empty"
+                        style={Object {}}
+                      >
+                        <div
+                          className="passenger-info-title"
+                        >
+                          Seat/Ghế
+                        </div>
+                        <div
+                          className="passenger-info-text"
+                        >
+                           
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="ant-row flight-info"
+                      style={Object {}}
+                    >
+                      <div
+                        className="ant-col ant-col-10 flight-info-from"
+                        style={Object {}}
+                      />
+                      <div
+                        className="ant-col ant-col-4 flight-info-icon"
+                        style={Object {}}
+                      >
+                        <i
+                          className="fa-solid fa-plane"
+                        />
+                      </div>
+                      <div
+                        className="ant-col ant-col-10 flight-info-to"
+                        style={Object {}}
+                      />
+                    </div>
+                    <div
+                      className="ant-row ant-row-space-between flight-details"
+                      style={Object {}}
+                    >
+                      <div
+                        className="ant-col ant-col-4 info_empty"
+                        style={Object {}}
+                      >
+                        <div
+                          className="flight-details-title"
+                        >
+                          Gate/Cổng
+                        </div>
+                        <div
+                          className="flight-details-text"
+                        >
+                           
+                        </div>
+                      </div>
+                      <div
+                        className="ant-col ant-col-6"
+                        style={Object {}}
+                      >
+                        <div
+                          className="flight-details-title"
+                        >
+                          Boarding Time
+                        </div>
+                        <div
+                          className="flight-details-text"
+                        />
+                      </div>
+                      <div
+                        className="ant-col ant-col-6"
+                        style={Object {}}
+                      >
+                        <div
+                          className="flight-details-title"
+                        >
+                          ETD/Khởi Hành
+                        </div>
+                        <div
+                          className="flight-details-text"
+                        />
+                      </div>
+                      <div
+                        className="ant-col ant-col-6"
+                        style={Object {}}
+                      >
+                        <div
+                          className="flight-details-title"
+                        >
+                          ETA/Đến Nơi
+                        </div>
+                        <div
+                          className="flight-details-text"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="ant-col ant-col-7 ticket-content-right"
+                style={Object {}}
+              >
+                <div
+                  className="ant-row"
+                  style={Object {}}
+                >
+                  <div
+                    className="ant-col ant-col-24 barcode"
+                    style={Object {}}
+                  >
+                    <img
+                      alt="barcode"
+                      src="https://cdn.pixabay.com/photo/2014/04/02/16/19/barcode-306926__480.png"
+                    />
+                  </div>
+                  <div
+                    className="ant-col ant-col-24"
+                    style={Object {}}
+                  >
+                    <div
+                      className="ant-row flight-info"
+                      style={Object {}}
+                    >
+                      <div
+                        className="ant-col ant-col-10 flight-info-from"
+                        style={Object {}}
+                      />
+                      <div
+                        className="ant-col ant-col-4 flight-info-icon"
+                        style={Object {}}
+                      >
+                        <i
+                          className="fa-solid fa-plane"
+                        />
+                      </div>
+                      <div
+                        className="ant-col ant-col-10 flight-info-to"
+                        style={Object {}}
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="ant-col ant-col-24 passenger-info"
+                    style={Object {}}
+                  >
+                    <div
+                      className="ant-row"
+                      style={Object {}}
+                    >
+                      <div
+                        className="ant-col ant-col-24"
+                        style={Object {}}
+                      >
+                        <div
+                          className="passenger-info-title"
+                        >
+                          Full Name / Họ và Tên
+                        </div>
+                        <div
+                          className="passenger-info-text"
+                        >
+                          John
+                        </div>
+                      </div>
+                      <div
+                        className="ant-col ant-col-24"
+                        style={Object {}}
+                      >
+                        <div
+                          className="passenger-info-title"
+                        >
+                          Flight/Chuyến Bay
+                        </div>
+                        <div
+                          className="passenger-info-text"
+                        />
+                      </div>
+                      <div
+                        className="ant-col ant-col-24"
+                        style={Object {}}
+                      >
+                        <div
+                          className="passenger-info-title"
+                        >
+                          Date/Ngày
+                        </div>
+                        <div
+                          className="passenger-info-text"
+                        >
+                          07-11-2022
+                        </div>
+                      </div>
+                      <div
+                        className="ant-col ant-col-24 info_empty"
+                        style={Object {}}
+                      >
+                        <div
+                          className="passenger-info-title"
+                        >
+                          Seat/Ghế
+                        </div>
+                        <div
+                          className="passenger-info-text"
+                        >
+                           
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="ant-row ant-row-space-between ticket-footer"
+              style={Object {}}
+            >
+              <div
+                className="ant-col ant-col-16 ticket-footer-left"
+                style={Object {}}
+              >
+                Gate closes 20 minutes before departure - Cổng đóng 20 phút trước khi khởi hành
+              </div>
+              <div
+                className="ant-col ant-col-7 ticket-footer-right"
+                style={Object {}}
+              >
+                Hotline: 19XX XXX XXX
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-hidden="true"
+        style={
+          Object {
+            "height": 0,
+            "outline": "none",
+            "overflow": "hidden",
+            "width": 0,
+          }
+        }
+        tabIndex={0}
+      />
+    </div>
+  </div>
+</div>
+`;

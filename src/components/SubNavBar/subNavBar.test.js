@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import NavLinkDropDown from './'
+import SubNavbar from './'
 import { render, screen, fireEvent } from '@testing-library/react'
 // Storage Mock
 const fakeLocalStorage = (function () {
@@ -38,7 +38,7 @@ describe('Sub nav bar test', () => {
     render(
       <Router>
         <Suspense>
-          <NavLinkDropDown />
+          <SubNavbar />
         </Suspense>
       </Router>
     )

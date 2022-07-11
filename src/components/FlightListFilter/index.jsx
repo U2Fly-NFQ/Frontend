@@ -19,7 +19,7 @@ import { useTranslation } from 'react-i18next'
 
 const { Text } = Typography
 
-const FlightListFilter = ({ emptyFlight }) => {
+const FlightListFilter = () => {
   const airlinesFetch = useSelector((state) => state.filter.airlines)
   const loadingStatus = useSelector((state) => state.filter.status)
   const airlinesOptions = airlinesFetch.map((al) => ({

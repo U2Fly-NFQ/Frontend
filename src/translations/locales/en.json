@@ -138,7 +138,6 @@
     "Direct": "Direct",
     "hour": "hour",
     "Book now": "Book now",
-    "Flight details": "Flight details",
     "Delete": "Delete",
     "Selected outbound": "Selected outbound",
     "Airline": "Airline",
@@ -148,7 +147,7 @@
   "flight-booking-page": {
     "Passenger information": "Passenger information",
     "Payment methods": "Payment methods",
-    "payment successful": "payment successful",
+    "payment successful": "Payment successful",
     "Flights": "Flights",
     "Pay Now": "Pay Now",
     "First name": "First name",

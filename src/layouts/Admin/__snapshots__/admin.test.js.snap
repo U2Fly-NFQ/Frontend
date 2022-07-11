@@ -1,5 +1,202 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Admin Layout  renders correctly 1`] = `
+<section
+  className="ant-layout admin"
+>
+  <aside
+    className="ant-layout-sider ant-layout-sider-dark admin-sidebar"
+    style={
+      Object {
+        "flex": "0 0 200px",
+        "maxWidth": "200px",
+        "minWidth": "200px",
+        "width": "200px",
+      }
+    }
+  >
+    <div
+      className="ant-layout-sider-children"
+    >
+      <div
+        className="ant-row admin-sidebar-header"
+        style={Object {}}
+      >
+        <div
+          className="ant-col ant-col-24 admin-sidebar-header-logo"
+          style={Object {}}
+        >
+          <a
+            href="/"
+            onClick={[Function]}
+            style={
+              Object {
+                "fontSize": 22,
+              }
+            }
+          >
+            U2Fly
+          </a>
+        </div>
+      </div>
+      <ul
+        className="ant-menu ant-menu-root ant-menu-inline ant-menu-light"
+        data-menu-list={true}
+        onKeyDown={[Function]}
+        role="menu"
+        tabIndex={0}
+      >
+        <li
+          className="ant-menu-item"
+          data-menu-id={null}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          role="menuitem"
+          style={
+            Object {
+              "paddingLeft": 24,
+            }
+          }
+          tabIndex={-1}
+        >
+          <i
+            className="fa-solid fa-gauge ant-menu-item-icon"
+          />
+          <span
+            className="ant-menu-title-content"
+          >
+            <a
+              href="/admin"
+              onClick={[Function]}
+            >
+              Dashboard
+            </a>
+          </span>
+        </li>
+        <li
+          className="ant-menu-item"
+          data-menu-id={null}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          role="menuitem"
+          style={
+            Object {
+              "paddingLeft": 24,
+            }
+          }
+          tabIndex={-1}
+        >
+          <i
+            className="fa-solid fa-tags ant-menu-item-icon"
+          />
+          <span
+            className="ant-menu-title-content"
+          >
+            <a
+              href="/admin/discount"
+              onClick={[Function]}
+            >
+              Discount
+            </a>
+          </span>
+        </li>
+      </ul>
+      <div
+        aria-hidden={true}
+        style={
+          Object {
+            "display": "none",
+          }
+        }
+      />
+    </div>
+  </aside>
+  <section
+    className="ant-layout"
+  >
+    <header
+      className="ant-layout-header admin-header"
+    >
+      <div
+        className="ant-row admin-header-content"
+        style={Object {}}
+      >
+        <div
+          className="ant-col admin-header-content-left ant-col-xs-0 ant-col-sm-12"
+          style={Object {}}
+        />
+        <div
+          className="ant-col admin-header-content-right ant-col-xs-24 ant-col-sm-12"
+          style={Object {}}
+        >
+          <div
+            className="ant-space ant-space-horizontal ant-space-align-center ant-dropdown-trigger"
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            style={
+              Object {
+                "color": "white",
+              }
+            }
+          >
+            <div
+              className="ant-space-item"
+              style={
+                Object {
+                  "marginRight": 8,
+                }
+              }
+            >
+              career@nfq.asia
+            </div>
+            <div
+              className="ant-space-item"
+              style={Object {}}
+            >
+              <span
+                aria-label="down"
+                className="anticon anticon-down"
+                role="img"
+              >
+                <svg
+                  aria-hidden="true"
+                  data-icon="down"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main
+      className="ant-layout-content admin-content"
+    />
+    <footer
+      className="ant-layout-footer admin-footer"
+    >
+      <p>
+        Copyright © 2022 U2Fly Booking Designed by U2FlyTeam
+      </p>
+    </footer>
+  </section>
+</section>
+`;
+
 exports[`Admin Layout renders correctly 1`] = `
 <I18nextProvider
   i18n={

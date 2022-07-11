@@ -4,6 +4,16 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom'
 
+jest.mock('react-dom', () => {
+  const original = jest.requireActual('react-dom')
+  return {
+    ...original,
+    createPortal: (node) => node,
+  }
+})
+
+window.scrollTo = jest.fn()
+
 global.matchMedia =
   global.matchMedia ||
   function () {
@@ -13,11 +23,3 @@ global.matchMedia =
       removeListener: jest.fn(),
     }
   }
-
-const localStorageMock = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  clear: jest.fn(),
-}
-
-global.localStorage = localStorageMock

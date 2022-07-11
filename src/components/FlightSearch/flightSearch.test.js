@@ -4,12 +4,12 @@ import React, { Suspense } from 'react'
 import { store } from '../../redux/store'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
-
-import HomeNavigation from './'
-import { ConfigProvider } from 'antd'
 import renderer from 'react-test-renderer'
 
-describe('Home navigation', () => {
+import FlightSearch from '.'
+import { ConfigProvider } from 'antd'
+
+describe('Flight search', () => {
   it('renders correctly', () => {
     const tree = renderer
       .create(
@@ -18,7 +18,7 @@ describe('Home navigation', () => {
             <ConfigProvider>
               <Router>
                 <Suspense>
-                  <HomeNavigation />
+                  <FlightSearch />
                 </Suspense>
               </Router>
             </ConfigProvider>

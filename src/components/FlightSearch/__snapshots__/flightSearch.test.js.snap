@@ -1,0 +1,694 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Flight search renders correctly 1`] = `
+<div
+  className="flightSearchContainer"
+>
+  <div
+    className="ant-modal-root"
+  >
+    <div
+      className="ant-modal-mask"
+      style={
+        Object {
+          "backgroundColor": "rgba(14, 134, 212, 0.4)",
+          "zIndex": undefined,
+        }
+      }
+    />
+    <div
+      className="ant-modal-wrap"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      style={
+        Object {
+          "display": null,
+          "zIndex": undefined,
+        }
+      }
+      tabIndex={-1}
+    >
+      <div
+        aria-labelledby={null}
+        aria-modal="true"
+        className="ant-modal"
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
+        role="dialog"
+        style={
+          Object {
+            "borderRadius": "12px",
+            "overflow": "hidden",
+            "paddingBottom": 0,
+            "width": 520,
+          }
+        }
+      >
+        <div
+          aria-hidden="true"
+          style={
+            Object {
+              "height": 0,
+              "outline": "none",
+              "overflow": "hidden",
+              "width": 0,
+            }
+          }
+          tabIndex={0}
+        />
+        <div
+          className="ant-modal-content"
+        >
+          <button
+            aria-label="Close"
+            className="ant-modal-close"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              className="ant-modal-close-x"
+            >
+              <span
+                aria-label="close"
+                className="anticon anticon-close ant-modal-close-icon"
+                role="img"
+              >
+                <svg
+                  aria-hidden="true"
+                  data-icon="close"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  viewBox="64 64 896 896"
+                  width="1em"
+                >
+                  <path
+                    d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"
+                  />
+                </svg>
+              </span>
+            </span>
+          </button>
+          <div
+            className="ant-modal-body"
+          >
+            Hey buddy, where is your departure?
+            <div
+              className="ant-select ant-select-lg ant-select-borderless ant-select-single ant-select-open ant-select-show-search"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              style={
+                Object {
+                  "borderBottom": "1px solid #ddd",
+                  "width": "100%",
+                }
+              }
+            >
+              <div
+                className="ant-select-selector"
+                onClick={[Function]}
+                onMouseDown={[Function]}
+              >
+                <span
+                  className="ant-select-selection-search"
+                >
+                  <input
+                    aria-activedescendant="rc_select_TEST_OR_SSR_list_-1"
+                    aria-autocomplete="list"
+                    aria-controls="rc_select_TEST_OR_SSR_list"
+                    aria-expanded={true}
+                    aria-haspopup="listbox"
+                    aria-owns="rc_select_TEST_OR_SSR_list"
+                    autoComplete="off"
+                    autoFocus={true}
+                    className="ant-select-selection-search-input"
+                    disabled={false}
+                    id="rc_select_TEST_OR_SSR"
+                    onChange={[Function]}
+                    onCompositionEnd={[Function]}
+                    onCompositionStart={[Function]}
+                    onKeyDown={[Function]}
+                    onMouseDown={[Function]}
+                    onPaste={[Function]}
+                    readOnly={false}
+                    role="combobox"
+                    style={
+                      Object {
+                        "opacity": null,
+                      }
+                    }
+                    type="search"
+                    unselectable={null}
+                    value=""
+                  />
+                </span>
+                <span
+                  className="ant-select-selection-placeholder"
+                >
+                  Flying from...
+                </span>
+              </div>
+              <div>
+                <div
+                  className="ant-select-dropdown ant-select-dropdown-empty"
+                  onMouseDownCapture={[Function]}
+                  onTouchStartCapture={[Function]}
+                  style={
+                    Object {
+                      "borderRadius": "10px",
+                      "minWidth": null,
+                      "opacity": 0,
+                      "pointerEvents": undefined,
+                      "width": null,
+                      "zIndex": undefined,
+                    }
+                  }
+                >
+                  <div
+                    onMouseEnter={[Function]}
+                  >
+                    <div
+                      className="ant-select-item-empty"
+                      id="rc_select_TEST_OR_SSR_list"
+                      onMouseDown={[Function]}
+                      role="listbox"
+                    >
+                      <div
+                        className="ant-empty ant-empty-normal ant-empty-small"
+                      >
+                        <div
+                          className="ant-empty-image"
+                        >
+                          <svg
+                            className="ant-empty-img-simple"
+                            height="41"
+                            viewBox="0 0 64 41"
+                            width="64"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g
+                              fill="none"
+                              fillRule="evenodd"
+                              transform="translate(0 1)"
+                            >
+                              <ellipse
+                                className="ant-empty-img-simple-ellipse"
+                                cx="32"
+                                cy="33"
+                                rx="32"
+                                ry="7"
+                              />
+                              <g
+                                className="ant-empty-img-simple-g"
+                                fillRule="nonzero"
+                              >
+                                <path
+                                  d="M55 12.76L44.854 1.258C44.367.474 43.656 0 42.907 0H21.093c-.749 0-1.46.474-1.947 1.257L9 12.761V22h46v-9.24z"
+                                />
+                                <path
+                                  className="ant-empty-img-simple-path"
+                                  d="M41.613 15.931c0-1.605.994-2.93 2.227-2.931H55v18.137C55 33.26 53.68 35 52.05 35h-40.1C10.32 35 9 33.259 9 31.137V13h11.16c1.233 0 2.227 1.323 2.227 2.928v.022c0 1.605 1.005 2.901 2.237 2.901h14.752c1.232 0 2.237-1.308 2.237-2.913v-.007z"
+                                />
+                              </g>
+                            </g>
+                          </svg>
+                        </div>
+                        <div
+                          className="ant-empty-description"
+                        >
+                          No Data
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          aria-hidden="true"
+          style={
+            Object {
+              "height": 0,
+              "outline": "none",
+              "overflow": "hidden",
+              "width": 0,
+            }
+          }
+          tabIndex={0}
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="flightSearch"
+  >
+    <div
+      className="flightSearchCategories"
+    >
+      <div
+        className="ant-radio-group ant-radio-group-solid"
+      >
+        <label
+          className="ant-radio-button-wrapper ant-radio-button-wrapper-checked"
+        >
+          <span
+            className="ant-radio-button ant-radio-button-checked"
+            style={Object {}}
+          >
+            <input
+              checked={true}
+              className="ant-radio-button-input"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyPress={[Function]}
+              onKeyUp={[Function]}
+              type="radio"
+              value="oneWay"
+            />
+            <span
+              className="ant-radio-button-inner"
+            />
+          </span>
+          <span>
+            One Way
+          </span>
+        </label>
+        <label
+          className="ant-radio-button-wrapper"
+        >
+          <span
+            className="ant-radio-button"
+            style={Object {}}
+          >
+            <input
+              checked={false}
+              className="ant-radio-button-input"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyPress={[Function]}
+              onKeyUp={[Function]}
+              type="radio"
+              value="roundTrip"
+            />
+            <span
+              className="ant-radio-button-inner"
+            />
+          </span>
+          <span>
+            Round Trip
+          </span>
+        </label>
+      </div>
+    </div>
+    <div
+      className="ant-row flightSearchBody"
+      style={
+        Object {
+          "marginBottom": -12,
+          "marginLeft": -12,
+          "marginRight": -12,
+          "marginTop": -12,
+        }
+      }
+    >
+      <div
+        className="ant-col ant-col-24 ant-col-md-12 ant-col-lg-6"
+        style={
+          Object {
+            "paddingBottom": 12,
+            "paddingLeft": 12,
+            "paddingRight": 12,
+            "paddingTop": 12,
+          }
+        }
+      >
+        <div
+          className="flightSearchBox"
+        >
+          <i
+            className="flightSearchBox__Icon fa-solid fa-plane-departure"
+          />
+          <label
+            className="flightSearchLabel"
+          >
+            From
+          </label>
+          <div
+            style={
+              Object {
+                "opacity": 0,
+                "transform": "translateY(-20px) translateZ(0)",
+              }
+            }
+          >
+            <div
+              className="ant-select ant-select-lg ant-select-borderless ant-select-single ant-select-allow-clear ant-select-show-search"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              style={
+                Object {
+                  "borderBottom": "1px solid #ddd",
+                  "width": "100%",
+                }
+              }
+            >
+              <div
+                className="ant-select-selector"
+                onClick={[Function]}
+                onMouseDown={[Function]}
+              >
+                <span
+                  className="ant-select-selection-search"
+                >
+                  <input
+                    aria-activedescendant="rc_select_TEST_OR_SSR_list_0"
+                    aria-autocomplete="list"
+                    aria-controls="rc_select_TEST_OR_SSR_list"
+                    aria-haspopup="listbox"
+                    aria-owns="rc_select_TEST_OR_SSR_list"
+                    autoComplete="off"
+                    className="ant-select-selection-search-input"
+                    disabled={false}
+                    id="rc_select_TEST_OR_SSR"
+                    onChange={[Function]}
+                    onCompositionEnd={[Function]}
+                    onCompositionStart={[Function]}
+                    onKeyDown={[Function]}
+                    onMouseDown={[Function]}
+                    onPaste={[Function]}
+                    readOnly={false}
+                    role="combobox"
+                    style={
+                      Object {
+                        "opacity": null,
+                      }
+                    }
+                    type="search"
+                    unselectable={null}
+                    value=""
+                  />
+                </span>
+                <span
+                  className="ant-select-selection-placeholder"
+                >
+                  Flying from...
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col ant-col-24 ant-col-md-12 ant-col-lg-6"
+        style={
+          Object {
+            "paddingBottom": 12,
+            "paddingLeft": 12,
+            "paddingRight": 12,
+            "paddingTop": 12,
+          }
+        }
+      >
+        <div
+          className="flightSearchBox"
+        >
+          <i
+            className="flightSearchBox__Icon fa-solid fa-plane-arrival"
+          />
+          <label
+            className="flightSearchLabel"
+          >
+            To
+          </label>
+          <div
+            style={
+              Object {
+                "opacity": 0,
+                "transform": "translateY(-20px) translateZ(0)",
+              }
+            }
+          >
+            <div
+              className="ant-select ant-select-lg ant-select-borderless ant-select-single ant-select-allow-clear ant-select-show-search"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              style={
+                Object {
+                  "borderBottom": "1px solid #ddd",
+                  "width": "100%",
+                }
+              }
+            >
+              <div
+                className="ant-select-selector"
+                onClick={[Function]}
+                onMouseDown={[Function]}
+              >
+                <span
+                  className="ant-select-selection-search"
+                >
+                  <input
+                    aria-activedescendant="rc_select_TEST_OR_SSR_list_0"
+                    aria-autocomplete="list"
+                    aria-controls="rc_select_TEST_OR_SSR_list"
+                    aria-haspopup="listbox"
+                    aria-owns="rc_select_TEST_OR_SSR_list"
+                    autoComplete="off"
+                    className="ant-select-selection-search-input"
+                    disabled={false}
+                    id="rc_select_TEST_OR_SSR"
+                    onChange={[Function]}
+                    onCompositionEnd={[Function]}
+                    onCompositionStart={[Function]}
+                    onKeyDown={[Function]}
+                    onMouseDown={[Function]}
+                    onPaste={[Function]}
+                    readOnly={false}
+                    role="combobox"
+                    style={
+                      Object {
+                        "opacity": null,
+                      }
+                    }
+                    type="search"
+                    unselectable={null}
+                    value=""
+                  />
+                </span>
+                <span
+                  className="ant-select-selection-placeholder"
+                >
+                  Flying to...
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col ant-col-24 ant-col-md-12 ant-col-lg-7"
+        style={
+          Object {
+            "paddingBottom": 12,
+            "paddingLeft": 12,
+            "paddingRight": 12,
+            "paddingTop": 12,
+          }
+        }
+      >
+        <div
+          className="flightSearchBox"
+        >
+          <div
+            className="ant-row ant-row-center"
+            style={
+              Object {
+                "marginBottom": -4,
+                "marginLeft": -4,
+                "marginRight": -4,
+                "marginTop": -4,
+              }
+            }
+          >
+            <div
+              className="ant-col ant-col-xs-24 ant-col-sm-12"
+              style={
+                Object {
+                  "paddingBottom": 4,
+                  "paddingLeft": 4,
+                  "paddingRight": 4,
+                  "paddingTop": 4,
+                }
+              }
+            >
+              <label
+                className="flightSearchLabel"
+              >
+                Journey Date
+              </label>
+              <div
+                className="ant-picker journeyDate"
+                onMouseUp={[Function]}
+              >
+                <div
+                  className="ant-picker-input"
+                >
+                  <input
+                    autoComplete="off"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    onMouseDown={[Function]}
+                    placeholder="Select date"
+                    readOnly={true}
+                    size={12}
+                    title="07/11/22"
+                    value="07/11/22"
+                  />
+                  <span
+                    className="ant-picker-suffix"
+                  >
+                    <span
+                      aria-label="calendar"
+                      className="anticon anticon-calendar"
+                      role="img"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        data-icon="calendar"
+                        fill="currentColor"
+                        focusable="false"
+                        height="1em"
+                        viewBox="64 64 896 896"
+                        width="1em"
+                      >
+                        <path
+                          d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              className="ant-col ant-col-xs-24 ant-col-sm-12"
+              style={
+                Object {
+                  "paddingBottom": 4,
+                  "paddingLeft": 4,
+                  "paddingRight": 4,
+                  "paddingTop": 4,
+                }
+              }
+            >
+              <label
+                className="flightSearchLabel"
+              >
+                Return Date
+              </label>
+              <div
+                className="ant-space ant-space-horizontal ant-space-align-center"
+                style={
+                  Object {
+                    "display": "block",
+                  }
+                }
+              >
+                <div
+                  className="ant-space-item"
+                  style={Object {}}
+                >
+                  <button
+                    className="ant-btn ant-btn-link"
+                    disabled={false}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "paddingLeft": 0,
+                      }
+                    }
+                    type="button"
+                  >
+                    <span>
+                      Add return date
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col ant-col-24 ant-col-md-12 ant-col-lg-5"
+        style={
+          Object {
+            "paddingBottom": 12,
+            "paddingLeft": 12,
+            "paddingRight": 12,
+            "paddingTop": 12,
+          }
+        }
+      >
+        <div
+          className="flightSearchBox"
+          onClick={[Function]}
+          onMouseDown={[Function]}
+          onTouchStart={[Function]}
+        >
+          <label
+            className="flightSearchLabel"
+          >
+            Passenger
+             & 
+            Class
+          </label>
+          <div
+            className="flightSearchPassenger"
+          >
+            1 passenger
+          </div>
+          <p
+            className="flightSearchSelected"
+          >
+            Economy
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      className="formControl"
+    >
+      <button
+        className="searchBtn btn btn-md btn-primary search-submit"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        size="large"
+        type="primary"
+      >
+        Search
+         
+      </button>
+    </div>
+  </div>
+</div>
+`;

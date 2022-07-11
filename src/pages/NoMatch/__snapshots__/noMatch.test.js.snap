@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`No match image test renders correctly 1`] = `
+exports[`No match image test  renders correctly 1`] = `
 <div
   className="ant-result ant-result-info"
   style={

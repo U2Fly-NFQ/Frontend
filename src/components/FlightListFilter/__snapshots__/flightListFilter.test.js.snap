@@ -612,6 +612,7 @@ exports[`Flight list filter renders correctly 1`] = `
     >
       <div
         className="ant-checkbox-group"
+        data-testid="airline-checkbox"
       />
     </div>
   </div>

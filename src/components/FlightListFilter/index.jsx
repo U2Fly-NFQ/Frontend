@@ -220,6 +220,7 @@ const FlightListFilter = () => {
             options={airlinesOptions}
             value={airlines}
             onChange={changeAirline}
+            data-testid="airline-checkbox"
           />
         </Col>
       </Row>

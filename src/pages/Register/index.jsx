@@ -84,7 +84,6 @@ const Register = () => {
                             max: 20,
                             message: 'Your ID not be longer than 20 characters',
                           },
-                          ,
                           () => ({
                             validator(_, value) {
                               if (!value) {
@@ -251,7 +250,7 @@ const Register = () => {
                         <Input.Password placeholder="Confirm password" />
                       </Form.Item>
                     </div>
-                    <div className="form-submit">
+                    <div className="form-submit" style={{ marginTop: '30px' }}>
                       <Button type="submit" className="btn btn-primary btn-md">
                         Register
                       </Button>

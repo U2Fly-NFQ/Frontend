@@ -9,6 +9,10 @@
     margin-bottom: 30px;
     font-size: 16px;
 
+    @media only screen and (max-width: 768px) {
+      padding: 10px;
+    }
+
     .title {
       border-bottom: 1px solid #dddddd;
       padding-bottom: 5px;
@@ -24,6 +28,10 @@
       padding-bottom: 5px;
       padding-right: 10px;
     }
+  }
+
+  .ant-checkbox-wrapper {
+    width: 100%;
   }
 }
 

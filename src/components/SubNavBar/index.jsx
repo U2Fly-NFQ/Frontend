@@ -27,7 +27,7 @@ const SubNavBar = () => {
     if (value === 'logout') {
       localStorage.removeItem('user')
       localStorage.removeItem('token')
-      navigate(0)
+      navigate('/')
     }
   }
 
@@ -36,11 +36,11 @@ const SubNavBar = () => {
       onClick={handleMenuClick}
       items={[
         {
-          label: 'My booking',
+          label: t('My Booking'),
           key: 'booked',
         },
         {
-          label: 'Log out',
+          label: t('cta.logout'),
           key: 'logout',
         },
       ]}
@@ -57,7 +57,7 @@ const SubNavBar = () => {
                 <a href="#">028 6681 2733</a>
               </li>
               <li className="sub-nav-list__item">
-                <a href="#">career@nfq.asia</a>
+                <a href="#">u2fly@nfq.asia</a>
               </li>
             </ul>
           </Col>

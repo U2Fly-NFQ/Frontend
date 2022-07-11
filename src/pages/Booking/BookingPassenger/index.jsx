@@ -27,7 +27,7 @@ export default function BookingPassenger() {
   const onFinish = (values) => {
     let valueResult = {
       ...values,
-      date_picker: moment(values.date_picker).format('YYYY-MM-DD'),
+      date_picker: moment(values.date_picker).format('MM-DD-YYYY'),
     }
     dispatch(changeCurrentMethod(1))
     dispatch(addDataIntoBookingFlight(valueResult))
@@ -47,7 +47,7 @@ export default function BookingPassenger() {
   return (
     <>
       <div className="booking-page__container__item__title">
-        <h2>Passengers information</h2>
+        <h2>{t('flight-booking-page.Passenger information')}</h2>
       </div>
       <Form
         wrapperCol={{
@@ -79,7 +79,7 @@ export default function BookingPassenger() {
 
         <Form.Item
           name="date_picker"
-          format="DD-MM-YYYY"
+          format="MM-DD-YYYY"
           style={{ display: 'inline-block', width: '50%' }}
           rules={[
             {
@@ -190,39 +190,6 @@ export default function BookingPassenger() {
           />
         </Form.Item>
 
-        <Form.Item
-          name="passport"
-          style={{ display: 'inline-block', width: '50%' }}
-          rules={[
-            {
-              required: true,
-              message: t('flight-booking-page.Please input your Passport!'),
-            },
-          ]}
-        >
-          <input
-            className="form-control"
-            name="passport"
-            placeholder={t('flight-booking-page.Passport no.')}
-          />
-        </Form.Item>
-
-        <Form.Item
-          name="visa"
-          style={{ display: 'inline-block', width: '50%' }}
-          rules={[
-            {
-              required: true,
-              message: t('flight-booking-page.Please input your visa!'),
-            },
-          ]}
-        >
-          <input
-            name="visa"
-            className="form-control"
-            placeholder={t('flight-booking-page.Visa no.')}
-          />
-        </Form.Item>
         <Form.Item
           name="agreement"
           valuePropName="checked"

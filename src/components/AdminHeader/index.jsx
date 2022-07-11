@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, Dropdown, Layout, Input, Row, Col } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
+import { Layout, Input, Row, Col } from 'antd'
 import ProfileMenu from './ProfileMenu'
 
 const { Header } = Layout
@@ -10,7 +9,6 @@ function AdminHeader() {
   //initiation
   const [search, setSearch] = useState('')
 
-  //Logical handling functions
   const handleSearch = (value) => {
     setSearch('')
   }
@@ -26,9 +24,7 @@ function AdminHeader() {
           /> */}
       </Col>
       <Col xs={24} sm={12} className="admin-header-content-right">
-        <Dropdown className="profileMenu" overlay={<ProfileMenu />}>
-          <Avatar size="large" icon={<UserOutlined />} />
-        </Dropdown>
+        <ProfileMenu />
       </Col>
     </Row>
   )

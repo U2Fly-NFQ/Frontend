@@ -105,6 +105,7 @@ const bookingFlightsSlice = createSlice({
     },
     [getDiscountCheck.fulfilled]: (state, action) => {
       const { status, data } = action.payload
+      const flightLocal = JSON.parse(localStorage.getItem('flight'))
       if (status === 'success') {
         state.discountInfo = data
         let getSeat = current(state.dataFlight).seat
@@ -115,10 +116,11 @@ const bookingFlightsSlice = createSlice({
             getSeat.price - getSeat.price * data.percent
         } else {
           state.priceAfterDiscount =
-            getSeat.price +
-            getRoundTripSeat.price -
-            getSeat.price * data.percent -
-            getRoundTripSeat.price * data.percent
+            (getSeat.price +
+              getRoundTripSeat.price -
+              getSeat.price * data.percent -
+              getRoundTripSeat.price * data.percent) *
+            flightLocal.seatAvailable
         }
       }
     },
@@ -131,7 +133,9 @@ const bookingFlightsSlice = createSlice({
     [getDataFlights.fulfilled]: (state, action) => {
       state.loadding = false
       const { status, data } = action.payload
-      let allSeatNameAvailable = data.seat.map((item) => item.name)
+      let allSeatNameAvailable = data.seat.map((item) =>
+        item.name.toLowerCase()
+      )
       let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
       if (status === 'success') {
         let tempResult = {
@@ -143,7 +147,8 @@ const bookingFlightsSlice = createSlice({
           ],
         }
         tempResult.seat.price =
-          tempResult.seat.price * dataSeatChoose.seatAvailable
+          tempResult.seat.price -
+          tempResult.seat.price * tempResult.seat.discount
         state.dataFlight = tempResult
       }
     },
@@ -156,7 +161,9 @@ const bookingFlightsSlice = createSlice({
     [getRoundTripBookingFlightAsync.fulfilled]: (state, action) => {
       state.loadding = false
       const { status, data } = action.payload
-      let allSeatNameAvailable = data.seat.map((item) => item.name)
+      let allSeatNameAvailable = data.seat.map((item) =>
+        item.name.toLowerCase()
+      )
       let dataSeatChoose = JSON.parse(localStorage.getItem('flight'))
       if (status === 'success') {
         let tempResult = {
@@ -168,12 +175,9 @@ const bookingFlightsSlice = createSlice({
           ],
         }
         tempResult.seat.price =
-          tempResult.seat.price * dataSeatChoose.seatAvailable
+          tempResult.seat.price -
+          tempResult.seat.price * tempResult.seat.discount
         state.dataRoundTripFlight = tempResult
-
-        // state.addDataIntoBookingFlight.seat.price =
-        //   current(state.addDataIntoBookingFlight).seat.price *
-        //   dataSeatChoose.seatAvailable
       }
     },
   },

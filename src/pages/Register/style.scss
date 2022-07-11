@@ -4,13 +4,18 @@
   background-color: #fff;
 
   .content {
-    padding: 100px 0;
+    padding: 400px 0;
     position: relative;
 
     .box {
       background: #f3f6fd;
       padding: 45px 20px;
-      border-radius: 10px;
+      position: absolute;
+      top: -200px;
+      left: 0;
+      right: 0;
+      border-radius: 12px;
+      box-shadow: a.$box-shadow;
 
       h2,
       h3 {
@@ -41,6 +46,7 @@
         .form-group {
           margin-bottom: 20px;
           text-align: right;
+          cursor: text;
 
           .form-control {
             input {

@@ -118,6 +118,8 @@
     },
 
     "flights found": "{{number}} flights found",
+    "Flight details": "Flight details",
+    "Sorry we didn't find any results matching this search": "Sorry we didn't find any results matching this search",
     "Cheapest price first": "Cheapest price first",
     "Price Low to High": "Price: Low to High",
     "Fly time Fastest": "Fly time: Fastest",
@@ -136,18 +138,19 @@
     "Direct": "Direct",
     "hour": "hour",
     "Book now": "Book now",
-    "Flight details": "Flight details",
     "Delete": "Delete",
     "Selected outbound": "Selected outbound",
-    "Airline": "Airline"
+    "Airline": "Airline",
+    "Order by": "Order by"
   },
 
   "flight-booking-page": {
     "Passenger information": "Passenger information",
     "Payment methods": "Payment methods",
-    "payment successful": "payment successful",
+    "payment successful": "Payment successful",
     "Flights": "Flights",
     "Pay Now": "Pay Now",
+    "Flight Rules": "Flight Rules",
     "First name": "First name",
     "Email address": "Email address",
     "Optional": "Optional",
@@ -459,5 +462,7 @@
     "order_timeslot": "$t(order_timeslot.{{value}})",
     "order_history_action": "$t(order_history_action.{{action}})",
     "delivery_status": "$t(delivery_status.{{status}})"
-  }
+  },
+  "My Booking": "My Booking",
+  "Booking History": "Booking History"
 }

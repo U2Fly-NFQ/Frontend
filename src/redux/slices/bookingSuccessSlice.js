@@ -38,6 +38,8 @@ const bookingSuccessFlightsSlice = createSlice({
         createdAt,
         passenger,
         email,
+        address,
+        paymentId,
         discount,
       } = data
       if (status === 'success') {
@@ -48,9 +50,11 @@ const bookingSuccessFlightsSlice = createSlice({
           gender: passenger.gender,
           birthday: passenger.birthday,
           identification: passenger.identification,
+          address: passenger.address,
         }
         state.ticketInfomation = {
           id: id,
+          paymentId,
           discount: discount < 1 ? discount : 0,
           seatType: seatType,
           createdAt: moment(createdAt).format('YYYY-MM-DD'),

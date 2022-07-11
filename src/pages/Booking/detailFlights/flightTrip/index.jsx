@@ -3,18 +3,19 @@ import React from 'react'
 import { getDurationFormat } from '../../../../utils/flight'
 import './index.scss'
 import { useSelector } from 'react-redux'
-import vietnameairline from '../../../../assets/images/system/vip.png'
 import {
   getInfoFlightInBookingFight,
   getRoundTripBookingFlight,
 } from '../../../../redux/selectors'
 import { getLsObj } from '../../../../utils/localStorage'
+import moment from 'moment'
 export default function FlightTrip() {
   const { Panel } = Collapse
   const { Step } = Steps
   const getDataFlight = useSelector(getInfoFlightInBookingFight)
   const getRoundTrip = useSelector(getRoundTripBookingFlight)
   let flight = getLsObj('flight')
+  console.log(getDataFlight)
   return (
     <Collapse defaultActiveKey={['1']} ghost>
       <Panel
@@ -52,10 +53,7 @@ export default function FlightTrip() {
             title={
               <div className="info-plane_trip">
                 <div className="info-plane_trip-icon__rotate">
-                  <i
-                    className="fa-solid fa-plane-up"
-                    style={{ transform: 'rotate(45deg);' }}
-                  ></i>
+                  <i className="fa-solid fa-plane-up"></i>
                 </div>
 
                 <span>{getDataFlight.departure.city}</span>
@@ -67,14 +65,20 @@ export default function FlightTrip() {
               <div className="info-plane_trip">
                 <div className="info-plane_trip__info">
                   <div className="info-plane_trip__title">
-                    <img src={vietnameairline} alt="" />
-                    <h5>Vietnam Airlines</h5>
+                    <img src={getDataFlight.airline.image} alt="" />
+                    <h5>{getDataFlight.airline.name}</h5>
                   </div>
                   <div className="info-plane_trip__body">
-                    <span>204 | Airbus A321</span>
+                    <span>{getDataFlight.airplane.name}</span>
                   </div>
                   <div className="info-plane_trip__footer">
-                    <span>Economy class</span>
+                    <span>
+                      {`${moment(getDataFlight.startDate).format(
+                        'MM-DD-YYYY'
+                      )} ${moment(getDataFlight.startTime, 'HH:mm:ss').format(
+                        'hh:mm A'
+                      )}`}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -86,7 +90,6 @@ export default function FlightTrip() {
                 <div className="info-plane_trip-icon">
                   <i className="fa-solid fa-location-dot"></i>
                 </div>
-
                 <span>{getDataFlight.arrival.city}</span>
               </div>
             }
@@ -128,13 +131,10 @@ export default function FlightTrip() {
               title={
                 <div className="info-plane_trip">
                   <div className="info-plane_trip-icon__rotate">
-                    <i
-                      className="fa-solid fa-plane-up"
-                      style={{ transform: 'rotate(45deg);' }}
-                    ></i>
+                    <i className="fa-solid fa-plane-up"></i>
                   </div>
 
-                  <span>{getDataFlight.departure.city}</span>
+                  <span>{getRoundTrip.departure.city}</span>
                 </div>
               }
             />
@@ -143,14 +143,20 @@ export default function FlightTrip() {
                 <div className="info-plane_trip">
                   <div className="info-plane_trip__info">
                     <div className="info-plane_trip__title">
-                      <img src={vietnameairline} alt="" />
+                      <img src={getRoundTrip.airline.image} alt="" />
                       <h5>{getRoundTrip.airline.name}</h5>
                     </div>
                     <div className="info-plane_trip__body">
-                      <span>204 | {getRoundTrip.airplane.name}</span>
+                      <span>{getRoundTrip.airplane.name}</span>
                     </div>
                     <div className="info-plane_trip__footer">
-                      <span>Economy class</span>
+                      <span>
+                        {`${moment(getRoundTrip.startDate).format(
+                          'MM-DD-YYYY'
+                        )} ${moment(getRoundTrip.startTime, 'HH:mm:ss').format(
+                          'hh:mm A'
+                        )}`}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -163,7 +169,7 @@ export default function FlightTrip() {
                     <i className="fa-solid fa-location-dot"></i>
                   </div>
 
-                  <span>{getDataFlight.arrival.city}</span>
+                  <span>{getRoundTrip.arrival.city}</span>
                 </div>
               }
             />

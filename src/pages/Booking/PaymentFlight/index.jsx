@@ -12,8 +12,8 @@ import {
   getRoundTripBookingFlight,
   getUserInformation,
 } from '../../../redux/selectors'
-import { useTranslation } from 'react-i18next'
 import { createBookingFlight } from '../../../redux/slices/bookingFlightsSlice'
+import { useTranslation } from 'react-i18next'
 export default function PaymentFlight() {
   const [value, setValue] = useState(1)
   const [dataBooking, setDataBooking] = useState()
@@ -24,7 +24,7 @@ export default function PaymentFlight() {
   const getSeatData = useSelector(getInfoFlightInBookingSeat)
   const userInformation = useSelector(getUserInformation)
   const getRoundTrip = useSelector(getRoundTripBookingFlight)
-
+  const flightLocal = JSON.parse(localStorage.getItem('flight'))
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
@@ -39,22 +39,22 @@ export default function PaymentFlight() {
       getRoundTrip.seat !== undefined
         ? getPrice.price * 110 + getRoundTrip.seat.price * 110
         : getPrice.price * 110
-
+    let discount =
+      (getRoundTrip.seat !== undefined
+        ? getPrice.price + getRoundTrip.seat.price
+        : getPrice.price) * getDiscountInfo.percent
     let fetchDataValue = {
-      passengerId: userInformation.accountId,
+      passengerId: userInformation.id,
       flightId: getRoundTrip.id
         ? `${getFlightData.id},${getRoundTrip.id}`
         : `${getFlightData.id}`,
       seatTypeId: getSeatData.id,
-      totalPrice:
-        getDiscountInfo.percent === 0
-          ? priceTotal
-          : priceTotal - priceTotal * getDiscountInfo.percent,
-
+      totalPrice: Math.floor(
+        (priceTotal - discount * 100) * flightLocal.seatAvailable
+      ),
       discountId: getDiscountInfo.id || 1,
       ticketOwner: userInformation.firstName,
     }
-
     dispatch(createBookingFlight(fetchDataValue))
   }
   let dataPayment = [
@@ -74,7 +74,7 @@ export default function PaymentFlight() {
   return (
     <>
       <div className="booking-page__container__item__title">
-        <h2>Payment Method</h2>
+        <h2>{t('flight-booking-page.Payment methods')}</h2>
       </div>
       <div style={{ width: '100%' }}>
         <Radio.Group

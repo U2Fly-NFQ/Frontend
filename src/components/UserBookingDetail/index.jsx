@@ -17,12 +17,10 @@ function UserBookingDetail({ detailData }) {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [dataRating, setDataRating] = useState({})
 
-  const handleCancelRating = () => {
-    setIsModalVisible(false)
-  }
   const showRatingForm = (value) => {
     setIsModalVisible(true)
     setDataRating({
+      airlineId: value.airline.id,
       ticketFlightId: value.ticketFlight.id,
       accountId: JSON.parse(localStorage.getItem('user')).id,
     })
@@ -36,7 +34,6 @@ function UserBookingDetail({ detailData }) {
         comment: value.description,
       })
     )
-    setIsModalVisible(false)
   }
 
   const flightsColumn = [
@@ -44,7 +41,7 @@ function UserBookingDetail({ detailData }) {
       title: 'Airline',
       dataIndex: 'airline',
       align: 'center',
-      width: '150px',
+      width: '125px',
       render: (_, { airline }) => (
         <img width="100%" src={airline.image} alt="airline" />
       ),
@@ -69,15 +66,15 @@ function UserBookingDetail({ detailData }) {
       ),
     },
     {
-      title: 'ETD',
+      title: 'Departure',
       dataIndex: 'ETD',
-      width: '100px',
+      width: '115px',
       align: 'center',
     },
     {
-      title: 'ETA',
+      title: 'Arrival',
       dataIndex: 'ETA',
-      width: '100px',
+      width: '115px',
       align: 'center',
     },
     {
@@ -113,13 +110,14 @@ function UserBookingDetail({ detailData }) {
                 showRatingForm(record)
               }}
             >
-              Rating
+              Review
             </Button>
           )}
         </Space>
       ),
     },
   ]
+
   return (
     <Row className="booking-detail">
       <Col className="booking-detail-info" span={24}>
@@ -143,7 +141,7 @@ function UserBookingDetail({ detailData }) {
             Date:
           </Col>
           <Col className="booking-info-text" span={7}>
-            {moment(detailData.createdAt).format('DD/M/YYYY')}
+            {moment(detailData.createdAt).format('MM-DD-YYYY')}
           </Col>
           <Col className="booking-info-label" span={5}>
             Email:
@@ -176,8 +174,7 @@ function UserBookingDetail({ detailData }) {
       <ModalRating
         visible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
-        handleCancel={handleCancelRating}
-        handleOk={handleRating}
+        rating={handleRating}
       />
     </Row>
   )

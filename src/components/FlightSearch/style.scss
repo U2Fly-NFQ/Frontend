@@ -42,6 +42,12 @@
           margin-right: 10px;
           margin-bottom: 10px;
           min-width: 32px;
+          border-radius: 8px;
+          overflow: hidden;
+
+          &:not(:first-child):before {
+            width: 2px;
+          }
         }
       }
     }

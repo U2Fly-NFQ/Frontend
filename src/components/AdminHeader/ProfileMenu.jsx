@@ -1,32 +1,51 @@
-import React from 'react'
-import { Menu } from 'antd'
-import { LogoutOutlined } from '@ant-design/icons'
+import React, { useState } from 'react'
+import { Menu, Dropdown, Space } from 'antd'
+import { DownOutlined } from '@ant-design/icons'
 import { getLsObj } from '../../utils/localStorage'
 import { useNavigate } from 'react-router-dom'
 
 function ProfileMenu() {
   const user = getLsObj('user')
   const navigate = useNavigate()
+  const [visible, setVisible] = useState(false)
 
-  return (
+  const handleVisibleChange = (flag) => {
+    setVisible(flag)
+  }
+
+  const handleMenuClick = (e) => {
+    const value = e.key
+
+    if (value === 'logout') {
+      localStorage.removeItem('user')
+      localStorage.removeItem('token')
+      navigate('/')
+    }
+  }
+
+  const menu = (
     <Menu
+      onClick={handleMenuClick}
       items={[
         {
-          key: '1',
-          label: user.username,
-        },
-        {
-          key: '2',
-          icon: <LogoutOutlined />,
-          label: 'Logout',
-          onClick: () => {
-            localStorage.removeItem('user')
-            localStorage.removeItem('token')
-            navigate('/')
-          },
+          label: 'Log out',
+          key: 'logout',
         },
       ]}
     />
+  )
+
+  return (
+    <Dropdown
+      overlay={menu}
+      onVisibleChange={handleVisibleChange}
+      visible={visible}
+    >
+      <Space style={{ color: 'white' }}>
+        {user.username || 'career@nfq.asia'}
+        <DownOutlined />
+      </Space>
+    </Dropdown>
   )
 }
 

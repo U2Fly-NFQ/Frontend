@@ -19,7 +19,7 @@ const FlightChart = ({ data }) => {
   let flightTotal = flightOfDay.map((f) => ({
     name: 'Flight Total',
     time: f.date,
-    value: f.cancel || 0 + f.success || 0,
+    value: (f.cancel || 0) + (f.success || 0),
   }))
 
   let resultChart = [...flightCancel, ...flightTotal, ...flightSuccess]

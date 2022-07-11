@@ -23,15 +23,11 @@ export default function FooterInformation() {
               <div className="footer-info__container__contact-content">
                 <div className="footer-info__container__contact-content__item">
                   <h5>{t('footer.CMail to our support team')}</h5>
-                  <h3>
-                    <a href="#">support@domain.com</a>
-                  </h3>
+                  <h3>u2fly@nfq.asia</h3>
                 </div>
                 <div className="footer-info__container__contact-content__item">
                   <h5>{t('footer.Call 24/7 for any help')}</h5>
-                  <h3>
-                    <a href="#">+00 123 456 789</a>
-                  </h3>
+                  <h3>028 6681 2733</h3>
                 </div>
               </div>
             </div>
@@ -114,12 +110,11 @@ export default function FooterInformation() {
               </div>
               <div className="footer-info__container__company__content">
                 <ul>
-                  <li>Chicago</li>
-                  <li>New York</li>
-                  <li>San Francisco</li>
-                  <li>California</li>
-                  <li>Ohio</li>
-                  <li>Alaska</li>
+                  <li>Ha Noi</li>
+                  <li>Da Nang</li>
+                  <li>Ho Chi Minh</li>
+                  <li>Can Tho</li>
+                  <li>Bangkok</li>
                 </ul>
               </div>
             </div>

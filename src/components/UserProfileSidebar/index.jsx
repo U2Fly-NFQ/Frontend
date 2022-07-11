@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Row, Col, Avatar, Menu } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { UserOutlined } from '@ant-design/icons'
 
-function UserProfileSidebar() {
+function UserProfileSidebar({ proflie }) {
+  const location = useLocation()
+  const [selectedKeys, setSelectedKeys] = useState(['1'])
+
+  useEffect(() => {
+    if (location.pathname === '/profile/booking') {
+      setSelectedKeys(['1'])
+    }
+    if (location.pathname === '/profile/history') {
+      setSelectedKeys(['2'])
+    }
+  }, [location.pathname])
+
   const getItem = (label, key, icon, children) => {
     return {
       key,
@@ -13,21 +26,15 @@ function UserProfileSidebar() {
   }
 
   const items = [
-    // getItem(<Link to="/profile">Dashboard</Link>, 1, <DashboardOutlined />),
     getItem(
       <Link to="/profile/booking">My Booking</Link>,
-      2,
+      1,
       <i className="fa-solid fa-address-card"></i>
     ),
     getItem(
       <Link to="/profile/history">Booking History</Link>,
-      3,
+      2,
       <i className="fa-solid fa-clock-rotate-left"></i>
-    ),
-    getItem(
-      <Link to="/profile">My Profile</Link>,
-      4,
-      <i className="fa-solid fa-circle-user"></i>
     ),
   ]
 
@@ -45,27 +52,22 @@ function UserProfileSidebar() {
                 xl: 80,
                 xxl: 100,
               }}
-              icon={
-                <img
-                  src="https://scontent.fvca1-2.fna.fbcdn.net/v/t1.6435-9/147238869_2737423053135997_5432239568851874162_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=730e14&_nc_ohc=zVwQ59TvZ1gAX-S0gcK&_nc_oc=AQniGBrBuoIMCZqjMjJgtSgX28eONnyplXB0_vcD6rkL7Xmo9ZxGFXkV5X4duXIUSjU&_nc_ht=scontent.fvca1-2.fna&oh=00_AT9hHya5lsTA9w-XKjfm3koqclwvO7BrLjnfdu7H2luAOQ&oe=62E4B213"
-                  alt="avatar"
-                />
-              }
+              icon={<UserOutlined />}
             />
           </Col>
           <Col span={24} className="userProfile-sidebar-header-name">
-            Sang Sáng Sủa
+            {proflie.name}
           </Col>
           <Col span={24} className="userProfile-sidebar-header-phone">
-            +84 094 8478 487
+            {/*+84 094 8478 487*/}
           </Col>
           <Col span={24} className="userProfile-sidebar-header-email">
-            sangsangsua@gmail.com
+            {proflie.email}
           </Col>
         </Row>
       </Col>
       <Col span={24} className="userProfile-sidebar-menu">
-        <Menu items={items} />
+        <Menu items={items} selectedKeys={selectedKeys} />
       </Col>
     </Row>
   )

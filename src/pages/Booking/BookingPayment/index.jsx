@@ -89,7 +89,7 @@ export default function BookingPayment() {
 
   return (
     <>
-      <div class="booking-page__container__item__title">
+      <div className="booking-page__container__item__title">
         <h2>Payemnt methods</h2>
       </div>
       <div className="payment-booking">

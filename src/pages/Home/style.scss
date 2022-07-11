@@ -1,6 +1,10 @@
 @use '../../assets/scss/abstracts/variables' as var;
 @use '../../assets/scss/base/animation' as animate;
 
+.home-page {
+  padding: 10px;
+}
+
 .animate__fadeInUp {
   animation: animate.$fadeInUp;
 }
@@ -133,7 +137,9 @@
 
     & img {
       width: 100%;
+      object-fit: cover;
       transition: var.$transition;
+      height: 446px;
     }
 
     &:hover img {
@@ -167,7 +173,7 @@
       align-items: center;
       height: 25%;
       transition: var.$transition;
-      font-size: 20px;
+      font-size: 24px;
       flex-direction: column;
       color: var.$white-color;
       font-weight: 400;

@@ -116,10 +116,11 @@
       "EXPLORE THE WORLD WITH US": "HÃY CÙNG CHÚNG TÔI KHÁM PHÁ THẾ GIỚI",
       "Amazing journeys. Every day.": "Những cuộc hành trình tuyệt vời. Mỗi ngày."
     },
-    "flights found": "Tìm được {{number}} chuyến bay",
+    "flights found": "{{number}} chuyến bay",
+    "Sorry we didn't find any results matching this search": "Xin lỗi chúng tôi không thể tìm thấy kết quả phù hợp",
     "Cheapest price first": "Cheapest price first",
     "Price Low to High": "Giá: Thấp đến Cao",
-    "Fly time Fastest": "Thời gian bay: Nhanh nhất",
+    "Fly time Fastest": "Thời gian: Nhanh nhất",
     "All time": "Mọi lúc",
     "Early Morning": "Rạng sáng",
     "Morning": "Sáng",
@@ -135,10 +136,11 @@
     "Direct": "Bay thẳng",
     "hour": "giờ",
     "Book now": "Đặt ngay",
-    "Flight details": "Chi tiết chuyến bay",
+    "Flight details": "Chi tiết",
     "Delete": "Xóa bỏ",
     "Selected outbound": "Đã chọn",
-    "Airline": "Hãng hàng không"
+    "Airline": "Hãng hàng không",
+    "Order by": "Sắp xếp theo"
   },
 
   "flight-booking-page": {

@@ -4,6 +4,10 @@ import { Button, Modal, Space, Table } from 'antd'
 import { bookingStatus } from '../../Constants'
 import { useNavigate } from 'react-router-dom'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
+import {
+  checkTimeForCancelBooking,
+  getURLForBookingAgain,
+} from '../../utils/flightDataProcessing'
 
 function UserBookingTable({ loading, data, onCancel }) {
   //initiation
@@ -11,14 +15,14 @@ function UserBookingTable({ loading, data, onCancel }) {
   const navigate = useNavigate()
 
   //Data for UI
-  const confirm = () => {
+  const confirm = (paymentID) => {
     Modal.confirm({
       title: 'Confirm',
       icon: <ExclamationCircleOutlined />,
       content: 'Are you want to cancel this booking?',
       okText: 'Yes',
       cancelText: 'No',
-      onOk: onCancel,
+      onOk: () => onCancel(paymentID),
     })
   }
   const bookingListColumn = [
@@ -54,13 +58,14 @@ function UserBookingTable({ loading, data, onCancel }) {
       title: 'Booking Amount',
       dataIndex: 'totalPrice',
       align: 'center',
-      sorter: (a, b) => a.totalPrice - b.totalPrice,
+      sorter: (a, b) =>
+        parseFloat(a.totalPrice.substring(1)) -
+        parseFloat(b.totalPrice.substring(1)),
     },
     {
       title: 'Status',
       dataIndex: 'status',
       align: 'center',
-      sorter: (a, b) => a.status.length - b.status.length,
     },
     {
       title: 'Action',
@@ -71,17 +76,24 @@ function UserBookingTable({ loading, data, onCancel }) {
       render: (_, record) => (
         <Space>
           {/* eslint-disable-next-line react/jsx-no-undef */}
-          {record.status === bookingStatus['0'] && (
-            <Button type="default" shape="default" onClick={confirm}>
+          {record.status === bookingStatus[1] && (
+            <Button
+              type="default"
+              shape="default"
+              disabled={checkTimeForCancelBooking(
+                record.flights[0].startDate,
+                record.flights[0].startTime
+              )}
+              onClick={() => confirm(record.paymentId)}
+            >
               Cancel
             </Button>
           )}
-          {(record.status === bookingStatus['1'] ||
-            record.status === bookingStatus['2']) && (
+          {record.status !== bookingStatus[1] && (
             <Button
               type="primary"
               shape="default"
-              onClick={() => navigate('/')}
+              onClick={() => navigate(getURLForBookingAgain(record))}
             >
               Booking Again
             </Button>
@@ -98,6 +110,7 @@ function UserBookingTable({ loading, data, onCancel }) {
     <>
       <Table
         columns={bookingListColumn}
+        showSorterTooltip={false}
         rowKey={(record) => record.id}
         expandable={{
           expandedRowKeys: expandedRowKeys,

@@ -19,13 +19,15 @@ import {
   UserHistory,
   UserProfileDetail,
 } from '../pages'
+import { getLsObj } from '../utils/localStorage'
 
 const HomeLayout = lazy(() => import('../layouts/Home'))
 const AdminLayout = lazy(() => import('../layouts/Admin'))
 const FlightList = lazy(() => import('../pages/FlightList'))
-
+const AdminTicket = lazy(() => import('../pages/AdminTicket'))
 const RoutesApp = () => {
   const token = localStorage.getItem('token')
+  const user = getLsObj('user')
 
   topbar.config({
     autoRun: false,
@@ -57,7 +59,7 @@ const RoutesApp = () => {
             <Route path="/register" element={<Register />} />
 
             {/* For users */}
-            {token && (
+            {token && Object.values(user.roles).indexOf('ROLE_USER') > -1 && (
               <Route path="profile" element={<UserProfile />}>
                 <Route index element={<UserProfileDetail />} loading />
                 <Route path="booking" element={<UserBooking />} loading />
@@ -67,10 +69,11 @@ const RoutesApp = () => {
           </Route>
 
           {/* For admins */}
-          {token && (
+          {token && Object.values(user.roles).indexOf('ROLE_ADMIN') > -1 && (
             <Route path="admin" element={<AdminLayout />}>
               <Route path="" element={<AdminDashboard />} />
               <Route path="discount" element={<AdminDiscount />} />
+              <Route path="ticket" element={<AdminTicket />} />
             </Route>
           )}
 

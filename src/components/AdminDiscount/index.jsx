@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Typography, Button, Modal, Form, message } from 'antd'
+import {
+  Table,
+  Typography,
+  Button,
+  Modal,
+  Form,
+  message,
+  Popconfirm,
+} from 'antd'
+
+import { DeleteOutlined } from '@ant-design/icons'
 import moment from 'moment'
 
 import CreatgeDiscountForm from './CreateDiscountForm'
@@ -33,6 +43,7 @@ function AddminDiscount() {
 
   const handleDelete = (record) => {
     dispatch(deleteDiscount(record.id))
+    message.info(`${record.name} has been deleted!`)
   }
 
   const handleCancel = () => {
@@ -56,44 +67,39 @@ function AddminDiscount() {
 
   const columns = [
     {
-      title: 'Discount name',
+      title: 'Name',
       dataIndex: 'name',
-      render: (text) => (
-        <Typography.Paragraph strong>{text}</Typography.Paragraph>
-      ),
+      render: (text) => <Typography.Paragraph>{text}</Typography.Paragraph>,
     },
     {
       title: 'Value',
       dataIndex: 'percent',
-      sorter: {
-        compare: (a, b) => a.value - b.value,
-      },
       render: (text) => (
-        <Typography.Paragraph strong>{text + '%'}</Typography.Paragraph>
+        <Typography.Paragraph>{text + '%'}</Typography.Paragraph>
       ),
     },
     {
       title: 'Date created',
       dataIndex: 'createdAt',
-      sorter: {
-        compare: (a, b) => a.createdAt - b.createdAt,
-      },
       render: (text) => (
-        <Typography.Paragraph strong>
+        <Typography.Paragraph>
           {moment(text).format('MMMM Do YYYY, h:mm:ss')}
         </Typography.Paragraph>
       ),
     },
     {
-      title: 'Delete',
+      title: 'Actions',
       render: (_, record) => (
-        <Button
-          type="text"
-          style={{ color: 'red' }}
-          onClick={() => handleDelete(record)}
+        <Popconfirm
+          title="Are you sure to delete this discount?"
+          onConfirm={() => handleDelete(record)}
+          okText="Yes"
+          cancelText="No"
         >
-          Delete
-        </Button>
+          <Button type="text" style={{ color: 'red' }}>
+            <DeleteOutlined />
+          </Button>
+        </Popconfirm>
       ),
     },
   ]
@@ -103,9 +109,17 @@ function AddminDiscount() {
       <div
         style={{
           marginBottom: '10px',
+          display: 'flex',
+          justifyContent: 'end',
         }}
       >
-        <Button type="primary" onClick={() => setIsModalVisible(true)}>
+        <Button
+          type="primary"
+          onClick={() => setIsModalVisible(true)}
+          style={{
+            borderRadius: '12px',
+          }}
+        >
           Add a discount
         </Button>
       </div>

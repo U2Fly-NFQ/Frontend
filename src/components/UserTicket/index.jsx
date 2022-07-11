@@ -38,10 +38,10 @@ function UserTicket({ visible, setViewTicket, ticketData }) {
                       Full Name / Họ và Tên
                     </div>
                     <div className="passenger-info-text">
-                      {ticketData.passenger.name}
+                      {ticketData.ticketOwner}
                     </div>
                   </Col>
-                  <Col span={6}>
+                  <Col span={7}>
                     <div className="passenger-info-title">
                       Flight/Chuyến Bay
                     </div>
@@ -49,13 +49,15 @@ function UserTicket({ visible, setViewTicket, ticketData }) {
                       {ticketData.flights.code}
                     </div>
                   </Col>
-                  <Col span={4}>
+                  <Col span={5}>
                     <div className="passenger-info-title">Date/Ngày</div>
                     <div className="passenger-info-text">
-                      {moment(ticketData.flights.startDate).format('DD/M/YYYY')}
+                      {moment(ticketData.flights.startDate).format(
+                        'MM-DD-YYYY'
+                      )}
                     </div>
                   </Col>
-                  <Col span={3} className="info_empty">
+                  <Col span={4} className="info_empty">
                     <div className="passenger-info-title">Seat/Ghế</div>
                     <div className="passenger-info-text">&nbsp;</div>
                   </Col>
@@ -72,23 +74,23 @@ function UserTicket({ visible, setViewTicket, ticketData }) {
                   </Col>
                 </Row>
                 <Row justify="space-between" className="flight-details">
-                  <Col span={5} className="info_empty">
+                  <Col span={4} className="info_empty">
                     <div className="flight-details-title">Gate/Cổng</div>
                     <div className="flight-details-text">&nbsp;</div>
                   </Col>
-                  <Col span={5}>
+                  <Col span={6}>
                     <div className="flight-details-title">Boarding Time</div>
                     <div className="flight-details-text">
                       {ticketData.flights.boardingTime}
                     </div>
                   </Col>
-                  <Col span={5}>
+                  <Col span={6}>
                     <div className="flight-details-title">ETD/Khởi Hành</div>
                     <div className="flight-details-text">
                       {ticketData.flights.ETD}
                     </div>
                   </Col>
-                  <Col span={5}>
+                  <Col span={6}>
                     <div className="flight-details-title">ETA/Đến Nơi</div>
                     <div className="flight-details-text">
                       {ticketData.flights.ETA}
@@ -140,7 +142,9 @@ function UserTicket({ visible, setViewTicket, ticketData }) {
                   <Col span={24}>
                     <div className="passenger-info-title">Date/Ngày</div>
                     <div className="passenger-info-text">
-                      {moment(ticketData.flights.startDate).format('DD/M/YYYY')}
+                      {moment(ticketData.flights.startDate).format(
+                        'MM-DD-YYYY'
+                      )}
                     </div>
                   </Col>
                   <Col span={24} className="info_empty">

@@ -12,7 +12,7 @@ export default function BookingTravelDate() {
   const seat = useSelector(getInfoFlightInBookingSeat)
   const seatRoungTrip = useSelector(getRoundTripSeat)
   const getDiscount = useSelector(getDiscountForBookingAirline)
-  // const flight =
+  const flightLocal = JSON.parse(localStorage.getItem('flight'))
   const { t } = useTranslation()
 
   return (
@@ -24,15 +24,17 @@ export default function BookingTravelDate() {
         <ul className="booking-travel-date__container__value">
           <li>
             <div className="booking-travel-date__container__key">
-              {seat.name +
-                ' Price x ' +
-                JSON.parse(localStorage.getItem('flight')).seatAvailable}
+              {seat.name} Price x{' '}
+              {flightLocal.roundId
+                ? flightLocal.seatAvailable * 2
+                : flightLocal.seatAvailable}
             </div>
             <div className="booking-travel-date__container__key">
               {'$ ' +
                 (seatRoungTrip !== undefined
-                  ? seatRoungTrip.price + seat.price
-                  : seat.price)}
+                  ? (seatRoungTrip.price + seat.price) *
+                    flightLocal.seatAvailable
+                  : seat.price * flightLocal.seatAvailable)}
             </div>
           </li>
           <li>
@@ -51,8 +53,9 @@ export default function BookingTravelDate() {
               <div className="booking-travel-date__container__value">
                 $
                 {seatRoungTrip !== undefined
-                  ? seatRoungTrip.price + seat.price
-                  : seat.price}
+                  ? (seatRoungTrip.price + seat.price) *
+                    flightLocal.seatAvailable
+                  : seat.price * flightLocal.seatAvailable}
               </div>
             </li>
             <li>
@@ -60,11 +63,13 @@ export default function BookingTravelDate() {
                 {t('flight-booking-page.Discount')}
               </div>
               <div className="booking-travel-date__container__value">
-                {`${getDiscount.percent * 100}% ($${
+                {`${getDiscount.percent * 100}% ($${(
                   (seatRoungTrip !== undefined
                     ? seatRoungTrip.price + seat.price
-                    : seat.price) * getDiscount.percent
-                })`}
+                    : seat.price) *
+                  flightLocal.seatAvailable *
+                  getDiscount.percent
+                ).toFixed(2)})`}
               </div>
             </li>
             <li>
@@ -74,9 +79,13 @@ export default function BookingTravelDate() {
               </div>
               <div className="booking-travel-date__container__value">
                 $
-                {(seatRoungTrip !== undefined
-                  ? seatRoungTrip.price + seat.price
-                  : seat.price) * getDiscount.percent}
+                {(
+                  (seatRoungTrip !== undefined
+                    ? seatRoungTrip.price + seat.price
+                    : seat.price) *
+                  getDiscount.percent *
+                  flightLocal.seatAvailable
+                ).toFixed(2)}
               </div>
             </li>
           </ul>
@@ -87,14 +96,19 @@ export default function BookingTravelDate() {
           </div>
           <div className="booking-travel-date__container__amount__total__value">
             $
-            {(seatRoungTrip !== undefined
-              ? seatRoungTrip.price + seat.price
-              : seat.price) -
+            {(
               (seatRoungTrip !== undefined
-                ? seatRoungTrip.price + seat.price
-                : seat.price) *
-                getDiscount.percent +
-              seat.discount * 100}
+                ? seatRoungTrip.price +
+                  seatRoungTrip.price * 0.1 +
+                  seat.price +
+                  seat.price * 0.1
+                : seat.price +
+                  seat.price * 0.1 -
+                  (seatRoungTrip !== undefined
+                    ? seatRoungTrip.price + seat.price
+                    : seat.price) *
+                    getDiscount.percent) * flightLocal.seatAvailable
+            ).toFixed(2)}
           </div>
         </div>
       </div>

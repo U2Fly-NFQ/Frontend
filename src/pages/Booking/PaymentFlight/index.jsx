@@ -24,7 +24,7 @@ export default function PaymentFlight() {
   const getSeatData = useSelector(getInfoFlightInBookingSeat)
   const userInformation = useSelector(getUserInformation)
   const getRoundTrip = useSelector(getRoundTripBookingFlight)
-
+  const flightLocal = JSON.parse(localStorage.getItem('flight'))
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
@@ -39,22 +39,23 @@ export default function PaymentFlight() {
       getRoundTrip.seat !== undefined
         ? getPrice.price * 110 + getRoundTrip.seat.price * 110
         : getPrice.price * 110
-
+    let discount =
+      (getRoundTrip.seat !== undefined
+        ? getPrice.price + getRoundTrip.seat.price
+        : getPrice.price) * getDiscountInfo.percent
+    console.log(priceTotal)
+    console.log(discount)
     let fetchDataValue = {
-      passengerId: userInformation.accountId,
+      passengerId: userInformation.id,
       flightId: getRoundTrip.id
         ? `${getFlightData.id},${getRoundTrip.id}`
         : `${getFlightData.id}`,
       seatTypeId: getSeatData.id,
-      totalPrice:
-        getDiscountInfo.percent === 0
-          ? priceTotal
-          : priceTotal - priceTotal * getDiscountInfo.percent,
-
+      totalPrice: (priceTotal - discount * 100) * flightLocal.seatAvailable,
       discountId: getDiscountInfo.id || 1,
       ticketOwner: userInformation.firstName,
     }
-
+    // console.log(fetchDataValue)
     dispatch(createBookingFlight(fetchDataValue))
   }
   let dataPayment = [
@@ -73,7 +74,7 @@ export default function PaymentFlight() {
 
   return (
     <>
-      <div class="booking-page__container__item__title">
+      <div className="booking-page__container__item__title">
         <h2>Payment Method</h2>
       </div>
       <div style={{ width: '100%' }}>

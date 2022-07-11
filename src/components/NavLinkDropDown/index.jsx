@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import NavLinkCustom from '../NavLink'
 import './index.scss'
-export default function NavLinkDropDown({ Title, ListDropDown }) {
+export default function NavLinkDropDown({ Title, ListDropDown, changeOpen }) {
   const navigate = useNavigate()
   const changeNavigation = (data) => {
     return data.replace(' ', '-').toLowerCase()
@@ -26,6 +26,7 @@ export default function NavLinkDropDown({ Title, ListDropDown }) {
                       key={index}
                       className="list__dropdown__item"
                       onClick={() => {
+                        changeOpen(false)
                         navigate(`/${changeNavigation(item.path)}`)
                       }}
                     >

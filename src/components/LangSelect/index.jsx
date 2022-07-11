@@ -6,7 +6,6 @@ import englishIcon from '../../assets/icons/united-kingdom.png'
 import vietnameIcon from '../../assets/icons/vietnam.png'
 
 import './style.scss'
-import { useEffect } from 'react'
 
 const { Option } = Select
 const languageOptions = [
@@ -29,10 +28,6 @@ const LanguageSelect = () => {
     i18n.changeLanguage(lng)
   }
 
-  useEffect(() => {
-    i18n.changeLanguage('en')
-  }, [])
-
   return (
     <Select
       className="lang-select"
@@ -44,9 +39,9 @@ const LanguageSelect = () => {
           }}
         />
       }
-      defaultValue={i18n.language}
+      value={i18n.language.includes('en') ? 'en' : 'vi'}
       onChange={changeLanguage}
-      styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+      styles={{ menuPortal: (base) => ({ ...base, zIndex: 99 }) }}
     >
       {languageOptions.map((option) => (
         <Option key={option.key}>
@@ -56,8 +51,7 @@ const LanguageSelect = () => {
               marginRight: '4px',
             }}
             src={option.icon}
-            alt=""
-            value={option.value}
+            value={option.key}
           />
           {option.value}
         </Option>

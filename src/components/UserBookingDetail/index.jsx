@@ -7,30 +7,41 @@ import { findIndex } from 'lodash/array'
 import moment from 'moment'
 import ModalRating from '../ModalRating'
 import { useDispatch } from 'react-redux'
+import { fetchRatingBooking } from '../../redux/slices/ticketSlice'
 
 function UserBookingDetail({ detailData }) {
   //initiation
   const dispatch = useDispatch()
   const [viewTicket, setViewTicket] = useState(false)
   const [ticketData, setTicketData] = useState({})
-  const [currentId, setCurrentId] = useState()
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const [dataRating, setDataRating] = useState({})
 
-  const handleCancelRating = () => {
-    setIsModalVisible(false)
-  }
-  const showModal = () => {
+  const showRatingForm = (value) => {
     setIsModalVisible(true)
+    setDataRating({
+      airlineId: value.airline.id,
+      ticketFlightId: value.ticketFlight.id,
+      accountId: JSON.parse(localStorage.getItem('user')).id,
+    })
   }
 
-  const handleRating = (value) => {}
+  const handleRating = (value) => {
+    dispatch(
+      fetchRatingBooking({
+        ...dataRating,
+        rate: value.status,
+        comment: value.description,
+      })
+    )
+  }
 
   const flightsColumn = [
     {
       title: 'Airline',
       dataIndex: 'airline',
       align: 'center',
-      width: '150px',
+      width: '125px',
       render: (_, { airline }) => (
         <img width="100%" src={airline.image} alt="airline" />
       ),
@@ -55,15 +66,15 @@ function UserBookingDetail({ detailData }) {
       ),
     },
     {
-      title: 'ETD',
+      title: 'Departure',
       dataIndex: 'ETD',
-      width: '100px',
+      width: '115px',
       align: 'center',
     },
     {
-      title: 'ETA',
+      title: 'Arrival',
       dataIndex: 'ETA',
-      width: '100px',
+      width: '115px',
       align: 'center',
     },
     {
@@ -72,19 +83,7 @@ function UserBookingDetail({ detailData }) {
       align: 'center',
       render: (_, record) => (
         <Space>
-          {record.isRating === 0 && (
-            <Button
-              type="primary"
-              shape="default"
-              onClick={() => {
-                showModal()
-                setCurrentId(record.id)
-              }}
-            >
-              Rating
-            </Button>
-          )}
-          {record.isRating === 1 && (
+          {record.isRating && (
             <Button
               type="default"
               shape="default"
@@ -103,10 +102,22 @@ function UserBookingDetail({ detailData }) {
               View
             </Button>
           )}
+          {!record.isRating && (
+            <Button
+              type="primary"
+              shape="default"
+              onClick={() => {
+                showRatingForm(record)
+              }}
+            >
+              Rating
+            </Button>
+          )}
         </Space>
       ),
     },
   ]
+
   return (
     <Row className="booking-detail">
       <Col className="booking-detail-info" span={24}>
@@ -124,19 +135,19 @@ function UserBookingDetail({ detailData }) {
             Name:
           </Col>
           <Col className="booking-info-text" span={7}>
-            {detailData.passenger.name}
+            {detailData.ticketOwner}
           </Col>
           <Col className="booking-info-label" span={5}>
             Date:
           </Col>
           <Col className="booking-info-text" span={7}>
-            {moment(detailData.createdAt).format('DD/M/YYYY')}
+            {moment(detailData.createdAt).format('MM-DD-YYYY')}
           </Col>
           <Col className="booking-info-label" span={5}>
             Email:
           </Col>
           <Col className="booking-info-text" span={7}>
-            {detailData.passenger.email}
+            {detailData.email}
           </Col>
         </Row>
         <Row className="flight-info">
@@ -163,8 +174,7 @@ function UserBookingDetail({ detailData }) {
       <ModalRating
         visible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
-        handleCancel={handleCancelRating}
-        handleOk={handleRating}
+        rating={handleRating}
       />
     </Row>
   )

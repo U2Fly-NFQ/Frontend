@@ -1,0 +1,42 @@
+.flight-detail-modal {
+  border-radius: 12px;
+  overflow: hidden;
+  padding-bottom: 0;
+
+  .wrapper {
+    display: flex;
+
+    .time {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 6px;
+
+      p {
+        white-space: nowrap;
+
+        &.duration {
+          color: #777;
+        }
+      }
+    }
+
+    .info-plane_trip {
+      &__title {
+        h5 {
+          font-size: 12px !important;
+        }
+
+        img {
+          width: 60px;
+          height: 30px;
+          object-fit: contain;
+        }
+      }
+
+      i {
+        color: #777;
+      }
+    }
+  }
+}

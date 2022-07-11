@@ -19,7 +19,7 @@ import { useTranslation } from 'react-i18next'
 
 const { Text } = Typography
 
-const FlightListFilter = ({ emptyFlight }) => {
+const FlightListFilter = () => {
   const airlinesFetch = useSelector((state) => state.filter.airlines)
   const loadingStatus = useSelector((state) => state.filter.status)
   const airlinesOptions = airlinesFetch.map((al) => ({
@@ -35,6 +35,9 @@ const FlightListFilter = ({ emptyFlight }) => {
   const [time, setTime] = useState('')
   const [airlines, setAirlines] = useState([])
   const flight = getLsObj('flight')
+  const currentTicketType = searchParams.get('ticketType')
+  const activeSelect =
+    currentTicketType === 'roundTrip' && flight.id ? 'roundTrip' : 'oneWay'
 
   const handlePriceChange = (value) => {
     if (value[0] === null || value[0] === undefined) return
@@ -59,14 +62,18 @@ const FlightListFilter = ({ emptyFlight }) => {
       return
     }
 
-    if (!flight.ticketType || flight.ticketType === 'oneWay') {
+    if (activeSelect == 'oneWay') {
+      searchParams.set('startTimeRoundTrip', '')
+      searchParams.set('airlineRoundTrip', '')
       searchParams.set('startTime', time)
       searchParams.set('airline', airlines)
     }
 
-    if (flight.ticketType === 'roundTrip') {
-      searchParams.set('roundStartTime', time)
-      searchParams.set('roundAirline', airlines)
+    if (activeSelect == 'roundTrip') {
+      searchParams.set('startTime', '')
+      searchParams.set('airline', '')
+      searchParams.set('startTimeRoundTrip', time)
+      searchParams.set('airlineRoundTrip', airlines)
     }
 
     setSearchParams(searchParams)

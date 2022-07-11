@@ -13,10 +13,12 @@ import {
   logicForUserPage,
   processingTicketData,
 } from '../../utils/logicForUserPage'
+import { useLoadingContext } from 'react-router-loading'
 
 function UserHistory(props) {
   //initiation
   const dispatch = useDispatch()
+  const loadingContext = useLoadingContext()
   const ticketLoadingStatus = useSelector(ticketStatusSelector)
   const ticketHistory = useSelector(ticketHistoryDataSelector)
   const ticketRating = useSelector(ticketRatingStatusSelector)
@@ -28,6 +30,7 @@ function UserHistory(props) {
   //handle loading animation
   useEffect(() => {
     logicForUserPage(ticketLoadingStatus, 'loading', setLoading)
+    loadingContext.done()
   }, [ticketLoadingStatus])
 
   //load data for booking history

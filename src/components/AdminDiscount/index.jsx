@@ -30,6 +30,7 @@ function AddminDiscount() {
   if (data && data.length > 0) {
     data = data.map((discount) => ({
       ...discount,
+      percent: discount.percent * 100,
       key: discount.id,
     }))
   }
@@ -52,8 +53,9 @@ function AddminDiscount() {
 
   const onFinish = (values) => {
     const discount = {
-      name: values.discount,
-      percent: values.value,
+      id: values.discountID,
+      name: values.name,
+      percent: values.value / 100,
     }
     dispatch(createDiscount(discount))
     setIsModalVisible(false)
@@ -66,6 +68,11 @@ function AddminDiscount() {
   }
 
   const columns = [
+    {
+      title: 'Discount ID',
+      dataIndex: 'id',
+      render: (text) => <Typography.Paragraph>{text}</Typography.Paragraph>,
+    },
     {
       title: 'Name',
       dataIndex: 'name',

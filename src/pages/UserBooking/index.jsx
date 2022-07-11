@@ -32,12 +32,6 @@ function UserBooking(props) {
   //Logical handling functions
   useEffect(() => {
     setLoading(true)
-    dispatch(
-      fetchTickets({
-        passenger: userLogin.id,
-        effectiveness: 1,
-      })
-    )
   }, [dispatch, userLogin.id])
 
   useEffect(() => {

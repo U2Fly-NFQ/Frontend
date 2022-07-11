@@ -7,29 +7,26 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 import FlightList from './'
 import { ConfigProvider } from 'antd'
-
-import EnzymeToJson from 'enzyme-to-json'
-import Enzyme, { mount } from 'enzyme'
-import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17'
-
-Enzyme.configure({ adapter: new EnzymeAdapter() })
+import renderer from 'react-test-renderer'
 
 describe('Dashboard Flight Chart', () => {
   it('renders correctly', () => {
-    const tree = mount(
-      <I18nextProvider i18n={i18n}>
-        <Provider store={store}>
-          <ConfigProvider>
-            <Router>
-              <Suspense>
-                <FlightList />
-              </Suspense>
-            </Router>
-          </ConfigProvider>
-        </Provider>
-      </I18nextProvider>
-    )
+    const tree = renderer
+      .create(
+        <I18nextProvider i18n={i18n}>
+          <Provider store={store}>
+            <ConfigProvider>
+              <Router>
+                <Suspense>
+                  <FlightList />
+                </Suspense>
+              </Router>
+            </ConfigProvider>
+          </Provider>
+        </I18nextProvider>
+      )
+      .toJSON()
 
-    expect(EnzymeToJson(tree)).toMatchSnapshot()
+    expect(tree).toMatchSnapshot()
   })
 })

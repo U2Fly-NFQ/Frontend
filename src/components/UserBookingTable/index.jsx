@@ -85,6 +85,7 @@ function UserBookingTable({ loading, data, onCancel }) {
                 record.flights[0].startTime
               )}
               onClick={() => confirm(record.paymentId)}
+              data-testid="cancel-btn"
             >
               Cancel
             </Button>

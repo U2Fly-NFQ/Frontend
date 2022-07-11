@@ -1,35 +1,12 @@
-import { I18nextProvider } from 'react-i18next'
-import i18n from '../../translations'
-import React, { Suspense } from 'react'
-import { store } from '../../redux/store'
-import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
+import React from 'react'
+import renderer from 'react-test-renderer'
 
 import ButtonOfPage from './'
-import { ConfigProvider } from 'antd'
-
-import EnzymeToJson from 'enzyme-to-json'
-import Enzyme, { mount } from 'enzyme'
-import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17'
-
-Enzyme.configure({ adapter: new EnzymeAdapter() })
 
 describe('Button of page', () => {
   it('renders correctly', () => {
-    const tree = mount(
-      <I18nextProvider i18n={i18n}>
-        <Provider store={store}>
-          <ConfigProvider>
-            <Router>
-              <Suspense>
-                <ButtonOfPage />
-              </Suspense>
-            </Router>
-          </ConfigProvider>
-        </Provider>
-      </I18nextProvider>
-    )
+    const tree = renderer.create(<ButtonOfPage />).toJSON()
 
-    expect(EnzymeToJson(tree)).toMatchSnapshot()
+    expect(tree).toMatchSnapshot()
   })
 })

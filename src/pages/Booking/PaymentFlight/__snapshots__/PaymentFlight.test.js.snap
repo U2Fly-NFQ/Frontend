@@ -71,6 +71,7 @@ Array [
         className="ant-form ant-form-horizontal"
         onReset={[Function]}
         onSubmit={[Function]}
+        test-dataid="formPayment"
       />
     </div>
   </div>,

@@ -229,95 +229,84 @@ export default function FlightSearch() {
               <label className="flightSearchLabel">
                 {t('search_form.from')}
               </label>
-              <motion.div
-                key={from}
-                variants={variantsSelector}
-                animate={'show'}
-                initial="hide"
+
+              <Select
+                data-testid="departure-select"
+                size="large"
+                allowClear
+                clearIcon={<CloseOutlined />}
+                onClear={clearFrom}
+                showSearch
+                value={from}
+                showArrow={false}
+                filterOption={() => true}
+                onChange={onChangeFrom}
+                onSearch={(text) => setSearchFrom(text)}
+                bordered={false}
+                style={{
+                  width: '100%',
+                  borderBottom: '1px solid #ddd',
+                }}
+                dropdownStyle={{
+                  borderRadius: '10px',
+                }}
+                placeholder="Flying from..."
               >
-                <Select
-                  data-testid="departure-select"
-                  size="large"
-                  allowClear
-                  clearIcon={<CloseOutlined />}
-                  onClear={clearFrom}
-                  showSearch
-                  value={from}
-                  showArrow={false}
-                  filterOption={() => true}
-                  onChange={onChangeFrom}
-                  onSearch={(text) => setSearchFrom(text)}
-                  bordered={false}
-                  style={{
-                    width: '100%',
-                    borderBottom: '1px solid #ddd',
-                  }}
-                  dropdownStyle={{
-                    borderRadius: '10px',
-                  }}
-                  placeholder="Flying from..."
-                >
-                  {airports.map((airport) => {
-                    return (
-                      airport.city
-                        .toLowerCase()
-                        .includes(searchFrom.toLowerCase()) &&
-                      airport.iata !== to && (
-                        <Option key={airport.iata} value={airport.iata}>
-                          {airport.city} ({airport.iata})
-                        </Option>
-                      )
+                {airports.map((airport) => {
+                  return (
+                    airport.city
+                      .toLowerCase()
+                      .includes(searchFrom.toLowerCase()) &&
+                    airport.iata !== to && (
+                      <Option key={airport.iata} value={airport.iata}>
+                        {airport.city} ({airport.iata})
+                      </Option>
                     )
-                  })}
-                </Select>
-              </motion.div>
+                  )
+                })}
+              </Select>
             </div>
           </Col>
           <Col span={24} md={12} lg={6}>
             <div className="flightSearchBox">
               <i className="flightSearchBox__Icon fa-solid fa-plane-arrival"></i>
               <label className="flightSearchLabel">{t('search_form.to')}</label>
-              <motion.div
-                key={to}
-                variants={variantsSelector}
-                animate={'show'}
-                initial="hide"
+
+              <Select
+                data-testid="arrival-select"
+                size="large"
+                showSearch
+                allowClear
+                clearIcon={<CloseOutlined />}
+                onClear={clearTo}
+                value={to}
+                showArrow={false}
+                filterOption={() => true}
+                onChange={onChangeTo}
+                onSearch={(text) => setSearchTo(text)}
+                bordered={false}
+                style={{
+                  width: '100%',
+                  borderBottom: '1px solid #ddd',
+                }}
+                dropdownStyle={{
+                  borderRadius: '10px',
+                }}
+                placeholder="Flying to..."
               >
-                <Select
-                  size="large"
-                  showSearch
-                  allowClear
-                  clearIcon={<CloseOutlined />}
-                  onClear={clearTo}
-                  value={to}
-                  showArrow={false}
-                  filterOption={() => true}
-                  onChange={onChangeTo}
-                  onSearch={(text) => setSearchTo(text)}
-                  bordered={false}
-                  style={{
-                    width: '100%',
-                    borderBottom: '1px solid #ddd',
-                  }}
-                  dropdownStyle={{
-                    borderRadius: '10px',
-                  }}
-                  placeholder="Flying to..."
-                >
-                  {airports.map((airport) => {
-                    return (
-                      airport.city
-                        .toLowerCase()
-                        .includes(searchTo.toLowerCase()) &&
-                      airport.iata !== from && (
-                        <Option key={airport.iata} value={airport.iata}>
-                          {airport.city} ({airport.iata})
-                        </Option>
-                      )
+                {airports.map((airport) => {
+                  return (
+                    airport.city
+                      .toLowerCase()
+                      .includes(searchTo.toLowerCase()) &&
+                    airport.iata !== from && (
+                      <Option key={airport.iata} value={airport.iata}>
+                        {airport.city} ({airport.iata})
+                      </Option>
                     )
-                  })}
-                </Select>
-              </motion.div>
+                  )
+                })}
+              </Select>
             </div>
           </Col>
           <Col span={24} md={12} lg={7}>

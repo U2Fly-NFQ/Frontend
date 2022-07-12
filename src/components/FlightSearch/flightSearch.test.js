@@ -77,5 +77,13 @@ describe('Flight search', () => {
     // when click search
     const searchSubmit = await screen.findByTestId('search-submit')
     fireEvent.click(searchSubmit)
+
+    // Select departure
+    const departureSelect = await screen.findByTestId('departure-select')
+    fireEvent.mouseDown(departureSelect)
+
+    // Select arrival
+    const arrivalSelect = await screen.findByTestId('arrival-select')
+    fireEvent.mouseDown(arrivalSelect)
   })
 })

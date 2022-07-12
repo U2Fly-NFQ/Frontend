@@ -1,30 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Col, Row } from 'antd'
-import { Bar } from '@ant-design/charts'
-import { Typography } from 'antd/es'
+import { Typography } from 'antd'
 import './style.scss'
-import FlightChart from './FlightChart'
+// import { Bar } from '@ant-design/charts'
+// import FlightChart from './FlightChart'
 import { get } from '../../api/Dashboard'
 
 const { Title } = Typography
 
 function AdminDashboard() {
-  const airlineChartConfig = {
-    xField: 'number',
-    yField: 'name',
-    seriesField: 'number',
-    colorField: 'name',
-    height: 200,
-  }
-
-  const routeChartConfig = {
-    xField: 'number',
-    yField: 'journey',
-    seriesField: 'number',
-    colorField: 'journey',
-    height: 200,
-  }
-
   const [data, setData] = useState({})
 
   useEffect(() => {
@@ -46,11 +30,11 @@ function AdminDashboard() {
               title={<Title level={5}>Top Airlines Report</Title>}
               bordered={false}
             >
-              <Bar
+              {/* <Bar
                 data={data.top_airline}
                 {...airlineChartConfig}
                 color={['#73d13d', '#ffc53d', '#1890ff']}
-              />
+              /> */}
             </Card>
           </Col>
           <Col lg={12} xs={24}>
@@ -59,11 +43,11 @@ function AdminDashboard() {
               title={<Title level={5}>Top Routes Report</Title>}
               bordered={false}
             >
-              <Bar
+              {/* <Bar
                 data={data.top_route}
                 {...routeChartConfig}
                 color={['#ffc53d', '#73d13d', '#1890ff']}
-              />
+              /> */}
             </Card>
           </Col>
         </Row>
@@ -76,8 +60,7 @@ function AdminDashboard() {
               title={<Title level={5}>Bookings Report</Title>}
               bordered={false}
             >
-              {/* istanbul ignore next */}
-              <FlightChart data={data.flightAnalyze} />
+              {/* <FlightChart data={data.flightAnalyze} /> */}
             </Card>
           </Col>
         </Row>

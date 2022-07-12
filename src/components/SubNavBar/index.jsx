@@ -36,7 +36,7 @@ const SubNavBar = () => {
       onClick={handleMenuClick}
       items={[
         {
-          label: t('My Booking'),
+          label: t('header.My booking'),
           key: 'booked',
         },
         {

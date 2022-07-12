@@ -43,19 +43,18 @@ export default function PaymentFlight() {
       (getRoundTrip.seat !== undefined
         ? getPrice.price + getRoundTrip.seat.price
         : getPrice.price) * getDiscountInfo.percent
-    console.log(priceTotal)
-    console.log(discount)
     let fetchDataValue = {
       passengerId: userInformation.id,
       flightId: getRoundTrip.id
         ? `${getFlightData.id},${getRoundTrip.id}`
         : `${getFlightData.id}`,
       seatTypeId: getSeatData.id,
-      totalPrice: (priceTotal - discount * 100) * flightLocal.seatAvailable,
+      totalPrice: Math.floor(
+        (priceTotal - discount * 100) * flightLocal.seatAvailable
+      ),
       discountId: getDiscountInfo.id || 1,
       ticketOwner: userInformation.firstName,
     }
-    // console.log(fetchDataValue)
     dispatch(createBookingFlight(fetchDataValue))
   }
   let dataPayment = [
@@ -75,7 +74,7 @@ export default function PaymentFlight() {
   return (
     <>
       <div className="booking-page__container__item__title">
-        <h2>Payment Method</h2>
+        <h2>{t('flight-booking-page.Payment methods')}</h2>
       </div>
       <div style={{ width: '100%' }}>
         <Radio.Group

@@ -57,7 +57,7 @@ const FlightDetailModal = ({ data, visible, setIsModalVisible }) => {
                   </div>
 
                   <span>
-                    {data.departure.name} ({data.departure.iata})
+                    {data.departure.name} 
                   </span>
                 </div>
               }
@@ -70,14 +70,12 @@ const FlightDetailModal = ({ data, visible, setIsModalVisible }) => {
                 >
                   <div className="info-plane_trip__info">
                     <div className="info-plane_trip__title">
-                      <img src={data.airline.image} alt="" />
                       <h5>{data.airline.name}</h5>
                     </div>
                     <div className="info-plane_trip__body">
                       <span>{data.airplane.name}</span>
                     </div>
                     <div className="info-plane_trip__footer">
-                      <span>{data.seat.name}</span>
                     </div>
                   </div>
                 </div>
@@ -90,7 +88,7 @@ const FlightDetailModal = ({ data, visible, setIsModalVisible }) => {
                     <i className="fa-solid fa-location-dot"></i>
                   </div>
                   <span>
-                    {data.arrival.name} ({data.arrival.iata})
+                    {data.arrival.name} 
                   </span>
                 </div>
               }

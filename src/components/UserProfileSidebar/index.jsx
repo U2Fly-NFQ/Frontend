@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Row, Col, Avatar, Menu } from 'antd'
 import { Link, useLocation } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons'
+import { useTranslation } from 'react-i18next'
 
 function UserProfileSidebar({ proflie }) {
   const location = useLocation()
   const [selectedKeys, setSelectedKeys] = useState(['1'])
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (location.pathname === '/profile/booking') {
@@ -27,12 +29,12 @@ function UserProfileSidebar({ proflie }) {
 
   const items = [
     getItem(
-      <Link to="/profile/booking">My Booking</Link>,
+      <Link to="/profile/booking">{t('My Booking')}</Link>,
       1,
       <i className="fa-solid fa-address-card"></i>
     ),
     getItem(
-      <Link to="/profile/history">Booking History</Link>,
+      <Link to="/profile/history">{t('Booking History')}</Link>,
       2,
       <i className="fa-solid fa-clock-rotate-left"></i>
     ),

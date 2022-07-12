@@ -15,6 +15,7 @@ export default function FlightTrip() {
   const getDataFlight = useSelector(getInfoFlightInBookingFight)
   const getRoundTrip = useSelector(getRoundTripBookingFlight)
   let flight = getLsObj('flight')
+  console.log(getDataFlight)
   return (
     <Collapse defaultActiveKey={['1']} ghost>
       <Panel

@@ -14,7 +14,7 @@ export default function ModalRating({ visible, setIsModalVisible, rating }) {
   const [status, setStatus] = useState()
   const [description, setDescription] = useState()
   const handleOK = () => {
-    if (!status) {
+    if (typeof status !== 'number') {
       message.error('Please choose your emotion')
       return false
     }

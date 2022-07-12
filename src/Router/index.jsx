@@ -1,7 +1,9 @@
 // import React from 'react'
 
 import React, { Suspense, lazy } from 'react'
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
+import { topbar } from 'react-router-loading'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { Routes, Route } from 'react-router-loading'
 import { PageLoadingAnimation } from '../components'
 import AdminDiscount from '../components/AdminDiscount'
 
@@ -27,6 +29,18 @@ const RoutesApp = () => {
   const token = localStorage.getItem('token')
   const user = getLsObj('user')
 
+  topbar.config({
+    autoRun: false,
+    barThickness: 5,
+    barColors: {
+      0: 'rgba(26,  188, 156, .7)',
+      0.3: 'rgba(41,  128, 185, .7)',
+      1.0: 'rgba(231, 76,  60,  .7)',
+    },
+    shadowBlur: 5,
+    shadowColor: 'red',
+    className: 'topbar',
+  })
   return (
     <Router>
       <Suspense fallback={<PageLoadingAnimation />}>
@@ -47,9 +61,9 @@ const RoutesApp = () => {
             {/* For users */}
             {token && Object.values(user.roles).indexOf('ROLE_USER') > -1 && (
               <Route path="profile" element={<UserProfile />}>
-                <Route index element={<UserProfileDetail />} />
-                <Route path="booking" element={<UserBooking />} />
-                <Route path="history" element={<UserHistory />} />
+                <Route index element={<UserProfileDetail />} loading />
+                <Route path="booking" element={<UserBooking />} loading />
+                <Route path="history" element={<UserHistory />} loading />
               </Route>
             )}
           </Route>

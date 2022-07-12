@@ -50,6 +50,31 @@ exports[`Home page test renders correctly 1`] = `
             </div>
           </div>
         </div>
+        <div
+          className="ant-col ant-col-24 ant-col-sm-12 ant-col-lg-6"
+          style={
+            Object {
+              "paddingBottom": 12,
+              "paddingLeft": 12,
+              "paddingRight": 12,
+              "paddingTop": 12,
+            }
+          }
+        >
+          <div
+            className="imagination_boxed"
+            data-testId="imageHome"
+            onClick={[Function]}
+          >
+            <img
+              alt="img"
+              src="https://wallpapercave.com/wp/wp2691201.jpg"
+            />
+            <h3>
+              Ha Noi
+            </h3>
+          </div>
+        </div>
       </div>
     </section>
   </div>

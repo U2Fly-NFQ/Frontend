@@ -98,7 +98,9 @@ export default function PaymentFlight() {
             })}
         </Radio.Group>
         <div className="BookingPayment-content">
-          <Form onFinish={onFinish}>{dataBooking && dataBooking.render}</Form>
+          <Form onFinish={onFinish} test-dataid="formPayment">
+            {dataBooking && dataBooking.render}
+          </Form>
         </div>
       </div>
     </>

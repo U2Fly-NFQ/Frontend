@@ -49,6 +49,7 @@ function Home() {
                 <Col key={ap.id} span={24} sm={12} lg={6}>
                   <div
                     className="imagination_boxed"
+                    data-testId="imageHome"
                     onClick={() => handleChangeTopDestination(ap.iata)}
                   >
                     <img src={ap.image} alt="img" />

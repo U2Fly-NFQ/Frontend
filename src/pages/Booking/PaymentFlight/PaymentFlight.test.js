@@ -54,7 +54,7 @@ describe('Booking Passenger bar test', () => {
 
     const radioButton = screen.getByText('Stripe')
     fireEvent.click(radioButton)
-    const Payment = await screen.findByTestId('formPayment')
-    fireEvent.submit(Payment)
+    const Payment = screen.getByText('Pay Now')
+    fireEvent.click(Payment)
   })
 })

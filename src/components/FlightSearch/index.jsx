@@ -259,7 +259,7 @@ export default function FlightSearch() {
                       airport.city
                         .toLowerCase()
                         .includes(searchFrom.toLowerCase()) &&
-                      airport.iata !== to && (
+                      (
                         <Option key={airport.iata} value={airport.iata}>
                           {airport.city} ({airport.iata})
                         </Option>
@@ -306,7 +306,7 @@ export default function FlightSearch() {
                       airport.city
                         .toLowerCase()
                         .includes(searchTo.toLowerCase()) &&
-                      airport.iata !== from && (
+                       (
                         <Option key={airport.iata} value={airport.iata}>
                           {airport.city} ({airport.iata})
                         </Option>

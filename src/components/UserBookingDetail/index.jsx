@@ -110,7 +110,7 @@ function UserBookingDetail({ detailData }) {
                 showRatingForm(record)
               }}
             >
-              Review
+              Rate
             </Button>
           )}
         </Space>

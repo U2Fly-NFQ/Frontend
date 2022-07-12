@@ -10,8 +10,7 @@ export default function CreateDiscountForm({ form, onFinish, onFinishFailed }) {
         form={form}
       >
         <Form.Item
-          label="Name"
-          name="discount"
+          name="name"
           rules={[
             {
               required: true,
@@ -19,7 +18,7 @@ export default function CreateDiscountForm({ form, onFinish, onFinishFailed }) {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Code" />
         </Form.Item>
         <Form.Item
           label="Value"

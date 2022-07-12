@@ -52,9 +52,9 @@ describe('Booking Passenger bar test', () => {
       </Provider>
     )
 
-    const radioButton = screen.getByText('Stripe')
+    const radioButton = await screen.findByText('Stripe')
     fireEvent.click(radioButton)
-    const Payment = screen.getByText('Pay Now')
+    const Payment = await screen.findByText('Pay Now')
     fireEvent.click(Payment)
   })
 })

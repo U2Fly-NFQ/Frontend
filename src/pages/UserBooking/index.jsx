@@ -20,6 +20,8 @@ import {
 } from '../../utils/logicForUserPage'
 import { isEmpty } from 'lodash/lang'
 import { useLoadingContext } from 'react-router-loading'
+import { useTranslation } from 'react-i18next'
+
 function UserBooking(props) {
   //initiation
   const loadingContext = useLoadingContext()
@@ -29,9 +31,9 @@ function UserBooking(props) {
   const ticketData = useSelector(ticketDataSelector)
   const ticketCancelStatus = useSelector(ticketCancelStatusSelector)
   const userLogin = JSON.parse(localStorage.getItem('user'))
-
   const [loading, setLoading] = useState(false)
   const [tickets, setTickets] = useState([])
+  const { t } = useTranslation()
 
   //handle loading animation
   useEffect(() => {
@@ -85,7 +87,7 @@ function UserBooking(props) {
   return (
     <Row className="userProfile-container-booking">
       <Col span={24} className="userProfile-container-booking-title">
-        My Booking
+        {t('My Booking')}
       </Col>
       <Col span={24}>
         <UserBookingTable

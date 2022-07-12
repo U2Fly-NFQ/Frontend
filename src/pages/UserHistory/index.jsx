@@ -14,6 +14,7 @@ import {
   processingTicketData,
 } from '../../utils/logicForUserPage'
 import { useLoadingContext } from 'react-router-loading'
+import { useTranslation } from 'react-i18next'
 
 function UserHistory(props) {
   //initiation
@@ -26,6 +27,7 @@ function UserHistory(props) {
 
   const [tickets, setTickets] = useState([])
   const [loading, setLoading] = useState(false)
+  const { t } = useTranslation()
 
   //handle loading animation
   useEffect(() => {
@@ -64,7 +66,7 @@ function UserHistory(props) {
   return (
     <Row className="userProfile-container-history">
       <Col span={24} className="userProfile-container-history-title">
-        Booking History
+        {t('Booking History')}
       </Col>
       <Col span={24}>
         <UserBookingTable data={tickets} loading={loading} />

@@ -50,8 +50,8 @@
     "passenger_one": "{{count}} passenger",
     "passenger_other": "{{count}} passengers",
     "class": "Class",
-    "economy": "Economy",
-    "business": "Business",
+    "Economy": "Economy",
+    "Business": "Business",
     "first_class": "First Class",
     "No. of Passengers": "No. of Passengers",
     "Add return date": "Add return date"

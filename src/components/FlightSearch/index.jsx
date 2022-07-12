@@ -59,7 +59,7 @@ export default function FlightSearch() {
   const [to, setTo] = useState(undefined)
   const [ticketType, setTicketType] = useState('oneWay')
   const [journeyDay, setJourneyDay] = useState(moment())
-  const [passengerClass, setPassengerClass] = useState('economy')
+  const [passengerClass, setPassengerClass] = useState('Economy')
   const [returnDate, setReturnDate] = useState(moment().add(3, 'days'))
   const [passengerNumber, setPassengerNumber] = useState(1)
   const [modalContent, setModalContent] = useState('')
@@ -183,9 +183,9 @@ export default function FlightSearch() {
         value={passengerClass}
         onChange={(e) => setPassengerClass(e.target.value)}
       >
-        <Radio.Button value="economy">{t('search_form.economy')}</Radio.Button>
-        <Radio.Button value="business">
-          {t('search_form.business')}
+        <Radio.Button value="Economy">{t('search_form.Economy')}</Radio.Button>
+        <Radio.Button value="Business">
+          {t('search_form.Business')}
         </Radio.Button>
       </Radio.Group>
     </>

@@ -155,14 +155,6 @@ function FlightList() {
       (flightStorage.seatType === 'Economy' && selectedFlight.seat[0]) ||
       selectedFlight.seat[1]
 
-  selectedSeat = {
-    id: 1,
-    name: 'Economy',
-    price: 59,
-    seatAvailable: 50,
-    discount: 0.1,
-  }
-
   const [showDetailModal, setShowDetailModal] = useState(true)
   const [modalData, setModalData] = useState({})
 

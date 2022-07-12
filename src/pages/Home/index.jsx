@@ -4,15 +4,17 @@ import { Row, Col } from 'antd'
 import { useNavigate, createSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { getLsObj } from '../../utils/localStorage'
 
 function Home() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const airports = useSelector((state) => state.airports.data)
+  const flight = getLsObj('flight')
 
   const handleChangeTopDestination = (arrivalCode) => {
     const searchQuery = {
-      departure: 'VCA',
+      departure: flight.departure || 'VCA',
       arrival: arrivalCode,
       startDate: moment().format('YYYY-MM-DD'),
       seatType: 'Economy',

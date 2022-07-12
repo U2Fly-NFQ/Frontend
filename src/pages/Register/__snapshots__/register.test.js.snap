@@ -87,6 +87,7 @@ exports[`Register page renders correctly 1`] = `
             <form
               autoComplete="off"
               className="ant-form ant-form-horizontal form"
+              data-testid="form"
               onReset={[Function]}
               onSubmit={[Function]}
             >
@@ -295,6 +296,7 @@ exports[`Register page renders correctly 1`] = `
                           >
                             <input
                               autoComplete="off"
+                              data-testid="birthday-picker"
                               disabled={false}
                               id="birthday"
                               onBlur={[Function]}

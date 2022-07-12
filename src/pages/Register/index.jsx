@@ -70,7 +70,12 @@ const Register = () => {
               <div className="content">
                 <div className="box">
                   <Title level={2}>{t('cta.register')}</Title>
-                  <Form className="form" onFinish={onFinish} autoComplete="off">
+                  <Form
+                    className="form"
+                    onFinish={onFinish}
+                    autoComplete="off"
+                    data-testid="form"
+                  >
                     <div className="form-group">
                       <Form.Item
                         name="idno"
@@ -153,7 +158,7 @@ const Register = () => {
                           },
                         ]}
                       >
-                        <DatePicker />
+                        <DatePicker data-testid="birthday-picker" />
                       </Form.Item>
                     </div>
 
@@ -252,7 +257,11 @@ const Register = () => {
                       </Form.Item>
                     </div>
                     <div className="form-submit">
-                      <Button type="submit" className="btn btn-primary btn-md">
+                      <Button
+                        type="submit"
+                        className="btn btn-primary btn-md"
+                        data-testid="submit-btn"
+                      >
                         Register
                       </Button>
                     </div>

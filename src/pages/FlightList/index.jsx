@@ -287,6 +287,9 @@ function FlightList() {
                                 <Option value="price.asc">
                                   {t('flight-list-page.Price Low to High')}
                                 </Option>
+                                <Option value="price.desc">
+                                  {t('flight-list-page.Price High to Low')}
+                                </Option>
                                 <Option value="duration.asc">
                                   {t('flight-list-page.Fly time Fastest')}
                                 </Option>

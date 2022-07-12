@@ -206,7 +206,7 @@ function FlightList() {
                               src={selectedFlight.airline.image}
                               alt="Airline image"
                             />
-                            <Text>{selectedFlight.airline.name}</Text>
+                            {/* <Text>{selectedFlight.airline.name}</Text> */}
                           </div>
                           <div className="line-way">
                             <div className="line-way-item from">

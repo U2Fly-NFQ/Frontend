@@ -403,7 +403,7 @@ export default function FlightSearch() {
                   {t('search_form.passenger')} & {t('search_form.class')}
                 </label>
                 <div className="flightSearchPassenger">
-                  {t('search_form.passenger', { count: passengerNumber })}
+                {passengerNumber} {t('search_form.passenger')}
                 </div>
                 <p className="flightSearchSelected">
                   {t(`search_form.${passengerClass}`)}

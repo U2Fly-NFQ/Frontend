@@ -183,9 +183,9 @@ export default function FlightSearch() {
         value={passengerClass}
         onChange={(e) => setPassengerClass(e.target.value)}
       >
-        <Radio.Button value="Economy">{t('search_form.Economy')}</Radio.Button>
+        <Radio.Button value="Economy">{t(`search_form.economy`)}</Radio.Button>
         <Radio.Button value="Business">
-          {t('search_form.Business')}
+          {t(`search_form.business`)}
         </Radio.Button>
       </Radio.Group>
     </>
@@ -258,8 +258,7 @@ export default function FlightSearch() {
                     return (
                       airport.city
                         .toLowerCase()
-                        .includes(searchFrom.toLowerCase()) &&
-                      (
+                        .includes(searchFrom.toLowerCase()) && (
                         <Option key={airport.iata} value={airport.iata}>
                           {airport.city} ({airport.iata})
                         </Option>
@@ -305,8 +304,7 @@ export default function FlightSearch() {
                     return (
                       airport.city
                         .toLowerCase()
-                        .includes(searchTo.toLowerCase()) &&
-                       (
+                        .includes(searchTo.toLowerCase()) && (
                         <Option key={airport.iata} value={airport.iata}>
                           {airport.city} ({airport.iata})
                         </Option>
@@ -403,10 +401,10 @@ export default function FlightSearch() {
                   {t('search_form.passenger')} & {t('search_form.class')}
                 </label>
                 <div className="flightSearchPassenger">
-                {passengerNumber} {t('search_form.passenger')}
+                  {passengerNumber} {t('search_form.passenger')}
                 </div>
                 <p className="flightSearchSelected">
-                  {t(`search_form.${passengerClass}`)}
+                  {t(`search_form.${passengerClass.toLowerCase()}`)}
                 </p>
               </div>
             </Popover>

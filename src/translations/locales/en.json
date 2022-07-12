@@ -44,14 +44,14 @@
     "round_trip": "Round Trip",
     "from": "From",
     "to": "To",
-    "journey_date": "Journey Date",
+    "journey_date": "Departure Date",
     "return_date": "Return Date",
     "passenger": "Passenger",
     "passenger_one": "{{count}} passenger",
     "passenger_other": "{{count}} passengers",
     "class": "Class",
-    "Economy": "Economy",
-    "Business": "Business",
+    "economy": "Economy",
+    "business": "Business",
     "first_class": "First Class",
     "No. of Passengers": "No. of Passengers",
     "Add return date": "Add return date"
@@ -198,8 +198,8 @@
   },
 
   "profile-page": {
-    "My Booking": "My Booking",
-    "Booking History": "Booking History",
+    "My Booking": "Recently Booking",
+    "Booking History": "Completed & Canceled Booking",
     "My Profile": "My Profile",
     "Booking ID": "Booking ID",
     "Journey": "Journey",
@@ -236,8 +236,8 @@
 
   "footer": {
     "Need any help?": "Need any help?",
-    "Call 24/7 for any help": "Call 24/7 for any help",
-    "CMail to our support team": "CMail to our support team",
+    "Call 24/7 for any help": "Hotline:",
+    "CMail to our support team": "Support team: ",
     "Company": "Company",
     "About Us": "About Us",
     "Testimonials": "Testimonials",
@@ -463,6 +463,6 @@
     "order_history_action": "$t(order_history_action.{{action}})",
     "delivery_status": "$t(delivery_status.{{status}})"
   },
-  "My Booking": "My Booking",
-  "Booking History": "Booking History"
+  "My Booking": "Recently booking",
+  "Booking History": "Completed & canceled booking"
 }

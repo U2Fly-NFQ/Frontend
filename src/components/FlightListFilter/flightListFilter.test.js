@@ -9,6 +9,10 @@ import renderer from 'react-test-renderer'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { fireEvent, render, screen } from '@testing-library/react'
 
+/**
+ * @jest-environment jsdom
+ */
+
 describe('Flight list filter', () => {
   it('renders correctly', () => {
     const tree = renderer

@@ -68,7 +68,7 @@
           "argsIgnorePattern": "^_"
         }
       ],
-      "no-named-as-default": false
+      "no-named-as-default": 0
     }
   },
   "lint-staged": {

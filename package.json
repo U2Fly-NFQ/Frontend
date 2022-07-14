@@ -11,7 +11,6 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.21.3",
-    "apexcharts": "^3.35.3",
     "axios": "^0.27.2",
     "axios-mock-adapter": "^1.21.1",
     "eslint": "^8.18.0",
@@ -68,7 +67,8 @@
           "args": "after-used",
           "argsIgnorePattern": "^_"
         }
-      ]
+      ],
+      "no-named-as-default": false
     }
   },
   "lint-staged": {

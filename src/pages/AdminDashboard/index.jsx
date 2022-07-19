@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Col, Row } from 'antd'
 import { Bar } from '@ant-design/charts'
-import { Typography } from 'antd/es'
+import { Typography } from 'antd'
 import './style.scss'
 import FlightChart from './FlightChart'
 import { get } from '../../api/Dashboard'

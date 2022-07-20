@@ -325,12 +325,12 @@ export default function FlightSearch() {
                   <DatePicker
                     className="journeyDate"
                     allowClear={false}
-                    disabledDate={(current) => {
-                      return (
-                        moment().add(-1, 'days') > current ||
-                        moment().add(1, 'months') <= current
-                      )
-                    }}
+                    // disabledDate={(current) => {
+                    //   return (
+                    //     moment().add(-1, 'days') > current ||
+                    //     moment().add(1, 'months') <= current
+                    //   )
+                    // }}
                     value={journeyDay}
                     onChange={(date) => setJourneyDay(date)}
                     format={'MM/DD/YY'}

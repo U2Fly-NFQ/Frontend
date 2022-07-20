@@ -4,9 +4,6 @@
   padding: 0;
   display: block;
   width: 100%;
-  // .ant-row {
-  //   margin: 0 !important;
-  // }
 }
 
 .wide {
@@ -48,9 +45,3 @@
     max-width: 1440px;
   }
 }
-
-/* Margin top */
-@include a.attr-x('margin-top', 60, 1, 'px');
-
-/* Padding top */
-@include a.attr-x('padding-top', 60, 1, 'px');

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Skeleton, Rate } from 'antd'
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import './style.scss'
 import { useNavigate } from 'react-router-dom'
 import { getLsObj, updateLs } from '../../utils/localStorage'
@@ -12,10 +13,25 @@ import {
   getPriceWithDiscount,
 } from '../../utils/flight'
 
+const FlightCardVariants = {
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7 } },
+  hidden: { opacity: 0, x: 400 },
+}
+
 export default function FlightCard(props) {
   const { data, loading, onClickDetail } = props
   const navigate = useNavigate()
   const { t } = useTranslation()
+  const control = useAnimation()
+  const [ref, inView] = useInView()
+
+  useEffect(() => {
+    if (inView) {
+      control.start('visible')
+    } else {
+      control.start('hidden')
+    }
+  }, [control, inView])
 
   const onBooking = () => {
     let flight = getLsObj('flight')
@@ -59,10 +75,10 @@ export default function FlightCard(props) {
 
   return (
     <motion.div
-      whileHover={{
-        scale: 1.01,
-        boxShadow: '0 1rem 3rem rgba(#000, 0.175)',
-      }}
+      ref={ref}
+      variants={FlightCardVariants}
+      initial="hidden"
+      animate={control}
     >
       <div className="flight-card" onClick={onClickDetail}>
         <div className="airline">
